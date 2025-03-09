@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@theme {
+    /* Define the animation variable */
+    --animate-carousel: carousel 30s linear infinite;
+
+    /* Define the keyframes for the carousel */
+    @keyframes carousel {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
