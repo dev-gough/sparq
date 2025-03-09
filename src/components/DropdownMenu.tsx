@@ -2,12 +2,6 @@
 
 import { useState, useRef } from 'react';
 import Link from 'next/link';
-import { Nunito } from 'next/font/google';
-
-const nunito = Nunito({
-    subsets: ['latin'],
-    weight: ['500', '800'],
-});
 
 interface NavItem {
     label: string;
@@ -41,7 +35,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
 
     return (
         <div
-            className="relative"
+            className="relative z-10"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
@@ -49,7 +43,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
                 {/* Main label as a clickable link */}
                 <Link
                     href={navItem.href}
-                    className={`text-white px-1 py-1 text-md rounded hover:text-gray-300 ${nunito.className}`}
+                    className="text-white px-1 py-1 text-md rounded hover:text-gray-300"
                 >
                     {navItem.label}
                 </Link>
@@ -60,12 +54,12 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
             </div>
             {/* Dropdown menu */}
             {isOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-md rounded-md">
+                <div className="absolute top-full left-0 mt-1 w-48 bg-[#454345] shadow-lg rounded-md border-t-4 border-t-[#8c344e]">
                     {navItem.dropdown && navItem.dropdown.map((subItem, index) => (
                         <Link
                             key={index}
                             href={subItem.href}
-                            className="block px-4 py-2 rounded text-sm text-gray-700 hover:bg-gray-100"
+                            className="block px-4 py-2 rounded text-sm text-white hover:bg-gray-100"
                         >
                             {subItem.label}
                         </Link>
