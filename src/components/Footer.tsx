@@ -44,7 +44,7 @@ export default function Footer() {
                     </div>
                     {/* Copyright */}
                     <div className="text-center mt-2 text-sm border-t border-gray-600 pt-2">
-                        <p>All content © Sparq Systems, 2022</p>
+                        <p>All content © Sparq Systems, 2025</p>
                     </div>
                 </div>
             </footer>
