@@ -31,7 +31,7 @@ export default function Home() {
                     <div className="w-full md:w-1/2 space-y-4">
                         <h2 className="text-2xl font-bold text-gray-800">THE Q2000</h2>
                         <p className="text-base text-gray-600">
-                            SPARQ is pleased to introduce the Quad 2000, the industry's most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, without any power clipping. Our advanced software allows the Q2000 to operate seamlessly in grid-tied, standalone and dual-mode solar panel applications.
+                            SPARQ is pleased to introduce the Quad 2000, the industry&apos;s most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, without any power clipping. Our advanced software allows the Q2000 to operate seamlessly in grid-tied, standalone and dual-mode solar panel applications.
                         </p>
                         <Link
                             href="/Q2000-2022-ver_9.2.pdf"
@@ -50,7 +50,7 @@ export default function Home() {
                         Your cost-effective, reliable solar energy system.
                     </h1>
                     <p className="text-md text-black mt-2">
-                        We're changing the industry standard for solar energy solutions with powerful power conversion that's smart-grid ready and the lowest cost per watt in the industry.
+                        We&apos;re changing the industry standard for solar energy solutions with powerful power conversion that&apos;s smart-grid ready and the lowest cost per watt in the industry.
                     </p>
 
                     {/* First Subheading and Paragraph */}
@@ -66,7 +66,7 @@ export default function Home() {
                         4 panels - 1 inverter.
                     </h2>
                     <p className="text-black mt-2">
-                        Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you'll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.
+                        Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you&apos;ll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.
                     </p>
 
                     {/* Bullet Point List in Two Columns */}
