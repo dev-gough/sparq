@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Nunito } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -56,6 +57,7 @@ export default function RootLayout({
       <body className={nunito.className}>
         <Header navItems={navbarItems}/>
         {children}
+        <SpeedInsights />
         <Footer />
     </body>
     </html>
