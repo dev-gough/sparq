@@ -3,8 +3,6 @@ import Link from "next/link";
 import DropdownMenu from "./DropdownMenu";
 import StockDisplay from "./StockDisplay";
 
-
-
 interface NavItem {
     label: string;
     href: string;
@@ -18,7 +16,7 @@ interface HeaderProps {
 export default function Header({ navItems }: HeaderProps) {
     return (
         <header className="flex flex-col ">
-            <div className="flex justify-between items-center p-4 bg-[#454345] shadow-md">
+            <div className="flex justify-between items-center p-4 bg-brand-graytext shadow-md">
                 <Link href="/">
                     <Image src="/logo.png" alt="Logo" width={126} height={85} />
                 </Link>
