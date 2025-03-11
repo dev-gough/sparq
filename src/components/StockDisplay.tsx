@@ -37,7 +37,6 @@ const StockDisplay = () => {
         refreshInterval: 600000,
     });
 
-
     if (error) return <div className="text-red-500">Error loading data</div>;
     if (isLoading) return <div className="text-gray-500">Loading...</div>;
 
