@@ -14,7 +14,7 @@ export default function Home() {
                     <p className="text-brand-maroon font-bold text-2xl">
                         Introducing the Q2000: The most powerful microinverter in the industry!
                     </p>
-                </div>``
+                </div>
                 {/* Content: Image and Text Blurb */}
                 <div className="mt-6 flex flex-col md:flex-row items-center gap-6">
                     {/* Image */}
