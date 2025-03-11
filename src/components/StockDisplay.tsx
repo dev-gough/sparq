@@ -35,8 +35,8 @@ const StockItem = ({ data }: { data: StockData }) => {
     }
     return (
         <div className="flex items-center gap-1 text-sm whitespace-nowrap">
-            <span className="font-bold text-[#666666]">{data.symbol}</span>
-            <span className=" font-sans text-[#666666]">${data.c.toFixed(2)}</span>
+            <span className="font-bold text-brand-gray">{data.symbol}</span>
+            <span className=" font-sans text-brand-gray">${data.c.toFixed(2)}</span>
             <span className={data.d >= 0 ? 'text-green-500' : 'text-red-500'}>
                 {data.d >= 0 ? '+' : ''}{data.d.toFixed(2)} ({data.dp.toFixed(2)}%)
             </span>

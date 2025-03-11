@@ -54,12 +54,12 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
             </div>
             {/* Dropdown menu */}
             {isOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-[#454345] shadow-lg rounded-md border-t-4 border-t-[#8c344e]">
+                <div className="absolute top-full left-0 mt-1 w-48 bg-brand-graytext shadow-lg rounded-md border-t-4 border-t-brand-maroon">
                     {navItem.dropdown && navItem.dropdown.map((subItem, index) => (
                         <Link
                             key={index}
                             href={subItem.href}
-                            className="block px-4 py-2 rounded text-sm text-white hover:bg-gray-100"
+                            className="block px-4 py-2 rounded text-sm text-white hover:bg-brand-maroon"
                         >
                             {subItem.label}
                         </Link>
