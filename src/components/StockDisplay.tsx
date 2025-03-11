@@ -12,19 +12,6 @@ interface StockData {
     error?: string;
 }
 
-/* 
-to stop fast refresh from calling the api on every page save (during dev)
-
-TODO: remove before building
-
-*/
-
-const mockItems: StockData[] = [
-    { symbol: "SPRQF", c: 9999, d: 0, dp: 0 },
-    { symbol: "MSFT", c: 393.31, d: -3.58, dp: -0.90 },
-    { symbol: "ENPH", c: 61.63, d: 2.91, dp: 4.96 }
-]
-
 const StockItem = ({ data }: { data: StockData }) => {
     if (data.error) {
         return (
@@ -46,14 +33,10 @@ const StockItem = ({ data }: { data: StockData }) => {
 
 const StockDisplay = () => {
     const symbols = ['SPRQF', 'AAPL', 'GOOGL', 'MSFT', 'ENPH', 'GME'];
-    // const { data, error, isLoading } = useSWR<StockData[]>(`/api/stockData?symbols=${symbols.join(',')}`, fetcher, {
-    //     refreshInterval: 600000,
-    // });
+    const { data, error, isLoading } = useSWR<StockData[]>(`/api/stockData?symbols=${symbols.join(',')}`, fetcher, {
+        refreshInterval: 600000,
+    });
 
-    const error = false
-    const isLoading = false
-
-    const data: StockData[] = mockItems
 
     if (error) return <div className="text-red-500">Error loading data</div>;
     if (isLoading) return <div className="text-gray-500">Loading...</div>;
