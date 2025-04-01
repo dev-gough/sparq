@@ -127,7 +127,7 @@ export default function TestPage() {
     return (
         <div className="bg-white container mx-auto py-8 px-10">
             {/* Team Section */}
-            <section className="py-16">
+            <section id="management" className="py-16">
                 <div className="container mx-auto">
                     <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-32">Meet the Team</h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16">
@@ -153,7 +153,7 @@ export default function TestPage() {
                 </div>
             </section>
             {/* BOD section */}
-            <section className="pt-8">
+            <section id="bod" className="pt-8">
                 <div className="container mx-auto">
                     <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-32">Board of Directors</h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16">

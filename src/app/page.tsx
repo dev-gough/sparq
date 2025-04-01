@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <div className="flex flex-col">
             <div className="relative h-[50vh] overflow-hidden">
-                <Image layout="fill" objectFit="cover" objectPosition="top" src="/hero.webp" alt="hero" />
+                <Image priority layout="fill" objectFit="cover" objectPosition="top" src="/hero.webp" alt="hero" />
             </div>
             {/* Q2000 header, image, and blurb */}
             <div className="container mx-auto py-16 px-4">
