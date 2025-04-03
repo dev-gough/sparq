@@ -22,5 +22,8 @@ jobs:
       - name: Copy source to deployment directory
         run: sudo cp -r . /home/server/sparqsys
 
+      - name: Check for deploy.sh
+        run: cat /home/server/sparqsys/deploy.sh || echo "Script not found"
+
       - name: Trigger host-side deployment script
         run: sudo /home/server/sparqsys/deploy.sh
