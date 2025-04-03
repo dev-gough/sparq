@@ -13,6 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Debug file access
+        run: |
+          ls -la /var/www
+          ls -la /var/www/sparqsys
+          whoami
+          pwd
+          sudo ls -la /var/www/sparqsys
+
       - name: Copy source to deployment directory
         run: |
           sudo rm -rf /var/www/sparqsys/*
