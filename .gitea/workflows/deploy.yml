@@ -13,27 +13,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Debug file access
-        run: |
-          ls -la /var/www
-          ls -la /var/www/sparqsys
-          whoami
-          pwd
-          sudo ls -la /var/www/sparqsys
-
       - name: Copy source to deployment directory
         run: |
-          sudo rm -rf /var/www/sparqsys/*
-          sudo cp -r . /var/www/sparqsys/
-          sudo chown -R server: /var/www/sparqsys/
+          sudo rm -rf /home/server/sparqsys/*
+          sudo cp -r . /home/server/sparqsys/
 
       - name: Install dependencies
         run: sudo /home/server/.nvm/versions/node/v22.14.0/bin/npm install
-        working-directory: /var/www/sparqsys
+        working-directory: /home/server/sparqsys
 
       - name: Build the app
         run: sudo /home/server/.nvm/versions/node/v22.14.0/bin/npm run build
-        working-directory: /var/www/sparqsys
+        working-directory: /home/server/sparqsys
 
       - name: Restart systemd service
         run: sudo systemctl restart sparqsys
