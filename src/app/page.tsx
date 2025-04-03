@@ -5,12 +5,12 @@ export default function Home() {
     return (
         <div className="flex flex-col">
             <div className="relative h-[50vh] overflow-hidden">
-                <Image priority layout="fill" objectFit="cover" objectPosition="top" src="/hero.webp" alt="hero" />
+                <Image priority className="object-cover object-top" fill src="/hero.webp" alt="hero" />
             </div>
             {/* Q2000 header, image, and blurb */}
             <div className="container mx-auto py-16 px-4">
                 {/* Boxed Header */}
-                <div className="max-w-[600px] mx-auto text-center rounded-xl border-4 border-[#F5A623] p-4">
+                <div className="max-w-[600px] mx-auto text-center rounded-xl border-4 border-brand-yellow p-4">
                     <p className="text-brand-maroon font-bold text-2xl">
                         Introducing the Q2000: The most powerful microinverter in the industry!
                     </p>
@@ -96,8 +96,7 @@ export default function Home() {
                                         alt="Easy Install"
                                         width={1080}
                                         height={1080}
-                                        className="mb-4 object-contain"
-                                        layout="responsive"
+                                        className="mb-4 object-contain w-full h-auto"
                                     />
                                 </div>
                                 <h3 className="text-2xl md:text-3xl font-bold text-red-800 mb-2">
@@ -116,8 +115,7 @@ export default function Home() {
                                         alt="High Power, Low Cost"
                                         width={1080}
                                         height={1080}
-                                        className="mb-4 object-contain"
-                                        layout="responsive"
+                                        className="mb-4 object-contain w-full h-auto"
                                     />
                                 </div>
                                 <h3 className="text-2xl md:text-3xl font-bold text-red-800 mb-2">
@@ -137,8 +135,7 @@ export default function Home() {
                                         alt="Industry Leader in Energy Solutions"
                                         width={1080}
                                         height={1080}
-                                        className="mb-4 object-contain"
-                                        layout="responsive"
+                                        className="mb-4 object-contain w-full h-auto"
                                     />
                                 </div>
                                 <h3 className="text-2xl md:text-3xl font-bold text-red-800 mb-2">

@@ -1,3 +1,5 @@
+/* Old About Page */
+
 import BoardMember from "@/components/BoardMember"
 import TeamMember from "@/components/TeamMember";
 import Link from "next/link";

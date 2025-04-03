@@ -120,7 +120,7 @@ const teamMembers: TeamMemberData[] = [
     },
 ]
 
-export default function TestPage() {
+export default function AboutPage() {
 
     const [selectedMember, setMember] = useState<BoardMemberData | TeamMemberData | null>(null)
 
@@ -138,7 +138,7 @@ export default function TestPage() {
                                 className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 ${
                                     selectedMember == member
                                     ? 'scale-100'
-                                    : 'hover:scale-150 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
+                                    : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
                                 }`}>
                                 <img
                                     src={member.imgSrc}
@@ -164,7 +164,7 @@ export default function TestPage() {
                                 className={`bg-white flex flex-col items-center cursor-pointer transform transition ease-in-out duration-300 ${
                                     selectedMember == member
                                     ? 'scale-100'
-                                    : 'hover:scale-150 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
+                                    : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
                                 }`}>
                                 <img
                                     src={member.imgSrc}

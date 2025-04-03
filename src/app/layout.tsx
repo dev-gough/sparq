@@ -6,8 +6,8 @@ import { Nunito } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
-  title: "Sparq Systems",
-  description: "Sparq Systems - Low Cost Solar Power Conversion",
+  title: "Sparq Systems | High Performance & Cost-Effective Power Conversion",
+  description: "Sparq Systems",
   icons: '/logo.png',
 };
 
@@ -38,7 +38,7 @@ const trainingDropdown = [
 
 const navbarItems = [
     { label: "About", href: "/about", dropdown: aboutDropdown },
-    { label: "Products", href: "/products", dropdown: productDropdown },
+    { label: "Products & Services", href: "/products", dropdown: productDropdown },
     { label: "Training & Support", href: "/training", dropdown: trainingDropdown },
     { label: "News & Events", href: "/news" },
     { label: "Investor Relations", href: "/investor-relations" },
