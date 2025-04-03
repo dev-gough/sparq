@@ -10,22 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Ensure deployment directory exists
+        run: sudo mkdir -p /home/server/sparqsys
+
+      - name: Clear old deployment files
+        run: sudo find /home/server/sparqsys -mindepth 1 -delete
+
       - name: Copy source to deployment directory
-        run: |
-          mkdir -p /home/server/sparqsys
-          find /home/server/sparqsys -mindepth 1 -delete
-          cp -r . /home/server/sparqsys
+        run: sudo cp -r . /home/server/sparqsys
 
-      - name: Install dependencies
-        run: /home/server/.nvm/versions/node/v22.14.0/bin/npm install
-        working-directory: /home/server/sparqsys
-
-      - name: Build the app
-        run: /home/server/.nvm/versions/node/v22.14.0/bin/npm run build
-        working-directory: /home/server/sparqsys
-
-      - name: Restart systemd service
-        run: sudo systemctl restart sparqsys
+      - name: Trigger host-side deployment script
+        run: sudo /home/server/sparqsys/deploy.sh
