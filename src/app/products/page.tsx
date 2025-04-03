@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import TOSDropdown from '@/components/TOSDropdown';
+import Image from 'next/image';
 
 interface Product {
     title: string;
@@ -57,7 +58,7 @@ const renderContent = (content: ContentItem[]) => {
           case 'paragraph':
             return <p key={idx} className={`mb-4 ${item?.className}`}>{item.content}</p>;
           case 'image':
-            return <img key={idx} src={item.src} alt={item.alt} className={`mb-4 w-full ${item?.className}`} />;
+            return <Image key={idx} src={item.src} alt={item.alt} className={`mb-4 w-full ${item?.className}`} />;
         }
       });
 }
@@ -68,7 +69,7 @@ export default function ProductDropdowns() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
-        <div className="flex flex-col gap-6 px-20 my-10">
+        <div className="flex flex-col gap-6 px-20 my-10 container mx-auto">
             <TOSDropdown/>
             {products.map((product, index) => (
                 <div key={index} className="w-full">

@@ -17,7 +17,7 @@ const nunito = Nunito({
 })
 
 const aboutDropdown = [
-    { label: "Management", href: "/about#management" },
+    { label: "Leadership", href: "/about#leadership" },
     { label: "Board of Directors", href: "/about#bod" },
     { label: "Governance", href: "/about#governance" },
 ]

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface BoardMemberData {
     imgSrc: string;
@@ -127,20 +128,20 @@ export default function AboutPage() {
     return (
         <div className="bg-white container mx-auto py-8 px-10">
             {/* Team Section */}
-            <section id="management" className="py-16">
+            <section id="#leadership" className="py-16">
                 <div className="container mx-auto">
                     <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-32">Meet the Team</h1>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16">
+                    <div className="flex flex-wrap justify-center gap-16">
                         {teamMembers.map((member, index) => (
                             <div
                                 key={index}
                                 onClick={() => setMember(member)}
-                                className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 ${
-                                    selectedMember == member
+                                className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${
+                                    selectedMember === member
                                     ? 'scale-100'
                                     : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
                                 }`}>
-                                <img
+                                <Image
                                     src={member.imgSrc}
                                     alt={member.name}
                                     className="w-full h-96 object-cover rounded-lg mb-2"
@@ -156,17 +157,17 @@ export default function AboutPage() {
             <section id="bod" className="pt-8">
                 <div className="container mx-auto">
                     <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-32">Board of Directors</h1>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16">
+                    <div className="flex flex-wrap justify-center gap-16">
                         {boardMembers.map((member, index) => (
                             <div
                                 key={index}
                                 onClick={() => setMember(member)}
-                                className={`bg-white flex flex-col items-center cursor-pointer transform transition ease-in-out duration-300 ${
+                                className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${
                                     selectedMember == member
                                     ? 'scale-100'
                                     : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
                                 }`}>
-                                <img
+                                <Image
                                     src={member.imgSrc}
                                     alt={member.name}
                                     className="w-full h-96 object-cover rounded-lg mb-4 pt-1"
@@ -204,7 +205,7 @@ export default function AboutPage() {
                         className="fixed items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 max-w-2xl max-h-4/5 w-full overflow-y-scroll"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <img
+                        <Image
                             src={selectedMember.imgSrc}
                             alt={selectedMember.name}
                             className="w-fit h-96 object-cover rounded-lg mb-4"
