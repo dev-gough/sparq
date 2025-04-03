@@ -15,8 +15,10 @@ jobs:
 
       - name: Copy source to deployment directory
         run: |
-          sudo rm -rf /home/server/sparqsys/*
-          sudo cp -r . /home/server/sparqsys/
+          sudo mkdir -p /home/server/sparqsys
+          sudo find /home/server/sparqsys -mindepth 1 -delete
+          sudo cp -r . /home/server/sparqsys
+          sudo chown -R server: /home/server/sparqsys
 
       - name: Install dependencies
         run: sudo /home/server/.nvm/versions/node/v22.14.0/bin/npm install
