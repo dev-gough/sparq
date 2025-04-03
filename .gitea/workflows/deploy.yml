@@ -18,7 +18,6 @@ jobs:
           sudo mkdir -p /home/server/sparqsys
           sudo find /home/server/sparqsys -mindepth 1 -delete
           sudo cp -r . /home/server/sparqsys
-          sudo chown -R server:server /home/server/sparqsys
 
       - name: Install dependencies
         run: sudo /home/server/.nvm/versions/node/v22.14.0/bin/npm install
