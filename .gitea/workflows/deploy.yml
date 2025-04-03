@@ -15,16 +15,16 @@ jobs:
 
       - name: Copy source to deployment directory
         run: |
-          sudo mkdir -p /home/server/sparqsys
-          sudo find /home/server/sparqsys -mindepth 1 -delete
-          sudo cp -r . /home/server/sparqsys
+          mkdir -p /home/server/sparqsys
+          find /home/server/sparqsys -mindepth 1 -delete
+          cp -r . /home/server/sparqsys
 
       - name: Install dependencies
-        run: sudo /home/server/.nvm/versions/node/v22.14.0/bin/npm install
+        run: /home/server/.nvm/versions/node/v22.14.0/bin/npm install
         working-directory: /home/server/sparqsys
 
       - name: Build the app
-        run: sudo /home/server/.nvm/versions/node/v22.14.0/bin/npm run build
+        run: /home/server/.nvm/versions/node/v22.14.0/bin/npm run build
         working-directory: /home/server/sparqsys
 
       - name: Restart systemd service
