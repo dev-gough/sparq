@@ -1,0 +1,31 @@
+name: Deploy Sparqsys Site
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Copy source to deployment directory
+        run: |
+          sudo rm -rf /var/www/sparqsys/*
+          sudo cp -r . /var/www/sparqsys/
+          sudo chown -R server: /var/www/sparqsys/
+
+      - name: Install dependencies
+        run: sudo /home/server/.nvm/versions/node/v22.14.0/bin/npm install
+        working-directory: /var/www/sparqsys
+
+      - name: Build the app
+        run: sudo /home/server/.nvm/versions/node/v22.14.0/bin/npm run build
+        working-directory: /var/www/sparqsys
+
+      - name: Restart systemd service
+        run: sudo systemctl restart sparqsys
