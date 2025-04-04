@@ -12,39 +12,39 @@ export const metadata: Metadata = {
 };
 
 const nunito = Nunito({
-    subsets: ["latin"],
-    weight: ["500", "800"],
+  subsets: ["latin"],
+  weight: ["500", "800"],
 })
 
 const aboutDropdown = [
-    { label: "Leadership", href: "/about#leadership" },
-    { label: "Board of Directors", href: "/about#bod" },
-    { label: "Governance", href: "/about#governance" },
+  { label: "Leadership", href: "/about#leadership" },
+  { label: "Board of Directors", href: "/about#bod" },
+  { label: "Governance", href: "/about#governance" },
 ]
 
 const productDropdown = [
-    { label: "Quad Microinverters", href: "/products#quad" },
-    { label: "SparqLinq", href: "/products#linq" },
-    { label: "SparqVu", href: "/products#vu" },
-    { label: "Accessories", href: "/products#accessories" },
+  { label: "Terms of Service", href: "/products#tos" },
+  { label: "Quad Microinverters", href: "/products#inverters" },
+  { label: "SparqLinq", href: "/products#monitoring" },
+  { label: "SparqVu", href: "/products#sparqvu" },
+  { label: "Accessories", href: "/products#accessories" },
 ]
 
 const trainingDropdown = [
-    { label: "Installation Manuals", href: "/training#manuals" },
-    { label: "FAQs", href: "/training#faq" },
-    { label: "Design Your System", href: "/training#design" },
-    { label: "Terms of Service", href: "/training#tos" },
+  { label: "Installation Manuals", href: "/training#manuals" },
+  { label: "FAQs", href: "/training#faq" },
+  { label: "Design Your System", href: "/training#design" },
 ]
 
 const navbarItems = [
-    { label: "About", href: "/about", dropdown: aboutDropdown },
-    { label: "Products & Services", href: "/products", dropdown: productDropdown },
-    { label: "Training & Support", href: "/training", dropdown: trainingDropdown },
-    { label: "News & Events", href: "/news" },
-    { label: "Investor Relations", href: "/investor-relations" },
-    { label: "Careers", href: "/careers" },
-    { label: "How to Order", href: "/order" },
-    { label: "Contact", href: "/contact" },
+  { label: "About", href: "/about", dropdown: aboutDropdown },
+  { label: "Products & Services", href: "/products", dropdown: productDropdown },
+  { label: "Training & Support", href: "/training", dropdown: trainingDropdown },
+  { label: "News & Events", href: "/news" },
+  { label: "Investor Relations", href: "/investor-relations" },
+  { label: "Careers", href: "/careers" },
+  { label: "How to Order", href: "/order" },
+  { label: "Contact", href: "/contact" },
 ]
 
 export default function RootLayout({
@@ -54,12 +54,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={nunito.className}>
-        <Header navItems={navbarItems}/>
-        {children}
+      <body className={`${nunito.className} flex flex-col min-h-screen`}>
+        <Header navItems={navbarItems} />
+        <main className="flex-grow">
+          {children}
+        </main>
         <SpeedInsights />
         <Footer />
-    </body>
+      </body>
     </html>
   );
 }
