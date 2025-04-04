@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 interface TOSProps {
     isOpen?: boolean
@@ -11,10 +11,17 @@ export default function TOSDropdown({ isOpen }: TOSProps) {
 
     const [open, setOpen] = useState<boolean>(isOpen? true : false)
 
+    useEffect(() => {
+        if (!open) {
+            window.scrollTo({top: 0})
+        }
+    }, [open])
+
     return (
         <div className="w-full">
+            {/* Dropdown menu button */}
             <div
-                className="p-4 cursor-pointer bg-gray-100 rounded-xl border hover:bg-gray-200"
+                className={`p-4 cursor-pointer bg-gray-100 rounded-xl border hover:bg-gray-200 ${open? 'sticky top-0 z-10':''}`}
                 onClick={() => setOpen(!open)}
                 aria-expanded={open}
             >
@@ -37,8 +44,9 @@ export default function TOSDropdown({ isOpen }: TOSProps) {
                     </svg>
                 </div>
             </div>
+            {/* TOS content */}
             {open && (
-                <div className="flex flex-col gap-4 p-4 mt-2">
+                <div className="flex flex-col gap-4 p-10 mt-2">
                     <h2 className="font-bold">Last Updated: January 30, 2025</h2>
                     <p>Please read these Terms of Service (“Terms”) carefully. Your purchase of Products or access to or use of the Services (each as defined below) constitutes your agreement to be bound by these Terms. Notwithstanding anything herein to the contrary, if a written contract signed by both parties is in existence covering the sale of the Products and Services covered hereby, the terms and conditions of such contract shall prevail to the extent they are inconsistent with these Terms.</p>
                     <p>These Terms are between you (“you”) and SPARQ Systems Inc. (“SPARQ”, “we” or “us”) concerning the sale of microinverters and other goods and products by SPARQ (“Products”) and your access and/or use of SPARQ&apos;s platform, including its websites and applications, and the content, information and services provided through such platform (collectively, the “Services”).</p>

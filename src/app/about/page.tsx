@@ -144,6 +144,8 @@ export default function AboutPage() {
                                 <Image
                                     src={member.imgSrc}
                                     alt={member.name}
+                                    width={512}
+                                    height={512}
                                     className="w-full h-96 object-cover rounded-lg mb-2"
                                 />
                                 <h2 className="text-xl font-medium text-black">{member.name}</h2>
@@ -170,6 +172,8 @@ export default function AboutPage() {
                                 <Image
                                     src={member.imgSrc}
                                     alt={member.name}
+                                    width={512}
+                                    height={512}
                                     className="w-full h-96 object-cover rounded-lg mb-4 pt-1"
                                 />
                                 <h2 className="text-xl font-medium text-black">{member.name}</h2>
