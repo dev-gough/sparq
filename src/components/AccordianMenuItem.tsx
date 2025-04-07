@@ -15,7 +15,7 @@ export default function AccordionItem({ title, children } : AccordionItemProps) 
                 className="w-full flex justify-between items-center p-4 text-left hover:bg-gray-100 transition-colors cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <span className="font-bold text-lg">{title}</span>
+                <span className="font-bold text-2xl">{title}</span>
                 <span className="text-xl">{isOpen ? '-' : '+'}</span>
             </button>
             {/* Content section, shown only when open */}
