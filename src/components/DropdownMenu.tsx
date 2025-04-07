@@ -36,6 +36,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
             className="relative z-[99]"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onClick={handleMouseLeave}
         >
             <div className="flex items-center">
                 {/* Main label as a clickable link */}
