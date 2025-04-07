@@ -33,18 +33,19 @@ const productDropdown = [
   { label: "Accessories", href: "/products#accessories" },
 ]
 
-const trainingDropdown = [
-  { label: "Installation Manuals", href: "/training#manuals" },
-  { label: "FAQs", href: "/training#faq" },
-  { label: "Design Your System", href: "/training#design" },
+const resourcesDropdown = [
+  { label: "Homeowners", href: "/resources/homeowners" },
+  { label: "Installers", href: "/resources/installers" },
+  { label: "Commercial & Industrial", href: "/resources/commercial" },
+  { label: "Process Tools", href: "/resources/tools"}
 ]
 
 const navbarItems = [
   { label: "About", href: "/about", dropdown: aboutDropdown },
   { label: "Products & Services", href: "/products", dropdown: productDropdown },
-  { label: "Training & Support", href: "/training", dropdown: trainingDropdown },
+  { label: "Resources", href: "/resources", dropdown: resourcesDropdown },
   { label: "News & Events", href: "/news" },
-  { label: "Investor Relations", href: "/investor-relations" },
+  { label: "Investor Relations", href: "/investors" },
   { label: "Careers", href: "/careers" },
   { label: "How to Order", href: "/order" },
   { label: "Contact", href: "/contact" },
