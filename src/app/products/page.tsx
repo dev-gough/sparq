@@ -1,5 +1,3 @@
-'use client';
-
 import TOSDropdown from '@/components/TOSDropdown';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -25,22 +23,22 @@ export default function ProductDropdowns() {
             <section id="inverters">
                 <h1 className='text-5xl font-bold text-brand-maroon text-center mt-12 mb-32'>Our Family of Inverters</h1>
                 <div className='flex flex-wrap justify-center gap-16'>
-                    <Link href="products/Q2000">
+                    <Link href="products/quad">
                         <GridDiv id="q2000">
                             <Image className='w-full h-full object-cover' width={1920} height={1084} src='/q2000.webp' alt='q2000 Microinverter'/>
-                            <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Q2000 Microinverter</h2>
+                            <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Quad Microinverters</h2>
                         </GridDiv>
                     </Link>
-                    <Link href="products/Q1200GridTied">
+                    <Link href="products/duo">
                         <GridDiv id="q1200gridtied">
                             <Image className='w-full h-full object-cover' width={1920} height={1084} src='/q2000.webp' alt='q2000 Microinverter'/>
-                            <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Q1200 Grid-Tied Microinverter</h2>
+                            <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Duo Microinverters</h2>
                         </GridDiv>
                     </Link>
-                    <Link href="products/Q1200DualMode">
+                    <Link href="products/legacy">
                         <GridDiv id="q1200dualmode">
                             <Image className='w-full h-full' width={1920} height={1084} src='/q2000.webp' alt='q2000 Microinverter'/>
-                            <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Q1200 Dual-Mode Microinverter</h2>
+                            <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Legacy Microinverters</h2>
                         </GridDiv>
                     </Link>
                 </div>
@@ -58,6 +56,12 @@ export default function ProductDropdowns() {
                         <GridDiv id='#sparqvu'>
                             <Image className="w-full h-[256px] rounded-xl shadow-lg" src="/SparqVu.jpg" width={768} height={512} alt='SparqVu Performance Management System'/>
                             <h2 className='text-2xl font-bold text-brand-maroon mt-8'>SparqVu</h2>
+                        </GridDiv>
+                    </Link>
+                    <Link href="products/app">
+                        <GridDiv>
+                            <Image className="w-full h-full rounded-xl shadow-lg" src="/SparqApp.png" width={768} height={512} alt="Sparq App Splash Image"/>
+                            <h2 className="text-2xl font-bold text-brand-maroon mt-8">Sparq App</h2>
                         </GridDiv>
                     </Link>
                 </div>

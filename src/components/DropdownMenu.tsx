@@ -18,7 +18,6 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const handleMouseEnter = () => {
-        // Clear any pending timeout to close the dropdown
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
             timeoutRef.current = null;
@@ -27,7 +26,6 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
     };
 
     const handleMouseLeave = () => {
-        // Set a timeout to close the dropdown after a 100ms delay
         timeoutRef.current = setTimeout(() => {
             setIsOpen(false);
         }, 50);
@@ -35,7 +33,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
 
     return (
         <div
-            className="relative z-10"
+            className="relative z-[99]"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >

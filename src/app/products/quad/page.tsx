@@ -6,10 +6,9 @@ import { useState } from 'react'
 import AccordionItem from "@/components/AccordianMenuItem"
 
 export default function ProductPage() {
-    const models = ["Q2000-410x-2C", "Q2000-430x-3C", "EQ2000-410x-2C"]
+    const models = ["Q2000-4102","Q2000-4102-DM", "Q2000-4102-GT"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
-    const [dropExpanded, setDropExpanded] = useState<number | null>(null)
 
     return (
         <div className="bg-white container mx-auto py-4 px-10">
@@ -26,20 +25,9 @@ export default function ProductPage() {
 
             {/* Main Content */}
             <div className="flex flex-col md:flex-row gap-8">
-                <div className="flex-1">
-                    <Image
-                        src="/q2000.webp"
-                        alt="Q2000 Microinverter"
-                        width={1920}
-                        height={1084}
-                        className="object-contain sticky top-32 z-10"
-                    />
-                </div>
-
                 {/* Product Details */}
                 <div className="flex-1">
                     <h1 className="text-3xl font-bold text-gray-900 mt-1">Q2000 Microinverter</h1>
-                    <p className="text-2xl text-gray-900 mt-2">$PRICE</p>
                     <p className="text-brand-gray mt-4 text-lg">
                         SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
                     </p>
@@ -107,18 +95,43 @@ export default function ProductPage() {
                             </ul>
                         </AccordionItem>
                         <AccordionItem title="Technical specifications">
-                            <p>Your custom content for Technical specifications goes here.</p>
-                        </AccordionItem>
-                        <AccordionItem title="Compatibility">
-                            <p>Your custom content for Compatibility goes here.</p>
-                        </AccordionItem>
-                        <AccordionItem title="What's in the box">
-                            <p>Your custom content for What's in the box goes here.</p>
+                            <div>
+                                {selectedModel === "Q2000-4102" && (
+                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102.pdf" target="_blank">
+                                        Datasheet for {selectedModel}
+                                    </Link>
+                                )}
+                                {selectedModel === "Q2000-4102-DM" && (
+                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102_DM.pdf" target="_blank">
+                                        Datasheet for {selectedModel}
+                                    </Link>
+                                )}
+                                {selectedModel === "Q2000-4102-GT" && (
+                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102_GT_V2.pdf" target="_blank">
+                                        Datasheet for {selectedModel}
+                                    </Link>
+                                )}
+                            </div>
                         </AccordionItem>
                         <AccordionItem title="Documentation">
-                            <p>Your custom content for Documentation goes here.</p>
+                            <h2 className="text-lg font-bold">Installation Manuals for {selectedModel}:</h2>
+                                <div className="flex flex-col">
+                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Americas.pdf" target="_blank">North America</Link>
+                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Chinese.pdf" target="_blank">China</Link>
+                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Europe.pdf" target="_blank">Europe</Link>
+                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_India.pdf" target="_blank">India</Link>
+                                </div>
                         </AccordionItem>
                     </div>
+                </div>
+                <div className="flex-1">
+                    <Image
+                        src="/q2000.webp"
+                        alt="Q2000 Microinverter"
+                        width={1920}
+                        height={1084}
+                        className="object-contain sticky top-16 z-10"
+                    />
                 </div>
             </div>
         </div>
