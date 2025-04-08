@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import DropdownMenu from "./DropdownMenu";
-import StockDisplay from "./StockDisplay";
 
 interface NavItem {
     label: string;

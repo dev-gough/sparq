@@ -39,7 +39,7 @@ export default function AboutSlider() {
                             <h2 className="text-2xl font-extrabold text-brand-maroon">
                                 Introducing the Q2000: The most powerful microinverter in the industry!
                             </h2>
-                            <p className='text-lg'>SPARQ is pleased to introduce the Quad 2000, the industry's most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, without any power clipping. Our advanced software allows the Q2000 to operate seamlessly in grid-tied, standalone and dual-mode solar panel applications.</p>
+                            <p className='text-lg'>SPARQ is pleased to introduce the Quad 2000, the industry&apos;s most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, without any power clipping. Our advanced software allows the Q2000 to operate seamlessly in grid-tied, standalone and dual-mode solar panel applications.</p>
                             <ul className="mt-4">
                                 <li>
                                     <Link href="https://www.youtube.com/watch?v=3LPu1w_Qj1I" className="text-blue-400 hover:underline" target='_blank'>
@@ -72,7 +72,7 @@ export default function AboutSlider() {
                     <SwiperSlide>
                         <div>
                             <h2 className='text-2xl font-extrabold text-brand-maroon'>Be part of a greener future</h2>
-                            <p className='text-lg'>Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you'll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.</p>
+                            <p className='text-lg'>Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you&apos;ll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.</p>
                             <button onClick={() => setExpanded(!expanded)} className="text-blue-400 hover:underline mt-2 inline-block cursor-pointer">
                                 {expanded ? "See less" : "See more"}
                             </button>
