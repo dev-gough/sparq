@@ -1,155 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import AboutSlider from "@/components/Sliders/AboutSlider";
 
 export default function Home() {
     return (
         <div className="flex flex-col">
-            <div className="relative h-[50vh] overflow-hidden">
+            <div className="relative h-[40vh] overflow-hidden">
                 <Image priority className="object-cover object-top" fill src="/hero.webp" alt="hero" />
             </div>
-            {/* Q2000 header, image, and blurb */}
             <div className="container mx-auto py-16 px-4">
-                {/* Boxed Header */}
-                <div>Scrolling view, similar to: <Link href="https://investor.honeywell.com/" className="text-blue-500"target="_blank">this site</Link></div>
-                <div className="mb-16">maroon text is the content related to each item which would scroll from light to left and there is “More Detail” button within the scrolling window to get more info (the black text & links)</div>
-                <section id="1.i)">
-                    <h1 className="text-brand-maroon">Introducing the Q2000: The most powerful microinverter in the industry!</h1>
-                        <div className="my-4">
-                            <p className="text-base text-black">
-                                SPARQ is pleased to introduce the Quad 2000, the industry&apos;s most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, without any power clipping. Our advanced software allows the Q2000 to operate seamlessly in grid-tied, standalone and dual-mode solar panel applications.
-                            </p>
-                            <Link href="https://www.youtube.com/watch?v=3LPu1w_Qj1I" className="text-blue-500" target="_blank">
-                                See Video
-                            </Link>
-                        </div>
-                </section>
-                <section id="1.ii)">
-                    <h1 className="text-brand-maroon mt-16">Most advanced Single phase and three phase microinverter in the industry</h1>
-                    <p>Sparq Systems Q2000 product family of single and three phase microinverters not only resolve the longstanding safety, partial shading, low reliability problems and high cost of String Photovoltaic-Systems but also further advance state of the art of the single channel microinverter industry leader by eliminating the low reliability electrolytic capacitors and integrating four independently controlled DC-DC channels in one enclose resulting in best in class reliability, highest weigh and power density and lowest life-cycle cost.</p>
-                    <Link
-                        href="https://www.sparqsys.com/wp-content/uploads/2025/03/Comparison-of-Q2000-4102-with-IQ8H.pdf"
-                        className="text-blue-500">
-                            Comparison of Q2000-4102 with IQ8H
-                    </Link>
-                    <Link
-                        href="https://www.sparqsys.com/wp-content/uploads/2025/03/Comparison-of-Q2000-4302-with-IQ8H-3p.pdf"
-                        className="text-blue-500">
-                            Comparison of Q2000-4302 with IQ8H-3P
-                    </Link>
-                </section>
-                <section id="1.iii)">
-                    <h1 className="text-brand-maroon mt-32">Be part of a greener future</h1>
-                    <div>
-                        <p>Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you'll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.</p>
-                        <ul className="list-disc list-inside">
-                            <li>4 panels - 1 inverter</li>
-                            <li>Best in-class reliability</li>
-                            <li>Quick and easy installation</li>
-                            <li>Maximum energy harvest</li>
-                            <li>Cloud-based performance monitoring</li>
-                            <li>12 standard or 25-year extended warranty</li>
-                            <li>Clean energy solutions</li>
-                            <li>Dedicated support</li>
-                        </ul>
-                    </div>
-                </section>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <AboutSlider/>
                 {/* Product Info */}
                 <section className="bg-white pt-20 px-4">
                     <h1 className="text-3xl font-bold text-brand-maroon">

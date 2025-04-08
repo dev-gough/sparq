@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import InvestorRelations from "@/components/InvestorSlider";
+import InvestorSlider from "@/components/Sliders/InvestorSlider";
 
 interface CardProps {
     value: string;
@@ -50,7 +50,7 @@ export default function InvestorPage() {
     return (
         <div className="container mx-auto py-16 px-10">
             <section>
-                <InvestorRelations/>
+                <InvestorSlider/>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
                     {cards.map((card, index) => (
                         <Card key={index} {...card} />
