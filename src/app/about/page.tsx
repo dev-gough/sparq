@@ -130,8 +130,8 @@ export default function AboutPage() {
             {/* Team Section */}
             <section id="2.i)">
                 <h2 className="text-brand-maroon text-2xl">Passion</h2>
-                <p>SPARQ was born out of a passion to create leading edge solar energy solutions that support a greener future for our planet. Founder Dr. Praveen Jain is a world-leader in energy research, holding over 100 patents. His advanced research at ePower, the Centre for Energy and Power Electronics Research at Queen’s University in Kingston, Canada, resulted in the development of SPARQ’s innovative and versatile microinverter design.</p>
-                <p>Today SPARQ’s microinverter system is resetting the industry standard for solar energy systems, delivering greater energy harvest over traditional string inverters. It can be used in any power grid, conventional or smart, around the globe.</p>
+                <p>SPARQ was born out of a passion to create leading edge solar energy solutions that support a greener future for our planet. Founder Dr. Praveen Jain is a world-leader in energy research, holding over 100 patents. His advanced research at ePower, the Centre for Energy and Power Electronics Research at Queen&apos;s University in Kingston, Canada, resulted in the development of SPARQ&apos;s innovative and versatile microinverter design.</p>
+                <p>Today SPARQ&apos;s microinverter system is resetting the industry standard for solar energy systems, delivering greater energy harvest over traditional string inverters. It can be used in any power grid, conventional or smart, around the globe.</p>
             </section>
             <section id="2.ii)">
                 <h2 className="text-brand-maroon text-2xl mt-16">Vision</h2>
@@ -147,8 +147,8 @@ export default function AboutPage() {
             </section>
             <section>
                 <p>Notes:</p>
-                <p>The maroon text is to be the info shown in the scroller (similar to home page), and the text underneath in black is to be shown via a "see more" button</p>
-                <p>The "Meet the Team" and "Board of Directors" sections below should also be shown when clicking the "see more" button, but keep the structure/style as is.</p>
+                <p>The maroon text is to be the info shown in the scroller (similar to home page), and the text underneath in black is to be shown via a &apos;see more&apos; button</p>
+                <p>The &apos;Meet the Team&apos; and &apos;Board of Directors&apos; sections below should also be shown when clicking the &apos;see more&apos; button, but keep the structure/style as is.</p>
             </section>
             <section id="#leadership" className="py-16">
                 <div className="container mx-auto">
