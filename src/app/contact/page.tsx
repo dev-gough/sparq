@@ -66,6 +66,8 @@ export default function ContactPage() {
         <ContactSection
           title="Partner for Manufacturing, Distribution and Service in India"
           companyName="Jio Things Ltd."
+          website='https://www.jiothings.com/'
+          email='sales@jiothings.com'
         />
         <ContactSection
           title="India Distribution"
