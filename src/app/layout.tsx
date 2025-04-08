@@ -24,11 +24,11 @@ const aboutDropdown = [
 
 const productDropdown = [
   { label: "Terms of Service", href: "/products#tos" },
-  { label: "Quad Microinverters", href: "/products/quad" },
-  { label: "Duo Microinverters", href: "/products/duo"},
+  { label: "Quad Microinverters", href: "/products/quad2" },
+  { label: "Duo Microinverters", href: "/products/quad3"},
   { label: "Legacy Products", href: "/products/legacy"},
-  { label: "SparqLinq", href: "/products#monitoring" },
-  { label: "SparqVu", href: "/products#sparqvu" },
+  { label: "SparqLinq", href: "/products/sparqlinq" },
+  { label: "SparqVu", href: "/products/sparqvu" },
   { label: "Sparq App", href: "/products/app"},
   { label: "Accessories", href: "/products#accessories" },
 ]

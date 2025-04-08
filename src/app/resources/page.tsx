@@ -92,17 +92,11 @@ export default function ResourcesPage() {
                     <strong>Support for Installers and Distributors:</strong> we are currently updating our training materials for installers and distributors. Please check back often for more information or <span className="text-amber-800 hover:text-amber-600 transition duration-200"><a href="https://www.sparqsys.com/contact-us/">contact us</a></span> for support.
                 </div>
             </section>
-            <section className="mt-16" id="support">
-                <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-16">
-                    Support Ticket
-                </h1>
-                <SupportTicketForm />
-            </section>
             <section id="photos">
                 <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-16">
                     Photo Gallery
                 </h1>
-                <p>Need Content</p>
+                <p className="font-mono">Need Content</p>
             </section>
             <section id="videos">
                 <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-16">
@@ -149,6 +143,12 @@ export default function ResourcesPage() {
                         <li>AC and DC disconnect tool</li>
                     </ul>
                 </div>
+            </section>
+            <section className="mt-16" id="support">
+                <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-16">
+                    Contact Us
+                </h1>
+                <SupportTicketForm />
             </section>
         </div>
     )

@@ -23,7 +23,7 @@ const SupportTicketForm = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white border rounded-lg shadow-xl">
-      <h2 className="text-2xl font-bold mb-6 text-center">Submit a Support Ticket</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">Submit a Ticket</h2>
       <form onSubmit={handleSubmit}>
         {/* Name Field */}
         <div className="mb-4">

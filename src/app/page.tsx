@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import AboutSlider from "@/components/Sliders/AboutSlider";
+import HomeSlider from "@/components/Sliders/HomeSlider";
 
 export default function Home() {
     return (
@@ -9,7 +9,7 @@ export default function Home() {
                 <Image priority className="object-cover object-top" fill src="/hero.webp" alt="hero" />
             </div>
             <div className="container mx-auto py-16 px-4">
-            <AboutSlider/>
+            <HomeSlider/>
                 {/* Product Info */}
                 <section className="bg-white pt-20 px-4">
                     <h1 className="text-3xl font-bold text-brand-maroon">
