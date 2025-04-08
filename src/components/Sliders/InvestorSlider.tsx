@@ -7,7 +7,7 @@ import { Autoplay, Pagination } from 'swiper/modules';
 
 import Link from 'next/link';
 
-export default function InvestorRelations() {
+export default function InvestorSlider() {
     return (
         <div
             className="w-full h-128 bg-cover bg-center relative bg-[url(/tmp.jpg)]">
