@@ -36,7 +36,6 @@ export default function Header({ navItems }: HeaderProps) {
                     )}
                 </nav>
             </div>
-            <StockDisplay/>
         </header>
     );
 }
