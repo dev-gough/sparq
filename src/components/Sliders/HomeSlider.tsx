@@ -92,6 +92,12 @@ export default function HomeSlider() {
                             )}
                         </div>
                     </SwiperSlide>
+                    <SwiperSlide>
+                        <div>
+                            <h2 className='text-brand-maroon text-2xl font-extrabold'>Biodiversity</h2>
+                            <p>Biodiversity, short for biological diversity, refers to the variety of life on Earth, encompassing everything from genes and species to ecosystems and their functions. It&quot;s the richness and complexity of life that sustains our planet and is crucial for a healthy environment and human well-being.</p>
+                        </div>
+                    </SwiperSlide>
                 </Swiper>
                 <div className="mt-4 text-left">
                     <a href="#" className="text-white hover:underline">
