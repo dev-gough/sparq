@@ -37,18 +37,19 @@ const resourcesDropdown = [
   { label: "Homeowners", href: "/resources/homeowners" },
   { label: "Installers", href: "/resources/installers" },
   { label: "Commercial & Industrial", href: "/resources/commercial" },
-  { label: "Process Tools", href: "/resources/tools"}
+  { label: "Support Tickets", href: "/resources/tickets"},
+  { label: "Design My System", href: "/resources/design"},
+  { label: "Photo Gallery", href: "/resources/photos"},
+  { label: "Video Gallery", href: "/resources/videos"},
 ]
 
 const navbarItems = [
+  { label: "Home", href: "/"},
   { label: "About", href: "/about", dropdown: aboutDropdown },
   { label: "Products & Services", href: "/products", dropdown: productDropdown },
-  { label: "Resources", href: "/resources", dropdown: resourcesDropdown },
-  { label: "News & Events", href: "/news" },
   { label: "Investor Relations", href: "/investors" },
-  { label: "Careers", href: "/careers" },
-  { label: "How to Order", href: "/order" },
-  { label: "Contact", href: "/contact" },
+  { label: "Resources", href: "/resources", dropdown: resourcesDropdown },
+  { label: "Contact & Support", href: "/contact" },
 ]
 
 export default function RootLayout({
