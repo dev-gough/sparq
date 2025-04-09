@@ -1,0 +1,29 @@
+name: Deploy Sparqsys Site
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Ensure deployment directory exists
+        run: sudo mkdir -p /home/server/sparqsys
+
+      - name: Clear old deployment files
+        run: sudo find /home/server/sparqsys -mindepth 1 -delete
+
+      - name: Copy source to deployment directory
+        run: sudo cp -r . /home/server/sparqsys
+
+      - name: Check for deploy.sh
+        run: cat /home/server/sparqsys/deploy.sh || echo "Script not found"
+
+      - name: Trigger host-side deployment script
+        run: sudo /home/server/sparqsys/deploy.sh
