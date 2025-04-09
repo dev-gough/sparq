@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import DropdownMenu from "./DropdownMenu";
-import StockDisplay from "./StockDisplay";
 
 interface NavItem {
     label: string;
@@ -15,10 +14,10 @@ interface HeaderProps {
 
 export default function Header({ navItems }: HeaderProps) {
     return (
-        <header className="flex flex-col ">
-            <div className="flex justify-between items-center p-4 bg-brand-graytext shadow-md">
+        <header className="flex flex-col sticky top-0 z-[999]">
+            <div className="relative flex justify-between items-center p-2 bg-brand-graytext shadow-md">
                 <Link href="/">
-                    <Image src="/logo.png" alt="Logo" width={126} height={85} />
+                    <Image src="/logo.png" alt="Logo" width={63} height={43}/>
                 </Link>
                 <nav className="flex flex-wrap space-x-2">
                     {navItems.map((item, index) =>
@@ -36,7 +35,6 @@ export default function Header({ navItems }: HeaderProps) {
                     )}
                 </nav>
             </div>
-            <StockDisplay />
         </header>
     );
 }

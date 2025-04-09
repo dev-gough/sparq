@@ -1,0 +1,46 @@
+{
+    "faqs": [
+        {
+            "id": 17,
+            "questionBrand": "Q2000 Product Family FAQs",
+            "subQuestions": [
+                {
+                    "id": 18,
+                    "question": "How can I tell if the Q2000 inverter is working?",
+                    "answer": "The status LED on the Q2000 will be flashing green when working correctly. If the LED is flashing Red, this indicates an AC issue so check the AC breaker. If the LED is amber, this indicates a ground fault was detected so check for faulty DC wiring then connect to the SparqLinq and go to the 'Settings->Inverter Management' page and click the Clear GFDI (blue lightning bolt) icon."
+                },
+                {
+                    "id": 19,
+                    "question": "What is the maximum allowed inverter load ratio (DC/AC ratio) for the Q2000?",
+                    "answer": "The Q2000 can work with 72 cell modules with the maximum DC rating of 550W+."
+                },
+                {
+                    "id": 20,
+                    "question": "How do I calculate the maximum PV source and output circuit voltage of an installed system (this is to do with 64-200 (1)(b) of the CEC 2015 code)?",
+                    "answer": "The Q2000 microinverter has 4 independent inputs that are transformer isolated from the AC output and have their negative DC inputs referenced to ground thru the GFDI circuit. Considering the inverter handles each module individually, the calculations are below for the 64-200 (1):\n\n• the rated operating current and voltage; this is the module maximum power current (Imp) and module maximum power voltage (Vmp).\n\n• the maximum photovoltaic source circuit voltage; this is equal to the PV module’s open circuit voltage (Voc).\n\n• the rated short-circuit current; this is equal to the PV module’s short circuit current (Isc).\n\nThe Trunk cable used with the Q2000 connects the AC output of all inverters in parallel. This means the voltage on the trunk cable remains the same (240Vac) but the current from each inverter (7.5 Amps) gets added. A trunk with 3 inverters connected to it will have 2 x 7.5A = 22.5A under full power. Adding a 1.25 safety factor gives a design current of 22.5 x 1.25 = 28.125A."
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "questionBrand": "Q1200 Inverter",
+            "subQuestions": [
+                {
+                    "id": 22,
+                    "question": "How can I tell if the Q1200 inverter is working?",
+                    "answer": "The status LED on the Q1200 will be flashing green when working correctly. If the LED is flashing Red, this indicates an AC issue so check the AC breaker. If the LED is amber, this indicates a ground fault was detected so check for faulty DC wiring then connect to the SparqLinq and go to the \"Settings->Inverter Management\" page and click the Clear GFDI (blue lightning bolt) icon."
+                },
+                {
+                    "id": 23,
+                    "question": "What is the maximum allowed inverter load ratio (DC/AC ratio) for the Q1200?",
+                    "answer": "The data sheet suggests a maximum DC module rating of 350W, but the Q1200 is designed to work with 72 cell modules with STC ratings up to 390W or a 1.3 DC/AC ratio."
+                },
+                {
+                    "id": 24,
+                    "question": "How do I calculate the maximum PV source and output circuit voltage of an installed system (this is to do with 64-200 (1)(b) of the CEC 2015 code)?",
+                    "answer": "The Q1200 microinverter has 4 independent inputs that are transformer isolated from the AC output and have their negative DC inputs referenced to ground thru the GFDI circuit. Considering the inverter handles each module individually, the calculations are below for the 64-200 (1):\n\n• the rated operating current and voltage; this is the module maximum power current (Imp) and module maximum power voltage (Vmp).\n\n• the maximum photovoltaic source circuit voltage; this is equal to the PV module’s open circuit voltage (Voc).\n\n• the rated short-circuit current; this is equal to the PV module’s short circuit current (Isc).\n\nThe Trunk cable used with the Q1200 connects the AC output of all inverters in parallel. This means the voltage on the trunk cable remains the same (240Vac) but the current from each inverter (5 Amps) gets added. A trunk with 5 inverters connected to it will have 5 x 5A = 25A under full power. Adding a 1.25 safety factor gives a design current of 25 x 1.25 = 31.25A."
+                }
+            ]
+        }
+    ]
+}
