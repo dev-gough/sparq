@@ -43,7 +43,7 @@ export default function AboutSlider() {
                             <h2 className="text-2xl font-extrabold text-brand-maroon">
                                 Vision
                             </h2>
-                            <p className='text-lg font-mono'>Needs to be provided</p>
+                            <p className='text-lg'>Driven by Sparq&apos;s unwavering commitment to innovation, customer satisfaction, and continuous improvement, our vision is to lead the clean energy revolution by consistently developing and introducing the next generation of energy-efficient, cost-effective, and environmentally sustainable power electronics, energy storage, and management technologies—paving the way for a greener, more sustainable future.</p>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
@@ -55,7 +55,7 @@ export default function AboutSlider() {
                     <SwiperSlide>
                         <div>
                             <h2 className='text-brand-maroon text-2xl font-extrabold'>Value Proposition</h2>
-                            <p className='text-lg font-mono'>Needs to be provided</p>
+                            <p className='text-lg'>Sparq&apos;s value proposition is to provide safe, highly reliable, cost-effective, and easy-to-install and maintain portfolio of solar energy generation, storage, and management products, which seamlessly can integrate into one platform to deliver affordable, resilient, long-lasting, and sustainable grid-tied and offgrid energy solutions, to reduce adverse effects of growing energy demand on our ecosystem, including air, water, soil, biodiversity, and carbon footprint.</p>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>

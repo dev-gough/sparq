@@ -14,7 +14,7 @@ interface HeaderProps {
 
 export default function Header({ navItems }: HeaderProps) {
     return (
-        <header className="flex flex-col">
+        <header className="flex flex-col sticky top-0 z-[999]">
             <div className="relative flex justify-between items-center p-2 bg-brand-graytext shadow-md">
                 <Link href="/">
                     <Image src="/logo.png" alt="Logo" width={63} height={43}/>

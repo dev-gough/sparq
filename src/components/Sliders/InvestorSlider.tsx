@@ -4,13 +4,18 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
+import { useState } from 'react';
+
 
 import Link from 'next/link';
 
 export default function InvestorSlider() {
+
+    const [expanded, setExpanded] = useState<boolean>(false)
+
     return (
         <div
-            className="w-full h-128 bg-cover bg-center relative bg-[url(/tmp.jpg)]">
+            className="w-full h-196 bg-cover bg-center relative bg-[url(/tmp.jpg)]">
             {/* Heading Section */}
             <div className="flex justify-between items-center p-6">
                 <h1 className="text-4xl font-bold text-white drop-shadow-lg">
@@ -33,7 +38,8 @@ export default function InvestorSlider() {
                         disableOnInteraction: false,
                         pauseOnMouseEnter: true,
                     }}
-                    className='text-white h-64'
+                    onSlideChange={() => setExpanded(false)}
+                    className='text-white h-96'
                 >
                     <SwiperSlide>
                         <div>
@@ -61,6 +67,36 @@ export default function InvestorSlider() {
                                     </Link>
                                 </li>
                             </ul>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div>
+                            <h2 className='text-2xl font-bold'>Sparq Systems CEO Interview - Dr. Praveen Jain</h2>
+                            <p className='text-lg'>In this interview, Justin sits down with Dr. Praveen Jain, CEO of Sparq Systems (TSXV:SPRQ, OTC:SPRQF), a company revolutionizing solar energy with its next-generation single-phase microinverters. They discuss Dr. Jain&apos;s journey as a brilliant Canadian inventor, the innovative Quad Micro Inverter that optimizes four PV modules, and how Sparq&apos;s hardware-software integration offers a cost-effective, efficient alternative to competitors like Enphase. The conversation explores Sparq&apos;s global footprint, strategic advantages in markets like India, and partnerships, including with Jio and Reliance, while highlighting the company&apos;s role in advancing renewable energy conversion worldwide.</p>
+                            <Link className='text-blue-400 hover:underline' href="https://www.youtube.com/watch?v=8OJ02vvC-Os" target='_blank'>Watch Here</Link>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div>
+                            <h2 className='text-2xl font-bold'>Our Key Partners</h2>
+                            <ul className="list-disc list-inside text-lg">
+                                <li><Link href="https://www.queensu.ca/epower/" target="_blank" className="text-blue-500">ePower</Link></li>
+                                <li><Link href="https://www.jiothings.com/" target="_blank" className="text-blue-500">JioThings</Link></li>
+                                <li><Link href="https://www.ril.com/businesses/new-energy-materials" target="_blank" className="text-blue-500">Reliance</Link></li>
+                                <li><Link href="https://www.iljin.co.in/" target="_blank" className="text-blue-500">ILJIN Electronics</Link></li>
+                            </ul>
+                            <button onClick={() => setExpanded(!expanded)} className="text-blue-400 hover:underline mt-2 inline-block cursor-pointer">
+                                {expanded ? "See less" : "View our Test Sites"}
+                            </button>
+                            {expanded && (
+                                <div>
+                                    <ul className="list-disc list-inside">
+                                        <li>Queen&apos;s University</li>
+                                        <li>St. Lawrence College</li>
+                                        <li>Modern Niagara (WIP)</li>
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </SwiperSlide>
                 </Swiper>

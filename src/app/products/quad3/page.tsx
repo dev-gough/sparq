@@ -88,7 +88,7 @@ export default function Quad3Page() {
                                     <ul className="list-inside list-disc text-black">
                                         <li>Quad system design reduces the required number of conventional microinverters by a factor of 4</li>
                                         <li>&quot;All AC&quot; solution promotes safe installation and operation with low voltage</li>
-                                        <li>Industry-standard Amphenol AC connectors, using Zigbee&quot;s open wireless communication protocol for individual node monitoring</li>
+                                        <li>Industry-standard Amphenol AC connectors, using Zigbee&apos;s open wireless communication protocol for individual node monitoring</li>
                                     </ul>
                                 </li>
                             </ul>
