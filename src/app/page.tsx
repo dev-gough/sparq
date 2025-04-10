@@ -5,9 +5,7 @@ import HomeSlider from "@/components/Sliders/HomeSlider";
 export default function Home() {
     return (
         <div className="flex flex-col">
-            <div className="relative h-[40vh] overflow-hidden">
-                <Image priority className="object-cover object-top" fill src="/hero.webp" alt="hero" />
-            </div>
+
             <div className="container mx-auto py-16 px-4">
             <HomeSlider/>
                 {/* Product Info */}
