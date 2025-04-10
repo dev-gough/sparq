@@ -14,20 +14,20 @@ export default function HomeSlider() {
 
     return (
         <div
-            className="w-full h-192 bg-cover bg-center relative bg-[url(/tmp.jpg)]">
+            className="w-full h-128 bg-cover bg-center relative bg-[url(/tmp.jpg)]">
             {/* Heading Section */}
             <div className="flex justify-between items-center p-6">
                 <p className="text-4xl text-right font-semibold text-brand-yellow">Sparq Systems</p>
             </div>
             {/* Sliding Window Component */}
-            <div className="mt-8 px-6 max-w-[60%]">
+            <div className="mt-8 px-6 max-w-4/5">
                 <Swiper
                     pagination={{ clickable: true }}
                     modules={[Pagination, Autoplay]}
                     spaceBetween={30}
                     slidesPerView={1}
                     autoplay={{
-                        delay: 15000,
+                        delay: 5000,
                         disableOnInteraction: false,
                         pauseOnMouseEnter: true,
                     }}
@@ -36,13 +36,13 @@ export default function HomeSlider() {
                 >
                     <SwiperSlide>
                         <div>
-                            <h2 className="text-2xl font-extrabold text-brand-maroon">
+                            <h2 className="text-3xl font-extrabold text-brand-maroon">
                                 Introducing the Q2000: The most powerful microinverter in the industry!
                             </h2>
-                            <p className='text-lg'>SPARQ is pleased to introduce the Quad 2000, the industry&apos;s most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, without any power clipping. Our advanced software allows the Q2000 to operate seamlessly in grid-tied, standalone and dual-mode solar panel applications.</p>
+                            <p className='text-2xl'>SPARQ is pleased to introduce the Quad 2000, the industry&apos;s most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, without any power clipping. Our advanced software allows the Q2000 to operate seamlessly in grid-tied, standalone and dual-mode solar panel applications.</p>
                             <ul className="mt-4">
                                 <li>
-                                    <Link href="https://www.youtube.com/watch?v=3LPu1w_Qj1I" className="text-blue-400 hover:underline" target='_blank'>
+                                    <Link href="https://www.youtube.com/watch?v=3LPu1w_Qj1I" className="text-blue-400 hover:underline text-2xl" target='_blank'>
                                         See Video
                                     </Link>
                                 </li>
@@ -51,18 +51,18 @@ export default function HomeSlider() {
                     </SwiperSlide>
                     <SwiperSlide>
                         <div>
-                            <h2 className="text-2xl font-extrabold text-brand-maroon">
+                            <h2 className="text-3xl font-extrabold text-brand-maroon">
                                 The most advanced Single phase and three phase microinverter in the industry
                             </h2>
-                            <p className='text-lg'>Sparq Systems Q2000 product family of single and three phase microinverters not only resolve the longstanding safety, partial shading, low reliability problems and high cost of String Photovoltaic-Systems but also further advance state of the art of the single channel microinverter industry leader by eliminating the low reliability electrolytic capacitors and integrating four independently controlled DC-DC channels in one enclose resulting in best in class reliability, highest weigh and power density and lowest life-cycle cost.</p>
+                            <p className='text-2xl'>Sparq Systems Q2000 product family of single and three phase microinverters not only resolve the longstanding safety, partial shading, low reliability problems and high cost of String Photovoltaic-Systems but also further advance state of the art of the single channel microinverter industry leader by eliminating the low reliability electrolytic capacitors and integrating four independently controlled DC-DC channels in one enclose resulting in best in class reliability, highest weigh and power density and lowest life-cycle cost.</p>
                             <ul className="mt-4 space-y-2">
                                 <li>
-                                    <Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" className="text-blue-400 hover:underline" target='_blank'>
+                                    <Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" className="text-blue-400 hover:underline text-xl" target='_blank'>
                                         Q2000-4102 vs. IQ8H
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/Q2000/Comparison-of-Q2000-4302-with-IQ8H-3p.pdf" className='text-blue-400 hover:underline' target='_blank'>
+                                    <Link href="/Q2000/Comparison-of-Q2000-4302-with-IQ8H-3p.pdf" className='text-blue-400 hover:underline text-xl' target='_blank'>
                                         Q2000-4302 vs. IQ8H-3p
                                     </Link>
                                 </li>
@@ -71,9 +71,9 @@ export default function HomeSlider() {
                     </SwiperSlide>
                     <SwiperSlide>
                         <div>
-                            <h2 className='text-2xl font-extrabold text-brand-maroon'>Be part of a greener future</h2>
-                            <p className='text-lg'>Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you&apos;ll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.</p>
-                            <button onClick={() => setExpanded(!expanded)} className="text-blue-400 hover:underline mt-2 inline-block cursor-pointer">
+                            <h2 className='text-3xl font-extrabold text-brand-maroon'>Be part of a greener future</h2>
+                            <p className='text-2xl'>Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you&apos;ll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.</p>
+                            <button onClick={() => setExpanded(!expanded)} className="text-blue-400 hover:underline mt-2 inline-block cursor-pointer text-2xl">
                                 {expanded ? "See less" : "See more"}
                             </button>
                             {expanded && (
@@ -94,16 +94,11 @@ export default function HomeSlider() {
                     </SwiperSlide>
                     <SwiperSlide>
                         <div>
-                            <h2 className='text-brand-maroon text-2xl font-extrabold'>Biodiversity</h2>
-                            <p>Biodiversity, short for biological diversity, refers to the variety of life on Earth, encompassing everything from genes and species to ecosystems and their functions. It&apos;s the richness and complexity of life that sustains our planet and is crucial for a healthy environment and human well-being.</p>
+                            <h2 className='text-brand-maroon text-3xl font-extrabold'>Biodiversity</h2>
+                            <p className='text-2xl'>Biodiversity, short for biological diversity, refers to the variety of life on Earth, encompassing everything from genes and species to ecosystems and their functions. It&apos;s the richness and complexity of life that sustains our planet and is crucial for a healthy environment and human well-being.</p>
                         </div>
                     </SwiperSlide>
                 </Swiper>
-                <div className="mt-4 text-left">
-                    <a href="#" className="text-white hover:underline">
-                        VIEW ALL →
-                    </a>
-                </div>
             </div>
             {/* Stock Information Div */}
             {/* To be filled via api call */}
