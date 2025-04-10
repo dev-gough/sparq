@@ -5,50 +5,7 @@ import InvestorSlider from "@/components/Sliders/InvestorSlider";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Autoplay, Pagination } from 'swiper/modules';
-import { useState } from 'react';
-
-interface CardProps {
-    value: string;
-    label: string;
-    footnote?: string;
-    link: string;
-}
-
-const Card: React.FC<CardProps> = ({ value, label, footnote, link }) => {
-    return (
-        <div className="bg-gray-100 rounded-lg p-6 text-center">
-            <div className="text-2xl font-bold">{value}</div>
-            <div className="text-lg mt-2">{label}</div>
-            {footnote && <div className="text-sm text-gray-600 mt-1">{footnote}</div>}
-            <a href={link} className="text-blue-500 hover:underline mt-4 block">MORE →</a>
-        </div>
-    );
-};
-
-const cards = [
-    {
-        value: 'Innovation',
-        label: 'Total Revenue',
-        link: '#',
-    },
-    {
-        value: '$-1,066,296',
-        label: 'Gross Profit',
-        link: '#',
-    },
-    {
-        value: '$-0.08',
-        label: 'EPS',
-        link: '#',
-    },
-    {
-        value: '$-6,377,103',
-        label: 'EBITDA',
-        link: '#',
-    },
-];
-
+import { Autoplay } from 'swiper/modules';
 
 export default function InvestorPage() {
     return (
