@@ -29,7 +29,7 @@ export default function Quad3Page() {
                 <div className="flex-1">
                     <h1 className="text-3xl font-bold text-gray-900 mt-1">Sparq Linq: Real-time performance monitoring</h1>
                     <p className="text-brand-gray mt-4 text-lg">
-                        Access and monitor your energy system data at any time with SparqLinq, our smart interface for the Quad 1200. SparqLinq can be used on nearly any device and is backed by industry standard Zigbee wireless communication, providing access to real-time data and historical records.</p>
+                        Access and monitor your energy system data at any time with SparqLinq, our smart interface for the Quad 2000 and Quad 3. SparqLinq can be used on nearly any device and is backed by industry standard Zigbee wireless communication, providing access to real-time data and historical records.</p>
 
                     {isExpanded && (
                         <div className="text-brand-gray text-lg font-mono">

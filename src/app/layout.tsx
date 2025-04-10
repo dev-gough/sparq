@@ -24,8 +24,8 @@ const aboutDropdown = [
 
 const productDropdown = [
   { label: "Terms of Service", href: "/products#tos" },
-  { label: "Quad Microinverters", href: "/products/quad2" },
-  { label: "Duo Microinverters", href: "/products/quad3"},
+  { label: "Quad 2 Microinverters", href: "/products/quad2" },
+  { label: "Quad 3 Microinverter", href: "/products/quad3"},
   { label: "Legacy Products", href: "/products/legacy"},
   { label: "SparqLinq", href: "/products/sparqlinq" },
   { label: "SparqVu", href: "/products/sparqvu" },
