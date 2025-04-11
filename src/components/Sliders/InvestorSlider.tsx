@@ -23,7 +23,7 @@ export default function InvestorSlider() {
                 </h1>
                 <div className="text-white text-right">
                     <p className="text-2xl font-semibold text-brand-yellow">Sparq Systems</p>
-                    <p className="text-sm">THE FUTURE IS WHAT WE MAKE IT</p>
+                    <p className="text-sm">THE FUTURE IS BRIGHTER WITH SPARQ BREAKTHROUGH PRODUCTS</p>
                 </div>
             </div>
             {/* Sliding Window Component */}
@@ -66,7 +66,7 @@ export default function InvestorSlider() {
                             <p className='text-2xl'>Dr. Praveen Jain, Chief Executive Officer of the Company, commented: &quot;Being named to the TSX Venture 50 is an incredible honor and a reflection of our company&apos;s momentum. Our share price appreciation and market cap growth underscore the strength of our strategy, execution, and confidence of our investors. We remain committed to driving innovation, delivering long term value, and building on this success.&quot;</p>
                             <ul className="mt-4 space-y-2">
                                 <li>
-                                    <Link href="https://www.sparqsys.com/sparq-systems-enters-into-technology-partnership-with-jio-things/" className="text-blue-400 hover:underline text-2xl" target='_blank'>
+                                    <Link href="https://ca.finance.yahoo.com/news/sparq-systems-named-tsx-venture-220100985.html" className="text-blue-400 hover:underline text-2xl" target='_blank'>
                                         Read More
                                     </Link>
                                 </li>

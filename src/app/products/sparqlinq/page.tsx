@@ -91,8 +91,14 @@ export default function Quad3Page() {
                             </div>
                         </AccordionItem>
                         <AccordionItem title="Documentation" open={true}>
-                            <h2 className="text-lg font-bold">Quick Install Guide for {selectedModel}:</h2>
-                            <Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-quickinstall.pdf" target="_blank">All Regions</Link>
+                            <div className="my-2">
+                                <h2 className="text-lg font-bold">Quick Install Guide for {selectedModel}:</h2>
+                                <Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-quickinstall.pdf" target="_blank">All Regions</Link>
+                            </div>
+                            <div className="my-2">
+                                <h2 className="text-lg font-bold">LED Indicator Guide for {selectedModel}:</h2>
+                                <Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-ledguide.pdf" target="_blank">SparqLinq-LEDGuide.pdf</Link>
+                            </div>
 
                         </AccordionItem>
                     </div>
