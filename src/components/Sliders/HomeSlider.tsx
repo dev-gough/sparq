@@ -54,7 +54,7 @@ export default function HomeSlider() {
                             <h2 className="text-3xl font-extrabold text-brand-maroon">
                                 The most advanced Single phase and three phase microinverter in the industry
                             </h2>
-                            <p className='text-2xl'>Sparq Systems Q2000 product family of single and three phase microinverters not only resolve the longstanding safety, partial shading, low reliability problems and high cost of String Photovoltaic-Systems but also further advance state of the art of the single channel microinverter industry leader by eliminating the low reliability electrolytic capacitors and integrating four independently controlled DC-DC channels in one enclose resulting in best in class reliability, highest weigh and power density and lowest life-cycle cost.</p>
+                            <p className='text-2xl'>Sparq Systems Q2000 product family of single and three phase microinverters not only resolve the longstanding safety, partial shading, low reliability problems and high cost of String Photovoltaic-Systems but also further advance state of the art of the single channel microinverter industry leader by eliminating the low reliability electrolytic capacitors and integrating four independently controlled DC-DC channels in one enclosure resulting in best in class reliability, highest weigh and power density and lowest life-cycle cost.</p>
                             <ul className="mt-4 space-y-2">
                                 <li>
                                     <Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" className="text-blue-400 hover:underline text-xl" target='_blank'>
