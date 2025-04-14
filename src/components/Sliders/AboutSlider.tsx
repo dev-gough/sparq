@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 
 import Link from 'next/link';
+import StockInfo from '@/components/StockInfo';
 
 export default function AboutSlider() {
     return (
@@ -72,16 +73,7 @@ export default function AboutSlider() {
                     </SwiperSlide>
                 </Swiper>
             </div>
-            {/* Stock Information Div */}
-            {/* To be filled via api call */}
-            <Link href="https://ca.finance.yahoo.com/quote/SPRQ.V/" target='_blank' className=' cursor-pointer'>
-                <div className="absolute bottom-4 right-4 bg-gray-800 bg-opacity-75 p-4 rounded">
-                    <p className="text-white text-sm">TSXV: SPRQ</p>
-                    <p className="text-white text-2xl font-semibold">$0.89</p>
-                    <p className="text-white text-sm">-0.03 -(3.26%)</p>
-                    <p className="text-white text-xs">Apr 08, 2025 10:30 AM EDT</p>
-                </div>
-            </Link>
+            <StockInfo/>
         </div>
     );
 };
