@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface NavItem {
     label: string;
@@ -11,11 +12,13 @@ interface NavItem {
 
 interface DropdownMenuProps {
     navItem: NavItem;
+    isActive: boolean
 }
 
 export default function DropdownMenu({ navItem }: DropdownMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const pathname = usePathname();
 
     const handleMouseEnter = () => {
         if (timeoutRef.current) {
@@ -31,6 +34,9 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
         }, 50);
     };
 
+    // Determine if the parent item is active
+    const isParentActive = navItem.href === '/' ? pathname === '/' : pathname.startsWith(navItem.href);
+
     return (
         <div
             className="relative z-[99]"
@@ -39,10 +45,14 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
             onClick={handleMouseLeave}
         >
             <div className="flex items-center">
-                {/* Main label as a clickable link */}
+                {/* Main label as a clickable link with active styles */}
                 <Link
                     href={navItem.href}
-                    className="text-white px-1 py-1 text-md rounded hover:text-gray-300"
+                    className={`px-1 py-1 text-md rounded ${
+                        isParentActive
+                            ? 'text-brand-yellow font-bold'
+                            : 'text-white hover:text-gray-300'
+                    }`}
                 >
                     {navItem.label}
                 </Link>
@@ -54,15 +64,24 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
             {/* Dropdown menu */}
             {isOpen && (
                 <div className="absolute top-full left-0 mt-1 w-48 bg-brand-graytext shadow-lg rounded-md border-t-4 border-t-brand-maroon">
-                    {navItem.dropdown && navItem.dropdown.map((subItem, index) => (
-                        <Link
-                            key={index}
-                            href={subItem.href}
-                            className="block px-4 py-2 rounded text-sm text-white hover:bg-brand-maroon"
-                        >
-                            {subItem.label}
-                        </Link>
-                    ))}
+                    {navItem.dropdown && navItem.dropdown.map((subItem, index) => {
+                        // Determine if the dropdown item is active
+                        const isSubActive = pathname === subItem.href;
+                        return (
+                            <Link
+                                key={index}
+                                href={subItem.href}
+                                className={`block px-4 py-2 rounded text-sm ${
+                                    isSubActive
+                                        ? 'text-brand-yellow font-bold'
+                                        : 'text-white hover:bg-brand-maroon'
+                                }`}
+                                aria-current={isSubActive ? 'page' : undefined}
+                            >
+                                {subItem.label}
+                            </Link>
+                        );
+                    })}
                 </div>
             )}
         </div>
