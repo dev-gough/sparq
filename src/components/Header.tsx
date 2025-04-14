@@ -1,14 +1,17 @@
-'use client';
+'use client'
 
-import Image from "next/image";
-import Link from "next/link";
-import DropdownMenu from "./DropdownMenu";
-import { usePathname } from 'next/navigation'
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import DropdownMenu from './DropdownMenu';
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { GrClose } from 'react-icons/gr';
 
 interface NavItem {
-    label: string;
     href: string;
-    dropdown?: NavItem[]
+    label: string;
+    dropdown?: NavItem[];
 }
 
 interface HeaderProps {
@@ -17,15 +20,22 @@ interface HeaderProps {
 
 export default function Header({ navItems }: HeaderProps) {
     const pathname = usePathname();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className="flex flex-col sticky top-0 z-[999]">
-            <div className="relative flex justify-between items-center p-2 bg-brand-graytext shadow-md">
+        <header className="sticky top-0 z-[999] bg-brand-graytext shadow-md">
+            <div className="flex justify-between items-center p-2">
                 <Link href="/" className="flex flex-row items-center">
                     <Image src="/logo.png" alt="Logo" width={63} height={43} />
-                    <h1 className="ml-6 text-3xl font-bold text-brand-yellow">Sparq Systems</h1>
+                    <h1 className="ml-6 text-3xl font-bold text-brand-yellow hidden sm:flex">Sparq Systems</h1>
                 </Link>
-                <nav className="flex flex-wrap space-x-2">
+                <button
+                    className="sm:hidden p-2 text-brand-yellow"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                    {isMenuOpen ? <GrClose size={24} /> : <RxHamburgerMenu size={24} />}
+                </button>
+                <nav className="hidden sm:flex flex-wrap space-x-2">
                     {navItems.map((item, index) => {
                         const isActive = item.dropdown
                             ? item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
@@ -49,6 +59,28 @@ export default function Header({ navItems }: HeaderProps) {
                     })}
                 </nav>
             </div>
+            {isMenuOpen && (
+                <nav className="absolute top-full left-0 right-0 bg-brand-graytext p-4 sm:hidden shadow-lg">
+                    {navItems.map((item, index) => {
+                        const isActive = item.dropdown
+                            ? item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
+                            : pathname === item.href;
+
+                        return (
+                            <Link
+                                key={index}
+                                href={item.href}
+                                className={`block py-2 ${
+                                    isActive ? 'text-brand-yellow font-bold' : 'text-white'
+                                }`}
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                {item.label}
+                            </Link>
+                        );
+                    })}
+                </nav>
+            )}
         </header>
     );
 }
