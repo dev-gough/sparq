@@ -3,7 +3,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css/navigation'
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { useState } from 'react';
 
 import Link from 'next/link';
@@ -24,7 +25,8 @@ export default function HomeSlider() {
             <div className="mt-8 px-6 max-w-4/5">
                 <Swiper
                     pagination={{ clickable: true }}
-                    modules={[Pagination, Autoplay]}
+                    modules={[Pagination, Autoplay, Navigation]}
+                    navigation={true}
                     spaceBetween={30}
                     slidesPerView={1}
                     autoplay={{
@@ -36,7 +38,7 @@ export default function HomeSlider() {
                     onSlideChange={() => setExpanded(false)}
                 >
                     <SwiperSlide>
-                        <div>
+                        <div className='px-32'>
                             <h2 className="text-3xl font-extrabold text-brand-maroon">
                                 Introducing the Q2000: The most powerful microinverter in the industry!
                             </h2>
@@ -51,7 +53,7 @@ export default function HomeSlider() {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div>
+                        <div className='px-32'>
                             <h2 className="text-3xl font-extrabold text-brand-maroon">
                                 The most advanced Single phase and three phase microinverter in the industry
                             </h2>
@@ -71,7 +73,7 @@ export default function HomeSlider() {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div>
+                        <div className='px-32'>
                             <h2 className='text-3xl font-extrabold text-brand-maroon'>Be part of a greener future</h2>
                             <p className='text-2xl'>Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you&apos;ll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.</p>
                             <button onClick={() => setExpanded(!expanded)} className="text-blue-400 hover:underline mt-2 inline-block cursor-pointer text-2xl">
@@ -94,7 +96,7 @@ export default function HomeSlider() {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div>
+                        <div className='px-32'>
                             <h2 className='text-brand-maroon text-3xl font-extrabold'>Biodiversity</h2>
                             <p className='text-2xl'>Biodiversity, short for biological diversity, refers to the variety of life on Earth, encompassing everything from genes and species to ecosystems and their functions. It&apos;s the richness and complexity of life that sustains our planet and is crucial for a healthy environment and human well-being.</p>
                         </div>
