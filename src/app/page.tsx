@@ -1,24 +1,107 @@
+'use client'
+
 import Image from "next/image";
 import Link from "next/link";
-import HomeSlider from "@/components/Sliders/HomeSlider";
+import Slider from "@/components/Slider";
+import { SwiperSlide } from "swiper/react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+
+    const [expanded, setExpanded] = useState<boolean>(false)
+    const [isMobile, setIsMobile] = useState<boolean>(false)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 640)
+        }
+
+        handleResize()
+        window.addEventListener('resize', handleResize)
+
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
     return (
         <div className="flex flex-col">
-
-            <div className="container mx-auto py-16 px-4">
-            <HomeSlider/>
+            <div className="container mx-auto sm:py-8 sm:px-4">
+                {/* Home Slider */}
+                <Slider>
+                    <SwiperSlide>
+                        <div className='px-0 sm:px-64 sm:pt-8'>
+                            <h2 className="text-lg sm:text-3xl font-extrabold text-brand-yellow underline">
+                                Introducing the Q2000: The most powerful microinverter in the industry!
+                            </h2>
+                            <p className='text-sm sm:text-2xl sm:pt-16 pt-4'>SPARQ is pleased to introduce the Quad 2000, the industry&apos;s most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, without any power clipping. Our advanced software allows the Q2000 to operate seamlessly in grid-tied, standalone and dual-mode solar panel applications.</p>
+                            <div className='sm:mt-8 mt-2'>
+                                <Link href="https://www.youtube.com/watch?v=3LPu1w_Qj1I" className="text-blue-400 hover:underline text-md sm:text-2xl " target='_blank'>
+                                    See Video
+                                </Link>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className='px-0 sm:px-64 sm:pt-8'>
+                            <h2 className="text-lg sm:text-3xl font-extrabold text-brand-yellow underline">
+                                The most advanced Single Phase and Three Phase microinverter in the industry
+                            </h2>
+                            <p className='text-md sm:text-2xl sm:pt-16 pt-4'>See details and the comparison to Enphase&apos;s line of products below:</p>
+                            <ul className="mt-4 space-y-2 sm:text-2xl">
+                                <li>
+                                    <Link href="#advanced" className="text-blue-400 hover:underline sm:text-xl text-md">
+                                        Read More
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/Q2000/Comparison-of-Q2000-4302-with-IQ8H-3p.pdf" className='text-blue-400 hover:underline sm:text-xl text-md' target='_blank'>
+                                        Comparison vs. the IQ8H product line
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className='sm:px-64 px-0 sm:pt-8'>
+                            <h2 className='sm:text-3xl text-xl font-extrabold text-brand-yellow underline text-center'>Be part of a greener future</h2>
+                            <p className='sm:text-2xl text-md sm:pt-16 pt-4'>Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you&apos;ll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.</p>
+                            {isMobile ? (
+                                <div className="sm:mt-8 mt-2">
+                                    <Link href="#q2000features" className="text-blue-400">View Features</Link>
+                                </div>
+                            ) : (
+                                <button onClick={() => setExpanded(!expanded)} className="text-blue-400 hover:underline mt-2 inline-block cursor-pointer sm:text-2xl text-md">
+                                    {expanded ? "See less" : "See more"}
+                                </button>
+                            )}
+                            {expanded && (
+                                    <div>
+                                        <ul className="list-disc list-inside">
+                                            <li>4 panels - 1 inverter</li>
+                                            <li>Best in-class reliability</li>
+                                            <li>Quick and easy installation</li>
+                                            <li>Maximum energy harvest</li>
+                                            <li>Cloud-based performance monitoring</li>
+                                            <li>12 standard or 25-year extended warranty</li>
+                                            <li>Clean energy solutions</li>
+                                            <li>Dedicated support</li>
+                                        </ul>
+                                    </div>
+                                )}
+                        </div>
+                    </SwiperSlide>
+                </Slider>
                 {/* Product Info */}
-                <section className="bg-white pt-20 px-4">
+                <section id="advanced" className="bg-white pt-20 px-4">
                     <h1 className="text-3xl font-bold text-brand-maroon">
                         Your cost-effective, reliable solar energy system.
                     </h1>
                     <p className="text-md text-black mt-2">
                         We&apos;re changing the industry standard for solar energy solutions with powerful power conversion that&apos;s smart-grid ready and the lowest cost per watt in the industry.
                     </p>
+                    <p className='text-md pt-4'>The Sparq Systems Q2000 product family of single and three phase microinverters not only resolve the longstanding safety, partial shading, low reliability problems and high cost of String Photovoltaic-Systems but also further advance state of the art of the single channel microinverter industry leader by eliminating the low reliability electrolytic capacitors and integrating four independently controlled DC-DC channels in one enclosure resulting in best in class reliability, highest weight and power density and lowest life-cycle cost.</p>
 
                     {/* First Subheading and Paragraph */}
-                    <h2 className="text-2xl font-bold text-brand-maroon mt-6">
+                    <h2 className="text-2xl font-bold text-brand-maroon sm:mt-6 sm:pt-0 pt-16">
                         Be part of a greener future.
                     </h2>
                     <p className="text-black mt-2">
@@ -26,7 +109,7 @@ export default function Home() {
                     </p>
 
                     {/* Second Subheading and Paragraph */}
-                    <h2 className="text-2xl font-bold text-brand-maroon mt-6">
+                    <h2 id="q2000features" className="text-2xl font-bold text-brand-maroon sm:mt-6 sm:pt-0 pt-16">
                         4 panels - 1 inverter.
                     </h2>
                     <p className="text-black mt-2">

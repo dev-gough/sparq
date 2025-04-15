@@ -24,10 +24,9 @@ export default function Header({ navItems }: HeaderProps) {
 
     return (
         <header className="sticky top-0 z-[999] bg-brand-graytext shadow-md">
-            <div className="flex justify-between items-center p-2">
-                <Link href="/" className="flex flex-row items-center">
+            <div className="flex justify-between sm:justify-center items-center p-2">
+                <Link href="/" className="mr-4" onClick={() => setIsMenuOpen(false)}>
                     <Image src="/logo.png" alt="Logo" width={63} height={43} />
-                    <h1 className="ml-6 text-3xl font-bold text-brand-yellow hidden sm:flex">Sparq Systems</h1>
                 </Link>
                 <button
                     className="sm:hidden p-2 text-brand-yellow"

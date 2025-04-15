@@ -29,8 +29,8 @@ const InstallerFAQEntries: FAQData[] = InstallerFAQData.faqs
 export default function ResourcesPage() {
     return (
         <div className="bg-white container mx-auto py-8 px-10">
-            <section id="homeowners">
-                <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-16">
+            <section id="homeowners" className="pt-16">
+                <h1 className="text-5xl font-bold text-brand-maroon text-center mb-16">
                     Homeowners
                 </h1>
                 <h1 className="text-2xl font-bold text-brand-maroon text-left mt-12">
@@ -58,8 +58,8 @@ export default function ResourcesPage() {
                     </div>
                 </div>
             </section>
-            <section id="installers">
-                <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-16">
+            <section id="installers" className="pt-16">
+                <h1 className="text-5xl font-bold text-brand-maroon text-center mb-16">
                     Installers
                 </h1>
                 <h1 className="text-2xl font-bold text-brand-maroon text-left mt-12">
@@ -92,22 +92,22 @@ export default function ResourcesPage() {
                     <strong>Support for Installers and Distributors:</strong> we are currently updating our training materials for installers and distributors. Please check back often for more information or <span className="text-amber-800 hover:text-amber-600 transition duration-200"><a href="https://www.sparqsys.com/contact-us/">contact us</a></span> for support.
                 </div>
             </section>
-            <section id="photos">
-                <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-16">
+            <section id="photos" className="pt-16">
+                <h1 className="text-5xl font-bold text-brand-maroon text-center mb-16">
                     Photo Gallery
                 </h1>
                 <p className="font-mono">Need Content</p>
             </section>
-            <section id="videos">
-                <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-16">
+            <section id="videos" className="pt-16">
+                <h1 className="text-5xl font-bold text-brand-maroon text-center mb-16">
                     Video Gallery
                 </h1>
                 <AccordionItem title="Videos">
                     <YTVideo videoIds={ids} />
                 </AccordionItem>
             </section>
-            <section id="design">
-                <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-16 ">Design Your System</h1>
+            <section id="design" className="pt-16">
+                <h1 className="text-5xl font-bold text-brand-maroon text-center mb-16 ">Design Your System</h1>
                 <p className="mt-4">Follow these steps for designing your SPARQ energy solution system.</p>
                 <div className="mt-6">
                     <h2 className="text-xl font-semibold">Step 1 – Understand your requirements</h2>
