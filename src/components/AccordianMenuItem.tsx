@@ -3,10 +3,11 @@ import { useState } from 'react';
 interface AccordionItemProps {
     title: string;
     children: React.ReactNode;
+    open?: boolean
 }
 
-export default function AccordionItem({ title, children } : AccordionItemProps) {
-    const [isOpen, setIsOpen] = useState(false);
+export default function AccordionItem({ title, children, open } : AccordionItemProps) {
+    const [isOpen, setIsOpen] = useState(open);
 
     return (
         <div className="border border-gray-200 rounded-md mb-2 my-4 shadow-sm">
