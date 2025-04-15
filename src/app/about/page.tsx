@@ -3,7 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import AboutSlider from "@/components/Sliders/AboutSlider";
+import Slider from "@/components/Slider";
+import { SwiperSlide } from "swiper/react";
+
+import TOSDropdown from '@/components/TOSDropdown';
+import PrivacyPolicyDropdown from '@/components/PrivacyPolicyDropdown';
 
 interface BoardMemberData {
     imgSrc: string;
@@ -127,8 +131,56 @@ export default function AboutPage() {
     const [selectedMember, setMember] = useState<BoardMemberData | TeamMemberData | null>(null)
 
     return (
-        <div className="bg-white container mx-auto py-8 px-10">
-            <AboutSlider/>
+        <div className="bg-white container mx-auto sm:py-8 sm:px-4">
+            <Slider>
+                <SwiperSlide>
+                    <div className='px-0 sm:px-64 sm:pt-8'>
+                        <h2 className="text-lg sm:text-3xl font-extrabold text-brand-yellow underline">
+                            Passion
+                        </h2>
+                        <p className='text-sm sm:text-2xl sm:pt-16 pt-4'>SPARQ was born out of a passion to create leading edge solar energy solutions that support a greener future for our planet. Founder Dr. Praveen Jain is a world-leader in energy research, holding over 100 patents. His advanced research at ePower, the Centre for Energy and Power Electronics Research at Queen&apos;s University in Kingston, Canada, resulted in the development of SPARQ&apos;s innovative and versatile microinverter design.</p>
+                        <p className='text-sm sm:text-2xl sm:pt-16 pt-4'>Today SPARQ&apos;s microinverter system is resetting the industry standard for solar energy systems, delivering greater energy harvest over traditional string inverters. It can be used in any power grid, conventional or smart, around the globe.</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div>
+                        <h2 className="text-3xl font-extrabold text-brand-maroon">
+                            Vision
+                        </h2>
+                        <p className='text-2xl'>Driven by Sparq&apos;s unwavering commitment to innovation, customer satisfaction, and continuous improvement, our vision is to lead the clean energy revolution by consistently developing and introducing the next generation of energy-efficient, cost-effective, and environmentally sustainable power electronics, energy storage, and management technologies—paving the way for a greener, more sustainable future.</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div>
+                        <h2 className='text-3xl font-extrabold text-brand-maroon'>Mission</h2>
+                        <p className='text-2xl'>Our mission is to develop and advance state of the art technologies in energy harvesting, conversion, storage, and digital controls to resolve longstanding environmental, social, and governance (ESG) challenges of our planet through innovation, collaboration, and experience.</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div>
+                        <h2 className='text-brand-maroon text-3xl font-extrabold'>Value Proposition</h2>
+                        <p className='text-2xl'>Sparq&apos;s value proposition is to provide safe, highly reliable, cost-effective, and easy-to-install and maintain portfolio of solar energy generation, storage, and management products, which seamlessly can integrate into one platform to deliver affordable, resilient, long-lasting, and sustainable grid-tied and offgrid energy solutions, to reduce adverse effects of growing energy demand on our ecosystem, including air, water, soil, biodiversity, and carbon footprint.</p>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div>
+                        <h2 className='text-brand-maroon text-3xl font-extrabold'>Leadership</h2>
+                        <Link href="/about#leadership" className='text-blue-400 text-2xl'>Meet the members of our excellent team</Link>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div>
+                        <h2 className='text-brand-maroon text-3xl font-extrabold'>Board of Directors</h2>
+                        <Link href="/about#bod" className='text-2xl text-blue-400'>Get to know our experienced board members</Link>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <div className='sm:px-32 px-0'>
+                        <h2 className='text-brand-maroon sm:text-3xl text-lg font-extrabold'>Biodiversity</h2>
+                        <p className='sm:text-2xl text-md'>Biodiversity, short for biological diversity, refers to the variety of life on Earth, encompassing everything from genes and species to ecosystems and their functions. It&apos;s the richness and complexity of life that sustains our planet and is crucial for a healthy environment and human well-being.</p>
+                    </div>
+                </SwiperSlide>
+            </Slider>
             <section id="leadership" className="py-16">
                 <div className="container mx-auto">
                     <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-32">Meet the Team</h1>
@@ -137,11 +189,10 @@ export default function AboutPage() {
                             <div
                                 key={index}
                                 onClick={() => setMember(member)}
-                                className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${
-                                    selectedMember === member
-                                    ? 'scale-100'
-                                    : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
-                                }`}>
+                                className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${selectedMember === member
+                                        ? 'scale-100'
+                                        : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
+                                    }`}>
                                 <Image
                                     src={member.imgSrc}
                                     alt={member.name}
@@ -165,11 +216,10 @@ export default function AboutPage() {
                             <div
                                 key={index}
                                 onClick={() => setMember(member)}
-                                className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${
-                                    selectedMember == member
-                                    ? 'scale-100'
-                                    : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
-                                }`}>
+                                className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${selectedMember == member
+                                        ? 'scale-100'
+                                        : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
+                                    }`}>
                                 <Image
                                     src={member.imgSrc}
                                     alt={member.name}
@@ -199,6 +249,10 @@ export default function AboutPage() {
                     <li><Link target="_blank" href="/Governance/Insider-Trading-Policy.pdf">Insider Trading Policy</Link></li>
 
                 </ul>
+            </section>
+            <section className="mt-8">
+                <TOSDropdown/>
+                <PrivacyPolicyDropdown className='mt-8'/>
             </section>
             {/* Popup */}
             {selectedMember && (

@@ -36,15 +36,13 @@ const productDropdown = [
 const resourcesDropdown = [
   { label: "Homeowners", href: "/resources/#homeowners" },
   { label: "Installers", href: "/resources/#installers" },
-  { label: "Commercial & Industrial", href: "/resources/commercial" },
-  { label: "Support Tickets", href: "/resources/#support"},
-  { label: "Design My System", href: "/resources/#design"},
   { label: "Photo Gallery", href: "/resources/#photos"},
   { label: "Video Gallery", href: "/resources/#videos"},
+  { label: "Design My System", href: "/resources/#design"},
+  { label: "Support Tickets", href: "/resources/#support"},
 ]
 
 const navbarItems = [
-  { label: "Home", href: "/"},
   { label: "About", href: "/about", dropdown: aboutDropdown },
   { label: "Products & Services", href: "/products", dropdown: productDropdown },
   { label: "Investor Relations", href: "/investors" },
