@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import AboutSlider from "@/components/Sliders/AboutSlider";
 
 interface BoardMemberData {
     imgSrc: string;
@@ -127,8 +128,8 @@ export default function AboutPage() {
 
     return (
         <div className="bg-white container mx-auto py-8 px-10">
-            {/* Team Section */}
-            <section id="#leadership" className="py-16">
+            <AboutSlider/>
+            <section id="leadership" className="py-16">
                 <div className="container mx-auto">
                     <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-32">Meet the Team</h1>
                     <div className="flex flex-wrap justify-center gap-16">

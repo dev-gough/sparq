@@ -24,31 +24,32 @@ const aboutDropdown = [
 
 const productDropdown = [
   { label: "Terms of Service", href: "/products#tos" },
-  { label: "Quad Microinverters", href: "/products/quad" },
-  { label: "Duo Microinverters", href: "/products/duo"},
+  { label: "Quad 2 Microinverters", href: "/products/quad2" },
+  { label: "Quad 3 Microinverter", href: "/products/quad3"},
   { label: "Legacy Products", href: "/products/legacy"},
-  { label: "SparqLinq", href: "/products#monitoring" },
-  { label: "SparqVu", href: "/products#sparqvu" },
+  { label: "SparqLinq", href: "/products/sparqlinq" },
+  { label: "SparqVu", href: "/products/sparqvu" },
   { label: "Sparq App", href: "/products/app"},
   { label: "Accessories", href: "/products#accessories" },
 ]
 
 const resourcesDropdown = [
-  { label: "Homeowners", href: "/resources/homeowners" },
-  { label: "Installers", href: "/resources/installers" },
+  { label: "Homeowners", href: "/resources/#homeowners" },
+  { label: "Installers", href: "/resources/#installers" },
   { label: "Commercial & Industrial", href: "/resources/commercial" },
-  { label: "Process Tools", href: "/resources/tools"}
+  { label: "Support Tickets", href: "/resources/#support"},
+  { label: "Design My System", href: "/resources/#design"},
+  { label: "Photo Gallery", href: "/resources/#photos"},
+  { label: "Video Gallery", href: "/resources/#videos"},
 ]
 
 const navbarItems = [
+  { label: "Home", href: "/"},
   { label: "About", href: "/about", dropdown: aboutDropdown },
   { label: "Products & Services", href: "/products", dropdown: productDropdown },
-  { label: "Resources", href: "/resources", dropdown: resourcesDropdown },
-  { label: "News & Events", href: "/news" },
   { label: "Investor Relations", href: "/investors" },
-  { label: "Careers", href: "/careers" },
-  { label: "How to Order", href: "/order" },
-  { label: "Contact", href: "/contact" },
+  { label: "Resources", href: "/resources", dropdown: resourcesDropdown },
+  { label: "Contact & Support", href: "/contact" },
 ]
 
 export default function RootLayout({

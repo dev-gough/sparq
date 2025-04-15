@@ -42,3 +42,4 @@ next-env.d.ts
 
 cur_diff.txt
 deploy.sh
+*.mp4
