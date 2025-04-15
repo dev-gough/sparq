@@ -19,14 +19,16 @@ export default function HomeSlider() {
             className="w-full h-128 bg-cover bg-center relative bg-[url(/tmp.jpg)]">
             {/* Heading Section */}
             <div className="flex justify-between items-center p-6">
-                <p className="text-4xl text-right font-semibold text-brand-yellow">Sparq Systems</p>
+                <p className="text-4xl text-right font-semibold text-brand-yellow hidden sm:hidden">Sparq Systems</p>
             </div>
             {/* Sliding Window Component */}
-            <div className="mt-8 px-6 max-w-full sm:max-w-4/5">
+            <div className="mt-2 sm:mt-8 px-6 max-w-full sm:max-w-4/5">
                 <Swiper
                     pagination={{ clickable: true }}
                     modules={[Pagination, Autoplay, Navigation]}
-                    navigation={true}
+                    navigation={{
+                        enabled: false
+                    }}
                     spaceBetween={30}
                     slidesPerView={1}
                     autoplay={{
@@ -36,6 +38,13 @@ export default function HomeSlider() {
                     }}
                     className='text-white h-96'
                     onSlideChange={() => setExpanded(false)}
+                    breakpoints={{
+                        640: {
+                            navigation: {
+                                enabled: true
+                            }
+                        }
+                    }}
                 >
                     <SwiperSlide>
                         <div className='px-0 sm:px-32'>
