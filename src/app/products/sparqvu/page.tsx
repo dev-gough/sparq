@@ -27,7 +27,7 @@ export default function SparqVuPage() {
                 <div className="flex-1">
                     <h1 className="text-3xl font-bold text-gray-900 mt-1">SparqVu - Your Energy Management System</h1>
                     <p className="text-brand-gray mt-4 text-lg">
-                        Manage multi-site monitoring with SparqVu, a system performance management system with intuitive displays to help you quickly spot system issues and troubleshoot in real time.</p>
+                        Manage multi-site monitoring with SparqVu, a performance management system with intuitive displays to help you quickly spot issues and troubleshoot in real time.</p>
                     {isExpanded && (
                         <div className="text-brand-gray text-lg font-mono">
                             <p>More details to be provided</p>
