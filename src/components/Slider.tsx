@@ -21,7 +21,9 @@ export default function Slider({ children }: SliderProps) {
     }, [])
 
     if (!isClient) {
-        return null
+        return <div
+            className="w-full sm:h-128 bg-cover bg-center sm:bg-top relative bg-[url(/tmp.jpg)] sm:rounded-xl">
+        </div>
     }
 
     return (

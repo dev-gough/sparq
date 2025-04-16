@@ -8,7 +8,6 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
 
-    const [expanded, setExpanded] = useState<boolean>(false)
     const [isMobile, setIsMobile] = useState<boolean>(false)
 
     useEffect(() => {
@@ -25,14 +24,13 @@ export default function Home() {
     return (
         <div className="flex flex-col">
             <div className="container mx-auto sm:py-8 sm:px-4 pb-8">
-                {/* Home Slider */}
                 <Slider>
                     <SwiperSlide>
                         <div className='px-0 sm:px-64 sm:pt-8'>
-                            <h2 className="text-lg sm:text-3xl font-extrabold text-brand-yellow underline">
+                            <h2 className="text-lg sm:text-3xl font-extrabold text-brand-yellow border-b-brand-yellow sm:border-b-4 border-b-2">
                                 Introducing the Q2000: The most powerful microinverter in the industry!
                             </h2>
-                            <p className='text-sm sm:text-2xl sm:pt-16 pt-4'>SPARQ is pleased to introduce the Quad 2000, the industry&apos;s most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, without any power clipping.</p>
+                            <p className='text-sm sm:text-2xl sm:pt-16 pt-4'>SPARQ is pleased to introduce the Quad 2000, the industry&apos;s most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, with no power clipping.</p>
                             <div className='sm:mt-8 mt-2'>
                                 <Link href="https://www.youtube.com/watch?v=3LPu1w_Qj1I" className="text-blue-400 hover:underline text-md sm:text-2xl " target='_blank'>
                                     See Video
@@ -48,13 +46,18 @@ export default function Home() {
                             <p className='text-md sm:text-2xl sm:pt-16 pt-4'>See details and the comparison to Enphase&apos;s line of products below:</p>
                             <ul className="mt-4 space-y-2 sm:text-2xl">
                                 <li>
-                                    <Link href="#advanced" className="text-blue-400 hover:underline sm:text-xl text-md">
+                                    <Link href="#advanced" className="text-blue-400 hover:underline sm:text-2xl text-md">
                                         Read More
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/Q2000/Comparison-of-Q2000-4302-with-IQ8H-3p.pdf" className='text-blue-400 hover:underline sm:text-xl text-md' target='_blank'>
-                                        Comparison vs. the IQ8H product line
+                                    <Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" className='text-blue-400 hover:underline sm:text-2xl text-md' target='_blank'>
+                                        Comparison with the IQ8H Single Phase
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/Q2000/Comparison-of-Q2000-4302-with-IQ8H-3p.pdf" className='text-blue-400 hover:underline sm:text-2xl text-md' target='_blank'>
+                                        Comparison with the IQ8H Three Phase
                                     </Link>
                                 </li>
                             </ul>
@@ -114,7 +117,7 @@ export default function Home() {
                                         />
                                     </div>
                                     <h3 className="text-lg md:text-3xl font-bold text-brand-maroon mb-2 h-18 sm:h-24 flex items-center justify-center line-clamp-2">
-                                        Industry Leader {!isMobile? "in Energy Solutions" : ""}
+                                        Industry Leader {!isMobile ? "in Energy Solutions" : ""}
                                     </h3>
                                     <hr className="w-16 border-t-2 border-brand-maroon mb-4" />
                                     <p className="text-sm md:text-xl text-white">
