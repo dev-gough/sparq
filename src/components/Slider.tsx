@@ -39,7 +39,7 @@ export default function Slider({ children }: SliderProps) {
                     spaceBetween={30}
                     slidesPerView={1}
                     autoplay={{
-                        delay: 600000,
+                        delay: 15000,
                         disableOnInteraction: false,
                         pauseOnMouseEnter: true,
                     }}
