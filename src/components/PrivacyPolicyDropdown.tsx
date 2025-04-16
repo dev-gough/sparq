@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 interface PPProps {
     isOpen?: boolean
@@ -11,12 +11,6 @@ interface PPProps {
 export default function PrivacyPolicyDropdown({ isOpen, className }: PPProps) {
 
     const [open, setOpen] = useState<boolean>(isOpen? true : false)
-
-    useEffect(() => {
-        if (!open) {
-            window.scrollTo({top: 0})
-        }
-    }, [open])
 
     return (
         <div className={`w-full ${className}`}>

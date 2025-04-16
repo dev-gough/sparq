@@ -61,7 +61,7 @@ function ContactSection({ title, companyName, address, phone, email, website }: 
 
 export default function ContactPage() {
 	return (
-		<div className="container mx-auto px-10 py-8">
+		<div className="container mx-auto px-10 mt-16" id="header">
 			<h2 className="text-5xl font-bold text-center mb-8 text-brand-maroon">Contact Us</h2>
 			<h3 className='text-xl font-semibold my-4 text-brand-maroon'>Our Offices</h3>
 			<section className='flex flex-col gap-6'>
@@ -105,7 +105,7 @@ export default function ContactPage() {
 					website='https://www.gpsi.ca/Solar-EV.htm'
 				/>
 			</section>
-			<SupportTicketForm />
+			<SupportTicketForm className='mb-8'/>
 		</div>
 	);
 };
