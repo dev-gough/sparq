@@ -24,7 +24,7 @@ export default function Home() {
 
     return (
         <div className="flex flex-col">
-            <div className="container mx-auto sm:py-8 sm:px-4">
+            <div className="container mx-auto sm:py-8 sm:px-4 pb-8">
                 {/* Home Slider */}
                 <Slider>
                     <SwiperSlide>
@@ -32,7 +32,7 @@ export default function Home() {
                             <h2 className="text-lg sm:text-3xl font-extrabold text-brand-yellow underline">
                                 Introducing the Q2000: The most powerful microinverter in the industry!
                             </h2>
-                            <p className='text-sm sm:text-2xl sm:pt-16 pt-4'>SPARQ is pleased to introduce the Quad 2000, the industry&apos;s most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, without any power clipping. Our advanced software allows the Q2000 to operate seamlessly in grid-tied, standalone and dual-mode solar panel applications.</p>
+                            <p className='text-sm sm:text-2xl sm:pt-16 pt-4'>SPARQ is pleased to introduce the Quad 2000, the industry&apos;s most powerful microinverter that produces electrical energy from 4 solar panels of 550W+ each, without any power clipping.</p>
                             <div className='sm:mt-8 mt-2'>
                                 <Link href="https://www.youtube.com/watch?v=3LPu1w_Qj1I" className="text-blue-400 hover:underline text-md sm:text-2xl " target='_blank'>
                                     See Video
@@ -42,7 +42,7 @@ export default function Home() {
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className='px-0 sm:px-64 sm:pt-8'>
-                            <h2 className="text-lg sm:text-3xl font-extrabold text-brand-yellow underline">
+                            <h2 className="text-lg sm:text-3xl font-extrabold text-brand-yellow border-b-brand-yellow sm:border-b-4 border-b-2">
                                 The most advanced Single Phase and Three Phase microinverter in the industry
                             </h2>
                             <p className='text-md sm:text-2xl sm:pt-16 pt-4'>See details and the comparison to Enphase&apos;s line of products below:</p>
@@ -61,32 +61,67 @@ export default function Home() {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className='sm:px-64 px-0 sm:pt-8'>
-                            <h2 className='sm:text-3xl text-xl font-extrabold text-brand-yellow underline text-center'>Be part of a greener future</h2>
-                            <p className='sm:text-2xl text-md sm:pt-16 pt-4'>Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you&apos;ll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.</p>
-                            {isMobile ? (
-                                <div className="sm:mt-8 mt-2">
-                                    <Link href="#q2000features" className="text-blue-400">View Features</Link>
-                                </div>
-                            ) : (
-                                <button onClick={() => setExpanded(!expanded)} className="text-blue-400 hover:underline mt-2 inline-block cursor-pointer sm:text-2xl text-md">
-                                    {expanded ? "See less" : "See more"}
-                                </button>
-                            )}
-                            {expanded && (
-                                    <div>
-                                        <ul className="list-disc list-inside">
-                                            <li>4 panels - 1 inverter</li>
-                                            <li>Best in-class reliability</li>
-                                            <li>Quick and easy installation</li>
-                                            <li>Maximum energy harvest</li>
-                                            <li>Cloud-based performance monitoring</li>
-                                            <li>12 standard or 25-year extended warranty</li>
-                                            <li>Clean energy solutions</li>
-                                            <li>Dedicated support</li>
-                                        </ul>
+                        <div className="sm:px-64 px-0 sm:pt-8">
+                            <h2 className="sm:text-3xl text-xl font-extrabold text-brand-yellow underline">Why Sparq?</h2>
+                            <div className="flex flex-flex-row md:flex-row gap-4">
+                                {/* First Column: Easy Install */}
+                                <div className="w-full flex flex-col items-center text-center pt-2 sm:p-6 min-h-[300px]">
+                                    <div className="w-24 h-24 lg:w-32 lg:h-32">
+                                        <Image
+                                            src="/1.png"
+                                            alt="Easy Install"
+                                            width={1080}
+                                            height={1080}
+                                            className="mb-4 object-contain w-full h-auto"
+                                        />
                                     </div>
-                                )}
+                                    <h3 className="text-lg md:text-3xl font-bold text-brand-maroon mb-2 h-18 sm:h-24 flex items-center justify-center line-clamp-2">
+                                        Easy Install
+                                    </h3>
+                                    <hr className="w-16 border-t-2 border-brand-maroon mb-4" />
+                                    <p className="text-sm md:text-xl text-white">
+                                        Save time and money with our 4 panel, 1 inverter technology
+                                    </p>
+                                </div>
+                                {/* Second Column: High Power, Low Cost */}
+                                <div className="w-full flex flex-col items-center text-center pt-2 sm:p-6 min-h-[300px]">
+                                    <div className="w-24 h-24 lg:w-32 lg:h-32">
+                                        <Image
+                                            src="/2.png"
+                                            alt="High Power, Low Cost"
+                                            width={1080}
+                                            height={1080}
+                                            className="mb-4 object-contain w-full h-auto"
+                                        />
+                                    </div>
+                                    <h3 className="text-lg md:text-3xl font-bold text-brand-maroon mb-2 h-18 sm:h-24 flex items-center justify-center line-clamp-2">
+                                        High Power, Low Cost
+                                    </h3>
+                                    <hr className="w-16 border-t-2 border-brand-maroon mb-4" />
+                                    <p className="text-sm md:text-xl text-white">
+                                        The highest power output for the lowest cost
+                                    </p>
+                                </div>
+                                {/* Third Column: Industry Leader in Energy Solutions */}
+                                <div className="w-full flex flex-col items-center text-center pt-2 sm:p-6 min-h-[300px]">
+                                    <div className="w-24 h-24 lg:w-32 lg:h-32">
+                                        <Image
+                                            src="/3.png"
+                                            alt="Industry Leader in Energy Solutions"
+                                            width={1080}
+                                            height={1080}
+                                            className="mb-4 object-contain w-full h-auto"
+                                        />
+                                    </div>
+                                    <h3 className="text-lg md:text-3xl font-bold text-brand-maroon mb-2 h-18 sm:h-24 flex items-center justify-center line-clamp-2">
+                                        Industry Leader {!isMobile? "in Energy Solutions" : ""}
+                                    </h3>
+                                    <hr className="w-16 border-t-2 border-brand-maroon mb-4" />
+                                    <p className="text-sm md:text-xl text-white">
+                                        Reliable solar energy for a greener future
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </SwiperSlide>
                 </Slider>
@@ -198,7 +233,7 @@ export default function Home() {
                 </section>
                 {/* Call to Action */}
                 <div className="flex flex-col items-center gap-4">
-                    <Link href="/training" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-4 py-2 rounded">Support for Installers & Distributers</Link>
+                    <Link href="/resources#installers" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-4 py-2 rounded">Support for Installers & Distributers</Link>
                     <Link href="/contact" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-8 py-2 rounded">Contact Us</Link>
                 </div>
             </div>

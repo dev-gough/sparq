@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 interface TOSProps {
     isOpen?: boolean
@@ -10,12 +10,6 @@ interface TOSProps {
 export default function TOSDropdown({ isOpen }: TOSProps) {
 
     const [open, setOpen] = useState<boolean>(isOpen? true : false)
-
-    useEffect(() => {
-        if (!open) {
-            window.scrollTo({top: 0})
-        }
-    }, [open])
 
     return (
         <div className="w-full">
