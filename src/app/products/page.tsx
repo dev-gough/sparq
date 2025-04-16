@@ -1,5 +1,3 @@
-import TOSDropdown from '@/components/TOSDropdown';
-import PrivacyPolicyDropdown from '@/components/PrivacyPolicyDropdown';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -20,8 +18,6 @@ const GridDiv:React.FC<gridDivProps> = ({ children, id, className }: gridDivProp
 export default function ProductPage() {
     return (
         <div className="px-20 my-10 container mx-auto">
-            <TOSDropdown/>
-            <PrivacyPolicyDropdown className='mt-8'/>
             <section id="inverters">
                 <h1 className='text-5xl font-bold text-brand-maroon text-center mt-12 mb-32'>Our Family of Inverters</h1>
                 <div className='flex flex-wrap justify-center gap-16'>

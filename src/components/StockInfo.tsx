@@ -8,7 +8,11 @@ interface stockData {
     open: boolean
 }
 
-export default function StockInfo() {
+interface StockInfoProps {
+    className?: string
+}
+
+export default function StockInfo({ className } : StockInfoProps) {
 
     const [data, setData] = useState<stockData>({ticker: '', date: '', price: 0, open: false})
     
@@ -20,7 +24,7 @@ export default function StockInfo() {
         }, []);
 
     return (
-        <div>
+        <div className={className}>
             <Link href="https://ca.finance.yahoo.com/quote/SPRQ.V/" target='_blank' className=' cursor-pointer'>
                 <div className="absolute bottom-4 right-4 bg-gray-800 bg-opacity-75 p-4 rounded text-white">
                     <p className="text-sm">TSXV: {data.ticker}</p>
