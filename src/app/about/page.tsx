@@ -129,7 +129,7 @@ const teamMembers: TeamMemberData[] = [
 export default function AboutPage() {
 
     const [selectedMember, setMember] = useState<BoardMemberData | TeamMemberData | null>(null)
-    const [showStatement, setShowStatement] = useState<number>(1)
+    const [showStatement, setShowStatement] = useState<number>(0)
     const [isMobile, setIsMobile] = useState<boolean>(false)
 
     useEffect(() => {
@@ -144,20 +144,21 @@ export default function AboutPage() {
     }, [])
 
     return (
-        <div className="container mx-auto sm:py-8 sm:px-4 pb-4">
+        <div id="corporatestatements" className="container mx-auto sm:py-8 sm:px-4 pb-4">
             <Slider>
                 <SwiperSlide>
                     <div className='px-0 sm:px-64 sm:pt-8'>
                         <h2 className="text-lg sm:text-3xl font-extrabold text-brand-yellow underline">
-                            Corporate Statements
+                            Click to view our Statements
                         </h2>
                         <div className="grid grid-cols-3 sm:grid-cols-4 sm:mt-8 mt-2">
                             <div className="justify-start">
-                                <h3 className={`text-blue-400 font-bold py-2 text-xl sm:text-3xl cursor-pointer ${showStatement === 1 ? 'text-blue-600' : ''}`} onClick={() => setShowStatement(1)}>Passion</h3>
-                                <h3 className={`text-blue-400 font-bold py-2 text-xl sm:text-3xl cursor-pointer ${showStatement === 2 ? 'text-blue-600' : ''}`} onClick={() => setShowStatement(2)}>Vision</h3>
-                                <h3 className={`text-blue-400 font-bold py-2 text-xl sm:text-3xl cursor-pointer ${showStatement === 3 ? 'text-blue-600' : ''}`} onClick={() => setShowStatement(3)}>Mission</h3>
-                                <h3 className={`text-blue-400 font-bold py-2 text-xl sm:text-3xl cursor-pointer ${showStatement === 4? 'text-blue-600' : ''}`} onClick={() => setShowStatement(4)}>Value</h3>
+                                <h3 className={`text-blue-400 font-bold py-2 text-xl sm:text-3xl cursor-pointer ${showStatement === 1 ? 'text-blue-600' : ''}`} onClick={() => showStatement === 1? setShowStatement(0) : setShowStatement(1)}>Passion</h3>
+                                <h3 className={`text-blue-400 font-bold py-2 text-xl sm:text-3xl cursor-pointer ${showStatement === 2 ? 'text-blue-600' : ''}`} onClick={() => showStatement === 2? setShowStatement(0) : setShowStatement(2)}>Vision</h3>
+                                <h3 className={`text-blue-400 font-bold py-2 text-xl sm:text-3xl cursor-pointer ${showStatement === 3 ? 'text-blue-600' : ''}`} onClick={() => showStatement === 3? setShowStatement(0) : setShowStatement(3)}>Mission</h3>
+                                <h3 className={`text-blue-400 font-bold py-2 text-xl sm:text-3xl cursor-pointer ${showStatement === 4? 'text-blue-600' : ''}`} onClick={() => showStatement === 4? setShowStatement(0) : setShowStatement(4)}>Value</h3>
                             </div>
+                            {showStatement != 0 && (
                             <div className="justify-center border border-brand-maroon bg-brand-gray rounded-2xl col-span-2 sm:col-span-3">
                                 <div className="text-gray-300 sm:p-2 px-2">
                                     {showStatement === 1 && (
@@ -183,6 +184,7 @@ export default function AboutPage() {
                                     )}
                                 </div>
                             </div>
+                            )}
                         </div>
                     </div>
                 </SwiperSlide>
@@ -190,9 +192,8 @@ export default function AboutPage() {
                     <div className='px-0 sm:px-64 sm:pt-8'>
                         <h2 className='text-lg sm:text-3xl font-extrabold text-brand-yellow underline'>Meet Our People</h2>
                         <div className="flex flex-col gap-4">
-                            <p className="text-sm sm:text-2xl sm:pt-16 pt-4">{isMobile? "Tap": "Click"} on a photo to see their background and experience</p>
-                            <Link href="/about#leadership" className='text-blue-400 sm:text-2xl'>View our Leadership Team</Link>
-                            <Link href="/about#bod" className="text-blue-400 sm:text-2xl">Get to know our Board of Directors</Link>
+                            <Link href="/about#leadership" className='text-blue-400 sm:text-2xl sm:pt-16 pt-4'>Meet the Leadership Team</Link>
+                            <Link href="/about#bod" className="text-blue-400 sm:text-2xl">Board of Directors</Link>
                         </div>
                     </div>
                 </SwiperSlide>
@@ -205,7 +206,7 @@ export default function AboutPage() {
                     </div>
                 </SwiperSlide>
             </Slider>
-            <section id="leadership" className="py-16 px-2 sm:px-0">
+            <section id="leadership" className="sm:mt-4 px-2 sm:px-0">
                 <div className="container mx-auto">
                     <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-32">Leadership</h1>
                     <div className="flex flex-wrap justify-center gap-16">
@@ -232,7 +233,7 @@ export default function AboutPage() {
                 </div>
             </section>
             {/* BOD section */}
-            <section id="bod" className="pt-8 px-2 sm:px-0">
+            <section id="bod" className="px-2 sm:px-0">
                 <div className="container mx-auto">
                     <h1 className="text-5xl font-bold text-brand-maroon text-center mt-12 mb-32">Board of Directors</h1>
                     <div className="flex flex-wrap justify-center gap-16">
@@ -285,19 +286,19 @@ export default function AboutPage() {
                     onClick={() => setMember(null)}
                 >
                     <div
-                        className="fixed items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 max-w-2xl max-h-4/5 w-full overflow-y-scroll"
+                        className="fixed items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 sm:max-w-2xl max-h-4/5 w-full overflow-y-scroll"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <Image
                             src={selectedMember.imgSrc}
                             alt={selectedMember.name}
-                            className="w-fit h-96 object-cover rounded-lg mb-4"
+                            className="w-fit h-32 sm:h-96 object-cover rounded-lg mb-4"
                             width={512}
                             height={512}
                         />
-                        <h2 className="text-2xl font-bold">{selectedMember.name}</h2>
-                        <p className="text-xl">{selectedMember.title}</p>
-                        <p className="mt-4 text-gray-700">{selectedMember.blurb}</p>
+                        <h2 className="sm:text-2xl text-lg font-bold">{selectedMember.name}</h2>
+                        <p className="sm:text-xl">{selectedMember.title}</p>
+                        <p className="mt-4 text-gray-700 sm:text-lg text-sm">{selectedMember.blurb}</p>
                         <button
                             className="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                             onClick={() => setMember(null)}

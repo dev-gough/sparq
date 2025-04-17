@@ -17,13 +17,18 @@ const nunito = Nunito({
 })
 
 const aboutDropdown = [
+  { label: "Corporate Statements", href: "/about#corporatestatements"},
   { label: "Leadership", href: "/about#leadership" },
   { label: "Board of Directors", href: "/about#bod" },
   { label: "Governance", href: "/about#governance" },
 ]
 
+const investorDropdown = [
+  { label: "News", href: "/investors#news"},
+  { label: "Events", href: "/investors#events"},
+]
+
 const productDropdown = [
-  { label: "Terms of Service", href: "/products#tos" },
   { label: "Quad 2 Microinverters", href: "/products/quad2" },
   { label: "Quad 3 Microinverter", href: "/products/quad3"},
   { label: "Legacy Products", href: "/products/legacy"},
@@ -45,7 +50,7 @@ const resourcesDropdown = [
 const navbarItems = [
   { label: "About", href: "/about", dropdown: aboutDropdown },
   { label: "Products & Services", href: "/products", dropdown: productDropdown },
-  { label: "Investor Relations", href: "/investors" },
+  { label: "Investor Relations", href: "/investors", dropdown: investorDropdown},
   { label: "Resources", href: "/resources", dropdown: resourcesDropdown },
   { label: "Contact & Support", href: "/contact" },
 ]

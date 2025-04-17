@@ -22,7 +22,6 @@ export default function Home() {
     }, [])
 
     return (
-        <div className="flex flex-col">
             <div className="container mx-auto sm:py-8 sm:px-4 pb-8">
                 <Slider>
                     <SwiperSlide>
@@ -240,6 +239,5 @@ export default function Home() {
                     <Link href="/contact" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-8 py-2 rounded">Contact Us</Link>
                 </div>
             </div>
-        </div>
     );
 }
