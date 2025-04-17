@@ -1,4 +1,4 @@
-import AccordionItem from "./AccordianMenuItem";
+import AccordionItem from "./AccordianItem";
 
 interface YTProps {
   videoIds: string[];
