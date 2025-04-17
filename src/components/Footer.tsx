@@ -30,15 +30,14 @@ export default function Footer() {
                         {/* Middle Column: Navigation Links */}
                         <div className="w-full md:w-1/3 mb-2 md:mb-0">
                             <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
-                                <li><Link href="#" className="hover:text-orange-400">Home</Link></li>
-                                <li><Link href="#" className="hover:text-orange-400">About</Link></li>
-                                <li><Link href="#" className="hover:text-orange-400">Installers/Distributors</Link></li>
-                                <li><Link href="#" className="hover:text-orange-400">Homeowners</Link></li>
-                                <li><Link href="#" className="hover:text-orange-400">Our Products</Link></li>
-                                <li><Link href="#" className="hover:text-orange-400">Training & Support</Link></li>
-                                <li><Link href="#" className="hover:text-orange-400">Investor Relations</Link></li>
-                                <li><Link href="#" className="hover:text-orange-400">Contact</Link></li>
-                                <li><Link href="#" className="text-sm hover:text-orange-400">Privacy Policy</Link></li>
+                                <li><Link href="/" className="hover:text-orange-400">Home</Link></li>
+                                <li><Link href="/about" className="hover:text-orange-400">About</Link></li>
+                                <li><Link href="/resources#installers" className="hover:text-orange-400">Installers/Distributors</Link></li>
+                                <li><Link href="/resources#homeowners" className="hover:text-orange-400">Homeowners</Link></li>
+                                <li><Link href="/products" className="hover:text-orange-400">Our Products</Link></li>
+                                <li><Link href="/investors" className="hover:text-orange-400">Investor Relations</Link></li>
+                                <li><Link href="/contact" className="hover:text-orange-400">Contact</Link></li>
+                                <li><Link href="/about#governance" className="text-sm hover:text-orange-400">Privacy Policy</Link></li>
                             </ul>
                         </div>
                     </div>
