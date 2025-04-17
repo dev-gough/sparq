@@ -3,13 +3,13 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
-import AccordionItem from "@/components/AccordianMenuItem"
+import AccordionItem from "@/components/AccordianItem"
 
 export default function SparqVuPage() {
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
 
     return (
-        <div className="bg-white container mx-auto py-4 px-10">
+        <div className="bg-white container mx-auto py-4 px-4 sm:px-10">
             {/* Navigation Links */}
             <div className="flex justify-left items-center mb-6 text-sm text-brand-gray">
                 <Link href="/products" className="hover:underline px-2">
@@ -22,7 +22,7 @@ export default function SparqVuPage() {
             </div>
 
             {/* Main Content */}
-            <div className="flex flex-col md:flex-row gap-8">
+            <div className="flex flex-col-reverse md:flex-row gap-8">
                 {/* Product Details */}
                 <div className="flex-1">
                     <h1 className="text-3xl font-bold text-gray-900 mt-1">SparqVu - Your Energy Management System</h1>
@@ -38,8 +38,8 @@ export default function SparqVuPage() {
                         {isExpanded ? "Read less" : "Read more"}
                     </button>
 
-                    <div className="p-4 mt-16">
-                        <AccordionItem title="Features">
+                    <div className="p-4 sm:mt-16">
+                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto">
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Data when you need it</strong>
                                     <ul className="list-inside list-disc text-black">
