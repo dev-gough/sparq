@@ -2,9 +2,10 @@
 
 import HomeFAQData from "./home_faq.json"
 import InstallerFAQData from "./installer_faq.json"
-import AccordionItem from "@/components/AccordianMenuItem";
+import AccordionItem from "@/components/AccordianItem";
 import SupportTicketForm from "@/components/SupportTicket";
 import YTVideo from "@/components/YTVideo";
+import Link from "next/link";
 
 interface FAQData {
     id: number
@@ -28,7 +29,7 @@ const InstallerFAQEntries: FAQData[] = InstallerFAQData.faqs
 
 export default function ResourcesPage() {
     return (
-        <div className="bg-white container mx-auto py-8 px-10">
+        <div className="bg-white container mx-auto py-8 px-4 sm:px-10">
             <section id="homeowners" className="pt-16">
                 <h1 className="text-5xl font-bold text-brand-maroon text-center mb-16">
                     Homeowners
@@ -36,10 +37,10 @@ export default function ResourcesPage() {
                 <h1 className="text-2xl font-bold text-brand-maroon text-left mt-12">
                     Frequently Asked Questions
                 </h1>
-                <div className="container mx-auto p-4">
+                <div className="container mx-auto sm:p-4">
                     <div className="flex flex-col space-y-6">
                         {HomeFAQEntries.map((item) => (
-                            <AccordionItem title={item.questionBrand} key={item.id}>
+                            <AccordionItem title={item.questionBrand} key={item.id} className="sticky top-[58px] sm:relative sm:top-auto">
                                 <div>
                                     <h2 className="text-xl font-bold text-brand-maroon text-center mb-4">
                                         {item.questionBrand}
@@ -65,7 +66,7 @@ export default function ResourcesPage() {
                 <h1 className="text-2xl font-bold text-brand-maroon text-left mt-12">
                     Frequently Asked Questions
                 </h1>
-                <div className="container mx-auto p-4">
+                <div className="container mx-auto sm:p-4">
                     <div className="flex flex-col space-y-6">
                         {InstallerFAQEntries.map((item) => (
                             <AccordionItem title={item.questionBrand} key={item.id}>
@@ -89,7 +90,7 @@ export default function ResourcesPage() {
             </section>
             <section>
                 <div className="py-14">
-                    <strong>Support for Installers and Distributors:</strong> we are currently updating our training materials for installers and distributors. Please check back often for more information or <span className="text-amber-800 hover:text-amber-600 transition duration-200"><a href="https://www.sparqsys.com/contact-us/">contact us</a></span> for support.
+                    <strong>Support for Installers and Distributors:</strong> We are currently updating our training materials for installers and distributors. Please check back often for more information or <Link href="/contact" className="text-amber-400 hover:underline hover:text-amber-600">contact us</Link> for support.
                 </div>
             </section>
             <section id="photos" className="pt-16">

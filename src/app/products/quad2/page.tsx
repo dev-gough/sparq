@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
-import AccordionItem from "@/components/AccordianMenuItem"
+import AccordionItem from "@/components/AccordianItem"
 
 export default function ProductPage() {
     const models = ["Q2000-4102","Q2000-4102-DM", "Q2000-4102-GT"]
@@ -11,7 +11,7 @@ export default function ProductPage() {
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
 
     return (
-        <div className="bg-white container mx-auto py-4 px-10">
+        <div className="bg-white container mx-auto py-4 px-4 sm:px-10">
             {/* Navigation Links */}
             <div className="flex justify-left items-center mb-6 text-sm text-brand-gray">
                 <Link href="/products" className="hover:underline px-2">
@@ -24,11 +24,11 @@ export default function ProductPage() {
             </div>
 
             {/* Main Content */}
-            <div className="flex flex-col md:flex-row gap-8">
+            <div className="flex flex-col-reverse md:flex-row gap-8">
                 {/* Product Details */}
                 <div className="flex-1">
                     <h1 className="text-3xl font-bold text-gray-900 mt-1">Q2000 Microinverter</h1>
-                    <p className="text-brand-gray mt-4 text-lg">
+                    <p className="text-brand-gray mt-4 sm:text-lg">
                         SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
                     </p>
 
@@ -62,8 +62,8 @@ export default function ProductPage() {
                         </div>
                     </div>
 
-                    <div className="p-4 mt-16">
-                        <AccordionItem title="Features">
+                    <div className="p-4 sm:mt-16">
+                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto">
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Superior Value</strong>
                                     <ul className="list-inside list-disc text-black">

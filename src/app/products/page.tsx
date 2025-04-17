@@ -17,7 +17,7 @@ const GridDiv:React.FC<gridDivProps> = ({ children, id, className }: gridDivProp
 
 export default function ProductPage() {
     return (
-        <div className="px-20 my-10 container mx-auto">
+        <div className="sm:px-20 px-4 sm:my-10 container mx-auto">
             <section id="inverters">
                 <h1 className='text-5xl font-bold text-brand-maroon text-center mt-12 mb-32'>Our Family of Inverters</h1>
                 <div className='flex flex-wrap justify-center gap-16'>
@@ -29,9 +29,8 @@ export default function ProductPage() {
                     </Link>
                     <Link href="products/quad3">
                         <GridDiv>
-                            <Image className='w-full h-full object-cover' width={1920} height={1084} src='/quad3.png' alt='q2000 Microinverter'/>
+                            <Image className='w-full h-full object-cover' width={1920} height={1084} src='/quad3.webp' alt='Quad 3 Microinverter'/>
                             <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Quad 3</h2>
-                            <p className='font-mono'>todo: resize this to be 1920x1084</p>
                         </GridDiv>
                     </Link>
                     <Link href="products/legacy">
