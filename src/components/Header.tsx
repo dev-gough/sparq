@@ -34,7 +34,7 @@ export default function Header({ navItems }: HeaderProps) {
                 >
                     {isMenuOpen ? <GrClose size={24} /> : <RxHamburgerMenu size={24} />}
                 </button>
-                <nav className="hidden sm:flex flex-wrap space-x-2">
+                <nav className="hidden sm:flex flex-wrap space-x-6">
                     {navItems.map((item, index) => {
                         const isActive = item.dropdown
                             ? item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)

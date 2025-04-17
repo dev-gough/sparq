@@ -16,6 +16,7 @@ import { AiOutlineStock } from 'react-icons/ai'
 import { MdEvent } from 'react-icons/md'
 import { FaPeopleGroup } from 'react-icons/fa6'
 import { HiOutlineDocumentReport } from 'react-icons/hi'
+import StockInfo from '@/components/StockInfo'
 
 const items = [
     { icon: FaHome, label: "Home", href: "/"},
@@ -99,6 +100,7 @@ export default function InvestorPage() {
                             )}
                         </div>
                     </SwiperSlide>
+                    {/* <StockInfo/> */}
                 </Slider>
                 <div
                     className="h-32 bg-cover bg-center relative sm:px-0 px-4 mt-8">
