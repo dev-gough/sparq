@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "@/components/Slider";
@@ -130,18 +130,6 @@ export default function AboutPage() {
 
     const [selectedMember, setMember] = useState<BoardMemberData | TeamMemberData | null>(null)
     const [showStatement, setShowStatement] = useState<number>(0)
-    const [isMobile, setIsMobile] = useState<boolean>(false)
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 640)
-        }
-
-        handleResize()
-        window.addEventListener('resize', handleResize)
-
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
 
     return (
         <div id="corporatestatements" className="container mx-auto sm:py-8 sm:px-4 pb-4">

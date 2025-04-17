@@ -6,7 +6,7 @@ import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
 import Link from "next/link";
 import { FaVideo } from "react-icons/fa";
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import NewsItems from "@/components/NewsItems";
 import Slider from "@/components/Slider";
@@ -14,18 +14,6 @@ import Slider from "@/components/Slider";
 export default function InvestorPage() {
 
     const [expanded, setExpanded] = useState<boolean>(false)
-    const [isMobile, setIsMobile] = useState<boolean>(false)
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 640)
-        }
-
-        handleResize()
-        window.addEventListener('resize', handleResize)
-
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
 
     return (
         <div className="container mx-auto sm:py-8 sm:px-4 pb-8">
