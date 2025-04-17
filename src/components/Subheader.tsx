@@ -16,14 +16,13 @@ function SubheadingItem({ icon: Icon, label, href } : SubheadingItemProps) {
     )
 }
 
-
 interface SubheaderProps {
     items: SubheadingItemProps[]
 }
 
 export default function Subheader({ items }: SubheaderProps) {
     return (
-        <div className="bg-brand-gray flex justify-evenly items-center z-[999] py-2 mb-4">
+        <div className="bg-brand-gray flex justify-evenly items-center z-[999] py-2 sm:mb-4">
             {items.map((item, index) => (
                 <SubheadingItem key={index} {...item} />
             ))}
