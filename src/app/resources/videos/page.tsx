@@ -2,8 +2,6 @@
 
 import YTVideo from "@/components/YTVideo"
 import AccordionItem from "@/components/AccordianItem"
-import { items } from "../page"
-import Subheader from "@/components/Subheader"
 
 const ids = [
     "gaFi_dPnYNk",
@@ -18,16 +16,13 @@ const ids = [
 
 export default function VideosPage() {
     return (
-        <div>
-            <Subheader items={items} />
-            <div className="bg-white container mx-auto py-8 px-4 sm:px-10">
-                <h1 className="text-5xl font-bold text-brand-maroon text-center mb-16">
-                    Video Gallery
-                </h1>
-                <AccordionItem title="Videos">
-                    <YTVideo videoIds={ids} />
-                </AccordionItem>
-            </div>
+        <div className="bg-white container mx-auto py-8 px-4 sm:px-10">
+            <h1 className="text-5xl font-bold text-brand-maroon text-center mb-16">
+                Video Gallery
+            </h1>
+            <AccordionItem title="Videos">
+                <YTVideo videoIds={ids} />
+            </AccordionItem>
         </div>
     )
 }
