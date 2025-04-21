@@ -3,9 +3,6 @@
 import { useState } from "react"
 import Image from "next/image"
 
-import { items } from "../page"
-import Subheader from "@/components/Subheader"
-
 interface TeamMemberData {
     imgSrc: string;
     name: string;
@@ -69,62 +66,59 @@ export default function LeadershipPage() {
     const [selectedMember, setMember] = useState<TeamMemberData | null>(null)
 
     return (
-        <div>
-            <Subheader items={items} />
-            <div className="container mx-auto sm:py-8 sm:px-4 pb-4">
-                <section id="leadership" className="px-2 sm:px-0">
-                    <h1 className="text-5xl font-bold text-brand-maroon text-center mb-32">Leadership</h1>
-                    <div className="flex flex-wrap justify-center gap-16">
-                        {teamMembers.map((member, index) => (
-                            <div
-                                key={index}
-                                onClick={() => setMember(member)}
-                                className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${selectedMember === member
-                                    ? 'scale-100'
-                                    : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
-                                    }`}>
-                                <Image
-                                    src={member.imgSrc}
-                                    alt={member.name}
-                                    width={512}
-                                    height={512}
-                                    className="w-full h-96 object-cover rounded-lg mb-2"
-                                />
-                                <h2 className="text-xl font-medium text-black">{member.name}</h2>
-                                <p className="text-lg text-black">{member.title}</p>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-                {selectedMember && (
-                    <div
-                        className="fixed inset-0 bg-black/50 z-40"
-                        onClick={() => setMember(null)}
-                    >
+        <div className="container mx-auto sm:py-8 sm:px-4 pb-4">
+            <section id="leadership" className="px-2 sm:px-0">
+                <h1 className="text-5xl font-bold text-brand-maroon text-center mb-32">Leadership</h1>
+                <div className="flex flex-wrap justify-center gap-16">
+                    {teamMembers.map((member, index) => (
                         <div
-                            className="fixed items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 sm:max-w-2xl max-h-4/5 w-full overflow-y-scroll"
-                            onClick={(e) => e.stopPropagation()}
-                        >
+                            key={index}
+                            onClick={() => setMember(member)}
+                            className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${selectedMember === member
+                                ? 'scale-100'
+                                : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
+                                }`}>
                             <Image
-                                src={selectedMember.imgSrc}
-                                alt={selectedMember.name}
-                                className="w-fit h-32 sm:h-96 object-cover rounded-lg mb-4"
+                                src={member.imgSrc}
+                                alt={member.name}
                                 width={512}
                                 height={512}
+                                className="w-full h-96 object-cover rounded-lg mb-2"
                             />
-                            <h2 className="sm:text-2xl text-lg font-bold">{selectedMember.name}</h2>
-                            <p className="sm:text-xl">{selectedMember.title}</p>
-                            <p className="mt-4 text-gray-700 sm:text-lg text-sm">{selectedMember.blurb}</p>
-                            <button
-                                className="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                                onClick={() => setMember(null)}
-                            >
-                                Close
-                            </button>
+                            <h2 className="text-xl font-medium text-black">{member.name}</h2>
+                            <p className="text-lg text-black">{member.title}</p>
                         </div>
+                    ))}
+                </div>
+            </section>
+            {selectedMember && (
+                <div
+                    className="fixed inset-0 bg-black/50 z-40"
+                    onClick={() => setMember(null)}
+                >
+                    <div
+                        className="fixed items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 sm:max-w-2xl max-h-4/5 w-full overflow-y-scroll"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <Image
+                            src={selectedMember.imgSrc}
+                            alt={selectedMember.name}
+                            className="w-fit h-32 sm:h-96 object-cover rounded-lg mb-4"
+                            width={512}
+                            height={512}
+                        />
+                        <h2 className="sm:text-2xl text-lg font-bold">{selectedMember.name}</h2>
+                        <p className="sm:text-xl">{selectedMember.title}</p>
+                        <p className="mt-4 text-gray-700 sm:text-lg text-sm">{selectedMember.blurb}</p>
+                        <button
+                            className="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                            onClick={() => setMember(null)}
+                        >
+                            Close
+                        </button>
                     </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     )
 }
