@@ -13,7 +13,9 @@ const items = [
     { icon: MdOutlineDesignServices, label: "Design my System", href: "/resources/design"},
 ]
 
-export default function InvestorLayout({children} : any) {
+export default function InvestorLayout({children} : Readonly<{
+    children: React.ReactNode;
+  }>) {
     return (
         <div>
         <Subheader items={items}/>

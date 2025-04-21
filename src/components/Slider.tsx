@@ -11,9 +11,11 @@ import { useState, useEffect } from 'react'
 interface SliderProps {
     children: React.ReactNode
     viewAllOnClick?: () => void
+    pause?: boolean
+    className?: string
 }
 
-export default function Slider({ children, viewAllOnClick }: SliderProps) {
+export default function Slider({ children, viewAllOnClick, pause, className }: SliderProps) {
 
     const [isClient, setIsClient] = useState<boolean>(false)
     const [scrollSpeed, setScrollSpeed] = useState<number>(15000)
@@ -30,7 +32,7 @@ export default function Slider({ children, viewAllOnClick }: SliderProps) {
 
     return (
         <div
-            className="w-full sm:h-128 bg-cover bg-center sm:bg-top relative bg-[url(/tmp.jpg)] sm:rounded-xl">
+            className={`w-full sm:h-128 bg-cover bg-center sm:bg-top relative bg-[url(/tmp.jpg)] sm:rounded-xl ${className}`}>
             <div className="pt-4 px-6 max-w-full">
                 <Swiper
                     pagination={{ clickable: true }}
@@ -42,7 +44,7 @@ export default function Slider({ children, viewAllOnClick }: SliderProps) {
                     slidesPerView={1}
                     autoplay={{
                         delay: scrollSpeed,
-                        disableOnInteraction: false,
+                        disableOnInteraction: pause ? pause : false,
                         pauseOnMouseEnter: true,
                     }}
                     className='text-white sm:h-120 h-90 [--swiper-pagination-bullet-size:15px] sm:[--swiper-pagination-bullet-size:30px] sm:[--swiper-navigation-size:70px]'

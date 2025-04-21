@@ -20,7 +20,7 @@ export default function AboutPage() {
 
     return (
         <div id="corporatestatements" className="container mx-auto sm:py-8 sm:px-4 pb-4">
-            <Slider viewAllOnClick={handleViewAll}>
+            <Slider viewAllOnClick={handleViewAll} className={`${viewAll? "hidden" : ""}`}>
                 <SwiperSlide>
                     <div className='px-0 sm:px-64 sm:pt-8 relative'>
                         <h2 className='text-lg sm:text-5xl font-extrabold text-brand-maroon underline'>Passion</h2>

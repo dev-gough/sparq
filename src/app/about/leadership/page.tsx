@@ -97,7 +97,7 @@ export default function LeadershipPage() {
                     onClick={() => setMember(null)}
                 >
                     <div
-                        className="fixed items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 sm:max-w-2xl max-h-4/5 w-full overflow-y-scroll"
+                        className="fixed items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 sm:max-w-7xl max-h-4/5 w-full overflow-y-scroll"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <Image
@@ -107,9 +107,9 @@ export default function LeadershipPage() {
                             width={512}
                             height={512}
                         />
-                        <h2 className="sm:text-2xl text-lg font-bold">{selectedMember.name}</h2>
-                        <p className="sm:text-xl">{selectedMember.title}</p>
-                        <p className="mt-4 text-gray-700 sm:text-lg text-sm">{selectedMember.blurb}</p>
+                        <h2 className="sm:text-4xl text-lg font-bold">{selectedMember.name}</h2>
+                        <p className="sm:text-3xl">{selectedMember.title}</p>
+                        <p className="mt-4 text-gray-700 sm:text-2xl text-sm">{selectedMember.blurb}</p>
                         <button
                             className="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                             onClick={() => setMember(null)}

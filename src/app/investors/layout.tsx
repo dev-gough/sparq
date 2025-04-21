@@ -8,15 +8,17 @@ import { FaPeopleGroup } from 'react-icons/fa6'
 import { HiOutlineDocumentReport } from 'react-icons/hi'
 
 const items = [
-    { icon: FaHome, label: "Home", href: "/" },
-    { icon: AiOutlineStock, label: "Stock", href: "/" },
+    { icon: FaHome, label: "Home", href: "/investors" },
+    { icon: AiOutlineStock, label: "Stock", href: "/investors/stock" },
     { icon: HiOutlineDocumentReport, label: "Annual Report", href: "/" },
     { icon: FaRegNewspaper, label: "News", href: "/investors/news" },
     { icon: MdEvent, label: "Events", href: "/investors/events" },
     { icon: FaPeopleGroup, label: "Leadership", href: "/about/leadership" },
 ]
 
-export default function InvestorLayout({children} : any) {
+export default function InvestorLayout({children} : Readonly<{
+    children: React.ReactNode;
+  }>) {
     return (
         <div>
         <Subheader items={items}/>
