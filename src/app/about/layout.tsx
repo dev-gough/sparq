@@ -13,7 +13,9 @@ const items = [
     { icon: TiDocument, label: "Governance", href: "/about/governance" },
 ]
 
-export default function InvestorLayout({children} : any) {
+export default function InvestorLayout({children} : Readonly<{
+    children: React.ReactNode;
+  }>) {
     return (
         <div>
         <Subheader items={items}/>

@@ -63,7 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${nunito.className} flex flex-col min-h-screen`}>
+      <body className={`${nunito.className} flex flex-col min-h-screen overflow-y-scroll`}>
         <Header navItems={navbarItems} />
         <main className="flex-grow">
           {children}
