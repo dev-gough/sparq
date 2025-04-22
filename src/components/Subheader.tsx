@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { FC } from 'react'
 import { usePathname } from 'next/navigation'
-import { IoIosArrowRoundBack } from 'react-icons/io'
 
 interface SubheadingItemProps {
     icon: FC<{ className?: string }> // Icon as a React component
@@ -11,13 +10,12 @@ interface SubheadingItemProps {
     href: string
 }
 
-function SubheadingItem({ icon: Icon, label, href }: SubheadingItemProps) {
+function SubheadingItem({ label, href }: SubheadingItemProps) {
     const pathname = usePathname()
     const isActive = pathname === href
     return (
         <Link href={href} className={`flex flex-col justify-center items-center space-x-2 ${isActive ? "text-brand-yellow" : "text-gray-700"} hover:text-brand-yellow transition-colors duration-150`}>
-            <Icon className="sm:size-10 size-5" />
-            <span className='text-sm sm:text-lg'>{label}</span>
+            <span className='text-sm sm:text-xl'>{label}</span>
         </Link>
     )
 }
@@ -29,10 +27,6 @@ interface SubheaderProps {
 export default function Subheader({ items }: SubheaderProps) {
     return (
         <div className="bg-neutral-200 flex justify-evenly items-center z-10 py-2 sm:mb-4 relative">
-            <div className='absolute left-2 flex flex-row cursor-pointer hover:underline'  onClick={() => window.history.back()}>
-                <IoIosArrowRoundBack className='size-10' />
-                <p className='mt-2 text-xl'>Back</p>
-            </div>
             {items.map((item, index) => (
                 <SubheadingItem key={index} {...item} />
             ))}

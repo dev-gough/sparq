@@ -27,7 +27,7 @@ export default function NewsItems() {
 	return (
 		<div className="flex flex-col gap-10 px-10 pb-8">
 			{data.length > 0 && data.map((item, index) => (
-				<div className="relative p-4 pb-10 border rounded-xl shadow bg-gray-100" key={index}>
+				<div className="relative p-4 pb-10 border-b shadow bg-slate-50 border-slate-200" key={index}>
 					<Link href={item.canonical_url} target="_blank">
 						<h1 className="text-brand-maroon font-mono text-xl hover:underline">{item.title}</h1>
 					</Link>

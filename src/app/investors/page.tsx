@@ -12,6 +12,7 @@ import Slider from "@/components/Slider"
 export default function InvestorPage() {
 
     const [expanded, setExpanded] = useState<boolean>(false)
+    const [showingMore, setShowingMore] = useState<boolean>(false)
 
     return (
         <div className="container mx-auto sm:px-4 pb-8">
@@ -80,10 +81,9 @@ export default function InvestorPage() {
                         )}
                     </div>
                 </SwiperSlide>
-                {/* <StockInfo/> */}
             </Slider>
             <div
-                className="h-32 bg-cover bg-center relative sm:px-0 px-4 mt-8">
+                className="h-40 relative sm:px-0 px-4 mt-8 items-center">
                 {/* Sliding Window Component */}
                 <Swiper
                     pagination={{ clickable: true }}
@@ -92,74 +92,91 @@ export default function InvestorPage() {
                     slidesPerView={1}
                     loop={true}
                     autoplay={{
-                        delay: 2000,
-                        disableOnInteraction: true,
+                        delay: 7500,
+                        disableOnInteraction: false,
                     }}
-                    className='text-gray-500 bg-gray-300 rounded-xl h-32'
-                    breakpoints={{
-                        640: {
-                            slidesPerView: 3
-                        }
-                    }}
+                    className='text-gray-500 bg-slate-200 rounded-xl h-40 w-2/3'
+
+                    onSlideChangeTransitionStart={() => setShowingMore(false)}
                 >
                     <SwiperSlide>
                         <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className="text-3xl">Best in-class Performance</h1>
-                            <button className="text-lg hover:underline hover:text-gray-700 cursor-pointer">More</button>
+                            <h1 className={`text-3xl ${showingMore ? "hidden" : ""}`}>Best in-class Performance</h1>
+                            <button className={`text-lg hover:underline hover:text-gray-700 cursor-pointer ${showingMore ? "hidden" : ""}`} onClick={() => setShowingMore(true)}>More</button>
+                            {showingMore && (
+                                <div>
+                                    <ul className='flex flex-col list-inside list-disc items-start text-2xl text-slate-700'>
+                                        <li>Highest specific power and power density</li>
+                                        <li>Grid Resilience with Dual Mode operation</li>
+                                        <li>Maximum Energy Harvesting</li>
+                                        <li>Remote Monitoring and software updates</li>
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className="text-4xl">Safety</h1>
-                            <button className="text-lg hover:underline hover:text-gray-700 cursor-pointer">More</button>
+                            <h1 className={`text-3xl ${showingMore ? "hidden" : ""}`}>Safety & Reliability</h1>
+                            <button className={`text-lg hover:underline hover:text-gray-700 cursor-pointer ${showingMore ? "hidden" : ""}`} onClick={() => setShowingMore(true)}>More</button>
+                            {showingMore && (
+                                <div>
+                                    <ul className='flex flex-col list-inside list-disc items-start text-2xl text-slate-700'>
+                                        <li>No PV System Single Point of Failure</li>
+                                        <li>No Electrolytic Capacitor</li>
+                                        <li>Safe and Highly Reliable</li>
+                                        <li>Best in-class Longevity</li>
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className="text-4xl">Reliability</h1>
-                            <button className="text-lg hover:underline hover:text-gray-700 cursor-pointer">More</button>
+                            <h1 className={`text-3xl ${showingMore ? "hidden" : ""}`}>Innovation</h1>
+                            <button className={`text-lg hover:underline hover:text-gray-700 cursor-pointer ${showingMore ? "hidden" : ""}`} onClick={() => setShowingMore(true)}>More</button>
+                            {showingMore && (
+                                <div>
+                                    <h2 className='text-3xl font-bold text-black'>85+ Patents and Counting...</h2>
+                                    <ul className='flex flex-col list-inside list-disc items-start text-2xl text-slate-700'>
+                                        <li>65 Granted</li>
+                                        <li>10 Pending</li>
+                                        <li>12 Under Preparation</li>
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className="text-4xl">Innovation</h1>
-                            <button className="text-lg hover:underline hover:text-gray-700 cursor-pointer">More</button>
+                            <h1 className={`text-3xl ${showingMore ? "hidden" : ""}`}>Cost-Effectiveness</h1>
+                            <button className={`text-lg hover:underline hover:text-gray-700 cursor-pointer ${showingMore ? "hidden" : ""}`} onClick={() => setShowingMore(true)}>More</button>
+                            {showingMore && (
+                                <div>
+                                    <ul className='flex flex-col list-inside list-disc items-start text-2xl text-slate-700'>
+                                        <li>Reduced manufacturing BOM</li>
+                                        <li>Reduced Balance of System</li>
+                                        <li>Easy to Install & Maintain</li>
+                                        <li>Outlier on Performance-Cost Curve</li>
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className="text-4xl">Cost-Effectiveness</h1>
-                            <button className="text-lg hover:underline hover:text-gray-700 cursor-pointer">More</button>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className="text-3xl">Quick and Easy Installation</h1>
-                            <button className="text-lg hover:underline hover:text-gray-700 cursor-pointer">More</button>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className="text-3xl">Grid Resiliency</h1>
-                            <button className="text-lg hover:underline hover:text-gray-700 cursor-pointer">More</button>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className="text-2xl">Advanced Cloud-Based Energy Monitoring</h1>
-                            <button className="text-lg hover:underline hover:text-gray-700 cursor-pointer">More</button>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className="text-2xl">Real-time metrics, historical records and panel-by-panel info</h1>
-                            <button className="text-lg hover:underline hover:text-gray-700 cursor-pointer">More</button>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className="text-2xl">Desktop and smartphone User and Installer App</h1>
-                            <button className="text-lg hover:underline hover:text-gray-700 cursor-pointer">More</button>
+                            <h1 className={`text-3xl ${showingMore ? "hidden" : ""}`}>Advanced Cloud-Based Energy Monitoring</h1>
+                            <button className={`text-lg hover:underline hover:text-gray-700 cursor-pointer ${showingMore ? "hidden" : ""}`} onClick={() => setShowingMore(true)}>More</button>
+                            {showingMore && (
+                                <div>
+                                    <ul className='flex flex-col list-inside list-disc items-start text-2xl text-slate-700'>
+                                        <li>Real-time Metrics</li>
+                                        <li>Historical Records</li>
+                                        <li>Panel-by-Panel information</li>
+                                        <li><Link href="/products/sparqvu" className='text-blue-400 hover:underline cursor-pointer'>Learn More</Link></li>
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </SwiperSlide>
                 </Swiper>
