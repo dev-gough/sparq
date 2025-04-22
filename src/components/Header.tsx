@@ -46,7 +46,7 @@ export default function Header({ navItems }: HeaderProps) {
                             <Link
                                 key={index}
                                 href={item.href}
-                                className={`px-3 py-1 text-md rounded ${
+                                className={`px-3 py-1 text-xl rounded ${
                                     isActive
                                         ? 'text-brand-yellow font-bold'
                                         : 'text-white hover:text-gray-300'

@@ -19,25 +19,27 @@ const nunito = Nunito({
 })
 
 const aboutDropdown = [
-  { label: "Corporate Statements", href: "/about#corporatestatements" },
+  { label: "Corporate Statements", href: "/about" },
   { label: "Leadership", href: "/about/leadership" },
   { label: "Board of Directors", href: "/about/board" },
   { label: "Governance", href: "/about/governance" },
 ]
 
 const investorDropdown = [
-  { label: "News", href: "/investors#news" },
-  { label: "Events", href: "/investors#events" },
+  { label: "News", href: "/investors/news" },
+  { label: "Events", href: "/investors/events" },
+  { label: "Stock", href: "/investors/stock"},
+  { label: "Annual Report", href: "/investors/report"}
 ]
 
 const productDropdown = [
-  { label: "Quad 2 Microinverters", href: "/products/quad2" },
-  { label: "Quad 3 Microinverter", href: "/products/quad3" },
+  { label: "Quad 2", href: "/products/quad2" },
+  { label: "Quad 3", href: "/products/quad3" },
   { label: "Legacy Products", href: "/products/legacy" },
   { label: "SparqLinq", href: "/products/sparqlinq" },
   { label: "SparqVu", href: "/products/sparqvu" },
   { label: "Sparq App", href: "/products/app" },
-  { label: "Accessories", href: "/products#accessories" },
+  { label: "Accessories", href: "/products/accessories" },
 ]
 
 const resourcesDropdown = [

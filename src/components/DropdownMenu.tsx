@@ -45,10 +45,9 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
             onClick={handleMouseLeave}
         >
             <div className="flex items-center">
-                {/* Main label as a clickable link with active styles */}
                 <Link
                     href={navItem.href}
-                    className={`px-1 py-1 text-md rounded ${
+                    className={`px-1 py-1 text-xl rounded ${
                         isParentActive
                             ? 'text-brand-yellow font-bold'
                             : 'text-white hover:text-gray-300'
@@ -56,7 +55,6 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
                 >
                     {navItem.label}
                 </Link>
-                {/* Toggle button for dropdown */}
                 <button className="text-white hover:text-gray-300">
                     ▼
                 </button>
@@ -71,7 +69,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
                             <Link
                                 key={index}
                                 href={subItem.href}
-                                className={`block px-4 py-2 rounded text-sm ${
+                                className={`block px-4 py-2 rounded text-lg ${
                                     isSubActive
                                         ? 'text-brand-yellow font-bold'
                                         : 'text-white hover:bg-brand-maroon'
