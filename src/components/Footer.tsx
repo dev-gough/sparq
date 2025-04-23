@@ -23,7 +23,7 @@ export default function Footer() {
                             <p className="text-sm">We provide products globally.</p>
                             {/* Address */}
                             <p className="mt-1 text-sm">
-                                SPARQ, Innovation Park, 945 Princess St, Box 212, Kingston, ON K7L 0E9
+                                945 Princess St, Kingston, ON K7L 0E9
                             </p>
                         </div>
 

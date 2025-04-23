@@ -19,7 +19,7 @@ export default function ProductPage() {
     return (
         <div className="sm:px-20 px-4 sm:my-10 container mx-auto">
             <section id="inverters">
-                <h1 className='text-5xl font-bold text-brand-maroon text-center mt-12 mb-32'>Our Family of Inverters</h1>
+                <h1 className='text-5xl font-bold text-brand-maroon text-center mt-12 mb-32'>Q2000 Product Family</h1>
                 <div className='flex flex-wrap justify-center gap-16'>
                     <Link href="products/quad2">
                         <GridDiv id="q2000">

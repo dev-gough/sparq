@@ -6,7 +6,7 @@ import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
 
 export default function ProductPage() {
-    const models = ["Q2000-4102","Q2000-4102-DM", "Q2000-4102-GT"]
+    const models = ["Q2000-4102", "Q2000-4102-DM", "Q2000-4102-GT"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
 
@@ -28,12 +28,17 @@ export default function ProductPage() {
                 {/* Product Details */}
                 <div className="flex-1">
                     <h1 className="text-3xl font-bold text-gray-900 mt-1">Q2000 Microinverter</h1>
-                    <p className="text-brand-gray mt-4 sm:text-lg">
-                        SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
-                    </p>
-
+                    <ul className="list-inside list-disc space-y-4 mt-4">
+                        <li><strong>Revolutionary Design</strong>:Each Quad microinverter can independently track peak power for up to four PV modules, a significant advancement over traditional one-to-one microinverter systems.</li>
+                        <li><strong>Cost and efficiency benefits</strong>:Significantly reduces installation time and cable costs; offers the lowest cost, highest power output, highest power density, and lowest weight per Watt in the industry.</li>
+                        <li><strong>High reliability</strong>: Utilizes patented technology to eliminate short-life electrolytic capacitors, ensuring a design life of 25 years, matching that of PV modules.</li>
+                        <li><strong>Flagship product</strong>: The Q2000 microinverter can connect four 550W+ PV panels to the grid without any power clipping, demonstrating the technology&apos;s superior capabilities.</li>
+                    </ul>
                     {isExpanded && (
                         <div className="text-brand-gray text-lg">
+                            <p className="text-brand-gray mt-4 sm:text-lg">
+                                SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
+                            </p>
                             <p className="mt-2">Our microinverters have been designed for high reliability, using patented technologies that eliminate the use of short-life electrolytic capacitors. This feature gives our microinverters high reliability and a design life of 25 years, matching the design life of PV modules.</p>
                             <p className="mt-2">The Q2000 microinverter is the industry&apos;s first highest power rating microinverter that produces electrical energy from four photovoltaic (“PV”) panels of 550W+ each, without any power clipping under all operating conditions. The Q2000 is designed to connect 4 PV panels, up to 550W, to the AC power grid.</p>
                         </div>
@@ -94,7 +99,7 @@ export default function ProductPage() {
                                 </li>
                             </ul>
                         </AccordionItem>
-                        <AccordionItem title="Technical specifications">
+                        <AccordionItem title="Technical Specifications">
                             <div>
                                 {selectedModel === "Q2000-4102" && (
                                     <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102.pdf" target="_blank">
@@ -115,12 +120,15 @@ export default function ProductPage() {
                         </AccordionItem>
                         <AccordionItem title="Documentation">
                             <h2 className="text-lg font-bold">Installation Manuals for {selectedModel}:</h2>
-                                <div className="flex flex-col">
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Americas.pdf" target="_blank">North America</Link>
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Chinese.pdf" target="_blank">China</Link>
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Europe.pdf" target="_blank">Europe</Link>
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_India.pdf" target="_blank">India</Link>
-                                </div>
+                            <div className="flex flex-col">
+                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Americas.pdf" target="_blank">North America</Link>
+                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Chinese.pdf" target="_blank">China</Link>
+                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Europe.pdf" target="_blank">Europe</Link>
+                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_India.pdf" target="_blank">India</Link>
+                            </div>
+                        </AccordionItem>
+                        <AccordionItem title="Comparison with Leading Microinverter">
+                            <Link href="/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H</Link>
                         </AccordionItem>
                     </div>
                 </div>

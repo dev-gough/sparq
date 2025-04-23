@@ -18,7 +18,7 @@ interface SliderProps {
 export default function Slider({ children, viewAllOnClick, pause, className }: SliderProps) {
 
     const [isClient, setIsClient] = useState<boolean>(false)
-    const [scrollSpeed, setScrollSpeed] = useState<number>(15000)
+    const [scrollSpeed, setScrollSpeed] = useState<number>(7500)
 
     useEffect(() => {
         setIsClient(true)
@@ -57,8 +57,8 @@ export default function Slider({ children, viewAllOnClick, pause, className }: S
                     }}
                 >
                     <div className='flex flex-row justify-between absolute top-0 right-0 z-10'>
-                        <button className='bg-blue-800 rounded-xl w-16 hover:bg-blue-950 cursor-pointer' onClick={() => setScrollSpeed}>slow</button>
-                        <button className='bg-blue-800 rounded-xl w-16 hover:bg-blue-950 cursor-pointer' onClick={() => setScrollSpeed(2500)}>fast</button>
+                        <button className='bg-blue-800 rounded-xl w-16 hover:bg-blue-950 cursor-pointer' onClick={() => setScrollSpeed(7500)}>slow</button>
+                        <button className='bg-blue-800 rounded-xl w-16 hover:bg-blue-950 cursor-pointer' onClick={() => setScrollSpeed(4000)}>fast</button>
                     </div>
                     {children}
                     {viewAllOnClick && (
