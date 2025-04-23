@@ -19,7 +19,7 @@ const nunito = Nunito({
 })
 
 const aboutDropdown = [
-  { label: "Corporate Statements", href: "/about" },
+  { label: "Corporate Statements", href: "/about/statements" },
   { label: "Leadership", href: "/about/leadership" },
   { label: "Board of Directors", href: "/about/board" },
   { label: "Governance", href: "/about/governance" },

@@ -69,7 +69,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
                             <Link
                                 key={index}
                                 href={subItem.href}
-                                className={`block px-4 py-2 rounded text-lg ${
+                                className={`block px-4 py-2 rounded text-xl ${
                                     isSubActive
                                         ? 'text-brand-yellow font-bold'
                                         : 'text-white hover:bg-brand-maroon'

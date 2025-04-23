@@ -26,7 +26,7 @@ export default function Header({ navItems }: HeaderProps) {
         <header className="sticky top-0 z-[999] bg-brand-graytext shadow-md">
             <div className="flex justify-between sm:justify-center items-center p-2">
                 <Link href="/" className="mr-4" onClick={() => setIsMenuOpen(false)}>
-                    <Image src="/logo.png" alt="Logo" width={63} height={43} />
+                    <Image src="/logo.png" alt="Logo" width={75} height={50} />
                 </Link>
                 <button
                     className="sm:hidden p-2 text-brand-yellow"
