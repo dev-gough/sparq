@@ -15,7 +15,7 @@ function SubheadingItem({ label, href }: SubheadingItemProps) {
     const isActive = pathname === href
     return (
         <Link href={href} className={`flex flex-col justify-center items-center space-x-2 ${isActive ? "text-brand-yellow" : "text-gray-700"} hover:text-brand-yellow transition-colors duration-150`}>
-            <span className='text-sm sm:text-xl'>{label}</span>
+            <span className='text-sm sm:text-2xl'>{label}</span>
         </Link>
     )
 }

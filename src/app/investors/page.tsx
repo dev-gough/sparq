@@ -1,9 +1,6 @@
 'use client'
 
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/pagination'
-import { Autoplay } from 'swiper/modules'
+import { SwiperSlide } from 'swiper/react'
 import Link from "next/link"
 import { useState } from 'react'
 
@@ -12,7 +9,6 @@ import Slider from "@/components/Slider"
 export default function InvestorPage() {
 
     const [expanded, setExpanded] = useState<boolean>(false)
-    const [showingMore, setShowingMore] = useState<boolean>(false)
 
     return (
         <div className="container mx-auto sm:px-4 pb-8">
@@ -82,107 +78,35 @@ export default function InvestorPage() {
                     </div>
                 </SwiperSlide>
             </Slider>
-            <div
-                className="h-40 relative sm:px-0 px-4 mt-8 items-center">
-                {/* Sliding Window Component */}
-                <Swiper
-                    pagination={{ clickable: true }}
-                    modules={[Autoplay]}
-                    spaceBetween={30}
-                    slidesPerView={1}
-                    loop={true}
-                    autoplay={{
-                        delay: 7500,
-                        disableOnInteraction: false,
-                    }}
-                    className='text-gray-500 bg-slate-200 rounded-xl h-40 w-2/3'
-
-                    onSlideChangeTransitionStart={() => setShowingMore(false)}
-                >
-                    <SwiperSlide>
-                        <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className={`text-3xl ${showingMore ? "hidden" : ""}`}>Best in-class Performance</h1>
-                            <button className={`text-lg hover:underline hover:text-gray-700 cursor-pointer ${showingMore ? "hidden" : ""}`} onClick={() => setShowingMore(true)}>More</button>
-                            {showingMore && (
-                                <div>
-                                    <ul className='flex flex-col list-inside list-disc items-start text-2xl text-slate-700'>
-                                        <li>Highest specific power and power density</li>
-                                        <li>Grid Resilience with Dual Mode operation</li>
-                                        <li>Maximum Energy Harvesting</li>
-                                        <li>Remote Monitoring and software updates</li>
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className={`text-3xl ${showingMore ? "hidden" : ""}`}>Safety & Reliability</h1>
-                            <button className={`text-lg hover:underline hover:text-gray-700 cursor-pointer ${showingMore ? "hidden" : ""}`} onClick={() => setShowingMore(true)}>More</button>
-                            {showingMore && (
-                                <div>
-                                    <ul className='flex flex-col list-inside list-disc items-start text-2xl text-slate-700'>
-                                        <li>No PV System Single Point of Failure</li>
-                                        <li>No Electrolytic Capacitor</li>
-                                        <li>Safe and Highly Reliable</li>
-                                        <li>Best in-class Longevity</li>
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className={`text-3xl ${showingMore ? "hidden" : ""}`}>Innovation</h1>
-                            <button className={`text-lg hover:underline hover:text-gray-700 cursor-pointer ${showingMore ? "hidden" : ""}`} onClick={() => setShowingMore(true)}>More</button>
-                            {showingMore && (
-                                <div>
-                                    <h2 className='text-3xl font-bold text-black'>85+ Patents and Counting...</h2>
-                                    <ul className='flex flex-col list-inside list-disc items-start text-2xl text-slate-700'>
-                                        <li>65 Granted</li>
-                                        <li>10 Pending</li>
-                                        <li>12 Under Preparation</li>
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className={`text-3xl ${showingMore ? "hidden" : ""}`}>Cost-Effectiveness</h1>
-                            <button className={`text-lg hover:underline hover:text-gray-700 cursor-pointer ${showingMore ? "hidden" : ""}`} onClick={() => setShowingMore(true)}>More</button>
-                            {showingMore && (
-                                <div>
-                                    <ul className='flex flex-col list-inside list-disc items-start text-2xl text-slate-700'>
-                                        <li>Reduced manufacturing BOM</li>
-                                        <li>Reduced Balance of System</li>
-                                        <li>Easy to Install & Maintain</li>
-                                        <li>Outlier on Performance-Cost Curve</li>
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="flex flex-col items-center justify-center h-full text-center">
-                            <h1 className={`text-3xl ${showingMore ? "hidden" : ""}`}>Advanced Cloud-Based Energy Monitoring</h1>
-                            <button className={`text-lg hover:underline hover:text-gray-700 cursor-pointer ${showingMore ? "hidden" : ""}`} onClick={() => setShowingMore(true)}>More</button>
-                            {showingMore && (
-                                <div>
-                                    <ul className='flex flex-col list-inside list-disc items-start text-2xl text-slate-700'>
-                                        <li>Real-time Metrics</li>
-                                        <li>Historical Records</li>
-                                        <li>Panel-by-Panel information</li>
-                                        <li><Link href="/products/sparqvu" className='text-blue-400 hover:underline cursor-pointer'>Learn More</Link></li>
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
-                    </SwiperSlide>
-                </Swiper>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+                <div className="bg-gray-100 rounded-lg p-6 text-center">
+                    <h1 className="text-2xl font-bold">Best in-class Performance</h1>
+                    <ul className='flex flex-col list-inside list-disc items-start text-lg text-slate-700 mt-2'>
+                        <li>Highest specific power and power density</li>
+                        <li>Grid Resilience with Dual Mode operation</li>
+                        <li>Maximum Energy Harvesting</li>
+                        <li>Remote Monitoring and software updates</li>
+                    </ul>
+                </div>
+                <div className="bg-gray-100 rounded-lg p-6 text-center">
+                    <h1 className="text-2xl font-bold">Safety & Reliability</h1>
+                    <ul className='flex flex-col list-inside list-disc items-start text-lg text-slate-700 mt-2'>
+                        <li>No PV System Single Point of Failure</li>
+                        <li>No Electrolytic Capacitor</li>
+                        <li>Safe and Highly Reliable</li>
+                        <li>Best in-class Longevity</li>
+                    </ul>
+                </div>
+                <div className="bg-gray-100 rounded-lg p-6 text-center">
+                    <h1 className="text-2xl font-bold">Cost-Effectiveness</h1>
+                    <ul className='flex flex-col list-inside list-disc items-start text-lg text-slate-700 mt-2'>
+                        <li>Reduced manufacturing BOM</li>
+                        <li>Reduced Balance of System</li>
+                        <li>Easy to Install & Maintain</li>
+                        <li>Outlier on Performance-Cost Curve</li>
+                    </ul>
+                </div>
             </div>
         </div>
     )
-
-    // bg-[url(/hero.webp)] bg-no-repeat bg-cover h-[800px]
 }

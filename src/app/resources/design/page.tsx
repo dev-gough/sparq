@@ -1,41 +1,19 @@
+import Link from "next/link"
+import Image from "next/image"
+import { IoIosInformationCircle } from "react-icons/io"
+
 export default function DesignPage() {
     return (
         <div className="bg-white container mx-auto py-8 px-4 sm:px-10">
             <h1 className="text-5xl font-bold text-brand-maroon text-center mb-16 ">Design Your System</h1>
-            <p className="mt-4">Follow these steps for designing your SPARQ energy solution system.</p>
-            <div className="mt-6">
-                <h2 className="text-xl font-semibold">Step 1 – Understand your requirements</h2>
-                <p className="mt-2">Determine your average annual energy consumption by summing the last 12 months of kWh energy usage from your utility bills. Use your annual energy information to help select your system size.</p>
-            </div>
-            <div className="mt-6">
-                <h2 className="text-xl font-semibold">Step 2 – Size the system</h2>
-                <p className="mt-2">Get an idea of the solar potential of your location by going to the free PV Watts site: <a href="https://pvwatts.nrel.gov/" className="text-blue-600 underline">PV Watts Calculator</a>. Enter your address or zip code, select the solar resource data and click on ‘Go To System Info’.</p>
-                <p className="mt-2">Set DC System Size to 1. If mounting the system on your roof, enter the Tilt (slope) and Azimuth (angle rotated from north). Click on ‘Go to Results’. Divide the annual energy from step 1 by the PV Watts result to get the system size in kW needed to offset all of your electricity usage.</p>
-                <p className="font-semibold py-4">Example:</p>
-                <ul className="list-disc list-inside">
-                    <li>Annual energy = 5,600kWh</li>
-                    <li>PV Watts results = 1,512kWh</li>
-                    <li>System size = 5600 / 1512 = 3.703kW</li>
-                </ul>
-            </div>
-            <div className="mt-6">
-                <h2 className="text-xl font-semibold">Step 3 – Create a bill of material and contact us</h2>
-                <p className="mt-2">Each Q1200 (Quad) will produce up to 1.2kW of power. Divide the system size calculated in Step 2 by 1.2 to determine the number of Quad microinverters needed to offset the annual energy consumption.</p>
-                <p className="font-semibold py-4">Example:</p>
-                <ul className="list-disc list-inside">
-                    <li>System size = 3.703kW</li>
-                    <li>Number of Q1200 = 3.703 / 1.2 = 3.08 (Round to 3)</li>
-                </ul>
-                <p className="mt-2">Each Quad will be connected to 4 PV modules. Size the PV modules for peak output between 300 and 350W per 60-cell module.</p>
-                <p className="mt-2">Each Quad will need a trunk cable branch connector, and the trunk cable will need an end terminator cap. A SparqLinq gateway interface allows the system to be monitored. An AC disconnect tool and a DC disconnect tool are recommended for maintenance.</p>
-                <p className="font-semibold py-4">Total parts list:</p>
-                <ul className="list-disc list-inside">
-                    <li>Quad</li>
-                    <li>Trunk cable branch connectors</li>
-                    <li>End terminator cap</li>
-                    <li>SparqLinq gateway</li>
-                    <li>AC and DC disconnect tool</li>
-                </ul>
+            <p className="text-2xl">We are working on a custom calculator.  For now, please use NREL&apos;s PVWatts calculator to estimate your energy production by entering your address at this link:<Link href="https://pvwatts.nrel.gov/" target="_blank"className="text-blue-400 hover:underline cursor-pointer ml-2">pvwatts.nrel.gov</Link> </p>
+            <p className="flex flex-row text-2xl mt-4">Use the <IoIosInformationCircle className="mx-2 mt-1 text-blue-500" /> bubbles to help modify the inputs to your needs.<strong> Set the &quot;DC System Size (kW)&quot; field to 1.</strong></p>
+            <p className="text-2xl mt-16">Determine your average annual energy consumption by summing the last 12 months of kWh energy usage from your utility bills. Use your annual energy information to help select your system size.</p>
+            <p className="text-2xl mt-4">Divide the result from the PVWatts calculator by your annual energy consumption to calculate the required system size to offset 100% of your electricity usage.</p>
+            <p className="text-2xl mt-4">Each Q2000 can produce 2.0kW of power.  Divide the system size by 2.0 to determine how many Q2000 units are required. </p>
+            <p className="text-2xl mt-4">Once you have a rough idea of your system, <Link href="/contact" className="text-blue-400 hover:underline">contact us</Link> at our head office to facilitate further refinement and other requirements.</p>
+            <div className="flex items-center justify-center">
+                <Image src="/calc.png" alt="Q2000 calculation" width={832} height={832}/>
             </div>
         </div>
     )

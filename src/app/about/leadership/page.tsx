@@ -68,7 +68,7 @@ export default function LeadershipPage() {
     return (
         <div className="container mx-auto sm:py-8 sm:px-4 pb-4">
             <section id="leadership" className="px-2 sm:px-0">
-                <h1 className="text-5xl font-bold text-brand-maroon text-center mb-32">Leadership</h1>
+                <h1 className="text-5xl font-bold text-brand-maroon text-center mb-32">Meet the Team</h1>
                 <div className="flex flex-wrap justify-center gap-16">
                     {teamMembers.map((member, index) => (
                         <div
