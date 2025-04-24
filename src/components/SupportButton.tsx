@@ -11,13 +11,13 @@ export default function SupportButton() {
         <>
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600 transition-colors z-50"
+                className="px-3 py-1 text-xl rounded text-white hover:text-gray-300 cursor-pointer"
             >
                 Support
             </button>
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+                    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[999]"
                     onClick={() => setIsOpen(false)}
                 >
                     <div onClick={(e) => e.stopPropagation()}>

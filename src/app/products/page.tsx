@@ -24,13 +24,13 @@ export default function ProductPage() {
                     <Link href="products/quad2">
                         <GridDiv id="q2000">
                             <Image className='w-full h-full object-cover' width={1920} height={1084} src='/q2000.webp' alt='q2000 Microinverters'/>
-                            <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Quad 2 Microinverters</h2>
+                            <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Quad2 Microinverters</h2>
                         </GridDiv>
                     </Link>
                     <Link href="products/quad3">
                         <GridDiv>
                             <Image className='w-full h-full object-cover' width={1920} height={1084} src='/quad3.webp' alt='Quad 3 Microinverter'/>
-                            <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Quad 3</h2>
+                            <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Quad3</h2>
                         </GridDiv>
                     </Link>
                     <Link href="products/legacy">

@@ -5,10 +5,9 @@ import Footer from "@/components/Footer"
 import { Nunito } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import SupportButton from "@/components/SupportButton"
 
 export const metadata: Metadata = {
-  title: "Sparq Systems | High Performance & Cost-Effective Power Conversion",
+  title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
   description: "Sparq Systems",
   icons: '/logo.png',
 }
@@ -19,7 +18,9 @@ const nunito = Nunito({
 })
 
 const aboutDropdown = [
-  { label: "Corporate Statements", href: "/about/statements" },
+  { label: "Mission", href: "/about/statements#mission" },
+  { label: "Vision", href: "/about/statements#vision" },
+  { label: "Value", href: "/about/statements#value" },
   { label: "Leadership", href: "/about/leadership" },
   { label: "Board of Directors", href: "/about/board" },
   { label: "Governance", href: "/about/governance" },
@@ -33,8 +34,8 @@ const investorDropdown = [
 ]
 
 const productDropdown = [
-  { label: "Quad 2", href: "/products/quad2" },
-  { label: "Quad 3", href: "/products/quad3" },
+  { label: "Quad2", href: "/products/quad2" },
+  { label: "Quad3", href: "/products/quad3" },
   { label: "Legacy Products", href: "/products/legacy" },
   { label: "SparqLinq", href: "/products/sparqlinq" },
   { label: "SparqVu", href: "/products/sparqvu" },
@@ -47,7 +48,7 @@ const resourcesDropdown = [
   { label: "Installers", href: "/resources/installers" },
   { label: "Photo Gallery", href: "/resources/photos" },
   { label: "Video Gallery", href: "/resources/videos" },
-  { label: "Design My System", href: "/resources/design" },
+  { label: "Design My System", href: "https://pvwatts.nrel.gov/" },
 ]
 
 const navbarItems = [
@@ -71,7 +72,6 @@ export default function RootLayout({
           {children}
         </main>
         <SpeedInsights />
-        <SupportButton />
         <Footer />
       </body>
     </html>

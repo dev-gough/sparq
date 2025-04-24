@@ -128,7 +128,7 @@ export default function ProductPage() {
                             </div>
                         </AccordionItem>
                         <AccordionItem title="Comparison with Leading Microinverter">
-                            <Link href="/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H</Link>
+                            <Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H</Link>
                         </AccordionItem>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ import { MdEvent } from 'react-icons/md'
 import { HiOutlineDocumentReport } from 'react-icons/hi'
 
 const items = [
-    { icon: FaHome, label: "Investor Home", href: "/investors" },
+    { icon: FaHome, label: "Investor Highlights", href: "/investors" },
     { icon: AiOutlineStock, label: "Stock", href: "/investors/stock" },
     { icon: HiOutlineDocumentReport, label: "Annual Report", href: "/investors/stock" },
     { icon: FaRegNewspaper, label: "News", href: "/investors/news" },

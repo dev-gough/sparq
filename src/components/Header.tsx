@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import DropdownMenu from './DropdownMenu';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { GrClose } from 'react-icons/gr';
+import SupportButton from './SupportButton';
 
 interface NavItem {
     href: string;
@@ -57,6 +58,7 @@ export default function Header({ navItems }: HeaderProps) {
                         );
                     })}
                 </nav>
+                <SupportButton/>
             </div>
             {isMenuOpen && (
                 <nav className="absolute top-full left-0 right-0 bg-brand-graytext p-4 sm:hidden shadow-lg">
