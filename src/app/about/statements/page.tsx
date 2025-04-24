@@ -7,7 +7,7 @@ export default function StatementsPage() {
             </section>
             <section id="vision">
                 <h1 className="sm:text-5xl text-brand-maroon font-bold mt-16">Vision</h1>
-                <p className='sm:text-xl text-sm mt-8'>Sparq's mission is to accelerate world&apos;s transition to energy self-sufficiency by serving residential, commercial and industrial customers world-wide.</p>
+                <p className='sm:text-xl text-sm mt-8'>Sparq&apos;s mission is to accelerate world&apos;s transition to energy self-sufficiency by serving residential, commercial and industrial customers world-wide.</p>
             </section>
             <section id="value">
                 <h1 className="sm:text-5xl text-brand-maroon font-bold mt-16">Value</h1>
