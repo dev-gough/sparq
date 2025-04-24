@@ -27,7 +27,7 @@ interface SubheaderProps {
 
 export default function Subheader({ items }: SubheaderProps) {
     return (
-        <div className="bg-neutral-200 flex justify-evenly items-center z-10 py-2 sm:mb-4 relative">
+        <div className="bg-neutral-200 flex justify-evenly items-center z-10 py-2 relative">
             {items.map((item, index) => (
                 <SubheadingItem key={index} {...item} />
             ))}

@@ -35,7 +35,7 @@ export default function ProductPage() {
                     </Link>
                     <Link href="products/legacy">
                         <GridDiv>
-                            <Image className='w-full h-full' width={1920} height={1084} src='/q2000.webp' alt='q2000 Microinverter'/>
+                            <Image className='w-full h-full' width={1920} height={1084} src='/q1200-discontinued.png' alt='q2000 Microinverter'/>
                             <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Legacy Products</h2>
                         </GridDiv>
                     </Link>

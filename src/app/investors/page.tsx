@@ -87,7 +87,7 @@ export default function InvestorPage() {
                         {expanded && (
                             <div>
                                 <p className='text-sm sm:text-2xl pt-4'>is pleased to announce that on June 26, 2024 the Company received purchase orders for supplying over six-thousand Q2000 Quad Microinverters for the Indian market. </p>
-                                <p>&quot;It is a major step forward for the Company to enter into the Indian PV market,&quot; commented Dr. Praveen Jain, Chief Executive Officer of SPARQ.</p>
+                                <p className='text-2xl pt-4'>&quot;It is a major step forward for the Company to enter into the Indian PV market,&quot; commented Dr. Praveen Jain, Chief Executive Officer of SPARQ.</p>
                                 <ul className='mt-4 space-y-2'>
                                     <li>
                                         <Link className='text-blue-400 hover:underline text-xl sm:text-2xl' href="https://finance.yahoo.com/news/sparq-receives-12-mw-worth-112000213.html" target='_blank'>Read More</Link>
