@@ -5,6 +5,7 @@ import { useState } from 'react'
 export default function Home() {
 
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false)
+    const [isVidEnded, setIsVidEnded] = useState<boolean>(false)
 
     const openPopup = () => setIsPopupOpen(true)
     const closePopup = () => setIsPopupOpen(false)
@@ -14,16 +15,18 @@ export default function Home() {
             <div className="relative h-[calc(100vh-67px)] overflow-x-hidden">
                 <video className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
                     autoPlay
-                    loop
                     muted
+                    onEnded={() => setIsVidEnded(true)}
                 >
                     <source src="/output.mp4" type="video/mp4" />
                 </video>
-                <div className="flex flex-col items-center justify-center h-full">
-                    <div className="flex flex-row space-x-10 pt-8 mt-120">
-                        <Link href="/about#learnmore" className="bg-transparent border-white text-white hover:bg-slate-900 hover:text-white cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">Learn More</Link>
-                        <button onClick={openPopup} className="bg-transparent border-white text-white hover:bg-slate-900 hover:text-white cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">Watch Video</button>
-                    </div>
+                <div className="flex flex-col items-center justify-center h-full transition-transform duration-200">
+                    {isVidEnded && (
+                        <div className="flex flex-row space-x-10 pt-8 mt-120">
+                            <Link href="/about#learnmore" className="bg-transparent border-white text-white hover:bg-slate-900 hover:text-white cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">Learn More</Link>
+                            <button onClick={openPopup} className="bg-transparent border-white text-white hover:bg-slate-900 hover:text-white cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">Watch Video</button>
+                        </div>
+                    )}
                 </div>
                 {isPopupOpen && (
                     <div
