@@ -10,6 +10,10 @@
     --color-brand-graytext: #454345;
     --color-brand-yellow: #fcb900;
 
+    --color-mission: #ff4d4d;
+    --color-vision: #4dc8ff;
+    --color-values: #ff9f4d;
+
     /* Define the keyframes for the carousel */
     @keyframes carousel {
         0% {

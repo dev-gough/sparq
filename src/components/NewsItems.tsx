@@ -35,7 +35,7 @@ export default function NewsItems() {
 					<Link href={item.canonical_url} className="absolute bottom-2 right-2 flex cursor-pointer text-blue-400 hover:underline" target="_blank">
 						Read More<FaArrowRight className="ml-2 mt-1 text-black" />
 					</Link>
-					<p className="absolute bottom-2 left-4">{item.date}</p>
+					<p className="absolute font-bold bottom-2 left-4">{new Date(item.date).toDateString()}</p>
 				</div>
 			))}
 		</div>

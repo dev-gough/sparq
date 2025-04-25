@@ -1,26 +1,16 @@
 Welcome page
 It would be great if we could include a brief clip from our MyApp. I will give you this one tomorrow morning! MyApp not working! Maybe Saul is back and working on the app! Will do this later.
-Once these buttons are removed, you can put the video prompts at the bottom of the page and time then so they can not cl;ash with the video text!
 
 Products:
 Need to double-check with Omid, if we can mention the 2C & 3C for Q2000 model and some wording in the features?
 
 Investor relations
-Can we improve on the visual impact and flow of the three groups of “Sparq Advantage” bullets placed below the scrolling table?? Let’s try including a “Why Sparq?” or “Sparq Advantage” in the Investor Relations pull-down menu which opens a stacked whole window right below the existing scrolling page with these details. Then other contents for Investor Relations can follow in the page and are clickable from the menu…
+??? Can we improve on the visual impact and flow of the three groups of “Sparq Advantage” bullets placed below the scrolling table?? Let’s try including a “Why Sparq?” or “Sparq Advantage” in the Investor Relations pull-down menu which opens a stacked whole window right below the existing scrolling page with these details. Then other contents for Investor Relations can follow in the page and are clickable from the menu…
 
 We can use appealing pictures for the background of the scrolling page at the same time a new highlight comes-in
 
 In Investor Relations page, need to include a FAQ specifically for investors with similar Q&A like Enphase LINK
 (Omid will help with Content)
-
-News:
-    Date & then Clickable Title
-    Most recent first
-    No black text summary
-    No Read More
-Events:
-    Group into upcoming and archived
-    Date & then Clickable Event Topic
 
 Resources
 Layout is ok – we need to work with Omid & Majid on adjusting the content- particularly FAQs….

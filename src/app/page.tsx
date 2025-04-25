@@ -12,7 +12,7 @@ export default function Home() {
 
     return (
         <div>
-            <div className="relative h-[calc(100vh-67px)] overflow-x-hidden">
+            <div className="relative h-[calc(100vh-66px)] overflow-x-hidden">
                 <video className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
                     autoPlay
                     muted
