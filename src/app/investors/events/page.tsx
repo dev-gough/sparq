@@ -55,7 +55,7 @@ Todo:
 
 export default function EventPage() {
 
-    let curDate = new Date()
+    const curDate = new Date()
 
     return (
         <section id="events" className="items-center justify-center px-4">
@@ -65,9 +65,9 @@ export default function EventPage() {
             <div className="flex flex-col px-10 pb-8">
                 {/* Events that are in the future, based on new Date() */}
                 {events.map((item) => (
-                    <div>
+                    <div key={item.id}>
                         {item.date > curDate && (
-                            <div className="relative my-4 p-4 pb-10 border-b shadow bg-slate-50 border-slate-200" key={item.id}>
+                            <div className="relative my-4 p-4 pb-10 border-b shadow bg-slate-50 border-slate-200">
                                 <Link href={item.url} target="_blank">
                                     <h1 className="text-brand-maroon font-mono text-xl hover:underline">{item.title}</h1>
                                 </Link>
@@ -85,9 +85,9 @@ export default function EventPage() {
             <div className="flex flex-col px-10 pb-8">
                 {/* Events that are in the past, based on new Date() */}
                 {events.map((item) => (
-                    <div>
+                    <div key={item.id}>
                         {item.date <= curDate && (
-                            <div className="relative my-4 p-4 pb-10 border-b shadow bg-slate-50 border-slate-200" key={item.id}>
+                            <div className="relative my-4 p-4 pb-10 border-b shadow bg-slate-50 border-slate-200">
                                 <Link href={item.url} target="_blank">
                                     <h1 className="text-brand-maroon font-mono text-xl hover:underline">{item.title}</h1>
                                 </Link>
