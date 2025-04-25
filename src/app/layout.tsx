@@ -20,7 +20,7 @@ const nunito = Nunito({
 const aboutDropdown = [
   { label: "Mission", href: "/about/statements#mission" },
   { label: "Vision", href: "/about/statements#vision" },
-  { label: "Value", href: "/about/statements#value" },
+  { label: "Value", href: "/about/statements#values" },
   { label: "Leadership", href: "/about/leadership" },
   { label: "Board of Directors", href: "/about/board" },
   { label: "Governance", href: "/about/governance" },
@@ -48,7 +48,7 @@ const resourcesDropdown = [
   { label: "Installers", href: "/resources/installers" },
   { label: "Photo Gallery", href: "/resources/photos" },
   { label: "Video Gallery", href: "/resources/videos" },
-  { label: "Design My System", href: "https://pvwatts.nrel.gov/" },
+  { label: "Design My System", href: "/resources/design" },
 ]
 
 const navbarItems = [
