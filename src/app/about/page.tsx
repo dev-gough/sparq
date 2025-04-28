@@ -3,30 +3,30 @@ import Link from "next/link"
 
 export default function AboutPage() {
     return (
-        <div id="corporatestatements" className="container mx-auto sm:pb-8 sm:px-4 py-8">
-            <section id="passion" className="mb-16 text-sm sm:text-[22px]">
-                <h1 className="sm:text-6xl text-brand-maroon font-bold">A Passion for a Lower Carbon Future</h1>
-                <p className='sm:mt-8'>SPARQ was born out of a passion to create leading edge solar energy solutions that support a greener future for our planet. Founder Dr. Praveen Jain is a world-leader in energy research, holding over 100 patents. His advanced research at ePower, the Centre for Energy and Power Electronics Research at Queen&apos;s University in Kingston, Canada, resulted in the development of SPARQ&apos;s innovative and versatile microinverter design.</p>
-                <p className='sm:mt-4'>Today, SPARQ&apos;s microinverter system is resetting the industry standard for solar energy systems, delivering greater energy harvest over traditional string inverters. It can be used in any power grid, conventional or smart, around the globe.</p>
+        <div id="corporatestatements" className="container mx-auto sm:pb-8 sm:px-4 py-8 px-2">
+            <section id="passion" className="sm:mb-16 mb-8 text-sm sm:text-[22px]">
+                <h1 className="sm:text-6xl text-xl text-brand-maroon font-bold">A Passion for a Lower Carbon Future</h1>
+                <p className='sm:mt-8 mt-4'>SPARQ was born out of a passion to create leading edge solar energy solutions that support a greener future for our planet. Founder Dr. Praveen Jain is a world-leader in energy research, holding over 100 patents. His advanced research at ePower, the Centre for Energy and Power Electronics Research at Queen&apos;s University in Kingston, Canada, resulted in the development of SPARQ&apos;s innovative and versatile microinverter design.</p>
+                <p className='mt-4'>Today, SPARQ&apos;s microinverter system is resetting the industry standard for solar energy systems, delivering greater energy harvest over traditional string inverters. It can be used in any power grid, conventional or smart, around the globe.</p>
             </section>
-            <section id="learnmore" className="text-black text-sm sm:text-[22px]">
-                <h1 className="text-5xl font-bold text-brand-maroon">
+            <section id="learnmore" className="sm:mb-16 mb-8 text-sm sm:text-[22px]">
+                <h1 className="sm:text-5xl text-xl font-bold text-brand-maroon">
                     Your cost-effective, reliable solar energy system.
                 </h1>
-                <p className="sm:mt-8">
+                <p className="sm:mt-8 mt-4">
                     We&apos;re changing the industry standard for solar energy solutions with powerful power conversion that&apos;s smart-grid ready and the lowest cost per watt in the industry.
                 </p>
-                <p className='sm:mt-4'>The Sparq Systems Q2000 product family of single and three phase microinverters not only resolve the longstanding safety, partial shading, low reliability problems and high cost of String Photovoltaic-Systems but also further advance state of the art of the single channel microinverter industry leader by eliminating the low reliability electrolytic capacitors and integrating four independently controlled DC-DC channels in one enclosure resulting in best in class reliability, highest weight and power density and lowest life-cycle cost.</p>
-                <h2 className="text-5xl font-bold text-brand-maroon sm:mt-16">
+                <p className='mt-4 mb-8 sm:mb-0'>The Sparq Systems Q2000 product family of single and three phase microinverters not only resolve the longstanding safety, partial shading, low reliability problems and high cost of String Photovoltaic-Systems but also further advance state of the art of the single channel microinverter industry leader by eliminating the low reliability electrolytic capacitors and integrating four independently controlled DC-DC channels in one enclosure resulting in best in class reliability, highest weight and power density and lowest life-cycle cost.</p>
+                <h2 className="sm:text-5xl text-xl font-bold text-brand-maroon sm:mt-16">
                     Be part of a greener future.
                 </h2>
-                <p className="sm:mt-8">
+                <p className="sm:mt-8 mt-4 mb-8 sm:mb-0">
                     Backed by advanced research, our microinverter systems are designed with cutting-edge technology for reliable energy solutions that are easy to install and offer more energy harvest compared to traditional string inverters. Save money and contribute to a lower carbon future.
                 </p>
-                <h2 id="q2000features" className="text-5xl font-bold text-brand-maroon sm:mt-16">
+                <h2 id="q2000features" className="sm:text-5xl text-xl font-bold text-brand-maroon sm:mt-16">
                     4 panels - 1 inverter.
                 </h2>
-                <p className="text-black mt-8">
+                <p className="text-black sm:mt-8 mt-4">
                     Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you&apos;ll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-6 justify-between">
@@ -90,8 +90,13 @@ export default function AboutPage() {
                             className="mb-4 object-contain w-full h-auto"
                         />
                     </div>
-                    <h3 className="text-lg md:text-3xl font-bold text-brand-maroon mb-2 h-18 sm:h-24 flex items-center justify-center line-clamp-2">
+                    {/* Desktop header */}
+                    <h3 className="text-lg md:text-3xl font-bold text-brand-maroon mb-2 h-18 sm:h-24 sm:flex hidden items-center justify-center line-clamp-2">
                         Industry Leader in Energy Solutions
+                    </h3>
+                    {/* Mobile header */}
+                    <h3 className="text-lg md:text-3xl font-bold text-brand-maroon mb-2 h-18 sm:h-24 sm:hidden flex items-center justify-center line-clamp-2">
+                        Industry Leader
                     </h3>
                     <hr className="w-16 border-t-2 border-brand-maroon mb-4" />
                     <p className="text-sm md:text-xl text-black">
@@ -99,7 +104,7 @@ export default function AboutPage() {
                     </p>
                 </div>
             </section>
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-4 mt-4 sm:mt-0">
                 <Link href="/resources/installers" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-4 py-2 rounded">Support for Installers & Distributers</Link>
                 <Link href="/contact" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-8 py-2 rounded">Contact Us</Link>
             </div>

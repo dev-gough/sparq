@@ -25,13 +25,13 @@ export default function NewsItems() {
 	}, []);
 
 	return (
-		<div className="flex flex-col gap-10 px-10 pb-8">
+		<div className="flex flex-col gap-10 sm:px-10 pb-8">
 			{data.length > 0 && data.map((item, index) => (
 				<div className="relative p-4 pb-10 border-b shadow bg-slate-50 border-slate-200" key={index}>
 					<Link href={item.canonical_url} target="_blank">
-						<h1 className="text-brand-maroon font-mono text-xl hover:underline">{item.title}</h1>
+						<h1 className="text-brand-maroon font-mono sm:text-xl text-lg hover:underline">{item.title}</h1>
 					</Link>
-					<p className="text-lg">{item.summary}</p>
+					<p className="sm:text-lg">{item.summary}</p>
 					<Link href={item.canonical_url} className="absolute bottom-2 right-2 flex cursor-pointer text-blue-400 hover:underline" target="_blank">
 						Read More<FaArrowRight className="ml-2 mt-1 text-black" />
 					</Link>

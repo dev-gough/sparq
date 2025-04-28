@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
 
-export default function Quad3Page() {
+export default function SparqLinqPage() {
     const models = ["SL200-2001"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
     const [isExpanded, setIsExpanded] = useState<boolean>(false)

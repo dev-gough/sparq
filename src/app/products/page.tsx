@@ -69,7 +69,7 @@ export default function ProductPage() {
                 <div className='flex flex-wrap justify-center gap-16'>
                     <Link href="products/accessories">
                         <GridDiv id="cables">
-                            <Image src="/cables.jpg" width={671} height={409} alt="Types of Cables Offered"/>
+                            <Image src="/Accessories/cables.png" width={671} height={409} alt="Types of Cables Offered"/>
                             <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Cables</h2>
                         </GridDiv>
                     </Link>

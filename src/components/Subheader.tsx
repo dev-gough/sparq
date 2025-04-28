@@ -16,7 +16,7 @@ function SubheadingItem({ label, href }: SubheadingItemProps) {
 
     return (
         <Link href={href} className={`flex flex-col justify-center items-center space-x-2 ${isActive ? "text-brand-yellow" : "text-gray-700"} hover:text-brand-yellow transition-colors duration-150`}>
-            <span className='text-sm sm:text-2xl'>{label}</span>
+            <span className='text-xs sm:text-2xl'>{label}</span>
         </Link>
     )
 }
@@ -27,7 +27,7 @@ interface SubheaderProps {
 
 export default function Subheader({ items }: SubheaderProps) {
     return (
-        <div className="bg-neutral-200 flex justify-evenly items-center z-10 py-2 relative">
+        <div className="bg-neutral-200 flex justify-evenly items-center z-10 py-2 sticky top-[66px]">
             {items.map((item, index) => (
                 <SubheadingItem key={index} {...item} />
             ))}
