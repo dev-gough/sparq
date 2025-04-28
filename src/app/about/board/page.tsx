@@ -67,10 +67,10 @@ export default function BoardPage() {
     const [selectedMember, setMember] = useState<BoardMemberData | null>(null)
 
     return (
-        <div className="container mx-auto sm:py-8 sm:px-4 pb-4">
+        <div className="container mx-auto py-8 sm:px-4 pb-4">
             <section id="bod" className="px-2 sm:px-0">
                 <div className="container mx-auto">
-                    <h1 className="text-5xl font-bold text-brand-maroon text-center mb-32">Board of Directors</h1>
+                    <h1 className="sm:text-5xl text-3xl font-bold text-brand-maroon text-center sm:mb-32 mb-8">Board of Directors</h1>
                     <div className="flex flex-wrap justify-center gap-16">
                         {boardMembers.map((member, index) => (
                             <div

@@ -60,9 +60,9 @@ export default function EventPage() {
     return (
         <section id="events" className="items-center justify-center px-4">
             <h1 className="text-center text-5xl font-light mt-16">Events</h1>
-            <hr className="mb-16 mt-2 text-slate-300" />
+            <hr className="sm:mb-16 mb-8 mt-2 text-slate-300" />
             <h2 className="text-3xl font-light">Upcoming</h2>
-            <div className="flex flex-col px-10 pb-8">
+            <div className="flex flex-col sm:px-10 pb-8">
                 {/* Events that are in the future, based on new Date() */}
                 {events.map((item) => (
                     <div key={item.id}>
@@ -82,7 +82,7 @@ export default function EventPage() {
                 ))}
             </div>
             <h2 className="text-3xl font-light">Archived</h2>
-            <div className="flex flex-col px-10 pb-8">
+            <div className="flex flex-col sm:px-10 pb-8">
                 {/* Events that are in the past, based on new Date() */}
                 {events.map((item) => (
                     <div key={item.id}>
