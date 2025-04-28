@@ -60,7 +60,7 @@ function ContactSection({ title, companyName, address, phone, email, website }: 
 
 export default function ContactPage() {
 	return (
-		<div className="container mx-auto px-4 mt-4 sm:px-10 sm:my-16" id="header">
+		<div className="container mx-auto px-4 my-8 sm:px-10 sm:my-16" id="header">
 			<h2 className="text-5xl font-bold text-center mb-8 text-brand-maroon">Contact Us</h2>
 			<h3 className='text-xl font-semibold my-4 text-brand-maroon'>Our Offices</h3>
 			<section className='flex flex-col gap-6'>

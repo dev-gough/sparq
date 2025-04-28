@@ -28,6 +28,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    overflow-y: auto
 }
 
 html {
@@ -35,5 +36,5 @@ html {
 }
 
 [id] {
-    scroll-margin-top: 67px;
+    scroll-margin-top: 114px;
 }

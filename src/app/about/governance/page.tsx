@@ -6,10 +6,10 @@ import PrivacyPolicyDropdown from "@/components/PrivacyPolicyDropdown"
 
 export default function GovernancePage() {
     return (
-        <div className="container mx-auto sm:py-8 sm:px-4 pb-4">
+        <div className="container mx-auto py-8 sm:px-4 pb-4">
             <section id="governance" className="px-2 sm:0">
-                <h2 className="text-5xl font-bold text-brand-maroon text-center">Governance Documents</h2>
-                <ul className="mt-16 text-xl text-[#993300]">
+                <h2 className="sm:text-5xl text-3xl font-bold text-brand-maroon text-center">Governance Documents</h2>
+                <ul className="sm:mt-16 mt-8 text-xl text-[#993300]">
                     <li><Link className="hover:underline" target="_blank" href="/Governance/Audit-Committee-Charter.pdf">Audit Committee Charter</Link></li>
                     <li><Link className="hover:underline" target="_blank" href="/Governance/Board-Effectiveness-Survey.pdf">Board Effectiveness Survey</Link></li>
                     <li><Link className="hover:underline" target="_blank" href="/Governance/Business-Code-of-Conduct.pdf">Business Code of Conduct</Link></li>

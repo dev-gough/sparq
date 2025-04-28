@@ -5,7 +5,6 @@ import Footer from "@/components/Footer"
 import { Nunito } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-
 export const metadata: Metadata = {
   title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
   description: "Sparq Systems",

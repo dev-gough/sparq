@@ -58,7 +58,7 @@ export default function Header({ navItems }: HeaderProps) {
                         );
                     })}
                 </nav>
-                <SupportButton/>
+                <SupportButton className='hidden sm:flex'/>
             </div>
             {isMenuOpen && (
                 <nav className="absolute top-full left-0 right-0 bg-brand-graytext p-4 sm:hidden shadow-lg">
@@ -80,6 +80,7 @@ export default function Header({ navItems }: HeaderProps) {
                             </Link>
                         );
                     })}
+                    <SupportButton className=''/>
                 </nav>
             )}
         </header>

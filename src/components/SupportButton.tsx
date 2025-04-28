@@ -2,16 +2,20 @@
 
 import { useState } from 'react'
 
-import SupportTicketForm from './SupportTicket';
+import SupportTicketForm from './SupportTicket'
 
-export default function SupportButton() {
+interface SupportProps {
+    className?: string
+}
+
+export default function SupportButton({ className }: SupportProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <>
+        <div className={className}>
             <button
                 onClick={() => setIsOpen(true)}
-                className="px-3 py-1 text-xl rounded text-white hover:text-gray-300 cursor-pointer"
+                className="sm:px-3 py-2 sm:py-1 sm:text-xl rounded text-white hover:text-gray-300 cursor-pointer"
             >
                 Support
             </button>
@@ -25,6 +29,6 @@ export default function SupportButton() {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 }
