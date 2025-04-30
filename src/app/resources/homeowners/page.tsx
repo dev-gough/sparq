@@ -11,6 +11,12 @@ interface FAQData {
 
 const HomeFAQEntries: FAQData[] = HomeFAQData.faqs;
 
+/*
+Todo:
+
+make this not use json for faq storage, as it limits what can be displayed (i.e. no bulleted lists, no bolding)
+*/
+
 export default function HomeownersPage() {
     return (
         <div className="bg-white container mx-auto py-8 px-4 sm:px-10">
@@ -28,7 +34,7 @@ export default function HomeownersPage() {
                                 <h2 className="text-xl font-bold text-brand-maroon text-center mb-4">
                                     {item.questionBrand}
                                 </h2>
-                                <div className="space-y-2">
+                                <div className="space-y-4">
                                     {item.subQuestions.map((subItem) => (
                                         <div key={subItem.id} className="text-gray-700">
                                             <strong className="text-brand-maroon">{subItem.question}</strong><br></br>{" "}

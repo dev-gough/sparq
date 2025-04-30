@@ -97,7 +97,7 @@ export default function LeadershipPage() {
                     onClick={() => setMember(null)}
                 >
                     <div
-                        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 sm:max-w-4/5 max-h-4/5 w-full overflow-y-scroll"
+                        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 sm:max-w-4/5 max-h-4/5 w-full overflow-y-auto"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <button
@@ -106,15 +106,10 @@ export default function LeadershipPage() {
                         >
                             Close
                         </button>
-                        <Image
-                            src={selectedMember.imgSrc}
-                            alt={selectedMember.name}
-                            className="w-fit h-32 sm:h-70 object-cover rounded-lg mb-4"
-                            width={512}
-                            height={512}
-                        />
-                        <h2 className="sm:text-4xl text-lg font-bold">{selectedMember.name}</h2>
-                        <p className="sm:text-3xl">{selectedMember.title}</p>
+                        <div className="border-b-2 pb-2 rounded-md border-brand-yellow">
+                            <h2 className="sm:text-4xl text-lg font-bold">{selectedMember.name}</h2>
+                            <p className="sm:text-3xl">{selectedMember.title}</p>
+                        </div>
                         <p className="mt-4 text-gray-700 sm:text-2xl text-sm">{selectedMember.blurb}</p>
                     </div>
                 </div>

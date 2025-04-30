@@ -56,6 +56,7 @@ const navbarItems = [
   { label: "Investor Relations", href: "/investors", dropdown: investorDropdown },
   { label: "Resources", href: "/resources", dropdown: resourcesDropdown },
   { label: "Contact", href: "/contact" },
+  { label: "Support", href: "/support"},
 ]
 
 export default function RootLayout({
