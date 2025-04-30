@@ -1,8 +1,135 @@
 {
     "faqs": [
         {
+            "id": 17,
+            "questionBrand": "Q2000 Product Family",
+            "subQuestions": [
+                {
+                    "id": 18,
+                    "question": "How can I tell if the Q2000 inverter is working?",
+                    "answer": "The status LED on the Q2000 will be flashing green when working correctly. If the LED is flashing Red, this indicates an AC issue so check the AC breaker. If the LED is amber, this indicates a ground fault was detected so check for faulty DC wiring then connect to the SparqLinq and go to the 'Settings->Inverter Management' page and click the Clear GFDI (blue lightning bolt) icon."
+                },
+                {
+                    "id": 19,
+                    "question": "What is the Sparq Quad2000 microinverter, and what are its key features?",
+                    "answer": "The Sparq Quad 2000 is a high-efficiency microinverter supporting up to four PV module inputs, each with independent MPPT. It simplifies wiring with a single AC trunk output.  Its key features include dual-mode operation (grid-tied and off-grid), high power density, a modular design, and real-time system monitoring via SparqVu and SparqSync."
+                },
+                {
+                    "id": 20,
+                    "question": "Which AC electrical systems are compatible with the Quad 2000?",
+                    "answer": "Compatible systems include: Split-phase 120/240V, three-phase 120/208V, single-phase 230V, and three-phase Y-connected 230/400V with neutral."
+                },
+                {
+                    "id": 21,
+                    "question": "What PV panels can be used with the Quad 2000?",
+                    "answer": "The maximum wattage per panel is 680W per input.  The voltage range is 20-60V (Voc), and the current limit is 18A (Isc).  Any panel that meets these specifications can be used."
+                },
+                {
+                    "id": 22,
+                    "question": "What do the LED indicators mean?",
+                    "answer": "LEDs provide system feedback such as power-up status, grid connection, fault alerts, and communication signals.  Please see the user manual for a full LED legend."
+                },
+                {
+                    "id": 23,
+                    "question": "Does it support cloud-based monitoring?",
+                    "answer": "Yes, the Quad2000 integrates with SparqVu to provide real-time performance tracking, remote diagnostics, and system alerts."
+                },
+                {
+                    "id": 24,
+                    "question": "Is there a mobile app available?",
+                    "answer": "Yes. The Sparq app is available for iOS and Android for remote monitoring and notifications."
+                },
+                {
+                    "id": 25,
+                    "question": "How are firmware updates delivered?",
+                    "answer": "Firmware updates are automatic and over-the-air via the Sparq Gateway, provided the system is connected to the internet."
+                },
+                {
+                    "id": 26,
+                    "question": "Can the Quad 2000 operate off-grid?",
+                    "answer": "Yes. Off-grid mode is supported and can be enabled via the Sparq Gateway."
+                },
+                {
+                    "id": 27,
+                    "question": "Can it power a single-phase water pump?",
+                    "answer": "Yes. The Quad 2000 can support nonlinear loads, including single-phase water pumps."
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "questionBrand": "Quad3",
+            "subQuestions":[
+                {
+                    "id": 29,
+                    "question": "What is the Quad3 microinverter, and what are its key features?",
+                    "answer": "The Sparq Quad3 is a high-efficiency, native three-phase microinverter that supports up to four PV module inputs, each with independent MPPT. It also supports MPPT motor drive applications.  Its key features include: Tri-mode operation (grid-tied, off-grid, MPPT motor drive), a modular design with automatic paralleling for high-power motor support, high power density, and real-time monitoring."
+                },
+                {
+                    "id": 30,
+                    "question": "Which AC electrical systems are compatible with the Quad3?",
+                    "answer": "The Quad3 supports 220/380V and 230/400V systems."
+                },
+                {
+                    "id": 31,
+                    "question": "What PV panels are compatible with the Quad3?",
+                    "answer": "The maximum wattage per panel is 680W per input.  The voltage range is 20-60V (Voc), and the current limit is 18A (Isc).  Any panel that meets these specifications can be used."
+                },
+                {
+                    "id": 32,
+                    "question": "What do the LED indicators signify?",
+                    "answer": "LEDs provide system feedback such as power-up status, grid connection, fault alerts, and communication signals.  Please see the user manual for a full LED legend."
+                },
+                {
+                    "id": 33,
+                    "question": "Does the Quad3 support cloud-based monitoring?",
+                    "answer": "Yes, the Quad3 integrates with SparqVu to provide real-time performance tracking, remote diagnostics, and system alerts."
+                },
+                {
+                    "id": 34,
+                    "question": "Is there a mobile app available?",
+                    "answer": "Yes. The Sparq app is available on both iOS and Android platforms for remote monitoring and notifications."
+                },
+                {
+                    "id": 35,
+                    "question": "How are firmware updates delivered?",
+                    "answer": "Firmware updates are delivered automatically over-the-air through the Sparq Gateway, provided the system has internet access."
+                },
+                {
+                    "id": 36,
+                    "question": "Can the Quad3 operate off-grid?",
+                    "answer": "Yes, the Quad3 supports off-grid operation and MPPT motor drive applications. Off-grid mode can be enabled via the Sparq Gateway."
+                },
+                {
+                    "id": 37,
+                    "question": "Is grounding required?",
+                    "answer": "Yes. While the Quad3 features advanced protection mechanisms, proper grounding and surge protection are essential to safeguard the system from grid and environmental anomalies."
+                },
+                {
+                    "id": 38,
+                    "question": "Can it power a three-phase water pump?",
+                    "answer": "Yes, the Quad3 supports various three-phase water pumps, including Induction motor, Permanent Magnet Synchronous Motor (PMSM), and Brushless DC (BLDC) motor pumps."
+                },
+                {
+                    "id": 39,
+                    "question": "What motor power can one Quad3 unit support?",
+                    "answer": "A single Quad3 unit can support a water pump rated up to 3 hp. For higher-power motors, multiple units can be connected in parallel to meet the required load."
+                },
+                {
+                    "id": 40,
+                    "question": "Can I use one Quad3 unit with a 5 hp or higher power solar water pump?",
+                    "answer": "Yes, but with limitations. A single Quad3 will still cap its output at 3 hp. While it can power the motor, it will not reach full speed or torque, and performance will be reduced."
+                },
+                {
+                    "id": 41,
+                    "question": "Can I use one Quad3 unit with a 2 hp or lower power solar water pump?",
+                    "answer": "Absolutely. The Quad3 uses smart, sensorless control to safely limit output based on motor parameters like frequency and voltage, ensuring safe operation and protecting the motor from damage."
+                }
+            ]
+        },
+        {
             "id": 1,
-            "questionBrand": "SparqVu FAQs",
+            "questionBrand": "SparqVu",
             "subQuestions": [
                 {
                     "id": 2,
@@ -23,7 +150,7 @@
         },
         {
             "id": 5,
-            "questionBrand": "SparqLinq FAQs",
+            "questionBrand": "SparqLinq",
             "subQuestions": [
                 {
                     "id": 6,
@@ -44,7 +171,7 @@
         },
         {
             "id": 9,
-            "questionBrand": "Carbon Intensity FAQs",
+            "questionBrand": "Carbon Intensity",
             "subQuestions": [
                 {
                     "id": 10,
@@ -65,7 +192,7 @@
         },
         {
             "id": 13,
-            "questionBrand": "Electricity Unit Price FAQs",
+            "questionBrand": "Electricity Unit Price",
             "subQuestions": [
                 {
                     "id": 14,
