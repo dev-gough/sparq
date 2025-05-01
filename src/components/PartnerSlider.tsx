@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
+import Image from 'next/image';
 
 // Define the shape of a logo object
 interface Logo {
@@ -31,9 +32,11 @@ const LogoSlider: React.FC<LogoSliderProps> = ({ logos, speed = 1000 }) => {
     >
       {logos.map((logo, index) => (
         <SwiperSlide key={index} className="w-24 p-1">
-          <img
+          <Image
             src={logo.src}
             alt={logo.alt}
+            width={256}
+            height={128}
             className="h-full"
           />
         </SwiperSlide>
