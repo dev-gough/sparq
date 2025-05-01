@@ -1,6 +1,7 @@
 'use client'
 import Link from "next/link"
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { MdOutlineReplay } from 'react-icons/md'
 
 export default function Home() {
 
@@ -10,10 +11,25 @@ export default function Home() {
     const openPopup = () => setIsPopupOpen(true)
     const closePopup = () => setIsPopupOpen(false)
 
+    const vidRef = useRef<HTMLVideoElement>(null)
+    const handleReplay = () => {
+        if (vidRef.current) {
+            vidRef.current.currentTime = 0
+            vidRef.current.play()
+        }
+    }
+
     return (
         <div>
             <div className="relative h-[calc(100vh-66px)] overflow-x-hidden">
+                {isVidEnded && (
+                    <MdOutlineReplay
+                        onClick={handleReplay}
+                        className='absolute top-4 right-4 text-white text-4xl cursor-pointer z-10' />
+
+                )}
                 <video className="absolute top-0 left-0 w-full h-full object-contain bg-black sm:object-cover z-[-1]"
+                    ref={vidRef}
                     autoPlay
                     muted
                     onEnded={() => setIsVidEnded(true)}
