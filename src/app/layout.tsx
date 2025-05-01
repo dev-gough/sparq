@@ -27,6 +27,7 @@ const aboutDropdown = [
 ]
 
 const investorDropdown = [
+  { label: "Investor Highlights", href: "/test#highlights"},
   { label: "News", href: "/investors/news" },
   { label: "Events", href: "/investors/events" },
   { label: "Stock", href: "/investors/stock"},
@@ -54,7 +55,7 @@ const resourcesDropdown = [
 const navbarItems = [
   { label: "About", href: "/about", dropdown: aboutDropdown },
   { label: "Products", href: "/products", dropdown: productDropdown },
-  { label: "Investor Relations", href: "/investors", dropdown: investorDropdown },
+  { label: "Investor Relations", href: "/test", dropdown: investorDropdown },
   { label: "Resources", href: "/resources", dropdown: resourcesDropdown },
   { label: "Contact", href: "/contact" },
   { label: "Support", href: "/support"},

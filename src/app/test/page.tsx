@@ -45,8 +45,8 @@ export default function Test() {
     }
 
     return (
-        <div>
-            <div className="relative h-[calc(100vh-66px)] overflow-x-hidden">
+        <div className='scroll-mt-[66px]'>
+            <div className="relative h-[calc(100vh-66px)] overflow-x-hidden ">
                 {isVidEnded && (
                     <MdOutlineReplay
                         onClick={handleReplay}
