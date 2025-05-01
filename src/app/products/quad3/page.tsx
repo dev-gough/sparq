@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
+import FAQs from "./faqs.json"
 
 export default function Quad3Page() {
     const models = ["Quad3-4301"]
@@ -108,6 +109,14 @@ export default function Quad3Page() {
                         </AccordionItem>
                         <AccordionItem title="Comparison with Leading Microinverter" open={true}>
                             <Link href="/Q2000/Comparison-of-Q2000-4302-with-IQ8H-3p.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H-3p</Link>
+                        </AccordionItem>
+                        <AccordionItem title="Quad3 FAQs">
+                            {FAQs.subQuestions.map((item) => (
+                                <div key={item.id} className="text-gray-700 my-4">
+                                <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
+                                {item.answer}
+                            </div>
+                            ))}
                         </AccordionItem>
                     </div>
                 </div>
