@@ -35,6 +35,6 @@ html {
     scroll-behavior: smooth !important;
 }
 
-[id] {
-    scroll-margin-top: 114px;
+.logo-slider .swiper-wrapper {
+    transition-timing-function: linear;
 }

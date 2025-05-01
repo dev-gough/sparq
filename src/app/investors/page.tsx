@@ -9,6 +9,19 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Autoplay, Pagination, Navigation } from 'swiper/modules'
+import PartnerLogoCarousel from '@/components/PartnerSlider'
+
+const partners = [
+    { src: "/logo.png", alt: "logo1" },
+    { src: "/Logos/epower.jpeg", alt: "QueensU Epower Lab" },
+    { src: "/Logos/jiothings.jpeg", alt: "JioThings" },
+    { src: "/Logos/reliance.png", alt: "Reliance" },
+    { src: "/Logos/iljin.png", alt: "ILJIN" },
+    { src: "/Logos/queens.jpg", alt: "QueensU" },
+    { src: "/Logos/stlawrence.png", alt: "St. Lawrence College" },
+    { src: "/Logos/modernniagara.jpg", alt: "logo1" }
+]
+
 
 export default function InvestorPage() {
 
@@ -54,7 +67,7 @@ export default function InvestorPage() {
                         onSlideChange={() => setExpanded(false)}
                     >
                         <SwiperSlide>
-                            <div className='px-0 sm:px-64 sm:pt-8'>
+                            <div className='px-0 sm:px-40 sm:pt-8'>
                                 <h2 className='text-lg sm:text-3xl font-extrabold border-b-2 border-brand-yellow mb-2'>Global Strategic Partnerships for R&D, Manufacturing and Distribution</h2>
                                 <ul className="list-disc list-inside text-lg sm:text-2xl">
                                     <li><Link href="https://www.queensu.ca/epower/" target="_blank" className="text-blue-400 hover:underline">ePower</Link></li>
@@ -65,7 +78,7 @@ export default function InvestorPage() {
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <div className='px-0 sm:px-64 sm:pt-8'>
+                            <div className='px-0 sm:px-40 sm:pt-8'>
                                 <h1 className='text-lg sm:text-3xl font-extrabold border-b-2 border-brand-yellow mb-2'>Multiple Strategic Test Sites for R&D with Leading Institutions and C&I Sites</h1>
                                 <ul className="list-disc list-inside text-lg sm:text-2xl">
                                     <li><Link href="https://www.investkingston.ca/rd/#1643990910571-444406ce-b63e" target='_blank' className='text-blue-400 hover:underline'>Queen&apos;s University</Link></li>
@@ -75,8 +88,8 @@ export default function InvestorPage() {
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <div className='px-0 sm:px-64 sm:pt-8'>
-                                <h2 className="text-lg sm:text-3xl font-extrabold border-b-2 border-brand-yellow sm:h-[72px]">
+                            <div className='px-0 sm:px-40 sm:pt-8'>
+                                <h2 className="text-lg sm:text-3xl font-extrabold border-b-2 border-brand-yellow">
                                     SPARQ Recieves Purchase Order for Additional 20MW Worth of Microinverters
                                 </h2>
                                 <button className={`sm:text-2xl text-lg text-blue-400 cursor-pointer mt-8 ${expanded ? "hidden" : ""}`} onClick={() => setExpanded(true)}>Show Details</button>
@@ -96,8 +109,8 @@ export default function InvestorPage() {
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <div className='px-0 sm:px-64 sm:pt-8'>
-                                <h2 className="text-lg sm:text-3xl font-extrabold border-b-2 border-brand-yellow sm:h-[72px]">
+                            <div className='px-0 sm:px-40 sm:pt-8'>
+                                <h2 className="text-lg sm:text-3xl font-extrabold border-b-2 border-brand-yellow">
                                     SPARQ Systems Named in TSX Venture 50 List of Top Performing Companies
                                 </h2>
                                 <button className={`sm:text-2xl text-lg text-blue-400 cursor-pointer mt-8 ${expanded ? "hidden" : ""}`} onClick={() => setExpanded(true)}>Show Details</button>
@@ -117,7 +130,7 @@ export default function InvestorPage() {
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <div className='px-0 sm:px-64 sm:pt-8'>
+                            <div className='px-0 sm:px-40 sm:pt-8'>
                                 <h2 className='text-lg sm:text-3xl font-extrabold border-b-2 border-brand-yellow'>SPARQ Receives 12 MW Worth of Purchase Orders</h2>
                                 <button className={`sm:text-2xl text-lg text-blue-400 cursor-pointer mt-8 ${expanded ? "hidden" : ""}`} onClick={() => setExpanded(true)}>Show Details</button>
                                 {expanded && (
@@ -134,7 +147,7 @@ export default function InvestorPage() {
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <div className='px-0 sm:px-64 sm:pt-8'>
+                            <div className='px-0 sm:px-40 sm:pt-8'>
                                 <h2 className='text-lg sm:text-3xl font-extrabold border-b-2 border-brand-yellow'>Sparq Systems CEO Interview - Dr. Praveen Jain</h2>
                                 <button className={`text-lg sm:text-2xl text-blue-400 cursor-pointer mt-8 ${expanded ? "hidden" : ""}`} onClick={() => setExpanded(true)}>Show Details</button>
                                 {expanded && (
@@ -152,7 +165,11 @@ export default function InvestorPage() {
                     </Swiper>
                 </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 px-2">
+            <div className='my-8 rounded-xl'>
+                <h1 className='text-3xl font-bold text-center'>Our Partners</h1>
+                <PartnerLogoCarousel logos={partners} />
+            </div>
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 px-2">
                 <div className="bg-gray-100 rounded-lg py-6 px-2 sm:p-6 text-center">
                     <h1 className="text-2xl font-bold">Best in-class Performance</h1>
                     <ul className='flex flex-col list-inside list-disc items-start sm:text-lg text-slate-700 mt-2'>
@@ -180,7 +197,7 @@ export default function InvestorPage() {
                         <li>Outlier on Performance-Cost Curve</li>
                     </ul>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

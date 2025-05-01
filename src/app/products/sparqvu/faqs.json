@@ -1,0 +1,19 @@
+{
+    "subQuestions": [
+        {
+            "id": 2,
+            "question": "There is no data displayed on the SparqVu Dashboard page.",
+            "answer": "Try connecting to the SparqLinq Dashboard page and see if data is being logged. If so, power cycle the SparqLinq and then review the SparqVu site after about 10 mins. If there was several days of backlogged data, it may take a while for the data to be updated."
+        },
+        {
+            "id": 3,
+            "question": "How do I register my project on the SparqVu site?",
+            "answer": "On the SparqLinq dashboard, click on the menu icon (three horizontal bars) in the top left corner of the dashboard page then select the SparqVu Token option. Enter the full email address that was used to create the SparqVu account and click \"Generate Access Token\" and copy the Project ID and Token values. Login to your SparqVu account and click the add a new site button, paste the project ID copied from the SparqLinq into the project ID field on SparqVu. Click the Go to Security Check button. Enter the Token copied from the SparqLinq and click Check Access Token. The SparqLinq should now be added to this SparqVu account."
+        },
+        {
+            "id": 4,
+            "question": "How do I register for an account on the SparqVu.com website?",
+            "answer": "Go to SparqVu.com and click on the Register tab. Under 'Register for A New Account' enter your email address and a password twice then click Register. Go to your email account and click the activate link."
+        }
+    ]
+}

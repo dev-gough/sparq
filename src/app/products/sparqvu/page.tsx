@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
+import FAQs from "./faqs.json"
 
 export default function SparqVuPage() {
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
@@ -16,7 +17,7 @@ export default function SparqVuPage() {
                     Products
                 </Link>{" "}
                 &gt;{" "}
-                <Link href="/products/SparqVu" className="hover:underline px-2">
+                <Link href="/products/sparqvu" className="hover:underline px-2">
                     SparqVu
                 </Link>
             </div>
@@ -39,7 +40,7 @@ export default function SparqVuPage() {
                     </button>
 
                     <div className="p-4 sm:mt-16">
-                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto">
+                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" open={true}>
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Data when you need it</strong>
                                     <ul className="list-inside list-disc text-black">
@@ -59,22 +60,26 @@ export default function SparqVuPage() {
                                 </li>
                             </ul>
                         </AccordionItem>
-                        <AccordionItem title="Technical specifications" open={true}>
-                            <div>
-                            </div>
-                        </AccordionItem>
                         <AccordionItem title="Documentation" open={true}>
-                            <div></div>
+                            <Link href="/SparqVu.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">SparqVu Manual</Link>
+                        </AccordionItem>
+                        <AccordionItem title="SparqVu FAQs">
+                            {FAQs.subQuestions.map((item) => (
+                                <div key={item.id} className="text-gray-700 my-4">
+                                <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
+                                {item.answer}
+                            </div>
+                            ))}
                         </AccordionItem>
                     </div>
                 </div>
                 <div className="flex-1">
                     <Image
-                        src="/SparqVu.jpg"
+                        src="/sparqvu.png"
                         alt="Sparq Linq Monitoring Tool"
                         width={1920}
                         height={1084}
-                        className="object-contain sticky top-16 z-10 border border-black rounded-xl"
+                        className="object-contain sticky top-16 z-10 rounded-xl"
                     />
                 </div>
             </div>

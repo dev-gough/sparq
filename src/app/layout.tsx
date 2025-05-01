@@ -4,6 +4,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { Nunito } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import ForceScroll from "@/components/ForceScroll"
 
 export const metadata: Metadata = {
   title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
@@ -26,6 +27,7 @@ const aboutDropdown = [
 ]
 
 const investorDropdown = [
+  { label: "Investor Highlights", href: "/test#highlights"},
   { label: "News", href: "/investors/news" },
   { label: "Events", href: "/investors/events" },
   { label: "Stock", href: "/investors/stock"},
@@ -53,7 +55,7 @@ const resourcesDropdown = [
 const navbarItems = [
   { label: "About", href: "/about", dropdown: aboutDropdown },
   { label: "Products", href: "/products", dropdown: productDropdown },
-  { label: "Investor Relations", href: "/investors", dropdown: investorDropdown },
+  { label: "Investor Relations", href: "/test", dropdown: investorDropdown },
   { label: "Resources", href: "/resources", dropdown: resourcesDropdown },
   { label: "Contact", href: "/contact" },
   { label: "Support", href: "/support"},
@@ -68,6 +70,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${nunito.className} flex flex-col min-h-screen overflow-y-scroll`}>
         <Header navItems={navbarItems} />
+        <ForceScroll />
         <main className="flex-grow">
           {children}
         </main>

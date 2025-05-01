@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
+import FAQs from "./faqs.json"
 
 export default function ProductPage() {
     const models = ["Q2000-4102", "Q2000-4102-DM", "Q2000-4102-GT"]
@@ -129,6 +130,14 @@ export default function ProductPage() {
                         </AccordionItem>
                         <AccordionItem title="Comparison with Leading Microinverter">
                             <Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H</Link>
+                        </AccordionItem>
+                        <AccordionItem title="Q2000 FAQs">
+                            {FAQs.subQuestions.map((item) => (
+                                <div key={item.id} className="text-gray-700 my-4">
+                                <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
+                                {item.answer}
+                            </div>
+                            ))}
                         </AccordionItem>
                     </div>
                 </div>
