@@ -8,7 +8,7 @@ import { Swiper } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { Autoplay, Pagination, Navigation } from 'swiper/modules'
+import { Autoplay, Pagination } from 'swiper/modules'
 import PartnerLogoCarousel from '@/components/PartnerSlider'
 
 import { MdOutlineReplay } from 'react-icons/md'
