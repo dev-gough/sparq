@@ -17,7 +17,7 @@ export default function SparqVuPage() {
                     Products
                 </Link>{" "}
                 &gt;{" "}
-                <Link href="/products/SparqVu" className="hover:underline px-2">
+                <Link href="/products/sparqvu" className="hover:underline px-2">
                     SparqVu
                 </Link>
             </div>
@@ -40,7 +40,7 @@ export default function SparqVuPage() {
                     </button>
 
                     <div className="p-4 sm:mt-16">
-                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto">
+                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" open={true}>
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Data when you need it</strong>
                                     <ul className="list-inside list-disc text-black">
@@ -60,14 +60,10 @@ export default function SparqVuPage() {
                                 </li>
                             </ul>
                         </AccordionItem>
-                        <AccordionItem title="Technical specifications" open={true}>
-                            <div>
-                            </div>
-                        </AccordionItem>
                         <AccordionItem title="Documentation" open={true}>
-                            <div></div>
+                            <Link href="/SparqVu.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">SparqVu Manual</Link>
                         </AccordionItem>
-                        <AccordionItem title="Q2000 FAQs">
+                        <AccordionItem title="SparqVu FAQs">
                             {FAQs.subQuestions.map((item) => (
                                 <div key={item.id} className="text-gray-700 my-4">
                                 <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
