@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
+import FAQs from "./faqs.json"
 
 export default function SparqVuPage() {
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
@@ -66,15 +67,23 @@ export default function SparqVuPage() {
                         <AccordionItem title="Documentation" open={true}>
                             <div></div>
                         </AccordionItem>
+                        <AccordionItem title="Q2000 FAQs">
+                            {FAQs.subQuestions.map((item) => (
+                                <div key={item.id} className="text-gray-700 my-4">
+                                <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
+                                {item.answer}
+                            </div>
+                            ))}
+                        </AccordionItem>
                     </div>
                 </div>
                 <div className="flex-1">
                     <Image
-                        src="/SparqVu.jpg"
+                        src="/sparqvu.png"
                         alt="Sparq Linq Monitoring Tool"
                         width={1920}
                         height={1084}
-                        className="object-contain sticky top-16 z-10 border border-black rounded-xl"
+                        className="object-contain sticky top-16 z-10 rounded-xl"
                     />
                 </div>
             </div>

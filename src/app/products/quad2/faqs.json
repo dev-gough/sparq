@@ -1,0 +1,54 @@
+{
+    "subQuestions": [
+        {
+            "id": 18,
+            "question": "How can I tell if the Q2000 inverter is working?",
+            "answer": "The status LED on the Q2000 will be flashing green when working correctly. If the LED is flashing Red, this indicates an AC issue so check the AC breaker. If the LED is amber, this indicates a ground fault was detected so check for faulty DC wiring then connect to the SparqLinq and go to the 'Settings->Inverter Management' page and click the Clear GFDI (blue lightning bolt) icon."
+        },
+        {
+            "id": 19,
+            "question": "What is the Sparq Quad2000 microinverter, and what are its key features?",
+            "answer": "The Sparq Quad 2000 is a high-efficiency microinverter supporting up to four PV module inputs, each with independent MPPT. It simplifies wiring with a single AC trunk output.  Its key features include dual-mode operation (grid-tied and off-grid), high power density, a modular design, and real-time system monitoring via SparqVu and SparqSync."
+        },
+        {
+            "id": 20,
+            "question": "Which AC electrical systems are compatible with the Quad 2000?",
+            "answer": "Compatible systems include: Split-phase 120/240V, three-phase 120/208V, single-phase 230V, and three-phase Y-connected 230/400V with neutral."
+        },
+        {
+            "id": 21,
+            "question": "What PV panels can be used with the Quad 2000?",
+            "answer": "The maximum wattage per panel is 680W per input.  The voltage range is 20-60V (Voc), and the current limit is 18A (Isc).  Any panel that meets these specifications can be used."
+        },
+        {
+            "id": 22,
+            "question": "What do the LED indicators mean?",
+            "answer": "LEDs provide system feedback such as power-up status, grid connection, fault alerts, and communication signals.  Please see the user manual for a full LED legend."
+        },
+        {
+            "id": 23,
+            "question": "Does it support cloud-based monitoring?",
+            "answer": "Yes, the Quad2000 integrates with SparqVu to provide real-time performance tracking, remote diagnostics, and system alerts."
+        },
+        {
+            "id": 24,
+            "question": "Is there a mobile app available?",
+            "answer": "Yes. The Sparq app is available for iOS and Android for remote monitoring and notifications."
+        },
+        {
+            "id": 25,
+            "question": "How are firmware updates delivered?",
+            "answer": "Firmware updates are automatic and over-the-air via the Sparq Gateway, provided the system is connected to the internet."
+        },
+        {
+            "id": 26,
+            "question": "Can the Quad 2000 operate off-grid?",
+            "answer": "Yes. Off-grid mode is supported and can be enabled via the Sparq Gateway."
+        },
+        {
+            "id": 27,
+            "question": "Can it power a single-phase water pump?",
+            "answer": "Yes. The Quad 2000 can support nonlinear loads, including single-phase water pumps."
+        }
+    ]
+}
