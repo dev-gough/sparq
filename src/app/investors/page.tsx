@@ -103,8 +103,7 @@ export default function Test() {
                                         </div>
 
                                     </div>
-                                    <div className='my-16 rounded-xl'>
-                                        <h1 className='text-3xl font-bold text-center text-black'>Our Partners</h1>
+                                    <div className='my-16'>
                                         <PartnerLogoCarousel logos={partners} />
                                     </div>
                                 </div>
@@ -127,10 +126,10 @@ export default function Test() {
                                     </h2>
                                     {expanded && (
                                         <div>
-                                            <p className='text-md sm:text-4xl pt-4'>SPARQ is pleased to announce that on August 27, 2024 the Company received a purchase order for supplying 10,000 Q2000 Quad Microinverters for the Indian market. This order is in addition to the order for 6,000 Q2000 Quad Microinverters announced in June 2024.</p>
+                                            <p className='text-md sm:text-4xl pt-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>SPARQ is pleased to announce that on August 27, 2024 the Company received a purchase order for supplying 10,000 Q2000 Quad Microinverters for the Indian market. This order is in addition to the order for 6,000 Q2000 Quad Microinverters announced in June 2024.</p>
                                             <ul className="mt-4">
                                                 <li>
-                                                    <Link href="https://finance.yahoo.com/news/sparq-receives-purchase-order-additional-211000433.html" className="text-blue-400 hover:underline text-xl sm:text-2xl" target='_blank'>
+                                                    <Link href="https://finance.yahoo.com/news/sparq-receives-purchase-order-additional-211000433.html" className="text-blue-400 hover:underline text-xl sm:text-4xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]" target='_blank'>
                                                         Read More
                                                     </Link>
                                                 </li>
@@ -140,18 +139,18 @@ export default function Test() {
 
                                 </div>
                             </SwiperSlide>
-                            <SwiperSlide>
+                            <SwiperSlide className='relative'>
+                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white border-2 rounded-xl p-2 cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={() => setExpanded(true)}>Show Details</button>
                                 <div className='px-0 sm:px-40 sm:pt-8'>
-                                    <h2 className="text-lg sm:text-3xl font-extrabold border-b-2 border-brand-yellow">
+                                    <h2 className="text-lg sm:text-6xl font-extrabold border-b-2 border-brand-yellow drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                                         SPARQ Systems Named in TSX Venture 50 List of Top Performing Companies
                                     </h2>
-                                    <button className={`sm:text-2xl text-lg text-blue-400 cursor-pointer mt-8 ${expanded ? "hidden" : ""}`} onClick={() => setExpanded(true)}>Show Details</button>
                                     {expanded && (
                                         <div>
-                                            <p className='text-md sm:text-2xl pt-4'>Sparq Systems Inc. is pleased to announce that it has been included in the TSX Venture 50 list in the Clean Technology and Renewable Energy sector.</p>
+                                            <p className='text-md sm:text-4xl pt-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Sparq Systems Inc. is pleased to announce that it has been included in the TSX Venture 50 list in the Clean Technology and Renewable Energy sector.</p>
                                             <ul className="mt-4 space-y-2">
                                                 <li>
-                                                    <Link href="https://ca.finance.yahoo.com/news/sparq-systems-named-tsx-venture-220100985.html" className="text-blue-400 hover:underline text-xl sm:text-2xl" target='_blank'>
+                                                    <Link href="https://ca.finance.yahoo.com/news/sparq-systems-named-tsx-venture-220100985.html" className="text-blue-400 hover:underline text-xl sm:text-4xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]" target='_blank'>
                                                         Read More
                                                     </Link>
                                                 </li>
@@ -161,33 +160,33 @@ export default function Test() {
 
                                 </div>
                             </SwiperSlide>
-                            <SwiperSlide>
+                            <SwiperSlide className='relative'>
+                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white border-2 rounded-xl p-2 cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={() => setExpanded(true)}>Show Details</button>
                                 <div className='px-0 sm:px-40 sm:pt-8'>
-                                    <h2 className='text-lg sm:text-3xl font-extrabold border-b-2 border-brand-yellow'>SPARQ Receives 12 MW Worth of Purchase Orders</h2>
-                                    <button className={`sm:text-2xl text-lg text-blue-400 cursor-pointer mt-8 ${expanded ? "hidden" : ""}`} onClick={() => setExpanded(true)}>Show Details</button>
+                                    <h2 className='text-lg sm:text-6xl font-extrabold border-b-2 border-brand-yellow drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>SPARQ Receives 12 MW Worth of Purchase Orders</h2>
                                     {expanded && (
                                         <div>
-                                            <p className='text-md sm:text-2xl pt-4'>Sparq is pleased to announce that on June 26, 2024 the Company received purchase orders for supplying over six-thousand Q2000 Quad Microinverters for the Indian market. </p>
-                                            <p className='text-md sm:text-2xl pt-4'>&quot;It is a major step forward for the Company to enter into the Indian PV market,&quot; commented Dr. Praveen Jain, Chief Executive Officer of SPARQ.</p>
+                                            <p className='text-md sm:text-4xl pt-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Sparq is pleased to announce that on June 26, 2024 the Company received purchase orders for supplying over six-thousand Q2000 Quad Microinverters for the Indian market. </p>
+                                            <p className='text-md sm:text-4xl pt-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>&quot;It is a major step forward for the Company to enter into the Indian PV market,&quot; commented Dr. Praveen Jain, Chief Executive Officer of SPARQ.</p>
                                             <ul className='mt-4 space-y-2'>
                                                 <li>
-                                                    <Link className='text-blue-400 hover:underline text-xl sm:text-2xl' href="https://finance.yahoo.com/news/sparq-receives-12-mw-worth-112000213.html" target='_blank'>Read More</Link>
+                                                    <Link className='text-blue-400 hover:underline text-xl sm:text-4xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' href="https://finance.yahoo.com/news/sparq-receives-12-mw-worth-112000213.html" target='_blank'>Read More</Link>
                                                 </li>
                                             </ul>
                                         </div>
                                     )}
                                 </div>
                             </SwiperSlide>
-                            <SwiperSlide>
+                            <SwiperSlide className='relative'>
+                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white border-2 rounded-xl p-2 cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={() => setExpanded(true)}>Show Details</button>
                                 <div className='px-0 sm:px-40 sm:pt-8'>
-                                    <h2 className='text-lg sm:text-3xl font-extrabold border-b-2 border-brand-yellow'>Sparq Systems CEO Interview - Dr. Praveen Jain</h2>
-                                    <button className={`text-lg sm:text-2xl text-blue-400 cursor-pointer mt-8 ${expanded ? "hidden" : ""}`} onClick={() => setExpanded(true)}>Show Details</button>
+                                    <h2 className='text-lg sm:text-6xl font-extrabold border-b-2 border-brand-yellow drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Sparq Systems CEO Interview - Dr. Praveen Jain</h2>
                                     {expanded && (
                                         <div>
-                                            <p className='text-md sm:text-2xl pt-4'>In this interview, Justin sits down with Dr. Praveen Jain, CEO of Sparq Systems (TSXV:SPRQ, OTC:SPRQF), a company revolutionizing solar energy with its next-generation single-phase microinverters.</p>
+                                            <p className='text-md sm:text-4xl pt-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>In this interview, Justin sits down with Dr. Praveen Jain, CEO of Sparq Systems (TSXV:SPRQ, OTC:SPRQF), a company revolutionizing solar energy with its next-generation single-phase microinverters.</p>
                                             <ul className='mt-4 space-y-2'>
                                                 <li>
-                                                    <Link className='text-blue-400 hover:underline text-xl sm:text-2xl' href="https://www.youtube.com/watch?v=8OJ02vvC-Os" target='_blank'>Watch Here</Link>
+                                                    <Link className='text-blue-400 hover:underline text-xl sm:text-4xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' href="https://www.youtube.com/watch?v=8OJ02vvC-Os" target='_blank'>Watch Here</Link>
                                                 </li>
                                             </ul>
                                         </div>
