@@ -18,6 +18,7 @@ const nunito = Nunito({
 })
 
 const aboutDropdown = [
+  { label: "Passion", href: "/about"},
   { label: "Mission", href: "/about/statements#mission" },
   { label: "Vision", href: "/about/statements#vision" },
   { label: "Value", href: "/about/statements#values" },
@@ -27,7 +28,7 @@ const aboutDropdown = [
 ]
 
 const investorDropdown = [
-  { label: "Investor Highlights", href: "/test#highlights"},
+  { label: "Investor Highlights", href: "/investors#highlights"},
   { label: "News", href: "/investors/news" },
   { label: "Events", href: "/investors/events" },
   { label: "Stock", href: "/investors/stock"},
@@ -49,13 +50,13 @@ const resourcesDropdown = [
   { label: "Installers", href: "/resources/installers" },
   { label: "Photo Gallery", href: "/resources/photos" },
   { label: "Video Gallery", href: "/resources/videos" },
-  { label: "Design My System", href: "/resources/design" },
+  { label: "Design Your System", href: "/resources/design" },
 ]
 
 const navbarItems = [
   { label: "About", href: "/about", dropdown: aboutDropdown },
   { label: "Products", href: "/products", dropdown: productDropdown },
-  { label: "Investor Relations", href: "/test", dropdown: investorDropdown },
+  { label: "Investor Relations", href: "/investors", dropdown: investorDropdown },
   { label: "Resources", href: "/resources", dropdown: resourcesDropdown },
   { label: "Contact", href: "/contact" },
   { label: "Support", href: "/support"},

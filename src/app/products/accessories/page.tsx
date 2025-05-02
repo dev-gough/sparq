@@ -85,7 +85,7 @@ const cableSpecs: CableSpec[] = [
 function CableTable() {
   return (
     <div className="overflow-x-auto rounded-lg border bg-white shadow">
-      <table className="min-w-full divide-y divide-gray-300 text-sm">
+      <table className="min-w-full divide-y divide-gray-300 text-xl">
         <thead className="bg-gray-50">
           <tr>
             <th className="px-4 py-3 text-left font-semibold text-gray-900">Description</th>
@@ -121,7 +121,7 @@ function CableTable() {
           )}
         </tbody>
       </table>
-      <p className="mt-2 px-4 pb-4 text-xs italic text-gray-500">
+      <p className="mt-2 px-4 pb-4 text-md italic text-gray-500">
         * Color coding for North America:&nbsp;
         <span className="font-semibold">Black</span> (Line 1),
         <span className="font-semibold"> Red</span> (Line 2),
@@ -182,7 +182,7 @@ export default function AccessoriesPage() {
 
       {/* ------------------------------ Tools ---------------------------------- */}
       <section id="tools" className="mt-16 scroll-mt-20">
-        <h2 className="mb-4 text-2xl font-semibold text-gray-900">Tools</h2>
+        <h2 className="mb-4 text-2xl font-semibold text-gray-900">DC/AC Unlock Tool</h2>
         <div className="flex justify-center">
           <Image
             src="/Accessories/unlocking.png"

@@ -14,6 +14,36 @@
             "id": 4,
             "question": "How do I register for an account on the SparqVu.com website?",
             "answer": "Go to SparqVu.com and click on the Register tab. Under 'Register for A New Account' enter your email address and a password twice then click Register. Go to your email account and click the activate link."
+        },
+        {
+            "id": 14,
+            "question": "What is Electricity Unit Price?",
+            "answer": "Electricity unit price refers to the cost you pay per kilowatt-hour (kWh) of electricity consumed from the grid. This price can vary based on your electricity provider, the time of day, and the type of plan you're on (e.g., fixed, variable, or time-of-use pricing)."
+        },
+        {
+            "id": 15,
+            "question": "Why is it important?",
+            "answer": "The electricity unit price is used to calculate the amount of money you save by generating your own solar energy. By producing solar energy, you reduce the amount of electricity you need to purchase from the grid, directly lowering your electricity bill. To provide an accurate calculation, the app requires you to input your electricity unit price."
+        },
+        {
+            "id": 16,
+            "question": "How do I find this information?",
+            "answer": "You can find your electricity unit price on your electricity bill, usually listed as the cost per kWh. If you have multiple rates (e.g., peak and off-peak), you may input an average value."
+        },
+        {
+            "id": 10,
+            "question": "What is Carbon Intensity of Electricity Generation?",
+            "answer": "Carbon intensity refers to the amount of carbon dioxide (CO2) emissions produced per unit of electricity generated. It is typically measured in grams of CO2 per kilowatt-hour (g CO2/kWh). The carbon intensity can vary depending on the energy mix used by your local electricity grid (e.g., coal, natural gas, nuclear, or renewable energy sources like wind or solar)."
+        },
+        {
+            "id": 11,
+            "question": "Why is it important?",
+            "answer": "In the SPARQ User App, carbon intensity is used to calculate the reduction in CO2 emissions due to your solar plant. By producing your own solar energy, you reduce the need for electricity from the grid, thus lowering overall CO2 emissions. To accurately calculate this reduction, the app requires you to input the carbon intensity value for your region."
+        },
+        {
+            "id": 12,
+            "question": "How do I find this information?",
+            "answer": "You can find the carbon intensity for your area by checking with your local electricity provider or using online resources that track carbon intensity by region."
         }
     ]
 }

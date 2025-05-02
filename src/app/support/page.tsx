@@ -37,7 +37,7 @@ export default function SupportTicketPage() {
 							onChange={(e) => setCategory(e.target.value as Category | "")}
 							className="mt-1 w-full rounded-md border-gray-300 bg-white p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
 						>
-							<option value="">Select an issue...</option>
+							<option value="">General Support</option>
 							<option value="technical">Techincal Question</option>
 							<option value="installation">Installation</option>
 							<option value="warranty">Warranty</option>

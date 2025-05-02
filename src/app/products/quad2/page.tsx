@@ -30,8 +30,8 @@ export default function ProductPage() {
                 <div className="flex-1">
                     <h1 className="text-3xl font-bold text-gray-900 mt-1">Q2000 Microinverter</h1>
                     <ul className="list-inside list-disc space-y-4 mt-4">
-                        <li><strong>Revolutionary Design</strong>:Each Quad microinverter can independently track peak power for up to four PV modules, a significant advancement over traditional one-to-one microinverter systems.</li>
-                        <li><strong>Cost and efficiency benefits</strong>:Significantly reduces installation time and cable costs; offers the lowest cost, highest power output, highest power density, and lowest weight per Watt in the industry.</li>
+                        <li><strong>Revolutionary Design</strong>: Each Quad microinverter can independently track peak power for up to four PV modules, a significant advancement over traditional one-to-one microinverter systems.</li>
+                        <li><strong>Cost and efficiency benefits</strong>: Significantly reduces installation time and cable costs; offers the lowest cost, highest power output, highest power density, and lowest weight per Watt in the industry.</li>
                         <li><strong>High reliability</strong>: Utilizes patented technology to eliminate short-life electrolytic capacitors, ensuring a design life of 25 years, matching that of PV modules.</li>
                         <li><strong>Flagship product</strong>: The Q2000 microinverter can connect four 550W+ PV panels to the grid without any power clipping, demonstrating the technology&apos;s superior capabilities.</li>
                     </ul>
