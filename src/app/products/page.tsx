@@ -52,7 +52,7 @@ export default function ProductPage() {
                     </Link>
                     <Link href="products/sparqvu">
                         <GridDiv id='#sparqvu'>
-                            <Image className="w-full h-[256px] rounded-xl shadow-lg" src="/SparqVu.jpg" width={768} height={512} alt='SparqVu Performance Management System'/>
+                            <Image className="w-full h-[256px] rounded-xl shadow-lg" src="/pc-bg-1.webp" width={768} height={512} alt='SparqVu Performance Management System'/>
                             <h2 className='text-2xl font-bold text-brand-maroon mt-8'>SparqVu</h2>
                         </GridDiv>
                     </Link>

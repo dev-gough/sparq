@@ -9,7 +9,7 @@ export default function AboutPage() {
                 <p className='sm:mt-8 mt-4'>SPARQ was born out of a passion to create leading edge solar energy solutions that support a greener future for our planet. Founder Dr. Praveen Jain is a world-leader in energy research, holding over 100 patents. His advanced research at ePower, the Centre for Energy and Power Electronics Research at Queen&apos;s University in Kingston, Canada, resulted in the development of SPARQ&apos;s innovative and versatile microinverter design.</p>
                 <p className='mt-4'>Today, SPARQ&apos;s microinverter system is resetting the industry standard for solar energy systems, delivering greater energy harvest over traditional string inverters. It can be used in any power grid, conventional or smart, around the globe.</p>
             </section>
-            <section id="learnmore" className="sm:mb-16 mb-8 text-sm sm:text-[22px]">
+            <section id="learnmore" className="sm:mb-16 mb-8 text-sm sm:text-[22px] scroll-mt-[115px]">
                 <h1 className="sm:text-5xl text-xl font-bold text-brand-maroon">
                     Your cost-effective, reliable solar energy system.
                 </h1>

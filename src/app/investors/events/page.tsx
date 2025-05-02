@@ -58,7 +58,7 @@ export default function EventPage() {
     const curDate = new Date()
 
     return (
-        <section id="events" className="items-center justify-center px-4">
+        <section id="events" className="items-center justify-center px-4 min-h-screen">
             <h1 className="text-center text-5xl font-light mt-16">Events</h1>
             <hr className="sm:mb-16 mb-8 mt-2 text-slate-300" />
             <h2 className="text-3xl font-light">Upcoming</h2>
