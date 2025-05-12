@@ -107,7 +107,7 @@ export default function Quad3Page() {
                             <h2 className="text-lg font-bold">Installation Manual for {selectedModel}:</h2>
                             <Link className="text-blue-500 hover:text-blue-700" href="/Quad3.pdf" target="_blank">All Regions</Link>
                         </AccordionItem>
-                        <AccordionItem title="Comparison with Leading Microinverter" open={true}>
+                        <AccordionItem title="Comparison with Leading Microinverter">
                             <Link href="/Q2000/Comparison-of-Q2000-4302-with-IQ8H-3p.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H-3p</Link>
                         </AccordionItem>
                         <AccordionItem title="Quad3 FAQs">

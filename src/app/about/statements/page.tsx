@@ -6,10 +6,10 @@ import Image from "next/image"
 
 export default function StatementsPage() {
     return (
-        <div id="mission" className="flex flex-col items-center bg-[#faf8f9] scroll-mt-[115px]">
+        <div id="mission" className="flex flex-col items-center bg-[#fefefe] scroll-mt-[115px]">
             <div className="relative flex h-[calc(100vh-114px)] w-full bg-[url(/SLC/009.JPG)] bg-center bg-no-repeat bg-cover justify-center">
                 <Image src="/logo.png" alt="Sparq Logo" height={125} width={125} className="absolute top-2 right-2" />
-                <div className="absolute top-2/5 bg-transparent rounded-xl p-12 border-l-8 border-white w-full max-w-4/5">
+                <div className="absolute top-1/2 bg-transparent rounded-xl p-12 border-l-8 border-white w-full max-w-4/5">
                     <div className="absolute -left-14 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-4 border-2 border-black">
                         <FaRocket className="h-16 w-16 text-black" />
                     </div>
@@ -18,7 +18,7 @@ export default function StatementsPage() {
                 </div>
             </div>
             <div id="vision" className="relative flex h-[calc(100vh-115px)] w-full bg-[url(/vision.jpg)] bg-no-repeat bg-contain justify-center scroll-mt-[115px]">
-                <div className="absolute left-[4%] top-2/5 bg-transparent rounded-xl mb-16 p-12 border-l-8 border-white w-full max-w-[50%]">
+                <div className="absolute left-[3%] top-2/5 bg-transparent rounded-xl mb-16 p-12 border-l-8 border-white w-full max-w-[50%]">
                     <div className="absolute -left-14 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-4 border-2 border-black">
                         <FaEye className="h-16 w-16 text-black" />
                     </div>
