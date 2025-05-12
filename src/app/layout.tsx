@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const nunito = Nunito({
   subsets: ["latin"],
-  weight: ["500", "800"],
+  weight: ["500", "800", "900"],
 })
 
 const aboutDropdown = [

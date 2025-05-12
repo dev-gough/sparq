@@ -14,14 +14,13 @@ import PartnerLogoCarousel from '@/components/PartnerSlider'
 import { MdOutlineReplay } from 'react-icons/md'
 
 const partners = [
-    { src: "/logo.png", alt: "logo1" },
-    { src: "/Logos/epower.png", alt: "QueensU Epower Lab" },
-    { src: "/Logos/jiothings.jpeg", alt: "JioThings" },
-    { src: "/Logos/reliance.png", alt: "Reliance" },
-    { src: "/Logos/iljin.png", alt: "ILJIN" },
-    { src: "/Logos/queens.jpg", alt: "QueensU" },
-    { src: "/Logos/stlawrence.png", alt: "St. Lawrence College" },
-    { src: "/Logos/modernniagara.jpg", alt: "logo1" }
+    { src: "/Logos/epower.png", alt: "QueensU Epower Lab", href: "https://www.queensu.ca/epower/" },
+    { src: "/Logos/jiothings.jpeg", alt: "JioThings", href: "https://www.jiothings.com/" },
+    { src: "/Logos/tmp.png", alt: "Reliance", href: "https://www.ril.com/" },
+    { src: "/Logos/iljin.png", alt: "ILJIN", href: "https://www.iljin.com/" },
+    { src: "/Logos/queens.jpg", alt: "QueensU", href: "https://www.queensu.ca/" },
+    { src: "/Logos/stlawrence.png", alt: "St. Lawrence College", href: "https://www.stlawrencecollege.ca/" },
+    { src: "/Logos/modernniagara.jpg", alt: "Modern Niagara Logo", href: "https://modernniagara.com/" }
 ]
 
 export default function Test() {
@@ -87,7 +86,7 @@ export default function Test() {
                                 pauseOnMouseEnter: true,
                             }}
                             className='text-white sm:h-[calc(100vh-114px)] h-90 [--swiper-pagination-bullet-size:15px] sm:[--swiper-pagination-bullet-size:30px] sm:[--swiper-navigation-size:70px] [--swiper-pagination-bullet-inactive-opacity:1] [--swiper-pagination-color:#8C344E] [--swiper-pagination-bullet-inactive-color:#fcb900]'
-                            onSlideChange={() => setExpanded(false)}
+                            onSlideChangeTransitionStart={() => setExpanded(false)}
                         >
                             <SwiperSlide>
                                 <div className='px-0 sm:px-40 sm:pt-8 flex flex-col h-full justify-between'>
@@ -119,7 +118,7 @@ export default function Test() {
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide className='relative'>
-                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white border-2 rounded-xl p-2 cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={() => setExpanded(true)}>Show Details</button>
+                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white  cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={() => setExpanded(true)}>Show Details</button>
                                 <div className='px-0 sm:px-40 sm:pt-8'>
                                     <h2 className="text-lg sm:text-6xl font-extrabold border-b-2 border-brand-yellow drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                                         SPARQ Recieves Purchase Order for Additional 20MW Worth of Microinverters

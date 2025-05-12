@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/luxon": "^3.6.2",
     "@vercel/speed-insights": "^1.2.0",
     "autoprefixer": "^10.4.20",
+    "lightweight-charts": "^5.0.6",
+    "luxon": "^3.6.1",
     "motion": "^12.9.2",
     "next": "^15.2.4",
     "postcss": "^8.5.3",

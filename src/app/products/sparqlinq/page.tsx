@@ -117,7 +117,7 @@ export default function SparqLinqPage() {
                         alt="Sparq Linq Monitoring Tool"
                         width={1920}
                         height={1084}
-                        className="object-contain sticky top-16 z-10"
+                        className="object-contain sticky top-16 z-10 rounded-xl"
                     />
                 </div>
             </div>

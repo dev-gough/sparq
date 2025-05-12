@@ -28,8 +28,8 @@ export default function ProductPage() {
             <div className="flex flex-col-reverse md:flex-row gap-8">
                 {/* Product Details */}
                 <div className="flex-1">
-                    <h1 className="text-3xl font-bold text-gray-900 mt-1">Q2000 Microinverter</h1>
-                    <ul className="list-inside list-disc space-y-4 mt-4">
+                    <h1 className="text-3xl [font-weight:900] text-gray-900 mt-1">Q2000 Microinverter</h1>
+                    <ul className="list-inside list-disc space-y-4 mt-4 text-brand-gray">
                         <li><strong>Revolutionary Design</strong>: Each Quad microinverter can independently track peak power for up to four PV modules, a significant advancement over traditional one-to-one microinverter systems.</li>
                         <li><strong>Cost and efficiency benefits</strong>: Significantly reduces installation time and cable costs; offers the lowest cost, highest power output, highest power density, and lowest weight per Watt in the industry.</li>
                         <li><strong>High reliability</strong>: Utilizes patented technology to eliminate short-life electrolytic capacitors, ensuring a design life of 25 years, matching that of PV modules.</li>
