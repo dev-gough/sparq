@@ -1,18 +1,18 @@
 'use client'
 
-import { SwiperRef, SwiperSlide } from 'swiper/react'
 import Link from "next/link"
 import { useState, useRef } from 'react'
+import Draggable from 'react-draggable'
 
-import { Swiper } from 'swiper/react'
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Autoplay, Pagination } from 'swiper/modules'
-import PartnerLogoCarousel from '@/components/PartnerSlider'
-import { useTrackEvent } from '@/hooks/useTrackEvent'
 
-import { MdOutlineReplay, MdOutlinePause, MdOutlinePlayArrow } from 'react-icons/md'
+import PartnerLogoCarousel from '@/components/PartnerSlider'
+import VideoControls from '@/components/VideoControls'
+import { useTrackEvent } from '@/hooks/useTrackEvent'
 
 const partners = [
     { src: "/Logos/epower.png", alt: "QueensU Epower Lab", href: "https://www.queensu.ca/epower/" },
@@ -31,6 +31,7 @@ export default function InvestorsPage() {
     const [isVidPaused, setIsVidPaused] = useState<boolean>(false)
     const vidRef = useRef<HTMLVideoElement>(null)
     const swiperRef = useRef<SwiperRef>(null)
+    const wrapperRef = useRef<HTMLDivElement>(null)
     const trackEvent = useTrackEvent()
 
     const handleReplay = () => {
@@ -38,75 +39,89 @@ export default function InvestorsPage() {
             vidRef.current.currentTime = 0
             vidRef.current.play()
             setIsVidEnded(false)
+            setIsVidPaused(false)
             trackEvent("video_replay", {
                 "video": "investors_video"
             })
         }
     }
 
-    const handleStop = () => {
-        if (vidRef.current) {
+    const handleRewind = () => {
+        if (!vidRef.current) return
+        vidRef.current.currentTime = Math.max(0, vidRef.current.currentTime - 10)
+    }
+
+    const handlePlayPause = () => {
+        const epsilon = 0.05
+        if (!vidRef.current) return
+        if (vidRef.current.paused || vidRef.current.ended) {
+            if (Math.abs(vidRef.current.currentTime - vidRef.current.duration) < epsilon) vidRef.current.currentTime = 0
+            vidRef.current.play()
+            setIsVidPaused(false)
+            setIsVidEnded(false)
+        } else {
             vidRef.current.pause()
             setIsVidPaused(true)
-            trackEvent("video_stop", {
-                "video": "investors_video"
-            })
         }
     }
 
-    const handlePlay = () => {
-        if (vidRef.current) {
-            vidRef.current.play()
-            setIsVidPaused(false)
-            trackEvent("video_play", {
-                "video": "investors_video"
-            })
-        }
+    const handleForward = () => {
+        if (!vidRef.current) return
+        vidRef.current.currentTime = Math.min(
+            vidRef.current.duration,
+            vidRef.current.currentTime + 10
+        )
+    }
+
+    const handleSkipToEnd = () => {
+        if (!vidRef.current) return
+        vidRef.current.currentTime = vidRef.current.duration
+        vidRef.current.pause()
+        setIsVidPaused(true)
+        setIsVidEnded(true)
     }
 
     const handleEnded = () => {
         setIsVidEnded(true)
+        setIsVidPaused(true)
         swiperRef.current?.swiper.autoplay.start()
     }
 
     const handleHighlightClick = () => {
         swiperRef.current?.swiper.slideTo(0, 0)
         trackEvent("button_click", {
-            "btn_name" : "investor_highlights"
+            "btn_name": "investor_highlights"
         })
     }
 
     const handlePresentationClick = () => {
         trackEvent("button_click", {
-            "btn_name" : "investor_presentation"
+            "btn_name": "investor_presentation"
         })
     }
 
     const handleShowDetailsClick = () => {
         setExpanded(true)
         trackEvent("button_click", {
-            "btn_name" : "investor_highlights_show"
+            "btn_name": "investor_highlights_show"
         })
     }
 
     return (
         <div className='scroll-mt-[114px]'>
             <div className="relative h-[calc(100vh-114px)] overflow-x-hidden ">
-                {isVidEnded && (
-                    <MdOutlineReplay
-                        onClick={handleReplay}
-                        className='absolute top-4 right-4 text-white text-4xl cursor-pointer z-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]' />
-                )}
-                {(!isVidEnded && !isVidPaused) && (
-                    <MdOutlinePause
-                        onClick={handleStop}
-                        className='absolute top-4 right-4 text-white text-4xl cursor-pointer z-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]' />
-                )}
-                {(!isVidEnded && isVidPaused) && (
-                    <MdOutlinePlayArrow
-                        onClick={handlePlay}
-                        className='absolute top-4 right-4 text-white text-4xl cursor-pointer z-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]' />
-                )}
+                <Draggable bounds="parent" nodeRef={wrapperRef as React.RefObject<HTMLElement>}>
+                    <div className='absolute top-4 right-4' ref={wrapperRef}>
+                        <VideoControls
+                            onRestart={handleReplay}
+                            onRewind={handleRewind}
+                            onPlayPause={handlePlayPause}
+                            onForward={handleForward}
+                            onSkipToEnd={handleSkipToEnd}
+                            isPaused={isVidPaused}
+                        />
+                    </div>
+                </Draggable>
                 <video
                     className="absolute top-0 left-0 w-full h-full object-contain bg-black sm:object-cover z-[-1]"
                     ref={vidRef}
