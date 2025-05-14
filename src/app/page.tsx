@@ -1,17 +1,26 @@
 'use client'
 import Link from "next/link"
 import { useState, useRef } from 'react'
-import { MdOutlineReplay } from 'react-icons/md'
+import Draggable from "react-draggable"
 
 import { useTrackEvent } from "@/hooks/useTrackEvent"
+import VideoControls from "@/components/VideoControls"
 
 export default function Home() {
     const trackEvent = useTrackEvent()
 
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false)
-    const [isVidEnded, setIsVidEnded] = useState<boolean>(false)
+    const [isVidPaused, setIsVidPaused] = useState<boolean>(false)
+    const [hasVidPlayed, setHasVidPlayed] = useState<boolean>(false)
     const [showButtons, setShowButtons] = useState<boolean>(false)
 
+    const timerRef = useRef<NodeJS.Timeout | null>(null)
+    const vidRef = useRef<HTMLVideoElement>(null)
+    const wrapperRef = useRef<HTMLDivElement>(null)
+
+    /*
+        Popup handlers
+    */
     const openPopup = () => {
         setIsPopupOpen(true)
         trackEvent("button_click", {
@@ -20,16 +29,53 @@ export default function Home() {
     }
     const closePopup = () => setIsPopupOpen(false)
 
-    const timerRef = useRef<NodeJS.Timeout | null>(null)
-    const vidRef = useRef<HTMLVideoElement>(null)
+
+    /*
+        Video Playback Handlers
+    */
     const handleReplay = () => {
         if (vidRef.current) {
             vidRef.current.currentTime = 0
             vidRef.current.play()
+            setIsVidPaused(false)
             trackEvent("video_replay", {
                 "video": "home_replay_alt_video"
             })
         }
+    }
+
+    const handleRewind = () => {
+        if (!vidRef.current) return
+        vidRef.current.currentTime = Math.max(0, vidRef.current.currentTime - 10)
+    }
+
+    const handlePlayPause = () => {
+        const epsilon = 0.05
+        if (!vidRef.current) return
+        if (vidRef.current.paused || vidRef.current.ended) {
+            if (Math.abs(vidRef.current.currentTime - vidRef.current.duration) < epsilon) vidRef.current.currentTime = 0
+            vidRef.current.play()
+            setIsVidPaused(false)
+        } else {
+            vidRef.current.pause()
+            setIsVidPaused(true)
+        }
+    }
+
+    const handleForward = () => {
+        if (!vidRef.current) return
+        vidRef.current.currentTime = Math.min(
+            vidRef.current.duration,
+            vidRef.current.currentTime + 10
+        )
+    }
+
+    const handleSkipToEnd = () => {
+        if (!vidRef.current) return
+        vidRef.current.currentTime = vidRef.current.duration
+        vidRef.current.pause()
+        setIsVidPaused(true)
+        setHasVidPlayed(true)
     }
 
     const startButtonTimer = () => {
@@ -39,7 +85,8 @@ export default function Home() {
     }
 
     const handlePlay = () => {
-        setIsVidEnded(false)
+        if (hasVidPlayed) return
+        setIsVidPaused(false)
         startButtonTimer()
         console.log('timer started')
     }
@@ -50,21 +97,25 @@ export default function Home() {
         })
     }
 
-
     return (
         <div>
             <div className="relative h-[calc(100vh-66px)] overflow-x-hidden">
-                {isVidEnded && (
-                    <MdOutlineReplay
-                        onClick={handleReplay}
-                        className='absolute top-4 right-4 text-white text-4xl cursor-pointer z-10' />
-
-                )}
+                <Draggable bounds="parent" nodeRef={wrapperRef as React.RefObject<HTMLElement>}>
+                    <div className="absolute top-4 right-4" ref={wrapperRef}>
+                        <VideoControls
+                            onRestart={handleReplay}
+                            onRewind={handleRewind}
+                            onPlayPause={handlePlayPause}
+                            onForward={handleForward}
+                            onSkipToEnd={handleSkipToEnd}
+                            isPaused={isVidPaused}
+                        />
+                    </div>
+                </Draggable>
                 <video className="absolute top-0 left-0 w-full h-full object-contain bg-black sm:object-cover z-[-1]"
                     ref={vidRef}
                     autoPlay
                     muted
-                    onEnded={() => setIsVidEnded(true)}
                     onPlay={handlePlay}
                 >
                     <source src="/output.mp4" type="video/mp4" />
