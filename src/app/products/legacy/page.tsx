@@ -49,7 +49,7 @@ export default function ProductPage() {
                         </div>
                     </div>
                     <div className="p-4 sm:mt-16">
-                        <AccordionItem title="Technical Specifications" open={true}>
+                        <AccordionItem title="Technical Specifications" open={true} parent="legacy">
                             <div>
                                 {selectedModel === "Q1200-4102-GT" && (
                                     <Link className="text-blue-500 hover:text-blue-700" href="/Q1200/Q1200-GT-discontinued.pdf" target="_blank">
@@ -63,7 +63,7 @@ export default function ProductPage() {
                                 )}
                             </div>
                         </AccordionItem>
-                        <AccordionItem title="Documentation" open={true}>
+                        <AccordionItem title="Documentation" open={true} parent="legacy">
                             <h2 className="text-lg font-bold">Installation Manuals for {selectedModel}:</h2>
                             <div className="flex flex-col">
                                 <Link className="text-blue-500 hover:text-blue-700" href="/Q1200/Q1200-Installer-NA.pdf" target="_blank">North America</Link>

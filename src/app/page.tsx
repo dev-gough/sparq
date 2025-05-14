@@ -15,7 +15,7 @@ export default function Home() {
     const openPopup = () => {
         setIsPopupOpen(true)
         trackEvent("button_click", {
-            "btn_name": "home_view_video"
+            "btn_name": "home_view_alt_video"
         })
     }
     const closePopup = () => setIsPopupOpen(false)
@@ -26,6 +26,9 @@ export default function Home() {
         if (vidRef.current) {
             vidRef.current.currentTime = 0
             vidRef.current.play()
+            trackEvent("video_replay", {
+                "video": "home_replay_alt_video"
+            })
         }
     }
 
@@ -39,6 +42,12 @@ export default function Home() {
         setIsVidEnded(false)
         startButtonTimer()
         console.log('timer started')
+    }
+
+    const handleLearnMore = () => {
+        trackEvent("button_click", {
+            "btn_name": "home_learn_more"
+        })
     }
 
 
@@ -63,7 +72,7 @@ export default function Home() {
                 <div className="flex flex-col items-center justify-center h-full transition-transform duration-200">
                     {showButtons && (
                         <div className="flex flex-row space-x-10 pt-8 mt-120">
-                            <Link href="/about#learnmore" className="bg-transparent border-white text-white hover:bg-slate-900 hover:text-white cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Learn More</Link>
+                            <Link href="/about#learnmore" className="bg-transparent border-white text-white hover:bg-slate-900 hover:text-white cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]" onClick={handleLearnMore}>Learn More</Link>
                             <button onClick={openPopup} className="bg-transparent border-white text-white hover:bg-slate-900 hover:text-white cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Watch Video</button>
                         </div>
                     )}

@@ -10,8 +10,9 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Autoplay, Pagination } from 'swiper/modules'
 import PartnerLogoCarousel from '@/components/PartnerSlider'
+import { useTrackEvent } from '@/hooks/useTrackEvent'
 
-import { MdOutlineReplay } from 'react-icons/md'
+import { MdOutlineReplay, MdOutlinePause, MdOutlinePlayArrow } from 'react-icons/md'
 
 const partners = [
     { src: "/Logos/epower.png", alt: "QueensU Epower Lab", href: "https://www.queensu.ca/epower/" },
@@ -23,18 +24,43 @@ const partners = [
     { src: "/Logos/modernniagara.jpg", alt: "Modern Niagara Logo", href: "https://modernniagara.com/" }
 ]
 
-export default function Test() {
+export default function InvestorsPage() {
 
     const [expanded, setExpanded] = useState<boolean>(false)
     const [isVidEnded, setIsVidEnded] = useState<boolean>(false)
+    const [isVidPaused, setIsVidPaused] = useState<boolean>(false)
     const vidRef = useRef<HTMLVideoElement>(null)
     const swiperRef = useRef<SwiperRef>(null)
+    const trackEvent = useTrackEvent()
 
     const handleReplay = () => {
         if (vidRef.current) {
             vidRef.current.currentTime = 0
             vidRef.current.play()
             setIsVidEnded(false)
+            trackEvent("video_replay", {
+                "video": "investors_video"
+            })
+        }
+    }
+
+    const handleStop = () => {
+        if (vidRef.current) {
+            vidRef.current.pause()
+            setIsVidPaused(true)
+            trackEvent("video_stop", {
+                "video": "investors_video"
+            })
+        }
+    }
+
+    const handlePlay = () => {
+        if (vidRef.current) {
+            vidRef.current.play()
+            setIsVidPaused(false)
+            trackEvent("video_play", {
+                "video": "investors_video"
+            })
         }
     }
 
@@ -43,14 +69,43 @@ export default function Test() {
         swiperRef.current?.swiper.autoplay.start()
     }
 
+    const handleHighlightClick = () => {
+        swiperRef.current?.swiper.slideTo(0, 0)
+        trackEvent("button_click", {
+            "btn_name" : "investor_highlights"
+        })
+    }
+
+    const handlePresentationClick = () => {
+        trackEvent("button_click", {
+            "btn_name" : "investor_presentation"
+        })
+    }
+
+    const handleShowDetailsClick = () => {
+        setExpanded(true)
+        trackEvent("button_click", {
+            "btn_name" : "investor_highlights_show"
+        })
+    }
+
     return (
         <div className='scroll-mt-[114px]'>
             <div className="relative h-[calc(100vh-114px)] overflow-x-hidden ">
                 {isVidEnded && (
                     <MdOutlineReplay
                         onClick={handleReplay}
-                        className='absolute top-4 right-4 text-white text-4xl cursor-pointer z-10' />
-
+                        className='absolute top-4 right-4 text-white text-4xl cursor-pointer z-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]' />
+                )}
+                {(!isVidEnded && !isVidPaused) && (
+                    <MdOutlinePause
+                        onClick={handleStop}
+                        className='absolute top-4 right-4 text-white text-4xl cursor-pointer z-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]' />
+                )}
+                {(!isVidEnded && isVidPaused) && (
+                    <MdOutlinePlayArrow
+                        onClick={handlePlay}
+                        className='absolute top-4 right-4 text-white text-4xl cursor-pointer z-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]' />
                 )}
                 <video
                     className="absolute top-0 left-0 w-full h-full object-contain bg-black sm:object-cover z-[-1]"
@@ -64,8 +119,8 @@ export default function Test() {
                 <div className="flex flex-col items-center justify-center h-full transition-transform duration-200">
                     {isVidEnded && (
                         <div className="flex flex-row space-x-10 pt-8 mt-140">
-                            <Link onClick={() => swiperRef.current?.swiper.slideTo(0, 0)} href="#highlights" className="bg-transparent border-white text-white hover:bg-gray-400 hover:text-white cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">Investor Highlights</Link>
-                            <button className="bg-transparent border-white text-white hover:bg-gray-400 cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">Watch Presentation</button>
+                            <Link onClick={handleHighlightClick} href="#highlights" className="bg-transparent border-white text-white hover:bg-gray-400 hover:text-white cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">Investor Highlights</Link>
+                            <button onClick={handlePresentationClick} className="bg-transparent border-white text-white hover:bg-gray-400 cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">Watch Presentation</button>
                         </div>
                     )}
                 </div>
@@ -118,7 +173,7 @@ export default function Test() {
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide className='relative'>
-                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white  cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={() => setExpanded(true)}>Show Details</button>
+                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white  cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={handleShowDetailsClick}>Show Details</button>
                                 <div className='px-0 sm:px-40 sm:pt-8'>
                                     <h2 className="text-lg sm:text-6xl font-extrabold border-b-2 border-brand-yellow drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                                         SPARQ Recieves Purchase Order for Additional 20MW Worth of Microinverters
@@ -139,7 +194,7 @@ export default function Test() {
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide className='relative'>
-                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white border-2 rounded-xl p-2 cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={() => setExpanded(true)}>Show Details</button>
+                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white border-2 rounded-xl p-2 cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={handleShowDetailsClick}>Show Details</button>
                                 <div className='px-0 sm:px-40 sm:pt-8'>
                                     <h2 className="text-lg sm:text-6xl font-extrabold border-b-2 border-brand-yellow drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                                         SPARQ Systems Named in TSX Venture 50 List of Top Performing Companies
@@ -160,7 +215,7 @@ export default function Test() {
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide className='relative'>
-                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white border-2 rounded-xl p-2 cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={() => setExpanded(true)}>Show Details</button>
+                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white border-2 rounded-xl p-2 cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={handleShowDetailsClick}>Show Details</button>
                                 <div className='px-0 sm:px-40 sm:pt-8'>
                                     <h2 className='text-lg sm:text-6xl font-extrabold border-b-2 border-brand-yellow drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>SPARQ Receives 12 MW Worth of Purchase Orders</h2>
                                     {expanded && (
@@ -177,7 +232,7 @@ export default function Test() {
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide className='relative'>
-                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white border-2 rounded-xl p-2 cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={() => setExpanded(true)}>Show Details</button>
+                                <button className={`absolute left-40 top-2/5 sm:text-2xl text-lg text-white border-2 rounded-xl p-2 cursor-pointer ${expanded ? "hidden" : ""} drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`} onClick={handleShowDetailsClick}>Show Details</button>
                                 <div className='px-0 sm:px-40 sm:pt-8'>
                                     <h2 className='text-lg sm:text-6xl font-extrabold border-b-2 border-brand-yellow drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Sparq Systems CEO Interview - Dr. Praveen Jain</h2>
                                     {expanded && (
@@ -195,35 +250,6 @@ export default function Test() {
                         </Swiper>
                     </div>
                 </div>
-                {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 px-2">
-                <div className="bg-gray-100 rounded-lg py-6 px-2 sm:p-6 text-center">
-                    <h1 className="text-2xl font-bold">Best in-class Performance</h1>
-                    <ul className='flex flex-col list-inside list-disc items-start sm:text-lg text-slate-700 mt-2'>
-                        <li>Highest specific power/power density</li>
-                        <li>Grid Resilience with Dual Mode operation</li>
-                        <li>Maximum Energy Harvesting</li>
-                        <li>Remote Monitoring and software updates</li>
-                    </ul>
-                </div>
-                <div className="bg-gray-100 rounded-lg py-6 px-2 sm:p-6 text-center">
-                    <h1 className="text-2xl font-bold">Safety & Reliability</h1>
-                    <ul className='flex flex-col list-inside list-disc items-start sm:text-lg text-slate-700 mt-2'>
-                        <li>No PV System Single Point of Failure</li>
-                        <li>No Electrolytic Capacitor</li>
-                        <li>Safe and Highly Reliable</li>
-                        <li>Best in-class Longevity</li>
-                    </ul>
-                </div>
-                <div className="bg-gray-100 rounded-lg py-6 px-2 sm:p-6 text-center">
-                    <h1 className="text-2xl font-bold">Cost-Effectiveness</h1>
-                    <ul className='flex flex-col list-inside list-disc items-start sm:text-lg text-slate-700 mt-2'>
-                        <li>Reduced manufacturing BOM</li>
-                        <li>Reduced Balance of System</li>
-                        <li>Easy to Install & Maintain</li>
-                        <li>Outlier on Performance-Cost Curve</li>
-                    </ul>
-                </div>
-            </div> */}
             </div>
         </div>
     )

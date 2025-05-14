@@ -1,7 +1,9 @@
 import Image from "next/image"
-import Link from "next/link"
+import TrackedLink from "@/components/TrackedLink"
 
 export default function AboutPage() {
+
+
     return (
         <div id="corporatestatements" className="container mx-auto sm:pb-8 sm:px-4 py-8 px-2">
             <section id="passion" className="sm:mb-16 mb-8 text-sm sm:text-[22px]">
@@ -105,8 +107,8 @@ export default function AboutPage() {
                 </div>
             </section>
             <div className="flex flex-col items-center gap-4 mt-4 sm:mt-0">
-                <Link href="/resources/installers" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-4 py-2 rounded">Support for Installers & Distributers</Link>
-                <Link href="/contact" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-8 py-2 rounded">Contact Us</Link>
+                <TrackedLink href="/resources/installers" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-4 py-2 rounded" eventName="button_clicked" eventParams={{"btn_name": "support_installers_distributers"}}>Support for Installers & Distributers</TrackedLink>
+                <TrackedLink href="/contact" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-8 py-2 rounded" eventName="button_clicked" eventParams={{"btn_name": "contact_us"}}>Contact Us</TrackedLink>
             </div>
         </div>
     )

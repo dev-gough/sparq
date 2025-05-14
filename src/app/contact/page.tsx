@@ -1,18 +1,29 @@
 'use client'
 
-import Link from 'next/link';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaSitemap } from 'react-icons/fa';
+import Link from 'next/link'
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaSitemap } from 'react-icons/fa'
+import { useTrackEvent } from '@/hooks/useTrackEvent'
 
 interface ContactSectionProps {
-	title: string;
-	companyName: string;
-	address?: string;
-	phone?: string;
-	email?: string;
-	website?: string;
+	title: string
+	companyName: string
+	address?: string
+	phone?: string
+	email?: string
+	website?: string
 }
 
 function ContactSection({ title, companyName, address, phone, email, website }: ContactSectionProps) {
+
+	const trackEvent = useTrackEvent()
+
+	const handleClick = (type: string, detail: string) => {
+		trackEvent("contact_clicked", {
+			"contact_type" : type,
+			"detail" : detail
+		})
+	}
+
 	return (
 		<div className="bg-white p-6 border border-brand-gray rounded-lg shadow-md">
 			<h3 className="text-xl font-bold mb-4 bg-gray-100 p-2 rounded">{title}</h3>
@@ -33,30 +44,30 @@ function ContactSection({ title, companyName, address, phone, email, website }: 
 			{phone && (
 				<div className="flex items-center mb-2">
 					<FaPhone className="mr-2 text-gray-600" />
-					<a href={`tel:${phone}`} className="text-blue-500 hover:underline">
+					<Link onClick={() => handleClick("phone", phone)} href={`tel:${phone}`} className="text-blue-500 hover:underline">
 						{phone}
-					</a>
+					</Link>
 				</div>
 			)}
 			{email && (
 				<div className="flex items-center mb-2">
 					<FaEnvelope className="mr-2 text-gray-600" />
-					<a href={`mailto:${email}`} className="text-blue-500 hover:underline">
+					<Link onClick={() => handleClick("email", email)} href={`mailto:${email}`} className="text-blue-500 hover:underline">
 						{email}
-					</a>
+					</Link>
 				</div>
 			)}
 			{website && (
 				<div className="flex items-center">
 					<FaSitemap className='mr-2 text-gray-600'/>
-					<Link href={website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+					<Link onClick={() => handleClick("website", website)} href={website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
 						{website}
 					</Link>
 				</div>
 			)}
 		</div>
-	);
-};
+	)
+}
 
 export default function ContactPage() {
 	return (
@@ -105,5 +116,5 @@ export default function ContactPage() {
 				/>
 			</section>
 		</div>
-	);
-};
+	)
+}

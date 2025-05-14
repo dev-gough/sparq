@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
+import { useTrackEvent } from "@/hooks/useTrackEvent"
 
 interface PPProps {
     isOpen?: boolean
@@ -11,13 +12,23 @@ interface PPProps {
 export default function PrivacyPolicyDropdown({ isOpen, className }: PPProps) {
 
     const [open, setOpen] = useState<boolean>(isOpen? true : false)
+    const trackEvent = useTrackEvent()
+
+    const handleOpen = () => {
+        setOpen(!open)
+        if (open) return
+        trackEvent("dropdown_opened",  {
+            "dropdown" : "privacy_policy",
+            "open" : open
+        })
+    }
 
     return (
         <div className={`w-full ${className}`}>
             {/* Dropdown menu button */}
             <div
                 className={`p-4 cursor-pointer bg-gray-100 rounded-xl border hover:bg-gray-200 ${open? 'sticky top-[66px] z-10':''}`}
-                onClick={() => setOpen(!open)}
+                onClick={handleOpen}
                 aria-expanded={open}
             >
                 <div className="flex flex-row justify-between items-center">

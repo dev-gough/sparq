@@ -5,9 +5,19 @@ import Link from "next/link"
 import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
 import FAQs from "./faqs.json"
+import { useTrackEvent } from "@/hooks/useTrackEvent"
 
 export default function SparqVuPage() {
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
+
+    const trackEvent = useTrackEvent()
+    const handleClick = () => {
+        setIsExpanded(!isExpanded)
+        if (isExpanded) return // useState is async, so this checks old value
+        trackEvent("read_more", {
+            "parent": "sparqlinq"
+        })
+    }
 
     return (
         <div className="bg-white container mx-auto py-4 px-4 sm:px-10">
@@ -35,12 +45,12 @@ export default function SparqVuPage() {
                         </div>
                     )}
 
-                    <button onClick={() => setIsExpanded(!isExpanded)} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
+                    <button onClick={handleClick} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
                         {isExpanded ? "Read less" : "Read more"}
                     </button>
 
                     <div className="p-4 sm:mt-16">
-                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" open={true}>
+                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" parent="sparqvu">
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Data when you need it</strong>
                                     <ul className="list-inside list-disc text-black">
@@ -60,15 +70,15 @@ export default function SparqVuPage() {
                                 </li>
                             </ul>
                         </AccordionItem>
-                        <AccordionItem title="Documentation" open={true}>
+                        <AccordionItem title="Documentation" parent="sparqvu">
                             <Link href="/SparqVu.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">SparqVu Manual</Link>
                         </AccordionItem>
-                        <AccordionItem title="SparqVu FAQs">
+                        <AccordionItem title="SparqVu FAQs" parent="sparqvu">
                             {FAQs.subQuestions.map((item) => (
                                 <div key={item.id} className="text-gray-700 my-4">
-                                <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-                                {item.answer}
-                            </div>
+                                    <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
+                                    {item.answer}
+                                </div>
                             ))}
                         </AccordionItem>
                     </div>

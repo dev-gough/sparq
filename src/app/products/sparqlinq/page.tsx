@@ -5,11 +5,21 @@ import Link from "next/link"
 import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
 import FAQs from "./faqs.json"
+import { useTrackEvent } from "@/hooks/useTrackEvent"
 
 export default function SparqLinqPage() {
     const models = ["SL200-2001"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
+
+    const trackEvent = useTrackEvent()
+    const handleClick = () => {
+        setIsExpanded(!isExpanded)
+        if (isExpanded) return // useState is async, so this checks old value
+        trackEvent("read_more", {
+            "parent": "sparqlinq"
+        })
+    }
 
     return (
         <div className="bg-white container mx-auto py-4 px-4 sm:px-10">
@@ -38,7 +48,7 @@ export default function SparqLinqPage() {
                         </div>
                     )}
 
-                    <button onClick={() => setIsExpanded(!isExpanded)} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
+                    <button onClick={handleClick} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
                         {isExpanded ? "Read less" : "Read more"}
                     </button>
 
@@ -62,27 +72,27 @@ export default function SparqLinqPage() {
                     </div>
 
                     <div className="p-4 sm:mt-16">
-                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto">
+                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" parent="sparqlinq">
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Data when you need it</strong>
                                     <ul className="list-inside list-disc text-black">
                                         <li>Advanced performance and communication tools
-                                        with no app required</li>
+                                            with no app required</li>
                                         <li>Real-time metrics, historical records
-                                        and panel-by-panel information</li>
+                                            and panel-by-panel information</li>
                                         <li>Cloud-based monitoring</li>
                                     </ul>
                                 </li>
                                 <li className="my-4"> <strong>Quick Installation</strong>
                                     <ul className="list-inside list-disc text-black">
                                         <li>Automatically detects connected inverters
-                                        before AC is connected</li>
+                                            before AC is connected</li>
                                         <li>Installation layout syncs automatically to your cloud account</li>
                                     </ul>
                                 </li>
                             </ul>
                         </AccordionItem>
-                        <AccordionItem title="Technical specifications" open={true}>
+                        <AccordionItem title="Technical specifications" parent="sparqlinq">
                             <div>
                                 {selectedModel === "SL200-2001" && (
                                     <Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-specsheet.pdf" target="_blank">
@@ -91,7 +101,7 @@ export default function SparqLinqPage() {
                                 )}
                             </div>
                         </AccordionItem>
-                        <AccordionItem title="Documentation" open={true}>
+                        <AccordionItem title="Documentation" parent="sparqlinq">
                             <div className="my-2">
                                 <h2 className="text-lg font-bold">Quick Install Guide for {selectedModel}:</h2>
                                 <Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-quickinstall.pdf" target="_blank">All Regions</Link>
@@ -101,12 +111,12 @@ export default function SparqLinqPage() {
                                 <Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-ledguide.pdf" target="_blank">SparqLinq-LEDGuide.pdf</Link>
                             </div>
                         </AccordionItem>
-                        <AccordionItem title="SparqLinq FAQs">
+                        <AccordionItem title="SparqLinq FAQs" parent="sparqlinq">
                             {FAQs.subQuestions.map((item) => (
                                 <div key={item.id} className="text-gray-700 my-4">
-                                <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-                                {item.answer}
-                            </div>
+                                    <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
+                                    {item.answer}
+                                </div>
                             ))}
                         </AccordionItem>
                     </div>
