@@ -6,9 +6,19 @@ import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
 import VideoPlayer from "@/components/VideoPlayer"
 import FAQs from "./faqs.json"
+import { useTrackEvent } from "@/hooks/useTrackEvent"
 
 export default function ProductPage() {
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
+    const trackEvent = useTrackEvent()
+
+    const handleClick = () => {
+        setIsExpanded(!isExpanded)
+        if (isExpanded) return // useState is async, so this checks old value
+        trackEvent("read_more", {
+            "parent": "app"
+        })
+    }
 
     return (
         <div className="bg-white container mx-auto py-4 px-4 sm:px-10">
@@ -38,12 +48,12 @@ export default function ProductPage() {
                         </div>
                     )}
 
-                    <button onClick={() => setIsExpanded(!isExpanded)} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
+                    <button onClick={handleClick} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
                         {isExpanded ? "Read less" : "Read more"}
                     </button>
 
                     <div className="p-4 sm:mt-16 text-black">
-                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto">
+                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" parent="app">
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Real-time insights</strong>
                                     <ul className="list-inside list-disc text-black">
@@ -63,12 +73,12 @@ export default function ProductPage() {
                                 </li>
                             </ul>
                         </AccordionItem>
-                        <AccordionItem title="Watch the Demo">
+                        <AccordionItem title="Watch the Demo" parent="app">
                             <div className="w-full aspect-video">
                                 <VideoPlayer src="/external-sparq-app.mp4" />
                             </div>
                         </AccordionItem>
-                        <AccordionItem title="SparqSync FAQs">
+                        <AccordionItem title="SparqSync FAQs" parent="app">
                             {FAQs.subQuestions.map((item) => (
                                 <div key={item.id} className="text-gray-700 my-4">
                                 <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}

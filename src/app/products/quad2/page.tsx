@@ -5,37 +5,21 @@ import Link from "next/link"
 import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
 import FAQs from "./faqs.json"
-
-{/* <ul className="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
-                            <li>
-                                List item one
-                                <ol className="ps-5 mt-2 space-y-1 list-disc list-inside">
-                                    <li>You might feel like you are being really "organized" o</li>
-                                    <li>Nested navigation in UIs is a bad idea too, keep things as flat as possible.</li>
-                                    <li>Nesting tons of folders in your source code is also not helpful.</li>
-                                </ol>
-                            </li>
-                            <li>
-                                <ul className="ps-5 mt-2 space-y-1 list-decimal list-inside">
-                                    <li>I'm not sure if we'll bother styling more than two levels deep.</li>
-                                    <li>Two is already too much, three is guaranteed to be a bad idea.</li>
-                                    <li>If you nest four levels deep you belong in prison.</li>
-                                </ul>
-                            </li>
-                            <li>
-                                List item three
-                                <ul className="ps-5 mt-2 space-y-1 list-decimal list-inside">
-                                    <li>Again please don't nest lists if you want</li>
-                                    <li>Nobody wants to look at this.</li>
-                                    <li>I'm upset that we even have to bother styling this.</li>
-                                </ul>
-                            </li>
-                        </ul> */}
+import { useTrackEvent } from "@/hooks/useTrackEvent"
 
 export default function ProductPage() {
     const models = ["Q2000-4102", "Q2000-4102-DM", "Q2000-4102-GT"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
+    const trackEvent = useTrackEvent()
+
+    const handleClick = () => {
+        setIsExpanded(!isExpanded)
+        if (isExpanded) return // useState is async, so this checks old value
+        trackEvent("read_more", {
+            "parent": "quad2"
+        })
+    }
 
     return (
         <div className="bg-white container mx-auto py-4 px-4 sm:px-10">
@@ -70,8 +54,7 @@ export default function ProductPage() {
                             <p className="mt-2">The Q2000 microinverter is the industry&apos;s first highest power rating microinverter that produces electrical energy from four PV panels of 550W+ each, without any power clipping under all operating conditions. The Q2000 is designed to connect 4 PV panels, up to 550W, to the AC power grid.</p>
                         </div>
                     )}
-
-                    <button onClick={() => setIsExpanded(!isExpanded)} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
+                    <button onClick={handleClick} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
                         {isExpanded ? "Read less" : "Read more"}
                     </button>
 
@@ -95,7 +78,7 @@ export default function ProductPage() {
                     </div>
 
                     <div className="p-4 sm:mt-16">
-                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto">
+                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" parent="quad2">
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Superior Value</strong>
                                     <ul className="list-inside list-disc text-black">
@@ -129,7 +112,7 @@ export default function ProductPage() {
                                 </li>
                             </ul>
                         </AccordionItem>
-                        <AccordionItem title="Technical Specifications">
+                        <AccordionItem title="Technical Specifications" parent="quad2">
                             <div>
                                 {selectedModel === "Q2000-4102" && (
                                     <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102.pdf" target="_blank">
@@ -148,7 +131,7 @@ export default function ProductPage() {
                                 )}
                             </div>
                         </AccordionItem>
-                        <AccordionItem title="Documentation">
+                        <AccordionItem title="Documentation" parent="quad2">
                             <h2 className="text-lg font-bold">Installation Manuals for {selectedModel}:</h2>
                             <div className="flex flex-col">
                                 <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Americas.pdf" target="_blank">North America</Link>
@@ -157,10 +140,10 @@ export default function ProductPage() {
                                 <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_India.pdf" target="_blank">India</Link>
                             </div>
                         </AccordionItem>
-                        <AccordionItem title="Comparison with Leading Microinverter">
+                        <AccordionItem title="Comparison with Leading Microinverter" parent="quad2">
                             <Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H</Link>
                         </AccordionItem>
-                        <AccordionItem title="Q2000 FAQs">
+                        <AccordionItem title="Q2000 FAQs" parent="quad2">
                             {FAQs.subQuestions.map((item) => (
                                 <div key={item.id} className="text-gray-700 my-4">
                                     <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}

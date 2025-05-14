@@ -5,11 +5,21 @@ import Link from "next/link"
 import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
 import FAQs from "./faqs.json"
+import { useTrackEvent } from "@/hooks/useTrackEvent"
 
 export default function Quad3Page() {
     const models = ["Quad3-4301"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
+
+    const trackEvent = useTrackEvent()
+    const handleClick = () => {
+        setIsExpanded(!isExpanded)
+        if (isExpanded) return // useState is async, so this checks old value
+        trackEvent("read_more", {
+            "parent": "quad3"
+        })
+    }
 
     return (
         <div className="bg-white container mx-auto py-4 px-4 sm:px-10">
@@ -34,7 +44,7 @@ export default function Quad3Page() {
                         <li><strong>Safety You Can Count On</strong>: The Quad3 eliminates traditional risks with no HV DC cabling, no electrolytic capacitors, and all-AC wiring that complies with Rapid Shutdown (RSD) regulations. It&apos;s a high-reliability, high-availability solution with no single point of failure, minimizing risk while maximizing uptime.</li>
                         <li><strong>Cost-Effectiveness Without Compromise</strong>: Backed by a Quad Architecture that reduces both manufacturing and installation costs, the Quad3 also minimizes Balance of System (BoS) requirements. With lowest cycle-life cost and maintenance-free operation, it stands out as an outlier on the Performance-Cost curve.</li>
                     </ul>
-                    <p className="text-brand-gray font-semibold text-lg mt-2">Whether you're powering a home or a commercial system, the Quad3 microinverter delivers unmatched value, reliability, and smart energy management — all in one compact, user-friendly package.</p>
+                    <p className="text-brand-gray font-semibold text-lg mt-2">Whether you&apos;re powering a home or a commercial system, the Quad3 microinverter delivers unmatched value, reliability, and smart energy management — all in one compact, user-friendly package.</p>
 
                     {isExpanded && (
                         <div className="text-brand-gray text-lg font-mono">
@@ -42,7 +52,7 @@ export default function Quad3Page() {
                         </div>
                     )}
 
-                    <button onClick={() => setIsExpanded(!isExpanded)} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
+                    <button onClick={handleClick} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
                         {isExpanded ? "Read less" : "Read more"}
                     </button>
 
@@ -66,7 +76,7 @@ export default function Quad3Page() {
                     </div>
 
                     <div className="p-4 sm:mt-16">
-                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto">
+                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" parent="quad3">
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Superior Value</strong>
                                     <ul className="list-inside list-disc text-black">
@@ -97,7 +107,7 @@ export default function Quad3Page() {
                                 </li>
                             </ul>
                         </AccordionItem>
-                        <AccordionItem title="Technical specifications" open={true}>
+                        <AccordionItem title="Technical specifications" parent="quad3">
                             <div>
                                 {selectedModel === "Quad3-4301" && (
                                     <Link className="text-blue-500 hover:text-blue-700" href="/Datasheet_Quad4301.pdf" target="_blank">
@@ -106,19 +116,19 @@ export default function Quad3Page() {
                                 )}
                             </div>
                         </AccordionItem>
-                        <AccordionItem title="Documentation" open={true}>
+                        <AccordionItem title="Documentation" parent="quad3">
                             <h2 className="text-lg font-bold">Installation Manual for {selectedModel}:</h2>
                             <Link className="text-blue-500 hover:text-blue-700" href="/Quad3.pdf" target="_blank">All Regions</Link>
                         </AccordionItem>
-                        <AccordionItem title="Comparison with Leading Microinverter">
+                        <AccordionItem title="Comparison with Leading Microinverter" parent="quad3">
                             <Link href="/Q2000/Comparison-of-Q2000-4302-with-IQ8H-3p.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H-3p</Link>
                         </AccordionItem>
-                        <AccordionItem title="Quad3 FAQs">
+                        <AccordionItem title="Quad3 FAQs" parent="quad3">
                             {FAQs.subQuestions.map((item) => (
                                 <div key={item.id} className="text-gray-700 my-4">
-                                <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-                                {item.answer}
-                            </div>
+                                    <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
+                                    {item.answer}
+                                </div>
                             ))}
                         </AccordionItem>
                     </div>

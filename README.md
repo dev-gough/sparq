@@ -23,7 +23,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Todo
 
 ## Highest Prio
-- get firebase analytics up and running ASAP
+
+- firebase
+    - event on form submission for support ticket
+    - have to make support ticket function first
 
 - send email to pvwats with the content from 'design my system'
     - ask for their feedback, if it's correct
@@ -35,6 +38,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
     - Legacy products better description
     - Standardize open dropdowns (none open on mobile?)
     - integrate new info from pp slides
+    - new sparqvu picture (just screenshot)
 
 - /investors
     - Content for slider (what do we actually want showing as highlights)

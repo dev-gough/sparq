@@ -29,7 +29,7 @@ export default function HomeownersPage() {
             <div className="container mx-auto sm:p-4">
                 <div className="flex flex-col space-y-6">
                     {HomeFAQEntries.map((item) => (
-                        <AccordionItem title={item.questionBrand} key={item.id} className="sticky top-[58px] sm:relative sm:top-auto">
+                        <AccordionItem title={item.questionBrand} key={item.id} className="sticky top-[58px] sm:relative sm:top-auto" parent="homeowner_faq">
                             <div>
                                 <h2 className="text-xl font-bold text-brand-maroon text-center mb-4">
                                     {item.questionBrand}

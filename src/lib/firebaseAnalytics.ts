@@ -4,8 +4,6 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics, isSupported, Analytics } from 'firebase/analytics';
 import firebaseConfig from './firebaseConfig';
 
-console.log(firebaseConfig)
-
 // Initialize Firebase and Analytics only on the client side
 let analytics: Analytics;
 if (typeof window !== 'undefined') {

@@ -1,5 +1,3 @@
-'use client'
-
 import Link from "next/link"
 import TOSDropdown from "@/components/TOSDropdown"
 import PrivacyPolicyDropdown from "@/components/PrivacyPolicyDropdown"

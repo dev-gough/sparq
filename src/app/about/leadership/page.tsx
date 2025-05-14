@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { useTrackEvent } from "@/hooks/useTrackEvent"
 
 interface TeamMemberData {
     imgSrc: string;
@@ -64,6 +65,14 @@ const teamMembers: TeamMemberData[] = [
 export default function LeadershipPage() {
 
     const [selectedMember, setMember] = useState<TeamMemberData | null>(null)
+    const trackEvent = useTrackEvent()
+
+    const handleClick = (member: TeamMemberData) => {
+        setMember(member)
+        trackEvent("popup_opened", {
+            "member_viewed": member.name
+        })
+    }
 
     return (
         <div className="container mx-auto py-8 sm:px-4 pb-4">
@@ -73,7 +82,7 @@ export default function LeadershipPage() {
                     {teamMembers.map((member, index) => (
                         <div
                             key={index}
-                            onClick={() => setMember(member)}
+                            onClick={() => handleClick(member)}
                             className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${selectedMember === member
                                 ? 'scale-100'
                                 : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'

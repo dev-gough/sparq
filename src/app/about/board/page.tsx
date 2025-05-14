@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { useTrackEvent } from "@/hooks/useTrackEvent";
 
 interface BoardMemberData {
     imgSrc: string;
@@ -65,6 +66,15 @@ const boardMembers: BoardMemberData[] = [
 export default function BoardPage() {
 
     const [selectedMember, setMember] = useState<BoardMemberData | null>(null)
+    const trackEvent = useTrackEvent()
+
+    const handleClick = (member: BoardMemberData) => {
+        setMember(member)
+        trackEvent("popup_opened", {
+            "member_viewed": member.name
+        })
+    }
+
 
     return (
         <div className="container mx-auto py-8 sm:px-4 pb-4">
@@ -75,7 +85,7 @@ export default function BoardPage() {
                         {boardMembers.map((member, index) => (
                             <div
                                 key={index}
-                                onClick={() => setMember(member)}
+                                onClick={() => handleClick}
                                 className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${selectedMember == member
                                     ? 'scale-100'
                                     : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
