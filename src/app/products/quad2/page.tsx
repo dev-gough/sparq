@@ -6,6 +6,32 @@ import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
 import FAQs from "./faqs.json"
 
+{/* <ul className="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
+                            <li>
+                                List item one
+                                <ol className="ps-5 mt-2 space-y-1 list-disc list-inside">
+                                    <li>You might feel like you are being really "organized" o</li>
+                                    <li>Nested navigation in UIs is a bad idea too, keep things as flat as possible.</li>
+                                    <li>Nesting tons of folders in your source code is also not helpful.</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <ul className="ps-5 mt-2 space-y-1 list-decimal list-inside">
+                                    <li>I'm not sure if we'll bother styling more than two levels deep.</li>
+                                    <li>Two is already too much, three is guaranteed to be a bad idea.</li>
+                                    <li>If you nest four levels deep you belong in prison.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                List item three
+                                <ul className="ps-5 mt-2 space-y-1 list-decimal list-inside">
+                                    <li>Again please don't nest lists if you want</li>
+                                    <li>Nobody wants to look at this.</li>
+                                    <li>I'm upset that we even have to bother styling this.</li>
+                                </ul>
+                            </li>
+                        </ul> */}
+
 export default function ProductPage() {
     const models = ["Q2000-4102", "Q2000-4102-DM", "Q2000-4102-GT"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
@@ -29,7 +55,7 @@ export default function ProductPage() {
                 {/* Product Details */}
                 <div className="flex-1">
                     <h1 className="text-3xl [font-weight:900] text-gray-900 mt-1">Q2000 Microinverter</h1>
-                    <ul className="list-inside list-disc space-y-4 mt-4 text-brand-gray">
+                    <ul className="list-inside list-disc space-y-4 mt-4 text-brand-gray sm:text-lg">
                         <li><strong>Revolutionary Design</strong>: Each Quad microinverter can independently track peak power for up to four PV modules, a significant advancement over traditional one-to-one microinverter systems.</li>
                         <li><strong>Cost and efficiency benefits</strong>: Significantly reduces installation time and cable costs; offers the lowest cost, highest power output, highest power density, and lowest weight per Watt in the industry.</li>
                         <li><strong>High reliability</strong>: Utilizes patented technology to eliminate short-life electrolytic capacitors, ensuring a design life of 25 years, matching that of PV modules.</li>
@@ -41,7 +67,7 @@ export default function ProductPage() {
                                 SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
                             </p>
                             <p className="mt-2">Our microinverters have been designed for high reliability, using patented technologies that eliminate the use of short-life electrolytic capacitors. This feature gives our microinverters high reliability and a design life of 25 years, matching the design life of PV modules.</p>
-                            <p className="mt-2">The Q2000 microinverter is the industry&apos;s first highest power rating microinverter that produces electrical energy from four photovoltaic (“PV”) panels of 550W+ each, without any power clipping under all operating conditions. The Q2000 is designed to connect 4 PV panels, up to 550W, to the AC power grid.</p>
+                            <p className="mt-2">The Q2000 microinverter is the industry&apos;s first highest power rating microinverter that produces electrical energy from four PV panels of 550W+ each, without any power clipping under all operating conditions. The Q2000 is designed to connect 4 PV panels, up to 550W, to the AC power grid.</p>
                         </div>
                     )}
 
@@ -75,7 +101,8 @@ export default function ProductPage() {
                                     <ul className="list-inside list-disc text-black">
                                         <li>Low design/installation costs</li>
                                         <li>Lowest cost per Watt in the industry </li>
-                                        <li>Electrolyte-free design for longer lifetime</li>
+                                        <li>Reduced installation costs</li>
+                                        <li>Robust IOT gateway for monitoring and control</li>
                                     </ul>
                                 </li>
                                 <li className="my-4"> <strong>High Energy Harvest</strong>
@@ -87,8 +114,10 @@ export default function ProductPage() {
                                 </li>
                                 <li className="my-4"> <strong>Best in-class reliability</strong>
                                     <ul className="list-inside list-disc text-black">
+                                        <li>No electrolytic capacitors or other components with short lifetimes</li>
                                         <li>Smart-grid ready, works on any grid, anywhere</li>
                                         <li>No single point of failure</li>
+                                        <li>Rapid-Shutdown compliance</li>
                                     </ul>
                                 </li>
                                 <li className="my-4"> <strong>Easy to Install</strong>
@@ -134,9 +163,9 @@ export default function ProductPage() {
                         <AccordionItem title="Q2000 FAQs">
                             {FAQs.subQuestions.map((item) => (
                                 <div key={item.id} className="text-gray-700 my-4">
-                                <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-                                {item.answer}
-                            </div>
+                                    <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
+                                    {item.answer}
+                                </div>
                             ))}
                         </AccordionItem>
                     </div>

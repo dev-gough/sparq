@@ -3,13 +3,21 @@ import Link from "next/link"
 import { useState, useRef } from 'react'
 import { MdOutlineReplay } from 'react-icons/md'
 
+import { useTrackEvent } from "@/hooks/useTrackEvent"
+
 export default function Home() {
+    const trackEvent = useTrackEvent()
 
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false)
     const [isVidEnded, setIsVidEnded] = useState<boolean>(false)
     const [showButtons, setShowButtons] = useState<boolean>(false)
 
-    const openPopup = () => setIsPopupOpen(true)
+    const openPopup = () => {
+        setIsPopupOpen(true)
+        trackEvent("button_click", {
+            "btn_name": "home_view_video"
+        })
+    }
     const closePopup = () => setIsPopupOpen(false)
 
     const timerRef = useRef<NodeJS.Timeout | null>(null)

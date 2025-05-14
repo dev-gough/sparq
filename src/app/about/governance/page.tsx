@@ -16,7 +16,7 @@ export default function GovernancePage() {
                     <li><Link className="hover:underline" target="_blank" href="/Governance/CEO-Mandate.pdf">CEO Mandate</Link></li>
                     <li><Link className="hover:underline" target="_blank" href="/Governance/Chairmans-Mandate.pdf">Chairmans&apos; Mandate</Link></li>
                     <li><Link className="hover:underline" target="_blank" href="/Governance/Compensation-Committee-Charter.pdf">Compensation Committee Charter</Link></li>
-                    <li><Link className="hover:underline" target="_blank" href="/Governance/Corporate-Governance-and-Nominating-Committee-Charter.pdf">Corporate Governance and Nomniating Committee Charter Directors&apos; Mandate</Link></li>
+                    <li><Link className="hover:underline" target="_blank" href="/Governance/Corporate-Governance-and-Nominating-Committee-Charter.pdf">Corporate Governance and Nomniating Committee Charter</Link></li>
                     <li><Link className="hover:underline" target="_blank" href="/Governance/Directors-Mandate.pdf">Directors&apos; Mandate</Link></li>
                     <li><Link className="hover:underline" target="_blank" href="/Governance/Disclosure-Policy.pdf">Disclosure Policy</Link></li>
                     <li><Link className="hover:underline" target="_blank" href="/Governance/Insider-Trading-Policy.pdf">Insider Trading Policy</Link></li>

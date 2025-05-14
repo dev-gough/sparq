@@ -29,9 +29,12 @@ export default function Quad3Page() {
                 {/* Product Details */}
                 <div className="flex-1">
                     <h1 className="text-3xl font-bold text-gray-900 mt-1">Quad 3 Microinverter</h1>
-                    <p className="text-brand-gray mt-4 text-lg font-mono">
-                        Needs to be Provided
-                    </p>
+                    <ul className="list-inside list-disc space-y-4 mt-4 text-brand-gray sm:text-lg">
+                        <li><strong>Performance That Powers More</strong>: Engineered with high-frequency, soft-switching power electronics and advanced real-time control, the Quad3 ensures maximum energy harvesting and grid resilience. With individual MPPT for each panel, your system achieves optimal output even in partially shaded conditions. It&apos;s also built for the future - scalable, flexible, and ready for both on-grid and off-grid operations.</li>
+                        <li><strong>Safety You Can Count On</strong>: The Quad3 eliminates traditional risks with no HV DC cabling, no electrolytic capacitors, and all-AC wiring that complies with Rapid Shutdown (RSD) regulations. It&apos;s a high-reliability, high-availability solution with no single point of failure, minimizing risk while maximizing uptime.</li>
+                        <li><strong>Cost-Effectiveness Without Compromise</strong>: Backed by a Quad Architecture that reduces both manufacturing and installation costs, the Quad3 also minimizes Balance of System (BoS) requirements. With lowest cycle-life cost and maintenance-free operation, it stands out as an outlier on the Performance-Cost curve.</li>
+                    </ul>
+                    <p className="text-brand-gray font-semibold text-lg mt-2">Whether you're powering a home or a commercial system, the Quad3 microinverter delivers unmatched value, reliability, and smart energy management — all in one compact, user-friendly package.</p>
 
                     {isExpanded && (
                         <div className="text-brand-gray text-lg font-mono">
