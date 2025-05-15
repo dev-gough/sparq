@@ -22,12 +22,12 @@ export default function AccordionItem({ title, children, open, className, parent
             "dropdown": title,
         })
     }
-
+// todo: move sticky on sm to this file
     return (
-        <div className="border border-gray-200 rounded-md mb-2 my-4 shadow-sm">
+        <div className=" mb-2 my-4">
             {/* Header with title and toggle icon */}
             <button
-                className={`w-full flex justify-between items-center p-4 text-left hover:bg-gray-100 transition-colors cursor-pointer ${isOpen? className:""}`}
+                className={`border shadow-sm border-gray-200 bg-white rounded-md w-full flex justify-between items-center p-4 text-left transition-colors cursor-pointer ${isOpen? className:""}`}
                 onClick={handleOpen}
             >
                 <span className="font-bold text-2xl">{title}</span>
@@ -35,7 +35,7 @@ export default function AccordionItem({ title, children, open, className, parent
             </button>
             {/* Content section, shown only when open */}
             {isOpen && (
-                <div className="p-4 border border-gray-200">
+                <div className="p-4 border-x border-b border-gray-200">
                     {children}
                 </div>
             )}

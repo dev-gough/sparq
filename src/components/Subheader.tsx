@@ -36,10 +36,10 @@ function SubheadingItem({ label, href }: SubheadingItemProps) {
     return (
         <Link
             href={href}
-            className={`flex flex-col items-center justify-center space-x-2 ${isActive ? "text-brand-yellow" : "text-gray-700"
+            className={`flex items-center justify-center space-x-2 ${isActive ? "text-brand-yellow" : "text-gray-700"
                 } transition-colors duration-150 hover:text-brand-yellow`}
         >
-            <span className="text-xs sm:text-2xl">{label}</span>
+            <span className="text-lg sm:text-2xl">{label}</span>
         </Link>
     )
 }
@@ -50,7 +50,7 @@ interface SubheaderProps {
 
 export default function Subheader({ items }: SubheaderProps) {
     return (
-        <div className="sticky top-[66px] z-10 flex items-center justify-evenly bg-neutral-200 py-2">
+        <div className="sticky top-[66px] z-10 flex items-center justify-evenly bg-neutral-200 py-2 overflow-x-scroll sm:overflow-x-auto">
             {items.map((item) => (
                 <SubheadingItem key={item.href} {...item} />
             ))}

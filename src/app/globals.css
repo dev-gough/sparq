@@ -3,7 +3,7 @@
 @theme {
     /* Custom colour classes */
     --color-brand-gray: #666666;
-    --color-brand-maroon: #8c344e;
+    --color-brand-maroon: #8c334d;
     --color-brand-darkmaroon: #633342;
     --color-brand-graytext: #454345;
     --color-brand-yellow: #fcb900;
@@ -15,7 +15,6 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    overflow-y: auto
 }
 
 html {

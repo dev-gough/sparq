@@ -7,6 +7,7 @@ import { TiDocument } from "react-icons/ti"
 import { GrDocumentText } from "react-icons/gr"
 
 const items = [
+    { icon: TiDocument, label: "Company Snapshot", href: "/about/snapshot"},
     { icon: GrDocumentText, label: "Mission", href: "/about/statements#mission" },
     { icon: GrDocumentText, label: "Vision", href: "/about/statements#vision" },
     { icon: GrDocumentText, label: "Values", href: "/about/statements#values" },

@@ -8,6 +8,7 @@ import { HiOutlineDocumentReport } from 'react-icons/hi'
 
 const items = [
     { icon: FaHome, label: "Investor Highlights", href: "/investors#highlights" },
+    { icon: FaHome, label: "CEO Letter", href:""},
     { icon: AiOutlineStock, label: "Stock", href: "/investors/stock" },
     { icon: HiOutlineDocumentReport, label: "Annual Report", href: "/investors/annual-report" },
     { icon: FaRegNewspaper, label: "News", href: "/investors/news" },

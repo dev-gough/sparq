@@ -1,13 +1,85 @@
+'use client'
+
 import Image from "next/image"
 import TrackedLink from "@/components/TrackedLink"
+import { useState } from "react"
 
 export default function AboutPage() {
 
+    const [expanded, setExpanded] = useState<Record<number, boolean>>({})
+    const toggleExpanded = (i: number) => {
+        setExpanded(prev => ({ ...prev, [i]: !prev[i] }))
+    }
 
     return (
-        <div id="corporatestatements" className="container mx-auto sm:pb-8 sm:px-4 py-8 px-2">
-            <section id="passion" className="sm:mb-16 mb-8 text-sm sm:text-[22px]">
-                <h1 className="sm:text-6xl text-xl text-brand-maroon font-bold">A Passion for a Lower Carbon Future</h1>
+        <div id="corporatestatements" className="flex flex-col items-center bg-white scroll-mt-[115px]">
+            <section className="relative flex h-[calc(100vh-114px)] w-full bg-[url(/thumbnail_image.png)] bg-center bg-no-repeat bg-cover justify-center">
+                <div className="absolute top-1/4 left-[2%] bg-transparent rounded-xl p-12 border-l-8 border-brand-maroon w-full max-w-4/5">
+                    <h2 className="pl-2 text-5xl font-bold text-brand-yellow uppercase mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">A Passion for a Lower Carbon Future</h2>
+                    {!expanded[0] && (<p onClick={() => toggleExpanded(0)} className="pl-2 text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Read More</p>)}
+                    {expanded[0] && (
+                        <div>
+                            <p className='mt-8 pl-2 text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]'>SPARQ was born out of a passion to create leading edge solar energy solutions that support a greener future for our planet. Founder Dr. Praveen Jain is a world-leader in energy research, holding over 100 patents. His advanced research at ePower, the Centre for Energy and Power Electronics Research at Queen&apos;s University in Kingston, Canada, resulted in the development of SPARQ&apos;s innovative and versatile microinverter design.</p>
+                            <p className='mt-8 pl-2 text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Today, SPARQ&apos;s microinverter system is resetting the industry standard for solar energy systems, delivering greater energy harvest over traditional string inverters. It can be used in any power grid, conventional or smart, around the globe.</p>
+                        </div>
+                    )}
+                </div>
+            </section>
+            <section className="relative flex h-[calc(100vh-114px)] w-full bg-[url(/bg-2.jpg)] bg-center bg-no-repeat bg-cover justify-center">
+                <div className="absolute top-1/4 left-[2%] bg-transparent rounded-xl p-12 border-l-8 border-brand-maroon w-full max-w-4/5">
+                    <h2 className="pl-2 lg:text-5xl font-bold text-brand-yellow uppercase mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Your cost-effective, reliable solar energy system</h2>
+                    {!expanded[1] && (<p onClick={() => toggleExpanded(1)} className="pl-2 text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Read More</p>)}
+                    {expanded[1] && (
+                        <div>
+                            <p className="mt-8 pl-2 sm:text-lg lg:text-3xl text-white mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                                We&apos;re changing the industry standard for solar energy solutions with powerful power conversion that&apos;s smart-grid ready and the lowest cost per watt in the industry.
+                            </p>
+                            <p className='mt-8 pl-2 sm:text-lg lg:text-3xl text-white mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]'>The Sparq Systems Q2000 product family of single and three phase microinverters not only resolve the longstanding safety, partial shading, low reliability problems and high cost of String Photovoltaic-Systems but also further advance state of the art of the single channel microinverter industry leader by eliminating the low reliability electrolytic capacitors and integrating four independently controlled DC-DC channels in one enclosure resulting in best in class reliability, highest weight and power density and lowest life-cycle cost.</p>
+                        </div>
+                    )}
+                </div>
+            </section>
+            <section className="relative flex h-[calc(100vh-114px)] w-full bg-[url(/bg-3.jpg)] bg-center bg-no-repeat bg-cover justify-center">
+                <div className="absolute top-1/4 left-[2%] bg-transparent rounded-xl p-12 border-l-8 border-brand-maroon w-full max-w-[95%]">
+                    <h2 className="pl-2 lg:text-5xl font-bold text-brand-yellow uppercase mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Be part of a greener future</h2>
+                    {!expanded[2] && (<p onClick={() => toggleExpanded(2)} className="pl-2 text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Read More</p>)}
+                    {expanded[2] && (
+                        <div>
+                            <p className="mt-8 pl-2 sm:text-lg lg:text-3xl text-white mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                                Backed by advanced research, our microinverter systems are designed with cutting-edge technology for reliable energy solutions that are easy to install and offer more energy harvest compared to traditional string inverters. Save money and contribute to a lower carbon future.
+                            </p>
+                        </div>
+                    )}
+                </div>
+            </section>
+            <section className="relative flex h-[calc(100vh-114px)] w-full bg-[url(/bg-4.jpg)] bg-center bg-no-repeat bg-cover justify-center">
+                <div className="absolute top-1/4 left-[2%] bg-transparent rounded-xl p-12 border-l-8 border-brand-maroon w-full max-w-4/5">
+                    <h2 className="pl-2 lg:text-5xl font-bold text-brand-yellow uppercase mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">4 panels - 1 inverter</h2>
+                    {!expanded[3] && (<p onClick={() => toggleExpanded(3)} className="pl-2 text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Read More</p>)}
+                    {expanded[3] && (
+                        <div>
+                            <p className="mt-8 pl-2 sm:text-lg lg:text-3xl text-white mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                                Our quad microinverter is changing industry standards for advanced grid functions. With only one microinverter feeding 4 solar panels, you&apos;ll enjoy maximum energy harvest for a fraction of the cost. Installation is quick and easy, and backed by an extended 25-year warranty.
+                            </p>
+                            <div className="grid grid-cols-2 gap-4 mt-6 justify-between  sm:text-lg lg:text-3xl text-white mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                                <ul className="list-inside list-disc">
+                                    <li>Quick installation</li>
+                                    <li>Maximum energy harvest</li>
+                                    <li>Cloud-based performance monitoring</li>
+                                    <li>12 standard or 25-year extended warranty</li>
+                                </ul>
+                                <ul className="list-inside list-disc">
+                                    <li>Dedicated support</li>
+                                    <li>Best-in-class reliability</li>
+                                    <li>Clean energy solutions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </section>
+            {/* <section id="passion" className="sm:mb-16 mb-8 text-sm sm:text-[22px]">
+                <h1 className="sm:text-5xl text-xl text-brand-maroon font-bold">A Passion for a Lower Carbon Future</h1>
                 <p className='sm:mt-8 mt-4'>SPARQ was born out of a passion to create leading edge solar energy solutions that support a greener future for our planet. Founder Dr. Praveen Jain is a world-leader in energy research, holding over 100 patents. His advanced research at ePower, the Centre for Energy and Power Electronics Research at Queen&apos;s University in Kingston, Canada, resulted in the development of SPARQ&apos;s innovative and versatile microinverter design.</p>
                 <p className='mt-4'>Today, SPARQ&apos;s microinverter system is resetting the industry standard for solar energy systems, delivering greater energy harvest over traditional string inverters. It can be used in any power grid, conventional or smart, around the globe.</p>
             </section>
@@ -44,8 +116,8 @@ export default function AboutPage() {
                         <li>Clean energy solutions</li>
                     </ul>
                 </div>
-            </section>
-            <section className="flex flex-row gap-4">
+            </section> */}
+            {/* <section className="flex flex-row gap-4">
                 <div className="w-full flex flex-col items-center text-center pt-2 sm:p-6 min-h-[300px]">
                     <div className="w-24 h-24 lg:w-32 lg:h-32">
                         <Image
@@ -92,11 +164,9 @@ export default function AboutPage() {
                             className="mb-4 object-contain w-full h-auto"
                         />
                     </div>
-                    {/* Desktop header */}
                     <h3 className="text-lg md:text-3xl font-bold text-brand-maroon mb-2 h-18 sm:h-24 sm:flex hidden items-center justify-center line-clamp-2">
                         Industry Leader in Energy Solutions
                     </h3>
-                    {/* Mobile header */}
                     <h3 className="text-lg md:text-3xl font-bold text-brand-maroon mb-2 h-18 sm:h-24 sm:hidden flex items-center justify-center line-clamp-2">
                         Industry Leader
                     </h3>
@@ -105,11 +175,11 @@ export default function AboutPage() {
                         Reliable solar energy for a greener future
                     </p>
                 </div>
-            </section>
-            <div className="flex flex-col items-center gap-4 mt-4 sm:mt-0">
-                <TrackedLink href="/resources/installers" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-4 py-2 rounded" eventName="button_clicked" eventParams={{"btn_name": "support_installers_distributers"}}>Support for Installers & Distributers</TrackedLink>
-                <TrackedLink href="/contact" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-8 py-2 rounded" eventName="button_clicked" eventParams={{"btn_name": "contact_us"}}>Contact Us</TrackedLink>
-            </div>
+            </section> */}
+            {/* <div className="flex flex-col items-center gap-4 mt-4 sm:mt-0">
+                <TrackedLink href="/resources/installers" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-4 py-2 rounded" eventName="button_clicked" eventParams={{ "btn_name": "support_installers_distributers" }}>Support for Installers & Distributers</TrackedLink>
+                <TrackedLink href="/contact" className="bg-brand-maroon hover:bg-brand-maroon/90 text-white px-8 py-2 rounded" eventName="button_clicked" eventParams={{ "btn_name": "contact_us" }}>Contact Us</TrackedLink>
+            </div> */}
         </div>
     )
 }

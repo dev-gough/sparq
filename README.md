@@ -48,9 +48,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - /resources
     - Home page for /resources needs overhaul
     - Homeowners/Installers should have more than just a few FAQ questions
-- /
-    - add pause/skip video button
-
 - /about
     - 100vh images for each statement (4 total)
     - could be video too

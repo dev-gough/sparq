@@ -133,9 +133,9 @@ export default function InvestorsPage() {
                 </video>
                 <div className="flex flex-col items-center justify-center h-full transition-transform duration-200">
                     {isVidEnded && (
-                        <div className="flex flex-row space-x-10 pt-8 mt-140">
-                            <Link onClick={handleHighlightClick} href="#highlights" className="bg-transparent border-white text-white hover:bg-gray-400 hover:text-white cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">Investor Highlights</Link>
-                            <button onClick={handlePresentationClick} className="bg-transparent border-white text-white hover:bg-gray-400 cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">Watch Presentation</button>
+                        <div className="flex flex-row space-x-10 pt-8 mt-130">
+                            <Link onClick={handleHighlightClick} href="#highlights" className="bg-transparent border-white text-white hover:bg-gray-400 hover:text-white cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">View PowerPoint</Link>
+                            <Link href="/investor_presentation.mp4" onClick={handlePresentationClick} className="bg-transparent border-white text-white hover:bg-gray-400 cursor-pointer font-black  text-xl py-3 px-5 border-3  rounded-4xl  transition-colors">Watch Presentation</Link>
                         </div>
                     )}
                 </div>
@@ -143,7 +143,7 @@ export default function InvestorsPage() {
             <div id="highlights" className="sm:h-[calc(100vh-114px)] mx-auto pb-8 scroll-mt-[114px]">
                 <div
                     className="w-full sm:h-[calc(100vh-114px)] bg-cover bg-top sm:bg-top relative bg-[url(/thumbnail_image.png)]">
-                    <div className="px-6 max-w-full">
+                    <div className="max-w-full">
                         <Swiper
                             ref={swiperRef}
                             pagination={{ clickable: true }}
@@ -164,10 +164,10 @@ export default function InvestorsPage() {
                                         <div>
                                             <h2 className='text-lg sm:text-6xl font-extrabold border-b-2 border-brand-yellow b-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Global Strategic Partnerships for R&D, Manufacturing and Distribution</h2>
                                             <ul className="list-disc list-inside text-lg sm:text-4xl mt-8 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-                                                <li><Link href="https://www.queensu.ca/epower/" target="_blank" className="text-blue-400 hover:underline">ePower</Link></li>
-                                                <li><Link href="https://www.jiothings.com/" target="_blank" className="text-blue-400 hover:underline">JioThings</Link></li>
-                                                <li><Link href="https://www.ril.com/businesses/new-energy-materials" target="_blank" className="text-blue-400 hover:underline">Reliance</Link></li>
-                                                <li><Link href="https://www.iljin.co.in/" target="_blank" className="text-blue-400 hover:underline">ILJIN Electronics</Link></li>
+                                                <li><Link href="https://www.queensu.ca/epower/" target="_blank" className="text-white hover:underline">ePower</Link></li>
+                                                <li><Link href="https://www.jiothings.com/" target="_blank" className="text-white hover:underline">JioThings</Link></li>
+                                                <li><Link href="https://www.ril.com/businesses/new-energy-materials" target="_blank" className="text-white hover:underline">Reliance</Link></li>
+                                                <li><Link href="https://www.iljin.co.in/" target="_blank" className="text-white hover:underline">ILJIN Electronics</Link></li>
                                             </ul>
                                         </div>
 
@@ -181,8 +181,8 @@ export default function InvestorsPage() {
                                 <div className='px-0 sm:px-40 sm:pt-8'>
                                     <h1 className='text-lg sm:text-6xl font-extrabold border-b-2 border-brand-yellow mb-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Multiple Strategic Test Sites for R&D with Leading Institutions and C&I Sites</h1>
                                     <ul className="list-disc list-inside text-lg sm:text-4xl mt-8 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-                                        <li><Link href="https://www.investkingston.ca/rd/#1643990910571-444406ce-b63e" target='_blank' className='text-blue-400 hover:underline'>Queen&apos;s University</Link></li>
-                                        <li><Link href="https://www.energy-manager.ca/st-lawrence-college-installs-largest-solar-system-for-post-secondary-facility-856/" target='_blank' className='text-blue-400 hover:underline'>St. Lawrence College</Link></li>
+                                        <li><Link href="https://www.investkingston.ca/rd/#1643990910571-444406ce-b63e" target='_blank' className='text-white hover:underline'>Queen&apos;s University</Link></li>
+                                        <li><Link href="https://www.energy-manager.ca/st-lawrence-college-installs-largest-solar-system-for-post-secondary-facility-856/" target='_blank' className='text-white hover:underline'>St. Lawrence College</Link></li>
                                         <li>Modern Niagara - Sparq Headquarter Office (WIP)</li>
                                     </ul>
                                 </div>

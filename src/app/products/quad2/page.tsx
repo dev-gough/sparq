@@ -39,11 +39,37 @@ export default function ProductPage() {
                 {/* Product Details */}
                 <div className="flex-1">
                     <h1 className="text-3xl [font-weight:900] text-gray-900 mt-1">Q2000 Microinverter</h1>
-                    <ul className="list-inside list-disc space-y-4 mt-4 text-brand-gray sm:text-lg">
+                    {/* <ul className="list-inside list-disc space-y-4 mt-4 text-brand-gray sm:text-lg">
                         <li><strong>Revolutionary Design</strong>: Each Quad microinverter can independently track peak power for up to four PV modules, a significant advancement over traditional one-to-one microinverter systems.</li>
                         <li><strong>Cost and efficiency benefits</strong>: Significantly reduces installation time and cable costs; offers the lowest cost, highest power output, highest power density, and lowest weight per Watt in the industry.</li>
                         <li><strong>High reliability</strong>: Utilizes patented technology to eliminate short-life electrolytic capacitors, ensuring a design life of 25 years, matching that of PV modules.</li>
                         <li><strong>Flagship product</strong>: The Q2000 microinverter can connect four 550W+ PV panels to the grid without any power clipping, demonstrating the technology&apos;s superior capabilities.</li>
+                    </ul> */}
+                    <ul className="space-y-4 list-disc list-inside">
+                        <li>
+                            Best in-class Performance
+                            <ol className="ps-5 mt-2 space-y-1 list-decimal list-inside">
+                                <li>Point 1</li>
+                                <li>Point 2</li>
+                                <li>Point 3</li>
+                            </ol>
+                        </li>
+                        <li>
+                            Safe & Reliable
+                            <ol className="ps-5 mt-2 space-y-1 list-decimal list-inside">
+                                <li>Point 1</li>
+                                <li>Point 2</li>
+                                <li>Point 3</li>
+                            </ol>
+                        </li>
+                        <li>
+                            Industry-leading Cost Effectiveness
+                            <ol className="ps-5 mt-2 space-y-1 list-decimal list-inside">
+                                <li>Point 1</li>
+                                <li>Point 2</li>
+                                <li>Point 3</li>
+                            </ol>
+                        </li>
                     </ul>
                     {isExpanded && (
                         <div className="text-brand-gray text-lg">
@@ -78,7 +104,7 @@ export default function ProductPage() {
                     </div>
 
                     <div className="p-4 sm:mt-16">
-                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" parent="quad2">
+                        <AccordionItem title="Features" className="sticky top-[66px] sm:relative sm:top-auto" parent="quad2">
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Superior Value</strong>
                                     <ul className="list-inside list-disc text-black">
@@ -130,6 +156,9 @@ export default function ProductPage() {
                                     </Link>
                                 )}
                             </div>
+                        </AccordionItem>
+                        <AccordionItem title="Certification" parent="quad2">
+                            <h2 className="text-lg font-bold">Labels</h2>
                         </AccordionItem>
                         <AccordionItem title="Documentation" parent="quad2">
                             <h2 className="text-lg font-bold">Installation Manuals for {selectedModel}:</h2>

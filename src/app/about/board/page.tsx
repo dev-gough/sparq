@@ -30,7 +30,7 @@ const boardMembers: BoardMemberData[] = [
             "Dr. Goel is the CEO of Cistel Technology, an Information Technology company he founded in 1995, which has operations in Canada and the USA. A veteran technology executive and entrepreneur, he is also co-founder of CHiL Semiconductor and SPARQ Systems. Dr. Goel has served on the Board of Directors of Enablence Technologies Inc. (TSXV). He has also served on the Board of Directors of the Community Foundation of Ottawa, the Queensway Carleton Hospital Foundation, the Indo-Canada Ottawa Business Chamber, as well as Chair of the Queensway Carleton Hospital Foundation. Dr. Goel obtained his PhD from the University of Waterloo."
     },
     {
-        imgSrc: '/Team/baojunrobbieluo.jpg',
+        imgSrc: '/Team/robbie.png',
         name: 'BaoJun (Robbie) Luo',
         location: 'Shenzhen, China',
         title: 'Director as of: December 31, 2021',
@@ -38,7 +38,7 @@ const boardMembers: BoardMemberData[] = [
             "Robbie Luo is the President of Ti-Lane Precision Electronic Company Limited and Ti-Lane Group, Shenzhen, China. Ti-Lane is the global leader in providing connector and cable assembly products for communications, computer, medical, automotive and clean energy applications. He is a firm believer of renewable energy deployment and is a Deputy Director General of Shenzhen Solar Energy Society. He earned his MBA from Ursuline College at Tsinghua University, China.",
     },
     {
-        imgSrc: '/Team/ravisood.png',
+        imgSrc: '/Team/ravi.png',
         name: 'Ravi Sood',
         location: 'Toronto, Ontario',
         title: 'Director as of: December 31, 2021',
@@ -46,7 +46,7 @@ const boardMembers: BoardMemberData[] = [
             "Mr. Sood is the Managing Director of Signal 8 Limited, based in Toronto, Canada. Mr. Sood has been a founder and the principal investor in several businesses in emerging markets and currently serves as Chairman of Jade Power Trust (TSXV), Galane Gold Ltd. (TSXV), and Biomind Labs Inc. (NEO). He was the founder and Chief Executive Officer of Navina Asset Management Inc., a global asset management firm headquartered in Toronto, Canada. Mr. Sood led the investment activities of Navina and its predecessor company, Lawrence Asset Management Inc., from its founding in 2001 until he sold the firm in 2010. Mr. Sood was educated at the University of Waterloo (B. Mathematics), where he was a Descartes Fellow and the recipient of numerous national awards."
     },
     {
-        imgSrc: '/Team/arulshanmugasundaram.png',
+        imgSrc: '/Team/arul.png',
         name: 'Arul Shanmugasundaram',
         location: 'Karnataka, India',
         title: 'Director as of: February 24, 2022',
@@ -54,7 +54,7 @@ const boardMembers: BoardMemberData[] = [
             "Dr. Arul Shanmugasundaram is currently the Executive Director of Ayana Renewable Power Private Limited, India, where he is responsible for business development, technology, and asset management functions. Previously, he was the Chief Operating Officer of Tata Power Solar Systems and led the EPC for utility-scale, rooftop, and pump projects. During nearly a decade at Tata Group, he was part of the leadership team that transformed Tata Power Solar from revenues of US$100 million to US$450 million. Dr. Shanmugasundaram started his career at Applied Materials in Silicon Valley, where he spent 15 years developing and launching several new products and process controls. Dr. Shanmugasundaram holds a Bachelor's degree from the Indian Institute of Technology Madras and Master's and Doctorate degrees from Cornell University. He has more than 40 US patents and several international publications."
     },
     {
-        imgSrc: '/Team/Magomet.jpg',
+        imgSrc: '/Team/magomet.png',
         name: 'Magomet Malsagov',
         location: 'Wollerau, Switzerland',
         title: 'Director as of: October 21, 2024',
