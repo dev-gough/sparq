@@ -54,7 +54,7 @@ const resourcesDropdown = [
 const navbarItems = [
   { label: "About", href: "/about", dropdown: aboutDropdown },
   { label: "Products", href: "/products", dropdown: productDropdown },
-  { label: "Homeowners", href: "/resources/homeowners"},
+  { label: "Homeowners", href: "/homeowners"},
   { label: "Installers", href: "/resources/installers"},
   { label: "Investors", href: "/investors", dropdown: investorDropdown },
   { label: "Resources", href: "/resources", dropdown: resourcesDropdown },

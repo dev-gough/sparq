@@ -6,7 +6,7 @@ import { FaHouseUser, FaHammer, FaCamera, FaVideo } from "react-icons/fa"
 import { MdOutlineDesignServices } from "react-icons/md"
 
 const items = [
-    { icon: FaHouseUser, label: "Homeowners", href: "/resources/homeowners"},
+    { icon: FaHouseUser, label: "Homeowners", href: "/homeowners"},
     { icon: FaHammer, label: "Installers", href: "/resources/installers"},
     { icon: FaCamera, label: "Photos", href: "/resources/photos"},
     { icon: FaVideo, label: "Videos", href: "/resources/videos"},

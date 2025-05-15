@@ -1,7 +1,5 @@
 'use client'
 
-import Image from "next/image"
-import TrackedLink from "@/components/TrackedLink"
 import { useState } from "react"
 
 export default function AboutPage() {

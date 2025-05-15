@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/luxon": "^3.6.2",
+    "@types/youtube": "^0.1.1",
     "@vercel/speed-insights": "^1.2.0",
     "autoprefixer": "^10.4.20",
     "firebase": "^11.7.1",

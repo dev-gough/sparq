@@ -1,16 +1,31 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
 export default function ForceScroll() {
   const pathname = usePathname();
+  const isPop = useRef(false);
+
+  // turn off auto restoration so we can control everything
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+  }, []);
 
   useEffect(() => {
-    // If there’s a hash fragment (window.location.hash !== ''),
-    // let the browser handle scrolling to that anchor.
-    if (window.location.hash) return;
+    const onPop = () => { isPop.current = true };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
-    window.scrollTo({ top: 0, behavior: 'auto' });
+  useEffect(() => {
+    if (window.location.hash) return;
+    if (isPop.current) {
+      isPop.current = false;
+      return; // let browser restore
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname]);
 
   return null;
