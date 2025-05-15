@@ -1,21 +1,48 @@
+'use client'
+
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+
+function useHash(): string {
+    const [hash, setHash] = useState<string>('')
+
+    useEffect(() => {
+        const updateHash = () => setHash(window.location.hash)
+        updateHash()                               // set initial value
+        window.addEventListener('hashchange', updateHash)
+        return () => window.removeEventListener('hashchange', updateHash)
+    }, [])
+
+    return hash
+}
 
 interface SubheadingItemProps {
-    icon: FC<{ className?: string }> // Icon as a React component
+    icon: FC<{ className?: string }>
     label: string
     href: string
 }
 
-function SubheadingItem({ icon: Icon, label, href } : SubheadingItemProps) {
+function SubheadingItem({ label, href }: SubheadingItemProps) {
+    const pathname = usePathname()        // e.g. “/investors”
+    const hash = useHash()            // e.g. “#highlights” | ""
+
+    const [targetPath, targetHash = ""] = href.split("#")  // targetHash doesn’t include “#”
+
+    const isActive =
+        pathname === targetPath &&                       // same path
+        (targetHash === "" || hash === `#${targetHash}`) // and—if present—same hash
+
     return (
-        <Link href={href} className="flex flex-col justify-center items-center space-x-2 text-gray-300 hover:text-brand-maroon transition-colors duration-150">
-            <Icon className="sm:size-10 size-5" />
-            <span className='text-sm sm:text-lg'>{label}</span>
+        <Link
+            href={href}
+            className={`flex items-center justify-center space-x-2 ${isActive ? "text-brand-yellow" : "text-gray-700"
+                } transition-colors duration-150 hover:text-brand-yellow`}
+        >
+            <span className="text-lg sm:text-2xl">{label}</span>
         </Link>
     )
 }
-
 
 interface SubheaderProps {
     items: SubheadingItemProps[]
@@ -23,9 +50,9 @@ interface SubheaderProps {
 
 export default function Subheader({ items }: SubheaderProps) {
     return (
-        <div className="bg-brand-gray flex justify-evenly items-center z-[999] py-2 mb-4">
-            {items.map((item, index) => (
-                <SubheadingItem key={index} {...item} />
+        <div className="sticky top-[66px] z-10 flex items-center justify-evenly bg-neutral-200 py-2 overflow-x-scroll sm:overflow-x-auto">
+            {items.map((item) => (
+                <SubheadingItem key={item.href} {...item} />
             ))}
         </div>
     )

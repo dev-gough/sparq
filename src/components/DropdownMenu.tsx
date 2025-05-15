@@ -45,21 +45,19 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
             onClick={handleMouseLeave}
         >
             <div className="flex items-center">
-                {/* Main label as a clickable link with active styles */}
                 <Link
                     href={navItem.href}
-                    className={`px-1 py-1 text-md rounded ${
-                        isParentActive
+                    className={`px-1 py-1 text-xl rounded ${isParentActive
                             ? 'text-brand-yellow font-bold'
                             : 'text-white hover:text-gray-300'
-                    }`}
+                        }`}
                 >
                     {navItem.label}
+                    <button className="text-white hover:text-gray-300 cursor-pointer">
+                        ▼
+                    </button>
                 </Link>
-                {/* Toggle button for dropdown */}
-                <button className="text-white hover:text-gray-300">
-                    ▼
-                </button>
+
             </div>
             {/* Dropdown menu */}
             {isOpen && (
@@ -71,11 +69,10 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
                             <Link
                                 key={index}
                                 href={subItem.href}
-                                className={`block px-4 py-2 rounded text-sm ${
-                                    isSubActive
+                                className={`block px-4 py-2 rounded text-xl ${isSubActive
                                         ? 'text-brand-yellow font-bold'
                                         : 'text-white hover:bg-brand-maroon'
-                                }`}
+                                    }`}
                                 aria-current={isSubActive ? 'page' : undefined}
                             >
                                 {subItem.label}

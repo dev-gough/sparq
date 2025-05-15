@@ -1,58 +1,65 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Nunito } from "next/font/google";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next"
+import "./globals.css"
+import Header from "@/components/Header"
+import Footer from "@/components/Footer"
+import { Nunito } from "next/font/google"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import ForceScroll from "@/components/ForceScroll"
 
 export const metadata: Metadata = {
-  title: "Sparq Systems | High Performance & Cost-Effective Power Conversion",
+  title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
   description: "Sparq Systems",
   icons: '/logo.png',
-};
+}
 
 const nunito = Nunito({
   subsets: ["latin"],
-  weight: ["500", "800"],
+  weight: ["500", "800", "900"],
 })
 
 const aboutDropdown = [
-  { label: "Corporate Statements", href: "/about#corporatestatements"},
-  { label: "Leadership", href: "/about#leadership" },
-  { label: "Board of Directors", href: "/about#bod" },
-  { label: "Governance", href: "/about#governance" },
+  { label: "Company Snapshot", href: "/about/snapshot"},
+  { label: "Mission", href: "/about/statements#mission" },
+  { label: "Vision", href: "/about/statements#vision" },
+  { label: "Value", href: "/about/statements#values" },
+  { label: "Leadership", href: "/about/leadership" },
+  { label: "Board of Directors", href: "/about/board" },
+  { label: "Governance", href: "/about/governance" },
 ]
 
 const investorDropdown = [
-  { label: "News", href: "/investors#news"},
-  { label: "Events", href: "/investors#events"},
+  { label: "Investor Highlights", href: "/investors#highlights"},
+  { label: "News", href: "/investors/news" },
+  { label: "Events", href: "/investors/events" },
+  { label: "Stock", href: "/investors/stock"},
+  { label: "Annual Report", href: "/investors/report"}
 ]
 
 const productDropdown = [
-  { label: "Quad 2 Microinverters", href: "/products/quad2" },
-  { label: "Quad 3 Microinverter", href: "/products/quad3"},
-  { label: "Legacy Products", href: "/products/legacy"},
+  { label: "Quad2", href: "/products/quad2" },
+  { label: "Quad3", href: "/products/quad3" },
+  { label: "Legacy Products", href: "/products/legacy" },
   { label: "SparqLinq", href: "/products/sparqlinq" },
   { label: "SparqVu", href: "/products/sparqvu" },
-  { label: "Sparq App", href: "/products/app"},
-  { label: "Accessories", href: "/products#accessories" },
+  { label: "Sparq App", href: "/products/app" },
+  { label: "Accessories", href: "/products/accessories" },
 ]
 
 const resourcesDropdown = [
-  { label: "Homeowners", href: "/resources/#homeowners" },
-  { label: "Installers", href: "/resources/#installers" },
-  { label: "Photo Gallery", href: "/resources/#photos"},
-  { label: "Video Gallery", href: "/resources/#videos"},
-  { label: "Design My System", href: "/resources/#design"},
-  { label: "Support Tickets", href: "/resources/#support"},
+  { label: "Photo Gallery", href: "/resources/photos" },
+  { label: "Video Gallery", href: "/resources/videos" },
+  { label: "Design Your System", href: "/resources/design" },
 ]
 
 const navbarItems = [
   { label: "About", href: "/about", dropdown: aboutDropdown },
-  { label: "Products & Services", href: "/products", dropdown: productDropdown },
-  { label: "Investor Relations", href: "/investors", dropdown: investorDropdown},
+  { label: "Products", href: "/products", dropdown: productDropdown },
+  { label: "Homeowners", href: "/homeowners"},
+  { label: "Installers", href: "/resources/installers"},
+  { label: "Investors", href: "/investors", dropdown: investorDropdown },
   { label: "Resources", href: "/resources", dropdown: resourcesDropdown },
-  { label: "Contact & Support", href: "/contact" },
+  { label: "Contact", href: "/contact" },
+  { label: "Support", href: "/support"},
 ]
 
 export default function RootLayout({
@@ -62,8 +69,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${nunito.className} flex flex-col min-h-screen`}>
+      <body className={`${nunito.className} flex flex-col min-h-screen overflow-y-scroll`}>
         <Header navItems={navbarItems} />
+        <ForceScroll />
         <main className="flex-grow">
           {children}
         </main>

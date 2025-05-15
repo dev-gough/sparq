@@ -4,11 +4,22 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
+import FAQs from "./faqs.json"
+import { useTrackEvent } from "@/hooks/useTrackEvent"
 
 export default function ProductPage() {
-    const models = ["Q2000-4102","Q2000-4102-DM", "Q2000-4102-GT"]
+    const models = ["Q2000-4102", "Q2000-4102-DM", "Q2000-4102-GT"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
+    const trackEvent = useTrackEvent()
+
+    const handleClick = () => {
+        setIsExpanded(!isExpanded)
+        if (isExpanded) return // useState is async, so this checks old value
+        trackEvent("read_more", {
+            "parent": "quad2"
+        })
+    }
 
     return (
         <div className="bg-white container mx-auto py-4 px-4 sm:px-10">
@@ -27,19 +38,49 @@ export default function ProductPage() {
             <div className="flex flex-col-reverse md:flex-row gap-8">
                 {/* Product Details */}
                 <div className="flex-1">
-                    <h1 className="text-3xl font-bold text-gray-900 mt-1">Q2000 Microinverter</h1>
-                    <p className="text-brand-gray mt-4 sm:text-lg">
-                        SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
-                    </p>
-
+                    <h1 className="text-3xl [font-weight:900] text-gray-900 mt-1">Q2000 Microinverter</h1>
+                    {/* <ul className="list-inside list-disc space-y-4 mt-4 text-brand-gray sm:text-lg">
+                        <li><strong>Revolutionary Design</strong>: Each Quad microinverter can independently track peak power for up to four PV modules, a significant advancement over traditional one-to-one microinverter systems.</li>
+                        <li><strong>Cost and efficiency benefits</strong>: Significantly reduces installation time and cable costs; offers the lowest cost, highest power output, highest power density, and lowest weight per Watt in the industry.</li>
+                        <li><strong>High reliability</strong>: Utilizes patented technology to eliminate short-life electrolytic capacitors, ensuring a design life of 25 years, matching that of PV modules.</li>
+                        <li><strong>Flagship product</strong>: The Q2000 microinverter can connect four 550W+ PV panels to the grid without any power clipping, demonstrating the technology&apos;s superior capabilities.</li>
+                    </ul> */}
+                    <ul className="space-y-4 list-disc list-inside">
+                        <li>
+                            Best in-class Performance
+                            <ol className="ps-5 mt-2 space-y-1 list-decimal list-inside">
+                                <li>Point 1</li>
+                                <li>Point 2</li>
+                                <li>Point 3</li>
+                            </ol>
+                        </li>
+                        <li>
+                            Safe & Reliable
+                            <ol className="ps-5 mt-2 space-y-1 list-decimal list-inside">
+                                <li>Point 1</li>
+                                <li>Point 2</li>
+                                <li>Point 3</li>
+                            </ol>
+                        </li>
+                        <li>
+                            Industry-leading Cost Effectiveness
+                            <ol className="ps-5 mt-2 space-y-1 list-decimal list-inside">
+                                <li>Point 1</li>
+                                <li>Point 2</li>
+                                <li>Point 3</li>
+                            </ol>
+                        </li>
+                    </ul>
                     {isExpanded && (
                         <div className="text-brand-gray text-lg">
+                            <p className="text-brand-gray mt-4 sm:text-lg">
+                                SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
+                            </p>
                             <p className="mt-2">Our microinverters have been designed for high reliability, using patented technologies that eliminate the use of short-life electrolytic capacitors. This feature gives our microinverters high reliability and a design life of 25 years, matching the design life of PV modules.</p>
-                            <p className="mt-2">The Q2000 microinverter is the industry&apos;s first highest power rating microinverter that produces electrical energy from four photovoltaic (“PV”) panels of 550W+ each, without any power clipping under all operating conditions. The Q2000 is designed to connect 4 PV panels, up to 550W, to the AC power grid.</p>
+                            <p className="mt-2">The Q2000 microinverter is the industry&apos;s first highest power rating microinverter that produces electrical energy from four PV panels of 550W+ each, without any power clipping under all operating conditions. The Q2000 is designed to connect 4 PV panels, up to 550W, to the AC power grid.</p>
                         </div>
                     )}
-
-                    <button onClick={() => setIsExpanded(!isExpanded)} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
+                    <button onClick={handleClick} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
                         {isExpanded ? "Read less" : "Read more"}
                     </button>
 
@@ -63,13 +104,14 @@ export default function ProductPage() {
                     </div>
 
                     <div className="p-4 sm:mt-16">
-                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto">
+                        <AccordionItem title="Features" className="sticky top-[66px] sm:relative sm:top-auto" parent="quad2">
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Superior Value</strong>
                                     <ul className="list-inside list-disc text-black">
                                         <li>Low design/installation costs</li>
                                         <li>Lowest cost per Watt in the industry </li>
-                                        <li>Electrolyte-free design for longer lifetime</li>
+                                        <li>Reduced installation costs</li>
+                                        <li>Robust IOT gateway for monitoring and control</li>
                                     </ul>
                                 </li>
                                 <li className="my-4"> <strong>High Energy Harvest</strong>
@@ -81,8 +123,10 @@ export default function ProductPage() {
                                 </li>
                                 <li className="my-4"> <strong>Best in-class reliability</strong>
                                     <ul className="list-inside list-disc text-black">
+                                        <li>No electrolytic capacitors or other components with short lifetimes</li>
                                         <li>Smart-grid ready, works on any grid, anywhere</li>
                                         <li>No single point of failure</li>
+                                        <li>Rapid-Shutdown compliance</li>
                                     </ul>
                                 </li>
                                 <li className="my-4"> <strong>Easy to Install</strong>
@@ -94,7 +138,7 @@ export default function ProductPage() {
                                 </li>
                             </ul>
                         </AccordionItem>
-                        <AccordionItem title="Technical specifications">
+                        <AccordionItem title="Technical Specifications" parent="quad2">
                             <div>
                                 {selectedModel === "Q2000-4102" && (
                                     <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102.pdf" target="_blank">
@@ -113,14 +157,28 @@ export default function ProductPage() {
                                 )}
                             </div>
                         </AccordionItem>
-                        <AccordionItem title="Documentation">
+                        <AccordionItem title="Certification" parent="quad2">
+                            <h2 className="text-lg font-bold">Labels</h2>
+                        </AccordionItem>
+                        <AccordionItem title="Documentation" parent="quad2">
                             <h2 className="text-lg font-bold">Installation Manuals for {selectedModel}:</h2>
-                                <div className="flex flex-col">
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Americas.pdf" target="_blank">North America</Link>
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Chinese.pdf" target="_blank">China</Link>
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Europe.pdf" target="_blank">Europe</Link>
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_India.pdf" target="_blank">India</Link>
+                            <div className="flex flex-col">
+                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Americas.pdf" target="_blank">North America</Link>
+                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Chinese.pdf" target="_blank">China</Link>
+                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Europe.pdf" target="_blank">Europe</Link>
+                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_India.pdf" target="_blank">India</Link>
+                            </div>
+                        </AccordionItem>
+                        <AccordionItem title="Comparison with Leading Microinverter" parent="quad2">
+                            <Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H</Link>
+                        </AccordionItem>
+                        <AccordionItem title="Q2000 FAQs" parent="quad2">
+                            {FAQs.subQuestions.map((item) => (
+                                <div key={item.id} className="text-gray-700 my-4">
+                                    <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
+                                    {item.answer}
                                 </div>
+                            ))}
                         </AccordionItem>
                     </div>
                 </div>

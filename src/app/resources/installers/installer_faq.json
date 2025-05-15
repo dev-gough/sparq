@@ -1,0 +1,167 @@
+{
+    "faqs": [
+        {
+            "id": 1,
+            "questionBrand": "Q2000 Product Family",
+            "subQuestions": [
+                {
+                    "id": 2,
+                    "question": "How can I tell if the Q2000 inverter is working?",
+                    "answer": "The status LED on the Q2000 will be flashing green when working correctly. If the LED is flashing Red, this indicates an AC issue so check the AC breaker. If the LED is amber, this indicates a ground fault was detected so check for faulty DC wiring then connect to the SparqLinq and go to the 'Settings->Inverter Management' page and click the Clear GFDI (blue lightning bolt) icon."
+                },
+                {
+                    "id": 3,
+                    "question": "Which AC electrical systems are compatible with the Quad 2000?",
+                    "answer": "Compatible systems include: Split-phase 120/240V, three-phase 120/208V, single-phase 230V, and three-phase Y-connected 230/400V with neutral."
+                },
+                {
+                    "id": 4,
+                    "question": "What PV panels can be used with the Quad 2000?",
+                    "answer": "The maximum wattage per panel is 680W per input.  The voltage range is 20-60V (Voc), and the current limit is 18A (Isc).  Any panel that meets these specifications can be used."
+                },
+                {
+                    "id": 5,
+                    "question": "Does it comply with NEC 2020 Section 690.12 (Rapid Shutdown)?",
+                    "answer": "Yes. The Quad 2000 is inherently a rapid shutdown device, fully compliant with NEC 2020 requirements."
+                },
+                {
+                    "id": 6,
+                    "question": "Do all four PV inputs need to be connected?",
+                    "answer": "No. Each input operates independently. Unused inputs should be capped with the provided MC4 caps."
+                },
+                {
+                    "id": 7,
+                    "question": "What do the LED indicators mean?",
+                    "answer": "LEDs provide system feedback such as power-up status, grid connection, fault alerts, and communication signals.  Please see the user manual for a full LED legend."
+                },
+                {
+                    "id": 8,
+                    "question": "How are firmware updates delivered?",
+                    "answer": "Firmware updates are automatic and over-the-air via the Sparq Gateway, provided the system is connected to the internet."
+                },
+                {
+                    "id": 9,
+                    "question": "How many inverters can be connected per trunk cable?",
+                    "answer": "It depends on branch circuit current ratings and local electrical codes. Refer to the installation manual for exact limits."
+                },
+                {
+                    "id": 10,
+                    "question": "Can the Quad 2000 operate off-grid?",
+                    "answer": "Yes. Off-grid mode is supported and can be enabled via the Sparq Gateway."
+                },
+                {
+                    "id": 11,
+                    "question": "Can it power a single-phase water pump?",
+                    "answer": "Yes. The Quad 2000 can support nonlinear loads, including single-phase water pumps."
+                },
+                {
+                    "id": 12,
+                    "question": "Is grounding required?",
+                    "answer": "While equipped with the most advance hardware and software protective features, proper system grounding and surge protection are highly recommended to safeguard against grid and environmental anomalies."
+                },
+                {
+                    "id": 13,
+                    "question": "What is the maximum allowed inverter load ratio (DC/AC ratio) for the Q2000?",
+                    "answer": "The Q2000 can work with 72 cell modules with the maximum DC rating of 550W+."
+                },
+                {
+                    "id": 14,
+                    "question": "How do I calculate the maximum PV source and output circuit voltage of an installed system (this is to do with 64-200 (1)(b) of the CEC 2015 code)?",
+                    "answer": "The Q2000 microinverter has 4 independent inputs that are transformer isolated from the AC output and have their negative DC inputs referenced to ground thru the GFDI circuit. Considering the inverter handles each module individually, the calculations are below for the 64-200 (1):\n\n• the rated operating current and voltage; this is the module maximum power current (Imp) and module maximum power voltage (Vmp).\n\n• the maximum photovoltaic source circuit voltage; this is equal to the PV module’s open circuit voltage (Voc).\n\n• the rated short-circuit current; this is equal to the PV module’s short circuit current (Isc).\n\nThe Trunk cable used with the Q2000 connects the AC output of all inverters in parallel. This means the voltage on the trunk cable remains the same (240Vac) but the current from each inverter (7.5 Amps) gets added. A trunk with 3 inverters connected to it will have 2 x 7.5A = 22.5A under full power. Adding a 1.25 safety factor gives a design current of 22.5 x 1.25 = 28.125A."
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "questionBrand": "Quad3",
+            "subQuestions": [
+                {
+                    "id": 16,
+                    "question": "Which AC electrical systems are compatible with the Quad3?",
+                    "answer": "The Quad3 supports 220/380V and 230/400V systems."
+                },
+                {
+                    "id": 17,
+                    "question": "What PV panels are compatible with the Quad3?",
+                    "answer": "The maximum wattage per panel is 680W per input.  The voltage range is 20-60V (Voc), and the current limit is 18A (Isc).  Any panel that meets these specifications can be used."
+                },
+                {
+                    "id": 18,
+                    "question": "Is the Quad3 compliant with NEC 2020 Section 690.12 (Rapid Shutdown)?",
+                    "answer": "Yes. The Quad3 is inherently a rapid shutdown device and fully complies with NEC 2020 Section 690.12."
+                },
+                {
+                    "id": 19,
+                    "question": "Do all four PV inputs need to be connected?",
+                    "answer": "No. Each PV input operates independently. Unused inputs should be sealed with the included MC4 caps."
+                },
+                {
+                    "id": 20,
+                    "question": "What do the LED indicators signify?",
+                    "answer": "LEDs provide system feedback such as power-up status, grid connection, fault alerts, and communication signals.  Please see the user manual for a full LED legend."
+                },
+                {
+                    "id": 21,
+                    "question": "How are firmware updates delivered?",
+                    "answer": "Firmware updates are delivered automatically over-the-air through the Sparq Gateway, provided the system has internet access."
+                },
+                {
+                    "id": 22,
+                    "question": "How many inverters can be connected per trunk cable?",
+                    "answer": "This depends on the branch circuit current rating and local electrical codes. Please consult the installation manual for precise guidelines."
+                },
+                {
+                    "id": 23,
+                    "question": "Is grounding required?",
+                    "answer": "Yes. While the Quad3 features advanced protection mechanisms, proper grounding and surge protection are essential to safeguard the system from grid and environmental anomalies."
+                },
+                {
+                    "id": 24,
+                    "question": "Can the Quad3 operate off-grid?",
+                    "answer": "Yes. The Quad3 supports off-grid operation and MPPT motor drive applications. Off-grid mode can be enabled via the Sparq Gateway."
+                },
+                {
+                    "id": 25,
+                    "question": "Can it power a three-phase water pump?",
+                    "answer": "Yes, the Quad3 supports various three-phase water pumps, including Induction motor, Permanent Magnet Synchronous Motor (PMSM), and Brushless DC (BLDC) motor pumps."
+                },
+                {
+                    "id": 26,
+                    "question": "What motor power can one Quad3 unit support?",
+                    "answer": "A single Quad3 unit can support a water pump rated up to 3 hp. For higher-power motors, multiple units can be connected in parallel to meet the required load."
+                },
+                {
+                    "id": 27,
+                    "question": "Can I use one Quad3 unit with a 5 hp or higher power solar water pump?",
+                    "answer": "Yes, but with limitations. A single Quad3 will still cap its output at 3 hp. While it can power the motor, it will not reach full speed or torque, and performance will be reduced."
+                },
+                {
+                    "id": 28,
+                    "question": "Can I use one Quad3 unit with a 2 hp or lower power solar water pump?",
+                    "answer": "Absolutely. The Quad3 uses smart, sensorless control to safely limit output based on motor parameters like frequency and voltage, ensuring safe operation and protecting the motor from damage."
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "questionBrand": "Q1200 Inverter",
+            "subQuestions": [
+                {
+                    "id": 29,
+                    "question": "How can I tell if the Q1200 inverter is working?",
+                    "answer": "The status LED on the Q1200 will be flashing green when working correctly. If the LED is flashing Red, this indicates an AC issue so check the AC breaker. If the LED is amber, this indicates a ground fault was detected so check for faulty DC wiring then connect to the SparqLinq and go to the \"Settings->Inverter Management\" page and click the Clear GFDI (blue lightning bolt) icon."
+                },
+                {
+                    "id": 30,
+                    "question": "What is the maximum allowed inverter load ratio (DC/AC ratio) for the Q1200?",
+                    "answer": "The data sheet suggests a maximum DC module rating of 350W, but the Q1200 is designed to work with 72 cell modules with STC ratings up to 390W or a 1.3 DC/AC ratio."
+                },
+                {
+                    "id": 31,
+                    "question": "How do I calculate the maximum PV source and output circuit voltage of an installed system (this is to do with 64-200 (1)(b) of the CEC 2015 code)?",
+                    "answer": "The Q1200 microinverter has 4 independent inputs that are transformer isolated from the AC output and have their negative DC inputs referenced to ground thru the GFDI circuit. Considering the inverter handles each module individually, the calculations are below for the 64-200 (1):\n\n• the rated operating current and voltage; this is the module maximum power current (Imp) and module maximum power voltage (Vmp).\n\n• the maximum photovoltaic source circuit voltage; this is equal to the PV module’s open circuit voltage (Voc).\n\n• the rated short-circuit current; this is equal to the PV module’s short circuit current (Isc).\n\nThe Trunk cable used with the Q1200 connects the AC output of all inverters in parallel. This means the voltage on the trunk cable remains the same (240Vac) but the current from each inverter (5 Amps) gets added. A trunk with 5 inverters connected to it will have 5 x 5A = 25A under full power. Adding a 1.25 safety factor gives a design current of 25 x 1.25 = 31.25A."
+                }
+            ]
+        }
+    ]
+}

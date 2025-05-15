@@ -26,7 +26,7 @@ export default function Header({ navItems }: HeaderProps) {
         <header className="sticky top-0 z-[999] bg-brand-graytext shadow-md">
             <div className="flex justify-between sm:justify-center items-center p-2">
                 <Link href="/" className="mr-4" onClick={() => setIsMenuOpen(false)}>
-                    <Image src="/logo.png" alt="Logo" width={63} height={43} />
+                    <Image src="/logo.png" alt="Logo" width={75} height={50} />
                 </Link>
                 <button
                     className="sm:hidden p-2 text-brand-yellow"
@@ -34,7 +34,7 @@ export default function Header({ navItems }: HeaderProps) {
                 >
                     {isMenuOpen ? <GrClose size={24} /> : <RxHamburgerMenu size={24} />}
                 </button>
-                <nav className="hidden sm:flex flex-wrap space-x-2">
+                <nav className="hidden sm:flex flex-wrap space-x-6">
                     {navItems.map((item, index) => {
                         const isActive = item.dropdown
                             ? item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
@@ -46,7 +46,7 @@ export default function Header({ navItems }: HeaderProps) {
                             <Link
                                 key={index}
                                 href={item.href}
-                                className={`px-3 py-1 text-md rounded ${
+                                className={`px-3 py-1 text-xl rounded ${
                                     isActive
                                         ? 'text-brand-yellow font-bold'
                                         : 'text-white hover:text-gray-300'

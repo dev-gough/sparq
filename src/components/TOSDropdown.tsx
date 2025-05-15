@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
+import { useTrackEvent } from "@/hooks/useTrackEvent"
 
 interface TOSProps {
     isOpen?: boolean
@@ -10,13 +11,22 @@ interface TOSProps {
 export default function TOSDropdown({ isOpen }: TOSProps) {
 
     const [open, setOpen] = useState<boolean>(isOpen? true : false)
+    const trackEvent = useTrackEvent()
+
+    const handleOpen = () => {
+        setOpen(!open)
+        if (open) return
+        trackEvent("dropdown_opened", {
+            "dropdown" : "tos",
+        })
+    }
 
     return (
         <div className="w-full relative">
             {/* Dropdown menu button */}
             <div
-                className={`p-4 cursor-pointer bg-gray-100 rounded-xl border hover:bg-gray-200 ${open? 'sticky top-14 z-10':''}`}
-                onClick={() => setOpen(!open)}
+                className={`p-4 cursor-pointer bg-gray-100 rounded-xl border hover:bg-gray-200 ${open? 'sticky top-[66px] z-10':''}`}
+                onClick={handleOpen}
                 aria-expanded={open}
             >
                 <div className="flex flex-row justify-between items-center">

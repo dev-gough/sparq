@@ -10,9 +10,12 @@ import { useState, useEffect } from 'react'
 
 interface SliderProps {
     children: React.ReactNode
+    pause?: boolean
+    className?: string
+    onSlide?: () => void
 }
 
-export default function Slider({ children }: SliderProps) {
+export default function Slider({ children, onSlide, className }: SliderProps) {
 
     const [isClient, setIsClient] = useState<boolean>(false)
 
@@ -28,7 +31,7 @@ export default function Slider({ children }: SliderProps) {
 
     return (
         <div
-            className="w-full sm:h-128 bg-cover bg-center sm:bg-top relative bg-[url(/tmp.jpg)] sm:rounded-xl">
+            className={`w-full sm:h-128 bg-cover bg-center sm:bg-top relative bg-[url(/tmp.jpg)] sm:rounded-xl ${className}`}>
             <div className="pt-4 px-6 max-w-full">
                 <Swiper
                     pagination={{ clickable: true }}
@@ -39,7 +42,7 @@ export default function Slider({ children }: SliderProps) {
                     spaceBetween={30}
                     slidesPerView={1}
                     autoplay={{
-                        delay: 15000,
+                        delay: 20000,
                         disableOnInteraction: false,
                         pauseOnMouseEnter: true,
                     }}
@@ -51,6 +54,7 @@ export default function Slider({ children }: SliderProps) {
                             }
                         }
                     }}
+                    onSlideChange={onSlide? onSlide : () => {}}
                 >
                     {children}
                 </Swiper>

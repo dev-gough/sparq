@@ -1,25 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-    /* Define the animation variable */
-    --animate-carousel: carousel 30s linear infinite;
-
     /* Custom colour classes */
     --color-brand-gray: #666666;
-    --color-brand-maroon: #8c344e;
+    --color-brand-maroon: #8c334d;
+    --color-brand-darkmaroon: #633342;
     --color-brand-graytext: #454345;
     --color-brand-yellow: #fcb900;
+    --color-brand-logo: #c5952c;
 
-    /* Define the keyframes for the carousel */
-    @keyframes carousel {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-50%);
-        }
-    }
+    --color-mission: #ff4d4d;
+    --color-vision: #4dc8ff;
+    --color-values: #ff9f4d;
 }
 
 body {
@@ -30,6 +22,6 @@ html {
     scroll-behavior: smooth !important;
 }
 
-[id] {
-    scroll-margin-top: 60px;
+.logo-slider .swiper-wrapper {
+    transition-timing-function: linear;
 }
