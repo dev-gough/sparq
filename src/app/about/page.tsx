@@ -70,7 +70,7 @@ export default function AboutPage() {
         <div id="corporatestatements" className="flex flex-col items-center bg-white scroll-mt-[115px]">
             <section className="flex h-[calc(100vh-114px)] w-full bg-[url(/bg-4.jpg)] bg-top bg-no-repeat bg-cover justify-center">
                 <div className="relative flex flex-col bg-transparent w-full items-center mt-64">
-                    <h2 className="text-6xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Say goodbye to all past problems</span></h2>
+                    <h2 className="text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Say goodbye past problems</span></h2>
                     <div className="absolute bottom-10 left-10 flex space-x-8">
                         <p onClick={() => toggleExpanded(0)} className=" text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">{expanded[0] ? "Close" : "Read More"}</p>
                         <Link href="/about#slide2" className="text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">Next</Link>
@@ -99,7 +99,7 @@ export default function AboutPage() {
             {/* change photo */}
             <section id="slide3" className="flex h-[calc(100vh-114px)] w-full bg-[url(/bg-2.jpg)] bg-center bg-no-repeat bg-cover justify-center scroll-mt-[114px]">
                 <div className="relative flex flex-col bg-transparent w-full items-center mt-64">
-                    <h2 className="text-6xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Resetting the PV Industry</span></h2>
+                    <h2 className="text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Resetting the PV Industry</span></h2>
                     <div className="absolute bottom-10 left-10 flex space-x-8">
                         <p onClick={() => toggleExpanded(2)} className=" text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">{expanded[2] ? "Close" : "Read More"}</p>
                         <Link href="/about#slide4" className="text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">Next</Link>
@@ -113,7 +113,7 @@ export default function AboutPage() {
             </section>
             <section id="slide4" className="flex h-[calc(100vh-114px)] w-full bg-[url(/testing2.jpg)] bg-center bg-no-repeat bg-cover justify-center scroll-mt-[114px]">
                 <div className="relative flex flex-col bg-transparent w-full items-center mt-64">
-                    <h2 className="text-6xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Be part of a greener future</span></h2>
+                    <h2 className="text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Be part of a greener future</span></h2>
                     <div className="absolute bottom-10 left-10 flex space-x-8">
                         <p onClick={() => toggleExpanded(3)} className=" text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">{expanded[3] ? "Close" : "Read More"}</p>
                         <Link href="/about#slide5" className="text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">Next</Link>
@@ -128,7 +128,7 @@ export default function AboutPage() {
             {/* somehow discuss that this is slc, front/back */}
             <section id="slide5" className={`flex h-[calc(100vh-114px)] w-full ${toggled? "bg-[url(/SLC/007.JPG)]" : "bg-[url(/SLC/009.JPG)] bg-bottom"} bg-center bg-no-repeat bg-cover justify-center scroll-mt-[114px]`}>
                 <div className={`relative flex flex-col bg-transparent w-full items-center ${toggled? "mt-10" : "mt-64"}`}>
-                    <h2 className="text-6xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Quad architecture advantage</span></h2>
+                    <h2 className="text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Quad architecture advantage</span></h2>
                     <div className="absolute bottom-10 left-10 flex space-x-8">
                         <p onClick={() => toggleExpanded(4)} className=" text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">{expanded[4] ? "Close" : "Read More"}</p>
                         <p onClick={() => handleFlip(4)} className=" text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">Flip Image</p>
