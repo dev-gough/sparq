@@ -35,6 +35,12 @@ const investorDropdown = [
   { label: "Annual Report", href: "/investors/report"}
 ]
 
+const homeownerDropdown = [
+  { label: "Global Warming", href: "/homeowners"},
+  { label: "Why Sparq", href: "/homeowners#whysparq"},
+  { label: "Useful Resources", href: "/homeowners#useful-links"}
+]
+
 const productDropdown = [
   { label: "Quad2", href: "/products/quad2" },
   { label: "Quad3", href: "/products/quad3" },
@@ -54,7 +60,7 @@ const resourcesDropdown = [
 const navbarItems = [
   { label: "About", href: "/about", dropdown: aboutDropdown },
   { label: "Products", href: "/products", dropdown: productDropdown },
-  { label: "Homeowners", href: "/homeowners"},
+  { label: "Homeowners", href: "/homeowners", dropdown: homeownerDropdown},
   { label: "Installers", href: "/resources/installers"},
   { label: "Investors", href: "/investors", dropdown: investorDropdown },
   { label: "Resources", href: "/resources", dropdown: resourcesDropdown },

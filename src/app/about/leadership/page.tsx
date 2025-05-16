@@ -13,7 +13,7 @@ interface TeamMemberData {
 
 const teamMembers: TeamMemberData[] = [
     {
-        imgSrc: '/Team/Dr-Praveen-Jain.png',
+        imgSrc: '/Team/drjain.png',
         name: 'Dr. Praveen Jain',
         title: 'Founder & CEO',
         blurb: "Dr. Jain is the Founder and the CEO of SPARQ. He has considerable industrial experience in power electronics, working and consulting with Canadian Astronautics, Nortel Networks, Astec, Intel, Freescale, and GE. He founded CHiL Semiconductor, a digital power control chip company, which was acquired by International Rectifier (later merged with Infineon). Dr. Jain is a Fellow of the Royal Society of Canada, the Institute of Electrical and Electronics Engineers (IEEE), the Engineering Institute of Canada, and the Canadian Academy of Engineering. He is the recipient of the 2021 IEEE Medal in Power Engineering, the 2017 IEEE Canada Electric Power Medal, the 2011 IEEE William E. Newell Power Electronics Award, and the 2004 Engineering Medal from Ontario Professional Engineers. He holds over 100 patents. Dr. Jain obtained his PhD from the University of Toronto."
@@ -77,7 +77,7 @@ export default function LeadershipPage() {
     return (
         <div className="container mx-auto py-8 sm:px-4 pb-4">
             <section id="leadership" className="px-2 sm:px-0">
-                <h1 className="sm:text-5xl text-3xl font-bold text-brand-maroon text-center sm:mb-32 mb-8">Meet the Team</h1>
+                <h1 className="sm:text-5xl text-3xl font-bold text-brand-maroon text-center sm:mb-32 mb-8">Meet the Leadership Team</h1>
                 <div className="flex flex-wrap justify-center gap-16">
                     {teamMembers.map((member, index) => (
                         <div

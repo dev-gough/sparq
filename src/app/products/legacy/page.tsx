@@ -10,7 +10,7 @@ export default function ProductPage() {
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
 
     return (
-        <div className="bg-white container mx-auto py-4 px-4 sm:px-10">
+        <div className="bg-white container mx-auto py-4 px-4 sm:px-0">
             {/* Navigation Links */}
             <div className="flex justify-left items-center mb-6 text-sm text-brand-gray">
                 <Link href="/products" className="hover:underline px-2">

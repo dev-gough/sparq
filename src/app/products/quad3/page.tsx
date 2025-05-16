@@ -6,11 +6,18 @@ import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
 import FAQs from "./faqs.json"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
+import { motion } from "motion/react"
+
 
 export default function Quad3Page() {
     const models = ["Quad3-4301"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
+    const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
+
+    const toggleExpanded = (i: number) => {
+        setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
+    }
 
     const trackEvent = useTrackEvent()
     const handleClick = () => {
@@ -22,7 +29,7 @@ export default function Quad3Page() {
     }
 
     return (
-        <div className="bg-white container mx-auto py-4 px-4 sm:px-10">
+        <div className="bg-white container mx-auto py-4 px-4 sm:px-0">
             {/* Navigation Links */}
             <div className="flex justify-left items-center mb-6 text-sm text-brand-gray">
                 <Link href="/products" className="hover:underline px-2">
@@ -38,17 +45,223 @@ export default function Quad3Page() {
             <div className="flex flex-col-reverse md:flex-row gap-8">
                 {/* Product Details */}
                 <div className="flex-1">
-                    <h1 className="text-3xl font-bold text-gray-900 mt-1">Quad 3 Microinverter</h1>
-                    <ul className="list-inside list-disc space-y-4 mt-4 text-brand-gray sm:text-lg">
-                        <li><strong>Performance That Powers More</strong>: Engineered with high-frequency, soft-switching power electronics and advanced real-time control, the Quad3 ensures maximum energy harvesting and grid resilience. With individual MPPT for each panel, your system achieves optimal output even in partially shaded conditions. It&apos;s also built for the future - scalable, flexible, and ready for both on-grid and off-grid operations.</li>
-                        <li><strong>Safety You Can Count On</strong>: The Quad3 eliminates traditional risks with no HV DC cabling, no electrolytic capacitors, and all-AC wiring that complies with Rapid Shutdown (RSD) regulations. It&apos;s a high-reliability, high-availability solution with no single point of failure, minimizing risk while maximizing uptime.</li>
-                        <li><strong>Cost-Effectiveness Without Compromise</strong>: Backed by a Quad Architecture that reduces both manufacturing and installation costs, the Quad3 also minimizes Balance of System (BoS) requirements. With lowest cycle-life cost and maintenance-free operation, it stands out as an outlier on the Performance-Cost curve.</li>
+                    <h1 className="text-6xl font-bold text-gray-900 mt-1">Quad 3 Microinverter</h1>
+                    <ul className="space-y-4 list-disc list-inside text-2xl mt-4">
+                        <li>
+                            <span className="hover:underline text-4xl cursor-pointer" onClick={() => toggleExpanded(0)}>Best in-class Performance</span>
+                            {dropdownExpanded[0] && (
+                                <ol className="ps-5 mt-2 space-y-1 list-disc list-inside">
+                                    {/* todo: turn this into a map */}
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Highest weight/power density</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Maximum energy harvesting</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Dual-mode operation (on/off-grid)</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Individual MPPT for each panel</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Ultra high-frequency, soft switching topolgy</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Grid Resiliency without energy storage</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Grid Independence and energy self-sufficiency</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}><Link href="/products/sparqlinq" className="hover:underline">SparqLinq</Link>: advanced gateway to rule them all</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}><Link href="/products/sparqvu" className="hover:underline">SparqVu</Link>: Web monitoring with intuitive displays</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}><Link href="/products/app" className="hover:underline">SparqSync</Link>: User-friendly mobile app</motion.li>
+                                </ol>
+                            )}
+                        </li>
+                        <li>
+                            <span onClick={() => toggleExpanded(1)} className="hover:underline text-4xl cursor-pointer">Safe & Reliable</span>
+                            {dropdownExpanded[1] && (
+                                <ol className="ps-5 mt-2 space-y-1 list-disc list-inside">
+                                    {/* todo: turn this into a map */}
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>No failure-prone electrolytic capacitors</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Other low-lifetime components eliminated</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>All DC cabling with inherent Rapid Shutdown compliance</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>No risk of high voltage DC arcing</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>No high voltage shock hazard for 1st responders</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>High reliability and system availability</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>No single point of failure for the PV system</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Fewer system components to install/maintain</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Best-in-class longevity</motion.li>
+                                </ol>
+                            )}
+                        </li>
+                        <li>
+                            <span onClick={() => toggleExpanded(2)} className="hover:underline text-4xl cursor-pointer">Cost-Effectiveness</span>
+                            {dropdownExpanded[2] && (
+                                <ol className="ps-5 mt-2 space-y-1 list-disc list-inside">
+                                    {/* todo: turn this into a map */}
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Quad Architecture</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Reduced manufacturing Bill of Materials</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Reduced Balance of System (cabling, grounding, ect)</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Lower manufacturing and installation costs</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Maintenance-free</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Lowest cycle-life-cost</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Outlier on Performance-Cost curve</motion.li>
+                                </ol>
+                            )}
+                        </li>
                     </ul>
-                    <p className="text-brand-gray font-semibold text-lg mt-2">Whether you&apos;re powering a home or a commercial system, the Quad3 microinverter delivers unmatched value, reliability, and smart energy management — all in one compact, user-friendly package.</p>
+
 
                     {isExpanded && (
-                        <div className="text-brand-gray text-lg font-mono">
-                            <p>More details to be provided</p>
+                        <div className="text-brand-gray text-xl">
+                            <p className="mt-4"><strong>Performance That Powers More</strong>: Engineered with high-frequency, soft-switching power electronics and advanced real-time control, the Quad3 ensures maximum energy harvesting and grid resilience. With individual MPPT for each panel, your system achieves optimal output even in partially shaded conditions. It&apos;s also built for the future - scalable, flexible, and ready for both on-grid and off-grid operations.</p>
+                            <p className="mt-4"><strong>Safety You Can Count On</strong>: The Quad3 eliminates traditional risks with no HV DC cabling, no electrolytic capacitors, and all-AC wiring that complies with Rapid Shutdown (RSD) regulations. It&apos;s a high-reliability, high-availability solution with no single point of failure, minimizing risk while maximizing uptime.</p>
+                            <p className="mt-4"><strong>Cost-Effectiveness Without Compromise</strong>: Backed by a Quad Architecture that reduces both manufacturing and installation costs, the Quad3 also minimizes Balance of System (BoS) requirements. With lowest cycle-life cost and maintenance-free operation, it stands out as an outlier on the Performance-Cost curve.</p>
+                            <p className="text-brand-gray font-semibold text-lg mt-2">Whether you&apos;re powering a home or a commercial system, the Quad3 microinverter delivers unmatched value, reliability, and smart energy management — all in one compact, user-friendly package.</p>
                         </div>
                     )}
 
@@ -107,13 +320,25 @@ export default function Quad3Page() {
                                 </li>
                             </ul>
                         </AccordionItem>
-                        <AccordionItem title="Technical specifications" parent="quad3">
+                        <AccordionItem title="Technical Specifications" parent="quad3">
                             <div>
                                 {selectedModel === "Quad3-4301" && (
                                     <Link className="text-blue-500 hover:text-blue-700" href="/Datasheet_Quad4301.pdf" target="_blank">
                                         Datasheet for {selectedModel}
                                     </Link>
                                 )}
+                            </div>
+                        </AccordionItem>
+                        <AccordionItem title="Certifications" parent="quad3">
+                            <h2 className="text-xl font-bold mb-4">Reports</h2>
+                            <div className="flex flex-col">
+                                <Link href="/Quad3/report/EN50549-1.pdf" target="_blank" className="text-blue-500 hover:text-blue-700">EN50549-1</Link>
+                                <Link href="/Quad3/report/IEC 62109.01.02.pdf" target="_blank" className="text-blue-500 hover:text-blue-700">IEC 62109.01.02</Link>
+                            </div>
+                            <h2 className="text-xl font-bold my-4">Certifications</h2>
+                            <div className="flex flex-col">
+                                <Link href="/Quad3/certs/IEC_62109.pdf" target="_blank" className="text-blue-500 hover:text-blue-700">IEC_62109</Link>
+                                
                             </div>
                         </AccordionItem>
                         <AccordionItem title="Documentation" parent="quad3">

@@ -14,7 +14,7 @@ interface BoardMemberData {
 
 const boardMembers: BoardMemberData[] = [
     {
-        imgSrc: '/Team/Dr-Praveen-Jain.png',
+        imgSrc: '/Team/drjain.png',
         name: 'Praveen Jain',
         location: 'Kingston, Ontario',
         title: 'Director as of: December 31, 2021',

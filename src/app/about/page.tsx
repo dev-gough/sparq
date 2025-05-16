@@ -12,16 +12,15 @@ const reset_items = ["Safe, reliable, and maitenance-free products", "Lowest cos
 
 const green_items = ["Reduce energy consuption", "Cut your carbon footprint", "Enable self-sufficiency with solar power"]
 
-const quad_items = ["Quick and Easy to install", "Maximum energy harvest", "Cloud-based performance monitoring", "12yr standard - 25yr extended warranty"]
+const quad_items = ["Quick and Easy to install", "Maximum energy harvest", "Cloud-based performance monitoring", "12 yr. standard - 25 yr. extended warranty"]
 
 const quad_toggled_items = ["1 microinverter for 4 panels", "Safe, reliable, and long-lasting", "All AC cabling", "Rapid Shutdown Compatible", "Lowest weight, volume, and cost", "Fewer parts to install", "Installation takes less time on the roof", "Maitenance-free", "No more truck rolls", "Higher profit margin", "User-friendly app", "24/7 expert support"]
 
 interface AnimatedListProps {
     items: Array<string>
-    extended?: boolean
 }
 
-function AnimatedList({ items, extended }: AnimatedListProps) {
+function AnimatedList({ items }: AnimatedListProps) {
     const listVariants = {
         hidden: { maxHeight: 0 },
         visible: { maxHeight: 1000 },
@@ -39,7 +38,7 @@ function AnimatedList({ items, extended }: AnimatedListProps) {
                 {items.map((item, index) => (
                     <motion.li
                         key={index}
-                        className="text-4xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]"
+                        className="text-6xl text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]"
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{
@@ -85,7 +84,7 @@ export default function AboutPage() {
             </section>
             <section id="slide2" className="flex h-[calc(100vh-114px)] w-full bg-[url(/thumbnail_image.png)] bg-center bg-no-repeat bg-cover justify-center scroll-mt-[114px]">
                 <div className="relative flex flex-col bg-transparent w-full items-center mt-64">
-                    <h2 className="text-6xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Born out of a firey passion</span></h2>
+                    <h2 className="text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Born out of passion</span></h2>
                     <div className="absolute bottom-10 left-10 flex space-x-8">
                         <p onClick={() => toggleExpanded(1)} className=" text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">{expanded[1] ? "Close" : "Read More"}</p>
                         <Link href="/about#slide3" className="text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">Next</Link>
@@ -97,6 +96,7 @@ export default function AboutPage() {
                     )}
                 </div>
             </section>
+            {/* change photo */}
             <section id="slide3" className="flex h-[calc(100vh-114px)] w-full bg-[url(/bg-2.jpg)] bg-center bg-no-repeat bg-cover justify-center scroll-mt-[114px]">
                 <div className="relative flex flex-col bg-transparent w-full items-center mt-64">
                     <h2 className="text-6xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Resetting the PV Industry</span></h2>
@@ -125,6 +125,7 @@ export default function AboutPage() {
                     )}
                 </div>
             </section>
+            {/* somehow discuss that this is slc, front/back */}
             <section id="slide5" className={`flex h-[calc(100vh-114px)] w-full ${toggled? "bg-[url(/SLC/007.JPG)]" : "bg-[url(/SLC/009.JPG)] bg-bottom"} bg-center bg-no-repeat bg-cover justify-center scroll-mt-[114px]`}>
                 <div className={`relative flex flex-col bg-transparent w-full items-center ${toggled? "mt-10" : "mt-64"}`}>
                     <h2 className="text-6xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Quad architecture advantage</span></h2>

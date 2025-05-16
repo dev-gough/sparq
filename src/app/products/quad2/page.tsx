@@ -6,11 +6,13 @@ import { useState } from 'react'
 import AccordionItem from "@/components/AccordianItem"
 import FAQs from "./faqs.json"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
+import { motion } from "motion/react"
 
 export default function ProductPage() {
     const models = ["Q2000-4102", "Q2000-4102-DM", "Q2000-4102-GT"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
+    const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
     const trackEvent = useTrackEvent()
 
     const handleClick = () => {
@@ -21,8 +23,12 @@ export default function ProductPage() {
         })
     }
 
+    const toggleExpanded = (i: number) => {
+        setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
+    }
+
     return (
-        <div className="bg-white container mx-auto py-4 px-4 sm:px-10">
+        <div className="bg-white container mx-auto py-4 px-4 sm:px-0">
             {/* Navigation Links */}
             <div className="flex justify-left items-center mb-6 text-sm text-brand-gray">
                 <Link href="/products" className="hover:underline px-2">
@@ -38,37 +44,213 @@ export default function ProductPage() {
             <div className="flex flex-col-reverse md:flex-row gap-8">
                 {/* Product Details */}
                 <div className="flex-1">
-                    <h1 className="text-3xl [font-weight:900] text-gray-900 mt-1">Q2000 Microinverter</h1>
-                    {/* <ul className="list-inside list-disc space-y-4 mt-4 text-brand-gray sm:text-lg">
-                        <li><strong>Revolutionary Design</strong>: Each Quad microinverter can independently track peak power for up to four PV modules, a significant advancement over traditional one-to-one microinverter systems.</li>
-                        <li><strong>Cost and efficiency benefits</strong>: Significantly reduces installation time and cable costs; offers the lowest cost, highest power output, highest power density, and lowest weight per Watt in the industry.</li>
-                        <li><strong>High reliability</strong>: Utilizes patented technology to eliminate short-life electrolytic capacitors, ensuring a design life of 25 years, matching that of PV modules.</li>
-                        <li><strong>Flagship product</strong>: The Q2000 microinverter can connect four 550W+ PV panels to the grid without any power clipping, demonstrating the technology&apos;s superior capabilities.</li>
-                    </ul> */}
-                    <ul className="space-y-4 list-disc list-inside">
+                    <h1 className="text-6xl font-bold text-gray-900 mt-1">Q2000 Microinverter</h1>
+                    <ul className="space-y-4 list-disc list-inside text-2xl mt-4">
                         <li>
-                            Best in-class Performance
-                            <ol className="ps-5 mt-2 space-y-1 list-decimal list-inside">
-                                <li>Point 1</li>
-                                <li>Point 2</li>
-                                <li>Point 3</li>
-                            </ol>
+                            <span className="hover:underline text-4xl cursor-pointer" onClick={() => toggleExpanded(0)}>Best in-class Performance</span>
+                            {dropdownExpanded[0] && (
+                                <ol className="ps-5 mt-2 space-y-1 list-disc list-inside">
+                                    {/* todo: turn this into a map */}
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Highest weight/power density</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Maximum energy harvesting</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Dual-mode operation (on/off-grid)</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Individual MPPT for each panel</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Ultra high-frequency, soft switching topolgy</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Grid Resiliency without energy storage</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Grid Independence and energy self-sufficiency</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}><Link href="/products/sparqlinq" className="hover:underline">SparqLinq</Link>: advanced gateway to rule them all</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}><Link href="/products/sparqvu" className="hover:underline">SparqVu</Link>: Web monitoring with intuitive displays</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}><Link href="/products/app" className="hover:underline">SparqSync</Link>: User-friendly mobile app</motion.li>
+                                </ol>
+                            )}
                         </li>
                         <li>
-                            Safe & Reliable
-                            <ol className="ps-5 mt-2 space-y-1 list-decimal list-inside">
-                                <li>Point 1</li>
-                                <li>Point 2</li>
-                                <li>Point 3</li>
-                            </ol>
+                            <span onClick={() => toggleExpanded(1)} className="hover:underline text-4xl cursor-pointer">Safe & Reliable</span>
+                            {dropdownExpanded[1] && (
+                                <ol className="ps-5 mt-2 space-y-1 list-disc list-inside">
+                                    {/* todo: turn this into a map */}
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>No failure-prone electrolytic capacitors</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Other low-lifetime components eliminated</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>All DC cabling with inherent Rapid Shutdown compliance</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>No risk of high voltage DC arcing</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>No high voltage shock hazard for 1st responders</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>High reliability and system availability</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>No single point of failure for the PV system</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Fewer system components to install/maintain</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Best-in-class longevity</motion.li>
+                                </ol>
+                            )}
                         </li>
                         <li>
-                            Industry-leading Cost Effectiveness
-                            <ol className="ps-5 mt-2 space-y-1 list-decimal list-inside">
-                                <li>Point 1</li>
-                                <li>Point 2</li>
-                                <li>Point 3</li>
-                            </ol>
+                            <span onClick={() => toggleExpanded(2)} className="hover:underline text-4xl cursor-pointer">Cost-Effectiveness</span>
+                            {dropdownExpanded[2] && (
+                                <ol className="ps-5 mt-2 space-y-1 list-disc list-inside">
+                                    {/* todo: turn this into a map */}
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Quad Architecture</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Reduced manufacturing Bill of Materials</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Reduced Balance of System (cabling, grounding, ect)</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Lower manufacturing and installation costs</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Maintenance-free</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Lowest cycle-life-cost</motion.li>
+                                    <motion.li initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.5,
+                                            duration: 0.5,
+                                            ease: "easeOut"
+                                        }}>Outlier on Performance-Cost curve</motion.li>
+                                </ol>
+                            )}
                         </li>
                     </ul>
                     {isExpanded && (
@@ -102,7 +284,6 @@ export default function ProductPage() {
                             ))}
                         </div>
                     </div>
-
                     <div className="p-4 sm:mt-16">
                         <AccordionItem title="Features" className="sticky top-[66px] sm:relative sm:top-auto" parent="quad2">
                             <ul className="list-inside list-decimal text-brand-maroon">
@@ -157,8 +338,22 @@ export default function ProductPage() {
                                 )}
                             </div>
                         </AccordionItem>
-                        <AccordionItem title="Certification" parent="quad2">
-                            <h2 className="text-lg font-bold">Labels</h2>
+                        <AccordionItem title="Certifications" parent="quad2">
+                            <h2 className="text-xl font-bold mb-4">Reports</h2>
+                            <div className="flex flex-col">
+                                <Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/EN_61683.pdf">EN_61683</Link>
+                                <Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/IEC_60068-2-xx.pdf">IEC_60068-2-xx</Link>
+                                <Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/IEC_61727.pdf">IEC_61727</Link>
+                                <Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/IEC_62109_1_2.pdf">IEC_62109_1_2</Link>
+                                <Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/UL1741-Report.pdf">UL1741-Report</Link>
+                            </div>
+                            <h2 className="text-xl font-bold my-4">Certifications</h2>
+                            <div className="flex flex-col">
+                                <Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/CU72239343.01-.02.pdf">CU72239343.01-.02</Link>
+                                <Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/CU72239343.03.pdf">CU72239343.03</Link>
+                                <Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/CU72239343.04.pdf">CU72239343.04</Link>
+                                <Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/SPARQ_Cert_CS000052.pdf">SPARQ_Cert_CS000052</Link>
+                            </div>
                         </AccordionItem>
                         <AccordionItem title="Documentation" parent="quad2">
                             <h2 className="text-lg font-bold">Installation Manuals for {selectedModel}:</h2>

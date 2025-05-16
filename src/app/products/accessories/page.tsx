@@ -137,7 +137,7 @@ function CableTable() {
 
 export default function AccessoriesPage() {
   return (
-    <div className="container mx-auto px-4 py-8 sm:px-10">
+    <div className="container mx-auto px-4 py-8 sm:px-0">
       {/* breadcrumb */}
       <nav aria-label="Breadcrumb" className="mb-6 flex items-center text-sm text-brand-gray">
         <Link href="/products" className="px-2 hover:underline">
