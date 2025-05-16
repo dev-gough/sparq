@@ -62,7 +62,7 @@ export default function CompanySnapshot() {
   return (
     <div className="bg-white">
       <h1 className="text-5xl font-bold text-center text-brand-maroon my-8">COMPANY SNAPSHOT</h1>
-      <div className="bg-brand-yellow p-6 text-center text-3xl text-black font-bold">
+      <div className="bg-brand-logo p-6 text-center text-3xl text-black font-bold">
         SPARQ designs and manufacturers innovative Module Level Power Electronics (MLPE) Products for PV, Energy Storage and EV.
       </div>
       <div className="flex flex-wrap mt-4">

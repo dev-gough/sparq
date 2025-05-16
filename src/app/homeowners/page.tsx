@@ -206,7 +206,7 @@ export default function HomeownersPage() {
                                 href={tool.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                                className="inline-block bg-brand-maroon text-white px-4 py-2 rounded hover:bg-brand-darkmaroon"
                             >
                                 Visit Site
                             </Link>
