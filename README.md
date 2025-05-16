@@ -1,4 +1,8 @@
-# Getting Started
+# IMPORTANT
+
+If you've previously cloned this repo, you need to do so again before contributing, as I royally scuffed up the commit history.  Sry :)
+
+## Getting Started
 
 First, install the required packages (ensure you're in the main dir):
 
