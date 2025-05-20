@@ -14,6 +14,7 @@ interface VideoControlsProps {
     onForward: () => void
     onSkipToEnd: () => void
     isPaused: boolean
+    className?: string
 }
 
 export default function VideoControls({
@@ -23,9 +24,10 @@ export default function VideoControls({
     onForward,
     onSkipToEnd,
     isPaused,
+    className,
 }: VideoControlsProps) {
     return (
-        <div className="flex items-center space-x-4 bg-black bg-opacity-50 p-2 rounded cursor-pointer">
+        <div className={`flex items-center space-x-4 bg-black bg-opacity-50 p-2 rounded cursor-pointer ${className}`}>
             {/* 1) Skip to start */}
             <button onClick={onRestart} aria-label="Restart">
                 <MdFirstPage className="text-white text-2xl" />

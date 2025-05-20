@@ -1,7 +1,9 @@
 'use client'
 import { useState } from 'react'
+import { FaAward } from 'react-icons/fa'
+import Link from 'next/link'
 
-const cols = ["History", "Disrupting PV", "Products", "Patents & Awards", "Who We Are?"]
+const cols = ["History", "Disrupting PV", "Products", "Patents & Awards"]
 
 interface DropdownButtonProps {
 	index: number
@@ -10,14 +12,26 @@ interface DropdownButtonProps {
 
 export default function CompanySnapshot() {
 	function DropdownButton({ index, title }: DropdownButtonProps) {
-		return (<div className='w-full md:w-1/2 lg:w-1/5 p-2'>
-			<button
-				className={`w-full bg-brand-maroon text-white py-4 rounded-full flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer ${openIndex === index ? "border-4 border-brand-logo" : "border-none"}`}
-				onClick={() => toggleDropdown(index)}
-			>
-				<span className="text-4xl font-bold">{title}</span>
-			</button>
-		</div>
+		return (
+			<div className='w-full md:w-1/2 lg:w-1/5 p-2'>
+				<button
+					className={`w-full bg-brand-maroon text-white py-4 rounded-full flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer ${openIndex === index ? "border-4 border-brand-logo" : "border-none"}`}
+					onClick={() => toggleDropdown(index)}
+				>
+					<span className="text-4xl font-bold">{title}</span>
+				</button>
+			</div>
+		)
+	}
+
+	function CustomLI({ children }: { children: React.ReactNode }) {
+		return (
+			<li className='relative pl-10'>
+				<span className='absolute left-0 top-3'>
+					<FaAward className='size-8 mr-8' />
+				</span>
+				{children}
+			</li>
 		)
 	}
 
@@ -33,7 +47,16 @@ export default function CompanySnapshot() {
 				{cols.map((title, index) => (
 					<DropdownButton key={index} index={index} title={title} />
 				))}
+				<div className='w-full md:w-1/2 lg:w-1/5 p-2'>
+					<Link
+						href="/about"
+						className="w-full bg-brand-maroon text-white py-4 rounded-full flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer"
+					>
+						<span className="text-4xl font-bold">Read More</span>
+					</Link>
+				</div>
 			</div>
+			{/* make this a switch case? */}
 			{openIndex === 0 && (
 				<div className="mt-4 w-full px-12">
 					<ul className="space-y-8 list-disc list-outside pl-4 text-[40px] ">
@@ -53,7 +76,7 @@ export default function CompanySnapshot() {
 						<li>Elimination of electrolytic caps and short-life components</li>
 						<li>Much lower product life-cycle-cost, manufacturing, logistics, installation, and maintenance</li>
 						<li>Safe and highly reliable, without risk of high voltage DC arcing and electric shock</li>
-						<li>Best in-class product performance, efficiency, and lowest volume, weight, and cos</li>
+						<li>Best in-class product performance, efficiency, and lowest volume, weight, and cost</li>
 					</ul>
 				</div>
 
@@ -61,13 +84,13 @@ export default function CompanySnapshot() {
 			{openIndex === 2 && (
 				<div className="mt-4 w-full px-12">
 					<ul className="space-y-8 list-disc list-outside pl-4 text-[40px] ">
-						<li><strong>2020</strong>: Q2000 1p microinverter</li>
+						<li><strong>2020</strong>: Q2000 single-phase microinverter</li>
 						<li><strong>2020</strong>: Energy management and performance monitoring system (SparqLinq)</li>
-						<li><strong>2020</strong>: Cloud based data monitoring system (SparqVu)</li>
+						<li><strong>2020</strong>: Cloud web-based data monitoring system (SparqVu)</li>
 						<li><strong>2024</strong>: Q2000 Dual-mode microinverter</li>
-						<li><strong>2024</strong>: Grid-tied 3 phase microinverter</li>
+						<li><strong>2024</strong>: Grid-tied three-phase microinverter</li>
 						<li><strong>2025</strong>: Integrated PV and Battery Quad microinverter</li>
-						<li><strong>2025</strong>: Sparq User App for Android and iOS</li>
+						<li><strong>2025</strong>: User App: SparqSync for Android and iOS</li>
 					</ul>
 				</div>
 			)}
@@ -78,10 +101,10 @@ export default function CompanySnapshot() {
 						<li>Received Frost & Sullivan&apos;s 2017 &apos;New Product Innovation Award&apos;</li>
 						<li>
 							Founder Dr. Praveen Jain received multiple world-class awards
-							<ul className='ps-5 mt-2 space-y-2 list-disc list-inside'>
-								<li><strong>2017</strong>: Canada Electric Power Medal</li>
-								<li><strong>2021</strong>: IEEE Medal in Power Engineering</li>
-								<li><strong>2023</strong>: Killam Prize in Engineering</li>
+							<ul className='mt-2 space-y-2 list-none'>
+								<CustomLI><strong>2017</strong>: Canada Electric Power Medal</CustomLI>
+								<CustomLI><strong>2021</strong>: IEEE Medal in Power Engineering</CustomLI>
+								<CustomLI><strong>2023</strong>: Killam Prize in Engineering</CustomLI>
 							</ul>
 						</li>
 
@@ -90,11 +113,11 @@ export default function CompanySnapshot() {
 			)}
 			{openIndex === 4 && (
 				<div className="mt-4 w-full px-12">
-					<ul className="space-y-8 list-disc list-outside pl-4 text-[40px]">
+					<ul className="space-y-8 list-none list-outside pl-4 text-[40px]">
 						<li><strong>Core Values</strong>: Integrity, Collaboration, Innovation, Quality, Social Responsibility, Teamwork</li>
 						<li><strong>Mission</strong>: Accelerate the transition to energy self-sufficiency by serving residential, commercial and industrial customers world-wide.</li>
 						<li><strong>Vision</strong>: Become the #1 Leader for Microinverters, Battery Storage, and Energy Management.</li>
-						<li><strong>Value</strong>: Deliver safe, reliable, and cost-effective solutions that are best-in-class, easy to install, and maintenance-free.</li>
+						<li><strong>Values</strong>: Deliver safe, reliable, and cost-effective solutions that are best-in-class, easy to install, and maintenance-free.</li>
 					</ul>
 				</div>
 			)}

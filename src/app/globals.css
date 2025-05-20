@@ -12,6 +12,8 @@
     --color-mission: #ff4d4d;
     --color-vision: #4dc8ff;
     --color-values: #ff9f4d;
+
+    --breakpoint-3xl: 120rem;
 }
 
 body {

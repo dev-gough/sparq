@@ -58,7 +58,7 @@ export default function Quad3Page() {
                                             delay: 0.5,
                                             duration: 0.5,
                                             ease: "easeOut"
-                                        }}>Highest weight/power density</motion.li>
+                                        }}>Highest power per unit weight [W/kg] or volume [W/in<sup>3</sup>]</motion.li>
                                     <motion.li initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
@@ -150,7 +150,7 @@ export default function Quad3Page() {
                                             delay: 0.5,
                                             duration: 0.5,
                                             ease: "easeOut"
-                                        }}>All DC cabling with inherent Rapid Shutdown compliance</motion.li>
+                                        }}>All AC cabling with inherent Rapid Shutdown compliance</motion.li>
                                     <motion.li initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
@@ -242,7 +242,7 @@ export default function Quad3Page() {
                                             delay: 0.5,
                                             duration: 0.5,
                                             ease: "easeOut"
-                                        }}>Lowest cycle-life-cost</motion.li>
+                                        }}>Lowest lifecycle cost</motion.li>
                                     <motion.li initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
@@ -254,13 +254,11 @@ export default function Quad3Page() {
                             )}
                         </li>
                     </ul>
-
-
                     {isExpanded && (
                         <div className="text-brand-gray text-xl">
                             <p className="mt-4"><strong>Performance That Powers More</strong>: Engineered with high-frequency, soft-switching power electronics and advanced real-time control, the Quad3 ensures maximum energy harvesting and grid resilience. With individual MPPT for each panel, your system achieves optimal output even in partially shaded conditions. It&apos;s also built for the future - scalable, flexible, and ready for both on-grid and off-grid operations.</p>
                             <p className="mt-4"><strong>Safety You Can Count On</strong>: The Quad3 eliminates traditional risks with no HV DC cabling, no electrolytic capacitors, and all-AC wiring that complies with Rapid Shutdown (RSD) regulations. It&apos;s a high-reliability, high-availability solution with no single point of failure, minimizing risk while maximizing uptime.</p>
-                            <p className="mt-4"><strong>Cost-Effectiveness Without Compromise</strong>: Backed by a Quad Architecture that reduces both manufacturing and installation costs, the Quad3 also minimizes Balance of System (BoS) requirements. With lowest cycle-life cost and maintenance-free operation, it stands out as an outlier on the Performance-Cost curve.</p>
+                            <p className="mt-4"><strong>Cost-Effectiveness Without Compromise</strong>: Backed by a Quad Architecture that reduces both manufacturing and installation costs, the Quad3 also minimizes Balance of System (BoS) requirements. With lowest lifecycle cost and maintenance-free operation, it stands out as an outlier on the Performance-Cost curve.</p>
                             <p className="text-brand-gray font-semibold text-lg mt-2">Whether you&apos;re powering a home or a commercial system, the Quad3 microinverter delivers unmatched value, reliability, and smart energy management — all in one compact, user-friendly package.</p>
                         </div>
                     )}
