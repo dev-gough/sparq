@@ -57,7 +57,7 @@ export default function ProductPage() {
                                             delay: 0.5,
                                             duration: 0.5,
                                             ease: "easeOut"
-                                        }}>Highest weight/power density</motion.li>
+                                        }}>Highest power per unit weight [W/kg] or volume [W/in<sup>3</sup>]</motion.li>
                                     <motion.li initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
@@ -149,7 +149,7 @@ export default function ProductPage() {
                                             delay: 0.5,
                                             duration: 0.5,
                                             ease: "easeOut"
-                                        }}>All DC cabling with inherent Rapid Shutdown compliance</motion.li>
+                                        }}>All AC cabling with inherent Rapid Shutdown compliance</motion.li>
                                     <motion.li initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
@@ -241,7 +241,7 @@ export default function ProductPage() {
                                             delay: 0.5,
                                             duration: 0.5,
                                             ease: "easeOut"
-                                        }}>Lowest cycle-life-cost</motion.li>
+                                        }}>Lowest lifecycle cost</motion.li>
                                     <motion.li initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{

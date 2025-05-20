@@ -9,7 +9,7 @@ export default function Footer() {
                 <div className="container mx-auto py-3 px-4">
                     <div className="flex flex-wrap justify-between items-start">
                         {/* Left Column: Company Information */}
-                        <div className="w-full md:w-1/3 mb-2 md:mb-0">
+                        <div className="w-full md:w-1/2 mb-2 md:mb-0">
                             {/* Logo */}
                             <div className="flex items-center">
                                <Image src="/logo.png" alt="footer logo" width={64} height={64}/>
@@ -30,8 +30,8 @@ export default function Footer() {
                         </div>
 
                         {/* Middle Column: Navigation Links */}
-                        <div className="w-full md:w-1/3 mb-2 md:mb-0">
-                            <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+                        <div className="w-full md:w-1/2 mb-2 md:mb-0">
+                            <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm pt-4">
                                 <li><Link href="/" className="hover:text-orange-400">Home</Link></li>
                                 <li><Link href="/about" className="hover:text-orange-400">About</Link></li>
                                 <li><Link href="/resources/installers" className="hover:text-orange-400">Installers/Distributors</Link></li>

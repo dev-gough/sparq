@@ -47,7 +47,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
             <div className="flex items-center">
                 <Link
                     href={navItem.href}
-                    className={`px-1 py-1 text-xl rounded ${isParentActive
+                    className={`px-1 py-1 text-lg lg:text-xl xl:text-[22px] rounded ${isParentActive
                             ? 'text-brand-yellow font-bold'
                             : 'text-white hover:text-gray-300'
                         }`}

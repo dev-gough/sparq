@@ -70,7 +70,7 @@ export default function AboutPage() {
         <div id="corporatestatements" className="flex flex-col items-center bg-white scroll-mt-[115px]">
             <section className="flex h-[calc(100vh-114px)] w-full bg-[url(/bg-4.jpg)] bg-top bg-no-repeat bg-cover justify-center">
                 <div className="relative flex flex-col bg-transparent w-full items-center mt-64">
-                    <h2 className="text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Say goodbye past problems</span></h2>
+                    <h2 className="text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Say goodbye to past problems</span></h2>
                     <div className="absolute bottom-10 left-10 flex space-x-8">
                         <p onClick={() => toggleExpanded(0)} className=" text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">{expanded[0] ? "Close" : "Read More"}</p>
                         <Link href="/about#slide2" className="text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">Next</Link>
