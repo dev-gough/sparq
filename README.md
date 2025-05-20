@@ -24,6 +24,10 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Notes
+
+For the split-line tailwind classes, they go from smallest->largest as you go down.  i.e. top level is for sm: classes, then md: then lg: ect
+
 ## Todo
 
 ## Highest Prio
