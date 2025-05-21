@@ -25,7 +25,7 @@ export default function TOSDropdown({ isOpen }: TOSProps) {
         <div className="w-full relative">
             {/* Dropdown menu button */}
             <div
-                className={`p-4 cursor-pointer bg-gray-100 rounded-xl border hover:bg-gray-200 ${open? 'sticky top-[66px] z-10':''}`}
+                className={`p-4 cursor-pointer bg-gray-100 rounded-xl border hover:bg-gray-200 ${open? 'sticky top-[114px] z-10':''}`}
                 onClick={handleOpen}
                 aria-expanded={open}
             >

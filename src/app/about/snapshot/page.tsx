@@ -13,12 +13,12 @@ interface DropdownButtonProps {
 export default function CompanySnapshot() {
 	function DropdownButton({ index, title }: DropdownButtonProps) {
 		return (
-			<div className='w-full md:w-1/2 lg:w-1/5 p-2'>
+			<div className='md:w-1/5 lg:p-2 pb-2 mx-0.5'>
 				<button
-					className={`w-full bg-brand-maroon text-white py-4 rounded-full flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer ${openIndex === index ? "border-4 border-brand-logo" : "border-none"}`}
+					className={`w-full bg-brand-maroon text-white p-1 sm:p-2 lg:p-3 rounded-full flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer ${openIndex === index ? "border-2 sm:border-4 border-brand-logo" : "border-none"}`}
 					onClick={() => toggleDropdown(index)}
 				>
-					<span className="text-4xl font-bold">{title}</span>
+					<span className="md:text-lg lg:text-xl xl:text-2xl font-bold whitespace-nowrap">{title}</span>
 				</button>
 			</div>
 		)
@@ -26,9 +26,9 @@ export default function CompanySnapshot() {
 
 	function CustomLI({ children }: { children: React.ReactNode }) {
 		return (
-			<li className='relative pl-10'>
-				<span className='absolute left-0 top-3'>
-					<FaAward className='size-8 mr-8' />
+			<li className='relative pl-6 md:pl-10'>
+				<span className='absolute left-0 top-0'>
+					<FaAward className='size-6 md:size-8' />
 				</span>
 				{children}
 			</li>
@@ -43,23 +43,28 @@ export default function CompanySnapshot() {
 
 	return (
 		<div className="bg-white">
-			<div className="flex flex-wrap mt-4">
+			<div className="flex justify-between mt-4 overflow-x-scroll sm:overflow-x-auto">
 				{cols.map((title, index) => (
 					<DropdownButton key={index} index={index} title={title} />
 				))}
-				<div className='w-full md:w-1/2 lg:w-1/5 p-2'>
+				<div className='md:w-1/5 lg:p-2 pb-2 mx-0.5'>
 					<Link
 						href="/about"
-						className="w-full bg-brand-maroon text-white py-4 rounded-full flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer"
+						className="w-full bg-brand-maroon text-white p-1 sm:p-2 lg:p-3 rounded-full flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer"
 					>
-						<span className="text-4xl font-bold">Read More</span>
+						<span className="md:text-lg lg:text-xl xl:text-2xl font-bold whitespace-nowrap">Read More</span>
 					</Link>
 				</div>
 			</div>
 			{/* make this a switch case? */}
+			{openIndex === null && (
+				<div className='flex justify-center items-center'>
+					<p className='text-lg md:text-xl md:mt-16'>Click on a label to see more</p>
+				</div>
+			)}
 			{openIndex === 0 && (
-				<div className="mt-4 w-full px-12">
-					<ul className="space-y-8 list-disc list-outside pl-4 text-[40px] ">
+				<div className="mt-4 w-full px-4 py-2 lg:px-12">
+					<ul className="space-y-4 md:space-y-6 lg:space-y-8 list-disc list-outside pl-4 sm:text-lg md:text-2xl lg:text-3xl 3xl:text-[40px]">
 						<li><strong>2009</strong>: Dr. Praveen Jain, Director of ePower at Queens University, founded SPARQ</li>
 						<li><strong>2018</strong>: Manufacturing in North America</li>
 						<li><strong>2021</strong>: Raised $64M venture funding, and went public under SPRQ.V ticker on TSXV</li>
@@ -70,8 +75,8 @@ export default function CompanySnapshot() {
 				</div>
 			)}
 			{openIndex === 1 && (
-				<div className='mt-4 w-full px-12'>
-					<ul className='space-y-8 list-disc list-outside pl-4 text-[40px]'>
+				<div className='mt-4 w-full px-4 py-2 lg:px-12'>
+					<ul className='space-y-4 md:space-y-6 lg:space-y-8 list-disc list-outside pl-4 sm:text-lg md:text-2xl lg:text-3xl 3xl:text-[40px]'>
 						<li>HF soft-switching quad and duo architecture driven by real-time and accurate controls</li>
 						<li>Elimination of electrolytic caps and short-life components</li>
 						<li>Much lower product life-cycle-cost, manufacturing, logistics, installation, and maintenance</li>
@@ -82,8 +87,8 @@ export default function CompanySnapshot() {
 
 			)}
 			{openIndex === 2 && (
-				<div className="mt-4 w-full px-12">
-					<ul className="space-y-8 list-disc list-outside pl-4 text-[40px] ">
+				<div className="mt-4 w-full px-4 py-2 lg:px-12">
+					<ul className="space-y-4 md:space-y-6 lg:space-y-8 list-disc list-outside pl-4 sm:text-lg md:text-2xl lg:text-3xl 3xl:text-[40px] ">
 						<li><strong>2020</strong>: Q2000 single-phase microinverter</li>
 						<li><strong>2020</strong>: Energy management and performance monitoring system (SparqLinq)</li>
 						<li><strong>2020</strong>: Cloud web-based data monitoring system (SparqVu)</li>
@@ -95,8 +100,8 @@ export default function CompanySnapshot() {
 				</div>
 			)}
 			{openIndex === 3 && (
-				<div className="mt-4 w-full px-12">
-					<ul className="space-y-8 list-disc list-outside pl-4 text-[40px]">
+				<div className="mt-4 w-full px-4 py-2 lg:px-12">
+					<ul className="space-y-4 md:space-y-6 lg:space-y-8 list-disc list-outside pl-4 sm:text-lg md:text-2xl lg:text-3xl 3xl:text-[40px]">
 						<li>More than 85 patents awarded and pending</li>
 						<li>Received Frost & Sullivan&apos;s 2017 &apos;New Product Innovation Award&apos;</li>
 						<li>
@@ -108,16 +113,6 @@ export default function CompanySnapshot() {
 							</ul>
 						</li>
 
-					</ul>
-				</div>
-			)}
-			{openIndex === 4 && (
-				<div className="mt-4 w-full px-12">
-					<ul className="space-y-8 list-none list-outside pl-4 text-[40px]">
-						<li><strong>Core Values</strong>: Integrity, Collaboration, Innovation, Quality, Social Responsibility, Teamwork</li>
-						<li><strong>Mission</strong>: Accelerate the transition to energy self-sufficiency by serving residential, commercial and industrial customers world-wide.</li>
-						<li><strong>Vision</strong>: Become the #1 Leader for Microinverters, Battery Storage, and Energy Management.</li>
-						<li><strong>Values</strong>: Deliver safe, reliable, and cost-effective solutions that are best-in-class, easy to install, and maintenance-free.</li>
 					</ul>
 				</div>
 			)}

@@ -27,7 +27,7 @@ export default function PrivacyPolicyDropdown({ isOpen, className }: PPProps) {
         <div className={`w-full ${className}`}>
             {/* Dropdown menu button */}
             <div
-                className={`p-4 cursor-pointer bg-gray-100 rounded-xl border hover:bg-gray-200 ${open? 'sticky top-[66px] z-10':''}`}
+                className={`p-4 cursor-pointer bg-gray-100 rounded-xl border hover:bg-gray-200 ${open? 'sticky top-[114px] z-10':''}`}
                 onClick={handleOpen}
                 aria-expanded={open}
             >

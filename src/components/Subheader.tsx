@@ -39,7 +39,7 @@ function SubheadingItem({ label, href }: SubheadingItemProps) {
             className={`flex flex-shrink-0 items-center justify-center space-x-2 ${isActive ? "text-brand-yellow" : "text-gray-700"
                 } transition-colors duration-150 hover:text-brand-yellow`}
         >
-            <span className="text-lg sm:text-2xl whitespace-nowrap">{label}</span>
+            <span className="text-lg sm:text-xl xl:text-2xl whitespace-nowrap">{label}</span>
         </Link>
     )
 }
