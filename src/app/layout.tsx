@@ -54,7 +54,7 @@ const productDropdown = [
 const resourcesDropdown = [
   { label: "Photo Gallery", href: "/resources/photos" },
   { label: "Video Gallery", href: "/resources/videos" },
-  { label: "Design Your System", href: "/resources/design" },
+  { label: "Design My System", href: "/resources/design" },
 ]
 
 const navbarItems = [

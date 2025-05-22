@@ -10,7 +10,7 @@ const items = [
     { icon: FaHammer, label: "Installers", href: "/resources/installers"},
     { icon: FaCamera, label: "Photos", href: "/resources/photos"},
     { icon: FaVideo, label: "Videos", href: "/resources/videos"},
-    { icon: MdOutlineDesignServices, label: "Design Your System", href: "/resources/design"},
+    { icon: MdOutlineDesignServices, label: "Design My System", href: "/resources/design"},
 ]
 
 export default function InvestorLayout({children} : Readonly<{

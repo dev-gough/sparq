@@ -71,7 +71,7 @@ function ContactSection({ title, companyName, address, phone, email, website }: 
 
 export default function ContactPage() {
 	return (
-		<div className="container mx-auto px-4 my-8 sm:px-10 sm:my-16" id="header">
+		<div className="container mx-auto 3xl:px-48 px-4 my-8 sm:px-10 sm:my-16">
 			<h2 className="text-5xl font-bold text-center mb-8 text-brand-maroon">Contact Us</h2>
 			<h3 className='text-xl font-semibold my-4 text-brand-maroon'>Our Offices</h3>
 			<section className='flex flex-col gap-6'>
@@ -109,9 +109,9 @@ export default function ContactPage() {
 				<ContactSection
 					title="North America Distributer"
 					companyName='GPSI Solar'
-					address={`131 sheldon Drive, Unit 22\nCambridge, Ontario, Canada\nN1R 6S2`}
+					address={`131 Sheldon Drive, Unit 22\nCambridge, Ontario, Canada\nN1R 6S2`}
 					phone='519-645-9649'
-					email='sales@gpi.solar'
+					email='sales@gpsi.solar'
 					website='https://www.gpsi.ca/Solar-EV.htm'
 				/>
 			</section>

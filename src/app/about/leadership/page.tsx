@@ -75,7 +75,7 @@ export default function LeadershipPage() {
     }
 
     return (
-        <div className="container mx-auto py-8 sm:px-4 pb-4">
+        <div className="container mx-auto py-8 px-4 pb-4">
             <section id="leadership" className="px-2 sm:px-0">
                 <h1 className="sm:text-5xl text-3xl font-bold text-brand-maroon text-center sm:mb-32 mb-8">Meet the Leadership Team</h1>
                 <div className="flex flex-wrap justify-center gap-16">
@@ -83,7 +83,7 @@ export default function LeadershipPage() {
                         <div
                             key={index}
                             onClick={() => handleClick(member)}
-                            className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${selectedMember === member
+                            className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-60 md:w-66 lg:w-72 3xl:w-90 ${selectedMember === member
                                 ? 'scale-100'
                                 : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
                                 }`}>
@@ -102,15 +102,15 @@ export default function LeadershipPage() {
             </section>
             {selectedMember && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-40"
+                    className="fixed inset-0 bg-black/80 z-40"
                     onClick={() => setMember(null)}
                 >
                     <div
-                        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 sm:max-w-4/5 max-h-4/5 w-full overflow-y-auto border-brand-maroon border-3"
+                        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 sm:max-w-4/5 max-h-4/5 min-h-2/5 w-full overflow-y-auto border-brand-maroon border-3"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <button
-                            className="absolute top-4 right-4 bg-brand-maroon text-white px-4 py-2 rounded hover:bg-brand-maroon/80 z-10 cursor-pointer"
+                            className="absolute top-4 right-4 bg-brand-maroon text-white px-4 py-2 rounded hover:bg-brand-darkmaroon z-10 cursor-pointer"
                             onClick={() => setMember(null)}
                         >
                             Close
