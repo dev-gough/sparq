@@ -1,58 +1,59 @@
 'use client'
-
+import ProductPage from "@/components/ProductPage"
+import AccordionItem from "@/components/AccordionItem"
 import Image from "next/image"
-import Link from "next/link"
-import { useState } from 'react'
-import AccordionItem from "@/components/AccordianItem"
-import VideoPlayer from "@/components/VideoPlayer"
 import FAQs from "./faqs.json"
-import { useTrackEvent } from "@/hooks/useTrackEvent"
+import VideoPlayer from "@/components/VideoPlayer"
 
-export default function ProductPage() {
-    const [isExpanded, setIsExpanded] = useState<boolean>(false)
-    const trackEvent = useTrackEvent()
+function expanded() {
+	return (
+		<div className="text-brand-gray text-xl">
+			<p className="mt-4">Effortlessly track real-time energy data, monitor system health, and explore historical performance trends right from your smartphone. Sparq Synq gives you complete visibility over your installations, helping you make informed decisions and stay up to date.</p>
+			<p className="mt-4">Designed with a sleek, intuitive interface, Sparq Synq brings clarity and confidence to solar system monitoring.</p>
+			<p className="font-bold text-black mt-4">Stay in sync with your solar future - with Sparq Synq</p>
+		</div>
+	)
+}
 
-    const handleClick = () => {
-        setIsExpanded(!isExpanded)
-        if (isExpanded) return // useState is async, so this checks old value
-        trackEvent("read_more", {
-            "parent": "app"
-        })
-    }
+function image() {
+	return (
+		<div className="flex items-center justify-center gap-4">
+			<div className="relative aspect-[9/19.5] w-[180px] md:w-[220px] lg:w-[260px] rounded-3xl border-8 border-gray-300 shadow-lg overflow-hidden">
+				<Image
+					src="/app1.jpg"
+					alt=""
+					fill
+					className="object-cover"
+					sizes="(max-width: 768px) 180px, (max-width: 1024px) 220px, 260px"
+					priority
+				/>
+			</div>
+			<div className="relative aspect-[9/19.5] w-[180px] md:w-[220px] lg:w-[260px] rounded-3xl border-8 border-gray-300 shadow-lg overflow-hidden">
+				<Image
+					src="/app2.jpg"
+					alt=""
+					fill
+					className="object-cover"
+					sizes="(max-width: 768px) 180px, (max-width: 1024px) 220px, 260px"
+				/>
+			</div>
+		</div>
+	)
+}
 
-    return (
-        <div className="bg-white container mx-auto py-4 px-4 sm:px-0">
-            {/* Navigation Links */}
-            <div className="flex justify-left items-center mb-6 text-sm text-brand-gray">
-                <Link href="/products" className="hover:underline px-2">
-                    Products
-                </Link>{" "}
-                &gt;{" "}
-                <Link href="/products/app" className="hover:underline px-2">
-                    Sparq Sync
-                </Link>
-            </div>
+function body() {
+	return (
+		<div>
+			<p className="text-xl mt-4">Now unveiling Sparq Synq, the all-new mobile monitoring solution designed exclusively for Sparq customers. With Sparq Synq, staying connected to your solar energy system has never been easier - or more powerful.</p>
+			<p className="font-bold mt-4 text-xl text-black">Coming to iOS and Android in May 2025.</p>
+		</div>
+	)
+}
 
-            {/* Main Content */}
-            <div className="flex flex-col-reverse md:flex-row gap-8">
-                {/* Product Details */}
-                <div className="flex-1 text-brand-gray">
-                    <h1 className="text-3xl font-bold text-gray-900 mt-1">Sparq Sync Mobile App</h1>
-                    <p className="text-xl mt-4">Now unveiling Sparq Synq, the all-new mobile monitoring solution designed exclusively for Sparq customers. With Sparq Synq, staying connected to your solar energy system has never been easier - or more powerful.</p>
-                    <p className="font-bold mt-4 text-xl text-black">Coming to iOS and Android in May 2025.</p>
-                    {isExpanded && (
-                        <div className="text-brand-gray text-xl">
-                            <p className="mt-4">Effortlessly track real-time energy data, monitor system health, and explore historical performance trends right from your smartphone. Sparq Synq gives you complete visibility over your installations, helping you make informed decisions and stay up to date.</p>
-                            <p className="mt-4">Designed with a sleek, intuitive interface, Sparq Synq brings clarity and confidence to solar system monitoring.</p>
-                            <p className="font-bold text-black mt-4">Stay in sync with your solar future - with Sparq Synq</p>
-                        </div>
-                    )}
-
-                    <button onClick={handleClick} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
-                        {isExpanded ? "Read less" : "Read more"}
-                    </button>
-
-                    <div className="p-4 sm:mt-16 text-black">
+export default function SparqSyncPage() {
+	function accordion() {
+		return (
+			<div className="p-4 sm:mt-16 text-black">
                         <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" parent="app">
                             <ul className="list-inside list-decimal text-brand-maroon">
                                 <li className="mb-4"> <strong>Real-time insights</strong>
@@ -87,31 +88,21 @@ export default function ProductPage() {
                             ))}
                         </AccordionItem>
                     </div>
-                </div>
-                <div className="flex-1">
-                    <div className="flex items-center justify-center gap-4">
-                        <div className="relative aspect-[9/19.5] w-[180px] md:w-[220px] lg:w-[260px] rounded-3xl border-8 border-gray-300 shadow-lg overflow-hidden">
-                            <Image
-                                src="/app1.jpg"
-                                alt=""
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 180px, (max-width: 1024px) 220px, 260px"
-                                priority
-                            />
-                        </div>
-                        <div className="relative aspect-[9/19.5] w-[180px] md:w-[220px] lg:w-[260px] rounded-3xl border-8 border-gray-300 shadow-lg overflow-hidden">
-                            <Image
-                                src="/app2.jpg"
-                                alt=""
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 180px, (max-width: 1024px) 220px, 260px"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
+		)
+	}
+
+	return (
+		<div>
+			<ProductPage
+				heading="SparqSync Mobile App"
+				parent="SparqSync"
+				href="app"
+				bodyContent={body()}
+				expandedContent={expanded()}
+				accordianContent={accordion()}
+				imageContent={image()}
+			>
+			</ProductPage>
+		</div>
+	)
+}
