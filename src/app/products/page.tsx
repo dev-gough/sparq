@@ -58,8 +58,8 @@ export default function ProductPage() {
                     </Link>
                     <Link href="products/app">
                         <GridDiv>
-                            <Image className="w-full h-full rounded-xl shadow-lg" src="/SparqApp.png" width={768} height={512} alt="Sparq App Splash Image"/>
-                            <h2 className="text-2xl font-bold text-brand-maroon mt-8">Sparq App</h2>
+                            <Image className="w-full h-full rounded-xl shadow-lg" src="/SparqApp.png" width={768} height={512} alt="SparqSync Splash Image"/>
+                            <h2 className="text-2xl font-bold text-brand-maroon mt-8">SparqSync App</h2>
                         </GridDiv>
                     </Link>
                 </div>

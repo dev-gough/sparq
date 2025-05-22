@@ -69,7 +69,9 @@ For the split-line tailwind classes, they go from smallest->largest as you go do
 - Think about integrating indian language
 
 ### Styling
-
+-  /products
+    - fix sparqlinq img sizing
+    - new image for sparqsync
 -  /investors
     - ensure videos do not get cut off at different screen sizes and zoom levels
 - /products/{product}

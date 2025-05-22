@@ -8,7 +8,7 @@ import FAQs from "./faqs.json"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
 import { motion } from "motion/react"
 
-export default function ProductPage() {
+export default function Quad2Page() {
     const models = ["Q2000-4102", "Q2000-4102-DM", "Q2000-4102-GT"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
@@ -57,7 +57,7 @@ export default function ProductPage() {
                                             delay: 0.5,
                                             duration: 0.5,
                                             ease: "easeOut"
-                                        }}>Highest power per unit weight [W/kg] or volume [W/in<sup>3</sup>]</motion.li>
+                                        }}><span>Highest power per unit weight [W/kg] or volume [W/in<sup>3</sup>]</span></motion.li>
                                     <motion.li initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
@@ -106,21 +106,21 @@ export default function ProductPage() {
                                             delay: 0.5,
                                             duration: 0.5,
                                             ease: "easeOut"
-                                        }}><Link href="/products/sparqlinq" className="hover:underline">SparqLinq</Link>: advanced gateway to rule them all</motion.li>
+                                        }}><span><Link href="/products/sparqlinq" className="hover:underline">SparqLinq</Link>: advanced gateway to rule them all</span></motion.li>
                                     <motion.li initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
                                             delay: 0.5,
                                             duration: 0.5,
                                             ease: "easeOut"
-                                        }}><Link href="/products/sparqvu" className="hover:underline">SparqVu</Link>: Web monitoring with intuitive displays</motion.li>
+                                        }}><span><Link href="/products/sparqvu" className="hover:underline">SparqVu</Link>: Web monitoring with intuitive displays</span></motion.li>
                                     <motion.li initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
                                             delay: 0.5,
                                             duration: 0.5,
                                             ease: "easeOut"
-                                        }}><Link href="/products/app" className="hover:underline">SparqSync</Link>: User-friendly mobile app</motion.li>
+                                        }}><span><Link href="/products/app" className="hover:underline">SparqSync</Link>: User-friendly mobile app</span></motion.li>
                                 </ol>
                             )}
                         </li>
@@ -254,7 +254,7 @@ export default function ProductPage() {
                         </li>
                     </ul>
                     {isExpanded && (
-                        <div className="text-brand-gray text-lg">
+                        <div className="text-brand-gray text-xl">
                             <p className="text-brand-gray mt-4 sm:text-lg">
                                 SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
                             </p>
