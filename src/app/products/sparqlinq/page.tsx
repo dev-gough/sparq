@@ -20,7 +20,7 @@ function image() {
 
 function body() {
 	return (
-		<p className="text-brand-gray mt-4 text-lg">
+		<p className="text-brand-gray mt-4">
 			Access and monitor your energy system data at any time with SparqLinq, our smart interface for the Quad 2000 and Quad 3. SparqLinq can be used on nearly any device and is backed by industry standard Zigbee wireless communication, providing access to real-time data and historical records.</p>
 	)
 }
@@ -32,7 +32,7 @@ export default function SparqLinqPage() {
 	function accordion() {
 		return (
 			<div className="p-4 sm:mt-16">
-				<AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" parent="sparqlinq">
+				<AccordionItem title="Features" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqlinq">
 					<ul className="list-inside list-decimal text-brand-maroon">
 						<li className="mb-4"> <strong>Data when you need it</strong>
 							<ul className="list-inside list-disc text-black">
@@ -52,14 +52,14 @@ export default function SparqLinqPage() {
 						</li>
 					</ul>
 				</AccordionItem>
-				<AccordionItem title="Technical specifications" parent="sparqlinq">
+				<AccordionItem title="Technical specifications" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqlinq">
 					<div>
 						<Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-specsheet.pdf" target="_blank">
 							Datasheet for SL200-2001
 						</Link>
 					</div>
 				</AccordionItem>
-				<AccordionItem title="Documentation" parent="sparqlinq">
+				<AccordionItem title="Documentation" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqlinq">
 					<div className="my-2">
 						<h2 className="text-lg font-bold">Quick Install Guide for SL200-2001:</h2>
 						<Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-quickinstall.pdf" target="_blank">All Regions</Link>
@@ -69,7 +69,7 @@ export default function SparqLinqPage() {
 						<Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-ledguide.pdf" target="_blank">SparqLinq-LEDGuide.pdf</Link>
 					</div>
 				</AccordionItem>
-				<AccordionItem title="SparqLinq FAQs" parent="sparqlinq">
+				<AccordionItem title="SparqLinq FAQs" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqlinq">
 					{FAQs.subQuestions.map((item) => (
 						<div key={item.id} className="text-gray-700 my-4">
 							<strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}

@@ -12,14 +12,14 @@ function image() {
 			alt="Sparq Linq Monitoring Tool"
 			width={1920}
 			height={1084}
-			className="object-contain sticky top-16 z-10 rounded-xl"
+			className="object-contain sticky top-[100px] z-10 rounded-xl"
 		/>
 	)
 }
 
 function body() {
 	return (
-		<p className="text-brand-gray mt-4 text-lg">
+		<p className="text-brand-gray mt-4">
 			Manage multi-site monitoring with SparqVu, a performance management system with intuitive displays to help you quickly spot issues and troubleshoot in real time.</p>
 	)
 }
@@ -28,7 +28,7 @@ export default function SparqVuPage() {
 	function accordion() {
 		return (
 			<div className="p-4 sm:mt-16">
-				<AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" parent="sparqvu">
+				<AccordionItem title="Features" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqvu">
 					<ul className="list-inside list-decimal text-brand-maroon">
 						<li className="mb-4"> <strong>Data when you need it</strong>
 							<ul className="list-inside list-disc text-black">
@@ -48,10 +48,10 @@ export default function SparqVuPage() {
 						</li>
 					</ul>
 				</AccordionItem>
-				<AccordionItem title="Documentation" parent="sparqvu">
+				<AccordionItem title="Documentation" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqvu">
 					<Link href="/SparqVu.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">SparqVu Manual</Link>
 				</AccordionItem>
-				<AccordionItem title="SparqVu FAQs" parent="sparqvu">
+				<AccordionItem title="SparqVu FAQs" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqvu">
 					{FAQs.subQuestions.map((item) => (
 						<div key={item.id} className="text-gray-700 my-4">
 							<strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}

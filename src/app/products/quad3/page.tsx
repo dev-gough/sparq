@@ -74,7 +74,7 @@ const listContent: ListEntry[] = [
     }
 ]
 
-export default function Quad3Page() {
+export default function TestPage() {
     const models = ["Quad3-4301"]
     const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
 

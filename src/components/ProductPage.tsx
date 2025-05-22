@@ -61,8 +61,8 @@ export default function ProductPage({
     }
 
     return (
-        <div className='bg-white container mx-auto py-4 px-4 sm:px-0'>
-            <div className='flex justify-left items-center mb-6 text-sm text-brand-gray'>
+        <div className='bg-white container mx-auto py-4 px-4'>
+            <div className='flex justify-left items-center mb-6 text-sm sm:text-base md:text-lg xl:text-xl text-brand-gray'>
                 <Link href="/products" className='hover:underline px-2'>
                     Products
                 </Link>{" "}
@@ -71,18 +71,18 @@ export default function ProductPage({
             </div>
 
             {/* main content */}
-            <div className='flex flex-col-reverse md:flex-row gap-8'>
+            <div className='flex flex-col-reverse lg:flex-row gap-8'>
                 <div className='flex-1'>
-                    <h1 className='text-6xl font-bold text-gray-900 mt-1'>{heading}</h1>
+                    <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-[44px] xl:text-6xl 2xl:text-7xl font-black text-gray-900 mt-1'>{heading}</h1>
                     {animated && (
-                        <ul className='space-y-4 list-disc list-inside text-2xl mt-4'>
+                        <ul className='space-y-4 list-disc list-inside text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl mt-4 font-bold'>
                             {animatedList?.map(({ heading, items }, index) => (
                                 <li key={index * 10}>
                                     <span
-                                        className='hover:underline text-4xl cursor-pointer'
+                                        className='hover:underline cursor-pointer'
                                         onClick={() => toggleExpanded(index)}>{heading}</span>
                                     {dropdownExpanded[index] && (
-                                        <ol className='ps-5 mt-2 space-y-1 list-disc list-inside'>
+                                        <ol className='ps-5 mt-2 space-y-1 list-disc list-inside text-lg sm:text-xl md:text-2xl lg:text-xl xl:text-2xl 2xl:text-3xl font-normal'>
                                             {items.map((item, i) => (
                                                 <motion.li
                                                     key={i}
@@ -102,18 +102,18 @@ export default function ProductPage({
                         </ul>
                     )}
                     {!animated && (
-                        <div>
+                        <div className='text-xl sm:text-2xl 2xl:text-3xl'>
                             {bodyContent}
                         </div>
                     )}
                     {expandedContent && (
                         <div>
                             {isExpanded && (
-                                <div>
+                                <div className="text-brand-gray text-xl sm:text-2xl 2xl:text-3xl">
                                     {expandedContent}
                                 </div>
                             )}
-                            <button onClick={handleClick} className='text-blue-600 hover:underline mt-2 inline-block cursor-pointer'>
+                            <button onClick={handleClick} className='text-blue-600 hover:underline mt-2 inline-block cursor-pointer sm:text-lg 2xl:text-xl'>
                                 {isExpanded ? "Read less" : "Read more"}
                             </button>
                         </div>
@@ -121,12 +121,12 @@ export default function ProductPage({
 
                     {models && models.length > 1 && model && (
                         <div className='mt-6'>
-                            <p className='text-sm font-medium text-brand-gray'>Model: {model}</p>
-                            <div className='flex flex-wrap gap-2 mt-2'>
+                            <p className='md:text-lg lg:text-base xl:text-lg 2xl:text-xl font-medium text-brand-gray'>Model: {model}</p>
+                            <div className='flex flex-wrap gap-2 mt-2 '>
                                 {models.map((m) => (
                                     <button
                                         key={m}
-                                        className={`px-4 py-2 border rounded-md text-sm cursor-pointer ${m === selectedModel
+                                        className={`px-4 py-2 border rounded-md text-base md:text-lg lg:text-base xl:text-lg 2xl:text-xl cursor-pointer ${m === selectedModel
                                             ? "border-blue-600 text-blue-600"
                                             : "border-gray-300 text-gray-600 hover:border-gray-400"
                                             }`}

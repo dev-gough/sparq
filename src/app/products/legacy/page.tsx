@@ -5,17 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
 
-function expanded() {
-	return (
-		<div className="text-brand-gray text-xl">
-			<p className="mt-4"><strong>Performance That Powers More</strong>: Engineered with high-frequency, soft-switching power electronics and advanced real-time control, the Quad3 ensures maximum energy harvesting and grid resilience. With individual MPPT for each panel, your system achieves optimal output even in partially shaded conditions. It&apos;s also built for the future - scalable, flexible, and ready for both on-grid and off-grid operations.</p>
-			<p className="mt-4"><strong>Safety You Can Count On</strong>: The Quad3 eliminates traditional risks with no HV DC cabling, no electrolytic capacitors, and all-AC wiring that complies with Rapid Shutdown (RSD) regulations. It&apos;s a high-reliability, high-availability solution with no single point of failure, minimizing risk while maximizing uptime.</p>
-			<p className="mt-4"><strong>Cost-Effectiveness Without Compromise</strong>: Backed by a Quad Architecture that reduces both manufacturing and installation costs, the Quad3 also minimizes Balance of System (BoS) requirements. With lowest lifecycle cost and maintenance-free operation, it stands out as an outlier on the Performance-Cost curve.</p>
-			<p className="text-brand-gray font-semibold text-lg mt-2">Whether you&apos;re powering a home or a commercial system, the Quad3 microinverter delivers unmatched value, reliability, and smart energy management — all in one compact, user-friendly package.</p>
-		</div>
-	)
-}
-
 function image() {
 	return (
 		<Image
@@ -30,7 +19,7 @@ function image() {
 
 function body() {
 	return (
-		<p className="text-brand-gray mt-4 sm:text-lg">
+		<p className="text-brand-gray mt-4">
 			The Q1200 is a legacy product that has been discontinued.  See below for the technical manuals, or <Link href="/contact" className="text-blue-400 hover:underline">contact us</Link> for support.
 		</p>
 	)
@@ -42,7 +31,7 @@ export default function LegacyProductPage() {
 
 	function accordion() {
 		return (
-			<div className="p-4 sm:mt-16">
+			<div className="py-4">
 				<AccordionItem title="Technical Specifications" open={true} parent="legacy">
 					<div>
 						{selectedModel === "Q1200-4102-GT" && (
