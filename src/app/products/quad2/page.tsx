@@ -35,16 +35,16 @@ const listContent: ListEntry[] = [
 	{
 		heading: "Best in-class Performance",
 		items: [
-			<span>Highest power per unit weight [W/kg] or volume [W/in<sup>3</sup>]</span>,
+			<span key={"quad2-1"}>Highest power per unit weight [W/kg] or volume [W/in<sup>3</sup>]</span>,
 			"Maximum energy harvesting",
 			"Dual-mode operation (on/off-grid)",
 			"Individual MPPT for each panel",
 			"Ultra high-frequency, soft switching topolgy",
 			"Grid Resiliency without energy storage",
 			"Grid Independence and energy self-sufficiency",
-			<span><Link href="/products/sparqlinq" className="hover:underline">SparqLinq</Link>: advanced gateway to rule them all</span>,
-			<span><Link href="/products/sparqvu" className="hover:underline">SparqVu</Link>: Web monitoring with intuitive displays</span>,
-			<span><Link href="/products/app" className="hover:underline">SparqSync</Link>: User-friendly mobile app</span>
+			<span key={"quad2-2"}><Link href="/products/sparqlinq" className="hover:underline">SparqLinq</Link>: advanced gateway to rule them all</span>,
+			<span key={"quad2-3"}><Link href="/products/sparqvu" className="hover:underline">SparqVu</Link>: Web monitoring with intuitive displays</span>,
+			<span key={"quad2-4"}><Link href="/products/app" className="hover:underline">SparqSync</Link>: User-friendly mobile app</span>
 		]
 	},
 	{
