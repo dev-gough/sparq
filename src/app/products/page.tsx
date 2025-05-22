@@ -9,7 +9,7 @@ type gridDivProps = {
 
 const GridDiv:React.FC<gridDivProps> = ({ children, id, className }: gridDivProps) => {
     return (
-        <div id={id} className={`flex flex-col pb-2 items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-96 border-b-2 border-transparent hover:scale-110 hover:z-100 hover:border-b-brand-yellow ${className} `}>
+        <div id={id} className={`flex flex-col pb-2 items-center cursor-pointer transform transition duration-300 w-full md:w-80 lg:w-96 border-b-2 border-transparent hover:scale-110 hover:z-100 hover:border-b-brand-yellow ${className} `}>
             {children}
         </div>
     )
@@ -17,17 +17,17 @@ const GridDiv:React.FC<gridDivProps> = ({ children, id, className }: gridDivProp
 
 export default function ProductPage() {
     return (
-        <div className="sm:px-20 px-4 sm:my-10 container mx-auto">
-            <section id="inverters">
-                <h1 className='text-5xl font-bold text-brand-maroon text-center mt-12 mb-32'>Q2000 Product Family</h1>
-                <div className='flex flex-wrap justify-center gap-16'>
-                    <Link href="products/quad2">
+        <div className="lg:px-20 px-4 sm:my-10 container mx-auto">
+            <section id="inverters" className='flex flex-col'>
+                <h1 className='text-5xl font-bold text-brand-maroon text-center mt-12 mb-8 md:mb-32'>Q2000 Product Family</h1>
+                <div className='flex flex-wrap justify-center items-center gap-16'>
+                    <Link href="products/quad2" className='flex items-center justify-center'>
                         <GridDiv id="q2000">
                             <Image className='w-full h-full object-cover' width={1920} height={1084} src='/q2000.webp' alt='q2000 Microinverters'/>
                             <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Quad2 Microinverters</h2>
                         </GridDiv>
                     </Link>
-                    <Link href="products/quad3">
+                    <Link href="products/quad3" className='flex items-center justify-center'>
                         <GridDiv>
                             <Image className='w-full h-full object-cover' width={1920} height={1084} src='/quad3.webp' alt='Quad 3 Microinverter'/>
                             <h2 className='text-2xl font-bold text-brand-maroon mt-8'>Quad3</h2>
@@ -52,7 +52,7 @@ export default function ProductPage() {
                     </Link>
                     <Link href="products/sparqvu">
                         <GridDiv id='#sparqvu'>
-                            <Image className="w-full h-[256px] rounded-xl shadow-lg" src="/sparqvu.png" width={768} height={512} alt='SparqVu Performance Management System'/>
+                            <Image className="w-full h-full rounded-xl shadow-lg" src="/sparqvu.png" width={768} height={512} alt='SparqVu Performance Management System'/>
                             <h2 className='text-2xl font-bold text-brand-maroon mt-8'>SparqVu</h2>
                         </GridDiv>
                     </Link>

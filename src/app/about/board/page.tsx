@@ -77,7 +77,7 @@ export default function BoardPage() {
 
 
     return (
-        <div className="container mx-auto py-8 sm:px-4 pb-4">
+        <div className="container mx-auto py-8 px-4 pb-4">
             <section id="bod" className="px-2 sm:px-0">
                 <div className="container mx-auto">
                     <h1 className="sm:text-5xl text-3xl font-bold text-brand-maroon text-center sm:mb-32 mb-8">Board of Directors</h1>
@@ -86,7 +86,7 @@ export default function BoardPage() {
                             <div
                                 key={index}
                                 onClick={() => handleClick}
-                                className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-1/2 lg:w-72 ${selectedMember == member
+                                className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-60 lg:w-72 ${selectedMember == member
                                     ? 'scale-100'
                                     : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
                                     }`}>
