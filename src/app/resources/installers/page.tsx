@@ -3,7 +3,7 @@
 import ConstructionPage from "@/components/Construction";
 
 // import InstallerFAQData from "./installer_faq.json"
-// import AccordionItem from "@/components/AccordianItem"
+// import AccordionItem from "@/components/AccordionItem"
 // import Link from "next/link"
 
 // interface FAQData {

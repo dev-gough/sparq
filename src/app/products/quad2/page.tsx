@@ -1,392 +1,198 @@
 'use client'
-
+import ProductPage from "@/components/ProductPage"
+import AccordionItem from "@/components/AccordionItem"
 import Image from "next/image"
+import { ListEntry } from "@/components/ProductPage"
 import Link from "next/link"
 import { useState } from 'react'
-import AccordionItem from "@/components/AccordianItem"
 import FAQs from "./faqs.json"
-import { useTrackEvent } from "@/hooks/useTrackEvent"
-import { motion } from "motion/react"
 
-export default function ProductPage() {
-    const models = ["Q2000-4102", "Q2000-4102-DM", "Q2000-4102-GT"]
-    const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
-    const [isExpanded, setIsExpanded] = useState<boolean>(false)
-    const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
-    const trackEvent = useTrackEvent()
+function expanded() {
+	return (
+		<>
+			<p className="mt-8">
+				SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
+			</p>
+			<p className="mt-4">Our microinverters have been designed for high reliability, using patented technologies that eliminate the use of short-life electrolytic capacitors. This feature gives our microinverters high reliability and a design life of 25 years, matching the design life of PV modules.</p>
+			<p className="mt-4">The Q2000 microinverter is the industry&apos;s first highest power rating microinverter that produces electrical energy from four PV panels of 550W+ each, without any power clipping under all operating conditions. The Q2000 is designed to connect 4 PV panels, up to 550W, to the AC power grid.</p>
+		</>
+	)
+}
 
-    const handleClick = () => {
-        setIsExpanded(!isExpanded)
-        if (isExpanded) return // useState is async, so this checks old value
-        trackEvent("read_more", {
-            "parent": "quad2"
-        })
-    }
+function image() {
+	return (
+		<Image
+			src="/q2000.webp"
+			alt="Q2000 Microinverter"
+			width={1920}
+			height={1084}
+			className="object-contain sticky top-[100px] z-10"
+		/>
+	)
+}
 
-    const toggleExpanded = (i: number) => {
-        setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
-    }
+const listContent: ListEntry[] = [
+	{
+		heading: "Best in-class Performance",
+		items: [
+			<span key={"quad2-1"}>Highest power per unit weight [W/kg] or volume [W/in<sup>3</sup>]</span>,
+			"Maximum energy harvesting",
+			"Dual-mode operation (on/off-grid)",
+			"Individual MPPT for each panel",
+			"Ultra high-frequency, soft switching topolgy",
+			"Grid Resiliency without energy storage",
+			"Grid Independence and energy self-sufficiency",
+			<span key={"quad2-2"}><Link href="/products/sparqlinq" className="hover:underline">SparqLinq</Link>: advanced gateway to rule them all</span>,
+			<span key={"quad2-3"}><Link href="/products/sparqvu" className="hover:underline">SparqVu</Link>: Web monitoring with intuitive displays</span>,
+			<span key={"quad2-4"}><Link href="/products/app" className="hover:underline">SparqSync</Link>: User-friendly mobile app</span>
+		]
+	},
+	{
+		heading: "Safe & Reliable",
+		items: [
+			"No failure-prone electrolytic capacitors",
+			"Other low-lifetime components eliminated",
+			"All AC cabling with inherent Rapid Shutdown compliance",
+			"No risk of high voltage DC arcing",
+			"No high voltage shock hazard for 1st responders",
+			"High reliability and system availability",
+			"No single point of failure for the PV system",
+			"Fewer system components to install/maintain",
+			"Best-in-class longevity"
+		]
+	},
+	{
+		heading: "Cost-Effectiveness",
+		items: [
+			"Quad Architecture",
+			"Reduced manufacturing Bill of Materials",
+			"Reduced Balance of System (cabling, grounding, ect)",
+			"Lower manufacturing and installation costs",
+			"Maintenance-free",
+			"Lowest lifecycle cost",
+			"Outlier on Performance-Cost curve",
+		]
+	}
+]
 
-    return (
-        <div className="bg-white container mx-auto py-4 px-4 sm:px-0">
-            {/* Navigation Links */}
-            <div className="flex justify-left items-center mb-6 text-sm text-brand-gray">
-                <Link href="/products" className="hover:underline px-2">
-                    Products
-                </Link>{" "}
-                &gt;{" "}
-                <Link href="/products/quad2" className="hover:underline px-2">
-                    Q2000 Microinverter
-                </Link>
-            </div>
+export default function Quad2Page() {
+	const models = ["Q2000-4102", "Q2000-4102-DM", "Q2000-4102-GT"]
+	const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
 
-            {/* Main Content */}
-            <div className="flex flex-col-reverse md:flex-row gap-8">
-                {/* Product Details */}
-                <div className="flex-1">
-                    <h1 className="text-6xl font-bold text-gray-900 mt-1">Q2000 Microinverter</h1>
-                    <ul className="space-y-4 list-disc list-inside text-2xl mt-4">
-                        <li>
-                            <span className="hover:underline text-4xl cursor-pointer" onClick={() => toggleExpanded(0)}>Best in-class Performance</span>
-                            {dropdownExpanded[0] && (
-                                <ol className="ps-5 mt-2 space-y-1 list-disc list-inside">
-                                    {/* todo: turn this into a map */}
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Highest power per unit weight [W/kg] or volume [W/in<sup>3</sup>]</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Maximum energy harvesting</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Dual-mode operation (on/off-grid)</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Individual MPPT for each panel</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Ultra high-frequency, soft switching topolgy</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Grid Resiliency without energy storage</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Grid Independence and energy self-sufficiency</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}><Link href="/products/sparqlinq" className="hover:underline">SparqLinq</Link>: advanced gateway to rule them all</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}><Link href="/products/sparqvu" className="hover:underline">SparqVu</Link>: Web monitoring with intuitive displays</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}><Link href="/products/app" className="hover:underline">SparqSync</Link>: User-friendly mobile app</motion.li>
-                                </ol>
-                            )}
-                        </li>
-                        <li>
-                            <span onClick={() => toggleExpanded(1)} className="hover:underline text-4xl cursor-pointer">Safe & Reliable</span>
-                            {dropdownExpanded[1] && (
-                                <ol className="ps-5 mt-2 space-y-1 list-disc list-inside">
-                                    {/* todo: turn this into a map */}
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>No failure-prone electrolytic capacitors</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Other low-lifetime components eliminated</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>All AC cabling with inherent Rapid Shutdown compliance</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>No risk of high voltage DC arcing</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>No high voltage shock hazard for 1st responders</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>High reliability and system availability</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>No single point of failure for the PV system</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Fewer system components to install/maintain</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Best-in-class longevity</motion.li>
-                                </ol>
-                            )}
-                        </li>
-                        <li>
-                            <span onClick={() => toggleExpanded(2)} className="hover:underline text-4xl cursor-pointer">Cost-Effectiveness</span>
-                            {dropdownExpanded[2] && (
-                                <ol className="ps-5 mt-2 space-y-1 list-disc list-inside">
-                                    {/* todo: turn this into a map */}
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Quad Architecture</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Reduced manufacturing Bill of Materials</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Reduced Balance of System (cabling, grounding, ect)</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Lower manufacturing and installation costs</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Maintenance-free</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Lowest lifecycle cost</motion.li>
-                                    <motion.li initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{
-                                            delay: 0.5,
-                                            duration: 0.5,
-                                            ease: "easeOut"
-                                        }}>Outlier on Performance-Cost curve</motion.li>
-                                </ol>
-                            )}
-                        </li>
-                    </ul>
-                    {isExpanded && (
-                        <div className="text-brand-gray text-lg">
-                            <p className="text-brand-gray mt-4 sm:text-lg">
-                                SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
-                            </p>
-                            <p className="mt-2">Our microinverters have been designed for high reliability, using patented technologies that eliminate the use of short-life electrolytic capacitors. This feature gives our microinverters high reliability and a design life of 25 years, matching the design life of PV modules.</p>
-                            <p className="mt-2">The Q2000 microinverter is the industry&apos;s first highest power rating microinverter that produces electrical energy from four PV panels of 550W+ each, without any power clipping under all operating conditions. The Q2000 is designed to connect 4 PV panels, up to 550W, to the AC power grid.</p>
-                        </div>
-                    )}
-                    <button onClick={handleClick} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
-                        {isExpanded ? "Read less" : "Read more"}
-                    </button>
+	function accordion() {
+		return (
+			<div className="py-4">
+				<AccordionItem title="Features" className="sticky top-[66px] lg:relative lg:top-auto" parent="quad2">
+					<ul className="list-inside list-decimal text-brand-maroon">
+						<li className="mb-4"> <strong>Superior Value</strong>
+							<ul className="list-inside list-disc text-black">
+								<li>Low design/installation costs</li>
+								<li>Lowest cost per Watt in the industry </li>
+								<li>Reduced installation costs</li>
+								<li>Robust IOT gateway for monitoring and control</li>
+							</ul>
+						</li>
+						<li className="my-4"> <strong>High Energy Harvest</strong>
+							<ul className="list-inside list-disc text-black">
+								<li>Greater energy harvest compared to string inverters</li>
+								<li>Advanced power electronics for low-light environments</li>
+								<li>Independent maximum energy harvest for each module</li>
+							</ul>
+						</li>
+						<li className="my-4"> <strong>Best in-class reliability</strong>
+							<ul className="list-inside list-disc text-black">
+								<li>No electrolytic capacitors or other components with short lifetimes</li>
+								<li>Smart-grid ready, works on any grid, anywhere</li>
+								<li>No single point of failure</li>
+								<li>Rapid-Shutdown compliance</li>
+							</ul>
+						</li>
+						<li className="my-4"> <strong>Easy to Install</strong>
+							<ul className="list-inside list-disc text-black">
+								<li>Quad system design reduces the required number of conventional microinverters by a factor of 4</li>
+								<li>&quot;All AC&quot; solution promotes safe installation and operation with low voltage</li>
+								<li>Industry-standard Amphenol AC connectors, using Zigbee&apos;s open wireless communication protocol for individual node monitoring</li>
+							</ul>
+						</li>
+					</ul>
+				</AccordionItem>
+				<AccordionItem title="Technical Specifications" className="sticky top-[66px] lg:relative lg:top-auto" parent="quad2">
+					<div>
+						{selectedModel === "Q2000-4102" && (
+							<Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102.pdf" target="_blank">
+								Datasheet for {selectedModel}
+							</Link>
+						)}
+						{selectedModel === "Q2000-4102-DM" && (
+							<Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102_DM.pdf" target="_blank">
+								Datasheet for {selectedModel}
+							</Link>
+						)}
+						{selectedModel === "Q2000-4102-GT" && (
+							<Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102_GT_V2.pdf" target="_blank">
+								Datasheet for {selectedModel}
+							</Link>
+						)}
+					</div>
+				</AccordionItem>
+				<AccordionItem title="Certifications" className="sticky top-[66px] lg:relative lg:top-auto" parent="quad2">
+					<h2 className="font-bold mb-4">Reports</h2>
+					<div className="flex flex-col">
+						<Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/EN_61683.pdf">EN_61683</Link>
+						<Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/IEC_60068-2-xx.pdf">IEC_60068-2-xx</Link>
+						<Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/IEC_61727.pdf">IEC_61727</Link>
+						<Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/IEC_62109_1_2.pdf">IEC_62109_1_2</Link>
+						<Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/UL1741-Report.pdf">UL1741-Report</Link>
+					</div>
+					<h2 className="font-bold my-4">Certifications</h2>
+					<div className="flex flex-col">
+						<Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/CU72239343.01-.02.pdf">CU72239343.01-.02</Link>
+						<Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/CU72239343.03.pdf">CU72239343.03</Link>
+						<Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/CU72239343.04.pdf">CU72239343.04</Link>
+						<Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/SPARQ_Cert_CS000052.pdf">SPARQ_Cert_CS000052</Link>
+					</div>
+				</AccordionItem>
+				<AccordionItem title="Documentation" className="sticky top-[66px] lg:relative lg:top-auto" parent="quad2">
+					<h2 className="font-bold">Installation Manuals for {selectedModel}:</h2>
+					<div className="flex flex-col">
+						<Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Americas.pdf" target="_blank">North America</Link>
+						<Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Chinese.pdf" target="_blank">China</Link>
+						<Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Europe.pdf" target="_blank">Europe</Link>
+						<Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_India.pdf" target="_blank">India</Link>
+					</div>
+				</AccordionItem>
+				<AccordionItem title="Comparison with Leading Microinverter" className="sticky top-[66px] lg:relative lg:top-auto" parent="quad2">
+					<Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H</Link>
+				</AccordionItem>
+				<AccordionItem title="Q2000 FAQs" className="sticky top-[66px] lg:relative lg:top-auto" parent="quad2">
+					{FAQs.subQuestions.map((item) => (
+						<div key={item.id} className="text-gray-700 my-4">
+							<strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
+							{item.answer}
+						</div>
+					))}
+				</AccordionItem>
+			</div>
+		)
+	}
 
-                    {/* Model Selector */}
-                    <div className="mt-6">
-                        <p className="text-sm font-medium text-gray-700">Model: Q2000</p>
-                        <div className="flex flex-wrap gap-2 mt-2">
-                            {models.map((model) => (
-                                <button
-                                    key={model}
-                                    className={`px-4 py-2 border rounded-md text-sm cursor-pointer ${model === selectedModel
-                                        ? "border-blue-600 text-blue-600"
-                                        : "border-gray-300 text-gray-600 hover:border-gray-400"
-                                        }`}
-                                    onClick={() => setSelectedModel(selectedModel === model ? null : model)}
-                                >
-                                    {model}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="p-4 sm:mt-16">
-                        <AccordionItem title="Features" className="sticky top-[66px] sm:relative sm:top-auto" parent="quad2">
-                            <ul className="list-inside list-decimal text-brand-maroon">
-                                <li className="mb-4"> <strong>Superior Value</strong>
-                                    <ul className="list-inside list-disc text-black">
-                                        <li>Low design/installation costs</li>
-                                        <li>Lowest cost per Watt in the industry </li>
-                                        <li>Reduced installation costs</li>
-                                        <li>Robust IOT gateway for monitoring and control</li>
-                                    </ul>
-                                </li>
-                                <li className="my-4"> <strong>High Energy Harvest</strong>
-                                    <ul className="list-inside list-disc text-black">
-                                        <li>Greater energy harvest compared to string inverters</li>
-                                        <li>Advanced power electronics for low-light environments</li>
-                                        <li>Independent maximum energy harvest for each module</li>
-                                    </ul>
-                                </li>
-                                <li className="my-4"> <strong>Best in-class reliability</strong>
-                                    <ul className="list-inside list-disc text-black">
-                                        <li>No electrolytic capacitors or other components with short lifetimes</li>
-                                        <li>Smart-grid ready, works on any grid, anywhere</li>
-                                        <li>No single point of failure</li>
-                                        <li>Rapid-Shutdown compliance</li>
-                                    </ul>
-                                </li>
-                                <li className="my-4"> <strong>Easy to Install</strong>
-                                    <ul className="list-inside list-disc text-black">
-                                        <li>Quad system design reduces the required number of conventional microinverters by a factor of 4</li>
-                                        <li>&quot;All AC&quot; solution promotes safe installation and operation with low voltage</li>
-                                        <li>Industry-standard Amphenol AC connectors, using Zigbee&apos;s open wireless communication protocol for individual node monitoring</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </AccordionItem>
-                        <AccordionItem title="Technical Specifications" parent="quad2">
-                            <div>
-                                {selectedModel === "Q2000-4102" && (
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102.pdf" target="_blank">
-                                        Datasheet for {selectedModel}
-                                    </Link>
-                                )}
-                                {selectedModel === "Q2000-4102-DM" && (
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102_DM.pdf" target="_blank">
-                                        Datasheet for {selectedModel}
-                                    </Link>
-                                )}
-                                {selectedModel === "Q2000-4102-GT" && (
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Datasheet_Q20004102_GT_V2.pdf" target="_blank">
-                                        Datasheet for {selectedModel}
-                                    </Link>
-                                )}
-                            </div>
-                        </AccordionItem>
-                        <AccordionItem title="Certifications" parent="quad2">
-                            <h2 className="text-xl font-bold mb-4">Reports</h2>
-                            <div className="flex flex-col">
-                                <Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/EN_61683.pdf">EN_61683</Link>
-                                <Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/IEC_60068-2-xx.pdf">IEC_60068-2-xx</Link>
-                                <Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/IEC_61727.pdf">IEC_61727</Link>
-                                <Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/IEC_62109_1_2.pdf">IEC_62109_1_2</Link>
-                                <Link target="_blank" className="text-blue-500 hover:text-blue-700" href="/Q2000/reports/UL1741-Report.pdf">UL1741-Report</Link>
-                            </div>
-                            <h2 className="text-xl font-bold my-4">Certifications</h2>
-                            <div className="flex flex-col">
-                                <Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/CU72239343.01-.02.pdf">CU72239343.01-.02</Link>
-                                <Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/CU72239343.03.pdf">CU72239343.03</Link>
-                                <Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/CU72239343.04.pdf">CU72239343.04</Link>
-                                <Link target="_blank" className="text-blue-500 hover:text-blue-700 hover:underline" href="/Q2000/certs/SPARQ_Cert_CS000052.pdf">SPARQ_Cert_CS000052</Link>
-                            </div>
-                        </AccordionItem>
-                        <AccordionItem title="Documentation" parent="quad2">
-                            <h2 className="text-lg font-bold">Installation Manuals for {selectedModel}:</h2>
-                            <div className="flex flex-col">
-                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Americas.pdf" target="_blank">North America</Link>
-                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Chinese.pdf" target="_blank">China</Link>
-                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_Europe.pdf" target="_blank">Europe</Link>
-                                <Link className="text-blue-500 hover:text-blue-700" href="/Q2000/Q2000_India.pdf" target="_blank">India</Link>
-                            </div>
-                        </AccordionItem>
-                        <AccordionItem title="Comparison with Leading Microinverter" parent="quad2">
-                            <Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H</Link>
-                        </AccordionItem>
-                        <AccordionItem title="Q2000 FAQs" parent="quad2">
-                            {FAQs.subQuestions.map((item) => (
-                                <div key={item.id} className="text-gray-700 my-4">
-                                    <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-                                    {item.answer}
-                                </div>
-                            ))}
-                        </AccordionItem>
-                    </div>
-                </div>
-                <div className="flex-1">
-                    <Image
-                        src="/q2000.webp"
-                        alt="Q2000 Microinverter"
-                        width={1920}
-                        height={1084}
-                        className="object-contain sticky top-16 z-10"
-                    />
-                </div>
-            </div>
-        </div>
-    );
-};
+	return (
+		<div>
+			<ProductPage
+				models={models}
+				selectedModel={selectedModel}
+				setSelectedModel={setSelectedModel}
+				model="Q2000"
+				heading="Q2000 Microinverter"
+				animated={true}
+				parent="Quad2"
+				href="quad2"
+				animatedList={listContent}
+				expandedContent={expanded()}
+				accordianContent={accordion()}
+				imageContent={image()}
+			>
+			</ProductPage>
+		</div>
+	)
+}

@@ -1,136 +1,101 @@
 'use client'
-
+import ProductPage from "@/components/ProductPage"
+import AccordionItem from "@/components/AccordionItem"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
-import AccordionItem from "@/components/AccordianItem"
 import FAQs from "./faqs.json"
-import { useTrackEvent } from "@/hooks/useTrackEvent"
+
+function image() {
+	return (
+		<Image
+			src="/SparqLinq.jpg"
+			alt="Sparq Linq Monitoring Tool"
+			width={1920}
+			height={1084}
+			className="object-contain sticky top-16 z-10 rounded-xl"
+		/>
+	)
+}
+
+function body() {
+	return (
+		<p className="text-brand-gray mt-4">
+			Access and monitor your energy system data at any time with SparqLinq, our smart interface for the Quad 2000 and Quad 3. SparqLinq can be used on nearly any device and is backed by industry standard Zigbee wireless communication, providing access to real-time data and historical records.</p>
+	)
+}
 
 export default function SparqLinqPage() {
-    const models = ["SL200-2001"]
-    const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
-    const [isExpanded, setIsExpanded] = useState<boolean>(false)
+	const models = ["SL200-2001"]
+	const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
 
-    const trackEvent = useTrackEvent()
-    const handleClick = () => {
-        setIsExpanded(!isExpanded)
-        if (isExpanded) return // useState is async, so this checks old value
-        trackEvent("read_more", {
-            "parent": "sparqlinq"
-        })
-    }
+	function accordion() {
+		return (
+			<div className="p-4 sm:mt-16">
+				<AccordionItem title="Features" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqlinq">
+					<ul className="list-inside list-decimal text-brand-maroon">
+						<li className="mb-4"> <strong>Data when you need it</strong>
+							<ul className="list-inside list-disc text-black">
+								<li>Advanced performance and communication tools
+									with no app required</li>
+								<li>Real-time metrics, historical records
+									and panel-by-panel information</li>
+								<li>Cloud-based monitoring</li>
+							</ul>
+						</li>
+						<li className="my-4"> <strong>Quick Installation</strong>
+							<ul className="list-inside list-disc text-black">
+								<li>Automatically detects connected inverters
+									before AC is connected</li>
+								<li>Installation layout syncs automatically to your cloud account</li>
+							</ul>
+						</li>
+					</ul>
+				</AccordionItem>
+				<AccordionItem title="Technical specifications" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqlinq">
+					<div>
+						<Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-specsheet.pdf" target="_blank">
+							Datasheet for SL200-2001
+						</Link>
+					</div>
+				</AccordionItem>
+				<AccordionItem title="Documentation" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqlinq">
+					<div className="my-2">
+						<h2 className="text-lg font-bold">Quick Install Guide for SL200-2001:</h2>
+						<Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-quickinstall.pdf" target="_blank">All Regions</Link>
+					</div>
+					<div className="my-2">
+						<h2 className="text-lg font-bold">LED Indicator Guide for SL200-2001:</h2>
+						<Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-ledguide.pdf" target="_blank">SparqLinq-LEDGuide.pdf</Link>
+					</div>
+				</AccordionItem>
+				<AccordionItem title="SparqLinq FAQs" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqlinq">
+					{FAQs.subQuestions.map((item) => (
+						<div key={item.id} className="text-gray-700 my-4">
+							<strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
+							{item.answer}
+						</div>
+					))}
+				</AccordionItem>
+			</div>
+		)
+	}
 
-    return (
-        <div className="bg-white container mx-auto py-4 px-4 sm:px-0">
-            {/* Navigation Links */}
-            <div className="flex justify-left items-center mb-6 text-sm text-brand-gray">
-                <Link href="/products" className="hover:underline px-2">
-                    Products
-                </Link>{" "}
-                &gt;{" "}
-                <Link href="/products/SparqLinq" className="hover:underline px-2">
-                    SparqLinq
-                </Link>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex flex-col-reverse md:flex-row gap-8">
-                {/* Product Details */}
-                <div className="flex-1">
-                    <h1 className="text-3xl font-bold text-gray-900 mt-1">Sparq Linq: Real-time performance monitoring</h1>
-                    <p className="text-brand-gray mt-4 text-lg">
-                        Access and monitor your energy system data at any time with SparqLinq, our smart interface for the Quad 2000 and Quad 3. SparqLinq can be used on nearly any device and is backed by industry standard Zigbee wireless communication, providing access to real-time data and historical records.</p>
-
-                    {isExpanded && (
-                        <div className="text-brand-gray text-lg font-mono">
-                            <p>More details to be provided</p>
-                        </div>
-                    )}
-
-                    <button onClick={handleClick} className="text-blue-600 hover:underline mt-2 inline-block cursor-pointer">
-                        {isExpanded ? "Read less" : "Read more"}
-                    </button>
-
-                    {/* Model Selector */}
-                    <div className="mt-6">
-                        <p className="text-sm font-medium text-gray-700">Model: SL200</p>
-                        <div className="flex flex-wrap gap-2 mt-2">
-                            {models.map((model) => (
-                                <button
-                                    key={model}
-                                    className={`px-4 py-2 border rounded-md text-sm cursor-pointer ${model === selectedModel
-                                        ? "border-blue-600 text-blue-600"
-                                        : "border-gray-300 text-gray-600 hover:border-gray-400"
-                                        }`}
-                                    onClick={() => setSelectedModel(selectedModel === model ? null : model)}
-                                >
-                                    {model}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="p-4 sm:mt-16">
-                        <AccordionItem title="Features" className="sticky top-[58px] sm:relative sm:top-auto" parent="sparqlinq">
-                            <ul className="list-inside list-decimal text-brand-maroon">
-                                <li className="mb-4"> <strong>Data when you need it</strong>
-                                    <ul className="list-inside list-disc text-black">
-                                        <li>Advanced performance and communication tools
-                                            with no app required</li>
-                                        <li>Real-time metrics, historical records
-                                            and panel-by-panel information</li>
-                                        <li>Cloud-based monitoring</li>
-                                    </ul>
-                                </li>
-                                <li className="my-4"> <strong>Quick Installation</strong>
-                                    <ul className="list-inside list-disc text-black">
-                                        <li>Automatically detects connected inverters
-                                            before AC is connected</li>
-                                        <li>Installation layout syncs automatically to your cloud account</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </AccordionItem>
-                        <AccordionItem title="Technical specifications" parent="sparqlinq">
-                            <div>
-                                {selectedModel === "SL200-2001" && (
-                                    <Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-specsheet.pdf" target="_blank">
-                                        Datasheet for {selectedModel}
-                                    </Link>
-                                )}
-                            </div>
-                        </AccordionItem>
-                        <AccordionItem title="Documentation" parent="sparqlinq">
-                            <div className="my-2">
-                                <h2 className="text-lg font-bold">Quick Install Guide for {selectedModel}:</h2>
-                                <Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-quickinstall.pdf" target="_blank">All Regions</Link>
-                            </div>
-                            <div className="my-2">
-                                <h2 className="text-lg font-bold">LED Indicator Guide for {selectedModel}:</h2>
-                                <Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-ledguide.pdf" target="_blank">SparqLinq-LEDGuide.pdf</Link>
-                            </div>
-                        </AccordionItem>
-                        <AccordionItem title="SparqLinq FAQs" parent="sparqlinq">
-                            {FAQs.subQuestions.map((item) => (
-                                <div key={item.id} className="text-gray-700 my-4">
-                                    <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-                                    {item.answer}
-                                </div>
-                            ))}
-                        </AccordionItem>
-                    </div>
-                </div>
-                <div className="flex-1">
-                    <Image
-                        src="/SparqLinq.jpg"
-                        alt="Sparq Linq Monitoring Tool"
-                        width={1920}
-                        height={1084}
-                        className="object-contain sticky top-16 z-10 rounded-xl"
-                    />
-                </div>
-            </div>
-        </div>
-    );
-};
+	return (
+		<div>
+			<ProductPage
+				models={models}
+				selectedModel={selectedModel}
+				setSelectedModel={setSelectedModel}
+				model="SL200-2001"
+				heading="Sparq Linq: Real-time performance monitoring"
+				parent="SparqLinq"
+				href="sparqlinq"
+				bodyContent={body()}
+				accordianContent={accordion()}
+				imageContent={image()}
+			>
+			</ProductPage>
+		</div>
+	)
+}
