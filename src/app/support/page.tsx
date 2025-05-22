@@ -21,7 +21,7 @@ export default function SupportTicketPage() {
 	}, [category])
 
 	return (
-		<div className="flex sm:min-h-screen sm:items-center justify-center bg-gray-100 p-4">
+		<div className="flex lg:min-h-screen lg:items-center justify-center bg-gray-100 p-4">
 			<div className="w-full max-w-lg rounded-2xl bg-white p-8 shadow-lg">
 				<h1 className="mb-6 text-2xl font-bold text-gray-800">Submit a Support Ticket</h1>
 				<form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
