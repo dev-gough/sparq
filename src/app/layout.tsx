@@ -23,7 +23,6 @@ const aboutDropdown = [
 	{ label: "Who We Are", href: "/about/us" },
 	{ label: "Leadership", href: "/about/leadership" },
 	{ label: "Board of Directors", href: "/about/board" },
-	{ label: "Governance", href: "/about/governance" },
 ]
 
 const investorDropdown = [
@@ -31,7 +30,9 @@ const investorDropdown = [
 	{ label: "News", href: "/investors/news" },
 	{ label: "Events", href: "/investors/events" },
 	{ label: "Stock", href: "/investors/stock" },
-	{ label: "Annual Report", href: "/investors/report" }
+	{ label: "Annual Report", href: "/investors/report" },
+	{ label: "Governance", href: "/investors/governance" },
+
 ]
 
 const homeownerDropdown = [

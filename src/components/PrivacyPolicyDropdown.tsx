@@ -27,11 +27,11 @@ export default function PrivacyPolicyDropdown({ isOpen, className }: PPProps) {
         <div className={`w-full ${className}`}>
             {/* Dropdown menu button */}
             <div
-                className={`p-4 cursor-pointer bg-gray-100 rounded-xl border hover:bg-gray-200 ${open? 'sticky top-[114px] z-10':''}`}
+                className={`p-4 cursor-pointer bg-gray-100 rounded-xl border hover:bg-gray-200 ${open? 'sticky top-[66px] z-10':''}`}
                 onClick={handleOpen}
                 aria-expanded={open}
             >
-                <div className="flex flex-row justify-between items-center">
+                <div className="flex flex-row justify-between items-center text-lg md:text-xl lg:text-2xl">
                     <span>Privacy Policy</span>
                     <svg
                         fill="#000000"
@@ -51,7 +51,7 @@ export default function PrivacyPolicyDropdown({ isOpen, className }: PPProps) {
                 </div>
             </div>
             {open && (
-                <div className="flex flex-col gap-4 p-4 sm:p-10 mt-2">
+                <div className="flex flex-col gap-4 p-4 sm:p-10 mt-2 sm:text-lg lg:text-xl 2xl:text-2xl">
                     <p>Sparq is committed to collecting, using and disclosing the Personal Information provided to it by visitors to our website found at: sparqsys.com (the &quot;Site&quot;) in compliance with all applicable federal and provincial privacy laws in Canada (&quot;Privacy Legislation&quot;).</p>
                     <h2 className="font-bold">What is Personal Information?</h2>
                     <p>Federal privacy legislation, the Personal Information Protection and Electronic Documents Act (PIPEDA), applies to &quot;personal information&quot; about an &quot;identifiable individual&quot; but does not include name, title, business address and business phone number used for business purposes.</p>
