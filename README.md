@@ -50,15 +50,11 @@ For the split-line tailwind classes, they go from smallest->largest as you go do
 
 - /investors
     - Content for slider (what do we actually want showing as highlights)
-    - Annual report
-    - /stock
-        - Integrate our stock data
 - /resources
     - Home page for /resources needs overhaul
     - Homeowners/Installers should have more than just a few FAQ questions
 
 - See if I can force zoom to 100%
-- Opt in to investor highlights slider with "see details", then shows header "Our Partners are Invaluable to our Success"
 - Add /resources/investors
     - include ppts
 
