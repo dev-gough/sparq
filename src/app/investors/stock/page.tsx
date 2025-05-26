@@ -15,12 +15,11 @@ export default function StockPage() {
         refreshInterval: 15 * 60_000
     })
 
-    if (error) return <div className="text-red-500">Error loading data</div>;
-    if (isLoading) return <div className="text-gray-500">Loading...</div>;
+    if (error) return <div className="text-red-500 h-[calc(100vh-114px)]">Error loading data</div>;
+    if (isLoading) return <div className="text-gray-500 h-[calc(100vh-114px)]">Loading...</div>;
 
     return (
-        <div className="h-full">
-            <h1 className="text-center [font-weight:900] text-4xl">Stock Chart</h1>
+        <div className="h-[calc(100vh-114px)]">
             {data && data.values && (
                 <StockChart data={data.values} symbol="SPRQ" />
             )}

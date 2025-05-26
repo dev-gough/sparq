@@ -14,14 +14,14 @@ const events: EventItem[] = [
         id: 1,
         title: "Sparq Smartphone App Launch",
         summary: "We are proud to announce the launch of our new solar power system app. The platform provides users with real-time insights into their system's performance, including power generation data, current weather conditions, and more. This innovative tool empowers users to efficiently monitor and optimize their solar energy usage",
-        date: new Date("2025-05-15"),
+        date: new Date("2025-05-31"),
         url: "",
     },
     {
         id: 2,
         title: "Sparq Website Refresh",
         summary: "Our newly refreshed website introduces a faster, more seamless experience, built on a modern React framework. With significantly improved loading times and a clean, intuitive design, the upgrade ensures users can quickly access information, explore solutions, and stay connected with the latest updates.",
-        date: new Date("2025-05-16"),
+        date: new Date("2025-05-31"),
         url: "",
     },
     {
