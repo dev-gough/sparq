@@ -53,7 +53,7 @@ const LightweightChart: React.FC<ChartProps> = ({
 	data,
 	symbol,
 	width = 0, // 0 ➜ take full width of parent
-	height = 400,
+	height,
 }) => {
 	const wrapperRef = useRef<HTMLDivElement>(null);
 	const chartRef = useRef<IChartApi | null>(null);
@@ -89,7 +89,6 @@ const LightweightChart: React.FC<ChartProps> = ({
 
 	useEffect(() => {
 		if (!wrapperRef.current) return;
-
 		/***** Create / recreate chart *****/
 		// Clean up old instance when re‑rendering with new data.
 		if (chartRef.current) {
@@ -98,7 +97,7 @@ const LightweightChart: React.FC<ChartProps> = ({
 
 		const chart = createChart(wrapperRef.current, {
 			width: width || wrapperRef.current.clientWidth,
-			height,
+			height: height || wrapperRef.current.clientHeight,
 			layout: {
 				background: { type: ColorType.Solid, color: "#fff" },
 				textColor: "#66666",
@@ -170,9 +169,9 @@ const LightweightChart: React.FC<ChartProps> = ({
 				minute: "2-digit",
 			});
 
-			legendEl.textContent = `${dateStr}  O:${bar.open.toFixed(2)} H:${bar.high.toFixed(
-				2,
-			)} L:${bar.low.toFixed(2)} C:${bar.close.toFixed(2)}  Vol:${numberFmt.format(
+			legendEl.textContent = `${dateStr}  O:${bar.open.toFixed(3)} H:${bar.high.toFixed(
+				3,
+			)} L:${bar.low.toFixed(3)} C:${bar.close.toFixed(3)}  Vol:${numberFmt.format(
 				vol.value,
 			)}`;
 		});
@@ -193,7 +192,7 @@ const LightweightChart: React.FC<ChartProps> = ({
 	return (
 		<div
 			ref={wrapperRef}
-			className="w-full relative">
+			className="w-full h-full relative">
 
 			<div
 				ref={legendRef}

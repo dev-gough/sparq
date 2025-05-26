@@ -30,7 +30,7 @@ export default function AccordionItem({ title, children, open, className, parent
                 className={`border shadow-sm border-gray-200 bg-white rounded-md w-full flex justify-between items-center p-4 text-left transition-colors cursor-pointer ${isOpen? className:""}`}
                 onClick={handleOpen}
             >
-                <span className="font-bold text-2xl sm:text-3xl 2xl:text-4xl">{title}</span>
+                <span className="font-bold text-2xl sm:text-3xl">{title}</span>
                 <span className="text-xl md:text-2xl xl:text-3xl 3xl:text-4xl">{isOpen ? '-' : '+'}</span>
             </button>
             {/* Content section, shown only when open */}

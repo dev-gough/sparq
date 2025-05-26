@@ -19,7 +19,7 @@ export default function InvestorLayout({children} : Readonly<{
     children: React.ReactNode;
   }>) {
     return (
-        <div>
+        <div className="h-full">
         <Subheader items={items}/>
         {children}
         </div>
