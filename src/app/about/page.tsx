@@ -123,9 +123,6 @@ export default function AboutPage() {
                     <p
                         onClick={() => toggleExpanded(index)}
                         className="text-white text-xl lg:text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">{expanded[index] ? "Close" : "Read More"}</p>
-                    <Link
-                        href={`/about#slide${index + 1}`}
-                        className="text-white text-xl lg:text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">Next</Link>
                 </div>
             </section>
         )

@@ -189,7 +189,7 @@ export default function InvestorsPage() {
                                         </ul>
                                     </div>
                                     <div className='my-16'>
-                                        <h1></h1>
+                                        <h1 className="text-center mb-2 underline underline-offset-2 text-xl sm:text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Powering Success Together</h1>
                                         <LogoSlider logos={partners} />
                                     </div>
                                 </div>

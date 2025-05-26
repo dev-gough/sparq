@@ -10,7 +10,7 @@ const items = [
     { icon: FaHome, label: "Investor Highlights", href: "/investors#highlights" },
     { icon: FaHome, label: "CEO Letter", href:""},
     { icon: AiOutlineStock, label: "Stock", href: "/investors/stock" },
-    { icon: HiOutlineDocumentReport, label: "Annual Report", href: "/investors/annual-report" },
+    { icon: HiOutlineDocumentReport, label: "Annual Report", href: "https://www.sedarplus.ca/csa-party/records/document.html?id=72b87830300d9eb8745191d3d47641234610d301d603bca29c19ed06689d5815" },
     { icon: FaRegNewspaper, label: "News", href: "/investors/news" },
     { icon: MdEvent, label: "Events", href: "/investors/events" },
 ]
