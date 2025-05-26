@@ -19,10 +19,10 @@ export default function StockPage() {
     if (isLoading) return <div className="text-gray-500">Loading...</div>;
 
     return (
-        <div>
+        <div className="h-full">
             <h1 className="text-center [font-weight:900] text-4xl">Stock Chart</h1>
             {data && data.values && (
-                <StockChart data={data.values} symbol="SPRQ" height={800} />
+                <StockChart data={data.values} symbol="SPRQ" />
             )}
         </div>
     )

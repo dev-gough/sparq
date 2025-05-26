@@ -20,7 +20,7 @@ export default function LogoSlider({ logos, speed = 1500 }: LogoSliderProps) {
 		<Swiper
 			modules={[Autoplay]}
 			loop={true}
-			slidesPerView={3}
+			slidesPerView={1}
 			autoplay={{
 				delay: 0,
 				disableOnInteraction: false,
@@ -28,6 +28,11 @@ export default function LogoSlider({ logos, speed = 1500 }: LogoSliderProps) {
 			}}
 			speed={speed}
 			className="logo-slider h-32"
+			breakpoints={{
+				640: {
+					slidesPerView: 3
+				}
+			}}
 		>
 			{logos.map((logo, index) => (
 				<SwiperSlide key={index} className=" p-1">
@@ -38,7 +43,7 @@ export default function LogoSlider({ logos, speed = 1500 }: LogoSliderProps) {
 								alt={logo.alt}
 								width={256}
 								height={128}
-								className="h-32 bg-white rounded-xl p-2"
+								className="h-20 w-1/2 sm:h-32 sm:w-full sm:p-2 bg-white rounded-xl"
 							/>
 						</Link>
 					) : (
@@ -47,10 +52,9 @@ export default function LogoSlider({ logos, speed = 1500 }: LogoSliderProps) {
 							alt={logo.alt}
 							width={256}
 							height={128}
-							className="h-32 bg-white rounded-xl p-2"
+							className="h-20 w-1/2 sm:h-32 sm:w-full sm:p-2 bg-white rounded-xl"
 						/>
 					)}
-
 				</SwiperSlide>
 			))}
 		</Swiper>

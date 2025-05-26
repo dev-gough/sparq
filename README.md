@@ -64,23 +64,20 @@ For the split-line tailwind classes, they go from smallest->largest as you go do
 
 ### Functionality
 
+- add firebase console support for the site itself
+
 - /support
     - integrate AWS email service to send out support ticket emails
 - Think about integrating indian language
 
 ### Styling
 -  /products
-    - fix sparqlinq img sizing
     - new image for sparqsync
 -  /investors
-    - ensure videos do not get cut off at different screen sizes and zoom levels
 - /products/{product}
     - Ensure consistent text sizing and colour (maybe swap to black font)
 - sm:
     - /investors
-        - Mobile video
-        - Page height (take into account the smaller subheader)
-        - Buttons after video
         - Highlights Slider
     - /investors/stock
         - format chart for mobile (fit to vh)
@@ -90,11 +87,7 @@ For the split-line tailwind classes, they go from smallest->largest as you go do
         - Spacing around address and nav links ++
         - Spacing around +tel +mailto links
 - md: (tablet sizing - minwidth>=768px)
-    - /products/{product}
-        - switch to mobile structure (image on top, text full width below)
     - /investors
-        - tablet video / black bars
-        - increase height for btns
         - highlights slider
     - /investors/stock
         - fit the chart to 100vh - headers
@@ -102,6 +95,3 @@ For the split-line tailwind classes, they go from smallest->largest as you go do
         - style once content is finalized
     - /resources/design
         - "set the dc system size" needs to be inline, not cols
-- move lg: to xl: (>=1024px -> >=1280px)
-
-- look at formatting for lg:

@@ -18,10 +18,8 @@ const nunito = Nunito({
 })
 
 const aboutDropdown = [
-  { label: "Company Snapshot", href: "/about/snapshot"},
-  { label: "Mission", href: "/about/statements#mission" },
-  { label: "Vision", href: "/about/statements#vision" },
-  { label: "Value", href: "/about/statements#values" },
+  { label: "Snapshot", href: "/about/snapshot"},
+  { label: "Who We Are", href: "/about/us" },
   { label: "Leadership", href: "/about/leadership" },
   { label: "Board of Directors", href: "/about/board" },
   { label: "Governance", href: "/about/governance" },
@@ -78,7 +76,7 @@ export default function RootLayout({
       <body className={`${nunito.className} flex flex-col min-h-screen overflow-y-scroll`}>
         <Header navItems={navbarItems} />
         <ForceScroll />
-        <main className="flex-grow">
+        <main className="flex-grow h-full">
           {children}
         </main>
         <SpeedInsights />

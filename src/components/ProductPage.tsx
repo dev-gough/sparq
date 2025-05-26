@@ -61,7 +61,7 @@ export default function ProductPage({
     }
 
     return (
-        <div className='bg-white container mx-auto py-4 px-4'>
+        <div className='bg-white container mx-auto py-4 px-4 2xl:px-16'>
             <div className='flex justify-left items-center mb-6 text-sm sm:text-base md:text-lg xl:text-xl text-brand-gray'>
                 <Link href="/products" className='hover:underline px-2'>
                     Products
@@ -73,16 +73,16 @@ export default function ProductPage({
             {/* main content */}
             <div className='flex flex-col-reverse lg:flex-row gap-8'>
                 <div className='flex-1'>
-                    <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-[44px] xl:text-6xl 2xl:text-7xl font-black text-gray-900 mt-1'>{heading}</h1>
+                    <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-[44px] xl:text-6xl font-black text-gray-900 mt-1'>{heading}</h1>
                     {animated && (
-                        <ul className='space-y-4 list-disc list-inside text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl mt-4 font-bold'>
+                        <ul className='space-y-4 list-disc list-inside text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl mt-4 font-bold'>
                             {animatedList?.map(({ heading, items }, index) => (
                                 <li key={index * 10}>
                                     <span
-                                        className='hover:underline cursor-pointer'
+                                        className='hover:underline cursor-pointer text-brand-maroon'
                                         onClick={() => toggleExpanded(index)}>{heading}</span>
                                     {dropdownExpanded[index] && (
-                                        <ol className='ps-5 mt-2 space-y-1 list-disc list-inside text-lg sm:text-xl md:text-2xl lg:text-xl xl:text-2xl 2xl:text-3xl font-normal'>
+                                        <ol className='ps-5 mt-2 space-y-1 list-disc list-inside text-lg sm:text-xl md:text-2xl lg:text-xl xl:text-2xl font-normal'>
                                             {items.map((item, i) => (
                                                 <motion.li
                                                     key={i}
@@ -109,7 +109,7 @@ export default function ProductPage({
                     {expandedContent && (
                         <div>
                             {isExpanded && (
-                                <div className="text-brand-gray text-xl sm:text-2xl 2xl:text-3xl">
+                                <div className="text-brand-gray text-xl xl:text-2xl">
                                     {expandedContent}
                                 </div>
                             )}
