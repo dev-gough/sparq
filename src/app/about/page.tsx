@@ -57,7 +57,6 @@ const slides: SlideData[] = [
         title: "Be part of a greener future",
         items: green_items
     }
-
 ]
 
 export default function AboutPage() {
@@ -85,7 +84,7 @@ export default function AboutPage() {
             }
         }, 8000)
     }
-
+    
     function SlideSection({ bgUrl, bgPositionClass, title, items, index, expanded, toggleExpanded }: SlideSectionProps) {
         return (
             <section
@@ -103,7 +102,7 @@ export default function AboutPage() {
                     lg:text-5xl
                     xl:text-6xl
                     2xl:text-7xl 
-                    3xl:text-8xl 
+                    3xl:text-8xl
                   text-white bg-brand-maroon rounded-lg font-bold p-3">
                         <span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">{title}</span>
                     </h2>
@@ -121,7 +120,7 @@ export default function AboutPage() {
                     absolute flex space-x-8">
                     <p
                         onClick={() => toggleExpanded(index)}
-                        className="text-white text-xl lg:text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">{expanded[index] ? "Close" : "Read More"}</p>
+                        className="text-white text-xl lg:text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">{expanded[index] ? "close" : "Read More"}</p>
                 </div>
             </section>
         )
