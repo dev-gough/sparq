@@ -2,10 +2,9 @@ import type { Metadata } from "next"
 import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import { Nunito, Noto_Sans_Devanagari } from "next/font/google"
+import { Nunito } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import ForceScroll from "@/components/ForceScroll"
-import { Locale, NextIntlClientProvider } from "next-intl"
 
 export const metadata: Metadata = {
 	title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
@@ -17,13 +16,6 @@ export const metadata: Metadata = {
 const nunito = Nunito({
 	subsets: ["latin"],
 	weight: ["500", "800", "900"],
-})
-
-// hindi font
-const dev = Noto_Sans_Devanagari({
-	subsets: ["devanagari"],
-	weight: ["500", "800", "900"],
-	display: "swap",
 })
 
 const aboutDropdown = [
@@ -77,24 +69,19 @@ const navbarItems = [
 
 export default async function RootLayout({
 	children,
-	params,
 }: Readonly<{
 	children: React.ReactNode,
-	params: { locale: Locale }
 }>) {
-	const messages = (await import(`../../messages/${params.locale}.json`)).default
 	return (
 		<html lang="en">
-			<body className={`${nunito.className} ${dev.className} flex flex-col min-h-screen overflow-y-scroll`}>
-				<NextIntlClientProvider locale={params.locale} messages={messages}>
-					<Header navItems={navbarItems} />
-					<ForceScroll />
-					<main className="flex-grow h-full">
-						{children}
-					</main>
-					<SpeedInsights />
-					<Footer />
-				</NextIntlClientProvider>
+			<body className={`${nunito.className} flex flex-col min-h-screen overflow-y-scroll`}>
+				<Header navItems={navbarItems} />
+				<ForceScroll />
+				<main className="flex-grow h-full">
+					{children}
+				</main>
+				<SpeedInsights />
+				<Footer />
 			</body>
 		</html>
 	)
