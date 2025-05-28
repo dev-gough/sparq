@@ -11,8 +11,13 @@ export default function LeavingSite() {
         const handleClick = (e: MouseEvent) => {
             console.log('leavingsite handleclick')
             const anchor = (e.target as HTMLElement).closest('a');
+
+            // early return checks
             if (!anchor?.href) return;
             if (anchor.id === "proceed") return
+            const rawHref = anchor.getAttribute('href') || '';
+            if (/^(mailto|tel):/i.test(rawHref)) return;
+
             const url = new URL(anchor.href, location.href);
             if (url.origin !== location.origin) {
                 e.preventDefault();
@@ -40,7 +45,7 @@ export default function LeavingSite() {
                 </h2>
                 <p className="mt-4 text-gray-700">
                     Sparqsys.com is not responsible for content or privacy practices on
-                    third-party sites. You’re about to visit:
+                    third-party sites. You&apos;re about to visit:
                 </p>
                 <p className="mt-2 font-mono text-sm text-gray-600 break-all">{href}</p>
                 <div className="mt-6 flex justify-end space-x-4">
@@ -51,7 +56,7 @@ export default function LeavingSite() {
                         Cancel
                     </button>
                     <Link
-                        id="proceed" 
+                        id="proceed"
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"

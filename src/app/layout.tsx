@@ -33,13 +33,14 @@ const investorDropdown = [
 	{ label: "Stock", href: "/investors/stock" },
 	{ label: "Annual Report", href: "/investors/report" },
 	{ label: "Governance", href: "/investors/governance" },
-
 ]
 
 const homeownerDropdown = [
 	{ label: "Global Warming", href: "/homeowners" },
 	{ label: "Why Sparq", href: "/homeowners#whysparq" },
-	{ label: "Useful Resources", href: "/homeowners#useful-links" }
+	{ label: "Sparq Advantage", href: "/homeowners#discover"},
+	{ label: "Useful Tools", href: "/homeowners#useful-links" },
+	{ label: "Frequently Asked Questions", href: "/homeowners#faq"}
 ]
 
 const productDropdown = [

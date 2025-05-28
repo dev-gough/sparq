@@ -15,7 +15,7 @@ export default function CompanySnapshot() {
 		return (
 			<div className='md:w-1/5 lg:p-2 pb-2 mx-0.5'>
 				<button
-					className={`w-full bg-brand-maroon text-white p-1 sm:p-2 lg:p-3 rounded-full flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer ${openIndex === index ? "border-2 sm:border-4 border-brand-logo" : "border-none"}`}
+					className={`w-full bg-brand-maroon text-white p-1 sm:p-2 lg:p-3 rounded-lg flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer ${openIndex === index ? "border-2 sm:border-4 border-brand-logo" : "border-none"}`}
 					onClick={() => toggleDropdown(index)}
 				>
 					<span className="md:text-lg lg:text-xl xl:text-2xl font-bold whitespace-nowrap">{title}</span>
@@ -50,7 +50,7 @@ export default function CompanySnapshot() {
 				<div className='md:w-1/5 lg:p-2 pb-2 mx-0.5'>
 					<Link
 						href="/about"
-						className="w-full bg-brand-maroon text-white p-1 sm:p-2 lg:p-3 rounded-full flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer"
+						className="w-full bg-brand-maroon text-white p-1 sm:p-2 lg:p-3 rounded-lg flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer"
 					>
 						<span className="md:text-lg lg:text-xl xl:text-2xl font-bold whitespace-nowrap">Read More</span>
 					</Link>

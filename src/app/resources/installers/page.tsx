@@ -1,10 +1,9 @@
+import ConstructionPage from "@/components/Construction"
 // 'use client'
 
-import ConstructionPage from "@/components/Construction";
 
 // import InstallerFAQData from "./installer_faq.json"
 // import AccordionItem from "@/components/AccordionItem"
-// import Link from "next/link"
 
 // interface FAQData {
 //     id: number
@@ -43,9 +42,6 @@ import ConstructionPage from "@/components/Construction";
 //                         </AccordionItem>
 //                     ))}
 //                 </div>
-//             </div>
-//             <div className="py-14">
-//                 <strong>Support for Installers and Distributors:</strong> We are currently updating our training materials for installers and distributors. Please check back often for more information or <Link href="/contact" className="text-amber-400 hover:underline hover:text-amber-600">contact us</Link> for support.
 //             </div>
 //         </div>
 //     )
