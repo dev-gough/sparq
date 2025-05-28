@@ -5,6 +5,7 @@ import Footer from "@/components/Footer"
 import { Nunito } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import ForceScroll from "@/components/ForceScroll"
+import LeavingSite from "@/components/LeavingSite"
 
 export const metadata: Metadata = {
 	title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
@@ -78,6 +79,7 @@ export default async function RootLayout({
 			<body className={`${nunito.className} flex flex-col min-h-screen overflow-y-scroll`}>
 				<Header navItems={navbarItems} />
 				<ForceScroll />
+				<LeavingSite />
 				<main className="flex-grow h-full">
 					{children}
 				</main>

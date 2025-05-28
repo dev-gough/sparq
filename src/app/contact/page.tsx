@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaSitemap } from 'react-icons/fa'
 import { useTrackEvent } from '@/hooks/useTrackEvent'
+import LeavingSite from '@/components/LeavingSite'
 
 interface ContactSectionProps {
 	title: string
