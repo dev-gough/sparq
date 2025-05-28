@@ -1,5 +1,6 @@
 'use client'
 import { motion } from "motion/react"
+import { useRef } from 'react'
 
 interface AnimatedListProps {
     items: string[]
@@ -7,6 +8,7 @@ interface AnimatedListProps {
 }
 
 export default function AnimatedList({ items, onComplete }: AnimatedListProps) {
+    const didComplete = useRef<boolean>(false)
     return (
         <motion.div
             className="overflow-hidden bg-neutral-600/50 p-4 rounded-lg shadow-md mx-auto"
@@ -29,7 +31,10 @@ export default function AnimatedList({ items, onComplete }: AnimatedListProps) {
                                 ease: 'easeOut',
                             }}
                             onAnimationComplete={() => {
-                                if (isLast && onComplete) onComplete(i)
+                                if (isLast && onComplete && !didComplete.current) {
+                                    didComplete.current = true
+                                    onComplete(i)
+                                }
                             }}
                         >
                             {item}

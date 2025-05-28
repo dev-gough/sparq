@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import AnimatedList from "@/components/AnimatedList"
 
 const passion_items = ['Support a greener future', 'Create cutting-edge solar energy solutions', 'Advance state of the art technology', 'Delight customers with best-in-class products']
@@ -71,20 +71,52 @@ export default function AboutPage() {
         setExpanded({ [i]: false })
     }
 
+    const scrollTimeoutID = useRef<number | null>(null)
+    const animateTimeoutID = useRef<number | null>(null)
+    const programmaticScroll = useRef<boolean>(false)
+
     const animateNext = (i: number) => {
-        setTimeout(() => {
-            const next = (i + 1) % (slides.length+1)    // account for the custom slide4 afterwards
+        scrollTimeoutID.current = window.setTimeout(() => {
+            if(scrollTimeoutID.current) clearTimeout(scrollTimeoutID.current)
+            if(animateTimeoutID.current) clearTimeout(animateTimeoutID.current)
+            const next = (i + 1) % (slides.length + 1)    // account for the custom slide4 afterwards
             const element = document.getElementById(`slide${next}`)
             if (element) {
+                programmaticScroll.current = true
                 element.scrollIntoView({ behavior: "smooth" })
-                setTimeout(() => {
+                animateTimeoutID.current = window.setTimeout(() => {
                     toggleExpanded(i)
                     toggleExpanded(next)
+                    programmaticScroll.current = false
                 }, 1500)
             }
         }, 8000)
     }
-    
+
+    function debounce(fn: () => void, delay: number) {
+        let timeoutID: number | null = null
+        return () => {
+            if (timeoutID !== null) clearTimeout(timeoutID)
+            timeoutID = window.setTimeout(fn, delay)
+        }
+    }
+
+    useEffect(() => {
+        const cancelAnimations = () => {
+            if (programmaticScroll.current) return  // if scroll is initiated by animateNext, don't cancel animations
+            if (scrollTimeoutID.current !== null) {
+                clearTimeout(scrollTimeoutID.current)
+                scrollTimeoutID.current = null
+            }
+            if (animateTimeoutID.current !== null) {
+                clearTimeout(animateTimeoutID.current)
+                animateTimeoutID.current = null
+            }
+        }
+        window.addEventListener('scroll', debounce(cancelAnimations, 200), { passive: true })
+        return () => window.removeEventListener('scroll', debounce(cancelAnimations, 200))
+    }, [])
+
     function SlideSection({ bgUrl, bgPositionClass, title, items, index, expanded, toggleExpanded }: SlideSectionProps) {
         return (
             <section
@@ -96,14 +128,14 @@ export default function AboutPage() {
                     {/* title */}
                     <h2
                         className="
-                    text-xl
-                    sm:text-3xl
-                    md:text-4xl
-                    lg:text-5xl
-                    xl:text-6xl
-                    2xl:text-7xl 
-                    3xl:text-8xl
-                  text-white bg-brand-maroon rounded-lg font-bold p-3">
+                        text-xl
+                        sm:text-3xl
+                        md:text-4xl
+                        lg:text-5xl
+                        xl:text-6xl
+                        2xl:text-7xl 
+                        3xl:text-8xl
+                      text-white bg-brand-maroon rounded-lg font-bold p-3">
                         <span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">{title}</span>
                     </h2>
                     {expanded[index] && (
@@ -139,7 +171,7 @@ export default function AboutPage() {
             ))}
             {/* somehow discuss that this is slc, front/back */}
             <section id="slide4" className={`relative flex h-[calc(100vh-114px)] min-h-[400px] w-full ${toggled ? "bg-[url(/SLC/007.JPG)] bg-center" : "bg-[url(/SLC/009.JPG)] bg-bottom"}  bg-no-repeat bg-cover justify-center scroll-mt-[114px]`}>
-                <div className={`absolute inset-x-0 top-4 sm:top-1/5 flex flex-col bg-transparent w-full items-center`}>
+                <div className={`absolute inset-x-0 top-4 sm:top-1/5 ${toggled ? "sm:top-4" : ""} flex flex-col bg-transparent w-full items-center`}>
                     <h2 className="
                     text-lg
                     sm:text-3xl
@@ -147,7 +179,7 @@ export default function AboutPage() {
                     lg:text-5xl
                     xl:text-6xl
                     2xl:text-7xl 
-                    3xl:text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Quad architecture advantage</span></h2>
+                    3xl:text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">{toggled ? "" : "Quad architecture advantage"}</span></h2>
 
                     {(expanded[4] && !toggled) && (
                         <div className="mt-4 sm:mt-16">
