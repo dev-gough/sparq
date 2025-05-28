@@ -5,6 +5,7 @@ import Footer from "@/components/Footer"
 import { Nunito } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import ForceScroll from "@/components/ForceScroll"
+import LeavingSite from "@/components/LeavingSite"
 
 export const metadata: Metadata = {
 	title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
@@ -23,7 +24,6 @@ const aboutDropdown = [
 	{ label: "Who We Are", href: "/about/us" },
 	{ label: "Leadership", href: "/about/leadership" },
 	{ label: "Board of Directors", href: "/about/board" },
-	{ label: "Governance", href: "/about/governance" },
 ]
 
 const investorDropdown = [
@@ -31,13 +31,16 @@ const investorDropdown = [
 	{ label: "News", href: "/investors/news" },
 	{ label: "Events", href: "/investors/events" },
 	{ label: "Stock", href: "/investors/stock" },
-	{ label: "Annual Report", href: "/investors/report" }
+	{ label: "Annual Report", href: "/investors/report" },
+	{ label: "Governance", href: "/investors/governance" },
 ]
 
 const homeownerDropdown = [
 	{ label: "Global Warming", href: "/homeowners" },
 	{ label: "Why Sparq", href: "/homeowners#whysparq" },
-	{ label: "Useful Resources", href: "/homeowners#useful-links" }
+	{ label: "Sparq Advantage", href: "/homeowners#discover"},
+	{ label: "Useful Tools", href: "/homeowners#useful-links" },
+	{ label: "Frequently Asked Questions", href: "/homeowners#faq"}
 ]
 
 const productDropdown = [
@@ -77,6 +80,7 @@ export default async function RootLayout({
 			<body className={`${nunito.className} flex flex-col min-h-screen overflow-y-scroll`}>
 				<Header navItems={navbarItems} />
 				<ForceScroll />
+				<LeavingSite />
 				<main className="flex-grow h-full">
 					{children}
 				</main>

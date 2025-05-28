@@ -1,19 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import GridDiv from '@/components/GridDiv';
 
-type gridDivProps = {
-    children: React.ReactNode
-    id?: string
-    className?: string
-}
-
-const GridDiv:React.FC<gridDivProps> = ({ children, id, className }: gridDivProps) => {
-    return (
-        <div id={id} className={`flex flex-col pb-2 items-center cursor-pointer transform transition duration-300 w-full md:w-80 lg:w-96 border-b-2 border-transparent hover:scale-110 hover:z-100 hover:border-b-brand-yellow ${className} `}>
-            {children}
-        </div>
-    )
-}
 
 export default function ProductPage() {
     return (
@@ -24,7 +12,7 @@ export default function ProductPage() {
                     <Link href="products/quad2" className='flex items-center justify-center'>
                         <GridDiv id="q2000">
                             <Image className='w-full h-full object-cover' width={1920} height={1084} src='/q2000.webp' alt='q2000 Microinverters'/>
-                            <h2 className='text-2xl md:text-3xl xl:text-4xl md:text-3xl xl:text-4xl font-bold text-brand-maroon mt-8'>Quad2 Microinverters</h2>
+                            <h2 className='text-2xl md:text-3xl xl:text-4xl font-bold text-brand-maroon mt-8'>Quad2 Microinverters</h2>
                         </GridDiv>
                     </Link>
                     <Link href="products/quad3" className='flex items-center justify-center'>

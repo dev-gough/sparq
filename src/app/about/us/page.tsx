@@ -12,7 +12,7 @@ export default function AboutUsPage() {
                         <FaCertificate className="size-8 lg:size-12 2xl:size-16 text-black" />
                     </div>
                     <h2 className="pl-2 text-4xl sm:text-5xl lg:text-6xl 2xl:text-8xl font-bold text-white uppercase mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Core Values</h2>
-                    <p className="pl-2 text-white text-xl sm:text-2xl lg:text-3xl 2xl:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Integrity, Collaboration, Innovation, Quality, Social Responsibility, Teamwork</p>
+                    <p className="pl-2 text-white text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Integrity, Collaboration, Innovation, Quality, Social Responsibility, Teamwork</p>
                 </div>
             </div>
             <div className="relative flex h-[calc(100vh-115px)] w-full bg-[url(/SLC/009.JPG)] bg-center bg-no-repeat bg-cover justify-center">
@@ -22,7 +22,7 @@ export default function AboutUsPage() {
                         <FaRocket className="size-8 lg:size-12 2xl:size-16 text-black" />
                     </div>
                     <h2 className="pl-2 text-4xl sm:text-5xl lg:text-6xl 2xl:text-8xl font-bold text-white uppercase mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Mission</h2>
-                    <p className="pl-2 text-white text-xl sm:text-2xl lg:text-3xl 2xl:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Accelerate the transition to energy self-sufficiency by serving residential, commercial and industrial customers world-wide.</p>
+                    <p className="pl-2 text-white text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Accelerate the transition to energy self-sufficiency by serving residential, commercial and industrial customers world-wide.</p>
                 </div>
             </div>
             <div 
@@ -42,7 +42,7 @@ export default function AboutUsPage() {
                         <FaEye className="size-8 lg:size-12 2xl:size-16 text-black" />
                     </div>
                     <h2 className="pl-2 text-4xl sm:text-5xl lg:text-6xl 2xl:text-8xl font-bold text-white uppercase mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Vision</h2>
-                    <p className="pl-2 text-white text-xl sm:text-2xl lg:text-3xl 2xl:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Become the #1 Leader for Microinverters, Battery Storage, and Energy Management.</p>
+                    <p className="pl-2 text-white text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Become the #1 Leader for Microinverters, Battery Storage, and Energy Management.</p>
                 </div>
             </div>
             <div id="values" className="relative flex h-[calc(100vh-115px)] w-full bg-bottom bg-[url(/SLC/007.JPG)] bg-no-repeat bg-cover justify-center scroll-mt-[115px]">
@@ -52,7 +52,7 @@ export default function AboutUsPage() {
                         <FaStar className="size-8 lg:size-12 2xl:size-16 text-black" />
                     </div>
                     <h2 className="pl-2 text-4xl sm:text-5xl lg:text-6xl 2xl:text-8xl font-bold text-white uppercase mb-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Promise</h2>
-                    <p className="pl-2 text-white text-xl sm:text-2xl lg:text-3xl 2xl:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Deliver safe, reliable, and cost-effective solutions that are best-in-class, easy to install, and maitenance-free.</p>
+                    <p className="pl-2 text-white text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Deliver safe, reliable, and cost-effective solutions that are best-in-class, easy to install, and maitenance-free.</p>
                 </div>
             </div>
         </div>

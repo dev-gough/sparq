@@ -17,7 +17,6 @@ interface NavItem {
 interface HeaderProps {
     navItems: NavItem[]
 }
-
 export default function Header({ navItems }: HeaderProps) {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -25,7 +24,7 @@ export default function Header({ navItems }: HeaderProps) {
     return (
         <header className="sticky top-0 z-[999] bg-brand-graytext shadow-md h-[67px]">
             <div className="flex justify-between lg:justify-center items-center p-2">
-                <Link href="/" className="mr-4" onClick={() => setIsMenuOpen(false)}>
+                <Link href="/" className="mr-8" onClick={() => setIsMenuOpen(false)}>
                     <Image src="/logo.png" alt="Logo" width={75} height={50} />
                 </Link>
                 <button
