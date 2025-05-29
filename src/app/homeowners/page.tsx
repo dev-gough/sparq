@@ -282,9 +282,9 @@ export default function HomeownersPage() {
                         <h2 className="text-4xl font-semibold mb-2 text-brand-maroon">
                             Learn More About Sparq Products
                         </h2>
-                        <p className="text-2xl">
+                        {/* <p className="text-2xl">
                             Hear from Dr. Kojori about the cutting-edge innovations that power Sparq Products. Dive in to see how we&apos;re redefining the PV industry.
-                        </p>
+                        </p> */}
                     </div>
                 </div>
 
