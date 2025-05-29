@@ -24,11 +24,12 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Notes
-
-For the split-line tailwind classes, they go from smallest->largest as you go down.  i.e. top level is for sm: classes, then md: then lg: ect
-
 ## Todo
+
+## Hassan Notes
+- In the 1st page of Homeowner Highlight, let’s just list the three bullets. And provide a link to the main Sparq Product page to see the Sparq Differentiation.
+- Hassan Video (MP4) should be included in the Learning page and linked in the Homeowner and Installer pages.
+- Clause 18 of posted ToS provides detailed disclaimer for third-party content! Just notify the users that by clinking on the link they are exiting Sparq website and will access third-party content ???
 
 ## Highest Prio
 

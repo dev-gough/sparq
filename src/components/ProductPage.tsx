@@ -13,7 +13,7 @@ export type ListEntry = {
 interface ProductProps {
     models?: Array<string>
     selectedModel?: string | null
-    setSelectedModel?: (m: string | null) => void
+    setSelectedModel?: (m: string) => void
     model?: string   // e.g. Q2000, Quad 3
     heading: string // e.g. Q2000 Microinverter or 
     animated?: boolean
@@ -119,7 +119,7 @@ export default function ProductPage({
                         </div>
                     )}
 
-                    {models && models.length > 1 && model && (
+                    {models && models.length > 1 && model && setSelectedModel && (
                         <div className='mt-6'>
                             <p className='md:text-lg lg:text-base xl:text-lg 2xl:text-xl font-medium text-brand-gray'>Model: {model}</p>
                             <div className='flex flex-wrap gap-2 mt-2 '>
@@ -130,7 +130,7 @@ export default function ProductPage({
                                             ? "border-blue-600 text-blue-600"
                                             : "border-gray-300 text-gray-600 hover:border-gray-400"
                                             }`}
-                                        onClick={() => setSelectedModel?(selectedModel === m ? null : m):()=>null}
+                                        onClick={() => setSelectedModel(m)}
                                     >
                                         {m}
                                     </button>

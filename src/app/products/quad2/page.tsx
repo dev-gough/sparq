@@ -76,7 +76,7 @@ const listContent: ListEntry[] = [
 
 export default function Quad2Page() {
 	const models = ["Q2000-4102", "Q2000-4102-DM", "Q2000-4102-GT"]
-	const [selectedModel, setSelectedModel] = useState<string | null>(models[0])
+	const [selectedModel, setSelectedModel] = useState<string>(models[0])
 
 	function accordion() {
 		return (
