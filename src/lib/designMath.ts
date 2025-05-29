@@ -1,40 +1,30 @@
 // lib/designMath.ts
 export type Inputs = {
-    pvKw: number;          // H4
-    panelW: number;        // I4
-    region: string;        // K4
+    pvKw: number;
+    panelW: number;
+    region: string;
+    voltage: number;
   };
-  
-  export type Outputs = {
-    totalInverters: number;
-    junctionBoxes: number;
-    cable0_7m: number;
-    cable2_4m: number;
-    cable3m: 1;
-    pn0_7m: string;
-    pn2_4m: string;
-    pn3m:   string;
-    pnT6Tee: string;
-  };
-  
-  export function calculate({ pvKw, panelW, region }: Inputs): Outputs {
-    const totalInverters = Math.floor((pvKw * 1000) / (4 * panelW));
-    const junctionBoxes  = Math.ceil(totalInverters / 3);
-    const cable0_7m      = Math.max(totalInverters - 1, 0);
-    const cable2_4m      = Math.max(totalInverters - 2, 0);
-    const cable3m        = 1 as const;
-  
+
+export interface Row {
+  label: string;
+  qty: number;
+  sku: string;
+}
+
+export function calculate({ pvKw, panelW, region, voltage }: Inputs): Row[] {
     const na = /north|usa|canada|mexico/i.test(region);
-    return {
-      totalInverters,
-      junctionBoxes,
-      cable0_7m,
-      cable2_4m,
-      cable3m,
-      pn0_7m : na ? "65015-09"              : "65015-17",
-      pn2_4m: na ? "65013-16 / 65013-17"   : "65013-08 / 65013-09",
-      pn3m  : na ? "65015-10"              : "65015-18",
-      pnT6Tee: na ? "65012-14 / 65012-15"  : "65012-02 / 65012-03",
-    };
+    const totalInverters = Math.floor((pvKw * 1000) / (4 * panelW));
+  
+    const junctionBoxes = Math.ceil(totalInverters / Math.floor(30 / Math.ceil(2000 / voltage)));
+  
+    return [
+      { label: "Inverter", qty: totalInverters, sku: "Q2000-INV" },
+      { label: "Junction box", qty: junctionBoxes, sku: na ? "65020-01" : "65020-05" },
+      { label: "0.7 m Type-2 cable", qty: Math.max(totalInverters - 1, 0), sku: na ? "65015-09" : "65015-17" },
+      { label: "2 m / 4 m T6-female cable", qty: Math.max(totalInverters - 2, 0), sku: na ? "65013-16/17" : "65013-08/09" },
+      { label: "3 m trunk cable", qty: 1, sku: na ? "65015-10" : "65015-18" },
+      { label: "T6-Tee to open", qty: 1, sku: na ? "65012-14/15" : "65012-02/03" }
+    ];
   }
   
