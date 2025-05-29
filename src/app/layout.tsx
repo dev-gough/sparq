@@ -3,7 +3,6 @@ import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { Nunito } from "next/font/google"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import ForceScroll from "@/components/ForceScroll"
 import LeavingSite from "@/components/LeavingSite"
 
@@ -39,8 +38,15 @@ const homeownerDropdown = [
 	{ label: "Global Warming", href: "/homeowners" },
 	{ label: "Why Sparq", href: "/homeowners#whysparq" },
 	{ label: "Sparq Advantage", href: "/homeowners#discover"},
-	{ label: "Useful Tools", href: "/homeowners#useful-links" },
-	{ label: "Frequently Asked Questions", href: "/homeowners#faq"}
+	{ label: "Useful Tools", href: "/homeowners#useful-tools" },
+	{ label: "FAQs", href: "/homeowners#faq"}
+]
+
+const installerDropdown = [
+	{ label: "Why Sparq", href: "/installers#whysparq"},
+	{ label: "Sparq Advantage", href: "/installers#discover"},
+	{ label: "Useful Tools", href: "/installers#useful-tools"},
+	{ label: "FAQs", href: "/installers#faq"},
 ]
 
 const productDropdown = [
@@ -63,7 +69,7 @@ const navbarItems = [
 	{ label: "About", href: "/about", dropdown: aboutDropdown },
 	{ label: "Products", href: "/products", dropdown: productDropdown },
 	{ label: "Homeowners", href: "/homeowners", dropdown: homeownerDropdown },
-	{ label: "Installers", href: "/resources/installers" },
+	{ label: "Installers", href: "/installers", dropdown: installerDropdown },
 	{ label: "Investors", href: "/investors", dropdown: investorDropdown },
 	{ label: "Resources", href: "/resources", dropdown: resourcesDropdown },
 	{ label: "Contact", href: "/contact" },
@@ -84,7 +90,6 @@ export default async function RootLayout({
 				<main className="flex-grow h-full">
 					{children}
 				</main>
-				<SpeedInsights />
 				<Footer />
 			</body>
 		</html>

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 function useHash(): string {
@@ -18,12 +18,12 @@ function useHash(): string {
 }
 
 interface SubheadingItemProps {
-    icon: FC<{ className?: string }>
     label: string
     href: string
+    target?: string
 }
 
-function SubheadingItem({ label, href }: SubheadingItemProps) {
+function SubheadingItem({ label, href, target }: SubheadingItemProps) {
     const pathname = usePathname()        // e.g. “/investors”
     const hash = useHash()            // e.g. “#highlights” | ""
 
@@ -38,6 +38,7 @@ function SubheadingItem({ label, href }: SubheadingItemProps) {
             href={href}
             className={`flex flex-shrink-0 items-center justify-center space-x-2 ${isActive ? "text-brand-yellow" : "text-gray-700"
                 } transition-colors duration-150 hover:text-brand-yellow`}
+            target={target? target : ""}
         >
             <span className="text-lg sm:text-xl xl:text-2xl whitespace-nowrap">{label}</span>
         </Link>

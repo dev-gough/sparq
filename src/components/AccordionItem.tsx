@@ -9,7 +9,6 @@ interface AccordionItemProps {
     parent: string
 }
 
-//todo: debug sticky positioning removing the bg, only when opening another accordianitem
 export default function AccordionItem({ title, children, open, className, parent } : AccordionItemProps) {
     const [isOpen, setIsOpen] = useState(open)
     const trackEvent = useTrackEvent()
@@ -22,7 +21,6 @@ export default function AccordionItem({ title, children, open, className, parent
             "dropdown": title,
         })
     }
-// todo: move sticky on sm to this file
     return (
         <div className=" mb-2 my-4">
             {/* Header with title and toggle icon */}
