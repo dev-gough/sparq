@@ -260,7 +260,7 @@ export default function HomeownersPage() {
                                     <div className="flex items-center justify-center mb-64">
                                         <p className="text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] mr-4">For more details, read &quot;SPARQ For Homeowners&quot;:
                                         </p>
-                                        <Link className="cursor-pointer rounded-md p-4 text-xl bg-brand-maroon hover:bg-brand-darkmaroon text-white" href="/sparq_ppt.pdf" target="_blank">See Homeowner Presentation</Link>
+                                        <Link className="cursor-pointer rounded-md p-4 text-xl bg-brand-maroon hover:bg-brand-darkmaroon text-white" href="/homeowner_ppt.pdf" target="_blank">See Homeowner Presentation</Link>
                                     </div>
                                 </div>
 
@@ -279,12 +279,9 @@ export default function HomeownersPage() {
                         />
                     </div>
                     <div className="md:w-1/2 md:pl-8 mt-6 md:mt-0">
-                        <h2 className="text-4xl font-semibold mb-2 text-brand-maroon">
+                        <h2 className="text-4xl font-semibold mb-2 text-brand-maroon text-left">
                             Learn More About Sparq Products
                         </h2>
-                        {/* <p className="text-2xl">
-                            Hear from Dr. Kojori about the cutting-edge innovations that power Sparq Products. Dive in to see how we&apos;re redefining the PV industry.
-                        </p> */}
                     </div>
                 </div>
 
@@ -326,7 +323,7 @@ export default function HomeownersPage() {
                     </p>
                 </div>
             </section>
-            <section id="useful-links" className="container mx-auto mb-8 mt-32 2xl:px-32 scroll-mt-[66px]">
+            <section id="useful-tools" className="container mx-auto mb-8 mt-32 2xl:px-32 scroll-mt-[66px]">
                 <h1 className="text-4xl font-bold mb-6 text-brand-maroon">Solar Energy Tools</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                     {solarTools.map((tool) => (
