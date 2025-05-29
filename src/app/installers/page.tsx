@@ -245,7 +245,7 @@ export default function InstallersPage() {
                         Access in-depth installation guides, commissioning tutorials, and best practices tailored for installers deploying Sparq microinverters at commercial scale.                    </p>
                 </div>
             </section>
-            <section id="useful-links" className="container mx-auto mb-8 mt-32 2xl:px-32 scroll-mt-[66px]">
+            <section id="useful-tools" className="container mx-auto mb-8 mt-32 2xl:px-32 scroll-mt-[66px]">
                 <h1 className="text-4xl font-bold mb-6 text-brand-maroon">C&I PV System Tools</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                     {solarTools.map((tool) => (

@@ -30,7 +30,6 @@ const investorDropdown = [
 	{ label: "News", href: "/investors/news" },
 	{ label: "Events", href: "/investors/events" },
 	{ label: "Stock", href: "/investors/stock" },
-	{ label: "Annual Report", href: "/investors/report" },
 	{ label: "Governance", href: "/investors/governance" },
 ]
 
