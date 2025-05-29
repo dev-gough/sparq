@@ -9,7 +9,6 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Autoplay, Pagination } from 'swiper/modules'
-import VideoPlayer from "@/components/VideoPlayer"
 import AccordionItem from "@/components/AccordionItem"
 import GridDiv from "@/components/GridDiv"
 import FAQs from './home_faq.json'
@@ -21,7 +20,6 @@ interface FAQData {
 }
 
 const FAQ: FAQData[] = FAQs.faqs
-
 
 interface SolarTool {
     title: string
@@ -62,50 +60,6 @@ const cols = [
     "Safe & Reliable Products",
     "Cost-Effective and Maintenance-Free"
 ]
-
-const performanceItems = [
-    "High Frequency, soft-switching power electronics",
-    "Advanced real-time control",
-    "Individual MPPT for each panel",
-    "No HV DC cabling on the roof",
-    "Lowest weight of microinverters on the roof",
-    "Maximum Energy Harvesting",
-    "Dual Mode Operation (On-grid & Off-grid)",
-    "Grid independence",
-    "Energy self-sufficiency",
-    "Future ready for being flexible and scalable",
-    "Robust IOT gateway for health monitoring & control",
-    "Web monitoring with Intuitive displays",
-    "User-Friendly mobile app",
-    "Accessible and expert technical support",
-]
-
-const safetyItems = [
-    "No Electrolytic Capacitor",
-    "No other low-life components",
-    "All-AC cabling with inherent Rapid-Shut-Down (RSD) compliance",
-    "No risk of HV DC arcing",
-    "No Risk of HV electric shock hazard for first responders",
-    "High reliability",
-    "High system availability",
-    "No PV system single point failure",
-    "Minimize number of system components to install and maintain results for high MTBF",
-    "Longlasting",
-    "Comprehensive warranty",
-]
-
-const costItems = [
-    "Quad Architecture",
-    "Reduced manufacturing BOM",
-    "Reduced Balance of System (cabling, grounding, junction boxes etc)",
-    "Reduced manufacturing cost",
-    "Reduced installation cost",
-    "Maintenance-free",
-    "Lowest cycle-life-cost",
-    "Outlier on Performance-Cost Curve",
-]
-
-
 
 export default function HomeownersPage() {
 
@@ -189,49 +143,11 @@ export default function HomeownersPage() {
                             <SwiperSlide>
                                 <div className='px-4 pt-4 lg:px-20 xl:px-40 sm:pt-8 flex flex-col h-full'>
                                     <h1 className='text-xl sm:text-2xl lg:text-5xl xl:text-6xl font-extrabold border-b-2 border-brand-yellow b-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>What Homeowners Should Demand</h1>
-                                    <div className="flex justify-between mt-4 overflow-x-auto">
+                                    <div className="flex justify-between mt-8 overflow-x-auto">
                                         {cols.map((title, index) => (
                                             <DropdownButton key={index} index={index} title={title} />
                                         ))}
                                     </div>
-                                    {openIndex === null && (
-                                        <div className='flex justify-center items-center'>
-                                            <p className='text-lg md:text-xl md:mt-16'>Click on a label to see more</p>
-                                        </div>
-                                    )}
-                                    {openIndex === 0 && (
-                                        <div className="mt-4 w-full p-4 pt-12 bg-neutral-600/50 rounded-md">
-                                            <ul className="list-none space-y-8 grid grid-cols-2">
-                                                {performanceItems.map((item, index) => (
-                                                    <li key={index} className="text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-                                                        ✓ {item}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                    {openIndex === 1 && (
-                                        <div className="mt-4 w-full p-4 pt-12 bg-neutral-600/50 rounded-md">
-                                            <ul className="list-none space-y-8">
-                                                {safetyItems.map((item, index) => (
-                                                    <li key={index} className="text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-                                                        ✓ {item}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                    {openIndex === 2 && (
-                                        <div className="mt-4 w-full p-4 pt-12 bg-neutral-600/50 rounded-md">
-                                            <ul className="list-none space-y-8">
-                                                {costItems.map((item, index) => (
-                                                    <li key={index} className="text-white text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-                                                        ✓ {item}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
@@ -263,7 +179,6 @@ export default function HomeownersPage() {
                                         <Link className="cursor-pointer rounded-md p-4 text-xl bg-brand-maroon hover:bg-brand-darkmaroon text-white" href="/homeowner_ppt.pdf" target="_blank">See Homeowner Presentation</Link>
                                     </div>
                                 </div>
-
                             </SwiperSlide>
                         </Swiper>
                     </div>
@@ -273,10 +188,15 @@ export default function HomeownersPage() {
                 {/* 1. Full-width video + blurb */}
                 <div className="flex flex-col md:flex-row items-center text-right">
                     <div className="md:w-1/2">
-                        <VideoPlayer
-                            src="/hassan_presentation.mp4"
-                            className="rounded-xl shadow-lg transition-transform hover:scale-105"
-                        />
+                        <Link href="/resources">
+                            <Image
+                                src="/hassan_presentation_thumbnail.png"
+                                width={806}
+                                height={452}
+                                alt="Hassan's Presentation Thumbnail"
+                                className="rounded-xl shadow-lg transition-transform hover:scale-105"
+                            />
+                        </Link>
                     </div>
                     <div className="md:w-1/2 md:pl-8 mt-6 md:mt-0">
                         <h2 className="text-4xl font-semibold mb-2 text-brand-maroon text-left">
