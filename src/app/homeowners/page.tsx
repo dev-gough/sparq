@@ -258,9 +258,9 @@ export default function HomeownersPage() {
                                         </ul>
                                     </div>
                                     <div className="flex items-center justify-center mb-64">
-                                        <p className="text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] mr-4">For more details, read the &quot;SPARQ For Homeowners&quot; PowerPoint:
+                                        <p className="text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] mr-4">For more details, read &quot;SPARQ For Homeowners&quot;:
                                         </p>
-                                        <Link className="cursor-pointer rounded-md p-4 text-xl bg-brand-maroon hover:bg-brand-darkmaroon text-white" href="/homeowner.pptx">Download PowerPoint</Link>
+                                        <Link className="cursor-pointer rounded-md p-4 text-xl bg-brand-maroon hover:bg-brand-darkmaroon text-white" href="/sparq_ppt.pdf" target="_blank">See Homeowner Presentation</Link>
                                     </div>
                                 </div>
 
@@ -292,7 +292,7 @@ export default function HomeownersPage() {
                 <div className="w-full md:w-2/3 text-left">
                     <h2 className="text-4xl font-semibold mb-2">
                         <Link href="/products" className="text-brand-maroon hover:underline decoration-brand-logo">
-                            Sparq Products
+                            Our Microinverter Lineup
                         </Link>
                     </h2>
                     <p className="text-2xl">
