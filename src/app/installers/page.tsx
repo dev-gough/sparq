@@ -12,7 +12,6 @@ import 'swiper/css/pagination'
 import { Autoplay, Pagination } from 'swiper/modules'
 
 import GridDiv from "@/components/GridDiv"
-import VideoPlayer from "@/components/VideoPlayer"
 import AccordionItem from "@/components/AccordionItem"
 
 interface FAQData {
@@ -63,12 +62,16 @@ export default function InstallersPage() {
                 <div className="relative w-full h-full">
                     <Image
                         src={frontSrc}
+                        height={1080}
+                        width={1920}
                         className="absolute inset-0 w-full h-full object-cover"
                         alt=""
                         style={{ display: flipped ? 'none' : 'block' }}
                     />
                     <Image
                         src={backSrc}
+                        height={1080}
+                        width={1920}
                         className="absolute inset-0 w-full h-full object-cover"
                         alt=""
                         style={{
@@ -173,10 +176,16 @@ export default function InstallersPage() {
                 {/* 1. Full-width video + blurb */}
                 <div className="flex flex-col md:flex-row items-center text-right">
                     <div className="md:w-1/2">
-                        <VideoPlayer
-                            src="/hassan_presentation.mp4"
-                            className="rounded-xl shadow-lg transition-transform hover:scale-105"
-                        />
+                        <Link href="/resources">
+                            <Image
+                                src="/hassan_presentation_thumbnail.png"
+                                width={806}
+                                height={452}
+                                alt="Hassan's Presentation Thumbnail"
+                                className="rounded-xl shadow-lg transition-transform hover:scale-105"
+                            />
+
+                        </Link>
                     </div>
                     <div className="md:w-1/2 md:pl-8 mt-6 md:mt-0">
                         <h2 className="text-4xl font-semibold mb-2 text-brand-maroon text-left">
@@ -236,7 +245,7 @@ export default function InstallersPage() {
                         Access in-depth installation guides, commissioning tutorials, and best practices tailored for installers deploying Sparq microinverters at commercial scale.                    </p>
                 </div>
             </section>
-            <section id="useful-links" className="container mx-auto mb-8 mt-32 2xl:px-32 scroll-mt-[66px]">
+            <section id="useful-tools" className="container mx-auto mb-8 mt-32 2xl:px-32 scroll-mt-[66px]">
                 <h1 className="text-4xl font-bold mb-6 text-brand-maroon">C&I PV System Tools</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                     {solarTools.map((tool) => (

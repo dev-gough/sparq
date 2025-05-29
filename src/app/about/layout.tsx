@@ -7,7 +7,6 @@ const items = [
     { label: "Who We Are", href: "/about/us" },
     { label: "Leadership", href: "/about/leadership" },
     { label: "Board of Directors", href: "/about/board" },
-    { label: "Governance", href: "/about/governance" },
 ]
 
 export default function InvestorLayout({children} : Readonly<{
