@@ -9,7 +9,7 @@ import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { Autoplay, Pagination } from 'swiper/modules'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 
 import GridDiv from "@/components/GridDiv"
 import AccordionItem from "@/components/AccordionItem"
@@ -126,7 +126,8 @@ export default function InstallersPage() {
                         <Swiper
                             ref={swiperRef}
                             pagination={{ clickable: true }}
-                            modules={[Pagination, Autoplay]}
+                            navigation={true}
+                            modules={[Pagination, Autoplay, Navigation]}
                             spaceBetween={30}
                             slidesPerView={1}
                             autoplay={{
@@ -134,7 +135,7 @@ export default function InstallersPage() {
                                 disableOnInteraction: false,
                                 pauseOnMouseEnter: true,
                             }}
-                            className='text-white h-[calc(100vh-66px)] [--swiper-pagination-bullet-size:20px] sm:[--swiper-pagination-bullet-size:30px] sm:[--swiper-navigation-size:70px] [--swiper-pagination-bullet-inactive-opacity:1] [--swiper-pagination-color:#8C344E] [--swiper-pagination-bullet-inactive-color:#fcb900]'
+                            className='text-white h-[calc(100vh-66px)] [--swiper-pagination-bullet-size:20px] sm:[--swiper-pagination-bullet-size:30px] sm:[--swiper-navigation-size:100px] [--swiper-pagination-bullet-inactive-opacity:1] [--swiper-pagination-color:#8C344E] [--swiper-pagination-bullet-inactive-color:#fcb900] [--swiper-navigation-color:#8C344E]'
                         >
                             <SwiperSlide>
                                 <div className='px-4 pt-4 lg:px-20 xl:px-40 sm:pt-8 flex flex-col h-full'>

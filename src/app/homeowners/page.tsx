@@ -8,7 +8,7 @@ import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { Autoplay, Pagination } from 'swiper/modules'
+import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 import AccordionItem from "@/components/AccordionItem"
 import GridDiv from "@/components/GridDiv"
 import FAQs from './home_faq.json'
@@ -16,7 +16,7 @@ import FAQs from './home_faq.json'
 interface FAQData {
     id: number
     questionBrand: string;
-    subQuestions: { id: number, question: string, answer: string }[];
+    subQuestions: { id: number, question: string, answer: string | Array<string | string[]> }[];
 }
 
 const FAQ: FAQData[] = FAQs.faqs
@@ -25,11 +25,6 @@ interface SolarTool {
     title: string
     description: string
     url: string
-}
-
-interface DropdownButtonProps {
-    index: number
-    title: string
 }
 
 const solarTools: SolarTool[] = [
@@ -55,19 +50,9 @@ const solarTools: SolarTool[] = [
     }
 ]
 
-const cols = [
-    "Best In-Class Performance",
-    "Safe & Reliable Products",
-    "Cost-Effective and Maintenance-Free"
-]
-
 export default function HomeownersPage() {
 
     const swiperRef = useRef<SwiperRef>(null)
-    const [openIndex, setOpenIndex] = useState<number | null>(null)
-    const toggleDropdown = (index: number) => {
-        setOpenIndex(prev => (prev === index ? null : index));
-    };
 
     useEffect(() => {
         // Load the YouTube IFrame API script
@@ -98,26 +83,13 @@ export default function HomeownersPage() {
         }
     }, [])
 
-    function DropdownButton({ index, title }: DropdownButtonProps) {
-        return (
-            <div className='md:w-1/3 lg:p-2 pb-2 mx-0.5'>
-                <button
-                    className={`w-full bg-brand-maroon text-white p-1 sm:p-2 lg:p-3 rounded-lg flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer ${openIndex === index ? "border-2 sm:border-4 border-brand-logo" : "border-none"}`}
-                    onClick={() => toggleDropdown(index)}
-                >
-                    <span className="md:text-lg lg:text-xl xl:text-2xl font-bold whitespace-nowrap">{title}</span>
-                </button>
-            </div>
-        )
-    }
-
     return (
         <div className="scroll-mt-[66px]">
             <section className="relative h-[calc(100vh-66px)] overflow-x-hidden">
                 <iframe
                     id="youtube-player"
                     className="absolute top-0 left-0 w-full h-full"
-                    src={`https://www.youtube.com/embed/oJAbATJCugs?autoplay=1&loop=1&controls=1&rel=0&mute=1&enablejsapi=1`}
+                    src={`https://www.youtube.com/embed/a9tKIsI6t4I?autoplay=1&loop=1&controls=1&rel=0&mute=1&enablejsapi=1`}
                     allowFullScreen
                     title="YouTube Background Video"
                 ></iframe>
@@ -129,7 +101,8 @@ export default function HomeownersPage() {
                         <Swiper
                             ref={swiperRef}
                             pagination={{ clickable: true }}
-                            modules={[Pagination, Autoplay]}
+                            modules={[Pagination, Autoplay, Navigation]}
+                            navigation={true}
                             spaceBetween={30}
                             slidesPerView={1}
                             autoplay={{
@@ -137,45 +110,44 @@ export default function HomeownersPage() {
                                 disableOnInteraction: false,
                                 pauseOnMouseEnter: true,
                             }}
-                            className='text-white h-[calc(100vh-66px)] [--swiper-pagination-bullet-size:20px] sm:[--swiper-pagination-bullet-size:30px] sm:[--swiper-navigation-size:70px] [--swiper-pagination-bullet-inactive-opacity:1] [--swiper-pagination-color:#8C344E] [--swiper-pagination-bullet-inactive-color:#fcb900]'
-                            onSlideChangeTransitionEnd={() => setOpenIndex(null)}
+                            className='text-white h-[calc(100vh-66px)] [--swiper-pagination-bullet-size:20px] sm:[--swiper-pagination-bullet-size:30px] sm:[--swiper-navigation-size:100px] [--swiper-pagination-bullet-inactive-opacity:1] [--swiper-pagination-color:#8C344E] [--swiper-pagination-bullet-inactive-color:#fcb900] [--swiper-navigation-color:#8C344E]'
                         >
                             <SwiperSlide>
                                 <div className='px-4 pt-4 lg:px-20 xl:px-40 sm:pt-8 flex flex-col h-full'>
-                                    <h1 className='text-xl sm:text-2xl lg:text-5xl xl:text-6xl font-extrabold border-b-2 border-brand-yellow b-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>What Homeowners Should Demand</h1>
-                                    <div className="flex justify-between mt-8 overflow-x-auto">
-                                        {cols.map((title, index) => (
-                                            <DropdownButton key={index} index={index} title={title} />
-                                        ))}
-                                    </div>
+                                    <h1 className='text-xl sm:text-2xl lg:text-5xl xl:text-6xl font-extrabold border-b-2 border-brand-yellow b-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Why Sparq?</h1>
+                                    <ul className="list-disc list-inside text-lg sm:text-xl lg:text-2xl xl:text-4xl mt-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] space-y-4">
+                                        <li>Best In-Class Performance</li>
+                                        <li>Safe & Reliable Products</li>
+                                        <li>Cost-Effective & Maintenance-Free</li>
+                                    </ul>
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className='px-4 pt-4 lg:px-20 xl:px-40 sm:pt-8 flex flex-col h-full'>
-                                    <h1 className='text-xl sm:text-2xl lg:text-5xl xl:text-6xl font-extrabold border-b-2 border-brand-yellow b-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Check Your Region&apos;s Going-Solar Guidelines</h1>
-                                    <ul className="list-disc list-inside text-lg sm:text-xl lg:text-2xl xl:text-4xl mt-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] space-y-4">
-                                        <li>Planning</li>
-                                        <li>Incentives & Eligibility</li>
-                                        <li>Permits and Audits</li>
-                                        <li>Utility Coordination</li>
+                                    <h1 className='text-xl sm:text-2xl lg:text-5xl xl:text-6xl font-extrabold border-b-2 border-brand-yellow b-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Steps for Going Solar</h1>
+                                    <ul className="list-[lower-alpha] list-inside text-lg sm:text-xl lg:text-2xl xl:text-4xl mt-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] space-y-4">
+                                        <li>Conduct a pre-installation audit and development plan</li>
+                                        <li>Check regional compliance requirements</li>
+                                        <li>Research incentives and eligibility criteria</li>
+                                        <li>Obtain quotes from certified, experienced installers</li>
+                                        <li>Coordinate with your local utility company to obtain permits</li>
+                                        <li>Award the contract and proceed with installation</li>
+                                        <li>Schedule post-installation audit</li>
+                                        <li>Enjoy the benefits of your new PV system</li>
                                     </ul>
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide className='relative'>
-                                <div className='px-4 pt-4 lg:px-20 xl:px-40 sm:pt-8 flex flex-col h-full justify-between'>
-                                    <div>
-                                        <h1 className="text-xl sm:text-2xl lg:text-5xl xl:text-6xl font-extrabold border-b-2 border-brand-yellow b-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-                                            What Homeowners Should Consider
-                                        </h1>
-                                        <ul className="list-disc list-inside text-lg sm:text-xl lg:text-2xl xl:text-4xl mt-4 space-y-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-                                            <li>Do your homework</li>
-                                            <li>Ensure You Hire a Certified Installer</li>
-                                            <li>Buy Best In-Class Products</li>
-                                        </ul>
-                                    </div>
-                                    <div className="flex items-center justify-center mb-64">
-                                        <p className="text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] mr-4">For more details, read &quot;SPARQ For Homeowners&quot;:
-                                        </p>
+                                <div className='px-4 pt-4 lg:px-20 xl:px-40 sm:pt-8 flex flex-col h-full'>
+                                    <h1 className="text-xl sm:text-2xl lg:text-5xl xl:text-6xl font-extrabold border-b-2 border-brand-yellow b-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                                        Important Considerations
+                                    </h1>
+                                    <ul className="list-disc list-inside text-lg sm:text-xl lg:text-2xl xl:text-4xl mt-4 space-y-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                                        <li>Do your own research</li>
+                                        <li>Ensure You Hire a Certified and Experienced Installer</li>
+                                        <li>Buy Best In-Class Products</li>
+                                    </ul>
+                                    <div className="flex items-center justify-center mt-16">
                                         <Link className="cursor-pointer rounded-md p-4 text-xl bg-brand-maroon hover:bg-brand-darkmaroon text-white" href="/homeowner_ppt.pdf" target="_blank">See Homeowner Presentation</Link>
                                     </div>
                                 </div>
@@ -283,7 +255,23 @@ export default function HomeownersPage() {
                                     {item.subQuestions.map((subItem) => (
                                         <div key={subItem.id} className="text-gray-700">
                                             <strong className="text-brand-maroon">{subItem.question}</strong><br></br>{" "}
-                                            {subItem.answer}
+                                            {subItem.answer && Array.isArray(subItem.answer) ? (
+                                                <div>
+                                                    {subItem.answer.map((block, i) =>
+                                                            Array.isArray(block) ? (
+                                                                <ul key={i} className="list-disc ml-6">
+                                                                    {block.map((li, j) => <li key={j}>{li}</li>)}
+                                                                </ul>
+                                                            ) : (
+                                                                <p key={i} className="whitespace-pre-line">{block}</p>
+                                                            ))}
+                                                </div>
+                                            ) : (
+                                                <div>
+                                                    {subItem.answer as string}
+                                                </div>
+                                            )}
+
                                         </div>
                                     ))}
                                 </div>

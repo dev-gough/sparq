@@ -1,6 +1,105 @@
 {
     "faqs": [
         {
+            "id": 1,
+            "questionBrand": "General FAQ",
+            "subQuestions": [
+                {
+                    "id": 2,
+                    "question": "What are the main components of a residential PV system?",
+                    "answer": [
+                        "A typical home solar system includes the following:",
+                        [
+                            "Solar Panels: Convert sunlight into direct current (DC) electricity",
+                            "Inverter (Micro or String): Converts DC electricity into alternating current (AC) for home use.",
+                            "Junction Box: A protective enclosure where electrical wires connect.",
+                            "Gateway (Monitoring Device): Communicates with inverters and lets homeowners track system performance.",
+                            "Disconnect Switch (AC/DC): Manually shuts down power during maintenance or emergencies.",
+                            "Trunk Cable: Main cable connecting multiple microinverters or panel circuits.",
+                            "Branch Cable: Secondary cable connecting panel groups to the trunk cable.",
+                            "Mounting Structure: Hardware used to securely fasten panels to the roof or ground.",
+                            "Battery (Optional): Stores excess energy for use at night or during outages."
+                        ]
+                    ]
+                },
+                {
+                    "id": 3,
+                    "question": "How much does a residential solar PV system cost?",
+                    "answer": "System cost depends on size, equipment, labor, and region. Incentives like tax credits can significantly reduce the final price. "
+                },
+                {
+                    "id": 4,
+                    "question": "Will solar panels work on my roof?",
+                    "answer": "Most roofs are suitable if they're structurally sound, get enough sunlight, and have minimal shading. A professional assessment will confirm suitability."
+                },
+                {
+                    "id": 5,
+                    "question": "How much can I save on my electricity bills?",
+                    "answer": "Many homeowners cut bills by 50-100%. Savings depend on system size, usage habits, and electricity rates."
+                },
+                {
+                    "id": 6,
+                    "question": "What incentives or rebates are available for solar installation?",
+                    "answer": "Federal tax credits, local utility rebates, and renewable energy grants may be available. Check your local and national programs."
+                },
+                {
+                    "id": 7,
+                    "question": "How long does it take to install a solar PV system?",
+                    "answer": "Installation takes 1-3 days, but the full process—including design, permitting, and approvals—can take several weeks. "
+                },
+                {
+                    "id": 8,
+                    "question": "Do I need a battery with my solar system?",
+                    "answer": "It is not required, but batteries store energy for backup and off-grid use. Without one, excess energy is sent to the grid."
+                },
+                {
+                    "id": 17,
+                    "question": "What maintenance is required for solar systems?",
+                    "answer": "Solar PV systems are generally low maintenance, but upkeep depends on the system type and the long-term reliability of its components. Panels may require occasional cleaning to remove dirt, dust, or debris, especially in dry or dusty areas. An annual inspection is recommended to check for issues with wiring, mounting hardware, or performance drops. One of the most common maintenance concerns involves the failure of electrolytic capacitors—key components in inverters—which typically have a lifespan of 10-12 years, depending on heat, usage, and environmental conditions. Choosing high-quality inverters and components can help minimize long-term maintenance needs and improve overall system reliability."
+                },
+                {
+                    "id": 18,
+                    "question": "How long do solar panels last?",
+                    "answer": "Typically, 25-30 years. Most come with performance warranties and degrade very slowly over time."
+                },
+                {
+                    "id": 19,
+                    "question": "Will installing solar panels increase my property value?",
+                    "answer": "Yes. Owned solar systems can increase resale value and appeal to buyers. Leased systems may require transfer agreements."
+                },
+                {
+                    "id": 20,
+                    "question": "What happens if I sell my home after installing solar?",
+                    "answer": "You can transfer ownership of the solar system if it's leased or financed. Owned systems generally enhance property value."
+                },
+                {
+                    "id": 21,
+                    "question": "What is Net Metering?",
+                    "answer": "A billing system that credits solar owners for excess electricity sent to the grid. These credits can offset your consumption at night or on cloudy days."
+                },
+                {
+                    "id": 22,
+                    "question": "What is ZED (Zero-Export Device)?",
+                    "answer": "A Zero-Export Device ensures no electricity is exported to the grid from your PV system. It's used where utility regulations require solar systems to operate in zero-export mode."
+                },
+                {
+                    "id": 23,
+                    "question": "What is Dual-Mode Operation: On-Grid & Off-Grid?",
+                    "answer": "A system that can function both with the grid (supplying/consuming power) and independently (during outages), often using batteries for backup."
+                },
+                {
+                    "id": 24,
+                    "question": "What is MPPT (Maximum Power Point Tracking)?",
+                    "answer": "A technology in inverters that continuously adjusts electrical parameters to extract the maximum possible power from solar panels under varying sunlight conditions."
+                },
+                {
+                    "id": 25,
+                    "question": "What is RSD (Rapid Shutdown Device)?",
+                    "answer": "A safety mechanism that quickly shuts down power at the panel level during emergencies or for maintenance, meeting electrical code requirements."
+                }
+            ]
+        },
+        {
             "id": 9,
             "questionBrand": "Carbon Intensity",
             "subQuestions": [
