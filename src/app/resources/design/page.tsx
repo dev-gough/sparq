@@ -106,7 +106,7 @@ export default function DesignPage() {
     const logoId   = wb.addImage({ buffer: logoBuf, extension: "png" });
     ws.addImage(logoId, {
       tl:  { col: 1, row: 1 },
-      ext: { width: 110, height: 60 },
+      ext: { width: 100, height: 60 },
     });
   
     // 4) Common styling
@@ -128,7 +128,7 @@ export default function DesignPage() {
       [],
     ]);
     // make SPARQ Systems Inc. bold
-    ws.getRow(4).getCell(2).font = { bold: true };
+    ws.getRow(6).getCell(2).font = { bold: true };
   
     // 6) System Summary header
     const sysHeader = ws.addRow(["", "System Summary", "", ""]);
@@ -165,7 +165,6 @@ export default function DesignPage() {
     });
   
     // 10) SPARQ Products section (with SparqLinq added)
-    ws.addRow([]); // spacer
     const spHdr = ws.addRow(["", "SPARQ Products"]);
     spHdr.font = headerFont;
     ws.addRow(["", "Part ID", "Item", "Qty"]).font = headerFont;
@@ -309,10 +308,10 @@ export default function DesignPage() {
         </div>
 
         {/* BILL OF MATERIALS */}
-        <div className="rounded-lg bg-[var(--color-brand-graytext)]/5 p-6 shadow space-y-4">
+        <div className="rounded-lg bg-[var(--color-brand-graytext)]/5 px-6 pt-6 shadow space-y-4">
         <h2 className="text-xl font-semibold">Bill of Materials</h2>
         {bom.length > 0 ? (
-            <div className="space-y-6 text-sm">
+            <div className="space-y-6 p-2 text-sm">
             <div>
                 <h3 className="text-lg font-semibold mb-2">SPARQ Products</h3>
                 <ul className="space-y-2">
