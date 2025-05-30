@@ -1,243 +1,397 @@
-// src/app/resources/design/page.tsx
+// Design Your System page
 "use client";
 
-import { useState, useMemo, useEffect } from "react"; // Added useEffect
+import ExcelJS from 'exceljs';
+import { saveAs } from 'file-saver';
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { calculate, Inputs as CalcInputs } from "@/lib/designMath"; // Renamed Inputs to CalcInputs to avoid conflict
+import { calculate } from "@/lib/designMath";
 
-// Define more specific types for form inputs that are numbers
-type FormInputs = Omit<CalcInputs, 'pvKw' | 'panelW' | 'voltage'> & {
-  pvKw: number;
-  panelW: number;
-  voltage: number;
-  projectType: ProjectType;
+type ProjectType = "Residential" | "Commercial" | "Industrial";
+type GridType    = "On-grid"    | "Off-grid"   | "Water Pump";
+
+type FormInputs = {
+  region:          string;
+  projectType:     ProjectType;
+  gridType:        GridType;
+  gridVoltage:     string;
+  pvKw:            string;
+  panelW:          string;
+  panelMppVoltage: string;
 };
-
-type ProjectType = "Residential" | "Commercial";
 
 export default function DesignPage() {
   const [form, setForm] = useState<FormInputs>({
-    pvKw: 12,
-    panelW: 500,
-    voltage: 400,
-    region: "North America",
-    projectType: "Residential",
+    region:          "North America",
+    projectType:     "Residential",
+    gridType:        "On-grid",
+    gridVoltage:     "",
+    pvKw:            "",
+    panelW:          "",
+    panelMppVoltage: "",
   });
 
-  // Calculations will now be based directly on the 'form' state.
-  // The 'calculate' function is wrapped in useMemo and will re-run when 'form' changes.
+  const gridV     = parseFloat(form.gridVoltage)     || 0;
+  const pvKwNum   = parseFloat(form.pvKw)            || 0;
+  const panelWNum = parseFloat(form.panelW)          || 0;
+  const panelMPP  = parseFloat(form.panelMppVoltage) || 0;
+
   const bomRaw = useMemo(() => {
-    // Ensure that numeric inputs are valid numbers before calculation
-    // This is more of a safeguard; NumberField should prevent non-numeric states.
-    const pvKw = Number(form.pvKw) || 0;
-    const panelW = Number(form.panelW) || 0;
-    const voltage = Number(form.voltage) || 0;
-
-    // Prevent calculation if essential numbers are zero or invalid, to avoid skewed results.
-    if (pvKw <= 0 || panelW <= 0 || voltage <= 0) {
-        // Return an empty array or a default state for bomRaw if inputs are not ready
-        return [];
-    }
-
+    if (gridV <= 0 || pvKwNum <= 0 || panelWNum <= 0 || panelMPP <= 0) return [];
     return calculate({
-      pvKw: pvKw,
-      panelW: panelW,
-      region: form.region,
-      voltage: voltage,
+      pvKw:    pvKwNum,
+      panelW:  panelWNum,
+      region:  form.region,
+      voltage: gridV,
     });
-  }, [form]); // Recalculate whenever any part of 'form' changes.
+  }, [gridV, pvKwNum, panelWNum, panelMPP, form.region]);
 
-  const nameMap: Record<string, string> = {
-    "Q2000-INV": "Quad 2000 Inverter",
-    "65020-01": "Junction Box (NA)",
-    "65020-05": "Junction Box (EU/RoW)",
-    "65015-09": "0.7m Type-2 T5-T6 Cable (NA)",
-    "65015-17": "0.7m Type-2 T5-T6 Cable (EU/RoW)", // Assumed SKU from designMath logic
-    "65013-16/17": "2m/4m T6 F-to-M Cable (NA)",
-    "65013-08/09": "2m/4m T6 F-to-M Cable (EU/RoW)", // Assumed SKU
-    "65015-10": "3m Type-1 T5-T6 Cable (NA)", // Corrected label based on designMath
-    "65015-18": "3m Type-1 T5-T6 Cable (EU/RoW)", // Assumed SKU
-    "65012-14/15": "T6-Tee to Open Cable (NA)", // Corrected label
-    "65012-02/03": "T6-Tee to Open Cable (EU/RoW)", // Assumed SKU
+  const nameMap: Record<string,string> = {
+    "Q2000-4102":   "Quad 2000 Single Phase Inverter",
+    "Q3000-4301":   "Quad 3000 Three-Phase Inverter",
+    "65020-01":     "Junction Box",
+    "65020-05":     "Junction Box",
+    "65015-09":     "T5 to T6 Cable 0.7m",
+    "65015-17":     "T5 to T6 Cable 0.7m",
+    "65013-16/17":  "T6 Female to Tee Male",
+    "65013-08/09":  "T6 Female to Tee Male",
+    "65015-10":     "T5 to T6 Cable 3m",
+    "65015-18":     "T5 to T6 Cable 3m",
+    "65012-14/15":  "T6 Tee Male to Open",
+    "65012-02/03":  "T6 Tee Male to Open",
   };
 
-  const model =
-    form.projectType === "Residential"
-      ? "Q2000 (single-phase)"
-      : "Q3000 (three-phase)"; // Note: designMath always uses Q2000-INV SKU. This only changes display label.
+  const isThreePhase = form.projectType === "Industrial" || form.gridType === "Water Pump";
+  const inverterSku   = isThreePhase  ? "Q3000-4301" : "Q2000-4102";
+  const modelLabel    = isThreePhase  ? "Q3000 Three-Phase Inverter" : "Q2000 Single-Phase Inverter";
 
-  const bom = bomRaw.map((r) => ({
-    ...r,
-    label: nameMap[r.sku] ?? (r.label === "Inverter" ? model : r.label),
-  }));
+  const bom = bomRaw.map(r => {
+    if (r.label === "Inverter") {
+      return { ...r, sku: inverterSku, label: modelLabel };
+    }
+    return r;
+  });
 
-  // Summary now directly uses the 'form' state.
-  const summary = form;
-  const inverterCount = bom.find((r) => r.sku === "Q2000-INV")?.qty ?? (bomRaw.length > 0 ? bomRaw[0].qty : 0);
+  const inverterCount = bom.find(r => r.sku === inverterSku)?.qty ?? 0;
 
-
-  // Image mapping based on SKUs for clarity
-  const imageMap: Record<string, string> = {
-    "Q2000-INV": "/quad4inverter.png",
-    "65020-01": "/junctionbox.png", // NA Junction Box
-    "65020-05": "/junctionbox.png", // EU Junction Box (assuming same image)
-    "65015-09": "/type2cable.png",  // NA Type-2
-    "65015-17": "/type2cable.png",  // EU Type-2 (assuming same image)
-    "65013-16/17": "/t6ftom.png",   // NA T6 F-to-M
-    "65013-08/09": "/t6ftom.png",   // EU T6 F-to-M (assuming same image)
-    "65015-10": "/type1cable.png",  // NA Type-1 (was 3m trunk cable)
-    "65015-18": "/type1cable.png",  // EU Type-1 (assuming same image)
-    "65012-14/15": "/opencable.png",// NA T6-Tee to Open
-    "65012-02/03": "/opencable.png",// EU T6-Tee to Open (assuming same image)
+  const imageMap: Record<string,string> = {
+    "Q2000-4102":   "/quad4inverter.png",
+    "Q3000-4301":   "/quad4inverter.png",
+    "65020-01":     "/junctionbox.png",
+    "65020-05":     "/junctionbox.png",
+    "65015-09":     "/type2cable.png",
+    "65015-17":     "/type2cable.png",
+    "65013-16/17":  "/t6ftom.png",
+    "65013-08/09":  "/t6ftom.png",
+    "65015-10":     "/type1cable.png",
+    "65015-18":     "/type1cable.png",
+    "65012-14/15":  "/opencable.png",
+    "65012-02/03":  "/opencable.png",
   };
 
+  async function handleDownload() {
+    // 1) Create workbook & worksheet
+    const wb = new ExcelJS.Workbook();
+    const ws = wb.addWorksheet("System Summary");
+  
+    // 2) Hide gridlines
+    ws.views = [{ showGridLines: false }];
+  
+    // 3) Fetch & embed logo at A1
+    const logoResp = await fetch("/logo.png");
+    const logoBuf  = await logoResp.arrayBuffer();
+    const logoId   = wb.addImage({ buffer: logoBuf, extension: "png" });
+    ws.addImage(logoId, {
+      tl:  { col: 1, row: 1 },
+      ext: { width: 110, height: 60 },
+    });
+  
+    // 4) Common styling
+    const headerFont = { bold: true, size: 12 };
+    const thinBorder = { style: "thin", color: { argb: "FF000000" } };
+  
+    // 5) Company details
+    ws.addRows([
+      [],
+      [],
+      [],
+      ["", "SPARQ Systems Inc."],
+      ["", "945 Princess Street"],
+      ["", "Kingston, ON, K7L 0E9"],
+      ["", "Phone: (855) 947-7277"],
+      ["", "Email: info@sparqsys.com"],
+      [], // blank row
+    ]);
+    ws.getRow(6).getCell(2).font = { bold: true };
+
+    // 6) System Summary header
+    const sysHeader = ws.addRow(["", "System Summary", " ", " "]);
+    sysHeader.font = headerFont;
+    sysHeader.eachCell({ includeEmpty: true }, (cell, colNumber) => {
+      if (colNumber >= 2 && colNumber <= 4) {
+        cell.border = { bottom: thinBorder };
+      }
+    });
+  
+    // 7) System specs
+    ws.addRows([
+      ["", "Region",         form.region],
+      ["", "Project Type",   form.projectType],
+      ["", "Grid Type",      form.gridType],
+      ["", "Grid Voltage (V)", gridV],
+      ["", "PV System Size (kW)",     pvKwNum],
+      ["", "Panel Power @ STC (W)",  panelWNum],
+      ["", "Panel MPP Voltage (V)",  panelMPP],
+      [], // blank row
+    ]);
+  
+    // 8) Split BOM
+    const sparq  = bom.filter(r => !r.sku.startsWith("65020"));
+    const third  = bom.filter(r =>  r.sku.startsWith("65020"));
+  
+    // 9) Bill of Materials header
+    const bomHeader = ws.addRow(["", "Bill of Materials", " ", " "]);
+    bomHeader.font = headerFont;
+    bomHeader.eachCell({ includeEmpty: true }, (cell, colNumber) => {
+      if (colNumber >= 2 && colNumber <= 4) {
+        cell.border = { bottom: thinBorder };
+      }
+    });
+  
+    // 10) SPARQ Products section
+    const spHdr = ws.addRow(["", "SPARQ Products"]);
+    spHdr.font = headerFont;
+    ws.addRow(["", "Part ID", "Item", "Qty"]).font = headerFont;
+    sparq.forEach(r => {
+      ws.addRow(["", r.sku, nameMap[r.sku] ?? r.label, r.qty]);
+    });
+  
+    // 11) Third-Party Products section
+    ws.addRow([]); // spacer
+    const thHdr = ws.addRow(["", "Third-Party Products"]);
+    thHdr.font = headerFont;
+    ws.addRow(["", "Part ID", "Item", "Qty"]).font = headerFont;
+    third.forEach(r => {
+      ws.addRow(["", r.sku, nameMap[r.sku] ?? r.label, r.qty]);
+    });
+  
+    // 12) White-fill all cells
+    ws.eachRow(row => {
+      row.eachCell(cell => {
+        cell.fill = {
+          type:    "pattern",
+          pattern: "solid",
+          fgColor: { argb: "FFFFFFFF" },
+        };
+      });
+    });
+  
+    // 13) Auto-size columns (A stays narrow; B–D grow to fit)
+    ws.columns.forEach((col, idx) => {
+      if (idx === 0) {
+        col.width = 2;
+      } else {
+        let max = 10;
+        col.eachCell({ includeEmpty: true }, cell => {
+          const txt = (cell.value ?? "").toString();
+          max = Math.max(max, txt.length);
+        });
+        col.width = max + 2;
+      }
+    });
+  
+    // 14) Write & download
+    const buf  = await wb.xlsx.writeBuffer();
+    const blob = new Blob([buf], { type: "application/octet-stream" });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement("a");
+    a.href     = url;
+    a.download = `sparq_system_summary_${Date.now()}.xlsx`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+  
   return (
-    <main className="text-lg">
+    <main className="text-sm">
+
       {/* HERO */}
-      <section className="relative isolate overflow-hidden bg-gradient-to-br from-[var(--color-brand-maroon)] to-[var(--color-brand-darkmaroon)] text-white">
-        <div className="mx-auto max-w-4xl px-6 py-16 text-center">
-          <h1 className="text-5xl font-semibold text-[var(--color-brand-yellow)]">
-            Design your system
+      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-brand-maroon)] to-[var(--color-brand-darkmaroon)] text-white">
+        <div className="mx-auto max-w-6xl px-6 py-12 text-center">
+          <h1 className="text-3xl font-semibold text-[var(--color-brand-yellow)]">
+            Design your System
           </h1>
-          <p className="mt-4">
-            Enter your specs to see your parts list automatically update.
+          <p className="mt-2 text-sm">
+            Enter your system specs to see your system requirements.
           </p>
           <Link
             href="https://pvwatts.nrel.gov/"
             target="_blank"
-            className="mt-8 inline-block rounded-lg bg-[var(--color-brand-maroon)] px-6 py-3 font-medium hover:bg-[var(--color-brand-darkmaroon)]"
+            className="mt-6 inline-block rounded bg-[var(--color-brand-maroon)] px-4 py-2 text-sm font-medium hover:bg-[var(--color-brand-darkmaroon)]"
           >
-            Need solar output? → PVWatts
+            Don't know you solar output? Use the PVWatts Calculator to find out.
           </Link>
         </div>
       </section>
 
       {/* BODY */}
-      <section className="mx-auto max-w-5xl space-y-12 px-6 py-16">
-        <div className="rounded-2xl bg-[var(--color-brand-graytext)]/5 p-6 space-y-6 shadow">
-          <h2 className="text-2xl font-semibold text-[var(--color-brand-yellow)]">
-            Design Details
-          </h2>
-          <SelectField
-            label="Project type"
-            value={form.projectType}
-            options={["Residential", "Commercial"]}
-            onChange={(pt) => setForm({ ...form, projectType: pt as ProjectType })}
-          />
-          <NumberField
-            label="PV System Size (kW)"
-            value={form.pvKw}
-            onChange={(v) => setForm({ ...form, pvKw: v })}
-            min={1}
-            max={10000}
-            step={0.1}
-          />
-          <NumberField
-            label="Panel power (W)"
-            value={form.panelW}
-            onChange={(v) => setForm({ ...form, panelW: v })}
-            min={100}
-            max={1000}
-            step={5}
-          />
-          <NumberField
-            label="System Voltage (V)"
-            value={form.voltage}
-            onChange={(v) => setForm({ ...form, voltage: v })}
-            min={100}
-            max={600}
-          />
-          <SelectField
+      <section className="mx-auto max-w-6xl space-y-10 px-4 pt-10 pb-6">
+
+        {/* DESIGN DETAILS */}
+        <div className="rounded-lg bg-[var(--color-brand-graytext)]/5 p-6 shadow space-y-6">
+        <h2 className="text-xl font-semibold text-black">Design Details</h2>
+
+        {/* 1st row: Region & Project Type */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <SelectField
             label="Region"
             value={form.region}
-            options={["North America", "EU / RoW"]}
-            onChange={(r) => setForm({ ...form, region: r })}
-          />
+            options={["North America","Europe","India","China","Africa"]}
+            onChange={r => setForm(f => ({ ...f, region: r }))}
+            />
+            <SelectField
+            label="Project Type"
+            value={form.projectType}
+            options={["Residential","Commercial","Industrial"]}
+            onChange={pt => setForm(f => ({ ...f, projectType: pt as ProjectType }))}
+            />
         </div>
 
-        {/* RESULTS */}
-        <motion.div
-          key={JSON.stringify(bom)} // Add key here if re-triggering animation on BOM change is desired
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="space-y-10"
-        >
-          {/* BILL OF MATERIALS */}
-          <div className="rounded-2xl bg-[var(--color-brand-graytext)]/5 border border-[var(--color-brand-gray)] shadow overflow-hidden">
-            <h2 className="px-6 py-4 text-2xl font-semibold text-[var(--color-brand-graytext)] border-b border-[var(--color-brand-gray)]">
-              Bill of Materials
-            </h2>
-            {bom.length > 0 ? (
-              <ul className="divide-y">
-                {bom.map((row) => (
-                  <li
-                    key={row.sku}
-                    className="flex items-center gap-6 p-6 text-[var(--color-brand-graytext)]"
-                  >
-                    {imageMap[row.sku] ? (
-                       <Image
-                         src={imageMap[row.sku]}
-                         alt={row.label}
-                         width={96}
-                         height={96}
-                         className="rounded"
-                       />
-                    ) : (
-                      <div className="h-24 w-24 rounded bg-[var(--color-brand-gray)] flex items-center justify-center text-base text-[var(--color-brand-yellow)]">
-                        img
-                      </div>
-                    )}
-                    <div className="flex-1 space-y-1">
-                      <h3 className="text-lg font-medium">{row.label}</h3>
-                      <p className="text-base">{row.sku}</p>
-                    </div>
-                    <span className="text-2xl font-semibold">{row.qty}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-                <p className="p-6 text-[var(--color-brand-graytext)]">
-                    Please enter valid system parameters to see the Bill of Materials.
-                </p>
-            )}
-          </div>
+        {/* 2nd row: Grid Type & Grid Voltage */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <SelectField
+            label="Grid Type"
+            value={form.gridType}
+            options={["On-grid","Off-grid","Water Pump"]}
+            onChange={g => setForm(f => ({ ...f, gridType: g as GridType }))}
+            />
+            <NumberField
+            label="Grid Voltage (V)"
+            value={form.gridVoltage}
+            onChange={v => setForm(f => ({ ...f, gridVoltage: v }))}
+            min={50}
+            max={1000}
+            />
+        </div>
 
-          {/* SYSTEM SUMMARY */}
-          <aside className="rounded-2xl bg-[var(--color-brand-graytext)]/5 p-6 space-y-4 shadow">
-            <h2 className="text-2xl font-semibold text-[var(--color-brand-graytext)]">
-              System Summary
-            </h2>
-            <Section title="System">
-              <SummaryRow label="Project Type" value={summary.projectType} />
-              <SummaryRow label="Region" value={summary.region} />
-            </Section>
-            <Section title="PV array">
-              <SummaryRow label="PV System Size" value={`${summary.pvKw} kW`} />
-              <SummaryRow label="Panel Power" value={`${summary.panelW} W`} />
-            </Section>
-            <Section title="Inverter">
-              <SummaryRow label="Model" value={model} />
-              <SummaryRow label="Number of Inverters" value={inverterCount.toString()} />
-            </Section>
-          </aside>
-        </motion.div>
+        {/* 3rd row: PV Specs */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <NumberField
+            label="PV System Size (kW)"
+            value={form.pvKw}
+            onChange={v => setForm(f => ({ ...f, pvKw: v }))}
+            min={1}
+            max={10000}
+            />
+            <NumberField
+            label="Panel Power @ STC (W)"
+            value={form.panelW}
+            onChange={v => setForm(f => ({ ...f, panelW: v }))}
+            min={100}
+            max={1000}
+            />
+            <NumberField
+            label="Panel MPP Voltage (V)"
+            value={form.panelMppVoltage}
+            onChange={v => setForm(f => ({ ...f, panelMppVoltage: v }))}
+            min={10}
+            max={1000}
+            />
+        </div>
+        </div>
 
-        {/* CONTACT CTA */}
-        <p className="text-center text-xl text-[var(--color-brand-graytext)] mt-8">
-          Ready for a firm quote?{" "}
-          <Link href="/contact" className="font-semibold text-[var(--color-brand-maroon)] underline">
-            Contact us
-          </Link>
-        </p>
+        {/* BILL OF MATERIALS */}
+        <div className="rounded-lg bg-[var(--color-brand-graytext)]/5 p-6 shadow space-y-4">
+        <h2 className="text-xl font-semibold">Bill of Materials</h2>
+        {bom.length > 0 ? (
+            <div className="space-y-6 text-sm">
+            <div>
+                <h3 className="text-lg font-semibold mb-2">SPARQ Products</h3>
+                <ul className="space-y-2">
+                {bom.filter(r => !r.sku.startsWith("65020"))
+                    .map(row => <BOMItem key={row.sku} row={row} imageMap={imageMap} />)}
+                </ul>
+            </div>
+            <div>
+                <h3 className="text-lg font-semibold">Third-Party Products</h3>
+                <ul className="space-y-2">
+                {bom.filter(r => r.sku.startsWith("65020"))
+                    .map(row => <BOMItem key={row.sku} row={row} imageMap={imageMap} />)}
+                </ul>
+            </div>
+            </div>
+        ) : (
+            <p className="text-[var(--color-brand-graytext)] text-sm">
+            Please enter valid system parameters.
+            </p>
+        )}
+        </div>
+
+        {/* SYSTEM SUMMARY */}
+        <aside className="rounded-lg bg-[var(--color-brand-graytext)]/5 p-6 shadow space-y-4 text-sm">
+          <h2 className="text-xl font-semibold text-[var(--color-brand-graytext)]">System Summary</h2>
+          <SummarySection title="Location & Grid">
+            <SummaryRow label="Region"       value={form.region} />
+            <SummaryRow label="Project Type" value={form.projectType} />
+            <SummaryRow label="Grid Type"    value={form.gridType} />
+            <SummaryRow label="Grid Voltage" value={`${gridV} V`} />
+          </SummarySection>
+          <SummarySection title="Panels & Inverter">
+            <SummaryRow label="PV Size"      value={`${pvKwNum} kW`} />
+            <SummaryRow label="Panel Power"  value={`${panelWNum} W`} />
+            <SummaryRow label="MPP Voltage"  value={`${panelMPP} V`} />
+            <SummaryRow label="Inverter"     value={modelLabel} />
+            <SummaryRow label="Number of Inverters" value={inverterCount.toString()} />
+          </SummarySection>
+        </aside>
       </section>
+
+      {/* ACTIONS */}
+      <div className="flex justify-center space-x-4 pt-6 pb-12">
+        <button onClick={handleDownload}
+          className="rounded bg-[var(--color-brand-maroon)] px-8 py-4 text-sm text-white font-medium hover:bg-[var(--color-brand-darkmaroon)]">
+          Download Summary
+        </button>
+        <Link href="/contact"
+          className="rounded border-2 border-[var(--color-brand-maroon)] px-8 py-4 text-sm text-[var(--color-brand-maroon)] font-medium hover:bg-[var(--color-brand-maroon)] hover:text-white">
+          Contact Us
+        </Link>
+      </div>
     </main>
   );
 }
 
-/* ───────── helper components ───────── */
+function BOMItem({
+  row,
+  imageMap,
+}: {
+  row: { label: string; qty: number; sku: string };
+  imageMap: Record<string,string>;
+}) {
+  return (
+    <li className="flex items-center gap-6 py-6">
+      {imageMap[row.sku] ? (
+        <Image
+          src={imageMap[row.sku]}
+          alt={row.label}
+          width={96}
+          height={96}
+          className="rounded"
+        />
+      ) : (
+        <div className="h-24 w-24 rounded bg-[var(--color-brand-gray)] flex items-center justify-center text-base text-[var(--color-brand-yellow)]">
+          img
+        </div>
+      )}
+      <div className="flex-1 space-y-1">
+        <h3 className="text-lg font-medium">{row.label}</h3>
+        <p className="text-base">{row.sku}</p>
+      </div>
+      <span className="text-2xl font-semibold">{row.qty}</span>
+    </li>
+  );
+}
 
 function NumberField({
   label,
@@ -245,122 +399,76 @@ function NumberField({
   onChange,
   min,
   max,
-  step,
 }: {
   label: string;
-  value: number;
-  onChange: (n: number) => void;
+  value: string;
+  onChange: (s: string) => void;
   min?: number;
   max?: number;
-  step?: number;
 }) {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const valStr = e.target.value;
-
-    // If empty, decide on behavior. For now, if min is defined and positive, use min, else 0.
-    // This prevents NaN from `parseFloat('')`
-    if (valStr === "") {
-      let resetVal = 0;
-      if (min !== undefined && min > 0) {
-        resetVal = min;
-      }
-      // Check if current value is already this resetVal to avoid unnecessary onChange
-      if (value !== resetVal) {
-        onChange(resetVal);
-      }
-      return;
-    }
-
-    let num = parseFloat(valStr); // Use parseFloat to allow decimals from step
-
-    if (isNaN(num)) {
-      // If not a number (e.g. user types "abc"), do not update state.
-      // The input field itself might briefly show invalid input then revert.
-      return;
-    }
-    
-    // We don't clamp immediately here to allow user to type intermediate values
-    // e.g. if max is 500, user types "60", then wants to type "0" to make "600" (which would then be clamped on blur)
-    // However, if it's already out of bounds, we might want to prevent going further.
-    // For simplicity, we pass the parsed number and rely on onBlur for definitive clamping.
-    // Or, if step mismatch, `type="number"` will handle it.
-    onChange(num);
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    let num = parseFloat(e.target.value);
-
-    if (isNaN(num)) {
-      // If invalid on blur, reset to a safe default (e.g., min or previous valid value)
-      // Here, using min if defined and positive, else 0.
-      num = (min !== undefined && min > 0) ? min : 0;
-    }
-
-    // Enforce bounds
-    if (min !== undefined && num < min) {
-      num = min;
-    }
-    if (max !== undefined && num > max) {
-      num = max;
-    }
-    
-    // Ensure the step is respected if provided (e.g., 0.1, 5)
-    // This can be complex if min itself is not a multiple of step.
-    // For now, we'll assume simple cases or rely on browser's step validation.
-    // A more precise step alignment:
-    if (step !== undefined && step > 0) {
-        const minOffset = min !== undefined ? min : 0;
-        num = Math.round((num - minOffset) / step) * step + minOffset;
-        // Re-clamp after step adjustment
-        if (min !== undefined && num < min) num = min;
-        if (max !== undefined && num > max) num = max;
-    }
-
-
-    // Only call onChange if the final clamped/stepped number is different from current value
-    if (value !== num) {
-      onChange(num);
-    }
-  };
+  const num = parseFloat(value);
+  const invalid =
+    value !== "" &&
+    (isNaN(num) || (min !== undefined && num < min) || (max !== undefined && num > max));
+  const placeholder = min !== undefined && max !== undefined
+    ? `Enter ${min}–${max}` : undefined;
 
   return (
     <label className="block text-base">
-      <span className="mb-1 block font-medium text-[var(--color-brand-graytext)]">{label}</span>
+      <span className="mb-1	block font-medium text-[var(--color-brand-graytext)]">{label}</span>
       <input
         type="number"
-        value={value} // Value is a number, input displays it. Handles "0", "0.5", etc.
-        onChange={handleChange}
-        onBlur={handleBlur} // Clamp and validate on blur
-        min={min} // HTML5 validation and stepper behavior
-        max={max} // HTML5 validation and stepper behavior
-        step={step} // HTML5 step attribute
-        className="w-full rounded-lg border border-[var(--color-brand-gray)] px-4 py-2 text-base focus:border-[var(--color-brand-yellow)] focus:ring-[var(--color-brand-yellow)]"
+        value={value}
+        placeholder={placeholder}
+        min={min}
+        max={max}
+        onChange={e => onChange(e.target.value)}
+        className={`
+          w-full rounded-lg px-4 py-2 text-base placeholder:text-gray-400
+          border ${invalid
+            ? "border-red-500 focus:ring-red-500"
+            : "border-[var(--color-brand-gray)] focus:ring-[var(--color-brand-yellow)]"
+          } focus:outline-none
+        `}      
       />
     </label>
   );
 }
 
-// SelectField, Section, SummaryRow remain the same as in your provided code.
-// (Assuming they are correctly defined elsewhere or are as provided in the prompt)
-
-function SelectField({ label, value, options, onChange }: { label: string; value: string; options: string[]; onChange: (s: string) => void }) {
+function SelectField({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  options: string[];
+  onChange: (s: string) => void;
+}) {
   return (
     <label className="block text-base">
-      <span className="mb-1 block font-medium text-[var(--color-brand-graytext)]">{label}</span>
+      <span className="mb-1	block font-medium text-[var(--color-brand-graytext)]">{label}</span>
       <select
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
         className="w-full rounded-lg border border-[var(--color-brand-gray)] px-4 py-2 text-base focus:border-[var(--color-brand-yellow)] focus:ring-[var(--color-brand-yellow)]"
       >
-        {options.map((o) => (
-          <option key={o} value={o}>{o}</option> // Added value={o} for correctness
+        {options.map(o => (
+          <option key={o} value={o}>{o}</option>
         ))}
       </select>
     </label>
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function SummarySection({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="mb-4 last:mb-0">
       <p className="mb-2 text-base font-semibold text-[var(--color-brand-gray)]">{title}</p>
