@@ -132,10 +132,18 @@ const LightweightChart: React.FC<ChartProps> = ({
 		const candles = data
 			.map(toCandlestick)
 			.sort((a, b) => (a.time.valueOf() as number) - (b.time.valueOf() as number))
+			.filter((candle, index, array) => {
+				// Remove duplicates by checking if current timestamp is different from previous
+				return index === 0 || candle.time !== array[index - 1].time
+			})
 
 		const volumes = data
 			.map(toVolume)
 			.sort((a, b) => (a.time.valueOf() as number) - (b.time.valueOf() as number))
+			.filter((volume, index, array) => {
+				// Remove duplicates by checking if current timestamp is different from previous
+				return index === 0 || volume.time !== array[index - 1].time
+			})
 
 		candleSeries.setData(candles)
 		volumeSeries.setData(volumes)
