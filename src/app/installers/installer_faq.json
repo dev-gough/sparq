@@ -1,6 +1,62 @@
 {
     "faqs": [
         {
+            "id": 32,
+            "questionBrand": "General FAQ",
+            "subQuestions": [
+                {
+                    "id": 33,
+                    "question": "What is the maximum number of panels that can be connected to a Sparq microinverter?",
+                    "answer": "Sparq's Q2000 microinverter supports up to four solar modules per unit, enabling a compact and efficient quad-input design that reduces the total number of inverters needed."
+                },
+                {
+                    "id": 34,
+                    "question": "Does Sparq offer an \"all-AC\" system architecture?",
+                    "answer": "Yes. Sparq Systems provides a fully AC-based system, eliminating the need for high-voltage DC cabling. This simplifies installation and enhances installer and homeowner safety."
+                },
+                {
+                    "id": 35,
+                    "question": "How is system monitoring handled?",
+                    "answer": "The SparqLinq gateway communicates wirelessly with the microinverters via Zigbee. It collects real-time and historical performance data, accessible via the cloud-based monitoring platform."
+                },
+                {
+                    "id": 36,
+                    "question": "Are there specific utility approval steps before grid connection?",
+                    "answer": "Yes. Installers must ensure the system complies with local utility interconnection standards, which may involve site inspections, documentation, and system testing before final approval."
+                },
+                {
+                    "id": 37,
+                    "question": "What are the key installation steps for the Q2000 microinverter?",
+                    "answer": "Each Q2000 is mounted directly under the panel, connected via MC4 connectors, secured to the racking, and wired into the AC trunk cable. It integrates easily with standard mounting and wiring systems."
+                },
+                {
+                    "id": 38,
+                    "question": "Is there a quick-start guide for setting up SparqLinq?",
+                    "answer": "Yes. Sparq provides a Quick Installation Guide for the SparqLinq gateway that outlines setup, network configuration, and pairing with the microinverters."
+                },
+                {
+                    "id": 39,
+                    "question": "What support resources are available for installers?",
+                    "answer": "Sparq offers technical documentation, product datasheets, and installation manuals on its website. For hands-on assistance, installers can also access training and technical support from Sparq's service team."
+                },
+                {
+                    "id": 40,
+                    "question": "How can installers contact Sparq for technical support?",
+                    "answer": "Installers can reach Sparq Systems at 1-855-947-7277 or email info@sparqsys.com for prompt technical assistance or warranty inquiries."
+                },
+                {
+                    "id": 41,
+                    "question": "What is the warranty period for Sparq products?",
+                    "answer": "Sparq offers a standard 12-year warranty, which can be extended up to 25 years. Installers should register the system and advise customers to keep records for any future claims."
+                },
+                {
+                    "id": 42,
+                    "question": "What is Sparq’s truck-roll policy for service issues?",
+                    "answer": "Sparq does not cover truck-roll costs. Its products are designed to be maintenance-free, and the system architecture minimizes on-site service needs. Installers are expected to diagnose issues remotely when possible."
+                }
+            ]
+        },
+        {
             "id": 1,
             "questionBrand": "Q2000 Product Family",
             "subQuestions": [

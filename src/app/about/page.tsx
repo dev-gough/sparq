@@ -170,16 +170,16 @@ export default function AboutPage() {
                 />
             ))}
             {/* somehow discuss that this is slc, front/back */}
-            <section id="slide4" className={`relative flex h-[calc(100vh-114px)] min-h-[400px] w-full ${toggled ? "bg-[url(/SLC/007.JPG)] bg-center" : "bg-[url(/SLC/009.JPG)] bg-bottom"}  bg-no-repeat bg-cover justify-center scroll-mt-[114px]`}>
+            <section id="slide4" className={`relative flex h-[calc(100vh-114px)] min-h-[400px] w-full ${toggled ? "bg-[url(/SLC/007.JPG)] bg-center" : "bg-[url(/SLC/009.JPG)] bg-bottom"} bg-no-repeat bg-cover justify-center scroll-mt-[114px]`}>
                 <div className={`absolute inset-x-0 top-4 sm:top-1/5 ${toggled ? "sm:top-4" : ""} flex flex-col bg-transparent w-full items-center`}>
-                    <h2 className="
+                    <h2 className={`
                     text-lg
                     sm:text-3xl
                     md:text-4xl
                     lg:text-5xl
                     xl:text-6xl
                     2xl:text-7xl 
-                    3xl:text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3"><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">{toggled ? "" : "Quad architecture advantage"}</span></h2>
+                    3xl:text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3 ${toggled? "hidden" : "flex"}`}><span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Quad architecture advantage</span></h2>
 
                     {(expanded[4] && !toggled) && (
                         <div className="mt-4 sm:mt-16">

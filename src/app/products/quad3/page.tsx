@@ -63,7 +63,7 @@ const listContent: ListEntry[] = [
     {
         heading: "Cost-Effectiveness",
         items: [
-            "Quad Architecture",
+            "Quad Architecture is the most cost-effective",
             "Reduced manufacturing Bill of Materials",
             "Reduced Balance of System (cabling, grounding, ect)",
             "Lower manufacturing and installation costs",
