@@ -189,7 +189,7 @@ export default function InvestorsPage() {
                                         </ul>
                                     </div>
                                     <div className='my-16'>
-                                        <h1 className="text-center mb-2 underline underline-offset-2 text-xl sm:text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Powering Success Together</h1>
+                                        <h1 className="text-center mb-2 underline underline-offset-2 text-xl sm:text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Click to Find Out How We Power Success Together</h1>
                                         <LogoSlider logos={partners} />
                                     </div>
                                 </div>
@@ -200,7 +200,7 @@ export default function InvestorsPage() {
                                     <ul className="list-disc list-inside text-lg sm:text-xl lg:text-2xl xl:text-4xl mt-8 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                                         <li><Link href="https://www.investkingston.ca/rd/#1643990910571-444406ce-b63e" target='_blank' className='text-white hover:underline'>Queen&apos;s University</Link></li>
                                         <li><Link href="https://www.energy-manager.ca/st-lawrence-college-installs-largest-solar-system-for-post-secondary-facility-856/" target='_blank' className='text-white hover:underline'>St. Lawrence College</Link></li>
-                                        <li>Modern Niagara - Sparq Headquarter Office (WIP)</li>
+                                        <li>Modern Niagara - Sparq Headquarter Office</li>
                                     </ul>
                                 </div>
                             </SwiperSlide>

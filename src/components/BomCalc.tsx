@@ -2,9 +2,7 @@
 "use client";
 
 import ExcelJS from 'exceljs';
-import { saveAs } from 'file-saver';
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { calculate } from "@/lib/designMath";
@@ -200,6 +198,7 @@ export default function BoMCalc() {
 			} else {
 				let max = 10;
 				// cast to any to satisfy TS for eachCell
+        		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				(col as any).eachCell({ includeEmpty: true }, (cell: any) => {
 					const txt = (cell.value ?? "").toString();
 					max = Math.max(max, txt.length);
@@ -236,7 +235,7 @@ export default function BoMCalc() {
 						target="_blank"
 						className="mt-6 inline-block rounded bg-[var(--color-brand-maroon)] px-4 py-2 text-sm font-medium hover:bg-[var(--color-brand-darkmaroon)]"
 					>
-						Don't know your solar output? Use the PVWatts Calculator to find out.
+						Don&apos;t know your solar output? Use the PVWatts Calculator to find out.
 					</Link>
 				</div>
 			</section>

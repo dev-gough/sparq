@@ -26,7 +26,6 @@ interface ProductProps {
     imageContent: React.ReactNode   // this needs to be a node to account for double image for SparqSync
 }
 
-
 export default function ProductPage({
     models,
     selectedModel,
@@ -44,7 +43,6 @@ export default function ProductPage({
 }: ProductProps) {
 
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
-
     const trackEvent = useTrackEvent()
 
     const handleClick = () => {
@@ -109,7 +107,7 @@ export default function ProductPage({
                     {expandedContent && (
                         <div>
                             {isExpanded && (
-                                <div className="text-brand-gray text-xl xl:text-2xl">
+                                <div className="text-xl xl:text-2xl">
                                     {expandedContent}
                                 </div>
                             )}

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { FaAward } from 'react-icons/fa'
 import Link from 'next/link'
 
-const cols = ["History", "Disrupting PV", "Products", "Patents & Awards"]
+const cols = ["History", "Disrupting PV Industry", "Products", "Patents & Awards"]
 
 interface DropdownButtonProps {
 	index: number
