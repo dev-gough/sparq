@@ -44,7 +44,8 @@ const homeownerDropdown = [
 const installerDropdown = [
 	{ label: "Why Sparq", href: "/installers#whysparq"},
 	{ label: "Sparq Advantage", href: "/installers#discover"},
-	{ label: "Useful Tools", href: "/installers#useful-tools"},
+	{ label: "BoM Calculator", href: "/installers#bom"},
+	{ label: "Third-Party Tools", href: "/installers#useful-tools"},
 	{ label: "FAQs", href: "/installers#faq"},
 ]
 
@@ -54,7 +55,7 @@ const productDropdown = [
 	{ label: "Legacy Products", href: "/products/legacy" },
 	{ label: "SparqLinq", href: "/products/sparqlinq" },
 	{ label: "SparqVu", href: "/products/sparqvu" },
-	{ label: "Sparq App", href: "/products/app" },
+	{ label: "SparqSync", href: "/products/app" },
 	{ label: "Accessories", href: "/products/accessories" },
 ]
 
