@@ -35,7 +35,7 @@ export default function ProductPage() {
                     <Link href="products/sparqlinq">
                         <GridDiv id='#sparqlinq'>
                             <Image className='w-full h-full rounded-xl shadow-lg' width={768} height={512} src="/SparqLinq.jpg" alt="SparqLinq Monitoring Interface"/>
-                            <h2 className='text-2xl md:text-3xl xl:text-4xl font-bold text-brand-maroon mt-8'>SparqLink</h2>
+                            <h2 className='text-2xl md:text-3xl xl:text-4xl font-bold text-brand-maroon mt-8'>SparqLinq</h2>
                         </GridDiv>
                     </Link>
                     <Link href="products/sparqvu">
