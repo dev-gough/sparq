@@ -79,6 +79,7 @@ export default function DesignPage() {
   const imageMap: Record<string,string> = {
     "Q2000-4102":   "/quad4inverter.png",
     "Q3000-4301":   "/quad4inverter.png",
+    "SL200-2001":   "/sparqlinq.png",
     "65020-01":     "/junctionbox.png",
     "65020-05":     "/junctionbox.png",
     "65015-09":     "/type2cable.png",
@@ -99,7 +100,7 @@ export default function DesignPage() {
     // 2) Hide gridlines
     ws.views = [{ showGridLines: false }];
   
-    // 3) Fetch & embed logo at A1
+    // 3) Fetch & embed logo at B2
     const logoResp = await fetch("/logo.png");
     const logoBuf  = await logoResp.arrayBuffer();
     const logoId   = wb.addImage({ buffer: logoBuf, extension: "png" });
@@ -110,24 +111,27 @@ export default function DesignPage() {
   
     // 4) Common styling
     const headerFont = { bold: true, size: 12 };
-    const thinBorder = { style: "thin", color: { argb: "FF000000" } };
+    // cast style to ExcelJS.BorderStyle
+    const thinBorder: ExcelJS.Border = {
+      style: 'thin' as ExcelJS.BorderStyle,
+      color: { argb: "FF000000" }
+    };
   
     // 5) Company details
     ws.addRows([
-      [],
-      [],
-      [],
+      [],[],[],
       ["", "SPARQ Systems Inc."],
       ["", "945 Princess Street"],
       ["", "Kingston, ON, K7L 0E9"],
       ["", "Phone: (855) 947-7277"],
       ["", "Email: info@sparqsys.com"],
-      [], // blank row
+      [],
     ]);
-    ws.getRow(6).getCell(2).font = { bold: true };
-
+    // make SPARQ Systems Inc. bold
+    ws.getRow(4).getCell(2).font = { bold: true };
+  
     // 6) System Summary header
-    const sysHeader = ws.addRow(["", "System Summary", " ", " "]);
+    const sysHeader = ws.addRow(["", "System Summary", "", ""]);
     sysHeader.font = headerFont;
     sysHeader.eachCell({ includeEmpty: true }, (cell, colNumber) => {
       if (colNumber >= 2 && colNumber <= 4) {
@@ -137,22 +141,22 @@ export default function DesignPage() {
   
     // 7) System specs
     ws.addRows([
-      ["", "Region",         form.region],
-      ["", "Project Type",   form.projectType],
-      ["", "Grid Type",      form.gridType],
+      ["", "Region",          form.region],
+      ["", "Project Type",    form.projectType],
+      ["", "Grid Type",       form.gridType],
       ["", "Grid Voltage (V)", gridV],
-      ["", "PV System Size (kW)",     pvKwNum],
-      ["", "Panel Power @ STC (W)",  panelWNum],
-      ["", "Panel MPP Voltage (V)",  panelMPP],
-      [], // blank row
+      ["", "PV System Size (kW)", pvKwNum],
+      ["", "Panel Power @ STC (W)", panelWNum],
+      ["", "Panel MPP Voltage (V)", panelMPP],
+      [],
     ]);
   
     // 8) Split BOM
-    const sparq  = bom.filter(r => !r.sku.startsWith("65020"));
-    const third  = bom.filter(r =>  r.sku.startsWith("65020"));
+    const sparq = bom.filter(r => !r.sku.startsWith("65020"));
+    const third = bom.filter(r =>  r.sku.startsWith("65020"));
   
     // 9) Bill of Materials header
-    const bomHeader = ws.addRow(["", "Bill of Materials", " ", " "]);
+    const bomHeader = ws.addRow(["", "Bill of Materials", "", ""]);
     bomHeader.font = headerFont;
     bomHeader.eachCell({ includeEmpty: true }, (cell, colNumber) => {
       if (colNumber >= 2 && colNumber <= 4) {
@@ -160,16 +164,18 @@ export default function DesignPage() {
       }
     });
   
-    // 10) SPARQ Products section
+    // 10) SPARQ Products section (with SparqLinq added)
+    ws.addRow([]); // spacer
     const spHdr = ws.addRow(["", "SPARQ Products"]);
     spHdr.font = headerFont;
     ws.addRow(["", "Part ID", "Item", "Qty"]).font = headerFont;
+  
     sparq.forEach(r => {
       ws.addRow(["", r.sku, nameMap[r.sku] ?? r.label, r.qty]);
     });
   
     // 11) Third-Party Products section
-    ws.addRow([]); // spacer
+    ws.addRow([]);
     const thHdr = ws.addRow(["", "Third-Party Products"]);
     thHdr.font = headerFont;
     ws.addRow(["", "Part ID", "Item", "Qty"]).font = headerFont;
@@ -188,13 +194,14 @@ export default function DesignPage() {
       });
     });
   
-    // 13) Auto-size columns (A stays narrow; B–D grow to fit)
+    // 13) Auto-size columns (A narrow; B–D grow)
     ws.columns.forEach((col, idx) => {
       if (idx === 0) {
         col.width = 2;
       } else {
         let max = 10;
-        col.eachCell({ includeEmpty: true }, cell => {
+        // cast to any to satisfy TS for eachCell
+        (col as any).eachCell({ includeEmpty: true }, (cell: any) => {
           const txt = (cell.value ?? "").toString();
           max = Math.max(max, txt.length);
         });
@@ -211,7 +218,7 @@ export default function DesignPage() {
     a.download = `sparq_system_summary_${Date.now()}.xlsx`;
     a.click();
     URL.revokeObjectURL(url);
-  }
+  }  
   
   return (
     <main className="text-sm">
