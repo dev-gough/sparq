@@ -23,12 +23,12 @@ export default function Home() {
     /*
         Popup handlers
     */
-    const openPopup = () => {
-        setIsPopupOpen(true)
-        trackEvent("button_click", {
-            "btn_name": "home_view_alt_video"
-        })
-    }
+    // const openPopup = () => {
+    //     setIsPopupOpen(true)
+    //     trackEvent("button_click", {
+    //         "btn_name": "home_view_alt_video"
+    //     })
+    // }
     const closePopup = () => setIsPopupOpen(false)
 
     const openWelcomePopup = () => {
@@ -108,7 +108,7 @@ export default function Home() {
         <div>
             <div className="relative h-[calc(100vh-66px)] overflow-x-hidden">
                 <Draggable bounds="parent" nodeRef={wrapperRef as React.RefObject<HTMLElement>} cancel=".ctrl">
-                    <div className="absolute top-4 right-4 p-2 md:p-0 border-white border md:border-none" ref={wrapperRef}>
+                    <div className="absolute top-4 right-4 p-2 border-white border" ref={wrapperRef}>
                         <VideoControls
                             className="ctrl"
                             onRestart={handleReplay}
@@ -143,8 +143,8 @@ export default function Home() {
                 <div className="flex items-center justify-center h-full transition-transform duration-200">
                     {showButtons && (
                         <div className="flex flex-col sm:flex-row sm:justify-center space-y-3 sm:space-y-0 sm:space-x-10 pt-8 mt-60 sm:mt-120 sm:w-full">
-                            <Link href="/about" className="text-center bg-transparent border-white text-white hover:bg-slate-900 hover:text-white cursor-pointer font-black sm:text-xl py-2 sm:py-3 sm:px-5 border-3  rounded-4xl transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]" onClick={handleLearnMore}>Learn More</Link>
-                            <button onClick={openPopup} className="bg-transparent border-white text-white hover:bg-slate-900 hover:text-white cursor-pointer font-black sm:text-xl py-2 sm:py-3 px-5 border-3  rounded-4xl transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] ">Watch Video</button>
+                            <Link href="/about" className="text-center bg-transparent border-white text-white hover:bg-slate-900 hover:text-white cursor-pointer font-black sm:text-xl py-2 sm:py-3 sm:px-5 border-3  rounded-4xl transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]" onClick={handleLearnMore}>Highlights</Link>
+
                             <button onClick={openWelcomePopup} className="bg-transparent border-white text-white hover:bg-slate-900 hover:text-white cursor-pointer font-black sm:text-xl py-2 sm:py-3 px-5 border-3  rounded-4xl transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]  ">Website Tour</button>
                         </div>
                     )}

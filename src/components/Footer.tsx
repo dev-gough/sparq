@@ -33,11 +33,11 @@ export default function Footer() {
                         <div className="w-full md:w-1/2 mb-2 md:mb-0">
                             <ul className="grid grid-cols-2 gap-x-4 gap-y-1  pt-4">
                                 <li><Link href="/" className="hover:text-orange-400">Home</Link></li>
-                                <li><Link href="/about" className="hover:text-orange-400">About</Link></li>
-                                <li><Link href="/installers" className="hover:text-orange-400">Installers/Distributors</Link></li>
                                 <li><Link href="/homeowners" className="hover:text-orange-400">Homeowners</Link></li>
-                                <li><Link href="/products" className="hover:text-orange-400">Our Products</Link></li>
-                                <li><Link href="/investors" className="hover:text-orange-400">Investor Relations</Link></li>
+                                <li><Link href="/about" className="hover:text-orange-400">About</Link></li>
+                                <li><Link href="/installers" className="hover:text-orange-400">Installers</Link></li>
+                                <li><Link href="/products" className="hover:text-orange-400">Products</Link></li>
+                                <li><Link href="/investors" className="hover:text-orange-400">Investors</Link></li>
                                 <li><Link href="/contact" className="hover:text-orange-400">Contact</Link></li>
                                 <li><Link href="/legal" className="hover:text-orange-400">Legal</Link></li>
                             </ul>
@@ -45,7 +45,7 @@ export default function Footer() {
                     </div>
                     {/* Copyright */}
                     <div className="text-center mt-2  border-t border-gray-600 pt-2">
-                        <p>All content © Sparq Systems, 2025</p>
+                        <p>Copyright © 2025 Sparq Systems Inc. All Rights Reserved. </p>
                     </div>
                 </div>
             </footer>

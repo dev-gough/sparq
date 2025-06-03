@@ -9,7 +9,7 @@ function image() {
 	return (
 		<Image
 			src="/sparqvu.png"
-			alt="Sparq Linq Monitoring Tool"
+			alt="SparqVu Monitoring Tool"
 			width={1920}
 			height={1084}
 			className="object-contain sticky top-[100px] z-10 rounded-xl"

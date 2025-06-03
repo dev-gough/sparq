@@ -22,7 +22,7 @@ function image() {
     return (
         <Image
             src="/quad3.webp"
-            alt="Quad 3 Microinverter"
+            alt="Quad3 Microinverter"
             width={1920}
             height={1084}
             className="object-contain sticky top-16 z-10"
@@ -159,7 +159,7 @@ export default function TestPage() {
                 selectedModel={selectedModel}
                 setSelectedModel={setSelectedModel}
                 model="Q2000-4301"
-                heading="Quad 3 Microinverter"
+                heading="Quad3 Microinverter"
                 animated={true}
                 parent="Quad3"
                 href="quad3"

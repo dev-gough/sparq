@@ -14,7 +14,7 @@ interface ProductProps {
     models?: Array<string>
     selectedModel?: string | null
     setSelectedModel?: (m: string) => void
-    model?: string   // e.g. Q2000, Quad 3
+    model?: string   // e.g. Q2000, Quad3
     heading: string // e.g. Q2000 Microinverter or 
     animated?: boolean
     parent: string  // e.g. "quad2" or "sparqlinq"

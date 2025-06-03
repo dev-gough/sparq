@@ -19,10 +19,12 @@ const nunito = Nunito({
 })
 
 const aboutDropdown = [
+	{ label: "Highlights", href: "/about"},
 	{ label: "Snapshot", href: "/about/snapshot" },
 	{ label: "Who We Are", href: "/about/us" },
 	{ label: "Leadership", href: "/about/leadership" },
 	{ label: "Board of Directors", href: "/about/board" },
+	{ label: "Legal", href: "/legal"}
 ]
 
 const investorDropdown = [
@@ -34,10 +36,10 @@ const investorDropdown = [
 ]
 
 const homeownerDropdown = [
-	{ label: "Global Warming", href: "/homeowners" },
+	{ label: "Sparq Video", href: "/homeowners" },
 	{ label: "Why Sparq", href: "/homeowners#whysparq" },
 	{ label: "Sparq Advantage", href: "/homeowners#discover"},
-	{ label: "Useful Tools", href: "/homeowners#useful-tools" },
+	// { label: "Useful Tools", href: "/homeowners#useful-tools" },
 	{ label: "FAQs", href: "/homeowners#faq"}
 ]
 
@@ -60,9 +62,9 @@ const productDropdown = [
 ]
 
 const resourcesDropdown = [
+	{ label: "Learning Hub", href: "/resources"},
 	{ label: "Photo Gallery", href: "/resources/photos" },
 	{ label: "Video Gallery", href: "/resources/videos" },
-	{ label: "Design My System", href: "/resources/design" },
 ]
 
 const navbarItems = [

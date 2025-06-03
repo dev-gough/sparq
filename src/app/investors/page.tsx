@@ -127,7 +127,7 @@ export default function InvestorsPage() {
                 </Draggable>
                 {!isMobile && (
                     <video
-                        className="absolute top-0 left-0 w-full h-full object-contain bg-black xl:object-cover z-[-1]"
+                        className="absolute top-0 left-0 w-full h-full object-cover object-bottom bg-black xl:object-cover z-[-1]"
                         ref={vidRef}
                         autoPlay
                         muted
@@ -154,7 +154,7 @@ export default function InvestorsPage() {
                     {isVidEnded && (
                         <div className="flex flex-row space-x-10 pt-8 mt-80 sm:mt-120">
                             <Link onClick={handleHighlightClick} href="#highlights" className="bg-transparent border-white text-white hover:bg-gray-400 hover:text-white cursor-pointer font-black  text-base lg:text-lg xl:text-xl py-3 px-5 border-3  rounded-4xl  transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">View Highlights</Link>
-                            <Link href="/investor_presentation.mp4" onClick={handlePresentationClick} className="bg-transparent border-white text-white hover:bg-gray-400 cursor-pointer font-black  text-base lg:text-lg xl:text-xl py-3 px-5 border-3  rounded-4xl  transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Watch Presentation</Link>
+                            <Link href="/investor_ppt.pdf" onClick={handlePresentationClick} target="_blank" className="bg-transparent border-white text-white hover:bg-gray-400 cursor-pointer font-black  text-base lg:text-lg xl:text-xl py-3 px-5 border-3  rounded-4xl  transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Watch Presentation</Link>
                         </div>
                     )}
                 </div>

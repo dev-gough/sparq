@@ -21,7 +21,7 @@ export default function ProductPage() {
                         </Link>
                         <Link href="products/quad3" className='flex items-center justify-center'>
                             <GridDiv>
-                                <Image className='w-full h-full object-cover' width={1920} height={1084} src='/quad3.webp' alt='Quad 3 Microinverter' />
+                                <Image className='w-full h-full object-cover' width={1920} height={1084} src='/quad3.webp' alt='Quad3 Microinverter' />
                                 <h2 className='text-2xl md:text-3xl xl:text-4xl font-bold text-brand-maroon mt-8'>Quad3</h2>
                             </GridDiv>
                         </Link>

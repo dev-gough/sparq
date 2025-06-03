@@ -7,7 +7,8 @@ const videos = [
     { id: 1, title: 'PV Systems 101', thumbnail: '/pv101_thumbnail.jpg', url: 'gl5tY5Noacc', iFrame: true },
     { id: 2, title: 'Global Warming 101', thumbnail: '/globalwarming101_thumbnail.jpg', url: 'oJAbATJCugs', iFrame: true },
     { id: 3, title: 'Climate Change 101', thumbnail: '/climatechange101_thumbnail.jpg', url: 'jAa58N4Jlos', iFrame: true },
-    { id: 4, title: "Learn More About Sparq Products", thumbnail: "/hassan_presentation_thumbnail.png", url: "/hassan_presentation.mp4", iFrame: false }
+    { id: 4, title: "Learn More About Sparq Products", thumbnail: "/hassan_presentation_thumbnail.png", url: "/hassan_presentation.mp4", iFrame: false },
+    { id: 5, title: "JioThings Sparq Microinverter Overview", thumbnail: "/jio_thumbnail.jpg", url: "a9tKIsI6t4I", iFrame: true}
 ]
 
 interface VideoPopupProps {

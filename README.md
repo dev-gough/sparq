@@ -42,7 +42,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Content
 - /products
-    - Quad 3 description & "Read more"
+    - Quad3 description & "Read more"
     - Legacy products better description
     - Standardize open dropdowns (none open on mobile?)
     - integrate new info from pp slides
