@@ -13,6 +13,7 @@ type GridType = "On-grid" | "Off-grid" | "Water Pump";
 type FormInputs = {
 	region: string;
 	projectType: ProjectType;
+	projectName: string;
 	gridType: GridType;
 	gridVoltage: string;
 	pvKw: string;
@@ -24,6 +25,7 @@ export default function BoMCalc() {
 	const [form, setForm] = useState<FormInputs>({
 		region: "North America",
 		projectType: "Residential",
+		projectName: "",
 		gridType: "On-grid",
 		gridVoltage: "",
 		pvKw: "",
@@ -141,6 +143,8 @@ export default function BoMCalc() {
 		ws.addRows([
 			["", "Region", form.region],
 			["", "Project Type", form.projectType],
+			["", "Project Name", form.projectName],
+			["", "Project Date", new Date().toDateString()],
 			["", "Grid Type", form.gridType],
 			["", "Grid Voltage (V)", gridV],
 			["", "PV System Size (kW)", pvKwNum],
@@ -225,18 +229,8 @@ export default function BoMCalc() {
 			<section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-brand-maroon)] to-[var(--color-brand-darkmaroon)] text-white">
 				<div className="mx-auto max-w-6xl px-6 py-12 text-center">
 					<h1 className="text-3xl font-semibold text-[var(--color-brand-yellow)]">
-						Design My System
+						BoM Calculator
 					</h1>
-					<p className="mt-2 text-sm">
-						Enter your system specs to see your system requirements.
-					</p>
-					<Link
-						href="https://pvwatts.nrel.gov/"
-						target="_blank"
-						className="mt-6 inline-block rounded bg-[var(--color-brand-maroon)] px-4 py-2 text-sm font-medium hover:bg-[var(--color-brand-darkmaroon)]"
-					>
-						Don&apos;t know your solar output? Use the PVWatts Calculator to find out.
-					</Link>
 				</div>
 			</section>
 
@@ -247,8 +241,8 @@ export default function BoMCalc() {
 				<div className="rounded-lg bg-[var(--color-brand-graytext)]/5 p-6 shadow space-y-6">
 					<h2 className="text-xl font-semibold text-black">Design Details</h2>
 
-					{/* 1st row: Region & Project Type */}
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+					{/* 1st row: Region & Project Type & Project Name */}
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 						<SelectField
 							label="Region"
 							value={form.region}
@@ -260,6 +254,12 @@ export default function BoMCalc() {
 							value={form.projectType}
 							options={["Residential", "Commercial", "Industrial"]}
 							onChange={pt => setForm(f => ({ ...f, projectType: pt as ProjectType }))}
+						/>
+						<TextField
+							label="Project Name"
+							value={form.projectName}
+							onChange={pn => setForm(f => ({ ...f, projectName: pn }))}
+							placeholder="Enter project name"
 						/>
 					</div>
 
@@ -463,6 +463,31 @@ function SelectField({
 					<option key={o} value={o}>{o}</option>
 				))}
 			</select>
+		</label>
+	);
+}
+
+function TextField({
+	label,
+	value,
+	onChange,
+	placeholder,
+}: {
+	label: string;
+	value: string;
+	onChange: (s: string) => void;
+	placeholder?: string;
+}) {
+	return (
+		<label className="block text-base">
+			<span className="mb-1	block font-medium text-[var(--color-brand-graytext)]">{label}</span>
+			<input
+				type="text"
+				value={value}
+				placeholder={placeholder}
+				onChange={e => onChange(e.target.value)}
+				className="w-full rounded-lg border border-[var(--color-brand-gray)] px-4 py-2 text-base placeholder:text-gray-400 focus:border-[var(--color-brand-yellow)] focus:ring-[var(--color-brand-yellow)] focus:outline-none"
+			/>
 		</label>
 	);
 }

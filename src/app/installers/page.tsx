@@ -12,7 +12,6 @@ import 'swiper/css/pagination'
 import 'swiper/css/effect-fade'
 import { Autoplay, Navigation, Pagination, EffectFade } from 'swiper/modules'
 
-import GridDiv from "@/components/GridDiv"
 import AccordionItem from "@/components/AccordionItem"
 import AnimatedList from "@/components/AnimatedList"
 import BoMCalc from "@/components/BomCalc"
@@ -49,7 +48,7 @@ const solarTools: SolarTool[] = [
 
 const FAQ: FAQData[] = InstallerFAQData.faqs
 
-const quad_advantage = ["1 microinverter for 4 panels", "Safe, reliable, and long-lasting", "All AC cabling", "Rapid Shutdown Compatible", "Lowest weight, volume, and cost", "Fewer parts to install", "Installation takes less time on the roof", "Maitenance-free", "Higher profit margin", "User-friendly app"]
+const quad_advantage = ["One Microinverter for Four panels", "Safe, reliable, and long-lasting", "All AC cabling", "Rapid Shutdown Compatible", "Lowest weight, volume, and cost", "Fewer parts to install", "Installation takes less time on the roof", "Maitenance-free", "Higher profit margin", "User-friendly app"]
 const quad_items = ["Quick and Easy to install", "Maximum energy harvest", "Cloud-based performance monitoring", "12 yr. standard - 25 yr. extended warranty"]
 
 export default function InstallersPage() {
@@ -152,7 +151,7 @@ export default function InstallersPage() {
                             <SwiperSlide className="bg-cover bg-center relative bg-[url(/thumbnail_image.png)]">
                                 <div className='px-4 pt-4 lg:px-20 xl:px-40 sm:pt-8 flex flex-col h-full'>
                                     <h1 className='text-xl sm:text-2xl lg:text-5xl xl:text-6xl font-extrabold border-b-2 border-brand-yellow b-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Why Installers Should Choose Sparq Products</h1>
-                                    <ul className="list-[lower-roman] list-inside text-lg sm:text-xl lg:text-2xl xl:text-4xl mt-4 space-y-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+                                    <ul className="list-disc list-inside text-lg sm:text-xl lg:text-2xl xl:text-4xl mt-4 space-y-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                                         <li>Best In-Class Performance</li>
                                         <li>Safe & Long-Lasting Products</li>
                                         <li>Cost-Effective and Maintenance Free</li>
@@ -194,40 +193,12 @@ export default function InstallersPage() {
                 <div className="w-full md:w-2/3 text-left">
                     <h2 className="text-4xl font-semibold mb-2">
                         <Link href="/products" className="text-brand-maroon hover:underline decoration-brand-logo">
-                            Sparq Products
+                            Sparq Product Family
                         </Link>
                     </h2>
                     <p className="text-2xl">
                         Discover our robust microinverters engineered for commercial solar arrays, delivering maximum ROI, minimal maintenance, and unmatched uptime.
                     </p>
-                    <div className='flex flex-wrap justify-start mt-8 space-x-8'>
-                        <Link href="products/quad2" className='flex items-center justify-center'>
-                            <GridDiv id="q2000">
-                                <Image className='w-2/3 h-2/3 object-cover' width={1920} height={1084} src='/q2000.webp' alt='q2000 Microinverters' />
-                                <h2 className='text-2xl md:text-3xl xl:text-4xl font-bold text-brand-maroon mt-8'>Quad2</h2>
-                            </GridDiv>
-                        </Link>
-                        <Link href="products/quad3" className='flex items-center justify-center'>
-                            <GridDiv>
-                                <Image className='w-2/3 h-2/3 object-cover' width={1920} height={1084} src='/quad3.webp' alt='Quad 3 Microinverter' />
-                                <h2 className='text-2xl md:text-3xl xl:text-4xl font-bold text-brand-maroon mt-8'>Quad3</h2>
-                            </GridDiv>
-                        </Link>
-                    </div>
-                    <div className='flex flex-wrap justify-start mt-8 space-x-8'>
-                        <Link href="products/sparqlinq">
-                            <GridDiv id='#sparqlinq'>
-                                <Image className='w-full h-full rounded-xl shadow-lg' width={768} height={512} src="/SparqLinq.jpg" alt="SparqLinq Monitoring Interface" />
-                                <h2 className='text-2xl md:text-3xl xl:text-4xl font-bold text-brand-maroon mt-8'>SparqLinq</h2>
-                            </GridDiv>
-                        </Link>
-                        <Link href="products/accessories">
-                            <GridDiv id="cables">
-                                <Image src="/Accessories/cables.png" width={671} height={409} alt="Types of Cables Offered" />
-                                <h2 className='text-2xl md:text-3xl xl:text-4xl font-bold text-brand-maroon mt-8'>Cables</h2>
-                            </GridDiv>
-                        </Link>
-                    </div>
                 </div>
 
                 {/* 3. Right-aligned blurb + link */}
@@ -238,7 +209,7 @@ export default function InstallersPage() {
                         </Link>
                     </h2>
                     <p className="text-2xl">
-                        Access in-depth installation guides, commissioning tutorials, and best practices tailored for installers deploying Sparq microinverters at commercial scale.
+                        Access in-depth installation guides, commissioning tutorials, and best practices for installers deploying Sparq microinverters at commercial scale.
                     </p>
                 </div>
             </section>
