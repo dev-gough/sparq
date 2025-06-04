@@ -6,12 +6,11 @@ import GridDiv from '@/components/GridDiv';
 export default function ProductPage() {
     return (
         <div>
-            <div className='w-full bg-[url(/product-header.png)] h-48 flex items-center justify-center'>
+            <div className='w-full bg-[url(/product-header.png)] bg-no-repeat bg-cover h-48 flex items-center justify-center'>
                 <h1 className='text-7xl text-white font-bol drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Our Products</h1>
             </div>
-            <div className="lg:px-20 px-4 md:my-10 container mx-auto">
+            <div className="lg:px-20 px-4 md:my-16 container mx-auto">
                 <section id="inverters" className='flex flex-col'>
-                    <h1 className='text-5xl font-bold text-brand-maroon text-center mt-12 mb-8 md:mb-32'>Q2000 Product Family</h1>
                     <div className='flex flex-wrap justify-center items-center gap-16'>
                         <Link href="products/quad2" className='flex items-center justify-center'>
                             <GridDiv id="q2000">
