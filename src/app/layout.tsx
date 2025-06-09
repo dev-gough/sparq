@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import { Nunito } from "next/font/google"
+import { Inter, Poppins, Geist, Nunito } from "next/font/google"
 import ForceScroll from "@/components/ForceScroll"
 import LeavingSite from "@/components/LeavingSite"
 
@@ -12,11 +12,33 @@ export const metadata: Metadata = {
 	icons: '/logo.png',
 }
 
-// english font
 const nunito = Nunito({
-	subsets: ["latin"],
-	weight: ["500", "800", "900"],
+	subsets: ['latin'],
+	weight: ["300", "400", "500", "600", "700", "800", "900"],
+	display: 'swap',
 })
+
+// Modern font options
+const inter = Inter({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700", "800", "900"],
+	display: 'swap',
+})
+
+const poppins = Poppins({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700", "800", "900"],
+	display: 'swap',
+})
+
+const geist = Geist({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700", "800", "900"],
+	display: 'swap',
+})
+
+// Currently active font - change this to test different fonts
+const activeFont = geist
 
 const aboutDropdown = [
 	{ label: "Highlights", href: "/about"},
@@ -83,7 +105,7 @@ export default async function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${nunito.className} flex flex-col min-h-screen overflow-y-scroll`}>
+			<body className={`${activeFont.className} flex flex-col min-h-screen overflow-y-scroll`}>
 				<Header navItems={navbarItems} />
 				<ForceScroll />
 				<LeavingSite />

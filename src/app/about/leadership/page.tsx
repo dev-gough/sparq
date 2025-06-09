@@ -1,6 +1,8 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useRef } from "react"
+import { motion, useInView } from "motion/react"
+import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
 
@@ -22,13 +24,13 @@ const teamMembers: TeamMemberData[] = [
         imgSrc: '/Team/Majid-Pahlevaninezhad.jpg',
         name: 'Dr. Majid Pahlevaninezhad',
         title: 'Chief Technology Officer',
-        blurb: "Dr. Pahlevani is the Chief Technology Officer at Sparq Systems. He invented multiple innovative power circuitry and digital control techniques for Sparq's main product family, called the QUAD microinverter. He worked as a technical designer in the Information and Communication Technology Institute (ICTI) from 2003 to 2007, where he was involved in design and implementation of high-quality resonant converters. He also collaborated with Freescale Semiconductor Inc. where he was the leader of a research team working on the design and implementation of the power converters for a pure electric vehicle from 2008 to 2012. He is the author of more than 210 journal and conference proceeding papers and the holder of 85 US patents. Dr. Pahlevani is a senior member of IEEE and a member of the IEEE Power Electronics Society and Industrial Electronics Society. He is also the recipient of many awards such as the “Engineering and Applied Sciences Outstanding Thesis” award from Queen's University, “Research Excellence Award” from the IEEE Canada, and “Distinguished Graduate Student Award” from Isfahan University of Technology. Dr. Pahlevani received his Ph.D. degree from Queens University."
+        blurb: "Dr. Pahlevani is the Chief Technology Officer at Sparq Systems. He invented multiple innovative power circuitry and digital control techniques for Sparq's main product family, called the QUAD microinverter. He worked as a technical designer in the Information and Communication Technology Institute (ICTI) from 2003 to 2007, where he was involved in design and implementation of high-quality resonant converters. He also collaborated with Freescale Semiconductor Inc. where he was the leader of a research team working on the design and implementation of the power converters for a pure electric vehicle from 2008 to 2012. He is the author of more than 210 journal and conference proceeding papers and the holder of 85 US patents. Dr. Pahlevani is a senior member of IEEE and a member of the IEEE Power Electronics Society and Industrial Electronics Society. He is also the recipient of many awards such as the \"Engineering and Applied Sciences Outstanding Thesis\" award from Queen's University, \"Research Excellence Award\" from the IEEE Canada, and \"Distinguished Graduate Student Award\" from Isfahan University of Technology. Dr. Pahlevani received his Ph.D. degree from Queens University."
     },
     {
         imgSrc: '/Team/hassan.png',
         name: 'Dr. Hassan Kojori',
         title: 'VP of Program Management',
-        blurb: "Dr. Kojori has 30+ years of technical and leadership experience in research and technology development, commercialization and manufacturing of power electronics products for diverse markets including aviation, transportation, steel making, telecommunication and utility industries. As a Senior Principal Engineer at AlliedSignal and Honeywell (1997 to 2022), he was the conversion portfolio leader responsible for research and technology demonstration of highly reliable, efficient and light weight power electronics, Li-ion energy storage, and motor controls products for More Electric Aircraft. As the new product introduction leader at Inver-power Controls Limited (1990-97), he invented the world's first arc-furnace flicker controller under commercial name of Smart Predictive Line Controller (SPLC) and led the technical team for successful design, installation and field testing of a 46 kV, 75 MW SPLC at Co-Steel-LASCO located in Whitby, Canada. His original designs on numerous technology firsts have resulted in more than 45 patent disclosures (29 granted), several trade secrets and over 100 technical papers and proprietary industry reports. He is the recipient of numerous prestigious industry awards including the “Honeywell Technology Marquee Award” (2000). Dr. Kojori holds a PhD from the University of Toronto, is a Certified Green Belt DFSS and Six Sigma Plus professional, an IEEE Life Fellow and licensed Professional Engineer in Ontario."
+        blurb: "Dr. Kojori has 30+ years of technical and leadership experience in research and technology development, commercialization and manufacturing of power electronics products for diverse markets including aviation, transportation, steel making, telecommunication and utility industries. As a Senior Principal Engineer at AlliedSignal and Honeywell (1997 to 2022), he was the conversion portfolio leader responsible for research and technology demonstration of highly reliable, efficient and light weight power electronics, Li-ion energy storage, and motor controls products for More Electric Aircraft. As the new product introduction leader at Inver-power Controls Limited (1990-97), he invented the world's first arc-furnace flicker controller under commercial name of Smart Predictive Line Controller (SPLC) and led the technical team for successful design, installation and field testing of a 46 kV, 75 MW SPLC at Co-Steel-LASCO located in Whitby, Canada. His original designs on numerous technology firsts have resulted in more than 45 patent disclosures (29 granted), several trade secrets and over 100 technical papers and proprietary industry reports. He is the recipient of numerous prestigious industry awards including the \"Honeywell Technology Marquee Award\" (2000). Dr. Kojori holds a PhD from the University of Toronto, is a Certified Green Belt DFSS and Six Sigma Plus professional, an IEEE Life Fellow and licensed Professional Engineer in Ontario."
     },
     {
         imgSrc: '/Team/Dr-Shangzhi-Pan.png',
@@ -62,10 +64,107 @@ const teamMembers: TeamMemberData[] = [
     },
 ]
 
-export default function LeadershipPage() {
+interface TeamMemberCardProps {
+    member: TeamMemberData
+    index: number
+    onClick: () => void
+}
 
+function TeamMemberCard({ member, index, onClick }: TeamMemberCardProps) {
+    const cardRef = useRef(null)
+    const isInView = useInView(cardRef, { once: true, margin: "-50px" })
+
+    return (
+        <motion.div
+            ref={cardRef}
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            onClick={onClick}
+            className="cursor-pointer group"
+        >
+            <Card className="h-full backdrop-blur-md bg-white/90 border-brand-maroon/10 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden rounded-2xl">
+                <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    <CardContent className="p-0">
+                        <div className="relative overflow-hidden">
+                            <Image
+                                src={member.imgSrc}
+                                alt={member.name}
+                                width={512}
+                                height={512}
+                                className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        </div>
+                        <div className="px-6 pb-6 pt-4 text-center">
+                            <h2 className="text-xl font-bold text-brand-darkmaroon mb-2 group-hover:text-brand-maroon transition-colors duration-300">
+                                {member.name}
+                            </h2>
+                            <p className="text-brand-graytext font-medium">
+                                {member.title}
+                            </p>
+                        </div>
+                    </CardContent>
+                </motion.div>
+            </Card>
+        </motion.div>
+    )
+}
+
+// Background shapes for consistency
+const backgroundShapes = [
+    { width: 140, height: 90, left: 8, top: 12, duration: 18, delay: 1.2, borderRadius: '50% 50% 70% 30%' },
+    { width: 100, height: 120, left: 85, top: 20, duration: 15, delay: 2.5, borderRadius: '40% 60% 60% 40%' },
+    { width: 180, height: 60, left: 35, top: 45, duration: 20, delay: 0.8, borderRadius: '30% 70% 70% 30%' },
+    { width: 80, height: 80, left: 75, top: 75, duration: 14, delay: 1.8, borderRadius: '50%' },
+    { width: 110, height: 150, left: 15, top: 85, duration: 16, delay: 3.2, borderRadius: '70% 30% 50% 50%' },
+]
+
+function BackgroundElements() {
+    return (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {backgroundShapes.map((shape, i) => (
+                <motion.div
+                    key={i}
+                    className="absolute bg-gradient-to-br from-brand-maroon/4 via-brand-logo/3 to-brand-yellow/2"
+                    style={{
+                        width: shape.width,
+                        height: shape.height,
+                        left: `${shape.left}%`,
+                        top: `${shape.top}%`,
+                        borderRadius: shape.borderRadius,
+                    }}
+                    animate={{
+                        y: [0, -20, 0],
+                        x: [0, 10, 0],
+                        scale: [1, 1.05, 1],
+                        rotate: [0, 360],
+                        borderRadius: [
+                            shape.borderRadius,
+                            shape.borderRadius === '50%' ? '30% 70% 70% 30%' : '50%',
+                            shape.borderRadius
+                        ]
+                    }}
+                    transition={{
+                        duration: shape.duration,
+                        repeat: Infinity,
+                        delay: shape.delay,
+                        ease: "easeInOut"
+                    }}
+                />
+            ))}
+        </div>
+    )
+}
+
+export default function LeadershipPage() {
     const [selectedMember, setMember] = useState<TeamMemberData | null>(null)
     const trackEvent = useTrackEvent()
+    const titleRef = useRef(null)
+    const isInView = useInView(titleRef, { once: true })
 
     const handleClick = (member: TeamMemberData) => {
         setMember(member)
@@ -75,53 +174,86 @@ export default function LeadershipPage() {
     }
 
     return (
-        <div className="container mx-auto py-8 px-4 pb-4">
-            <section id="leadership" className="px-2 sm:px-0">
-                <h1 className="sm:text-5xl text-3xl font-bold text-brand-maroon text-center sm:mb-32 mb-8">Meet the Leadership Team</h1>
-                <div className="flex flex-wrap justify-center gap-16">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative scroll-mt-[115px]">
+            <BackgroundElements />
+
+            <div className="relative container mx-auto px-4 py-20">
+                {/* Hero section */}
+                <motion.div
+                    ref={titleRef}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8 }}
+                    className="text-center mb-16"
+                >
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
+                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
+                            Meet Our Leaders
+                        </span>
+                    </h1>
+
+                    <p className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed">
+                        The visionary executives and technical experts driving innovation in solar energy technology.
+                    </p>
+                </motion.div>
+
+                {/* Team grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
                     {teamMembers.map((member, index) => (
-                        <div
+                        <TeamMemberCard
                             key={index}
+                            member={member}
+                            index={index}
                             onClick={() => handleClick(member)}
-                            className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-60 md:w-66 lg:w-72 3xl:w-90 ${selectedMember === member
-                                ? 'scale-100'
-                                : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
-                                }`}>
-                            <Image
-                                src={member.imgSrc}
-                                alt={member.name}
-                                width={512}
-                                height={512}
-                                className="w-full h-96 object-cover rounded-lg mb-2"
-                            />
-                            <h2 className="text-xl font-medium text-black">{member.name}</h2>
-                            <p className="text-lg text-black">{member.title}</p>
-                        </div>
+                        />
                     ))}
                 </div>
-            </section>
+            </div>
+
+            {/* Modal */}
             {selectedMember && (
-                <div
-                    className="fixed inset-0 bg-black/80 z-40"
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 bg-black/80 z-40 flex items-center justify-center p-4"
                     onClick={() => setMember(null)}
                 >
-                    <div
-                        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 sm:max-w-4/5 max-h-4/5 min-h-2/5 w-full overflow-y-auto border-brand-maroon border-3"
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                        transition={{ duration: 0.3 }}
+                        className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-brand-maroon/20"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <button
-                            className="absolute top-4 right-4 bg-brand-maroon text-white px-4 py-2 rounded hover:bg-brand-darkmaroon z-10 cursor-pointer"
-                            onClick={() => setMember(null)}
-                        >
-                            Close
-                        </button>
-                        <div className="border-b-4 pb-2 rounded-md border-brand-yellow">
-                            <h2 className="sm:text-4xl text-lg font-bold">{selectedMember.name}</h2>
-                            <p className="sm:text-3xl">{selectedMember.title}</p>
+                        <div className="relative p-8">
+                            <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                className="absolute top-4 right-4 w-10 h-10 bg-brand-maroon/10 hover:bg-brand-maroon text-brand-maroon hover:text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
+                                onClick={() => setMember(null)}
+                            >
+                                ✕
+                            </motion.button>
+
+                            <div className="border-b border-brand-maroon/20 pb-6 mb-6">
+                                <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon mb-2">
+                                    {selectedMember.name}
+                                </h2>
+                                <p className="text-xl md:text-2xl text-brand-logo font-medium">
+                                    {selectedMember.title}
+                                </p>
+                            </div>
+
+                            <div className="prose prose-lg max-w-none">
+                                <p className="text-brand-graytext leading-relaxed text-lg">
+                                    {selectedMember.blurb}
+                                </p>
+                            </div>
                         </div>
-                        <p className="mt-4 text-gray-700 sm:text-2xl text-sm">{selectedMember.blurb}</p>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             )}
         </div>
     )

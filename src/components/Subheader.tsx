@@ -3,6 +3,29 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { motion } from 'motion/react'
+
+function useScrollDirection() {
+    const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null)
+    const [lastScrollY, setLastScrollY] = useState(0)
+
+    useEffect(() => {
+        const updateScrollDirection = () => {
+            const scrollY = window.scrollY
+            const direction = scrollY > lastScrollY ? 'down' : 'up'
+
+            if (direction !== scrollDirection && Math.abs(scrollY - lastScrollY) > 10) {
+                setScrollDirection(direction)
+            }
+            setLastScrollY(scrollY > 0 ? scrollY : 0)
+        }
+
+        window.addEventListener('scroll', updateScrollDirection)
+        return () => window.removeEventListener('scroll', updateScrollDirection)
+    }, [scrollDirection, lastScrollY])
+
+    return scrollDirection
+}
 
 function useHash(): string {
     const [hash, setHash] = useState<string>('')
@@ -34,14 +57,31 @@ function SubheadingItem({ label, href, target }: SubheadingItemProps) {
         (targetHash === "" || hash === `#${targetHash}`) // and—if present—same hash
 
     return (
-        <Link
-            href={href}
-            className={`flex flex-shrink-0 items-center justify-center space-x-2 ${isActive ? "text-brand-yellow" : "text-gray-700"
-                } transition-colors duration-150 hover:text-brand-yellow`}
-            target={target? target : ""}
+        <motion.div
+            whileHover={{ y: -1 }}
+            transition={{ duration: 0.2 }}
+            className="relative"
         >
-            <span className="text-lg sm:text-xl xl:text-2xl whitespace-nowrap">{label}</span>
-        </Link>
+            <Link
+                href={href}
+                className={`relative flex flex-shrink-0 items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-300 ${isActive
+                    ? "text-brand-maroon bg-brand-maroon/20"
+                    : "text-brand-graytext hover:text-brand-maroon hover:bg-brand-maroon/20"
+                    } whitespace-nowrap`}
+                target={target ? target : ""}
+            >
+                <span className="text-base sm:text-lg">{label}</span>
+                {isActive && (
+                    <motion.div
+                        layoutId="activeSubTab"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-maroon rounded-full"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                    />
+                )}
+            </Link>
+        </motion.div>
     )
 }
 
@@ -50,11 +90,55 @@ interface SubheaderProps {
 }
 
 export default function Subheader({ items }: SubheaderProps) {
+    const scrollDirection = useScrollDirection()
+    const [isVisible, setIsVisible] = useState(true)
+
+    useEffect(() => {
+        if (scrollDirection === 'down') {
+            setIsVisible(false)
+        } else if (scrollDirection === 'up') {
+            setIsVisible(true)
+        }
+    }, [scrollDirection])
+
+    // Calculate dynamic width based on number of items
+    const getMaxWidth = () => {
+        if (items.length <= 3) return 'max-w-xl'
+        if (items.length <= 5) return 'max-w-4xl'
+        if (items.length <= 7) return 'max-w-6xl'
+        return 'max-w-7xl'
+    }
+
     return (
-        <div className="sticky top-[66px] z-10 flex items-center justify-evenly bg-neutral-200 px-2 gap-x-4 sm:py-2 overflow-x-scroll sm:overflow-x-auto h-[48px] whitespace-nowrap overflow-y-hidden">
-            {items.map((item) => (
-                <SubheadingItem key={item.href} {...item} />
-            ))}
-        </div>
+        <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{
+                opacity: isVisible ? 1 : 0,
+                y: isVisible ? 0 : -100,
+                scale: isVisible ? 1 : 0.95
+            }}
+            transition={{
+                duration: 0.5,
+                ease: [0.23, 1, 0.320, 1]
+            }}
+            className="sticky top-[75px] z-50 flex justify-center"
+        >
+            <div className={`bg-white/95 backdrop-blur-md border border-brand-maroon/10 shadow-lg rounded-b-xl ${getMaxWidth()} mx-6 w-full`}>
+                <div className="px-6 py-4">
+                    <div className="flex items-center justify-center gap-2 overflow-x-auto scrollbar-hide">
+                        {items.map((item, index) => (
+                            <motion.div
+                                key={item.href}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                            >
+                                <SubheadingItem {...item} />
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </motion.div>
     )
 }
