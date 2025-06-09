@@ -19,32 +19,8 @@ import BoMCalc from "@/components/BomCalc"
 interface FAQData {
     id: number
     questionBrand: string;
-    subQuestions: { id: number, question: string, answer: string }[];
+    subQuestions: { id: number, question: string, answer: string | Array<string | string[]> }[];
 }
-
-interface SolarTool {
-    title: string
-    description: string
-    url: string
-}
-
-const solarTools: SolarTool[] = [
-    {
-        title: "HelioScope",
-        description: "Aurora Solar's HelioScope streamlines commercial PV design with web-based 3D modeling and fast performance simulations.",
-        url: "https://helioscope.aurorasolar.com/"
-    },
-    {
-        title: "OpenSolar",
-        description: "OpenSolar offers free cloud-based tools for solar design, 3D modeling, and accurate energy estimates.",
-        url: "https://www.opensolar.com/"
-    },
-    {
-        title: "PVsyst",
-        description: "PVsyst provides detailed photovoltaic analysis with precise energy yield and system optimization tools.",
-        url: "https://www.pvsyst.com/"
-    }
-]
 
 const FAQ: FAQData[] = InstallerFAQData.faqs
 
@@ -167,28 +143,7 @@ export default function InstallersPage() {
                     </div>
                 </div>
             </section>
-            <section id="discover" className="container mx-auto 2xl:px-32 py-8 space-y-32 scroll-mt-[66px]">
-                {/* 1. Full-width video + blurb */}
-                <div className="flex flex-col md:flex-row items-center text-right">
-                    <div className="md:w-1/2">
-                        <Link href="/resources">
-                            <Image
-                                src="/hassan_presentation_thumbnail.png"
-                                width={806}
-                                height={452}
-                                alt="Hassan's Presentation Thumbnail"
-                                className="rounded-xl shadow-lg transition-transform hover:scale-105"
-                            />
-
-                        </Link>
-                    </div>
-                    <div className="md:w-1/2 md:pl-8 mt-6 md:mt-0">
-                        <h2 className="text-4xl font-semibold mb-2 text-brand-maroon text-left">
-                            Learn More About Sparq Products
-                        </h2>
-                    </div>
-                </div>
-
+            <section id="discover" className="container mx-auto 2xl:px-32 py-8 space-y-32 scroll-mt-[66px] mt-16">
                 {/* 2. Left-aligned blurb + link */}
                 <div className="w-full md:w-2/3 text-left">
                     <h2 className="text-4xl font-semibold mb-2">
@@ -216,50 +171,36 @@ export default function InstallersPage() {
             <section id="bom" className="mt-16">
                 <BoMCalc />
             </section>
-            <section id="useful-tools" className="container mx-auto mb-8 mt-32 2xl:px-32 scroll-mt-[66px]">
-                <h1 className="text-4xl font-bold mb-6 text-brand-maroon">Third Party PV System Design Tools</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                    {solarTools.map((tool) => (
-                        <div
-                            key={tool.title}
-                            className="bg-white shadow-lg rounded-lg p-4 transform hover:scale-105 transition duration-300"
-                        >
-                            <h2 className="text-xl font-bold mb-2">{tool.title}</h2>
-                            <p className="text-gray-600 mb-4">{tool.description}</p>
-                            <Link
-                                href={tool.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-block bg-brand-maroon text-white px-4 py-2 rounded hover:bg-brand-darkmaroon"
-                            >
-                                Visit Site
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-                <span className="text-xs mt-4">
-                    The links provided on this page are offered solely for your convenience and informational purposes. Sparq Systems Inc. is not affiliated with, endorsed by, or responsible for the content, accuracy, or reliability of these external websites. We provide these links as a courtesy and make no guarantees about the information or services they contain. Use of these links is at your own discretion, and Sparq Systems Inc. bears no liability for any issues arising from them.
-                </span>
-            </section>
             <section id="faq" className="bg-white container mx-auto py-8 px-4 sm:px-32 scroll-mt-[66px]">
                 <h1 className="text-2xl font-bold text-brand-maroon text-left mt-12">
                     Frequently Asked Questions
                 </h1>
                 <div className="flex flex-col space-y-6">
                     {FAQ.map((item) => (
-                        <AccordionItem title={item.questionBrand} key={item.id} parent="installer_faq">
-                            <div>
-                                <h2 className="text-xl font-bold text-brand-maroon text-center mb-4">
-                                    {item.questionBrand}
-                                </h2>
-                                <div className="space-y-2">
-                                    {item.subQuestions.map((subItem) => (
-                                        <div key={subItem.id} className="text-gray-700">
-                                            <strong className="text-brand-maroon">{subItem.question}</strong><br></br>{" "}
-                                            {subItem.answer}
-                                        </div>
-                                    ))}
-                                </div>
+                        <AccordionItem title={item.questionBrand} key={item.id} parent="homeowner_faq">
+                            <div className="space-y-2">
+                                {item.subQuestions.map((subItem) => (
+                                    <div key={subItem.id} className="text-gray-700">
+                                        <strong className="text-brand-maroon">{subItem.question}</strong><br></br>{" "}
+                                        {subItem.answer && Array.isArray(subItem.answer) ? (
+                                            <div>
+                                                {subItem.answer.map((block, i) =>
+                                                    Array.isArray(block) ? (
+                                                        <ul key={i} className="list-disc ml-6">
+                                                            {block.map((li, j) => <li key={j}>{li}</li>)}
+                                                        </ul>
+                                                    ) : (
+                                                        <p key={i} className="whitespace-pre-line">{block}</p>
+                                                    ))}
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                {subItem.answer as string}
+                                            </div>
+                                        )}
+
+                                    </div>
+                                ))}
                             </div>
                         </AccordionItem>
                     ))}

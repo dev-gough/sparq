@@ -12,8 +12,18 @@ import { Autoplay, Pagination } from 'swiper/modules'
 
 import LogoSlider from '@/components/PartnerSlider'
 import VideoControls from '@/components/VideoControls'
+import AccordionItem from "@/components/AccordionItem"
 import { useTrackEvent } from '@/hooks/useTrackEvent'
 import { useIsMobile } from "@/hooks/useIsMobile"
+import FAQs from './investor_faq.json'
+
+interface FAQData {
+    id: number
+    questionBrand: string;
+    subQuestions: { id: number, question: string, answer: string | Array<string | string[]> }[];
+}
+
+const FAQ: FAQData[] = FAQs.faqs
 
 const partners = [
     { src: "/Logos/epower.png", alt: "QueensU Epower Lab", href: "https://www.queensu.ca/epower/" },
@@ -111,7 +121,7 @@ export default function InvestorsPage() {
 
     return (
         <div className='scroll-mt-[114px]'>
-            <div className="relative h-[calc(100vh-114px)] overflow-x-hidden ">
+            <section className="relative h-[calc(100vh-114px)] overflow-x-hidden ">
                 <Draggable bounds="parent" nodeRef={wrapperRef as React.RefObject<HTMLElement>} cancel=".inv_ctrl">
                     <div className='absolute top-4 right-4 p-2 md:p-0 border-white border md:border-none' ref={wrapperRef}>
                         <VideoControls
@@ -158,8 +168,8 @@ export default function InvestorsPage() {
                         </div>
                     )}
                 </div>
-            </div>
-            <div id="highlights" className="h-[calc(100vh-114px)] mx-auto pb-8 scroll-mt-[114px]">
+            </section>
+            <section id="highlights" className="h-[calc(100vh-114px)] mx-auto pb-8 scroll-mt-[114px]">
                 <div
                     className="w-full sm:h-[calc(100vh-114px)] bg-cover bg-top sm:bg-top relative bg-[url(/thumbnail_image.png)]">
                     <div className="max-w-full">
@@ -282,7 +292,42 @@ export default function InvestorsPage() {
                         </Swiper>
                     </div>
                 </div>
-            </div>
+            </section>
+            <section id="faq" className="bg-white container mx-auto py-8 px-4 sm:px-32 scroll-mt-[66px]">
+                <h1 className="text-2xl font-bold text-brand-maroon text-left mt-12">
+                    Frequently Asked Questions
+                </h1>
+                <div className="flex flex-col space-y-6">
+                    {FAQ.map((item) => (
+                        <AccordionItem title={item.questionBrand} key={item.id} parent="homeowner_faq">
+                            <div className="space-y-2">
+                                {item.subQuestions.map((subItem) => (
+                                    <div key={subItem.id} className="text-gray-700">
+                                        <strong className="text-brand-maroon">{subItem.question}</strong><br></br>{" "}
+                                        {subItem.answer && Array.isArray(subItem.answer) ? (
+                                            <div>
+                                                {subItem.answer.map((block, i) =>
+                                                    Array.isArray(block) ? (
+                                                        <ul key={i} className="list-disc ml-6">
+                                                            {block.map((li, j) => <li key={j}>{li}</li>)}
+                                                        </ul>
+                                                    ) : (
+                                                        <p key={i} className="whitespace-pre-line">{block}</p>
+                                                    ))}
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                {subItem.answer as string}
+                                            </div>
+                                        )}
+
+                                    </div>
+                                ))}
+                            </div>
+                        </AccordionItem>
+                    ))}
+                </div>
+            </section>
         </div>
     )
 }

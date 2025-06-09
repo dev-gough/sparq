@@ -5,7 +5,6 @@ import Image from "next/image"
 import { ListEntry } from "@/components/ProductPage"
 import Link from "next/link"
 import { useState } from 'react'
-import FAQs from "./faqs.json"
 
 function expanded() {
     return (
@@ -139,14 +138,6 @@ export default function TestPage() {
                 </AccordionItem>
                 <AccordionItem title="Comparison with Leading Microinverter" parent="quad3">
                     <Link href="/Q2000/Comparison-of-Q2000-4302-with-IQ8H-3p.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H-3p</Link>
-                </AccordionItem>
-                <AccordionItem title="Quad3 FAQs" parent="quad3">
-                    {FAQs.subQuestions.map((item) => (
-                        <div key={item.id} className="text-gray-700 my-4">
-                            <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-                            {item.answer}
-                        </div>
-                    ))}
                 </AccordionItem>
             </div>
         )
