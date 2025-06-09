@@ -247,7 +247,7 @@ export default function AboutPage() {
                     </h1>
 
                     <p className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed">
-                        Discover how we're revolutionizing solar energy through innovation,
+                        Discover how we&apos;re revolutionizing solar energy through innovation,
                         passion, and a commitment to a sustainable future.
                     </p>
                 </motion.div>
@@ -308,7 +308,7 @@ export default function AboutPage() {
                                 <motion.button
                                     whileHover={{ scale: 1.02, y: -2 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full px-8 py-4 bg-gradient-to-r from-brand-logo to-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm cursor-pointer"
+                                    className="w-full px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm cursor-pointer"
                                 >
                                     <div className="flex flex-col items-center gap-1">
                                         <span className="text-lg">For Installers</span>

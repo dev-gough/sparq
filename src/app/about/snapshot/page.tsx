@@ -171,7 +171,7 @@ function Section({ section, index }: SectionProps) {
 								<CardContent className="p-6">
 									<h3 className="text-xl font-bold text-brand-darkmaroon mb-4 flex items-center gap-3">
 										<FaAward className="text-brand-logo text-2xl" />
-										Dr. Praveen Jain's Awards
+										Dr. Praveen Jain&apos;s Awards
 									</h3>
 									<div className="space-y-3">
 										{[
@@ -226,7 +226,7 @@ export default function CompanySnapshot() {
 					</h1>
 
 					<p className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed">
-						Explore the milestones, innovations, and achievements that define Sparq Systems'
+						Explore the milestones, innovations, and achievements that define Sparq Systems&apos;
 						commitment to revolutionizing solar energy technology.
 					</p>
 				</motion.div>

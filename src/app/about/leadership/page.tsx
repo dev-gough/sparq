@@ -83,7 +83,7 @@ function TeamMemberCard({ member, index, onClick }: TeamMemberCardProps) {
             onClick={onClick}
             className="cursor-pointer group"
         >
-            <Card className="h-full backdrop-blur-md bg-white/90 border-brand-maroon/10 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden rounded-2xl">
+            <Card className="h-full backdrop-blur-md bg-white/90 border-brand-maroon/10 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden rounded-2xl py-0">
                 <motion.div
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}

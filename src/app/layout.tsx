@@ -12,25 +12,28 @@ export const metadata: Metadata = {
 	icons: '/logo.png',
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const nunito = Nunito({
 	subsets: ['latin'],
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 	display: 'swap',
 })
 
-// Modern font options
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const inter = Inter({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 	display: 'swap',
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const poppins = Poppins({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 	display: 'swap',
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const geist = Geist({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
