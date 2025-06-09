@@ -1,0 +1,100 @@
+{
+    "faqs": [
+        {
+            "id": 1,
+            "questionBrand": "Investor FAQs",
+            "subQuestions": [
+                {
+                    "id": 2,
+                    "question": "What does Sparq Systems do?",
+                    "answer": "Sparq Systems Inc. is a Canadian clean technology company specializing in the design and manufacture of next-generation microinverters for residential, commercial, and light industrial solar electric applications. The company's flagship product—the Quad Microinverter—optimizes four photovoltaic (PV) modules with a single unit. This innovation simplifies system design and installation while reducing overall costs compared to traditional microinverters. "
+                },
+                {
+                    "id": 3,
+                    "question": "Where is Sparq Systems headquartered?",
+                    "answer": "Sparq Systems is headquartered at: 945 Princess Street, Kingston, Ontario, K7L 0E9, Canada"
+                },
+                {
+                    "id": 4,
+                    "question": "On which stock exchanges is Sparq listed?",
+                    "answer": [
+                        "Sparq Systems Inc. is publicly traded on the following exchanges:",
+                        [
+                            "TSX Venture Exchange (Ticker: SPRQ)",
+                            "OCTQB Market (USA) (Ticker:SPRQF)",
+                            "Frankfurt Stock Exchange (Ticker: M26)"
+                        ]
+                    ]
+                },
+                {
+                    "id": 5,
+                    "question": "Who are Sparq's major investors?",
+                    "answer": [
+                        "Sparq has attracted strategic investments from:",
+                        [
+                            "Harvest Partners Ascend, which aquired a majority stake in June 2023",
+                            "Bain Capital Double Impact, which remains a key investor"
+                        ],
+                        "These investors support Sparq's long-term mission of enabling smart, sustainable energy solutions globally."
+                    ]
+                },
+                {
+                    "id": 6,
+                    "question": "Has Sparq received any industry recognition?",
+                    "answer": "Yes. In February 2025, Sparq Systems was named to the TSX Venture 50 list. This honor recognizes the top-performing companies on the TSX Venture Exchange based on share price appreciation, market capitalization growth, and trading volume."
+                },
+                {
+                    "id": 7,
+                    "question": "What recent partnerships has Sparq formed?",
+                    "answer": "In February 2024, Sparq entered a technology partnership with Jio Things Limited, a subsidiary of Jio Platforms Limited and Reliance Industries in India. This collaboration aims to co-develop, manufacture, and distribute microinverters in India—combining Jio's scale with Sparq's software-centric inverter design for cost-effective, high-volume production."
+                },
+                {
+                    "id": 8,
+                    "question": "What new products has Sparq introduced?",
+                    "answer": "In February 2025, Sparq unveiled an integrated PV and battery Quad Microinverter with energy storage capabilities, compatible with Lithium-Ion and Lead Acid batteries. This product supports both on-grid and off-grid applications and was showcased at the 2025 India Energy Week in New Delhi."
+                },
+                {
+                    "id": 9,
+                    "question": "Has Sparq received any significant purchase orders recently?",
+                    "answer": [
+                        "Yes, Sparq received substantial purchase orders from the Indian market:",
+                        [
+                            "June 2024: Over 6,000 Q2000 Quad Microinverters.",
+                            "August 2024: An additional 10,000 units, totaling over 20 MW of microinverter systems."
+                        ],
+                        "These orders demonstrate Sparq's growing presence in international markets."
+                    ]
+                },
+                {
+                    "id": 10,
+                    "question": "What are Sparq's key markets and manufacturing locations?",
+                    "answer": "While headquartered in Canada, Sparq serves markets in North America, India, and the Middle East. In 2025, Sparq began commercial production in India through a partnership with IL JIN Electronics, aligning with the “Make in India” initiative. Plans are also underway to expand manufacturing to the UAE to serve the MENA region."
+                },
+                {
+                    "id": 11,
+                    "question": "How can I access Sparq Systems' financial reports?",
+                    "answer": [
+                        "Financial statements and regulatory filings are available:",
+                        [
+                            "On the Investor Relations section of our website",
+                            "Via SEDAR+ (System for Electronic Document Analysis and Retrieval)"
+                        ]
+                    ]
+                },
+                {
+                    "id": 12,
+                    "question": "How can I contact Sparq Systems for investor inquiries?",
+                    "answer": [
+                        "You can reach the Investor Relations team at:",
+                        [
+                            "Phone: 1-855-947-7277",
+                            "Email: info@sparqsys.com",
+                            "Website: www.sparqsys.com",
+                            "Head Office: 945 Princess Street, Kingston, ON, K7L 0E9, Canada"
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -4,7 +4,6 @@ import AccordionItem from "@/components/AccordionItem"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
-import FAQs from "./faqs.json"
 
 function image() {
 	return (
@@ -68,14 +67,6 @@ export default function SparqLinqPage() {
 						<h2 className="text-lg font-bold">LED Indicator Guide for SL200-2001:</h2>
 						<Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-ledguide.pdf" target="_blank">SparqLinq-LEDGuide.pdf</Link>
 					</div>
-				</AccordionItem>
-				<AccordionItem title="SparqLinq FAQs" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqlinq">
-					{FAQs.subQuestions.map((item) => (
-						<div key={item.id} className="text-gray-700 my-4">
-							<strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-							{item.answer}
-						</div>
-					))}
 				</AccordionItem>
 			</div>
 		)

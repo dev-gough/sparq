@@ -2,7 +2,6 @@
 import ProductPage from "@/components/ProductPage"
 import AccordionItem from "@/components/AccordionItem"
 import Image from "next/image"
-import FAQs from "./faqs.json"
 import VideoPlayer from "@/components/VideoPlayer"
 
 function expanded() {
@@ -83,14 +82,6 @@ export default function SparqSyncPage() {
 					<div className="w-full aspect-video">
 						<VideoPlayer src="/external-sparq-app.mp4" />
 					</div>
-				</AccordionItem>
-				<AccordionItem title="SparqSync FAQs" className="sticky top-[66px] lg:relative lg:top-auto" parent="app">
-					{FAQs.subQuestions.map((item) => (
-						<div key={item.id} className="text-gray-700 my-4">
-							<strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-							{item.answer}
-						</div>
-					))}
 				</AccordionItem>
 			</div>
 		)

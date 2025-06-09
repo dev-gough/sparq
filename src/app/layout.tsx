@@ -39,7 +39,6 @@ const homeownerDropdown = [
 	{ label: "Sparq Video", href: "/homeowners" },
 	{ label: "Why Sparq", href: "/homeowners#whysparq" },
 	{ label: "Sparq Advantage", href: "/homeowners#discover"},
-	// { label: "Useful Tools", href: "/homeowners#useful-tools" },
 	{ label: "FAQs", href: "/homeowners#faq"}
 ]
 
@@ -47,7 +46,6 @@ const installerDropdown = [
 	{ label: "Why Sparq", href: "/installers#whysparq"},
 	{ label: "Sparq Advantage", href: "/installers#discover"},
 	{ label: "BoM Calculator", href: "/installers#bom"},
-	{ label: "Third-Party Tools", href: "/installers#useful-tools"},
 	{ label: "FAQs", href: "/installers#faq"},
 ]
 

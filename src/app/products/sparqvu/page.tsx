@@ -3,7 +3,6 @@ import ProductPage from "@/components/ProductPage"
 import AccordionItem from "@/components/AccordionItem"
 import Image from "next/image"
 import Link from "next/link"
-import FAQs from "./faqs.json"
 
 function image() {
 	return (
@@ -50,14 +49,6 @@ export default function SparqVuPage() {
 				</AccordionItem>
 				<AccordionItem title="Documentation" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqvu">
 					<Link href="/SparqVu.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">SparqVu Manual</Link>
-				</AccordionItem>
-				<AccordionItem title="SparqVu FAQs" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqvu">
-					{FAQs.subQuestions.map((item) => (
-						<div key={item.id} className="text-gray-700 my-4">
-							<strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-							{item.answer}
-						</div>
-					))}
 				</AccordionItem>
 			</div>
 		)

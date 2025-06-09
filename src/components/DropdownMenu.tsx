@@ -61,7 +61,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
             </div>
             {/* Dropdown menu */}
             {isOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-brand-graytext shadow-lg rounded-md border-t-4 border-t-brand-maroon">
+                <div className="absolute top-full left-0 mt-1 w-48 bg-[#686666] shadow-lg rounded-md border-t-4 border-t-brand-maroon">
                     {navItem.dropdown && navItem.dropdown.map((subItem, index) => {
                         // Determine if the dropdown item is active
                         const isSubActive = pathname === subItem.href;
