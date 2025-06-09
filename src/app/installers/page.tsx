@@ -2,7 +2,6 @@
 
 import { useState, useRef } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import InstallerFAQData from "./installer_faq.json"
 
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
