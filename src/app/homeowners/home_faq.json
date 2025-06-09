@@ -1,42 +1,318 @@
 {
     "faqs": [
         {
-            "id": 9,
+            "id": 1,
+            "questionBrand": "PV Systems",
+            "subQuestions": [
+                {
+                    "id": 2,
+                    "question": "What are the main components of a residential PV system?",
+                    "answer": [
+                        "A typical home solar system includes the following:",
+                        [
+                            "Solar Panels: Convert sunlight into direct current (DC) electricity",
+                            "Inverter (Micro or String): Converts DC electricity into alternating current (AC) for home use.",
+                            "Junction Box: A protective enclosure where electrical wires connect.",
+                            "Gateway (Monitoring Device): Communicates with inverters and lets homeowners track system performance.",
+                            "Disconnect Switch (AC/DC): Manually shuts down power during maintenance or emergencies.",
+                            "Trunk Cable: Main cable connecting multiple microinverters or panel circuits.",
+                            "Branch Cable: Secondary cable connecting panel groups to the trunk cable.",
+                            "Mounting Structure: Hardware used to securely fasten panels to the roof or ground.",
+                            "Battery (Optional): Stores excess energy for use at night or during outages."
+                        ]
+                    ]
+                },
+                {
+                    "id": 3,
+                    "question": "How much does a residential solar PV system cost?",
+                    "answer": "System cost depends on size, equipment, labor, and region. Incentives like tax credits can significantly reduce the final price. "
+                },
+                {
+                    "id": 4,
+                    "question": "Will solar panels work on my roof?",
+                    "answer": "Most roofs are suitable if they're structurally sound, get enough sunlight, and have minimal shading. A professional assessment will confirm suitability."
+                },
+                {
+                    "id": 5,
+                    "question": "How much can I save on my electricity bills?",
+                    "answer": "Many homeowners cut bills by 50-100%. Savings depend on system size, usage habits, and electricity rates."
+                },
+                {
+                    "id": 6,
+                    "question": "What incentives or rebates are available for solar installation?",
+                    "answer": "Federal tax credits, local utility rebates, and renewable energy grants may be available. Check your local and national programs."
+                },
+                {
+                    "id": 58,
+                    "question": "What are some useful solar energy tools for Homeowners?",
+                    "answer": [
+                        "Several online tools can help you assess the feasibility, cost, and savings of a solar system for your home.  Here's a short list of tools we find useful:",
+                        [
+                            "Google Project Sunroof (https://sunroof.withgoogle.com/): Uses satellite imagery to analyze roof size, shading, and local climate.",
+                            "PVWatts Calculator (https://pvwatts.nrel.gov/): Offers a detailed estimate of system output based on location, system size, tilt, and more.",
+                            "EnergySage Solar Calculator (https://www.energysage.com/solar/calculator/): Estimates optimal system size, cost, and savings based on utility rates and location.",
+                            "Solar-Estimate (https://www.solar-estimate.org/): Provides system sizing, savings projections, and can match homeowners with installers."
+                        ]
+                    ]
+                },
+                {
+                    "id": 7,
+                    "question": "How long does it take to install a solar PV system?",
+                    "answer": "Installation takes 1-3 days, but the full process—including design, permitting, and approvals—can take several weeks. "
+                },
+                {
+                    "id": 8,
+                    "question": "Do I need a battery with my solar system?",
+                    "answer": "It is not required, but batteries store energy for backup and off-grid use. Without one, excess energy is sent to the grid."
+                },
+                {
+                    "id": 9,
+                    "question": "What maintenance is required for solar systems?",
+                    "answer": "Solar PV systems are generally low maintenance, but upkeep depends on the system type and the long-term reliability of its components. Panels may require occasional cleaning to remove dirt, dust, or debris, especially in dry or dusty areas. An annual inspection is recommended to check for issues with wiring, mounting hardware, or performance drops. One of the most common maintenance concerns involves the failure of electrolytic capacitors—key components in inverters—which typically have a lifespan of 10-12 years, depending on heat, usage, and environmental conditions. Choosing high-quality inverters and components can help minimize long-term maintenance needs and improve overall system reliability."
+                },
+                {
+                    "id": 10,
+                    "question": "How long do solar panels last?",
+                    "answer": "Typically, 25-30 years. Most come with performance warranties and degrade very slowly over time."
+                },
+                {
+                    "id": 11,
+                    "question": "Will installing solar panels increase my property value?",
+                    "answer": "Yes. Owned solar systems can increase resale value and appeal to buyers. Leased systems may require transfer agreements."
+                },
+                {
+                    "id": 12,
+                    "question": "What happens if I sell my home after installing solar?",
+                    "answer": "You can transfer ownership of the solar system if it's leased or financed. Owned systems generally enhance property value."
+                },
+                {
+                    "id": 13,
+                    "question": "What is Net Metering?",
+                    "answer": "A billing system that credits solar owners for excess electricity sent to the grid. These credits can offset your consumption at night or on cloudy days."
+                },
+                {
+                    "id": 14,
+                    "question": "What is ZED (Zero-Export Device)?",
+                    "answer": "A Zero-Export Device ensures no electricity is exported to the grid from your PV system. It's used where utility regulations require solar systems to operate in zero-export mode."
+                },
+                {
+                    "id": 15,
+                    "question": "What is Dual-Mode Operation: On-Grid & Off-Grid?",
+                    "answer": "A system that can function both with the grid (supplying/consuming power) and independently (during outages), often using batteries for backup."
+                },
+                {
+                    "id": 16,
+                    "question": "What is MPPT (Maximum Power Point Tracking)?",
+                    "answer": "A technology in inverters that continuously adjusts electrical parameters to extract the maximum possible power from solar panels under varying sunlight conditions."
+                },
+                {
+                    "id": 17,
+                    "question": "What is RSD (Rapid Shutdown Device)?",
+                    "answer": "A safety mechanism that quickly shuts down power at the panel level during emergencies or for maintenance, meeting electrical code requirements."
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "questionBrand": "Q2000",
+            "subQuestions": [
+                {
+                    "id": 19,
+                    "question": "How can I tell if the Q2000 inverter is working?",
+                    "answer": "The status LED on the Q2000 will be flashing green when working correctly. If the LED is flashing Red, this indicates an AC issue so check the AC breaker. If the LED is amber, this indicates a ground fault was detected so check for faulty DC wiring then connect to the SparqLinq and go to the 'Settings->Inverter Management' page and click the Clear GFDI (blue lightning bolt) icon."
+                },
+                {
+                    "id": 20,
+                    "question": "What is the Sparq Quad2000 microinverter, and what are its key features?",
+                    "answer": "The Sparq Quad 2000 is a high-efficiency microinverter supporting up to four PV module inputs, each with independent MPPT. It simplifies wiring with a single AC trunk output.  Its key features include dual-mode operation (grid-tied and off-grid), high power density, a modular design, and real-time system monitoring via SparqVu and SparqSync."
+                },
+                {
+                    "id": 21,
+                    "question": "Which AC electrical systems are compatible with the Quad 2000?",
+                    "answer": "Compatible systems include: Split-phase 120/240V, three-phase 120/208V, single-phase 230V, and three-phase Y-connected 230/400V with neutral."
+                },
+                {
+                    "id": 22,
+                    "question": "What PV panels can be used with the Quad 2000?",
+                    "answer": "The maximum wattage per panel is 680W per input.  The voltage range is 20-60V (Voc), and the current limit is 18A (Isc).  Any panel that meets these specifications can be used."
+                },
+                {
+                    "id": 23,
+                    "question": "What do the LED indicators mean?",
+                    "answer": "LEDs provide system feedback such as power-up status, grid connection, fault alerts, and communication signals.  Please see the user manual for a full LED legend."
+                },
+                {
+                    "id": 24,
+                    "question": "Does it support cloud-based monitoring?",
+                    "answer": "Yes, the Quad2000 integrates with SparqVu to provide real-time performance tracking, remote diagnostics, and system alerts."
+                },
+                {
+                    "id": 25,
+                    "question": "Is there a mobile app available?",
+                    "answer": "Yes. The Sparq app is available for iOS and Android for remote monitoring and notifications."
+                },
+                {
+                    "id": 26,
+                    "question": "How are firmware updates delivered?",
+                    "answer": "Firmware updates are automatic and over-the-air via the Sparq Gateway, provided the system is connected to the internet."
+                },
+                {
+                    "id": 27,
+                    "question": "Can the Quad 2000 operate off-grid?",
+                    "answer": "Yes. Off-grid mode is supported and can be enabled via the Sparq Gateway."
+                },
+                {
+                    "id": 28,
+                    "question": "Can it power a single-phase water pump?",
+                    "answer": "Yes. The Quad 2000 can support nonlinear loads, including single-phase water pumps."
+                }
+            ]
+        },
+        {
+            "id": 29,
+            "questionBrand": "Quad3",
+            "subQuestions": [
+                {
+                    "id": 30,
+                    "question": "What is the Quad3 microinverter, and what are its key features?",
+                    "answer": "The Sparq Quad3 is a high-efficiency, native three-phase microinverter that supports up to four PV module inputs, each with independent MPPT. It also supports MPPT motor drive applications.  Its key features include: Tri-mode operation (grid-tied, off-grid, MPPT motor drive), a modular design with automatic paralleling for high-power motor support, high power density, and real-time monitoring."
+                },
+                {
+                    "id": 31,
+                    "question": "Which AC electrical systems are compatible with the Quad3?",
+                    "answer": "The Quad3 supports 220/380V and 230/400V systems."
+                },
+                {
+                    "id": 32,
+                    "question": "What PV panels are compatible with the Quad3?",
+                    "answer": "The maximum wattage per panel is 680W per input.  The voltage range is 20-60V (Voc), and the current limit is 18A (Isc).  Any panel that meets these specifications can be used."
+                },
+                {
+                    "id": 33,
+                    "question": "What do the LED indicators signify?",
+                    "answer": "LEDs provide system feedback such as power-up status, grid connection, fault alerts, and communication signals.  Please see the user manual for a full LED legend."
+                },
+                {
+                    "id": 34,
+                    "question": "Does the Quad3 support cloud-based monitoring?",
+                    "answer": "Yes, the Quad3 integrates with SparqVu to provide real-time performance tracking, remote diagnostics, and system alerts."
+                },
+                {
+                    "id": 35,
+                    "question": "Is there a mobile app available?",
+                    "answer": "Yes. The Sparq app is available on both iOS and Android platforms for remote monitoring and notifications."
+                },
+                {
+                    "id": 36,
+                    "question": "How are firmware updates delivered?",
+                    "answer": "Firmware updates are delivered automatically over-the-air through the Sparq Gateway, provided the system has internet access."
+                },
+                {
+                    "id": 37,
+                    "question": "Can the Quad3 operate off-grid?",
+                    "answer": "Yes, the Quad3 supports off-grid operation and MPPT motor drive applications. Off-grid mode can be enabled via the Sparq Gateway."
+                },
+                {
+                    "id": 38,
+                    "question": "Is grounding required?",
+                    "answer": "Yes. While the Quad3 features advanced protection mechanisms, proper grounding and surge protection are essential to safeguard the system from grid and environmental anomalies."
+                },
+                {
+                    "id": 39,
+                    "question": "Can it power a three-phase water pump?",
+                    "answer": "Yes, the Quad3 supports various three-phase water pumps, including Induction motor, Permanent Magnet Synchronous Motor (PMSM), and Brushless DC (BLDC) motor pumps."
+                },
+                {
+                    "id": 40,
+                    "question": "What motor power can one Quad3 unit support?",
+                    "answer": "A single Quad3 unit can support a water pump rated up to 3 hp. For higher-power motors, multiple units can be connected in parallel to meet the required load."
+                },
+                {
+                    "id": 41,
+                    "question": "Can I use one Quad3 unit with a 5 hp or higher power solar water pump?",
+                    "answer": "Yes, but with limitations. A single Quad3 will still cap its output at 3 hp. While it can power the motor, it will not reach full speed or torque, and performance will be reduced."
+                },
+                {
+                    "id": 42,
+                    "question": "Can I use one Quad3 unit with a 2 hp or lower power solar water pump?",
+                    "answer": "Absolutely. The Quad3 uses smart, sensorless control to safely limit output based on motor parameters like frequency and voltage, ensuring safe operation and protecting the motor from damage."
+                }
+            ]
+        },
+        {
+            "id": 43,
+            "questionBrand": "SparqLinq",
+            "subQuestions": [
+                {
+                    "id": 44,
+                    "question": "The SparqLinq Dashboard page 'DAY DETAILS' reports 'No data for the selected day'.",
+                    "answer": "SparqLinq missing data may occur if the time and date was not restored correctly from an internet time server when the SparqLinq was last power cycled. This causes the data to be stored under the default date set in the SparqLinq, instead of under today's date. To check this, go to the 'Settings->Installation Information' page. At the bottom of the tab, the box titled 'Current Date and Time' will show something like '2025/05/30 12:55:44'. Look closely to see if it is correct. If it is wrong, edit to the correct time and date then press enter."
+                },
+                {
+                    "id": 45,
+                    "question": "My SparqLinq is joined to most microinverters, but some are distant and not connecting. What can I do?",
+                    "answer": "Plug the SparqLinq into an extension cord and move it to different locations (possibly outside or up on the roof) and try joining to the inverter using the 'Settings-Inverter Management' tab. It is important that the microinverter be first joined to the SparqLinq before it can start connecting to other inverters in a mesh network. Put the SparqLinq in a non-metallic weatherproof box on the roof to get it closer to the inverters. It may be necessary to use a second SparqLinq to connect the additional inverters. If the inverters have been joined to the first SparqLinq, you will need to go to its 'Settings-Inverter Management' tab and click on the 'X' in the Release column before the microinverters can be joined to a new SparqLinq. Two or more SparqLinqs can be monitored on the SparqVu website, but there is no function to allow pairing the sites together."
+                }
+            ]
+        },
+            {
+            "id": 46,
+            "questionBrand": "SparqVu",
+            "subQuestions": [
+                {
+                    "id": 47,
+                    "question": "There is no data displayed on the SparqVu Dashboard page.",
+                    "answer": "Try connecting to the SparqLinq Dashboard page and see if data is being logged. If so, power cycle the SparqLinq and then review the SparqVu site after about 10 mins. If there was several days of backlogged data, it may take a while for the data to be updated."
+                },
+                {
+                    "id": 48,
+                    "question": "How do I register my project on the SparqVu site?",
+                    "answer": "On the SparqLinq dashboard, click on the menu icon (three horizontal bars) in the top left corner of the dashboard page then select the SparqVu Token option. Enter the full email address that was used to create the SparqVu account and click \"Generate Access Token\" and copy the Project ID and Token values. Login to your SparqVu account and click the add a new site button, paste the project ID copied from the SparqLinq into the project ID field on SparqVu. Click the Go to Security Check button. Enter the Token copied from the SparqLinq and click Check Access Token. The SparqLinq should now be added to this SparqVu account."
+                },
+                {
+                    "id": 49,
+                    "question": "How do I register for an account on the SparqVu.com website?",
+                    "answer": "Go to SparqVu.com and click on the Register tab. Under 'Register for A New Account' enter your email address and a password twice then click Register. Go to your email account and click the activate link."
+                }
+            ]
+        },
+        {
+            "id": 50,
             "questionBrand": "Carbon Intensity",
             "subQuestions": [
                 {
-                    "id": 10,
+                    "id": 51,
                     "question": "What is Carbon Intensity of Electricity Generation?",
                     "answer": "Carbon intensity refers to the amount of carbon dioxide (CO2) emissions produced per unit of electricity generated. It is typically measured in grams of CO2 per kilowatt-hour (g CO2/kWh). The carbon intensity can vary depending on the energy mix used by your local electricity grid (e.g., coal, natural gas, nuclear, or renewable energy sources like wind or solar)."
                 },
                 {
-                    "id": 11,
+                    "id": 52,
                     "question": "Why is it important?",
                     "answer": "In the SPARQ User App, carbon intensity is used to calculate the reduction in CO2 emissions due to your solar plant. By producing your own solar energy, you reduce the need for electricity from the grid, thus lowering overall CO2 emissions. To accurately calculate this reduction, the app requires you to input the carbon intensity value for your region."
                 },
                 {
-                    "id": 12,
+                    "id": 53,
                     "question": "How do I find this information?",
                     "answer": "You can find the carbon intensity for your area by checking with your local electricity provider or using online resources that track carbon intensity by region."
                 }
             ]
         },
         {
-            "id": 13,
+            "id": 54,
             "questionBrand": "Electricity Unit Price",
             "subQuestions": [
                 {
-                    "id": 14,
+                    "id": 55,
                     "question": "What is Electricity Unit Price?",
                     "answer": "Electricity unit price refers to the cost you pay per kilowatt-hour (kWh) of electricity consumed from the grid. This price can vary based on your electricity provider, the time of day, and the type of plan you're on (e.g., fixed, variable, or time-of-use pricing)."
                 },
                 {
-                    "id": 15,
+                    "id": 56,
                     "question": "Why is it important?",
                     "answer": "The electricity unit price is used to calculate the amount of money you save by generating your own solar energy. By producing solar energy, you reduce the amount of electricity you need to purchase from the grid, directly lowering your electricity bill. To provide an accurate calculation, the app requires you to input your electricity unit price."
                 },
                 {
-                    "id": 16,
+                    "id": 57,
                     "question": "How do I find this information?",
                     "answer": "You can find your electricity unit price on your electricity bill, usually listed as the cost per kWh. If you have multiple rates (e.g., peak and off-peak), you may input an average value."
                 }

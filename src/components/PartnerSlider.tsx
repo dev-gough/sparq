@@ -27,7 +27,7 @@ export default function LogoSlider({ logos, speed = 1500 }: LogoSliderProps) {
 				pauseOnMouseEnter: true,
 			}}
 			speed={speed}
-			className="logo-slider h-32"
+			className="logo-slider h-20 sm:h-40"
 			breakpoints={{
 				640: {
 					slidesPerView: 2
@@ -40,13 +40,13 @@ export default function LogoSlider({ logos, speed = 1500 }: LogoSliderProps) {
 			{logos.map((logo, index) => (
 				<SwiperSlide key={index} className=" p-1">
 					{logo.href ? (
-						<Link href={logo.href} target='_blank' className=''>
+						<Link href={logo.href} target='_blank' className='sm:h-90'>
 							<Image
 								src={logo.src}
 								alt={logo.alt}
 								width={256}
 								height={128}
-								className="h-20 w-1/2 sm:h-32  sm:p-2 bg-white rounded-xl"
+								className="h-20 w-1/2 sm:h-full  sm:p-2 bg-white rounded-xl"
 							/>
 						</Link>
 					) : (
@@ -55,7 +55,7 @@ export default function LogoSlider({ logos, speed = 1500 }: LogoSliderProps) {
 							alt={logo.alt}
 							width={256}
 							height={128}
-							className="h-20 w-1/2 sm:h-32 sm:p-2 bg-white rounded-xl"
+							className="h-20 w-1/2 sm:h-full sm:p-2 bg-white rounded-xl"
 						/>
 					)}
 				</SwiperSlide>

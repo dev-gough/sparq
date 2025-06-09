@@ -5,7 +5,6 @@ import Image from "next/image"
 import { ListEntry } from "@/components/ProductPage"
 import Link from "next/link"
 import { useState } from 'react'
-import FAQs from "./faqs.json"
 
 function expanded() {
     return (
@@ -22,7 +21,7 @@ function image() {
     return (
         <Image
             src="/quad3.webp"
-            alt="Quad 3 Microinverter"
+            alt="Quad3 Microinverter"
             width={1920}
             height={1084}
             className="object-contain sticky top-16 z-10"
@@ -63,7 +62,7 @@ const listContent: ListEntry[] = [
     {
         heading: "Cost-Effectiveness",
         items: [
-            "Quad Architecture",
+            "Quad Architecture is the most cost-effective",
             "Reduced manufacturing Bill of Materials",
             "Reduced Balance of System (cabling, grounding, ect)",
             "Lower manufacturing and installation costs",
@@ -140,14 +139,6 @@ export default function TestPage() {
                 <AccordionItem title="Comparison with Leading Microinverter" parent="quad3">
                     <Link href="/Q2000/Comparison-of-Q2000-4302-with-IQ8H-3p.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H-3p</Link>
                 </AccordionItem>
-                <AccordionItem title="Quad3 FAQs" parent="quad3">
-                    {FAQs.subQuestions.map((item) => (
-                        <div key={item.id} className="text-gray-700 my-4">
-                            <strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-                            {item.answer}
-                        </div>
-                    ))}
-                </AccordionItem>
             </div>
         )
     }
@@ -159,7 +150,7 @@ export default function TestPage() {
                 selectedModel={selectedModel}
                 setSelectedModel={setSelectedModel}
                 model="Q2000-4301"
-                heading="Quad 3 Microinverter"
+                heading="Quad3 Microinverter"
                 animated={true}
                 parent="Quad3"
                 href="quad3"

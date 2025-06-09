@@ -1,9 +1,8 @@
 'use client'
 import { useState } from 'react'
 import { FaAward } from 'react-icons/fa'
-import Link from 'next/link'
 
-const cols = ["History", "Disrupting PV", "Products", "Patents & Awards"]
+const cols = ["History", "Disrupting PV Industry", "Products", "Patents & Awards"]
 
 interface DropdownButtonProps {
 	index: number
@@ -13,7 +12,7 @@ interface DropdownButtonProps {
 export default function CompanySnapshot() {
 	function DropdownButton({ index, title }: DropdownButtonProps) {
 		return (
-			<div className='md:w-1/5 lg:p-2 pb-2 mx-0.5'>
+			<div className='md:w-1/4 lg:p-2 pb-2 mx-0.5'>
 				<button
 					className={`w-full bg-brand-maroon text-white p-1 sm:p-2 lg:p-3 rounded-lg flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer ${openIndex === index ? "border-2 sm:border-4 border-brand-logo" : "border-none"}`}
 					onClick={() => toggleDropdown(index)}
@@ -35,7 +34,7 @@ export default function CompanySnapshot() {
 		)
 	}
 
-	const [openIndex, setOpenIndex] = useState<number | null>(null);
+	const [openIndex, setOpenIndex] = useState<number | null>(0);
 
 	const toggleDropdown = (index: number) => {
 		setOpenIndex(prev => (prev === index ? null : index));
@@ -47,21 +46,8 @@ export default function CompanySnapshot() {
 				{cols.map((title, index) => (
 					<DropdownButton key={index} index={index} title={title} />
 				))}
-				<div className='md:w-1/5 lg:p-2 pb-2 mx-0.5'>
-					<Link
-						href="/about"
-						className="w-full bg-brand-maroon text-white p-1 sm:p-2 lg:p-3 rounded-lg flex items-center justify-center hover:bg-brand-darkmaroon transition-colors cursor-pointer"
-					>
-						<span className="md:text-lg lg:text-xl xl:text-2xl font-bold whitespace-nowrap">Read More</span>
-					</Link>
-				</div>
 			</div>
 			{/* make this a switch case? */}
-			{openIndex === null && (
-				<div className='flex justify-center items-center'>
-					<p className='text-lg md:text-xl md:mt-16'>Click on a label to see more</p>
-				</div>
-			)}
 			{openIndex === 0 && (
 				<div className="mt-4 w-full px-4 py-2 lg:px-12">
 					<ul className="space-y-4 md:space-y-6 lg:space-y-8 list-disc list-outside pl-4 sm:text-lg md:text-2xl lg:text-3xl 3xl:text-[40px]">

@@ -19,10 +19,12 @@ const nunito = Nunito({
 })
 
 const aboutDropdown = [
+	{ label: "Highlights", href: "/about"},
 	{ label: "Snapshot", href: "/about/snapshot" },
 	{ label: "Who We Are", href: "/about/us" },
 	{ label: "Leadership", href: "/about/leadership" },
 	{ label: "Board of Directors", href: "/about/board" },
+	{ label: "Legal", href: "/legal"}
 ]
 
 const investorDropdown = [
@@ -34,17 +36,16 @@ const investorDropdown = [
 ]
 
 const homeownerDropdown = [
-	{ label: "Global Warming", href: "/homeowners" },
+	{ label: "Sparq Video", href: "/homeowners" },
 	{ label: "Why Sparq", href: "/homeowners#whysparq" },
 	{ label: "Sparq Advantage", href: "/homeowners#discover"},
-	{ label: "Useful Tools", href: "/homeowners#useful-tools" },
 	{ label: "FAQs", href: "/homeowners#faq"}
 ]
 
 const installerDropdown = [
 	{ label: "Why Sparq", href: "/installers#whysparq"},
 	{ label: "Sparq Advantage", href: "/installers#discover"},
-	{ label: "Useful Tools", href: "/installers#useful-tools"},
+	{ label: "BoM Calculator", href: "/installers#bom"},
 	{ label: "FAQs", href: "/installers#faq"},
 ]
 
@@ -54,14 +55,14 @@ const productDropdown = [
 	{ label: "Legacy Products", href: "/products/legacy" },
 	{ label: "SparqLinq", href: "/products/sparqlinq" },
 	{ label: "SparqVu", href: "/products/sparqvu" },
-	{ label: "Sparq App", href: "/products/app" },
+	{ label: "SparqSync", href: "/products/app" },
 	{ label: "Accessories", href: "/products/accessories" },
 ]
 
 const resourcesDropdown = [
+	{ label: "Learning Hub", href: "/resources"},
 	{ label: "Photo Gallery", href: "/resources/photos" },
 	{ label: "Video Gallery", href: "/resources/videos" },
-	{ label: "Design My System", href: "/resources/design" },
 ]
 
 const navbarItems = [

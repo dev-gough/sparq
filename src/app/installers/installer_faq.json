@@ -1,8 +1,81 @@
 {
     "faqs": [
         {
+            "id": 32,
+            "questionBrand": "PV Systems",
+            "subQuestions": [
+                {
+                    "id": 50,
+                    "question": "What are some useful tools to design and optimize a PV system installation?",
+                    "answer": [
+                        "For professional installers, we find the following tools useful for design, modelling, and performance enhancement:",
+                        [
+                            "HelioScope (https://helioscope.aurorasolar.com/): HelioScope streamlines commercial PV design with web-based 3D modeling and fast performance simulations.",
+                            "OpenSolar (https://www.opensolar.com/): OpenSolar offers free cloud-based tools for solar design, 3D modeling, and accurate energy estimates.",
+                            "PVsyst (https://www.pvsyst.com/): PVsyst provides detailed photovoltaic analysis with precise energy yield and system optimization tools."
+                        ]
+                    ]
+                },
+                {
+                    "id": 33,
+                    "question": "What is the maximum number of panels that can be connected to a Sparq microinverter?",
+                    "answer": "Our microinverters supports up to four solar modules per unit, enabling a compact and efficient quad-input design that reduces the total number of inverters needed."
+                },
+                {
+                    "id": 34,
+                    "question": "Does Sparq offer an \"all-AC\" system architecture?",
+                    "answer": "Yes. Sparq Systems provides a fully AC-based system, eliminating the need for high-voltage DC cabling. This simplifies installation and enhances installer and homeowner safety."
+                },
+                {
+                    "id": 35,
+                    "question": "How is system monitoring handled?",
+                    "answer": "The SparqLinq gateway communicates wirelessly with the microinverters via Zigbee. It collects real-time and historical performance data, accessible via the cloud-based monitoring platform."
+                },
+                {
+                    "id": 36,
+                    "question": "Are there specific utility approval steps before grid connection?",
+                    "answer": "Yes. Installers must ensure the system complies with local utility interconnection standards, which may involve site inspections, documentation, and system testing before final approval."
+                },
+                {
+                    "id": 37,
+                    "question": "What are the key installation steps for a microinverter?",
+                    "answer": "Each microinverter is mounted directly under the panel, connected via MC4 connectors, secured to the racking, and wired into the AC trunk cable. It integrates easily with standard mounting and wiring systems."
+                },
+                {
+                    "id": 43,
+                    "question": "How do I register my project on the SparqVu site?",
+                    "answer": "On the SparqLinq dashboard, click on the menu icon (three horizontal bars) in the top left corner of the dashboard page then select the SparqVu Token option. Enter the full email address that was used to create the SparqVu account and click \"Generate Access Token\" and copy the Project ID and Token values. Login to your SparqVu account and click the add a new site button, paste the project ID copied from the SparqLinq into the project ID field on SparqVu. Click the Go to Security Check button. Enter the Token copied from the SparqLinq and click Check Access Token. The SparqLinq should now be added to this SparqVu account."
+                },
+                {
+                    "id": 38,
+                    "question": "Is there a quick-start guide for setting up SparqLinq?",
+                    "answer": "Yes. Sparq provides a Quick Installation Guide for the SparqLinq gateway that outlines setup, network configuration, and pairing with the microinverters."
+                },
+                {
+                    "id": 39,
+                    "question": "What support resources are available for installers?",
+                    "answer": "Sparq offers technical documentation, product datasheets, and installation manuals on its website. For hands-on assistance, installers can also access training and technical support from Sparq's service team."
+                },
+                {
+                    "id": 40,
+                    "question": "How can installers contact Sparq for technical support?",
+                    "answer": "Installers can reach Sparq Systems at 1-855-947-7277 or email info@sparqsys.com for prompt technical assistance or warranty inquiries."
+                },
+                {
+                    "id": 41,
+                    "question": "What is the warranty period for Sparq products?",
+                    "answer": "Sparq offers a standard 12-year warranty, which can be extended up to 25 years. Installers should register the system and advise customers to keep records for any future claims."
+                },
+                {
+                    "id": 42,
+                    "question": "What is Sparq's truck-roll policy for service issues?",
+                    "answer": "Sparq does not cover truck-roll costs. Its products are designed to be maintenance-free, and the system architecture minimizes on-site service needs. Installers are expected to diagnose issues remotely when possible."
+                }
+            ]
+        },
+        {
             "id": 1,
-            "questionBrand": "Q2000 Product Family",
+            "questionBrand": "Q2000",
             "subQuestions": [
                 {
                     "id": 2,
@@ -33,6 +106,21 @@
                     "id": 7,
                     "question": "What do the LED indicators mean?",
                     "answer": "LEDs provide system feedback such as power-up status, grid connection, fault alerts, and communication signals.  Please see the user manual for a full LED legend."
+                },
+                {
+                    "id": 44,
+                    "question": "What PV panels can be used with the Quad 2000?",
+                    "answer": "The maximum wattage per panel is 680W per input.  The voltage range is 20-60V (Voc), and the current limit is 18A (Isc).  Any panel that meets these specifications can be used."
+                },
+                {
+                    "id": 45,
+                    "question": "Does it support cloud-based monitoring?",
+                    "answer": "Yes, the Quad2000 integrates with SparqVu to provide real-time performance tracking, remote diagnostics, and system alerts."
+                },
+                {
+                    "id": 46,
+                    "question": "Is there a mobile app available?",
+                    "answer": "Yes. The Sparq app is available for iOS and Android for remote monitoring and notifications."
                 },
                 {
                     "id": 8,
@@ -101,7 +189,7 @@
                     "answer": "LEDs provide system feedback such as power-up status, grid connection, fault alerts, and communication signals.  Please see the user manual for a full LED legend."
                 },
                 {
-                    "id": 21,
+                    "id": 47,
                     "question": "How are firmware updates delivered?",
                     "answer": "Firmware updates are delivered automatically over-the-air through the Sparq Gateway, provided the system has internet access."
                 },
@@ -111,12 +199,12 @@
                     "answer": "This depends on the branch circuit current rating and local electrical codes. Please consult the installation manual for precise guidelines."
                 },
                 {
-                    "id": 23,
+                    "id": 48,
                     "question": "Is grounding required?",
                     "answer": "Yes. While the Quad3 features advanced protection mechanisms, proper grounding and surge protection are essential to safeguard the system from grid and environmental anomalies."
                 },
                 {
-                    "id": 24,
+                    "id": 49,
                     "question": "Can the Quad3 operate off-grid?",
                     "answer": "Yes. The Quad3 supports off-grid operation and MPPT motor drive applications. Off-grid mode can be enabled via the Sparq Gateway."
                 },
@@ -139,6 +227,27 @@
                     "id": 28,
                     "question": "Can I use one Quad3 unit with a 2 hp or lower power solar water pump?",
                     "answer": "Absolutely. The Quad3 uses smart, sensorless control to safely limit output based on motor parameters like frequency and voltage, ensuring safe operation and protecting the motor from damage."
+                }
+            ]
+        },
+        {
+            "id": 99,
+            "questionBrand": "SparqLinq",
+            "subQuestions": [
+                {
+                    "id": 6,
+                    "question": "The SparqLinq Dashboard page 'DAY DETAILS' reports 'No data for the selected day'.",
+                    "answer": "SparqLinq missing data may occur if the time and date was not restored correctly from an internet time server when the SparqLinq was last power cycled. This causes the data to be stored under the default date set in the SparqLinq, instead of under today’s date. To check this, go to the 'Settings->Installation Information' page. At the bottom of the tab, the box titled 'Current Date and Time' will show something like '2018/06/30 12:55:44'. Look closely to see if it is correct. If it is wrong, edit to the correct time and date then press enter."
+                },
+                {
+                    "id": 7,
+                    "question": "How do I connect to the SparqLinq Wi-Fi AP (Access Point) after connecting it to the customer’s Wi-Fi?",
+                    "answer": "One option is to have them connect to their router and look under the active devices to see the IP address the router assigned the SparqLinq. If you need to disconnect the SparqLinq from the customer’s Wi-Fi, use a paperclip to push the reset button on the side of the SparqLinq. This will reset the Wi-Fi mode in the SparqLinq so it will open an AP (Access Point) with these credentials:\n\nSSID: SparqLinq\nPWD: 'SparqLinq 80211'\n\nOn a Wi-Fi enabled laptop or phone, connect to this Wi-Fi AP and go to the dashboard by typing in the address http://192.168.111.1/"
+                },
+                {
+                    "id": 8,
+                    "question": "My SparqLinq is joined to most inverters but some are distant and not connecting. What can I do?",
+                    "answer": "Plug the SparqLinq into an extension cord and move it to different locations (possibly outside or up on the roof) and try joining to the inverter using the 'Settings-Inverter Management' tab. It is important that the inverter be first joined to the SparqLinq before it can start connecting to other inverters in a mesh network. Put the SparqLinq in a non-metallic weatherproof box on the roof to get it closer to the inverters. It may be necessary to use a second SparqLinq to connect the additional inverters. If the inverters have been joined to the first SparqLinq, you will need to go to its 'Settings-Inverter Management' tab and click on the 'X' in the Release column before the inverters can be joined to a new SparqLinq. Two or more SparqLinqs can be monitored on the SparqVu website, but there is no function to allow pairing the sites together."
                 }
             ]
         },

@@ -14,7 +14,7 @@ interface ProductProps {
     models?: Array<string>
     selectedModel?: string | null
     setSelectedModel?: (m: string) => void
-    model?: string   // e.g. Q2000, Quad 3
+    model?: string   // e.g. Q2000, Quad3
     heading: string // e.g. Q2000 Microinverter or 
     animated?: boolean
     parent: string  // e.g. "quad2" or "sparqlinq"
@@ -25,7 +25,6 @@ interface ProductProps {
     accordianContent: React.ReactNode
     imageContent: React.ReactNode   // this needs to be a node to account for double image for SparqSync
 }
-
 
 export default function ProductPage({
     models,
@@ -44,7 +43,6 @@ export default function ProductPage({
 }: ProductProps) {
 
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
-
     const trackEvent = useTrackEvent()
 
     const handleClick = () => {
@@ -109,7 +107,7 @@ export default function ProductPage({
                     {expandedContent && (
                         <div>
                             {isExpanded && (
-                                <div className="text-brand-gray text-xl xl:text-2xl">
+                                <div className="text-xl xl:text-2xl">
                                     {expandedContent}
                                 </div>
                             )}

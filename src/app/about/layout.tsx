@@ -3,6 +3,7 @@
 import Subheader from "@/components/Subheader"
 
 const items = [
+    { label: "Highlights", href: "/about"},
     { label: "Snapshot", href: "/about/snapshot"},
     { label: "Who We Are", href: "/about/us" },
     { label: "Leadership", href: "/about/leadership" },

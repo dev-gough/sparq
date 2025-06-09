@@ -4,13 +4,12 @@ import AccordionItem from "@/components/AccordionItem"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
-import FAQs from "./faqs.json"
 
 function image() {
 	return (
 		<Image
 			src="/SparqLinq.jpg"
-			alt="Sparq Linq Monitoring Tool"
+			alt="SparqLinq Monitoring Tool"
 			width={1920}
 			height={1084}
 			className="object-contain sticky top-16 z-10 rounded-xl"
@@ -21,7 +20,7 @@ function image() {
 function body() {
 	return (
 		<p className="text-brand-gray mt-4">
-			Access and monitor your energy system data at any time with SparqLinq, our smart interface for the Quad 2000 and Quad 3. SparqLinq can be used on nearly any device and is backed by industry standard Zigbee wireless communication, providing access to real-time data and historical records.</p>
+			Access and monitor your energy system data at any time with SparqLinq, our smart interface for the Quad 2000 and Quad3. SparqLinq can be used on nearly any device and is backed by industry standard Zigbee wireless communication, providing access to real-time data and historical records.</p>
 	)
 }
 
@@ -69,14 +68,6 @@ export default function SparqLinqPage() {
 						<Link className="text-blue-500 hover:text-blue-700" href="/sparqlinq-ledguide.pdf" target="_blank">SparqLinq-LEDGuide.pdf</Link>
 					</div>
 				</AccordionItem>
-				<AccordionItem title="SparqLinq FAQs" className="sticky top-[66px] lg:relative lg:top-auto" parent="sparqlinq">
-					{FAQs.subQuestions.map((item) => (
-						<div key={item.id} className="text-gray-700 my-4">
-							<strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-							{item.answer}
-						</div>
-					))}
-				</AccordionItem>
 			</div>
 		)
 	}
@@ -88,7 +79,7 @@ export default function SparqLinqPage() {
 				selectedModel={selectedModel}
 				setSelectedModel={setSelectedModel}
 				model="SL200-2001"
-				heading="Sparq Linq: Real-time performance monitoring"
+				heading="SparqLinq: Real-time performance monitoring"
 				parent="SparqLinq"
 				href="sparqlinq"
 				bodyContent={body()}

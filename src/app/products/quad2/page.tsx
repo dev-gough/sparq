@@ -5,7 +5,6 @@ import Image from "next/image"
 import { ListEntry } from "@/components/ProductPage"
 import Link from "next/link"
 import { useState } from 'react'
-import FAQs from "./faqs.json"
 
 function expanded() {
 	return (
@@ -63,7 +62,7 @@ const listContent: ListEntry[] = [
 	{
 		heading: "Cost-Effectiveness",
 		items: [
-			"Quad Architecture",
+			"Quad Architecture is the most cost-effective",
 			"Reduced manufacturing Bill of Materials",
 			"Reduced Balance of System (cabling, grounding, ect)",
 			"Lower manufacturing and installation costs",
@@ -162,14 +161,6 @@ export default function Quad2Page() {
 				</AccordionItem>
 				<AccordionItem title="Comparison with Leading Microinverter" className="sticky top-[66px] lg:relative lg:top-auto" parent="quad2">
 					<Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-blue-400 hover:underline cursor-pointer">Comparison with Enphase IQ8H</Link>
-				</AccordionItem>
-				<AccordionItem title="Q2000 FAQs" className="sticky top-[66px] lg:relative lg:top-auto" parent="quad2">
-					{FAQs.subQuestions.map((item) => (
-						<div key={item.id} className="text-gray-700 my-4">
-							<strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-							{item.answer}
-						</div>
-					))}
 				</AccordionItem>
 			</div>
 		)

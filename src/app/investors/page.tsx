@@ -12,8 +12,18 @@ import { Autoplay, Pagination } from 'swiper/modules'
 
 import LogoSlider from '@/components/PartnerSlider'
 import VideoControls from '@/components/VideoControls'
+import AccordionItem from "@/components/AccordionItem"
 import { useTrackEvent } from '@/hooks/useTrackEvent'
 import { useIsMobile } from "@/hooks/useIsMobile"
+import FAQs from './investor_faq.json'
+
+interface FAQData {
+    id: number
+    questionBrand: string;
+    subQuestions: { id: number, question: string, answer: string | Array<string | string[]> }[];
+}
+
+const FAQ: FAQData[] = FAQs.faqs
 
 const partners = [
     { src: "/Logos/epower.png", alt: "QueensU Epower Lab", href: "https://www.queensu.ca/epower/" },
@@ -111,7 +121,7 @@ export default function InvestorsPage() {
 
     return (
         <div className='scroll-mt-[114px]'>
-            <div className="relative h-[calc(100vh-114px)] overflow-x-hidden ">
+            <section className="relative h-[calc(100vh-114px)] overflow-x-hidden ">
                 <Draggable bounds="parent" nodeRef={wrapperRef as React.RefObject<HTMLElement>} cancel=".inv_ctrl">
                     <div className='absolute top-4 right-4 p-2 md:p-0 border-white border md:border-none' ref={wrapperRef}>
                         <VideoControls
@@ -127,7 +137,7 @@ export default function InvestorsPage() {
                 </Draggable>
                 {!isMobile && (
                     <video
-                        className="absolute top-0 left-0 w-full h-full object-contain bg-black xl:object-cover z-[-1]"
+                        className="absolute top-0 left-0 w-full h-full object-cover object-bottom bg-black xl:object-cover z-[-1]"
                         ref={vidRef}
                         autoPlay
                         muted
@@ -153,13 +163,13 @@ export default function InvestorsPage() {
                 <div className="flex flex-col items-center justify-center h-full transition-transform duration-200">
                     {isVidEnded && (
                         <div className="flex flex-row space-x-10 pt-8 mt-80 sm:mt-120">
-                            <Link onClick={handleHighlightClick} href="#highlights" className="bg-transparent border-white text-white hover:bg-gray-400 hover:text-white cursor-pointer font-black  text-base lg:text-lg xl:text-xl py-3 px-5 border-3  rounded-4xl  transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">View Highlights</Link>
-                            <Link href="/investor_presentation.mp4" onClick={handlePresentationClick} className="bg-transparent border-white text-white hover:bg-gray-400 cursor-pointer font-black  text-base lg:text-lg xl:text-xl py-3 px-5 border-3  rounded-4xl  transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Watch Presentation</Link>
+                            <Link onClick={handleHighlightClick} href="#highlights" className="bg-transparent border-white text-white hover:bg-gray-400 hover:text-white cursor-pointer font-black  text-base lg:text-lg xl:text-xl py-3 px-5 border-3  rounded-4xl  transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Highlights</Link>
+                            <Link href="/investors_ppt.pdf" onClick={handlePresentationClick} target="_blank" className="bg-transparent border-white text-white hover:bg-gray-400 cursor-pointer font-black  text-base lg:text-lg xl:text-xl py-3 px-5 border-3  rounded-4xl  transition-colors drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">View Presentation</Link>
                         </div>
                     )}
                 </div>
-            </div>
-            <div id="highlights" className="h-[calc(100vh-114px)] mx-auto pb-8 scroll-mt-[114px]">
+            </section>
+            <section id="highlights" className="h-[calc(100vh-114px)] mx-auto pb-8 scroll-mt-[114px]">
                 <div
                     className="w-full sm:h-[calc(100vh-114px)] bg-cover bg-top sm:bg-top relative bg-[url(/thumbnail_image.png)]">
                     <div className="max-w-full">
@@ -189,7 +199,7 @@ export default function InvestorsPage() {
                                         </ul>
                                     </div>
                                     <div className='my-16'>
-                                        <h1 className="text-center mb-2 underline underline-offset-2 text-xl sm:text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Powering Success Together</h1>
+                                        <h1 className="text-center mb-2 underline underline-offset-2 text-xl sm:text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">Click to Find Out How We Power Success Together</h1>
                                         <LogoSlider logos={partners} />
                                     </div>
                                 </div>
@@ -200,7 +210,7 @@ export default function InvestorsPage() {
                                     <ul className="list-disc list-inside text-lg sm:text-xl lg:text-2xl xl:text-4xl mt-8 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                                         <li><Link href="https://www.investkingston.ca/rd/#1643990910571-444406ce-b63e" target='_blank' className='text-white hover:underline'>Queen&apos;s University</Link></li>
                                         <li><Link href="https://www.energy-manager.ca/st-lawrence-college-installs-largest-solar-system-for-post-secondary-facility-856/" target='_blank' className='text-white hover:underline'>St. Lawrence College</Link></li>
-                                        <li>Modern Niagara - Sparq Headquarter Office (WIP)</li>
+                                        <li>Modern Niagara - Sparq Headquarter Office</li>
                                     </ul>
                                 </div>
                             </SwiperSlide>
@@ -282,7 +292,42 @@ export default function InvestorsPage() {
                         </Swiper>
                     </div>
                 </div>
-            </div>
+            </section>
+            <section id="faq" className="bg-white container mx-auto py-8 px-4 sm:px-32 scroll-mt-[66px]">
+                <h1 className="text-2xl font-bold text-brand-maroon text-left mt-12">
+                    Frequently Asked Questions
+                </h1>
+                <div className="flex flex-col space-y-6">
+                    {FAQ.map((item) => (
+                        <AccordionItem title={item.questionBrand} key={item.id} parent="homeowner_faq">
+                            <div className="space-y-2">
+                                {item.subQuestions.map((subItem) => (
+                                    <div key={subItem.id} className="text-gray-700">
+                                        <strong className="text-brand-maroon">{subItem.question}</strong><br></br>{" "}
+                                        {subItem.answer && Array.isArray(subItem.answer) ? (
+                                            <div>
+                                                {subItem.answer.map((block, i) =>
+                                                    Array.isArray(block) ? (
+                                                        <ul key={i} className="list-disc ml-6">
+                                                            {block.map((li, j) => <li key={j}>{li}</li>)}
+                                                        </ul>
+                                                    ) : (
+                                                        <p key={i} className="whitespace-pre-line">{block}</p>
+                                                    ))}
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                {subItem.answer as string}
+                                            </div>
+                                        )}
+
+                                    </div>
+                                ))}
+                            </div>
+                        </AccordionItem>
+                    ))}
+                </div>
+            </section>
         </div>
     )
 }

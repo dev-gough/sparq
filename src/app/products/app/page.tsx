@@ -2,15 +2,14 @@
 import ProductPage from "@/components/ProductPage"
 import AccordionItem from "@/components/AccordionItem"
 import Image from "next/image"
-import FAQs from "./faqs.json"
 import VideoPlayer from "@/components/VideoPlayer"
 
 function expanded() {
 	return (
 		<>
-			<p className="mt-4">Effortlessly track real-time energy data, monitor system health, and explore historical performance trends right from your smartphone. Sparq Synq gives you complete visibility over your installations, helping you make informed decisions and stay up to date.</p>
-			<p className="mt-4">Designed with a sleek, intuitive interface, Sparq Synq brings clarity and confidence to solar system monitoring.</p>
-			<p className="font-bold text-black mt-4">Stay in sync with your solar future - with Sparq Synq</p>
+			<p className="mt-4">Effortlessly track real-time energy data, monitor system health, and explore historical performance trends right from your smartphone. SparqSync gives you complete visibility over your installations, helping you make informed decisions and stay up to date.</p>
+			<p className="mt-4">Designed with a sleek, intuitive interface, SparqSync brings clarity and confidence to solar system monitoring.</p>
+			<p className="font-bold text-black mt-4">Stay in sync with your solar system - with SparqSync</p>
 		</>
 	)
 }
@@ -44,7 +43,7 @@ function image() {
 function body() {
 	return (
 		<div>
-			<p className="mt-4">Now unveiling Sparq Synq, the all-new mobile monitoring solution designed exclusively for Sparq customers. With Sparq Synq, staying connected to your solar energy system has never been easier - or more powerful.</p>
+			<p className="mt-4">Now unveiling SparqSync, the all-new mobile monitoring solution designed exclusively for Sparq customers. With SparqSync, staying connected to your solar energy system has never been easier - or more powerful.</p>
 			<p className="font-bold mt-4 text-black">Coming to iOS and Android in May 2025.</p>
 		</div>
 	)
@@ -83,14 +82,6 @@ export default function SparqSyncPage() {
 					<div className="w-full aspect-video">
 						<VideoPlayer src="/external-sparq-app.mp4" />
 					</div>
-				</AccordionItem>
-				<AccordionItem title="SparqSync FAQs" className="sticky top-[66px] lg:relative lg:top-auto" parent="app">
-					{FAQs.subQuestions.map((item) => (
-						<div key={item.id} className="text-gray-700 my-4">
-							<strong className="text-brand-maroon">{item.question}</strong><br></br>{" "}
-							{item.answer}
-						</div>
-					))}
 				</AccordionItem>
 			</div>
 		)
