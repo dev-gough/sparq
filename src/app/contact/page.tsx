@@ -73,7 +73,6 @@ export default function ContactPage() {
 	return (
 		<div className="container mx-auto 3xl:px-48 px-4 my-8 sm:px-10 sm:my-16">
 			<h2 className="text-5xl font-bold text-center mb-8 text-brand-maroon">Contact Us</h2>
-			<h3 className='text-xl font-semibold my-4 text-brand-maroon'>Our Offices</h3>
 			<section className='flex flex-col gap-6'>
 				<ContactSection
 					title="Head Office - Canada"
@@ -101,10 +100,8 @@ export default function ContactPage() {
 				<ContactSection
 					title="Africa, Australia, Gulf, Southeast Asia Distribution & Service "
 					companyName="Rolaz Green Energy PVT. Ltd."
-					address={`Kalypso Tower 4, Unit 1202\nJaypee Greens Wish Town, Sector 128\nNoida, Uttar Pradesh, India 201304`}
 					phone="(+91) 8595 414 392"
-					email="info@rolazge.com"
-					website='http://www.rolazge.com/'
+					email="devesh.g@rolazge.com"
 				/>
 				<ContactSection
 					title="North America Distributer"
