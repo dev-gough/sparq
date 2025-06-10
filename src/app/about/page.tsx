@@ -91,9 +91,14 @@ function FloatingCard({ card, index }: FloatingCardProps) {
                 ease: [0.23, 1, 0.320, 1]
             }}
             className="relative group cursor-pointer h-96 md:h-[500px] w-full rounded-2xl overflow-hidden"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onClick={() => setIsExpanded(!isExpanded)}
+            onMouseEnter={() => {
+                setIsHovered(true)
+                setIsExpanded(true)
+            }}
+            onMouseLeave={() => {
+                setIsHovered(false)
+                setIsExpanded(false)
+            }}
             style={{ perspective: '1000px' }}
         >
             <Card className="h-full w-full overflow-hidden border-0 shadow-2xl rounded-2xl">
@@ -131,7 +136,7 @@ function FloatingCard({ card, index }: FloatingCardProps) {
                             height: isExpanded ? 'auto' : '0px',
                             opacity: isExpanded ? 1 : 0
                         }}
-                        transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
+                        transition={{ duration: 0.3, ease: [0.23, 1, 0.320, 1] }}
                         className="overflow-hidden"
                     >
                         <div className="bg-black/40 backdrop-blur-md rounded-xl p-6 mt-6 border border-white/20">
@@ -142,8 +147,8 @@ function FloatingCard({ card, index }: FloatingCardProps) {
                                         initial={{ opacity: 0, x: -30 }}
                                         animate={isExpanded ? { opacity: 1, x: 0 } : {}}
                                         transition={{
-                                            delay: i * 0.15,
-                                            duration: 0.5,
+                                            delay: i * 0.1,
+                                            duration: 0.3,
                                             ease: [0.23, 1, 0.320, 1]
                                         }}
                                         className="flex items-start gap-4 text-white text-base md:text-lg"

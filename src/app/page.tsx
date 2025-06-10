@@ -67,9 +67,6 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.8, delay: index * 0.3 + 0.2 }}
                 >
-                    <div className="inline-block px-4 py-2 bg-gradient-to-r from-brand-logo to-brand-yellow rounded-full text-sm font-bold text-white mb-6">
-                        Featured Innovation
-                    </div>
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
                             {product.title}
@@ -135,7 +132,7 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                         <motion.div
                             className={`absolute inset-0 ${product.accentColor} rounded-2xl`}
                             animate={{
-                                opacity: isHovered ? 0.5 : 0.6
+                                opacity: isHovered ? 0.3 : 0.4
                             }}
                             transition={{ duration: 0.3 }}
                         />

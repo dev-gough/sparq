@@ -76,9 +76,14 @@ function SectionCard({ section, index }: SectionCardProps) {
                 ease: [0.23, 1, 0.320, 1]
             }}
             className="relative group cursor-pointer h-[450px] md:h-[550px] w-full rounded-2xl overflow-hidden max-w-6xl mx-auto"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onClick={() => setIsExpanded(!isExpanded)}
+            onMouseEnter={() => {
+                setIsHovered(true)
+                setIsExpanded(true)
+            }}
+            onMouseLeave={() => {
+                setIsHovered(false)
+                setIsExpanded(false)
+            }}
             style={{ perspective: '1000px' }}
         >
             <Card className="h-full w-full overflow-hidden border-0 shadow-2xl">
@@ -125,7 +130,7 @@ function SectionCard({ section, index }: SectionCardProps) {
                                         height: isExpanded ? 'auto' : '0px',
                                         opacity: isExpanded ? 1 : 0
                                     }}
-                                    transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
+                                    transition={{ duration: 0.3, ease: [0.23, 1, 0.320, 1] }}
                                     className="overflow-hidden"
                                 >
                                     <div className="bg-black/40 backdrop-blur-md rounded-xl border border-white/20 p-6">
@@ -133,8 +138,8 @@ function SectionCard({ section, index }: SectionCardProps) {
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={isExpanded ? { opacity: 1, y: 0 } : {}}
                                             transition={{
-                                                delay: isExpanded ? 0.2 : 0,
-                                                duration: 0.3,
+                                                delay: isExpanded ? 0.1 : 0,
+                                                duration: 0.25,
                                                 ease: [0.23, 1, 0.320, 1]
                                             }}
                                             className="text-white text-lg md:text-xl lg:text-2xl leading-relaxed font-medium"
