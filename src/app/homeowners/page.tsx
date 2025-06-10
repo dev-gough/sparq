@@ -221,7 +221,7 @@ export default function HomeownersPage() {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
                     >
-                        Experience the future of solar energy with Sparq Systems' revolutionary microinverter technology.
+                        Experience the future of solar energy with Sparq Systems&apos; revolutionary microinverter technology.
                         Cut your electricity bills, increase your home value, and contribute to a sustainable future.
                     </motion.p>
 
@@ -521,20 +521,20 @@ export default function HomeownersPage() {
                                 </span>
                             </h2>
                             <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
-                                Calculate your energy needs and discover how many Q2000 units you'll need for optimal performance.
+                                Calculate your energy needs and discover how many Q2000 units you&apos;ll need for optimal performance.
                             </p>
                         </div>
 
                         <div className="space-y-8">
                             <div className="bg-white p-6 rounded-lg shadow-lg">
                                 <p className="text-lg text-brand-graytext mb-4">
-                                    Use NREL's PVWatts calculator to estimate your energy production by entering your address:
+                                    Use NREL&apos;s PVWatts calculator to estimate your energy production by entering your address:
                                     <Link href="https://pvwatts.nrel.gov/" target="_blank" className="text-brand-maroon hover:underline font-semibold ml-2">
                                         pvwatts.nrel.gov
                                     </Link>
                                 </p>
                                 <p className="text-lg text-brand-graytext">
-                                    <strong>Important:</strong> Set the "DC System Size (kW)" field to 2.
+                                    <strong>Important:</strong> Set the &quot;DC System Size (kW)&quot; field to 2.
                                 </p>
                             </div>
 

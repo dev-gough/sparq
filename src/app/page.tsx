@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, useInView } from "motion/react"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -242,7 +242,7 @@ export default function Home() {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
                     >
-                        Discover our revolutionary microinverter technology that's transforming solar energy
+                        Discover our revolutionary microinverter technology that&apos;s transforming solar energy
                         with unmatched efficiency, reliability, and innovation.
                     </motion.p>
 

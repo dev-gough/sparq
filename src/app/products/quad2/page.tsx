@@ -330,7 +330,7 @@ export default function Quad2Page() {
 		)
 	}
 
-	function accordion() {
+	function Accordion() {
 		const containerRef = useRef(null)
 		const isInView = useInView(containerRef, { once: true, margin: "-50px" })
 
@@ -405,7 +405,7 @@ export default function Quad2Page() {
 				href="quad2"
 				animatedList={listContent}
 				expandedContent={expanded()}
-				accordianContent={accordion()}
+				accordianContent={Accordion()}
 				imageContent={image()}
 			>
 			</ProductPage>
