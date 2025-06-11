@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion } from 'motion/react'
+import { FaExternalLinkAlt } from 'react-icons/fa'
 
 function useScrollDirection() {
     const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null)
@@ -40,6 +41,30 @@ function useHash(): string {
     return hash
 }
 
+function isExternalLink(href: string): boolean {
+    try {
+        // Handle relative URLs (internal links)
+        if (href.startsWith('/') || href.startsWith('#')) {
+            return false
+        }
+
+        // Parse the URL
+        const url = new URL(href)
+        const hostname = url.hostname
+
+        // Check if it's localhost or sparqsys.com domain
+        return !(
+            hostname === 'localhost' ||
+            hostname === '127.0.0.1' ||
+            hostname.endsWith('.sparqsys.com') ||
+            hostname === 'sparqsys.com'
+        )
+    } catch {
+        // If URL parsing fails, assume it's internal
+        return false
+    }
+}
+
 interface SubheadingItemProps {
     label: string
     href: string
@@ -50,7 +75,8 @@ function SubheadingItem({ label, href, target }: SubheadingItemProps) {
     const pathname = usePathname()        // e.g. “/investors”
     const hash = useHash()            // e.g. “#highlights” | ""
 
-    const [targetPath, targetHash = ""] = href.split("#")  // targetHash doesn’t include “#”
+    const [targetPath, targetHash = ""] = href.split("#")
+    const isExternal = isExternalLink(href)  // targetHash doesn’t include “#”
 
     const isActive =
         pathname === targetPath &&                       // same path
@@ -64,13 +90,17 @@ function SubheadingItem({ label, href, target }: SubheadingItemProps) {
         >
             <Link
                 href={href}
-                className={`relative flex flex-shrink-0 items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-300 ${isActive
+                className={`relative flex flex-shrink-0 items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${isActive
                     ? "text-brand-maroon bg-brand-maroon/20"
                     : "text-brand-graytext hover:text-brand-maroon hover:bg-brand-maroon/20"
                     } whitespace-nowrap`}
-                target={target ? target : ""}
+                target={target ? target : (isExternal ? "_blank" : "")}
+                rel={isExternal ? "noopener noreferrer" : ""}
             >
                 <span className="text-base sm:text-lg">{label}</span>
+                {isExternal && (
+                    <FaExternalLinkAlt className="w-3 h-3 opacity-70" />
+                )}
                 {isActive && (
                     <motion.div
                         layoutId="activeSubTab"

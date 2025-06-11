@@ -214,15 +214,6 @@ export default function Home() {
                     transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
                     className="text-center mb-20"
                 >
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="inline-block px-6 py-3 bg-gradient-to-r from-brand-maroon/10 to-brand-logo/10 rounded-full text-brand-darkmaroon font-semibold mb-8"
-                    >
-                        ⚡ Revolutionizing Solar Energy Technology
-                    </motion.div>
-
                     <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
                             Power the Future

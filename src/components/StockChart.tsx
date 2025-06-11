@@ -102,7 +102,7 @@ const LightweightChart: React.FC<ChartProps> = ({
 			height: height || wrapperRef.current.clientHeight,
 			layout: {
 				background: { type: ColorType.Solid, color: "#fff" },
-				textColor: "#66666",
+				textColor: "#666666",
 			},
 			rightPriceScale: {
 				visible: true,
