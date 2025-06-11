@@ -254,12 +254,11 @@ export default function HomeownersPage() {
             </section>
 
             {/* Why Sparq Section */}
-            <section className="relative container mx-auto px-6 py-20">
+            <section id="whysparq" className="relative container mx-auto px-6 py-20">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
@@ -275,9 +274,8 @@ export default function HomeownersPage() {
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: index * 0.2 }}
-                            viewport={{ once: true }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.7 + (index * 0.2) }}
                             className="group"
                         >
                             <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0">
@@ -299,7 +297,7 @@ export default function HomeownersPage() {
             </section>
 
             {/* Technology Showcase */}
-            <section className="relative bg-white py-20">
+            <section id="discover" className="relative bg-white py-20">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

@@ -1,47 +1,274 @@
 'use client'
 
+import { useState, useRef } from "react"
+import { motion, useInView } from "motion/react"
+import { Card, CardContent } from "@/components/ui/card"
 import YTVideo from "@/components/YTVideo"
 
-const installer_ids = [
-    "5u3KVFYHfk0",
-    "4Ngk_vP-dIQ",
-    "nhH8LrnONxs",
+interface VideoCategory {
+    id: string
+    title: string
+    description: string
+    icon: React.ReactNode
+    videoIds: string[]
+}
+
+const videoCategories: VideoCategory[] = [
+    {
+        id: "investors",
+        title: "For Investors",
+        description: "Learn about Sparq's market opportunities, financial performance, and growth strategy.",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+        ),
+        videoIds: [
+            "gaFi_dPnYNk",
+            "I3an6Yqga1Y",
+            "8OJ02vvC-Os",
+            "am7VzIpn5TI",
+        ]
+    },
+    {
+        id: "installers",
+        title: "For Installers",
+        description: "Technical insights, installation guides, and product demonstrations for professional installers.",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+        ),
+        videoIds: [
+            "5u3KVFYHfk0",
+            "4Ngk_vP-dIQ",
+            "nhH8LrnONxs",
+        ]
+    },
+    {
+        id: "homeowners",
+        title: "For Homeowners",
+        description: "Educational content to help homeowners understand solar energy and Sparq's benefits.",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+        ),
+        videoIds: [
+            "Ibs0snk6nH0",
+        ]
+    }
 ]
 
-const investor_ids = [
-    "gaFi_dPnYNk",
-    "I3an6Yqga1Y",
-    "8OJ02vvC-Os",
-    "am7VzIpn5TI",
-
+const backgroundShapes = [
+    { width: 200, height: 140, left: 5, top: 15, duration: 18, delay: 0.5, borderRadius: '60% 40% 30% 70%' },
+    { width: 120, height: 180, left: 85, top: 25, duration: 20, delay: 1.2, borderRadius: '40% 60% 60% 40%' },
+    { width: 240, height: 100, left: 45, top: 35, duration: 17, delay: 2.1, borderRadius: '30% 70% 70% 30%' },
+    { width: 140, height: 140, left: 90, top: 65, duration: 19, delay: 0.8, borderRadius: '50%' },
+    { width: 160, height: 220, left: 15, top: 75, duration: 21, delay: 1.8, borderRadius: '70% 30% 50% 50%' },
+    { width: 100, height: 100, left: 70, top: 90, duration: 16, delay: 2.5, borderRadius: '50%' }
 ]
 
-const homeowner_ids = [
-    "Ibs0snk6nH0",
-
-]
+function BackgroundElements() {
+    return (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {backgroundShapes.map((shape, i) => (
+                <motion.div
+                    key={i}
+                    className="absolute bg-gradient-to-br from-brand-maroon/5 via-brand-logo/3 to-brand-yellow/2"
+                    style={{
+                        width: shape.width,
+                        height: shape.height,
+                        left: `${shape.left}%`,
+                        top: `${shape.top}%`,
+                        borderRadius: shape.borderRadius,
+                    }}
+                    animate={{
+                        y: [0, -40, 0],
+                        x: [0, 20, 0],
+                        scale: [1, 1.15, 1],
+                        rotate: [0, 360],
+                        borderRadius: [
+                            shape.borderRadius,
+                            shape.borderRadius === '50%' ? '30% 70% 70% 30%' : '50%',
+                            shape.borderRadius
+                        ]
+                    }}
+                    transition={{
+                        duration: shape.duration,
+                        repeat: Infinity,
+                        delay: shape.delay,
+                        ease: "easeInOut"
+                    }}
+                />
+            ))}
+        </div>
+    )
+}
 
 export default function VideosPage() {
+    const [selectedCategory, setSelectedCategory] = useState<string>(videoCategories[0]?.id || '')
+
+    const heroRef = useRef(null)
+    const isHeroInView = useInView(heroRef, { once: true })
+
+    const currentCategory = videoCategories.find(cat => cat.id === selectedCategory) || videoCategories[0]
+
     return (
-        <div className="bg-white container mx-auto py-8 px-4 sm:px-10">
-            <h1 className="text-5xl font-bold text-brand-maroon text-center mb-8">
-                Video Gallery
-            </h1>
-            <div>
-                <h2 className="text-3xl font-bold text-brand-maroon pt-8">Investors</h2>
-                <hr className="pb-4"/>
-                <YTVideo videoIds={investor_ids} />
-            </div>
-            <div>
-                <h2 className="text-3xl font-bold text-brand-maroon pt-8">Installers</h2>
-                <hr className="pb-4"/>
-                <YTVideo videoIds={installer_ids} />
-            </div>
-            <div>
-                <h2 className="text-3xl font-bold text-brand-maroon pt-8">Homeowners</h2>
-                <hr className="pb-4"/>
-                <YTVideo videoIds={homeowner_ids} />
-            </div>
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+            <BackgroundElements />
+
+            {/* Hero Section */}
+            <section className="relative container mx-auto px-6 pt-20 pb-32">
+                <motion.div
+                    ref={heroRef}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
+                    className="text-center mb-20"
+                >
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="inline-block px-6 py-3 bg-gradient-to-r from-brand-maroon/10 to-brand-logo/10 rounded-full text-brand-darkmaroon font-semibold mb-8"
+                    >
+                        🎬 Video Library
+                    </motion.div>
+
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                            Expert Insights
+                        </span>
+                        <br />
+                        <span className="text-brand-darkmaroon">
+                            Video Collection
+                        </span>
+                    </h1>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+                    >
+                        Discover our comprehensive video library featuring technical presentations, market insights,
+                        and educational content for investors, installers, and homeowners.
+                    </motion.p>
+                </motion.div>
+            </section>
+
+            {/* Category Selection */}
+            <section className="relative container mx-auto px-6 py-20">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                        Choose Your Category
+                    </h2>
+                    <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        Select a category to explore relevant video content tailored to your interests and needs.
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                    {videoCategories.map((category, index) => (
+                        <motion.div
+                            key={category.id}
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.7 + (index * 0.1) }}
+                            className="group"
+                        >
+                            <Card
+                                className={`overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 ${
+                                    selectedCategory === category.id ? 'ring-2 ring-brand-maroon' : ''
+                                }`}
+                                onClick={() => setSelectedCategory(category.id)}
+                            >
+                                <CardContent className="p-6">
+                                    <div className="flex items-center gap-4 mb-4">
+                                        <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white">
+                                            {category.icon}
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-bold text-brand-darkmaroon">{category.title}</h3>
+                                            <p className="text-brand-graytext text-sm">{category.videoIds.length} videos</p>
+                                        </div>
+                                    </div>
+                                    <p className="text-brand-graytext leading-relaxed">{category.description}</p>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Video Gallery */}
+            <section className="relative bg-white py-20">
+                <div className="container mx-auto px-6">
+                    {currentCategory && (
+                        <motion.div
+                            key={selectedCategory}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <div className="text-center mb-16">
+                                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                                    {currentCategory.title}
+                                </h2>
+                                <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                                    {currentCategory.description}
+                                </p>
+                            </div>
+                            <YTVideo videoIds={currentCategory.videoIds} />
+                        </motion.div>
+                    )}
+                </div>
+            </section>
+
+            {/* Call to Action */}
+            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-20">
+                <div className="container mx-auto px-6 text-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 1.0 }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                            Want to Learn More?
+                        </h2>
+                        <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
+                            Explore our comprehensive resources or contact us directly to discuss
+                            how Sparq technology can meet your specific needs.
+                        </p>
+                        <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
+                            <a href="/resources">
+                                <motion.button
+                                    whileHover={{ scale: 1.02, y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="w-full sm:w-auto px-8 py-4 bg-white text-brand-maroon font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                >
+                                    More Resources
+                                </motion.button>
+                            </a>
+                            <a href="/contact">
+                                <motion.button
+                                    whileHover={{ scale: 1.02, y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="w-full sm:w-auto px-8 py-4 bg-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                >
+                                    Contact Us
+                                </motion.button>
+                            </a>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
         </div>
     )
 }

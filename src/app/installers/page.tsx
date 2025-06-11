@@ -77,6 +77,16 @@ const benefitCards: BenefitCard[] = [
         title: "Higher Profit Margins",
         description: "Competitive pricing and efficient installation translate to better profit margins for your business.",
         accentColor: "bg-gradient-to-br from-brand-darkmaroon to-brand-maroon"
+    },
+    {
+        icon: (
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+        ),
+        title: "Expert Technical Support",
+        description: "Comprehensive training, responsive field support, and ongoing technical assistance to ensure successful installations every time.",
+        accentColor: "bg-gradient-to-br from-brand-maroon to-brand-logo"
     }
 ]
 
@@ -219,8 +229,51 @@ export default function InstallersPage() {
                 </motion.div>
             </section>
 
+            {/* Why Sparq Section */}
+            <section id="whysparq" className="relative container mx-auto px-6 py-20">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                        Why Installers Choose Sparq
+                    </h2>
+                    <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        Revolutionary technology that delivers unmatched performance, reliability, and profitability for your business.
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                    {benefitCards.map((benefit, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.7 + (index * 0.1) }}
+                            className="group"
+                        >
+                            <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0">
+                                <CardContent className="p-0">
+                                    <div className={`${benefit.accentColor} p-6 text-white`}>
+                                        <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4 mx-auto">
+                                            {benefit.icon}
+                                        </div>
+                                        <h3 className="text-xl font-bold text-center mb-4">{benefit.title}</h3>
+                                    </div>
+                                    <div className="p-6 bg-white">
+                                        <p className="text-brand-graytext leading-relaxed">{benefit.description}</p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
+
             {/* Quad Architecture Features */}
-            <section id="whysparq" className="relative bg-white py-20">
+            <section id="discover" className="relative bg-white py-20">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -325,52 +378,7 @@ export default function InstallersPage() {
                 </div>
             </section>
 
-            {/* Why Sparq Section */}
-            <section className="relative container mx-auto px-6 py-20">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
-                        Why Installers Choose Sparq
-                    </h2>
-                    <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
-                        Revolutionary technology that delivers unmatched performance, reliability, and profitability for your business.
-                    </p>
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-                    {benefitCards.map((benefit, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            className="group"
-                        >
-                            <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0">
-                                <CardContent className="p-0">
-                                    <div className={`${benefit.accentColor} p-6 text-white`}>
-                                        <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4 mx-auto">
-                                            {benefit.icon}
-                                        </div>
-                                        <h3 className="text-xl font-bold text-center mb-4">{benefit.title}</h3>
-                                    </div>
-                                    <div className="p-6 bg-white">
-                                        <p className="text-brand-graytext leading-relaxed">{benefit.description}</p>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            <section id="discover" className="relative bg-white py-20">
+            <section className="relative bg-white py-20">
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                         <motion.div

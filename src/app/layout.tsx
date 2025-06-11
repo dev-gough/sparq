@@ -63,6 +63,7 @@ const investorDropdown = [
 const homeownerDropdown = [
 	{ label: "Why Sparq", href: "/homeowners#whysparq" },
 	{ label: "Sparq Advantage", href: "/homeowners#discover"},
+	{ label: "Design My System", href: "/homeowners#design"},
 	{ label: "FAQs", href: "/homeowners#faq"}
 ]
 

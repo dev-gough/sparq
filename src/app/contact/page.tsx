@@ -1,8 +1,57 @@
 'use client'
 
 import Link from 'next/link'
+import { useRef } from 'react'
+import { motion, useInView } from 'motion/react'
+import { Card, CardContent } from '@/components/ui/card'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaSitemap } from 'react-icons/fa'
 import { useTrackEvent } from '@/hooks/useTrackEvent'
+
+const backgroundShapes = [
+	{ width: 200, height: 140, left: 5, top: 15, duration: 18, delay: 0.5, borderRadius: '60% 40% 30% 70%' },
+	{ width: 120, height: 180, left: 85, top: 25, duration: 20, delay: 1.2, borderRadius: '40% 60% 60% 40%' },
+	{ width: 240, height: 100, left: 45, top: 35, duration: 17, delay: 2.1, borderRadius: '30% 70% 70% 30%' },
+	{ width: 140, height: 140, left: 90, top: 65, duration: 19, delay: 0.8, borderRadius: '50%' },
+	{ width: 160, height: 220, left: 15, top: 75, duration: 21, delay: 1.8, borderRadius: '70% 30% 50% 50%' },
+	{ width: 100, height: 100, left: 70, top: 90, duration: 16, delay: 2.5, borderRadius: '50%' }
+]
+
+function BackgroundElements() {
+	return (
+		<div className="absolute inset-0 overflow-hidden pointer-events-none">
+			{backgroundShapes.map((shape, i) => (
+				<motion.div
+					key={i}
+					className="absolute bg-gradient-to-br from-brand-maroon/5 via-brand-logo/3 to-brand-yellow/2"
+					style={{
+						width: shape.width,
+						height: shape.height,
+						left: `${shape.left}%`,
+						top: `${shape.top}%`,
+						borderRadius: shape.borderRadius,
+					}}
+					animate={{
+						y: [0, -40, 0],
+						x: [0, 20, 0],
+						scale: [1, 1.15, 1],
+						rotate: [0, 360],
+						borderRadius: [
+							shape.borderRadius,
+							shape.borderRadius === '50%' ? '30% 70% 70% 30%' : '50%',
+							shape.borderRadius
+						]
+					}}
+					transition={{
+						duration: shape.duration,
+						repeat: Infinity,
+						delay: shape.delay,
+						ease: "easeInOut"
+					}}
+				/>
+			))}
+		</div>
+	)
+}
 
 interface ContactSectionProps {
 	title: string
@@ -11,109 +60,268 @@ interface ContactSectionProps {
 	phone?: string
 	email?: string
 	website?: string
+	index?: number
 }
 
-function ContactSection({ title, companyName, address, phone, email, website }: ContactSectionProps) {
+function ContactSection({ title, companyName, address, phone, email, website, index = 0 }: ContactSectionProps) {
 
 	const trackEvent = useTrackEvent()
 
 	const handleClick = (type: string, detail: string) => {
 		trackEvent("contact_clicked", {
-			"contact_type" : type,
-			"detail" : detail
+			"contact_type": type,
+			"detail": detail
 		})
 	}
 
 	return (
-		<div className="bg-white p-6 border border-brand-gray rounded-lg shadow-md">
-			<h3 className="text-xl font-bold mb-4 bg-gray-100 p-2 rounded">{title}</h3>
-			<p className="text-lg font-semibold mb-2">{companyName}</p>
-			{address && (
-				<div className="flex items-start mb-2">
-					<FaMapMarkerAlt className="mr-2 mt-1 text-gray-600" />
-					<p className="text-gray-700">
-						{address.split('\n').map((line, index) => (
-							<span key={index}>
-								{line}
-								<br />
-							</span>
-						))}
-					</p>
-				</div>
-			)}
-			{phone && (
-				<div className="flex items-center mb-2">
-					<FaPhone className="mr-2 text-gray-600" />
-					<Link onClick={() => handleClick("phone", phone)} href={`tel:${phone}`} className="text-blue-500 hover:underline">
-						{phone}
-					</Link>
-				</div>
-			)}
-			{email && (
-				<div className="flex items-center mb-2">
-					<FaEnvelope className="mr-2 text-gray-600" />
-					<Link onClick={() => handleClick("email", email)} href={`mailto:${email}`} className="text-blue-500 hover:underline">
-						{email}
-					</Link>
-				</div>
-			)}
-			{website && (
-				<div className="flex items-center">
-					<FaSitemap className='mr-2 text-gray-600'/>
-					<Link onClick={() => handleClick("website", website)} href={website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-						{website}
-					</Link>
-				</div>
-			)}
-		</div>
+		<motion.div
+			initial={{ opacity: 0, y: 30 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.6, delay: 0.1 * index }}
+			className="group"
+		>
+			<Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 h-full">
+				<CardContent className="p-6 h-full flex flex-col">
+					<div className="flex items-center gap-4 mb-6">
+						<div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white">
+							<FaMapMarkerAlt className="w-5 h-5" />
+						</div>
+						<div>
+							<h3 className="text-xl font-bold text-brand-darkmaroon">{title}</h3>
+							<p className="text-lg font-semibold text-brand-graytext">{companyName}</p>
+						</div>
+					</div>
+
+					<div className="space-y-4 flex-grow">
+						{address && (
+							<div className="flex items-start gap-3">
+								<FaMapMarkerAlt className="w-4 h-4 mt-1 text-brand-maroon flex-shrink-0" />
+								<p className="text-brand-graytext leading-relaxed">
+									{address.split('\n').map((line, index) => (
+										<span key={index}>
+											{line}
+											<br />
+										</span>
+									))}
+								</p>
+							</div>
+						)}
+						{phone && (
+							<div className="flex items-center gap-3">
+								<FaPhone className="w-4 h-4 text-brand-maroon flex-shrink-0" />
+								<Link
+									onClick={() => handleClick("phone", phone)}
+									href={`tel:${phone}`}
+									className="text-brand-maroon hover:text-brand-darkmaroon font-medium transition-colors duration-200"
+								>
+									{phone}
+								</Link>
+							</div>
+						)}
+						{email && (
+							<div className="flex items-center gap-3">
+								<FaEnvelope className="w-4 h-4 text-brand-maroon flex-shrink-0" />
+								<Link
+									onClick={() => handleClick("email", email)}
+									href={`mailto:${email}`}
+									className="text-brand-maroon hover:text-brand-darkmaroon font-medium transition-colors duration-200"
+								>
+									{email}
+								</Link>
+							</div>
+						)}
+						{website && (
+							<div className="flex items-center gap-3">
+								<FaSitemap className="w-4 h-4 text-brand-maroon flex-shrink-0" />
+								<Link
+									onClick={() => handleClick("website", website)}
+									href={website}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-brand-maroon hover:text-brand-darkmaroon font-medium transition-colors duration-200"
+								>
+									{website}
+								</Link>
+							</div>
+						)}
+					</div>
+				</CardContent>
+			</Card>
+		</motion.div>
 	)
 }
 
 export default function ContactPage() {
+	const heroRef = useRef(null)
+	const isHeroInView = useInView(heroRef, { once: true })
+
 	return (
-		<div className="container mx-auto 3xl:px-48 px-4 my-8 sm:px-10 sm:my-16">
-			<h2 className="text-5xl font-bold text-center mb-8 text-brand-maroon">Contact Us</h2>
-			<h3 className='text-xl font-semibold my-4 text-brand-maroon'>Our Offices</h3>
-			<section className='flex flex-col gap-6'>
-				<ContactSection
-					title="Head Office - Canada"
-					companyName='Sparq Systems Inc.'
-					address={`945 Princess Street\nKingston, Ontario, Canada\nK7L 0E9`}
-					phone='855-947-7277'
-					email='sales@sparqsys.com'
-					website='https://www.sparqsys.com/'
-				/>
-				<ContactSection
-					title="Office - India"
-					companyName="Sparq Systems India Pvt. Ltd."
-					email="sgupta@sparqsys.com"
-					phone='(+91) 9810 899 033'
-				/>
+		<div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+			<BackgroundElements />
+
+			{/* Hero Section */}
+			<section className="relative container mx-auto px-6 pt-20 pb-32">
+				<motion.div
+					ref={heroRef}
+					initial={{ opacity: 0, y: 50 }}
+					animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+					transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
+					className="text-center mb-20"
+				>
+					<motion.div
+						initial={{ opacity: 0, scale: 0.8 }}
+						animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
+						transition={{ duration: 0.8, delay: 0.2 }}
+						className="inline-block px-6 py-3 bg-gradient-to-r from-brand-maroon/10 to-brand-logo/10 rounded-full text-brand-darkmaroon font-semibold mb-8"
+					>
+						📞 Get In Touch
+					</motion.div>
+
+					<h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+						<span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+							Contact
+						</span>
+						<br />
+						<span className="text-brand-darkmaroon">
+							Sparq Systems
+						</span>
+					</h1>
+
+					<motion.p
+						initial={{ opacity: 0, y: 30 }}
+						animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+						transition={{ duration: 0.8, delay: 0.4 }}
+						className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+					>
+						Connect with our global network of offices and distribution partners to discover
+						how Sparq microinverter technology can power your solar projects.
+					</motion.p>
+				</motion.div>
 			</section>
-			<h3 className='text-xl font-semibold mt-16 mb-4 text-brand-maroon'>How to Order</h3>
-			<section className="flex flex-col gap-6">
-				<ContactSection
-					title="India Distribution & Service"
-					companyName="Jio Things Ltd."
-					website='https://www.jiothings.com/'
-					email='sales@jiothings.com'
-				/>
-				<ContactSection
-					title="Africa, Australia, Gulf, Southeast Asia Distribution & Service "
-					companyName="Rolaz Green Energy PVT. Ltd."
-					address={`Kalypso Tower 4, Unit 1202\nJaypee Greens Wish Town, Sector 128\nNoida, Uttar Pradesh, India 201304`}
-					phone="(+91) 8595 414 392"
-					email="info@rolazge.com"
-					website='http://www.rolazge.com/'
-				/>
-				<ContactSection
-					title="North America Distributer"
-					companyName='GPSI Solar'
-					address={`131 Sheldon Drive, Unit 22\nCambridge, Ontario, Canada\nN1R 6S2`}
-					phone='519-645-9649'
-					email='sales@gpsi.solar'
-					website='https://www.gpsi.ca/Solar-EV.htm'
-				/>
+
+			{/* Our Offices Section */}
+			<section className="relative bg-white py-20">
+				<div className="container mx-auto px-6">
+					<motion.div
+						initial={{ opacity: 0, y: 30 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.8, delay: 0.5 }}
+						className="text-center mb-16"
+					>
+						<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+							Our Offices
+						</h2>
+						<p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+							Reach out to our global offices for sales inquiries, technical support, and partnership opportunities.
+						</p>
+					</motion.div>
+
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+						<ContactSection
+							title="Head Office - Canada"
+							companyName='Sparq Systems Inc.'
+							address={`945 Princess Street\nKingston, Ontario, Canada\nK7L 0E9`}
+							phone='855-947-7277'
+							email='sales@sparqsys.com'
+							website='https://www.sparqsys.com/'
+							index={0}
+						/>
+						<ContactSection
+							title="Office - India"
+							companyName="Sparq Systems India Pvt. Ltd."
+							email="sgupta@sparqsys.com"
+							phone='(+91) 9810 899 033'
+							index={1}
+						/>
+					</div>
+				</div>
+			</section>
+
+			{/* Distribution Partners Section */}
+			<section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 py-20">
+				<div className="container mx-auto px-6">
+					<motion.div
+						initial={{ opacity: 0, y: 30 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.8, delay: 0.7 }}
+						className="text-center mb-16"
+					>
+						<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+							How to Order
+						</h2>
+						<p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+							Contact our authorized distribution partners worldwide for product orders and local support.
+						</p>
+					</motion.div>
+
+					<div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+						<ContactSection
+							title="India Distribution & Service"
+							companyName="Jio Things Ltd."
+							website='https://www.jiothings.com/'
+							email='sales@jiothings.com'
+							index={0}
+						/>
+						<ContactSection
+							title="Africa, Australia, Gulf, Southeast Asia Distribution & Service"
+							companyName="Rolaz Green Energy PVT. Ltd."
+							address={`Kalypso Tower 4, Unit 1202\nJaypee Greens Wish Town, Sector 128\nNoida, Uttar Pradesh, India 201304`}
+							phone="(+91) 8595 414 392"
+							email="info@rolazge.com"
+							website='http://www.rolazge.com/'
+							index={1}
+						/>
+						<ContactSection
+							title="North America Distributer"
+							companyName='GPSI Solar'
+							address={`131 Sheldon Drive, Unit 22\nCambridge, Ontario, Canada\nN1R 6S2`}
+							phone='519-645-9649'
+							email='sales@gpsi.solar'
+							website='https://www.gpsi.ca/Solar-EV.htm'
+							index={2}
+						/>
+					</div>
+				</div>
+			</section>
+
+			{/* Call to Action */}
+			<section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-20">
+				<div className="container mx-auto px-6 text-center">
+					<motion.div
+						initial={{ opacity: 0, y: 30 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.8, delay: 1.0 }}
+					>
+						<h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+							Ready to Get Started?
+						</h2>
+						<p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
+							Whether you&apos;re an installer, homeowner, or investor, our team is ready to help you
+							harness the power of advanced microinverter technology.
+						</p>
+						<div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
+							<a href="/installers">
+								<motion.button
+									whileHover={{ scale: 1.02, y: -2 }}
+									whileTap={{ scale: 0.98 }}
+									className="w-full sm:w-auto px-8 py-4 bg-white text-brand-maroon font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+								>
+									For Installers
+								</motion.button>
+							</a>
+							<a href="/homeowners">
+								<motion.button
+									whileHover={{ scale: 1.02, y: -2 }}
+									whileTap={{ scale: 0.98 }}
+									className="w-full sm:w-auto px-8 py-4 bg-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+								>
+									For Homeowners
+								</motion.button>
+							</a>
+						</div>
+					</motion.div>
+				</div>
 			</section>
 		</div>
 	)
