@@ -4,7 +4,6 @@ import Link from "next/link"
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
-import AccordionItem from "@/components/AccordionItem"
 import { useTrackEvent } from '@/hooks/useTrackEvent'
 import FAQs from './investor_faq.json'
 import { FaChartLine, FaNewspaper, FaCalendarAlt, FaShieldAlt, FaFileAlt, FaExternalLinkAlt, FaHandshake, FaRocket, FaAward, FaTrophy, FaPlay } from 'react-icons/fa'

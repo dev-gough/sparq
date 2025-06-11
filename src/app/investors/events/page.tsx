@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import Link from "next/link"
 import { motion, useInView } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
-import { FaArrowRight, FaCalendar, FaExternalLinkAlt, FaClock, FaArchive } from "react-icons/fa"
+import { FaArrowRight, FaCalendar, FaClock, FaArchive } from "react-icons/fa"
 
 interface EventItem {
     id: number
@@ -262,7 +262,7 @@ export default function EventPage() {
                                 </h2>
                             </div>
                             <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
-                                Explore our company's journey through key milestones and achievements.
+                                Explore our company&apos;s journey through key milestones and achievements.
                             </p>
                         </motion.div>
 
@@ -292,7 +292,7 @@ export default function EventPage() {
                             Stay Updated
                         </h2>
                         <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
-                            Don't miss our latest events and announcements. Connect with us to stay
+                            Don&apos;t miss our latest events and announcements. Connect with us to stay
                             informed about product launches and company developments.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">

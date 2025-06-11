@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
-import { motion, useInView } from 'motion/react'
+import { motion } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
 import StockChart, { RawBar } from "@/components/StockChart"
 import ChartControls, { ChartSettings } from "@/components/ChartControls"
@@ -68,7 +68,6 @@ export default function StockPage() {
     })
 
     const heroRef = useRef(null)
-    const isHeroInView = useInView(heroRef, { once: true })
 
     const buildApiUrl = (settings: ChartSettings) => {
         const params = new URLSearchParams({
@@ -170,7 +169,7 @@ export default function StockPage() {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
                     >
-                        Track Sparq Systems' real-time stock performance with interactive charts
+                        Track Sparq Systems&apos; real-time stock performance with interactive charts
                         and comprehensive market data from the TSX Venture Exchange.
                     </motion.p>
                 </motion.div>
@@ -242,7 +241,7 @@ export default function StockPage() {
                                         <FaChartLine className="w-8 h-8 text-white" />
                                     </div>
                                     <h3 className="text-xl font-bold text-brand-darkmaroon mb-4">TSX Venture Exchange</h3>
-                                    <p className="text-brand-graytext flex-grow mb-6">Trading on Canada's premier venture capital marketplace for emerging companies.</p>
+                                    <p className="text-brand-graytext flex-grow mb-6">Trading on Canada&apos;s premier venture capital marketplace for emerging companies.</p>
                                     <a
                                         href="https://www.tsx.com"
                                         target="_blank"
