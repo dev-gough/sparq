@@ -2,17 +2,11 @@
 
 import { useState, useRef } from "react"
 import Link from "next/link"
+import { motion, useInView } from "motion/react"
+import { Card, CardContent } from "@/components/ui/card"
+import { useTrackEvent } from "@/hooks/useTrackEvent"
 import InstallerFAQData from "./installer_faq.json"
 
-import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'swiper/css/effect-fade'
-import { Autoplay, Navigation, Pagination, EffectFade } from 'swiper/modules'
-
-import AccordionItem from "@/components/AccordionItem"
-import AnimatedList from "@/components/AnimatedList"
 import BoMCalc from "@/components/BomCalc"
 
 interface FAQData {
@@ -26,183 +20,582 @@ const FAQ: FAQData[] = InstallerFAQData.faqs
 const quad_advantage = ["One Microinverter for Four panels", "Safe, reliable, and long-lasting", "All AC cabling", "Rapid Shutdown Compatible", "Lowest weight, volume, and cost", "Fewer parts to install", "Installation takes less time on the roof", "Maitenance-free", "Higher profit margin", "User-friendly app"]
 const quad_items = ["Quick and Easy to install", "Maximum energy harvest", "Cloud-based performance monitoring", "12 yr. standard - 25 yr. extended warranty"]
 
-export default function InstallersPage() {
-    const [animateCircle, setAnimateCircle] = useState(false)
-    const highlight = { x: 27, y: 33, size: 50 }
-    const swiperRef = useRef<SwiperRef>(null)
+interface BenefitCard {
+    icon: React.ReactNode
+    title: string
+    description: string
+    accentColor: string
+}
 
-    const handleSlideChange = () => {
-        if (!swiperRef.current) return
-        const active = swiperRef.current.swiper.activeIndex
-        if (active === 1 && !animateCircle) {
-            setAnimateCircle(true)
+const benefitCards: BenefitCard[] = [
+    {
+        icon: (
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+        ),
+        title: "Best In-Class Performance",
+        description: "Achieve maximum energy harvest with our revolutionary Quad microinverter technology featuring individual MPPT for each panel.",
+        accentColor: "bg-gradient-to-br from-brand-maroon to-brand-darkmaroon"
+    },
+    {
+        icon: (
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+        ),
+        title: "Safe & Long-Lasting Products",
+        description: "No failure-prone electrolytic capacitors and best-in-class longevity ensure reliable performance for decades.",
+        accentColor: "bg-gradient-to-br from-brand-midmaroon to-brand-logo"
+    },
+    {
+        icon: (
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+            </svg>
+        ),
+        title: "Cost-Effective & Maintenance-Free",
+        description: "Lowest cost per Watt in the industry with reduced installation costs and zero maintenance requirements.",
+        accentColor: "bg-gradient-to-br from-brand-logo to-brand-yellow"
+    },
+    {
+        icon: (
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+        ),
+        title: "Easy Installation & Monitoring",
+        description: "Streamlined installation process with comprehensive remote monitoring and expert technical support.",
+        accentColor: "bg-gradient-to-br from-brand-yellow to-brand-logo"
+    },
+    {
+        icon: (
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+            </svg>
+        ),
+        title: "Higher Profit Margins",
+        description: "Competitive pricing and efficient installation translate to better profit margins for your business.",
+        accentColor: "bg-gradient-to-br from-brand-darkmaroon to-brand-maroon"
+    }
+]
+
+const backgroundShapes = [
+    { width: 200, height: 140, left: 5, top: 15, duration: 18, delay: 0.5, borderRadius: '60% 40% 30% 70%' },
+    { width: 120, height: 180, left: 85, top: 25, duration: 20, delay: 1.2, borderRadius: '40% 60% 60% 40%' },
+    { width: 240, height: 100, left: 45, top: 35, duration: 17, delay: 2.1, borderRadius: '30% 70% 70% 30%' },
+    { width: 140, height: 140, left: 90, top: 65, duration: 19, delay: 0.8, borderRadius: '50%' },
+    { width: 160, height: 220, left: 15, top: 75, duration: 21, delay: 1.8, borderRadius: '70% 30% 50% 50%' },
+    { width: 100, height: 100, left: 70, top: 90, duration: 16, delay: 2.5, borderRadius: '50%' }
+]
+
+function BackgroundElements() {
+    return (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {backgroundShapes.map((shape, i) => (
+                <motion.div
+                    key={i}
+                    className="absolute bg-gradient-to-br from-brand-maroon/5 via-brand-logo/3 to-brand-yellow/2"
+                    style={{
+                        width: shape.width,
+                        height: shape.height,
+                        left: `${shape.left}%`,
+                        top: `${shape.top}%`,
+                        borderRadius: shape.borderRadius,
+                    }}
+                    animate={{
+                        y: [0, -40, 0],
+                        x: [0, 20, 0],
+                        scale: [1, 1.15, 1],
+                        rotate: [0, 360],
+                        borderRadius: [
+                            shape.borderRadius,
+                            shape.borderRadius === '50%' ? '30% 70% 70% 30%' : '50%',
+                            shape.borderRadius
+                        ]
+                    }}
+                    transition={{
+                        duration: shape.duration,
+                        repeat: Infinity,
+                        delay: shape.delay,
+                        ease: "easeInOut"
+                    }}
+                />
+            ))}
+        </div>
+    )
+}
+
+export default function InstallersPage() {
+    const trackEvent = useTrackEvent()
+    const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
+
+    const heroRef = useRef(null)
+    const isHeroInView = useInView(heroRef, { once: true })
+
+    const toggleExpanded = (i: number) => {
+        setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
+        if (!dropdownExpanded[i]) {
+            trackEvent("dropdown_opened", {
+                "parent": "installer_faq",
+                "dropdown": FAQ[i].questionBrand,
+            })
         }
     }
 
+    const handleCtaClick = (action: string) => {
+        trackEvent("button_click", {
+            "btn_name": `installer_${action}`
+        })
+    }
+
     return (
-        <div className="scroll-mt-[66px]">
-            {/* highlights */}
-            <section id="whysparq" className="h-[calc(100vh-66px)] mx-auto pb-8 scroll-mt-[66px]">
-                <div
-                    className="w-full sm:h-[calc(100vh-66px)]">
-                    <div className="max-w-full">
-                        <Swiper
-                            ref={swiperRef}
-                            pagination={{ clickable: true }}
-                            navigation={true}
-                            effect={'fade'}
-                            fadeEffect={{ crossFade: true }}
-                            modules={[Pagination, Autoplay, Navigation, EffectFade]}
-                            spaceBetween={30}
-                            slidesPerView={1}
-                            autoplay={{
-                                delay: 20000,
-                                disableOnInteraction: false,
-                                pauseOnMouseEnter: true,
-                            }}
-                            className='text-white h-[calc(100vh-66px)] [--swiper-pagination-bullet-size:20px] sm:[--swiper-pagination-bullet-size:30px] sm:[--swiper-navigation-size:100px] [--swiper-pagination-bullet-inactive-opacity:1] [--swiper-pagination-color:#8C344E] [--swiper-pagination-bullet-inactive-color:#fcb900] [--swiper-navigation-color:#8C344E]'
-                            onSlideChangeTransitionEnd={handleSlideChange}
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+            <BackgroundElements />
+
+            {/* Hero Section */}
+            <section className="relative container mx-auto px-6 pt-20 pb-32">
+                <motion.div
+                    ref={heroRef}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
+                    className="text-center mb-20"
+                >
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="inline-block px-6 py-3 bg-gradient-to-r from-brand-maroon/10 to-brand-logo/10 rounded-full text-brand-darkmaroon font-semibold mb-8"
+                    >
+                        🔧 For Installers
+                    </motion.div>
+
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                            Maximize Your Profits
+                        </span>
+                        <br />
+                        <span className="text-brand-darkmaroon">
+                            With Sparq Technology
+                        </span>
+                    </h1>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+                    >
+                        Revolutionize your solar installations with Sparq Systems&apos; Quad microinverter technology.
+                        Faster installations, higher margins, and satisfied customers.
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                        className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto"
+                    >
+                        <Link href="/installer_ppt.pdf" target="_blank" onClick={() => handleCtaClick('presentation')}>
+                            <motion.button
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                            >
+                                View Installer Presentation
+                            </motion.button>
+                        </Link>
+                        <Link href="#bom" onClick={() => handleCtaClick('bom_calculator')}>
+                            <motion.button
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full sm:w-auto px-8 py-4 bg-white text-brand-darkmaroon font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 cursor-pointer"
+                            >
+                                BOM Calculator
+                            </motion.button>
+                        </Link>
+                    </motion.div>
+                </motion.div>
+            </section>
+
+            {/* Quad Architecture Features */}
+            <section id="whysparq" className="relative bg-white py-20">
+                <div className="container mx-auto px-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                            <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                                Quad Architecture Advantage
+                            </span>
+                        </h2>
+                        <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                            Revolutionary technology that transforms the solar installation experience with unmatched efficiency and reliability.
+                        </p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-20">
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            viewport={{ once: true }}
                         >
-                            <SwiperSlide className="bg-cover bg-center relative bg-[url(/SLC/009.JPG)]">
-                                <div className="absolute inset-x-0 top-4 sm:top-1/5 flex flex-col bg-transparent w-full items-center">
-                                    <h2 className="
-                                            text-lg
-                                            sm:text-3xl
-                                            md:text-4xl
-                                            lg:text-5xl
-                                            xl:text-6xl
-                                            2xl:text-7xl 
-                                            3xl:text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3 "
-                                    >
-                                        <span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">Quad architecture advantage
-                                        </span>
-                                    </h2>
-                                    <div className="mt-4 sm:mt-16">
-                                        <AnimatedList items={quad_items} />
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300 p-8 bg-gradient-to-br from-white to-gray-50/50 h-full">
+                                <div className="text-center mb-8">
+                                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-2xl mb-6">
+                                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                        </svg>
                                     </div>
+                                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon mb-4">
+                                        Quad Architecture Benefits
+                                    </h3>
+                                    <p className="text-brand-graytext leading-relaxed">
+                                        Experience the power of our revolutionary 4-in-1 microinverter design
+                                    </p>
                                 </div>
-                            </SwiperSlide>
-                            <SwiperSlide className="bg-cover bg-center relative bg-[url(/SLC/007.JPG)]" style={{ objectPosition: "75% 50%" }}>
-                                <div className="absolute inset-x-0 top-4 flex flex-col bg-transparent w-full items-start pl-4 sm:pl-20">
-                                    <h2 className="
-                                            text-lg
-                                            sm:text-3xl
-                                            md:text-4xl
-                                            lg:text-5xl
-                                            xl:text-6xl
-                                            2xl:text-7xl 
-                                            3xl:text-8xl text-white bg-brand-maroon rounded-lg font-bold p-3 "
-                                    >
-                                        <span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">4-In-1 Advantage
-                                        </span>
-                                    </h2>
-                                    <div className="mt-4">
-                                        {animateCircle && (
-                                            <AnimatedList items={quad_advantage} />
-                                        )}
+                                <div className="space-y-4">
+                                    {quad_items.map((item, index) => (
+                                        <motion.div
+                                            key={index}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                                            viewport={{ once: true }}
+                                            className="flex items-center gap-4 p-4 rounded-lg bg-white shadow-sm border border-gray-100"
+                                        >
+                                            <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-brand-logo to-brand-yellow rounded-full flex-shrink-0">
+                                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </div>
+                                            <span className="text-brand-graytext font-medium leading-relaxed">{item}</span>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </Card>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            viewport={{ once: true }}
+                        >
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300 p-8 bg-gradient-to-br from-white to-gray-50/50 h-full">
+                                <div className="text-center mb-8">
+                                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-logo to-brand-yellow rounded-2xl mb-6">
+                                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        </svg>
                                     </div>
+                                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon mb-4">
+                                        4-In-1 Installation Advantages
+                                    </h3>
+                                    <p className="text-brand-graytext leading-relaxed">
+                                        Streamlined installation process with superior performance benefits
+                                    </p>
                                 </div>
-                                <div
-                                    className="absolute"
-                                    style={{
-                                        top: `${highlight.y}%`,
-                                        left: `${100 - highlight.x}%`,
-                                        width: `${highlight.size}%`,
-                                        height: `${highlight.size}%`,
-                                        transform: 'translate(-50%, -50%)'
-                                    }}
-                                >
-                                    <svg viewBox="0 0 100 100" className="w-full h-full">
-                                        <circle
-                                            cx="50" cy="50" r="45" fill="none" stroke="#8c334d" strokeWidth="4"
-                                            strokeDasharray="283" strokeDashoffset={animateCircle ? "0" : "283"}
-                                            style={{
-                                                transition: animateCircle ? 'stroke-dashoffset 2s ease-in-out' : 'none'
-                                            }}
-                                        />
-                                    </svg>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    {quad_advantage.map((item, index) => (
+                                        <motion.div
+                                            key={index}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            transition={{ duration: 0.4, delay: index * 0.05 }}
+                                            viewport={{ once: true }}
+                                            className="flex items-start gap-3 p-3 rounded-lg bg-white shadow-sm border border-gray-100"
+                                        >
+                                            <div className="flex items-center justify-center w-6 h-6 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-full flex-shrink-0 mt-0.5">
+                                                <div className="w-2 h-2 bg-white rounded-full" />
+                                            </div>
+                                            <span className="text-brand-graytext font-medium text-sm leading-relaxed">{item}</span>
+                                        </motion.div>
+                                    ))}
                                 </div>
-                            </SwiperSlide>
-                            <SwiperSlide className="bg-cover bg-center relative bg-[url(/thumbnail_image.png)]">
-                                <div className='px-4 pt-4 lg:px-20 xl:px-40 sm:pt-8 flex flex-col h-full'>
-                                    <h1 className='text-xl sm:text-2xl lg:text-5xl xl:text-6xl font-extrabold border-b-2 border-brand-yellow b-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]'>Why Installers Should Choose Sparq Products</h1>
-                                    <ul className="list-disc list-inside text-lg sm:text-xl lg:text-2xl xl:text-4xl mt-4 space-y-4 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-                                        <li>Best In-Class Performance</li>
-                                        <li>Safe & Long-Lasting Products</li>
-                                        <li>Cost-Effective and Maintenance Free</li>
-                                        <li>Easy to Install and Remotely Monitor</li>
-                                        <li>Expert and Responsive Technical Support</li>
-                                    </ul>
-                                    <div className="flex items-center justify-center mt-16">
-                                        <Link className="cursor-pointer rounded-md p-4 text-xl bg-brand-maroon hover:bg-brand-darkmaroon text-white" href="/installer_ppt.pdf" target="_blank">See Installer Presentation</Link>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-                        </Swiper>
+                            </Card>
+                        </motion.div>
                     </div>
                 </div>
             </section>
-            <section id="discover" className="container mx-auto 2xl:px-32 py-8 space-y-32 scroll-mt-[66px] mt-16">
-                {/* 2. Left-aligned blurb + link */}
-                <div className="w-full md:w-2/3 text-left">
-                    <h2 className="text-4xl font-semibold mb-2">
-                        <Link href="/products" className="text-brand-maroon hover:underline decoration-brand-logo">
-                            Sparq Product Family
-                        </Link>
-                    </h2>
-                    <p className="text-2xl">
-                        Discover our robust microinverters engineered for commercial solar arrays, delivering maximum ROI, minimal maintenance, and unmatched uptime.
-                    </p>
-                </div>
 
-                {/* 3. Right-aligned blurb + link */}
-                <div className="w-full md:w-2/3 ml-auto text-right">
-                    <h2 className="text-4xl font-semibold mb-2">
-                        <Link href="/resources" className="text-brand-maroon hover:underline decoration-brand-logo">
-                            Learning
-                        </Link>
+            {/* Why Sparq Section */}
+            <section className="relative container mx-auto px-6 py-20">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                        Why Installers Choose Sparq
                     </h2>
-                    <p className="text-2xl">
-                        Access in-depth installation guides, commissioning tutorials, and best practices for installers deploying Sparq microinverters at commercial scale.
+                    <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        Revolutionary technology that delivers unmatched performance, reliability, and profitability for your business.
                     </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                    {benefitCards.map((benefit, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            viewport={{ once: true }}
+                            className="group"
+                        >
+                            <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0">
+                                <CardContent className="p-0">
+                                    <div className={`${benefit.accentColor} p-6 text-white`}>
+                                        <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4 mx-auto">
+                                            {benefit.icon}
+                                        </div>
+                                        <h3 className="text-xl font-bold text-center mb-4">{benefit.title}</h3>
+                                    </div>
+                                    <div className="p-6 bg-white">
+                                        <p className="text-brand-graytext leading-relaxed">{benefit.description}</p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    ))}
                 </div>
             </section>
-            <section id="bom" className="mt-16">
+
+            <section id="discover" className="relative bg-white py-20">
+                <div className="container mx-auto px-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            viewport={{ once: true }}
+                        >
+                            <Card className="h-full overflow-hidden border-0 shadow-xl group hover:shadow-2xl transition-all duration-300 py-0">
+                                <div className="relative h-64 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                                    <div className="absolute bottom-6 left-6 right-6">
+                                        <h3 className="text-3xl font-bold text-white mb-2">Sparq Product Family</h3>
+                                        <p className="text-white/90">
+                                            Discover our robust microinverters engineered for commercial solar arrays, delivering maximum ROI and minimal maintenance.
+                                        </p>
+                                    </div>
+                                </div>
+                                <CardContent className="p-6">
+                                    <Link href="/products" onClick={() => handleCtaClick('products')}>
+                                        <motion.button
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            className="w-full px-6 py-3 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                        >
+                                            Explore Products
+                                            <svg className="inline-block ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </motion.button>
+                                    </Link>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            viewport={{ once: true }}
+                        >
+                            <Card className="h-full overflow-hidden border-0 shadow-xl group hover:shadow-2xl transition-all duration-300 py-0">
+                                <div className="relative h-64 bg-gradient-to-br from-brand-logo to-brand-yellow">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                                    <div className="absolute bottom-6 left-6 right-6">
+                                        <h3 className="text-3xl font-bold text-white mb-2">Learning Hub</h3>
+                                        <p className="text-white/90">
+                                            Access in-depth installation guides, commissioning tutorials, and best practices for commercial-scale deployments.
+                                        </p>
+                                    </div>
+                                </div>
+                                <CardContent className="p-6">
+                                    <Link href="/resources" onClick={() => handleCtaClick('resources')}>
+                                        <motion.button
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            className="w-full px-6 py-3 bg-gradient-to-r from-brand-logo to-brand-yellow text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                        >
+                                            Visit Learning Hub
+                                            <svg className="inline-block ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </motion.button>
+                                    </Link>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* BOM Calculator Section */}
+            <section id="bom" className="relative container mx-auto px-6 py-20">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                            BOM Calculator
+                        </span>
+                    </h2>
+                    <p className="text-xl text-brand-graytext max-w-4xl mx-auto">
+                        Calculate your Bill of Materials and system requirements with our comprehensive planning tool.
+                    </p>
+                </motion.div>
                 <BoMCalc />
             </section>
-            <section id="faq" className="bg-white container mx-auto py-8 px-4 sm:px-32 scroll-mt-[66px]">
-                <h1 className="text-2xl font-bold text-brand-maroon text-left mt-12">
-                    Frequently Asked Questions
-                </h1>
-                <div className="flex flex-col space-y-6">
-                    {FAQ.map((item) => (
-                        <AccordionItem title={item.questionBrand} key={item.id} parent="homeowner_faq">
-                            <div className="space-y-2">
-                                {item.subQuestions.map((subItem) => (
-                                    <div key={subItem.id} className="text-gray-700">
-                                        <strong className="text-brand-maroon">{subItem.question}</strong><br></br>{" "}
-                                        {subItem.answer && Array.isArray(subItem.answer) ? (
-                                            <div>
-                                                {subItem.answer.map((block, i) =>
-                                                    Array.isArray(block) ? (
-                                                        <ul key={i} className="list-disc ml-6">
-                                                            {block.map((li, j) => <li key={j}>{li}</li>)}
-                                                        </ul>
-                                                    ) : (
-                                                        <p key={i} className="whitespace-pre-line">{block}</p>
-                                                    ))}
-                                            </div>
-                                        ) : (
-                                            <div>
-                                                {subItem.answer as string}
-                                            </div>
-                                        )}
 
+            {/* FAQ Section */}
+            <section id="faq" className="relative container mx-auto px-6 py-20">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                        Frequently Asked Questions
+                    </h2>
+                    <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        Get answers to common questions about our products, installation process, and technical specifications.
+                    </p>
+                </motion.div>
+
+                <div className="space-y-6 max-w-4xl mx-auto">
+                    {FAQ.map((faqCategory, index) => (
+                        <motion.div
+                            key={faqCategory.id}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            viewport={{ once: true }}
+                        >
+                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 py-0">
+                                <CardContent className="p-0">
+                                    <div
+                                        className="bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80 p-6 text-white cursor-pointer"
+                                        onClick={() => toggleExpanded(index)}
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="flex-shrink-0">
+                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </div>
+                                            <h3 className="text-xl md:text-2xl font-bold flex-1">{faqCategory.questionBrand}</h3>
+                                            <motion.div
+                                                animate={{ rotate: dropdownExpanded[index] ? 180 : 0 }}
+                                                transition={{ duration: 0.3 }}
+                                                className="flex-shrink-0"
+                                            >
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </motion.div>
+                                        </div>
                                     </div>
-                                ))}
-                            </div>
-                        </AccordionItem>
+
+                                    <motion.div
+                                        initial={false}
+                                        animate={{
+                                            height: dropdownExpanded[index] ? 'auto' : 0,
+                                            opacity: dropdownExpanded[index] ? 1 : 0
+                                        }}
+                                        transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
+                                        className="overflow-hidden"
+                                    >
+                                        <div className="p-6 bg-white">
+                                            <div className="space-y-6">
+                                                {faqCategory.subQuestions.map((subItem) => (
+                                                    <div key={subItem.id} className="border-b border-gray-100 last:border-b-0 pb-4 last:pb-0">
+                                                        <h4 className="font-bold text-brand-darkmaroon mb-3">{subItem.question}</h4>
+                                                        <div className="text-brand-graytext leading-relaxed">
+                                                            {subItem.answer && Array.isArray(subItem.answer) ? (
+                                                                <div className="space-y-3">
+                                                                    {subItem.answer.map((block, i) =>
+                                                                        Array.isArray(block) ? (
+                                                                            <ul key={i} className="list-disc ml-6 space-y-1">
+                                                                                {block.map((li, j) => (
+                                                                                    <li key={j} className="leading-relaxed">{li}</li>
+                                                                                ))}
+                                                                            </ul>
+                                                                        ) : (
+                                                                            <p key={i} className="whitespace-pre-line leading-relaxed">{block}</p>
+                                                                        )
+                                                                    )}
+                                                                </div>
+                                                            ) : (
+                                                                <p className="leading-relaxed">{subItem.answer as string}</p>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
                     ))}
+                </div>
+            </section>
+
+            {/* Final CTA Section */}
+            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-20">
+                <div className="container mx-auto px-6 text-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                            Ready to Partner with Sparq?
+                        </h2>
+                        <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
+                            Join hundreds of successful installers who have chosen Sparq Systems for their commercial solar projects.
+                            Start maximizing your profits today.
+                        </p>
+                        <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
+                            <Link href="/contact" onClick={() => handleCtaClick('final_contact')}>
+                                <motion.button
+                                    whileHover={{ scale: 1.02, y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="w-full sm:w-auto px-8 py-4 bg-white text-brand-maroon font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                >
+                                    Get Started
+                                </motion.button>
+                            </Link>
+                            <Link href="/installer_ppt.pdf" target="_blank" onClick={() => handleCtaClick('final_presentation')}>
+                                <motion.button
+                                    whileHover={{ scale: 1.02, y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="w-full sm:w-auto px-8 py-4 bg-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                >
+                                    Download Presentation
+                                </motion.button>
+                            </Link>
+                        </div>
+                    </motion.div>
                 </div>
             </section>
         </div>

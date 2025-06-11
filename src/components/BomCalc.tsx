@@ -223,16 +223,8 @@ export default function BoMCalc() {
 	}
 
 	return (
-		<main className="text-sm">
+		<div className="text-sm">
 
-			{/* HERO */}
-			<section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-brand-maroon)] to-[var(--color-brand-darkmaroon)] text-white">
-				<div className="mx-auto max-w-6xl px-6 py-12 text-center">
-					<h1 className="text-3xl font-semibold text-[var(--color-brand-yellow)]">
-						BoM Calculator
-					</h1>
-				</div>
-			</section>
 
 			{/* BODY */}
 			<section className="mx-auto max-w-7xl space-y-10 px-4 pt-10 pb-6">
@@ -363,7 +355,7 @@ export default function BoMCalc() {
 					Contact Us
 				</Link>
 			</div>
-		</main>
+		</div>
 	);
 }
 

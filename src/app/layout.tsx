@@ -61,7 +61,6 @@ const investorDropdown = [
 ]
 
 const homeownerDropdown = [
-	{ label: "Sparq Video", href: "/homeowners" },
 	{ label: "Why Sparq", href: "/homeowners#whysparq" },
 	{ label: "Sparq Advantage", href: "/homeowners#discover"},
 	{ label: "FAQs", href: "/homeowners#faq"}

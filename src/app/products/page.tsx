@@ -106,7 +106,7 @@ function FloatingProductCard({ product, index }: FloatingProductCardProps) {
                 } : {}}
                 transition={{
                     duration: 0.8,
-                    delay: index * 0.15,
+                    delay: index * 0.1,
                     ease: [0.23, 1, 0.320, 1]
                 }}
                 className="relative group cursor-pointer h-[500px] md:h-[550px] w-full rounded-2xl overflow-hidden"

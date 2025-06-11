@@ -17,7 +17,7 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 border-t border-brand-maroon/10">
+        <footer className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50">
             {/* Decorative top border */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-maroon" />
 
