@@ -114,7 +114,7 @@ export default function TestPage() {
                 <AccordionItem title="Technical Specifications" parent="quad3">
                     <div>
                         {selectedModel === "Quad3-4301" && (
-                            <Link className="text-blue-500 hover:text-blue-700" href="/Datasheet_Quad4301.pdf" target="_blank">
+                            <Link className="text-blue-500 hover:text-blue-700" href="/Quad3/quad3_datasheet.pdf" target="_blank">
                                 Datasheet for {selectedModel}
                             </Link>
                         )}
@@ -124,7 +124,9 @@ export default function TestPage() {
                     <h2 className="text-xl font-bold mb-4">Reports</h2>
                     <div className="flex flex-col">
                         <Link href="/Quad3/report/EN50549-1.pdf" target="_blank" className="text-blue-500 hover:text-blue-700">EN50549-1</Link>
+                        <Link href="/Quad3/report/EMC_Emissions_Report.pdf" target="_blank" className="text-blue-500 hover:text-blue-700">EN 61000-6-3:2007</Link>
                         <Link href="/Quad3/report/IEC 62109.01.02.pdf" target="_blank" className="text-blue-500 hover:text-blue-700">IEC 62109.01.02</Link>
+                        <Link href="/Quad3/report/EMC_Immunity_Report.pdf" target="_blank" className="text-blue-500 hover:text-blue-700">IEC 61000-3-2:2007</Link>
                     </div>
                     <h2 className="text-xl font-bold my-4">Certifications</h2>
                     <div className="flex flex-col">
