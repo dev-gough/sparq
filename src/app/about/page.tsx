@@ -69,7 +69,6 @@ interface FloatingCardProps {
 }
 
 function FloatingCard({ card, index }: FloatingCardProps) {
-    const [isExpanded, setIsExpanded] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
     const cardRef = useRef(null)
     const isInView = useInView(cardRef, { once: true, margin: "-100px" })
@@ -91,14 +90,8 @@ function FloatingCard({ card, index }: FloatingCardProps) {
                 ease: [0.23, 1, 0.320, 1]
             }}
             className="relative group cursor-pointer h-96 md:h-[500px] w-full rounded-2xl overflow-hidden"
-            onMouseEnter={() => {
-                setIsHovered(true)
-                setIsExpanded(true)
-            }}
-            onMouseLeave={() => {
-                setIsHovered(false)
-                setIsExpanded(false)
-            }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             style={{ perspective: '1000px' }}
         >
             <Card className="h-full w-full overflow-hidden border-0 shadow-2xl rounded-2xl">
@@ -122,21 +115,25 @@ function FloatingCard({ card, index }: FloatingCardProps) {
                 {/* Diagonal accent */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-white/20 transform rotate-45 translate-x-12 -translate-y-12" />
 
-                <CardContent className="relative z-10 h-full flex flex-col justify-between p-6">
-                    <div>
+                <CardContent className="relative z-10 h-full flex flex-col justify-center p-6">
+                    <div className="text-center mb-8">
                         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-4">
                             {card.title}
                         </h2>
                     </div>
 
-                    {/* Expandable content */}
+                    {/* Auto-expanding content */}
                     <motion.div
-                        initial={false}
-                        animate={{
-                            height: isExpanded ? 'auto' : '0px',
-                            opacity: isExpanded ? 1 : 0
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={isInView ? {
+                            height: 'auto',
+                            opacity: 1
+                        } : {}}
+                        transition={{
+                            duration: 0.6,
+                            delay: index * 0.2 + 0.4,
+                            ease: [0.23, 1, 0.320, 1]
                         }}
-                        transition={{ duration: 0.3, ease: [0.23, 1, 0.320, 1] }}
                         className="overflow-hidden"
                     >
                         <div className="bg-black/40 backdrop-blur-md rounded-xl p-6 mt-6 border border-white/20">
@@ -145,10 +142,10 @@ function FloatingCard({ card, index }: FloatingCardProps) {
                                     <motion.li
                                         key={i}
                                         initial={{ opacity: 0, x: -30 }}
-                                        animate={isExpanded ? { opacity: 1, x: 0 } : {}}
+                                        animate={isInView ? { opacity: 1, x: 0 } : {}}
                                         transition={{
-                                            delay: i * 0.1,
-                                            duration: 0.3,
+                                            delay: index * 0.2 + 0.6 + i * 0.1,
+                                            duration: 0.4,
                                             ease: [0.23, 1, 0.320, 1]
                                         }}
                                         className="flex items-start gap-4 text-white text-base md:text-lg"
@@ -160,18 +157,6 @@ function FloatingCard({ card, index }: FloatingCardProps) {
                             </ul>
                         </div>
                     </motion.div>
-
-                    {/* Expand indicator */}
-                    <div className="flex items-center justify-start mt-6">
-                        <motion.div
-                            animate={{ rotate: isExpanded ? 180 : 0 }}
-                            className="w-10 h-10 bg-white/30 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/40"
-                        >
-                            <svg width="20" height="20" viewBox="0 0 16 16" fill="none" className="text-white">
-                                <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </motion.div>
-                    </div>
                 </CardContent>
             </Card>
         </motion.div>

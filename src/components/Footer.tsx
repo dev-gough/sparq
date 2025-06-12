@@ -22,6 +22,31 @@ export default function Footer() {
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-maroon" />
 
             <div className="container mx-auto px-6 py-4">
+                {/* Logo Section - Left Aligned */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-8"
+                >
+                    <div className="flex items-center mb-6">
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            <Image
+                                src="/logo.png"
+                                alt="Sparq Systems"
+                                width={80}
+                                height={80}
+                                className="h-auto"
+                            />
+                        </motion.div>
+                    </div>
+                </motion.div>
+
+                {/* Content Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
                     {/* Company Information */}
                     <motion.div
@@ -31,21 +56,6 @@ export default function Footer() {
                         transition={{ duration: 0.6 }}
                         className="lg:col-span-1"
                     >
-                        <div className="flex items-center mb-6">
-                            <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ duration: 0.2 }}
-                            >
-                                <Image
-                                    src="/logo.png"
-                                    alt="Sparq Systems"
-                                    width={80}
-                                    height={80}
-                                    className="h-auto"
-                                />
-                            </motion.div>
-                        </div>
-
                         <p className="text-brand-graytext text-lg mb-6 leading-relaxed">
                             Find out what solutions are right for you.
                         </p>

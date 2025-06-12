@@ -55,7 +55,6 @@ interface SectionCardProps {
 }
 
 function SectionCard({ section, index }: SectionCardProps) {
-    const [isExpanded, setIsExpanded] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
     const cardRef = useRef(null)
     const isInView = useInView(cardRef, { once: true, margin: "-100px" })
@@ -76,14 +75,8 @@ function SectionCard({ section, index }: SectionCardProps) {
                 ease: [0.23, 1, 0.320, 1]
             }}
             className="relative group cursor-pointer h-[450px] md:h-[550px] w-full rounded-2xl overflow-hidden max-w-6xl mx-auto"
-            onMouseEnter={() => {
-                setIsHovered(true)
-                setIsExpanded(true)
-            }}
-            onMouseLeave={() => {
-                setIsHovered(false)
-                setIsExpanded(false)
-            }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             style={{ perspective: '1000px' }}
         >
             <Card className="h-full w-full overflow-hidden border-0 shadow-2xl">
@@ -120,48 +113,38 @@ function SectionCard({ section, index }: SectionCardProps) {
                         </h2>
                     </div>
 
-                    {/* Expandable content area */}
-                    <div className="flex-1 flex items-center overflow-hidden">
-                        <div className="w-full flex justify-start">
-                            <div className="max-w-2xl text-left">
-                                <motion.div
-                                    initial={false}
-                                    animate={{
-                                        height: isExpanded ? 'auto' : '0px',
-                                        opacity: isExpanded ? 1 : 0
-                                    }}
-                                    transition={{ duration: 0.3, ease: [0.23, 1, 0.320, 1] }}
-                                    className="overflow-hidden"
-                                >
-                                    <div className="bg-black/40 backdrop-blur-md rounded-xl border border-white/20 p-6">
-                                        <motion.p
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={isExpanded ? { opacity: 1, y: 0 } : {}}
-                                            transition={{
-                                                delay: isExpanded ? 0.1 : 0,
-                                                duration: 0.25,
-                                                ease: [0.23, 1, 0.320, 1]
-                                            }}
-                                            className="text-white text-lg md:text-xl lg:text-2xl leading-relaxed font-medium"
-                                        >
-                                            {section.content}
-                                        </motion.p>
-                                    </div>
-                                </motion.div>
-                            </div>
+                    {/* Auto-expanding content area */}
+                    <div className="flex-1 flex items-center justify-center">
+                        <div className="max-w-2xl text-center">
+                            <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={isInView ? {
+                                    height: 'auto',
+                                    opacity: 1
+                                } : {}}
+                                transition={{
+                                    duration: 0.6,
+                                    delay: index * 0.15 + 0.4,
+                                    ease: [0.23, 1, 0.320, 1]
+                                }}
+                                className="overflow-hidden"
+                            >
+                                <div className="bg-black/40 backdrop-blur-md rounded-xl border border-white/20 p-6">
+                                    <motion.p
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                        transition={{
+                                            delay: index * 0.15 + 0.6,
+                                            duration: 0.4,
+                                            ease: [0.23, 1, 0.320, 1]
+                                        }}
+                                        className="text-white text-lg md:text-xl lg:text-2xl leading-relaxed font-medium"
+                                    >
+                                        {section.content}
+                                    </motion.p>
+                                </div>
+                            </motion.div>
                         </div>
-                    </div>
-
-                    {/* Expand indicator */}
-                    <div className="flex items-center justify-start mt-6">
-                        <motion.div
-                            animate={{ rotate: isExpanded ? 180 : 0 }}
-                            className="w-10 h-10 bg-white/30 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/40"
-                        >
-                            <svg width="20" height="20" viewBox="0 0 16 16" fill="none" className="text-white">
-                                <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </motion.div>
                     </div>
                 </CardContent>
             </Card>

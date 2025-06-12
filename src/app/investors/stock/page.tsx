@@ -62,7 +62,7 @@ function BackgroundElements() {
 
 export default function StockPage() {
     const [chartSettings, setChartSettings] = useState<ChartSettings>({
-        interval: '1h',
+        interval: '1day',
         startDate: '2020-01-01 08:00:00',
         endDate: ''
     })

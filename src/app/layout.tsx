@@ -54,9 +54,10 @@ const aboutDropdown = [
 
 const investorDropdown = [
 	{ label: "Investor Highlights", href: "/investors#highlights" },
+    { label: "FAQ", href: "/investors#faq"},
+	{ label: "Stock", href: "/investors/stock" },
 	{ label: "News", href: "/investors/news" },
 	{ label: "Events", href: "/investors/events" },
-	{ label: "Stock", href: "/investors/stock" },
 	{ label: "Governance", href: "/investors/governance" },
 ]
 

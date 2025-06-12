@@ -67,7 +67,7 @@ const highlights = [
         content: [
             { name: "Queen's University", url: "https://www.investkingston.ca/rd/#1643990910571-444406ce-b63e", description: "Research and development facility" },
             { name: "St. Lawrence College", url: "https://www.energy-manager.ca/st-lawrence-college-installs-largest-solar-system-for-post-secondary-facility-856/", description: "Largest solar system for post-secondary facility" },
-            { name: "Modern Niagara", url: "#", description: "Sparq Headquarter Office installation" }
+            { name: "Modern Niagara", url: "https://modernniagara.com/", description: "Sparq Headquarter Office installation" }
         ],
         icon: <FaRocket className="w-8 h-8" />
     },
