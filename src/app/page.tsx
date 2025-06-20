@@ -215,11 +215,11 @@ export default function Home() {
                     className="text-center mb-20"
                 >
                     <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
-                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-brand-yellow via-brand-maroon to-brand-darkmaroon bg-clip-text text-transparent">
                             Power the Future
                         </span>
                         <br />
-                        <span className="text-brand-darkmaroon">
+                        <span className="bg-gradient-to-r from-brand-yellow via-brand-maroon to-brand-darkmaroon bg-clip-text text-transparent">
                             With Sparq Systems
                         </span>
                     </h1>

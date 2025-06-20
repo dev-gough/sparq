@@ -10,7 +10,7 @@ export async function GET(request: Request) {
         const endDate = searchParams.get('end_date') || '';
         
         // Build URL with parameters
-        let url = `https://api.twelvedata.com/time_series?apikey=${process.env.TWELVE_DATA_API_KEY}&interval=${interval}&symbol=SPRQ&start_date=${startDate}`;
+        let url = `https://api.twelvedata.com/time_series?apikey=${process.env.TWELVE_DATA_API_KEY}&interval=${interval}&symbol=SPRQ&start_date=${startDate}&exchange=TSXV`;
         
         if (endDate) {
             url += `&end_date=${endDate}`;

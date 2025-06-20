@@ -139,7 +139,7 @@ html {
 @utility container {
   margin-inline: auto;
   padding-inline: 1.5rem;
-  max-width: 1700px;
+  max-width: 1600px;
 }
 
 @layer base {
