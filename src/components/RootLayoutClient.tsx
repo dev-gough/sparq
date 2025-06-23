@@ -47,6 +47,7 @@ export default function RootLayoutClient({ children, navbarItems, fontOptions }:
         { name: 'Inter', value: 'inter', className: fontOptions.inter.className },
         { name: 'Poppins', value: 'poppins', className: fontOptions.poppins.className },
         { name: 'Geist', value: 'geist', className: fontOptions.geist.className },
+        { name: "Raleway", value: 'raleway', className: fontOptions.raleway.className},
     ]
 
     return (

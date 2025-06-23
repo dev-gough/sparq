@@ -294,7 +294,7 @@ export default function SupportTicketPage() {
 									</div>
 									<h3 className="text-xl font-bold text-brand-darkmaroon mb-4">FAQ</h3>
 									<p className="text-brand-graytext flex-grow mb-6">Find quick answers to frequently asked questions about our products.</p>
-									<a href="/resources" className="text-brand-maroon hover:text-brand-darkmaroon font-semibold transition-colors duration-200">
+									<a href="/resources#faq" className="text-brand-maroon hover:text-brand-darkmaroon font-semibold transition-colors duration-200">
 										View FAQ →
 									</a>
 								</CardContent>

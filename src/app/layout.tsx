@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { Inter, Poppins, Geist, Nunito, Roboto_Flex, Quicksand, PT_Sans } from "next/font/google"
+import { Inter, Poppins, Geist, Nunito, Roboto_Flex, Quicksand, PT_Sans, Raleway } from "next/font/google"
 import RootLayoutClient from "@/components/RootLayoutClient"
 
 export const metadata: Metadata = {
@@ -51,6 +51,12 @@ const geist = Geist({
 	display: 'swap',
 })
 
+const rale = Raleway({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700", "800", "900"],
+	display: 'swap',
+})
+
 // Font objects for dynamic switching
 export const fontOptions = {
 	'pt_sans': pt_sans,
@@ -60,6 +66,7 @@ export const fontOptions = {
 	'inter': inter,
 	'poppins': poppins,
 	'geist': geist,
+	'raleway': rale,
 }
 
 const aboutDropdown = [

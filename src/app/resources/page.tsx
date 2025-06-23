@@ -259,6 +259,7 @@ export default function LearningPage() {
 
             {/* Aggregated FAQ Section */}
             <AggregatedFAQ
+                id="faq"
                 homeownersData={homeownersData}
                 installersData={installersData}
                 investorsData={investorsData}

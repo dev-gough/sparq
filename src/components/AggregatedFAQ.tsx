@@ -29,6 +29,7 @@ interface FAQCategory {
 }
 
 interface AggregatedFAQProps {
+    id?: string
     homeownersData: FAQData
     installersData: FAQData
     investorsData: FAQData
@@ -69,7 +70,7 @@ const renderAnswer = (answer: string | Array<string | string[]>, index: number =
     return null
 }
 
-export default function AggregatedFAQ({ homeownersData, installersData, investorsData }: AggregatedFAQProps) {
+export default function AggregatedFAQ({ id, homeownersData, installersData, investorsData }: AggregatedFAQProps) {
     const [activeCategory, setActiveCategory] = useState<string>('homeowners')
     const [openQuestions, setOpenQuestions] = useState<Set<string>>(new Set())
     const [searchQuery, setSearchQuery] = useState<string>('')
@@ -151,7 +152,7 @@ export default function AggregatedFAQ({ homeownersData, installersData, investor
     const totalResults = filteredData.faqs.reduce((acc, section) => acc + section.subQuestions.length, 0)
 
     return (
-        <section className="relative container mx-auto px-6 py-20">
+        <section id={id} className="relative container mx-auto px-6 py-20">
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
