@@ -5,6 +5,7 @@ import { motion } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
 import StockChart, { RawBar } from "@/components/StockChart"
 import ChartControls, { ChartSettings } from "@/components/ChartControls"
+import ExchangeSelector, { exchanges } from "@/components/ExchangeSelector"
 import useSWR from 'swr'
 import { FaChartLine, FaInfoCircle, FaClock, FaExternalLinkAlt } from 'react-icons/fa'
 
@@ -67,12 +68,15 @@ export default function StockPage() {
         endDate: ''
     })
 
+    const [selectedExchange, setSelectedExchange] = useState<string>('TSXV')
+
     const heroRef = useRef(null)
 
-    const buildApiUrl = (settings: ChartSettings) => {
+    const buildApiUrl = (settings: ChartSettings, exchange: string) => {
         const params = new URLSearchParams({
             interval: settings.interval,
-            start_date: settings.startDate
+            start_date: settings.startDate,
+            exchange: exchange
         })
 
         if (settings.endDate) {
@@ -82,13 +86,19 @@ export default function StockPage() {
         return `/api/stockData?${params.toString()}`
     }
 
-    const { data, error, isLoading } = useSWR(buildApiUrl(chartSettings), fetcher, {
+    const { data, error, isLoading } = useSWR(buildApiUrl(chartSettings, selectedExchange), fetcher, {
         refreshInterval: 15 * 60_000
     })
 
     const handleSettingsChange = (newSettings: ChartSettings) => {
         setChartSettings(newSettings)
     }
+
+    const handleExchangeChange = (exchange: string) => {
+        setSelectedExchange(exchange)
+    }
+
+    const currentExchangeData = exchanges.find(ex => ex.code === selectedExchange) || exchanges[0]
 
     if (error) {
         return (
@@ -170,7 +180,7 @@ export default function StockPage() {
                         className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
                     >
                         Track Sparq Systems&apos; real-time stock performance with interactive charts
-                        and comprehensive market data from the TSX Venture Exchange.
+                        and comprehensive market data from the {currentExchangeData.name}.
                     </motion.p>
                 </motion.div>
             </section>
@@ -186,24 +196,31 @@ export default function StockPage() {
                         <Card className="overflow-hidden border-0 shadow-2xl py-0 mb-8">
                             <CardContent className="p-0">
                                 <div className="bg-gradient-to-r from-brand-maroon to-brand-logo p-6">
-                                    <div className="flex items-center gap-3 text-white">
-                                        <div className="flex items-center justify-center w-10 h-10 bg-white/20 rounded-full">
-                                            <FaChartLine className="w-5 h-5" />
-                                        </div>
-                                        <div>
-                                            <h2 className="text-2xl font-bold">Interactive Stock Chart</h2>
-                                            <div className="flex items-center gap-2 text-white/90">
-                                                <FaClock className="w-4 h-4" />
-                                                <span className="text-sm">Updates every 15 minutes during market hours</span>
+                                    <div className="flex items-center justify-between text-white">
+                                        <div className="flex items-center gap-3">
+                                            <div className="flex items-center justify-center w-10 h-10 bg-white/20 rounded-full">
+                                                <FaChartLine className="w-5 h-5" />
+                                            </div>
+                                            <div>
+                                                <h2 className="text-2xl font-bold">Interactive Stock Chart</h2>
+                                                <div className="flex items-center gap-2 text-white/90">
+                                                    <FaClock className="w-4 h-4" />
+                                                    <span className="text-sm">Updates every 15 minutes during market hours</span>
+                                                    <span className="text-sm">• {currentExchangeData.currency}</span>
+                                                </div>
                                             </div>
                                         </div>
+                                        <ExchangeSelector
+                                            currentExchange={selectedExchange}
+                                            onExchangeChange={handleExchangeChange}
+                                        />
                                     </div>
                                 </div>
 
                                 <div className="bg-white relative" style={{ height: '700px' }}>
                                     <ChartControls onSettingsChange={handleSettingsChange} />
                                     {data && data.values && (
-                                        <StockChart data={data.values} symbol="SPRQ" />
+                                        <StockChart data={data.values} symbol={currentExchangeData.symbol} />
                                     )}
                                 </div>
                             </CardContent>
@@ -213,7 +230,7 @@ export default function StockPage() {
             </section>
 
             {/* Additional Information */}
-            <section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 py-20">
+            <section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 py-10">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -240,15 +257,25 @@ export default function StockPage() {
                                     <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full mx-auto mb-6">
                                         <FaChartLine className="w-8 h-8 text-white" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-brand-darkmaroon mb-4">TSX Venture Exchange</h3>
-                                    <p className="text-brand-graytext flex-grow mb-6">Trading on Canada&apos;s premier venture capital marketplace for emerging companies.</p>
+                                    <h3 className="text-xl font-bold text-brand-darkmaroon mb-4">{currentExchangeData.name}</h3>
+                                    <p className="text-brand-graytext flex-grow mb-6">
+                                        {currentExchangeData.code === 'TSXV' && "Trading on Canada's premier venture capital marketplace for emerging companies."}
+                                        {currentExchangeData.code === 'FSX' && "Trading on Germany's leading stock exchange, providing European market access."}
+                                        {currentExchangeData.code === 'NEO' && "Trading on Canada's innovative exchange designed for modern capital markets."}
+                                        {currentExchangeData.code === 'OTC' && "Trading on the US over-the-counter markets for international securities access."}
+                                    </p>
                                     <a
-                                        href="https://www.tsx.com"
+                                        href={
+                                            currentExchangeData.code === 'TSXV' ? "https://www.tsx.com" :
+                                                currentExchangeData.code === 'FSX' ? "https://www.deutsche-boerse.com" :
+                                                    currentExchangeData.code === 'NEO' ? "https://www.neo.inc" :
+                                                        "https://www.otcmarkets.com"
+                                        }
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-2 text-brand-maroon hover:text-brand-darkmaroon font-semibold transition-colors duration-200"
                                     >
-                                        <span>Visit TSX</span>
+                                        <span>Visit Exchange</span>
                                         <FaExternalLinkAlt className="w-4 h-4" />
                                     </a>
                                 </CardContent>
@@ -265,9 +292,14 @@ export default function StockPage() {
                                     <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full mx-auto mb-6">
                                         <FaInfoCircle className="w-8 h-8 text-white" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-brand-darkmaroon mb-4">Symbol: SPRQ</h3>
-                                    <p className="text-brand-graytext flex-grow mb-6">Our ticker symbol on the TSX Venture Exchange for easy identification and trading.</p>
-                                    <div className="text-2xl font-bold text-brand-maroon">SPRQ</div>
+                                    <h3 className="text-xl font-bold text-brand-darkmaroon mb-4">Symbol: {currentExchangeData.symbol}</h3>
+                                    <p className="text-brand-graytext flex-grow mb-6">Our ticker symbol on the {currentExchangeData.name} for easy identification and trading.</p>
+                                    <div className="flex items-center justify-center gap-2">
+                                        <div className="text-2xl font-bold text-brand-maroon">{currentExchangeData.symbol}</div>
+                                        <div className="text-sm text-brand-graytext bg-gray-100 px-2 py-1 rounded">
+                                            {currentExchangeData.currency}
+                                        </div>
+                                    </div>
                                 </CardContent>
                             </Card>
                         </motion.div>
@@ -282,11 +314,16 @@ export default function StockPage() {
                                     <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full mx-auto mb-6">
                                         <FaClock className="w-8 h-8 text-white" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-brand-darkmaroon mb-4">Real-Time Data</h3>
+                                    <h3 className="text-xl font-bold text-brand-darkmaroon mb-4">Market Information</h3>
                                     <p className="text-brand-graytext flex-grow mb-6">Live market data updates every 15 minutes during trading hours for accurate tracking.</p>
                                     <div className="text-sm text-brand-graytext">
-                                        <strong>Market Hours:</strong><br />
-                                        9:30 AM - 4:00 PM EST
+                                        <strong>Trading Hours:</strong><br />
+                                        {currentExchangeData.code === 'TSXV' && "9:30 AM - 4:00 PM EST"}
+                                        {currentExchangeData.code === 'FSX' && "9:00 AM - 5:30 PM CET"}
+                                        {currentExchangeData.code === 'NEO' && "9:30 AM - 4:00 PM EST"}
+                                        {currentExchangeData.code === 'OTC' && "9:30 AM - 4:00 PM EST"}
+                                        <br />
+                                        <strong>Country:</strong> {currentExchangeData.country}
                                     </div>
                                 </CardContent>
                             </Card>
@@ -296,7 +333,7 @@ export default function StockPage() {
             </section>
 
             {/* Call to Action */}
-            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-20">
+            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-10">
                 <div className="container mx-auto px-6 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

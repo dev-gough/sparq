@@ -97,13 +97,13 @@ export default function PhotosPage() {
             <BackgroundElements />
             
             {/* Hero Section */}
-            <section className="relative container mx-auto px-6 pt-20 pb-32">
+            <section className="relative container mx-auto px-6 pt-10 pb-16">
                 <motion.div
                     ref={heroRef}
                     initial={{ opacity: 0, y: 50 }}
                     animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
-                    className="text-center mb-20"
+                    className="text-center mb-10"
                 >
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
@@ -129,7 +129,7 @@ export default function PhotosPage() {
 
             {/* Site Selection */}
             {installationSites.length > 1 && (
-                <section className="relative container mx-auto px-6 py-20">
+                <section className="relative container mx-auto px-6 py-10">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -144,7 +144,7 @@ export default function PhotosPage() {
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
                         {installationSites.map((site, index) => (
                             <motion.div
                                 key={site.id}
@@ -185,7 +185,7 @@ export default function PhotosPage() {
             )}
 
             {/* Photo Gallery */}
-            <section className="relative bg-white py-20">
+            <section className="relative bg-white py-10">
                 <div className="container mx-auto px-6">
                     {currentSite && (
                         <motion.div
@@ -204,7 +204,7 @@ export default function PhotosPage() {
             </section>
 
             {/* Call to Action */}
-            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-20">
+            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-10">
                 <div className="container mx-auto px-6 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

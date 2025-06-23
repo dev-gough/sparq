@@ -27,6 +27,12 @@ const teamMembers: TeamMemberData[] = [
         blurb: "Dr. Pahlevani is the Chief Technology Officer at Sparq Systems. He invented multiple innovative power circuitry and digital control techniques for Sparq's main product family, called the QUAD microinverter. He worked as a technical designer in the Information and Communication Technology Institute (ICTI) from 2003 to 2007, where he was involved in design and implementation of high-quality resonant converters. He also collaborated with Freescale Semiconductor Inc. where he was the leader of a research team working on the design and implementation of the power converters for a pure electric vehicle from 2008 to 2012. He is the author of more than 210 journal and conference proceeding papers and the holder of 85 US patents. Dr. Pahlevani is a senior member of IEEE and a member of the IEEE Power Electronics Society and Industrial Electronics Society. He is also the recipient of many awards such as the \"Engineering and Applied Sciences Outstanding Thesis\" award from Queen's University, \"Research Excellence Award\" from the IEEE Canada, and \"Distinguished Graduate Student Award\" from Isfahan University of Technology. Dr. Pahlevani received his Ph.D. degree from Queens University."
     },
     {
+        imgSrc: '/Team/kyle.png',
+        name: 'Kyle Appleby',
+        title: 'Chief Financial Officer',
+        blurb: "Kyle has been the Chief Financial Officer (CFO) of Sparq since July 2021. Since 2007, Kyle has been providing CFO services to a number of public and private companies, both domestic and international. He has focused on assisting companies with financial reporting, internal controls, governance, operations, and regulatory compliance.  He is a member in good standing of the Chartered Professional Accountants of Canada and the Chartered Professional Accountants of Ontario."
+    },
+    {
         imgSrc: '/Team/hassan.png',
         name: 'Dr. Hassan Kojori',
         title: 'VP of Program Management',
@@ -55,12 +61,6 @@ const teamMembers: TeamMemberData[] = [
         name: 'Muhammad Ikram',
         title: 'VP of Finance',
         blurb: "Muhammad Ikram is a member of Chartered Professional Accountants Ontario and Canada. He also holds a Bachelors in Commerce degree from University of the Punjab. Muhammad started his career as an assistant accountant at a tax law firm over two decades ago. Over the years Muhammad has served in progressive finance and accounting roles for a variety of public and private growth companies, including a solar company. At Redline Communications Inc., Muhammad was part of the IPO team that took the company public at AIM (London Stock Exchange) and TSX (Toronto Stock Exchange) simultaneously. Muhammad's key areas of expertise include, but are not limited to, internal controls, system implementations, financial reporting including MD&A, government filings, payroll, and benefits administration."
-    },
-    {
-        imgSrc: '/Team/kyle.png',
-        name: 'Kyle Appleby',
-        title: 'Chief Financial Officer',
-        blurb: "Kyle has been the Chief Financial Officer (CFO) of Sparq since July 2021. Since 2007, Kyle has been providing CFO services to a number of public and private companies, both domestic and international. He has focused on assisting companies with financial reporting, internal controls, governance, operations, and regulatory compliance.  He is a member in good standing of the Chartered Professional Accountants of Canada and the Chartered Professional Accountants of Ontario."
     },
 ]
 
@@ -177,14 +177,14 @@ export default function LeadershipPage() {
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative scroll-mt-[115px]">
             <BackgroundElements />
 
-            <div className="relative container mx-auto px-4 py-20">
+            <div className="relative container mx-auto px-4 py-10">
                 {/* Hero section */}
                 <motion.div
                     ref={titleRef}
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    className="text-center mb-8"
                 >
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">

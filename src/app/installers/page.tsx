@@ -164,13 +164,13 @@ export default function InstallersPage() {
             <BackgroundElements />
 
             {/* Hero Section */}
-            <section className="relative container mx-auto px-6 pt-20 pb-32">
+            <section className="relative container mx-auto px-6 pt-10 pb-16">
                 <motion.div
                     ref={heroRef}
                     initial={{ opacity: 0, y: 50 }}
                     animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
-                    className="text-center mb-20"
+                    className="text-center mb-10"
                 >
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
@@ -221,7 +221,7 @@ export default function InstallersPage() {
             </section>
 
             {/* Why Sparq Section */}
-            <section id="whysparq" className="relative container mx-auto px-6 py-20">
+            <section id="whysparq" className="relative container mx-auto px-6 py-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -236,7 +236,7 @@ export default function InstallersPage() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
                     {benefitCards.map((benefit, index) => (
                         <motion.div
                             key={index}
@@ -264,7 +264,7 @@ export default function InstallersPage() {
             </section>
 
             {/* Quad Architecture Features */}
-            <section id="discover" className="relative bg-white py-20">
+            <section id="discover" className="relative bg-white py-10">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -283,7 +283,7 @@ export default function InstallersPage() {
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-20">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-10">
                         <motion.div
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -369,7 +369,7 @@ export default function InstallersPage() {
                 </div>
             </section>
 
-            <section className="relative bg-white py-20">
+            <section className="relative bg-white py-10">
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                         <motion.div
@@ -442,7 +442,7 @@ export default function InstallersPage() {
             </section>
 
             {/* BOM Calculator Section */}
-            <section id="bom" className="relative container mx-auto px-6 py-20">
+            <section id="bom" className="relative container mx-auto px-6 py-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -463,7 +463,7 @@ export default function InstallersPage() {
             </section>
 
             {/* FAQ Section */}
-            <section id="faq" className="relative container mx-auto px-6 py-20">
+            <section id="faq" className="relative container mx-auto px-6 py-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -559,7 +559,7 @@ export default function InstallersPage() {
             </section>
 
             {/* Final CTA Section */}
-            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-20">
+            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-10">
                 <div className="container mx-auto px-6 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

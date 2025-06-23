@@ -20,21 +20,21 @@ interface ProductCard {
 const productCards: ProductCard[] = [
     {
         id: "quad2",
-        title: "Quad2 Microinverters",
-        description: "Next-generation microinverters with advanced power optimization",
+        title: "Quad2",
+        description: "Single-phase microinverters for residential installations",
         href: "/products/quad2",
         image: "/q2000.webp",
         category: "Microinverters",
-        accentColor: "bg-gradient-to-br from-brand-maroon to-brand-logo"
+        accentColor: "bg-gradient-to-br from-brand-maroon to-brand-darkmaroon"
     },
     {
         id: "quad3",
         title: "Quad3",
-        description: "Revolutionary microinverter technology for maximum performance",
+        description: "Three-phase microinverters for commercial applications",
         href: "/products/quad3",
         image: "/quad3.webp",
         category: "Microinverters",
-        accentColor: "bg-gradient-to-br from-brand-midmaroon to-brand-logo"
+        accentColor: "bg-gradient-to-b from-brand-logo via-brand-maroon to-brand-darkmaroon"
     },
     {
         id: "legacy",
@@ -43,7 +43,7 @@ const productCards: ProductCard[] = [
         href: "/products/legacy",
         image: "/q1200-discontinued.png",
         category: "Microinverters",
-        accentColor: "bg-gradient-to-br from-brand-darkmaroon to-brand-logo"
+        accentColor: "bg-gradient-to-br from-brand-maroon to-brand-darkmaroon"
     },
     {
         id: "sparqlinq",
@@ -120,7 +120,7 @@ function FloatingProductCard({ product, index }: FloatingProductCardProps) {
                             src={product.image}
                             alt={product.title}
                             fill
-                            className="object-cover object-bottom transition-all duration-500 ease-out scale-110"
+                            className="object-contain object-top transition-all duration-500 ease-out"
                             style={{
                                 filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
                             }}
@@ -130,7 +130,7 @@ function FloatingProductCard({ product, index }: FloatingProductCardProps) {
                     <motion.div
                         className={`absolute inset-0 ${product.accentColor}`}
                         animate={{
-                            opacity: isHovered ? 0.85 : 0.75
+                            opacity: isHovered ? 0.6 : 0.7
                         }}
                         transition={{ duration: 0.3 }}
                     />
@@ -139,9 +139,7 @@ function FloatingProductCard({ product, index }: FloatingProductCardProps) {
 
                     <CardContent className="relative z-10 h-full flex flex-col justify-center p-8">
                         <div className="text-center">
-                            <div className="inline-block px-4 py-2 bg-white/30 backdrop-blur-sm rounded-full text-sm font-medium text-white mb-6">
-                                {product.category}
-                            </div>
+
                             <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
                                 {product.title}
                             </h2>
@@ -227,13 +225,13 @@ export default function ProductsPage() {
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative scroll-mt-[115px]">
             <BackgroundElements />
 
-            <div className="relative container mx-auto px-6 pt-20">
+            <div className="relative container mx-auto px-6 pt-10">
                 <motion.div
                     ref={titleRef}
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    className="text-center mb-8"
                 >
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
@@ -248,7 +246,7 @@ export default function ProductsPage() {
             </div>
 
             <div className="relative">
-                <section className="container mx-auto px-6 mb-20">
+                <section className="container mx-auto px-6 mb-10">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -264,7 +262,7 @@ export default function ProductsPage() {
                     </div>
                 </section>
 
-                <section className="container mx-auto px-6 mb-20">
+                <section className="container mx-auto px-6 mb-10">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -280,7 +278,7 @@ export default function ProductsPage() {
                     </div>
                 </section>
 
-                <section className="container mx-auto px-6 mb-20">
+                <section className="container mx-auto px-6 mb-10">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}

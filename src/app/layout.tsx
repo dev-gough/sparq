@@ -1,10 +1,7 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
-import { Inter, Poppins, Geist, Nunito } from "next/font/google"
-import ForceScroll from "@/components/ForceScroll"
-import LeavingSite from "@/components/LeavingSite"
+import { Inter, Poppins, Geist, Nunito, Roboto_Flex, Quicksand, PT_Sans } from "next/font/google"
+import RootLayoutClient from "@/components/RootLayoutClient"
 
 export const metadata: Metadata = {
 	title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
@@ -12,44 +9,64 @@ export const metadata: Metadata = {
 	icons: '/logo.png',
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const nunito = Nunito({
 	subsets: ['latin'],
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 	display: 'swap',
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const robo_flex = Roboto_Flex({
+	subsets: ['latin'],
+	weight: ["300", "400", "500", "600", "700", "800", "900"],
+	display: 'swap',
+})
+
+const pt_sans = PT_Sans({
+	subsets: ['latin'],
+	weight: ["400", "700"],
+	display: 'swap',
+})
+
+const quicksand = Quicksand({
+	subsets: ['latin'],
+	weight: ["300", "400", "500", "600", "700"],
+	display: 'swap',
+})
+
 const inter = Inter({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 	display: 'swap',
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const poppins = Poppins({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 	display: 'swap',
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const geist = Geist({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 	display: 'swap',
 })
 
-// Currently active font - change this to test different fonts
-const activeFont = geist
+// Font objects for dynamic switching
+export const fontOptions = {
+	'pt_sans': pt_sans,
+	'nunito': nunito,
+	'roboto_flex': robo_flex,
+	'quicksand': quicksand,
+	'inter': inter,
+	'poppins': poppins,
+	'geist': geist,
+}
 
 const aboutDropdown = [
-	{ label: "Highlights", href: "/about"},
-	{ label: "Snapshot", href: "/about/snapshot" },
+	{ label: "Our Story", href: "/about"},
 	{ label: "Who We Are", href: "/about/us" },
 	{ label: "Leadership", href: "/about/leadership" },
 	{ label: "Board of Directors", href: "/about/board" },
-	{ label: "Legal", href: "/legal"}
 ]
 
 const investorDropdown = [
@@ -89,6 +106,7 @@ const resourcesDropdown = [
 	{ label: "Learning Hub", href: "/resources"},
 	{ label: "Photo Gallery", href: "/resources/photos" },
 	{ label: "Video Gallery", href: "/resources/videos" },
+	{ label: "Legal", href: "/legal"}
 ]
 
 const navbarItems = [
@@ -109,15 +127,9 @@ export default async function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${activeFont.className} flex flex-col min-h-screen overflow-y-scroll`}>
-				<Header navItems={navbarItems} />
-				<ForceScroll />
-				<LeavingSite />
-				<main className="flex-grow h-full">
-					{children}
-				</main>
-				<Footer />
-			</body>
+			<RootLayoutClient navbarItems={navbarItems} fontOptions={fontOptions}>
+				{children}
+			</RootLayoutClient>
 		</html>
 	)
 }

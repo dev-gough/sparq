@@ -1,201 +1,217 @@
 'use client'
 
-import { useState, useRef } from "react"
+import { useRef } from "react"
 import { motion, useInView } from "motion/react"
-import { Card, CardContent } from "@/components/ui/card"
-import { FaCertificate, FaRocket, FaEye, FaStar } from "react-icons/fa"
+import Image from "next/image"
+import { Quote, Award, Target, Lightbulb } from "lucide-react"
 
-interface CompanySection {
-    id: string
+interface Leader {
+    name: string
     title: string
-    content: string
-    icon: React.ReactNode
-    bgImage: string
-    accentColor: string
+    image: string
+    quote: string
+    bio: string
+    achievements: string[]
 }
 
-const companySections: CompanySection[] = [
+const leaders: Leader[] = [
     {
-        id: "values",
-        title: "Core Values",
-        content: "Integrity, Collaboration, Innovation, Quality, Social Responsibility, Teamwork",
-        icon: <FaCertificate size={24} />,
-        bgImage: "/bg-3.jpg",
-        accentColor: "bg-gradient-to-br from-brand-maroon to-brand-darkmaroon"
+        name: "Dr. Praveen Jain",
+        title: "Founder & CEO",
+        image: "/Team/drjain.png",
+        quote: "Innovation isn't just about technology—it's about transforming how the world thinks about energy.",
+        bio: "Dr. Jain is the visionary founder who identified the critical need for revolutionary microinverter technology. A Fellow of the Royal Society of Canada and recipient of the 2021 IEEE Medal in Power Engineering, he brings decades of power electronics expertise from companies like Intel, GE, and his successful exit from CHiL Semiconductor.",
+        achievements: ["100+ Patents", "IEEE Medal in Power Engineering 2021", "Fellow of Royal Society of Canada", "Founded CHiL Semiconductor (acquired by International Rectifier)"]
     },
     {
-        id: "mission",
-        title: "Mission",
-        content: "Accelerate the transition to energy self-sufficiency by serving residential, commercial and industrial customers world-wide.",
-        icon: <FaRocket size={24} />,
-        bgImage: "/SLC/009.JPG",
-        accentColor: "bg-gradient-to-br from-brand-logo to-brand-yellow"
+        name: "Dr. Majid Pahlevaninezhad",
+        title: "Chief Technology Officer",
+        image: "/Team/Majid-Pahlevaninezhad.jpg",
+        quote: "The future of solar lies not just in better panels, but in smarter, safer power conversion.",
+        bio: "Dr. Pahlevani is the technical mastermind behind Sparq's QUAD microinverter family. With 210+ publications and 85+ US patents, he has pioneered innovative power circuitry and digital control techniques that define our competitive advantage. His work spans from pure electric vehicle power systems to cutting-edge solar microinverters.",
+        achievements: ["210+ Technical Publications", "85+ US Patents", "Engineering Excellence Award Queen's University", "IEEE Research Excellence Award Canada"]
     },
     {
-        id: "vision",
-        title: "Vision",
-        content: "Become the #1 Leader for Microinverters, Battery Storage, and Energy Management.",
-        icon: <FaEye size={24} />,
-        bgImage: "/vision-1.jpg",
-        accentColor: "bg-gradient-to-br from-vision to-brand-maroon"
-    },
-    {
-        id: "promise",
-        title: "Promise",
-        content: "Deliver safe, reliable, and cost-effective solutions that are best-in-class, easy to install, and maintenance-free.",
-        icon: <FaStar size={24} />,
-        bgImage: "/SLC/007.JPG",
-        accentColor: "bg-gradient-to-br from-values to-brand-logo"
+        name: "Dr. Shangzhi Pan",
+        title: "VP of Engineering",
+        image: "/Team/Dr-Shangzhi-Pan.png",
+        quote: "Every microinverter we design is built to outlast the solar panel it serves—that's our engineering promise.",
+        bio: "Dr. Pan has led the research, development, and certification of Sparq's microinverters since 2009. His decade of applied research at Queen's University has resulted in breakthrough digital control techniques that power our industry-leading reliability and efficiency. He bridges the gap between laboratory innovation and field-proven products.",
+        achievements: ["22+ US Patents", "15+ Years Microinverter Development", "Senior IEEE Member", "Queen's University PhD Power Electronics"]
     }
 ]
 
-interface SectionCardProps {
-    section: CompanySection
-    index: number
+interface CompanyValue {
+    title: string
+    description: string
+    icon: React.ReactNode
 }
 
-function SectionCard({ section, index }: SectionCardProps) {
-    const [isHovered, setIsHovered] = useState(false)
-    const cardRef = useRef(null)
-    const isInView = useInView(cardRef, { once: true, margin: "-100px" })
+const companyValues: CompanyValue[] = [
+    {
+        title: "Our Mission",
+        description: "Accelerate the transition to energy self-sufficiency by serving residential, commercial and industrial customers world-wide.",
+        icon: <Target size={32} />
+    },
+    {
+        title: "Our Vision",
+        description: "Become the #1 Leader for Microinverters, Battery Storage, and Energy Management.",
+        icon: <Lightbulb size={32} />
+    },
+    {
+        title: "Our Promise",
+        description: "Deliver safe, reliable, and cost-effective solutions that are best-in-class, easy to install, and maintenance-free.",
+        icon: <Award size={32} />
+    }
+]
+
+interface LeaderSectionProps {
+    leader: Leader
+    index: number
+    isReversed?: boolean
+}
+
+function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps) {
+    const sectionRef = useRef(null)
+    const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
     return (
-        <motion.div
-            ref={cardRef}
-            initial={{ opacity: 0, y: 60, rotateX: -10 }}
-            animate={isInView ? {
-                opacity: 1,
-                y: 0,
-                rotateX: 0,
-                scale: isHovered ? 1.01 : 1
-            } : {}}
-            transition={{
-                duration: 0.8,
-                delay: index * 0.15,
-                ease: [0.23, 1, 0.320, 1]
-            }}
-            className="relative group cursor-pointer h-[450px] md:h-[550px] w-full rounded-2xl overflow-hidden max-w-6xl mx-auto"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            style={{ perspective: '1000px' }}
+        <motion.section
+            ref={sectionRef}
+            initial={{ opacity: 0, y: 60 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: index * 0.2 }}
+            className={`max-w-7xl mx-auto mb-32 ${index !== 0 ? 'border-t border-brand-maroon/10 pt-16' : ''}`}
         >
-            <Card className="h-full w-full overflow-hidden border-0 shadow-2xl">
-                <div
-                    className="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-out"
-                    style={{
-                        backgroundImage: `url(${section.bgImage})`,
-                        filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
-                    }}
-                />
-
-                {/* Gradient overlay */}
+            <div className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-16`}>
+                {/* Image Side */}
                 <motion.div
-                    className={`absolute inset-0 ${section.accentColor}`}
-                    animate={{
-                        opacity: isHovered ? 0.75 : 0.85
-                    }}
-                    transition={{ duration: 0.3 }}
-                />
-
-                {/* Diagonal accent */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-white/20 transform rotate-45 translate-x-12 -translate-y-12" />
-
-                <CardContent className="relative z-10 h-full flex flex-col justify-between p-6">
-                    {/* Header with icon and title */}
-                    <div className="flex items-center gap-4 justify-start">
-                        <div className="p-4 bg-white/30 rounded-xl backdrop-blur-sm border border-white/40 shadow-lg">
-                            <div className="text-white">
-                                {section.icon}
-                            </div>
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
+                    className="lg:w-1/3"
+                >
+                    <div className="relative">
+                        <div className="w-80 h-80 mx-auto rounded-3xl overflow-hidden shadow-2xl">
+                            <Image
+                                src={leader.image}
+                                alt={leader.name}
+                                width={320}
+                                height={320}
+                                className="w-full h-full object-cover"
+                            />
                         </div>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                            {section.title}
+                        <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-brand-maroon/10 rounded-full blur-xl" />
+                    </div>
+                </motion.div>
+
+                {/* Content Side */}
+                <div className="lg:w-2/3 space-y-8">
+                    <motion.div
+                        initial={{ opacity: 0, x: isReversed ? 50 : -50 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-3">
+                            {leader.name}
                         </h2>
-                    </div>
+                        <p className="text-xl md:text-2xl text-brand-logo font-medium mb-8">
+                            {leader.title}
+                        </p>
+                    </motion.div>
 
-                    {/* Auto-expanding content area */}
-                    <div className="flex-1 flex items-center justify-center">
-                        <div className="max-w-2xl text-center">
-                            <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={isInView ? {
-                                    height: 'auto',
-                                    opacity: 1
-                                } : {}}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: index * 0.15 + 0.4,
-                                    ease: [0.23, 1, 0.320, 1]
-                                }}
-                                className="overflow-hidden"
-                            >
-                                <div className="bg-black/40 backdrop-blur-md rounded-xl border border-white/20 p-6">
-                                    <motion.p
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                        transition={{
-                                            delay: index * 0.15 + 0.6,
-                                            duration: 0.4,
-                                            ease: [0.23, 1, 0.320, 1]
-                                        }}
-                                        className="text-white text-lg md:text-xl lg:text-2xl leading-relaxed font-medium"
-                                    >
-                                        {section.content}
-                                    </motion.p>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
-        </motion.div>
+                    {/* Quote */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6, delay: index * 0.2 + 0.5 }}
+                        className="relative bg-gradient-to-r from-brand-maroon/5 to-brand-logo/5 rounded-2xl p-8 border border-brand-maroon/10"
+                    >
+                        <Quote className="absolute top-4 left-4 text-brand-maroon/30" size={24} />
+                        <p className="text-lg md:text-xl text-brand-darkmaroon font-medium italic leading-relaxed pl-8">
+                            &quot;{leader.quote}&quot;
+                        </p>
+                    </motion.div>
+
+                    {/* Bio */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6, delay: index * 0.2 + 0.6 }}
+                    >
+                        <p className="text-lg text-brand-graytext leading-relaxed mb-8">
+                            {leader.bio}
+                        </p>
+                    </motion.div>
+
+                    {/* Achievements */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6, delay: index * 0.2 + 0.7 }}
+                        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                    >
+                        {leader.achievements.map((achievement, i) => (
+                            <div key={i} className="flex items-center gap-3 bg-white/60 rounded-xl p-4 border border-brand-maroon/5">
+                                <div className="w-2 h-2 rounded-full bg-brand-maroon flex-shrink-0" />
+                                <span className="text-brand-graytext font-medium">{achievement}</span>
+                            </div>
+                        ))}
+                    </motion.div>
+                </div>
+            </div>
+        </motion.section>
     )
 }
 
-// Predefined background shapes to avoid hydration issues
-const backgroundShapes = [
-    { width: 160, height: 100, left: 10, top: 15, duration: 16, delay: 0.8, borderRadius: '50% 50% 70% 30%' },
-    { width: 120, height: 140, left: 80, top: 25, duration: 14, delay: 1.5, borderRadius: '40% 60% 60% 40%' },
-    { width: 200, height: 70, left: 40, top: 40, duration: 18, delay: 2.2, borderRadius: '30% 70% 70% 30%' },
-    { width: 90, height: 90, left: 70, top: 70, duration: 13, delay: 0.5, borderRadius: '50%' },
-    { width: 130, height: 180, left: 20, top: 80, duration: 15, delay: 1.8, borderRadius: '70% 30% 50% 50%' },
-    { width: 80, height: 80, left: 90, top: 90, duration: 17, delay: 2.8, borderRadius: '50%' },
-]
+function CompanyValuesSection() {
+    const sectionRef = useRef(null)
+    const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
-function BackgroundElements() {
     return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {backgroundShapes.map((shape, i) => (
-                <motion.div
-                    key={i}
-                    className="absolute bg-gradient-to-br from-brand-maroon/6 via-brand-logo/4 to-brand-yellow/3"
-                    style={{
-                        width: shape.width,
-                        height: shape.height,
-                        left: `${shape.left}%`,
-                        top: `${shape.top}%`,
-                        borderRadius: shape.borderRadius,
-                    }}
-                    animate={{
-                        y: [0, -25, 0],
-                        x: [0, 12, 0],
-                        scale: [1, 1.08, 1],
-                        rotate: [0, 360],
-                        borderRadius: [
-                            shape.borderRadius,
-                            shape.borderRadius === '50%' ? '30% 70% 70% 30%' : '50%',
-                            shape.borderRadius
-                        ]
-                    }}
-                    transition={{
-                        duration: shape.duration,
-                        repeat: Infinity,
-                        delay: shape.delay,
-                        ease: "easeInOut"
-                    }}
-                />
-            ))}
-        </div>
+        <motion.section
+            ref={sectionRef}
+            initial={{ opacity: 0, y: 60 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto mb-32 border-t border-brand-maroon/10 pt-16"
+        >
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-center mb-16"
+            >
+                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                    What Drives Us
+                </h2>
+                <p className="text-xl text-brand-graytext max-w-3xl mx-auto leading-relaxed">
+                    Our core principles guide every decision, every innovation, and every relationship we build.
+                </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {companyValues.map((value, index) => (
+                    <motion.div
+                        key={value.title}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                        className="text-center"
+                    >
+                        <div className="w-20 h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-2xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg">
+                            {value.icon}
+                        </div>
+                        <h3 className="text-2xl font-bold text-brand-darkmaroon mb-4">
+                            {value.title}
+                        </h3>
+                        <p className="text-lg text-brand-graytext leading-relaxed">
+                            {value.description}
+                        </p>
+                    </motion.div>
+                ))}
+            </div>
+        </motion.section>
     )
 }
 
@@ -205,36 +221,66 @@ export default function AboutUsPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative scroll-mt-[115px]">
-            <BackgroundElements />
-
-            {/* Hero section */}
-            <div className="relative container mx-auto px-4 pt-20">
+            {/* Hero Section */}
+            <div className="relative container mx-auto px-6 pt-10 pb-8">
                 <motion.div
                     ref={titleRef}
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    className="text-center mb-10"
                 >
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
-                            Our Foundation
+                            Meet the Minds
+                        </span>
+                        <br />
+                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
+                            Behind the Mission
                         </span>
                     </h1>
 
                     <p className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed">
-                        The principles, purpose, and promise that drive everything we do at Sparq Systems.
+                        The visionary leaders and technical innovators driving the future of solar energy technology.
                     </p>
                 </motion.div>
             </div>
 
-            {/* Company Sections */}
-            <div className="relative container mx-auto px-4 pb-20">
-                <div className="max-w-7xl mx-auto space-y-16">
-                    {companySections.map((section, index) => (
-                        <SectionCard key={section.id} section={section} index={index} />
-                    ))}
-                </div>
+            {/* Leaders Section */}
+            <div className="relative container mx-auto px-6 py-10">
+                {leaders.map((leader, index) => (
+                    <LeaderSection
+                        key={leader.name}
+                        leader={leader}
+                        index={index}
+                        isReversed={index % 2 === 1}
+                    />
+                ))}
+
+                {/* Company Values */}
+                <CompanyValuesSection />
+            </div>
+
+            {/* Core Values Legacy Section */}
+            <div className="relative container mx-auto px-6 py-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 60 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="max-w-4xl mx-auto text-center"
+                >
+                    <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon mb-8">
+                        Built on Strong Values
+                    </h2>
+                    <div className="bg-white/80 rounded-3xl p-8 border border-brand-maroon/10 shadow-lg">
+                        <p className="text-lg text-brand-graytext leading-relaxed">
+                            <span className="font-semibold text-brand-darkmaroon">Integrity, Collaboration, Innovation, Quality, Social Responsibility, and Teamwork</span> —
+                            these aren&apos;t just words on our website. They&apos;re the foundation of how we operate,
+                            how we innovate, and how we build lasting relationships with our customers,
+                            partners, and communities around the world.
+                        </p>
+                    </div>
+                </motion.div>
             </div>
         </div>
     )

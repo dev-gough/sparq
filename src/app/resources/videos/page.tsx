@@ -107,7 +107,7 @@ function BackgroundElements() {
 }
 
 export default function VideosPage() {
-    const [selectedCategory, setSelectedCategory] = useState<string>(videoCategories[0]?.id || '')
+    const [selectedCategory, setSelectedCategory] = useState<string>(videoCategories[1]?.id || '')
 
     const heroRef = useRef(null)
     const isHeroInView = useInView(heroRef, { once: true })
@@ -119,13 +119,13 @@ export default function VideosPage() {
             <BackgroundElements />
 
             {/* Hero Section */}
-            <section className="relative container mx-auto px-6 pt-20 pb-32">
+            <section className="relative container mx-auto px-6 pt-10 pb-16">
                 <motion.div
                     ref={heroRef}
                     initial={{ opacity: 0, y: 50 }}
                     animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
-                    className="text-center mb-20"
+                    className="text-center mb-10"
                 >
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
@@ -150,7 +150,7 @@ export default function VideosPage() {
             </section>
 
             {/* Category Selection */}
-            <section className="relative container mx-auto px-6 py-20">
+            <section className="relative container mx-auto px-6 py-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -165,7 +165,7 @@ export default function VideosPage() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
                     {videoCategories.map((category, index) => (
                         <motion.div
                             key={category.id}
@@ -199,7 +199,7 @@ export default function VideosPage() {
             </section>
 
             {/* Video Gallery */}
-            <section className="relative bg-white py-20">
+            <section className="relative bg-white py-10">
                 <div className="container mx-auto px-6">
                     {currentCategory && (
                         <motion.div
@@ -223,7 +223,7 @@ export default function VideosPage() {
             </section>
 
             {/* Call to Action */}
-            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-20">
+            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-10">
                 <div className="container mx-auto px-6 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

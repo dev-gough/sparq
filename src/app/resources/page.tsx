@@ -4,13 +4,18 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react'
 import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
+import AggregatedFAQ from '@/components/AggregatedFAQ'
+
+import homeownersData from '@/app/homeowners/home_faq.json'
+import installersData from '@/app/installers/installer_faq.json'
+import investorsData from '@/app/investors/investor_faq.json'
 
 const videos = [
     { id: 1, title: 'PV Systems 101', thumbnail: '/pv101_thumbnail.jpg', url: 'gl5tY5Noacc', iFrame: true },
     { id: 2, title: 'Global Warming 101', thumbnail: '/globalwarming101_thumbnail.jpg', url: 'oJAbATJCugs', iFrame: true },
     { id: 3, title: 'Climate Change 101', thumbnail: '/climatechange101_thumbnail.jpg', url: 'jAa58N4Jlos', iFrame: true },
     { id: 4, title: "Learn More About Sparq Products", thumbnail: "/hassan_presentation_thumbnail.png", url: "/hassan_presentation.mp4", iFrame: false },
-    { id: 5, title: "JioThings Sparq Microinverter Overview", thumbnail: "/jio_thumbnail.jpg", url: "a9tKIsI6t4I", iFrame: true}
+    { id: 5, title: "JioThings Sparq Microinverter Overview", thumbnail: "/jio_thumbnail.jpg", url: "a9tKIsI6t4I", iFrame: true }
 ]
 
 const backgroundShapes = [
@@ -153,13 +158,13 @@ export default function LearningPage() {
             <BackgroundElements />
 
             {/* Hero Section */}
-            <section className="relative container mx-auto px-6 pt-20 pb-32">
+            <section className="relative container mx-auto px-6 pt-10 pb-16">
                 <motion.div
                     ref={heroRef}
                     initial={{ opacity: 0, y: 50 }}
                     animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
-                    className="text-center mb-20"
+                    className="text-center mb-10"
                 >
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
@@ -184,7 +189,7 @@ export default function LearningPage() {
             </section>
 
             {/* Videos Section */}
-            <section className="relative container mx-auto px-6 py-20">
+            <section className="relative container mx-auto px-6 py-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -199,7 +204,7 @@ export default function LearningPage() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
                     {videos.map((video, index) => (
                         <motion.div
                             key={video.id}
@@ -249,30 +254,39 @@ export default function LearningPage() {
                     ))}
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.2 }}
-                    className="text-center"
-                >
-                    <Card className="max-w-2xl mx-auto border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 py-0">
-                        <CardContent className="p-8">
-                            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full mx-auto mb-6">
-                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                </svg>
-                            </div>
-                            <h3 className="text-2xl font-bold text-brand-darkmaroon mb-4">
-                                More Content Coming Soon
-                            </h3>
-                            <p className="text-brand-graytext leading-relaxed">
-                                We&apos;re continuously expanding our resource library with technical documentation,
-                                interactive tools, and additional educational content to support your success.
-                            </p>
-                        </CardContent>
-                    </Card>
-                </motion.div>
+
             </section>
+
+            {/* Aggregated FAQ Section */}
+            <AggregatedFAQ
+                homeownersData={homeownersData}
+                installersData={installersData}
+                investorsData={investorsData}
+            />
+
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1.2 }}
+                className="text-center"
+            >
+                <Card className="max-w-2xl mx-auto border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 py-0 mb-8">
+                    <CardContent className="p-8">
+                        <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full mx-auto mb-6">
+                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <h3 className="text-2xl font-bold text-brand-darkmaroon mb-4">
+                            More Content Coming Soon
+                        </h3>
+                        <p className="text-brand-graytext leading-relaxed">
+                            We&apos;re continuously expanding our resource library with technical documentation,
+                            interactive tools, and additional educational content to support your success.
+                        </p>
+                    </CardContent>
+                </Card>
+            </motion.div>
 
             {selectedVideo && (
                 <VideoPopup url={selectedVideo.url} onClose={handleClose} iFrame={selectedVideo.iFrame} />

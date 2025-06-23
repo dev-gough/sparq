@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import DropdownMenu from './DropdownMenu'
+import FontSelector from './FontSelector'
 import { Menu, X } from 'lucide-react'
 
 interface NavItem {
@@ -14,10 +15,19 @@ interface NavItem {
     dropdown?: NavItem[]
 }
 
+interface FontOption {
+    name: string
+    value: string
+    className: string
+}
+
 interface HeaderProps {
     navItems: NavItem[]
+    currentFont?: string
+    onFontChange?: (fontValue: string) => void
+    fontOptions?: FontOption[]
 }
-export default function Header({ navItems }: HeaderProps) {
+export default function Header({ navItems, currentFont, onFontChange, fontOptions }: HeaderProps) {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -75,6 +85,17 @@ export default function Header({ navItems }: HeaderProps) {
                         )
                     })}
                 </nav>
+
+                {/* Font Selector - Right Side */}
+                {currentFont && onFontChange && fontOptions && (
+                    <div className="hidden lg:block absolute right-6">
+                        <FontSelector
+                            currentFont={currentFont}
+                            onFontChange={onFontChange}
+                            fonts={fontOptions}
+                        />
+                    </div>
+                )}
 
                 {/* Mobile Menu Button */}
                 <motion.button

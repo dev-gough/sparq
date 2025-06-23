@@ -22,23 +22,23 @@ interface FeaturedProduct {
 const featuredProducts: FeaturedProduct[] = [
     {
         id: "quad2",
-        title: "Quad2 Microinverters",
-        tagline: "Next-Generation Power Optimization",
-        description: "Revolutionary microinverter technology with advanced monitoring and superior efficiency for residential and commercial solar installations.",
+        title: "Quad2",
+        tagline: "Single-Phase Power Optimization",
+        description: "Revolutionary single-phase microinverter technology with advanced monitoring and superior efficiency for residential and light commercial solar installations.",
         href: "/products/quad2",
         image: "/q2000.webp",
         features: ["Advanced MPPT Technology", "Real-time Monitoring", "Weather Resistant Design", "Easy Installation"],
-        accentColor: "bg-gradient-to-br from-brand-maroon to-brand-midmaroon"
+        accentColor: "bg-gradient-to-bl from-brand-gray/80 to-brand-graytext/80"
     },
     {
         id: "quad3",
         title: "Quad3",
-        tagline: "The Future of Solar Technology",
-        description: "Cutting-edge microinverter innovation delivering maximum performance, reliability, and efficiency for modern solar energy systems.",
+        tagline: "Three-Phase Power Solutions",
+        description: "Advanced three-phase microinverter technology delivering exceptional performance, reliability, and efficiency for commercial & industrial solar systems.",
         href: "/products/quad3",
         image: "/quad3.webp",
         features: ["Superior Performance", "Compact Design", "Intelligent Control", "Proven Reliability"],
-        accentColor: "bg-gradient-to-br from-brand-midmaroon to-brand-logo"
+        accentColor: "bg-gradient-to-bl from-brand-gray/80 to-brand-graytext/80"
     }
 ]
 
@@ -50,6 +50,7 @@ interface FloatingProductHeroProps {
 
 function FloatingProductHero({ product, index, isReversed = false }: FloatingProductHeroProps) {
     const [isHovered, setIsHovered] = useState(false)
+    const [isButtonHovered, setIsButtonHovered] = useState(false)
     const cardRef = useRef(null)
     const isInView = useInView(cardRef, { once: true, margin: "-100px" })
 
@@ -59,7 +60,7 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
             initial={{ opacity: 0, y: 100 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: index * 0.3, ease: [0.23, 1, 0.320, 1] }}
-            className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12 mb-32`}
+            className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-16 mb-32`}
         >
             <div className="flex-1 max-w-2xl">
                 <motion.div
@@ -68,7 +69,7 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                     transition={{ duration: 0.8, delay: index * 0.3 + 0.2 }}
                 >
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-brand-darkmaroon  to-brand-maroon bg-clip-text text-transparent">
                             {product.title}
                         </span>
                     </h2>
@@ -96,12 +97,21 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                         <motion.button
                             whileHover={{ scale: 1.02, y: -2 }}
                             whileTap={{ scale: 0.98 }}
-                            className="px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                            onMouseEnter={() => setIsButtonHovered(true)}
+                            onMouseLeave={() => setIsButtonHovered(false)}
+                            className="px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-100 cursor-pointer"
                         >
                             Explore {product.title}
-                            <svg className="inline-block ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <motion.svg
+                                className="inline-block ml-2 w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                animate={{ x: isButtonHovered ? 8 : 0 }}
+                                transition={{ duration: 0.2, ease: "easeOut" }}
+                            >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
+                            </motion.svg>
                         </motion.button>
                     </Link>
                 </motion.div>
@@ -118,7 +128,7 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                     style={{ perspective: '1000px' }}
                 >
                     <Card className="overflow-hidden border-0 shadow-2xl rounded-2xl h-96">
-                        <div className="absolute inset-0 bg-neutral-100">
+                        <div className="absolute inset-0 bg-neutral-100 rounded-2xl">
                             <Image
                                 src={product.image}
                                 alt={product.title}
@@ -132,7 +142,7 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                         <motion.div
                             className={`absolute inset-0 ${product.accentColor} rounded-2xl`}
                             animate={{
-                                opacity: isHovered ? 0.3 : 0.4
+                                opacity: isHovered ? 0.2 : 0.4
                             }}
                             transition={{ duration: 0.3 }}
                         />
@@ -206,20 +216,20 @@ export default function Home() {
             <BackgroundElements />
 
             {/* Hero Section */}
-            <section className="relative container mx-auto px-6 pt-20 pb-32">
+            <section className="relative container mx-auto px-6 pt-10 pb-16">
                 <motion.div
                     ref={titleRef}
                     initial={{ opacity: 0, y: 50 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
-                    className="text-center mb-20"
+                    className="text-center mb-10"
                 >
                     <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
-                        <span className="bg-gradient-to-r from-brand-yellow via-brand-maroon to-brand-darkmaroon bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-brand-maroon via-[#ca9a31] to-brand-maroon bg-clip-text text-transparent">
                             Power the Future
                         </span>
                         <br />
-                        <span className="bg-gradient-to-r from-brand-yellow via-brand-maroon to-brand-darkmaroon bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-brand-maroon via-[#ca9a31] to-brand-maroon bg-clip-text text-transparent">
                             With Sparq Systems
                         </span>
                     </h1>
@@ -263,7 +273,7 @@ export default function Home() {
             </section>
 
             {/* Featured Products */}
-            <section className="relative container mx-auto px-6 py-20">
+            <section className="relative container mx-auto px-6 py-10">
                 {featuredProducts.map((product, index) => (
                     <FloatingProductHero
                         key={product.id}

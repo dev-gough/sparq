@@ -75,13 +75,13 @@ export default function SupportTicketPage() {
 			<BackgroundElements />
 			
 			{/* Hero Section */}
-			<section className="relative container mx-auto px-6 pt-20 pb-16">
+			<section className="relative container mx-auto px-6 pt-10 pb-8">
 				<motion.div
 					ref={heroRef}
 					initial={{ opacity: 0, y: 50 }}
 					animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
 					transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
-					className="text-center mb-12"
+					className="text-center mb-6"
 				>
 					<h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
 						<span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
@@ -97,7 +97,7 @@ export default function SupportTicketPage() {
 						initial={{ opacity: 0, y: 30 }}
 						animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
 						transition={{ duration: 0.8, delay: 0.4 }}
-						className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+						className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-6"
 					>
 						Our technical support team is here to help with installation questions, 
 						warranty claims, and product guidance.
@@ -106,7 +106,7 @@ export default function SupportTicketPage() {
 			</section>
 
 			{/* Support Form Section */}
-			<section className="relative bg-white py-20">
+			<section className="relative bg-white py-10">
 				<div className="container mx-auto px-6">
 					<div className="max-w-2xl mx-auto">
 						<motion.div
@@ -221,7 +221,7 @@ export default function SupportTicketPage() {
 			</section>
 
 			{/* Additional Support Options */}
-			<section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 py-20">
+			<section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 py-10">
 				<div className="container mx-auto px-6">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
