@@ -83,12 +83,12 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 		>
 			<Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 h-full">
 				<CardContent className="p-6 h-full flex flex-col">
-					<div className="flex items-center gap-4 mb-6">
-						<div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white">
+					<div className="flex items-start gap-4 mb-6">
+						<div className="flex items-center justify-center w-12 h-12 min-w-[3rem] min-h-[3rem] bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white flex-shrink-0">
 							<FaMapMarkerAlt className="w-5 h-5" />
 						</div>
-						<div>
-							<h3 className="text-xl font-bold text-brand-darkmaroon">{title}</h3>
+						<div className="flex-1">
+							<h3 className="text-xl font-bold text-brand-darkmaroon leading-tight">{title}</h3>
 							<p className="text-lg font-semibold text-brand-graytext">{companyName}</p>
 						</div>
 					</div>

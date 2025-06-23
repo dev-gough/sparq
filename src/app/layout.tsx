@@ -106,7 +106,7 @@ const resourcesDropdown = [
 	{ label: "Learning Hub", href: "/resources"},
 	{ label: "Photo Gallery", href: "/resources/photos" },
 	{ label: "Video Gallery", href: "/resources/videos" },
-	{ label: "Legal", href: "/legal"}
+	{ label: "Legal", href: "/resources/legal"}
 ]
 
 const navbarItems = [
