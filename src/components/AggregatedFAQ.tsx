@@ -180,7 +180,7 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                     </div>
                     <input
                         type="text"
-                        placeholder="Search FAQs..."
+                        placeholder={`Search ${currentCategory.title} FAQs...`}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="w-full pl-12 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-maroon focus:border-transparent outline-none transition-all duration-200 text-brand-darkmaroon placeholder-brand-graytext"

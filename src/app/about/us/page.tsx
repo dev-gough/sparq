@@ -19,7 +19,7 @@ const leaders: Leader[] = [
         name: "Dr. Praveen Jain",
         title: "Founder & CEO",
         image: "/Team/drjain.png",
-        quote: "Innovation isn't just about technology—it's about transforming how the world thinks about energy.",
+        quote: "Innovation isn't just about technology - it's about transforming how the world thinks about energy.",
         bio: "Dr. Jain is the visionary founder who identified the critical need for revolutionary microinverter technology. A Fellow of the Royal Society of Canada and recipient of the 2021 IEEE Medal in Power Engineering, he brings decades of power electronics expertise from companies like Intel, GE, and his successful exit from CHiL Semiconductor.",
         achievements: ["100+ Patents", "IEEE Medal in Power Engineering 2021", "Fellow of Royal Society of Canada", "Founded CHiL Semiconductor (acquired by International Rectifier)"]
     },
@@ -35,7 +35,7 @@ const leaders: Leader[] = [
         name: "Dr. Shangzhi Pan",
         title: "VP of Engineering",
         image: "/Team/Dr-Shangzhi-Pan.png",
-        quote: "Every microinverter we design is built to outlast the solar panel it serves—that's our engineering promise.",
+        quote: "Every microinverter we design is built to outlast the solar panel it serves - that's our engineering promise.",
         bio: "Dr. Pan has led the research, development, and certification of Sparq's microinverters since 2009. His decade of applied research at Queen's University has resulted in breakthrough digital control techniques that power our industry-leading reliability and efficiency. He bridges the gap between laboratory innovation and field-proven products.",
         achievements: ["22+ US Patents", "15+ Years Microinverter Development", "Senior IEEE Member", "Queen's University PhD Power Electronics"]
     }
@@ -274,7 +274,7 @@ export default function AboutUsPage() {
                     </h2>
                     <div className="bg-white/80 rounded-3xl p-8 border border-brand-maroon/10 shadow-lg">
                         <p className="text-lg text-brand-graytext leading-relaxed">
-                            <span className="font-semibold text-brand-darkmaroon">Integrity, Collaboration, Innovation, Quality, Social Responsibility, and Teamwork</span> —
+                            <span className="font-semibold text-brand-darkmaroon">Integrity, Collaboration, Innovation, Quality, Social Responsibility, and Teamwork</span> -
                             these aren&apos;t just words on our website. They&apos;re the foundation of how we operate,
                             how we innovate, and how we build lasting relationships with our customers,
                             partners, and communities around the world.

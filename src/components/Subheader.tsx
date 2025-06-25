@@ -80,7 +80,7 @@ function SubheadingItem({ label, href, target }: SubheadingItemProps) {
 
     const isActive =
         pathname === targetPath &&                       // same path
-        (targetHash === "" || hash === `#${targetHash}`) // and—if present—same hash
+        (targetHash === "" || hash === `#${targetHash}`) // and-if present-same hash
 
     return (
         <motion.div
