@@ -24,8 +24,8 @@ export default function LegalPage() {
                     transition={{ duration: 0.8, ease: [0.23, 1, 0.320, 1] }}
                     className="text-center mb-16"
                 >
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
-                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
+                        <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent">
                             Legal
                         </span>
                     </h1>

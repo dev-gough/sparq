@@ -156,15 +156,115 @@ function TimelineNode({ event, index }: TimelineNodeProps) {
 
     return (
         <div ref={nodeRef} className="relative">
+            {/* Mobile Layout */}
+            <div className="flex flex-row gap-4 mb-8 md:hidden">
+                {/* Mobile Timeline Node */}
+                <div className="flex-shrink-0">
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        animate={isInView ? { scale: 1 } : {}}
+                        transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                        className={`w-12 h-12 bg-gradient-to-br ${config.color} rounded-full flex items-center justify-center text-white font-bold text-xs text-center shadow-lg z-10 relative border-2 border-white`}
+                    >
+                        <span className="leading-tight">{event.year}</span>
+                    </motion.div>
+                </div>
 
+                {/* Mobile Content Container */}
+                <div className="flex-1">
+                    {/* Content Card */}
+                    <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        className="cursor-pointer mb-4"
+                        onClick={() => setIsExpanded(!isExpanded)}
+                    >
+                        <Card className={`bg-gradient-to-br ${config.bgColor} border-2 border-transparent hover:border-brand-maroon/20 shadow-lg transition-all duration-300`}>
+                            <CardContent className="p-4">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className={`p-2 bg-gradient-to-br ${config.color} rounded-lg text-white`}>
+                                        <IconComponent size={16} />
+                                    </div>
+                                    <span className="text-xs font-medium text-brand-graytext uppercase tracking-wide">
+                                        {config.label}
+                                    </span>
+                                </div>
 
+                                <h3 className="text-lg font-bold text-brand-darkmaroon mb-2">
+                                    {event.title}
+                                </h3>
+
+                                <p className="text-brand-graytext leading-relaxed mb-4 text-sm">
+                                    {event.description}
+                                </p>
+
+                                {/* Expandable Details */}
+                                <motion.div
+                                    initial={false}
+                                    animate={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="overflow-hidden"
+                                >
+                                    {event.details && (
+                                        <div className="space-y-2 mb-4">
+                                            {event.details.map((detail, i) => (
+                                                <div key={i} className="flex items-start gap-2">
+                                                    <div className={`w-2 h-2 rounded-full bg-gradient-to-br ${config.color} mt-2 flex-shrink-0`} />
+                                                    <p className="text-sm text-brand-graytext">{detail}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {event.achievements && (
+                                        <div className="bg-white/60 rounded-lg p-4">
+                                            <h4 className="font-semibold text-brand-darkmaroon mb-2 flex items-center gap-2">
+                                                <Award size={16} />
+                                                Key Achievements
+                                            </h4>
+                                            <div className="space-y-1">
+                                                {event.achievements.map((achievement, i) => (
+                                                    <p key={i} className="text-sm text-brand-graytext">{achievement}</p>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </motion.div>
+
+                                <div className="text-xs text-brand-graytext/60 mt-2">
+                                    Click to {isExpanded ? 'collapse' : 'expand'}
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
+
+                    {/* Mobile Image */}
+                    {event.image && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                            transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
+                            className="relative h-48 rounded-xl overflow-hidden shadow-lg"
+                        >
+                            <Image
+                                src={event.image}
+                                alt={event.title}
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                        </motion.div>
+                    )}
+                </div>
+            </div>
+
+            {/* Desktop Layout */}
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                className={`flex items-start gap-8 mb-8 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
+                className={`hidden md:flex items-start gap-8 mb-8 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
             >
-                {/* Content Side */}
+                {/* Desktop Content Side */}
                 <div className={`flex-1 max-w-lg ${isLeft ? 'text-right' : 'text-left'}`}>
                     <motion.div
                         whileHover={{ scale: 1.02 }}
@@ -231,7 +331,7 @@ function TimelineNode({ event, index }: TimelineNodeProps) {
                     </motion.div>
                 </div>
 
-                {/* Central Timeline Node */}
+                {/* Desktop Timeline Node */}
                 <div className="relative flex-shrink-0">
                     <motion.div
                         initial={{ scale: 0 }}
@@ -243,7 +343,7 @@ function TimelineNode({ event, index }: TimelineNodeProps) {
                     </motion.div>
                 </div>
 
-                {/* Image Side */}
+                {/* Desktop Image Side */}
                 <div className="flex-1 max-w-lg">
                     {event.image && (
                         <motion.div
@@ -277,7 +377,7 @@ function TimelineProgress() {
     const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1])
 
     return (
-        <div ref={containerRef} className="absolute left-1/2 top-0 bottom-0 w-1 transform -translate-x-0.5">
+        <div ref={containerRef} className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 md:w-1 md:transform md:-translate-x-0.5">
             <div className="w-full h-full bg-brand-maroon/10 rounded-full" />
             <motion.div
                 style={{ scaleY }}
@@ -302,7 +402,7 @@ export default function AboutPage() {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-8"
                 >
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
                             The Sparq Story
                         </span>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { Inter, Poppins, Geist, Nunito, Roboto_Flex, Quicksand, PT_Sans, Raleway } from "next/font/google"
+import { Inter, Poppins, Geist, Nunito, Roboto_Flex, Quicksand, PT_Sans, Raleway, Crimson_Text } from "next/font/google"
 import RootLayoutClient from "@/components/RootLayoutClient"
 
 export const metadata: Metadata = {
@@ -57,6 +57,12 @@ const rale = Raleway({
 	display: 'swap',
 })
 
+const crimson = Crimson_Text({
+	subsets: ["latin"],
+	weight: ["400", "600", "700"],
+	display: 'swap',
+})
+
 // Font objects for dynamic switching
 export const fontOptions = {
 	'pt_sans': pt_sans,
@@ -67,10 +73,11 @@ export const fontOptions = {
 	'poppins': poppins,
 	'geist': geist,
 	'raleway': rale,
+	'crimson': crimson,
 }
 
 const aboutDropdown = [
-	{ label: "Our Story", href: "/about"},
+	{ label: "Our Story", href: "/about" },
 	{ label: "Who We Are", href: "/about/us" },
 	{ label: "Leadership", href: "/about/leadership" },
 	{ label: "Board of Directors", href: "/about/board" },
@@ -78,7 +85,7 @@ const aboutDropdown = [
 
 const investorDropdown = [
 	{ label: "Investor Highlights", href: "/investors#highlights" },
-    { label: "FAQ", href: "/investors#faq"},
+	{ label: "FAQ", href: "/investors#faq" },
 	{ label: "Stock", href: "/investors/stock" },
 	{ label: "News", href: "/investors/news" },
 	{ label: "Events", href: "/investors/events" },
@@ -87,16 +94,16 @@ const investorDropdown = [
 
 const homeownerDropdown = [
 	{ label: "Why Sparq", href: "/homeowners#whysparq" },
-	{ label: "Sparq Advantage", href: "/homeowners#discover"},
-	{ label: "Design My System", href: "/homeowners#design"},
-	{ label: "FAQs", href: "/homeowners#faq"}
+	{ label: "Sparq Advantage", href: "/homeowners#discover" },
+	{ label: "Design My System", href: "/homeowners#design" },
+	{ label: "FAQs", href: "/homeowners#faq" }
 ]
 
 const installerDropdown = [
-	{ label: "Why Sparq", href: "/installers#whysparq"},
-	{ label: "Sparq Advantage", href: "/installers#discover"},
-	{ label: "BoM Calculator", href: "/installers#bom"},
-	{ label: "FAQs", href: "/installers#faq"},
+	{ label: "Why Sparq", href: "/installers#whysparq" },
+	{ label: "Sparq Advantage", href: "/installers#discover" },
+	{ label: "BoM Calculator", href: "/installers#bom" },
+	{ label: "FAQs", href: "/installers#faq" },
 ]
 
 const productDropdown = [
@@ -110,10 +117,10 @@ const productDropdown = [
 ]
 
 const resourcesDropdown = [
-	{ label: "Learning Hub", href: "/resources"},
+	{ label: "Learning Hub", href: "/resources" },
 	{ label: "Photo Gallery", href: "/resources/photos" },
 	{ label: "Video Gallery", href: "/resources/videos" },
-	{ label: "Legal", href: "/resources/legal"}
+	{ label: "Legal", href: "/resources/legal" }
 ]
 
 const navbarItems = [

@@ -15,7 +15,7 @@ export interface ChartSettings {
 const ChartControls: React.FC<ChartControlsProps> = ({ onSettingsChange }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [interval, setInterval] = useState('1h')
-    const [dateRange, setDateRange] = useState('1y')
+    const [dateRange, setDateRange] = useState('1m')
     const [customStartDate, setCustomStartDate] = useState('')
     const [customEndDate, setCustomEndDate] = useState('')
 

@@ -108,9 +108,24 @@ function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps
                 {/* Content Side */}
                 <div className="lg:w-2/3 space-y-8">
                     <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
+                        className="md:hidden"
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-3">
+                            {leader.name}
+                        </h2>
+                        <p className="text-xl md:text-2xl text-brand-logo font-medium mb-8">
+                            {leader.title}
+                        </p>
+                    </motion.div>
+
+                    <motion.div
                         initial={{ opacity: 0, x: isReversed ? 50 : -50 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
+                        className="hidden md:block"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-3">
                             {leader.name}
@@ -230,7 +245,7 @@ export default function AboutUsPage() {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-10"
                 >
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
                             Meet the Minds
                         </span>

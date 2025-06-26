@@ -224,10 +224,10 @@ export default function LeadershipPage() {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
                         transition={{ duration: 0.3 }}
-                        className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-brand-maroon/20"
+                        className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[80vh] md:max-h-[85vh] overflow-y-auto border border-brand-maroon/20"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="relative p-8">
+                        <div className="relative p-4 md:p-8">
                             <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
@@ -237,17 +237,17 @@ export default function LeadershipPage() {
                                 ✕
                             </motion.button>
 
-                            <div className="border-b border-brand-maroon/20 pb-6 mb-6">
-                                <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon mb-2">
+                            <div className="border-b border-brand-maroon/20 pb-4 md:pb-6 mb-4 md:mb-6">
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-darkmaroon mb-2">
                                     {selectedMember.name}
                                 </h2>
-                                <p className="text-xl md:text-2xl text-brand-logo font-medium">
+                                <p className="text-lg md:text-xl lg:text-2xl text-brand-logo font-medium">
                                     {selectedMember.title}
                                 </p>
                             </div>
 
-                            <div className="prose prose-lg max-w-none">
-                                <p className="text-brand-graytext leading-relaxed text-lg">
+                            <div className="prose prose-sm md:prose-lg max-w-none">
+                                <p className="text-brand-graytext leading-relaxed text-sm md:text-base lg:text-lg">
                                     {selectedMember.blurb}
                                 </p>
                             </div>

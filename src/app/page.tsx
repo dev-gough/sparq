@@ -2,11 +2,11 @@
 
 import { useState } from "react"
 import { motion, useInView } from "motion/react"
-import { Card } from "@/components/ui/card"
 import { useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
+import { useIsMobile } from "@/hooks/useIsMobile"
 
 interface FeaturedProduct {
     id: string
@@ -53,6 +53,36 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
     const [isButtonHovered, setIsButtonHovered] = useState(false)
     const cardRef = useRef(null)
     const isInView = useInView(cardRef, { once: true, margin: "-100px" })
+    const isMobile = useIsMobile()
+
+    // Animation variants for different screen sizes
+    const textVariants = {
+        hidden: {
+            opacity: 0,
+            y: 50,
+            x: isMobile ? 0 : (isReversed ? 50 : -50)
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            x: 0
+        }
+    }
+
+    const imageVariants = {
+        hidden: {
+            opacity: 0,
+            y: 50,
+            x: isMobile ? 0 : (isReversed ? -50 : 50),
+            rotateY: isMobile ? 0 : (isReversed ? -15 : 15)
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            x: 0,
+            rotateY: 0
+        }
+    }
 
     return (
         <motion.div
@@ -60,12 +90,13 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
             initial={{ opacity: 0, y: 100 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: index * 0.3, ease: [0.23, 1, 0.320, 1] }}
-            className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-16 mb-32`}
+            className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-16 mb-8 sm:mb-32`}
         >
-            <div className="flex-1 max-w-2xl">
+            <div className="flex-1 max-w-2xl order-1 lg:order-none">
                 <motion.div
-                    initial={{ opacity: 0, x: isReversed ? 50 : -50 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    variants={textVariants}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
                     transition={{ duration: 0.8, delay: index * 0.3 + 0.2 }}
                 >
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
@@ -117,28 +148,28 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                 </motion.div>
             </div>
 
-            <div className="flex-1 max-w-lg">
+            <div className="flex-1 max-w-lg w-full min-w-0 order-2 lg:order-none">
                 <motion.div
-                    initial={{ opacity: 0, x: isReversed ? -50 : 50, rotateY: isReversed ? -15 : 15 }}
-                    animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
+                    variants={imageVariants}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
                     transition={{ duration: 0.8, delay: index * 0.3 + 0.1 }}
                     className="relative"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                     style={{ perspective: '1000px' }}
                 >
-                    <Card className="overflow-hidden border-0 shadow-2xl rounded-2xl h-96">
-                        <div className="absolute inset-0 bg-neutral-100 rounded-2xl">
-                            <Image
-                                src={product.image}
-                                alt={product.title}
-                                fill
-                                className="object-contain transition-all duration-500 ease-out"
-                                style={{
-                                    filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
-                                }}
-                            />
-                        </div>
+                    <div className="relative overflow-hidden border-0 shadow-2xl rounded-2xl h-64 sm:h-80 lg:h-96 w-full bg-neutral-100">
+                        <Image
+                            src={product.image}
+                            alt={product.title}
+                            fill
+                            className="object-contain transition-all duration-500 ease-out"
+                            style={{
+                                filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
+                            }}
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
                         <motion.div
                             className={`absolute inset-0 ${product.accentColor} rounded-2xl`}
                             animate={{
@@ -147,7 +178,7 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                             transition={{ duration: 0.3 }}
                         />
                         <div className="absolute top-0 right-0 w-24 h-24 bg-white/20 transform rotate-45 translate-x-12 -translate-y-12" />
-                    </Card>
+                    </div>
                 </motion.div>
             </div>
         </motion.div>
@@ -224,7 +255,7 @@ export default function Home() {
                     transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
                     className="text-center mb-10"
                 >
-                    <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+                    <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
                         <span className="bg-gradient-to-r from-brand-maroon via-[#ca9a31] to-brand-maroon bg-clip-text text-transparent">
                             Power the Future
                         </span>
@@ -285,7 +316,7 @@ export default function Home() {
             </section>
 
             {/* Call to Action */}
-            <section className="relative container mx-auto px-6 py-32">
+            <section className="relative container mx-auto px-6 sm:py-32">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -299,12 +330,12 @@ export default function Home() {
                         Join thousands of satisfied customers who have chosen Sparq Systems for their solar energy needs.
                         Experience the difference that cutting-edge technology makes.
                     </p>
-                    <div className="flex flex-col md:flex-row justify-center gap-6 max-w-4xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-center gap-6 max-w-4xl mx-auto mb-4">
                         <Link href="/homeowners" className="flex-1">
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full px-8 py-6 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                className="w-full sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                                 onClick={() => handleCtaClick('homeowners')}
                             >
                                 <div className="flex flex-col items-center gap-2">
@@ -317,7 +348,7 @@ export default function Home() {
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full px-8 py-6 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                className="w-full sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                                 onClick={() => handleCtaClick('installers')}
                             >
                                 <div className="flex flex-col items-center gap-2">
@@ -330,7 +361,7 @@ export default function Home() {
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full px-8 py-6 bg-gradient-to-r from-brand-gray to-brand-graytext text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                className="w-full sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-brand-gray to-brand-graytext text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                                 onClick={() => handleCtaClick('investors')}
                             >
                                 <div className="flex flex-col items-center gap-2">

@@ -68,9 +68,9 @@ const productCards: ProductCard[] = [
         title: "SparqSync App",
         description: "Mobile application for system monitoring and control",
         href: "/products/app",
-        image: "/SparqApp.png",
+        image: "/sparqsync_splash.jpg",
         category: "Monitoring",
-        accentColor: "bg-gradient-to-br from-brand-yellow to-brand-maroon"
+        accentColor: "bg-gradient-to-br from-brand-yellow to-brand-gray"
     },
     {
         id: "accessories",
@@ -120,7 +120,7 @@ function FloatingProductCard({ product, index }: FloatingProductCardProps) {
                             src={product.image}
                             alt={product.title}
                             fill
-                            className="object-contain object-top transition-all duration-500 ease-out"
+                            className="object-cover transition-all duration-500 ease-out"
                             style={{
                                 filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
                             }}

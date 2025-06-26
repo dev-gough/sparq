@@ -169,12 +169,12 @@ export default function ContactPage() {
 					transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
 					className="text-center mb-10"
 				>
-					<h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-						<span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+					<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+						<span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
 							Contact
 						</span>
 						<br />
-						<span className="text-brand-darkmaroon">
+						<span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
 							Sparq Systems
 						</span>
 					</h1>

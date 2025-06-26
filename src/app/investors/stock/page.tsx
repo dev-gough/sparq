@@ -63,8 +63,8 @@ function BackgroundElements() {
 
 export default function StockPage() {
     const [chartSettings, setChartSettings] = useState<ChartSettings>({
-        interval: '1day',
-        startDate: '2020-01-01 08:00:00',
+        interval: '1h',
+        startDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] + ' 08:00:00',
         endDate: ''
     })
 
@@ -163,12 +163,12 @@ export default function StockPage() {
                     transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
                     className="text-center mb-12"
                 >
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+                        <span className="text-brand-darkmaroon">
                             SPRQ
                         </span>
                         <br />
-                        <span className="text-brand-darkmaroon">
+                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
                             Stock Performance
                         </span>
                     </h1>
