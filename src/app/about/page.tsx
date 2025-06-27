@@ -323,9 +323,12 @@ function TimelineNode({ event, index }: TimelineNodeProps) {
                                     )}
                                 </motion.div>
 
-                                <div className={`text-xs text-brand-graytext/60 ${isLeft ? 'text-right' : 'text-left'}`}>
-                                    Click to {isExpanded ? 'collapse' : 'expand'}
-                                </div>
+                                {(event.achievements || event.details) && (
+                                    <div className={`text-xs text-brand-graytext/60 ${isLeft ? 'text-right' : 'text-left'}`}>
+                                        Click to {isExpanded ? 'collapse' : 'expand'}
+                                    </div>
+                                )}
+
                             </CardContent>
                         </Card>
                     </motion.div>

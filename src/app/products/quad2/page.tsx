@@ -399,7 +399,7 @@ export default function Quad2Page() {
 				selectedModel={selectedModel}
 				setSelectedModel={setSelectedModel}
 				model="Q2000"
-				heading="Q2000 Microinverter"
+				heading="Quad2 Microinverter"
 				animated={true}
 				parent="Quad2"
 				href="quad2"

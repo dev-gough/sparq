@@ -18,7 +18,7 @@ interface FAQData {
 const FAQ: FAQData[] = InstallerFAQData.faqs
 
 const quad_advantage = ["One Microinverter for Four panels", "Safe, reliable, and long-lasting", "All AC cabling", "Rapid Shutdown Compatible", "Lowest weight, volume, and cost", "Fewer parts to install", "Installation takes less time on the roof", "Maitenance-free", "Higher profit margin", "User-friendly app"]
-const quad_items = ["Quick and Easy to install", "Maximum energy harvest", "Cloud-based performance monitoring", "12 yr. standard - 25 yr. extended warranty"]
+const quad_items = ["Quick and Easy to install", "Maximum energy harvest", "Per-Panel MPPT", "12 yr. standard - 25 yr. extended warranty"]
 
 interface BenefitCard {
     icon: React.ReactNode
@@ -36,37 +36,7 @@ const benefitCards: BenefitCard[] = [
         ),
         title: "Best In-Class Performance",
         description: "Achieve maximum energy harvest with our revolutionary Quad microinverter technology featuring individual MPPT for each panel.",
-        accentColor: "bg-gradient-to-br from-brand-maroon to-brand-darkmaroon"
-    },
-    {
-        icon: (
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-        ),
-        title: "Safe & Long-Lasting Products",
-        description: "No failure-prone electrolytic capacitors and best-in-class longevity ensure reliable performance for decades.",
-        accentColor: "bg-gradient-to-br from-brand-midmaroon to-brand-logo"
-    },
-    {
-        icon: (
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-            </svg>
-        ),
-        title: "Cost-Effective & Maintenance-Free",
-        description: "Lowest cost per Watt in the industry with reduced installation costs and zero maintenance requirements.",
-        accentColor: "bg-gradient-to-br from-brand-logo to-brand-yellow"
-    },
-    {
-        icon: (
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-            </svg>
-        ),
-        title: "Easy Installation & Monitoring",
-        description: "Streamlined installation process with comprehensive remote monitoring and expert technical support.",
-        accentColor: "bg-gradient-to-br from-brand-yellow to-brand-logo"
+        accentColor: "bg-gradient-to-br from-brand-darkmaroon via-brand-maroon to-brand-logo"
     },
     {
         icon: (
@@ -76,7 +46,37 @@ const benefitCards: BenefitCard[] = [
         ),
         title: "Higher Profit Margins",
         description: "Competitive pricing and efficient installation translate to better profit margins for your business.",
-        accentColor: "bg-gradient-to-br from-brand-darkmaroon to-brand-maroon"
+        accentColor: "bg-gradient-to-b from-brand-maroon via-brand-logo to-brand-yellow"
+    },
+    {
+        icon: (
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+        ),
+        title: "Safe & Long-Lasting Products",
+        description: "No failure-prone electrolytic capacitors and best-in-class longevity ensure reliable performance for decades.",
+        accentColor: "bg-gradient-to-bl from-brand-darkmaroon via-brand-maroon to-brand-logo"
+    },
+    {
+        icon: (
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+            </svg>
+        ),
+        title: "Cost-Effective & Maintenance-Free",
+        description: "Lowest cost per Watt in the industry with reduced installation costs and zero maintenance requirements.",
+        accentColor: "bg-gradient-to-bl from-brand-logo via-brand-maroon to-brand-darkmaroon"
+    },
+    {
+        icon: (
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+        ),
+        title: "Easy Installation & Monitoring",
+        description: "Streamlined installation process with comprehensive remote monitoring and expert technical support.",
+        accentColor: "bg-gradient-to-b from-brand-yellow to-brand-logo"
     },
     {
         icon: (
@@ -86,7 +86,7 @@ const benefitCards: BenefitCard[] = [
         ),
         title: "Expert Technical Support",
         description: "Comprehensive training, responsive field support, and ongoing technical assistance to ensure successful installations every time.",
-        accentColor: "bg-gradient-to-br from-brand-maroon to-brand-logo"
+        accentColor: "bg-gradient-to-br from-brand-logo via-brand-maroon to-brand-darkmaroon"
     }
 ]
 
@@ -301,7 +301,7 @@ export default function InstallersPage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                            <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                            <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent">
                                 Quad Architecture Advantage
                             </span>
                         </h2>
@@ -480,7 +480,7 @@ export default function InstallersPage() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent">
                             BOM Calculator
                         </span>
                     </h2>

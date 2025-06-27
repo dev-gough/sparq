@@ -314,7 +314,7 @@ export default function HomeownersPage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                            <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                            <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent">
                                 Advanced Technology
                             </span>
                         </h2>
