@@ -143,6 +143,33 @@ export default function InstallersPage() {
     const heroRef = useRef(null)
     const isHeroInView = useInView(heroRef, { once: true })
 
+    // Animation variants for the cards
+    const leftCardVariants = {
+        hidden: {
+            opacity: 0,
+            y: 50,
+            x: 0
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            x: 0
+        }
+    }
+
+    const rightCardVariants = {
+        hidden: {
+            opacity: 0,
+            y: 50,
+            x: 0
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            x: 0
+        }
+    }
+
     const toggleExpanded = (i: number) => {
         setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
         if (!dropdownExpanded[i]) {
@@ -373,8 +400,9 @@ export default function InstallersPage() {
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                         <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            variants={leftCardVariants}
+                            initial="hidden"
+                            whileInView="visible"
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >
@@ -406,8 +434,9 @@ export default function InstallersPage() {
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            variants={rightCardVariants}
+                            initial="hidden"
+                            whileInView="visible"
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >

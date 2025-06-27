@@ -159,12 +159,29 @@ function BackgroundElements() {
     )
 }
 
+
+
 export default function HomeownersPage() {
     const trackEvent = useTrackEvent()
     const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
 
     const heroRef = useRef(null)
     const isHeroInView = useInView(heroRef, { once: true })
+
+    const resourceRef = useRef(null)
+    const isResourceInView = useInView(resourceRef, { once: true })
+
+
+    const cardVariants = {
+        hidden: {
+            opacity: 0,
+            y: 50
+        },
+        visible: {
+            opacity: 1,
+            y: 0
+        }
+    }
 
     const toggleExpanded = (i: number) => {
         setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
@@ -195,7 +212,7 @@ export default function HomeownersPage() {
                     transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
                     className="text-center mb-10"
                 >
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+                    <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
                             Transform Your Home
                         </span>
@@ -369,8 +386,14 @@ export default function HomeownersPage() {
                     {solarSteps.map((step, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{
+                                opacity: 0,
+                                y: 50
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                y: 0
+                            }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
                             viewport={{ once: true }}
                         >
@@ -423,10 +446,18 @@ export default function HomeownersPage() {
             {/* Product & Resource Links */}
             <section className="relative bg-white py-10">
                 <div className="container mx-auto px-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div
+                        className="grid grid-cols-1 lg:grid-cols-2 gap-16"
+                        ref={resourceRef}>
                         <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{
+                                opacity: 0,
+                                y: 50
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                y: 0
+                            }}
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >
@@ -458,8 +489,9 @@ export default function HomeownersPage() {
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial="hidden"
+                            variants={cardVariants}
+                            animate={isResourceInView ? "visible" : "hidden"}
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >
@@ -501,10 +533,10 @@ export default function HomeownersPage() {
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
                 >
-                    <Card className="p-8 md:p-12 border-2 border-brand-logo bg-gradient-to-br from-neutral-50 to-stone-50 shadow-2xl py-0">
+                    <Card className="p-8 md:p-12 border-2 border-brand-logo bg-gradient-to-br from-neutral-50 to-stone-50 shadow-2xl">
                         <div className="text-center mb-12">
                             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                                <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-yellow bg-clip-text text-transparent">
+                                <span className="bg-gradient-to-r from-brand-maroon to-brand-darkmaroon bg-clip-text text-transparent">
                                     Design My System
                                 </span>
                             </h2>

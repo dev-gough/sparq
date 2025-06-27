@@ -143,11 +143,11 @@ const accordionSections: AccordionSection[] = [
 						</li>
 						<li className="flex items-start gap-3">
 							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>"All AC" solution promotes safe installation and operation with low voltage</span>
+							<span>&quot;All AC&quot; solution promotes safe installation and operation with low voltage</span>
 						</li>
 						<li className="flex items-start gap-3">
 							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Industry-standard Amphenol AC connectors, using Zigbee's open wireless communication protocol for individual node monitoring</span>
+							<span>Industry-standard Amphenol AC connectors, using Zigbee&apos;s open wireless communication protocol for individual node monitoring</span>
 						</li>
 					</ul>
 				</div>

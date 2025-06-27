@@ -166,7 +166,7 @@ export default function LearningPage() {
                     transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
                     className="text-center mb-10"
                 >
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+                    <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
                             Expand Your Knowledge
                         </span>

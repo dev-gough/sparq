@@ -20,7 +20,7 @@ interface ProductCard {
 const productCards: ProductCard[] = [
     {
         id: "quad2",
-        title: "Quad2",
+        title: "Q2000 1φ",
         description: "Single-phase microinverters for residential installations",
         href: "/products/quad2",
         image: "/q2000.webp",
@@ -29,7 +29,7 @@ const productCards: ProductCard[] = [
     },
     {
         id: "quad3",
-        title: "Quad3",
+        title: "Q2000 3ϕ",
         description: "Three-phase microinverters for commercial applications",
         href: "/products/quad3",
         image: "/quad3.webp",

@@ -18,7 +18,8 @@
     --color-vision: #4dc8ff;
     --color-values: #ff9f4d;
 
-    --breakpoint-3xl: 120rem;
+    --breakpoint-xs: 400px;
+    --breakpoint-3xl: 1920px;
 }
 
 html {
