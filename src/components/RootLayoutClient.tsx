@@ -5,6 +5,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import ForceScroll from "@/components/ForceScroll"
 import LeavingSite from "@/components/LeavingSite"
+import { AnimationProvider } from '@/contexts/AnimationContext'
 
 interface NavItem {
     href: string
@@ -22,7 +23,7 @@ interface RootLayoutClientProps {
     fontOptions: Record<string, FontOption>
 }
 
-export default function RootLayoutClient({ children, navbarItems, fontOptions }: RootLayoutClientProps) {
+function RootLayoutContent({ children, navbarItems, fontOptions }: RootLayoutClientProps) {
     const [currentFont, setCurrentFont] = useState('pt_sans')
 
     useEffect(() => {
@@ -37,8 +38,6 @@ export default function RootLayoutClient({ children, navbarItems, fontOptions }:
         localStorage.setItem('selectedFont', fontKey)
     }
 
-    const activeFont = fontOptions[currentFont] || fontOptions['pt_sans']
-
     const fontSelectOptions = [
         { name: 'PT Sans', value: 'pt_sans', className: fontOptions.pt_sans.className },
         { name: 'Nunito', value: 'nunito', className: fontOptions.nunito.className },
@@ -47,14 +46,14 @@ export default function RootLayoutClient({ children, navbarItems, fontOptions }:
         { name: 'Inter', value: 'inter', className: fontOptions.inter.className },
         { name: 'Poppins', value: 'poppins', className: fontOptions.poppins.className },
         { name: 'Geist', value: 'geist', className: fontOptions.geist.className },
-        { name: "Raleway", value: 'raleway', className: fontOptions.raleway.className},
-        { name: "Crimson Text", value: 'crimson', className: fontOptions.crimson.className},
+        { name: "Raleway", value: 'raleway', className: fontOptions.raleway.className },
+        { name: "Crimson Text", value: 'crimson', className: fontOptions.crimson.className },
     ]
 
     return (
-        <body className={`${activeFont.className} flex flex-col min-h-screen overflow-y-scroll`}>
-            <Header 
-                navItems={navbarItems} 
+        <>
+            <Header
+                navItems={navbarItems}
                 currentFont={currentFont}
                 onFontChange={handleFontChange}
                 fontOptions={fontSelectOptions}
@@ -65,6 +64,31 @@ export default function RootLayoutClient({ children, navbarItems, fontOptions }:
                 {children}
             </main>
             <Footer />
+        </>
+    )
+}
+
+export default function RootLayoutClient({ children, navbarItems, fontOptions }: RootLayoutClientProps) {
+    const [currentFont, setCurrentFont] = useState('pt_sans')
+
+    useEffect(() => {
+        const savedFont = localStorage.getItem('selectedFont')
+        if (savedFont && fontOptions[savedFont]) {
+            setCurrentFont(savedFont)
+        }
+    }, [fontOptions])
+
+    const activeFont = fontOptions[currentFont] || fontOptions['pt_sans']
+
+    return (
+        <body className={`${activeFont.className} flex flex-col min-h-screen overflow-y-scroll`}>
+            <AnimationProvider>
+                <RootLayoutContent
+                    children={children}
+                    navbarItems={navbarItems}
+                    fontOptions={fontOptions}
+                />
+            </AnimationProvider>
         </body>
     )
 }

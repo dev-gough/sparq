@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import DropdownMenu from './DropdownMenu'
 import FontSelector from './FontSelector'
+import AnimationToggle from './AnimationToggle'
 import { Menu, X } from 'lucide-react'
 
 interface NavItem {
@@ -86,9 +87,10 @@ export default function Header({ navItems, currentFont, onFontChange, fontOption
                     })}
                 </nav>
 
-                {/* Font Selector - Right Side */}
+                {/* Animation Toggle & Font Selector - Right Side */}
                 {currentFont && onFontChange && fontOptions && (
-                    <div className="hidden lg:block absolute right-6">
+                    <div className="hidden lg:flex items-center gap-3 absolute right-6">
+                        <AnimationToggle />
                         <FontSelector
                             currentFont={currentFont}
                             onFontChange={onFontChange}
