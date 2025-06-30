@@ -15,7 +15,7 @@ export default function LegalPage() {
     const privacyInView = useInView(privacyRef, { once: true, margin: "-100px" })
 
     return (
-        <div className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 min-h-screen">
+        <div className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50">
             <div className="container mx-auto px-6 py-10">
                 <motion.div 
                     ref={headerRef}

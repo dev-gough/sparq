@@ -81,7 +81,7 @@ function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps
             initial={{ opacity: 0, y: 60 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: index * 0.2 }}
-            className={`max-w-7xl mx-auto mb-32 ${index !== 0 ? 'border-t border-brand-maroon/10 pt-16' : ''}`}
+            className={`max-w-7xl mx-auto sm:mb-32 ${index !== 0 ? 'border-t border-brand-maroon/10 pt-16' : ''}`}
         >
             <div className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-16`}>
                 {/* Image Side */}
@@ -189,7 +189,7 @@ function CompanyValuesSection() {
             initial={{ opacity: 0, y: 60 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="max-w-7xl mx-auto mb-32 border-t border-brand-maroon/10 pt-16"
+            className="max-w-7xl mx-auto sm:mb-32 border-t border-brand-maroon/10 pt-16"
         >
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -237,7 +237,7 @@ export default function AboutUsPage() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative scroll-mt-[115px]">
             {/* Hero Section */}
-            <div className="relative container mx-auto px-6 pt-10 pb-8">
+            <div className="relative container mx-auto px-6 pt-10 sm:pb-8">
                 <motion.div
                     ref={titleRef}
                     initial={{ opacity: 0, y: 30 }}

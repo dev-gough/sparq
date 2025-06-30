@@ -20,7 +20,8 @@ interface ProductCard {
 const productCards: ProductCard[] = [
     {
         id: "quad2",
-        title: "Q2000 1φ",
+        // title: "Q2000 1φ",
+        title: "Quad 2",
         description: "Single-phase microinverters for residential installations",
         href: "/products/quad2",
         image: "/q2000.webp",
@@ -29,7 +30,8 @@ const productCards: ProductCard[] = [
     },
     {
         id: "quad3",
-        title: "Q2000 3ϕ",
+        // title: "Q2000 3ϕ",
+        title: "Quad3",
         description: "Three-phase microinverters for commercial applications",
         href: "/products/quad3",
         image: "/quad3.webp",
@@ -296,7 +298,7 @@ export default function ProductsPage() {
                     </div>
                 </section>
 
-                <section className="container mx-auto px-6 py-20">
+                <section className="container mx-auto px-6 pb-20 sm:py-20">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}

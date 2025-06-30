@@ -97,7 +97,7 @@ export default function PhotosPage() {
             <BackgroundElements />
             
             {/* Hero Section */}
-            <section className="relative container mx-auto px-6 pt-10 pb-16">
+            <section className="relative container mx-auto px-6 pt-10 sm:pb-16">
                 <motion.div
                     ref={heroRef}
                     initial={{ opacity: 0, y: 50 }}
@@ -129,7 +129,7 @@ export default function PhotosPage() {
 
             {/* Site Selection */}
             {installationSites.length > 1 && (
-                <section className="relative container mx-auto px-6 py-10">
+                <section className="relative container mx-auto px-6 pb:10 sm:py-10">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}

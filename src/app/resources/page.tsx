@@ -158,7 +158,7 @@ export default function LearningPage() {
             <BackgroundElements />
 
             {/* Hero Section */}
-            <section className="relative container mx-auto px-6 pt-10 pb-16">
+            <section className="relative container mx-auto px-6 pt-10 sm:pb-16">
                 <motion.div
                     ref={heroRef}
                     initial={{ opacity: 0, y: 50 }}
