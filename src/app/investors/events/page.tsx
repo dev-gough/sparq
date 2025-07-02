@@ -100,23 +100,23 @@ function EventCard({ event, index, isUpcoming }: { event: EventItem, index: numb
             transition={{ duration: 0.6, delay: 0.1 * index }}
             className="group"
         >
-            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0">
+            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 bg-white dark:bg-gray-700">
                 <CardContent className="p-0">
                     <div className="p-8">
                         <div className="flex items-start justify-between gap-4 mb-4">
                             <div className="flex-1">
                                 {event.url ? (
                                     <Link href={event.url} target="_blank" rel="noopener noreferrer">
-                                        <h3 className="text-2xl font-bold text-brand-darkmaroon group-hover:text-brand-maroon transition-colors duration-300 mb-3 line-clamp-2">
+                                        <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon dark:group-hover:text-brand-logo transition-colors duration-300 mb-3 line-clamp-2">
                                             {event.title}
                                         </h3>
                                     </Link>
                                 ) : (
-                                    <h3 className="text-2xl font-bold text-brand-darkmaroon mb-3 line-clamp-2">
+                                    <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3 line-clamp-2">
                                         {event.title}
                                     </h3>
                                 )}
-                                <div className="flex items-center gap-2 text-brand-graytext mb-4">
+                                <div className="flex items-center gap-2 text-brand-graytext dark:text-dark-text-muted mb-4">
                                     <FaCalendar className="w-4 h-4" />
                                     <span className="text-sm font-medium">
                                         {event.date.toLocaleDateString('en-US', {
@@ -132,7 +132,7 @@ function EventCard({ event, index, isUpcoming }: { event: EventItem, index: numb
                             </div>
                         </div>
 
-                        <p className="text-brand-graytext leading-relaxed mb-6 line-clamp-3">
+                        <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-6 line-clamp-3">
                             {event.summary}
                         </p>
 
@@ -142,16 +142,16 @@ function EventCard({ event, index, isUpcoming }: { event: EventItem, index: numb
                                     href={event.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 text-brand-maroon hover:text-brand-darkmaroon font-semibold transition-colors duration-200 group/link"
+                                    className="inline-flex items-center gap-2 text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-semibold transition-colors duration-200 group/link"
                                 >
                                     <span>Learn More</span>
                                     <FaArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" />
                                 </Link>
                             ) : (
-                                <span className="text-brand-graytext font-medium">More details coming soon</span>
+                                <span className="text-brand-graytext dark:text-dark-text-muted font-medium">More details coming soon</span>
                             )}
-                            <div className="px-3 py-1 bg-gradient-to-r from-brand-maroon/10 to-brand-logo/10 rounded-full">
-                                <span className="text-sm font-medium text-brand-darkmaroon">
+                            <div className="px-3 py-1 bg-gradient-to-r from-brand-maroon/10 to-brand-logo/10 dark:from-brand-logo/20 dark:to-brand-yellow/20 rounded-full">
+                                <span className="text-sm font-medium text-brand-darkmaroon dark:text-brand-yellow">
                                     {isUpcoming ? 'Upcoming' : 'Past Event'}
                                 </span>
                             </div>
@@ -172,7 +172,7 @@ export default function EventPage() {
     const pastEvents = events.filter(event => event.date <= curDate)
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
             <BackgroundElements />
 
             {/* Hero Section */}
@@ -198,7 +198,7 @@ export default function EventPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
                         Discover upcoming events, product launches, and important company milestones
                         that shape the future of solar energy technology.
@@ -208,7 +208,7 @@ export default function EventPage() {
 
             {/* Upcoming Events Section */}
             {upcomingEvents.length > 0 && (
-                <section className="relative bg-white py-10">
+                <section className="relative bg-white dark:bg-gray-900 py-10">
                     <div className="container mx-auto px-6">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -220,11 +220,11 @@ export default function EventPage() {
                                 <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white">
                                     <FaClock className="w-6 h-6" />
                                 </div>
-                                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon">
+                                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow">
                                     Upcoming Events
                                 </h2>
                             </div>
-                            <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                            <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                                 Stay informed about our upcoming product launches, events, and important announcements.
                             </p>
                         </motion.div>
@@ -245,7 +245,7 @@ export default function EventPage() {
 
             {/* Past Events Section */}
             {pastEvents.length > 0 && (
-                <section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 py-10">
+                <section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 py-10">
                     <div className="container mx-auto px-6">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -257,11 +257,11 @@ export default function EventPage() {
                                 <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white">
                                     <FaArchive className="w-6 h-6" />
                                 </div>
-                                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon">
+                                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow">
                                     Past Events
                                 </h2>
                             </div>
-                            <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                            <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                                 Explore our company&apos;s journey through key milestones and achievements.
                             </p>
                         </motion.div>

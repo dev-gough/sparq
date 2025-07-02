@@ -183,7 +183,7 @@ export default function InvestorsPage() {
     }
 
     return (
-        <div className='min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative'>
+        <div className='min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative'>
             <BackgroundElements />
 
             {/* Hero Section */}
@@ -209,7 +209,7 @@ export default function InvestorsPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
                         Discover investment opportunities with Sparq Systems, a leader in next-generation
                         solar microinverter technology revolutionizing renewable energy solutions.
@@ -225,7 +225,7 @@ export default function InvestorsPage() {
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-brand-maroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:bg-brand-darkmaroon transition-all duration-300 cursor-pointer flex items-center justify-center"
+                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
                             >
                                 <FaPlay className="mr-2" />
                                 View Investor Presentation
@@ -235,7 +235,7 @@ export default function InvestorsPage() {
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-white text-brand-maroon border-2 border-brand-maroon font-semibold rounded-xl shadow-lg hover:shadow-xl hover:bg-brand-maroon hover:text-white transition-all duration-300 cursor-pointer"
+                                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer"
                             >
                                 Contact IR Team
                             </motion.button>
@@ -245,7 +245,7 @@ export default function InvestorsPage() {
             </section>
 
             {/* Investor Navigation Section */}
-            <section className="relative bg-white py-10">
+            <section className="relative bg-white dark:bg-gray-900 py-10">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -253,10 +253,10 @@ export default function InvestorsPage() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Investor Resources
                         </h2>
-                        <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Access comprehensive financial information, governance documents, and market data.
                         </p>
                     </motion.div>
@@ -270,17 +270,17 @@ export default function InvestorsPage() {
                                 transition={{ duration: 0.6, delay: 0.4 + (index * 0.1) }}
                             >
                                 <Link href={section.href}>
-                                    <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full group cursor-pointer">
+                                    <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full group cursor-pointer dark:bg-gray-800">
                                         <CardContent className="p-6 text-center h-full flex flex-col">
                                             <div className={`flex items-center justify-center w-16 h-16 bg-gradient-to-br ${section.gradient} rounded-full mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
                                                 <div className="text-white">
                                                     {section.icon}
                                                 </div>
                                             </div>
-                                            <h3 className="text-xl font-bold text-brand-darkmaroon group-hover:text-brand-maroon transition-colors duration-300 mb-4">
+                                            <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon transition-colors duration-300 mb-4">
                                                 {section.title}
                                             </h3>
-                                            <p className="text-brand-graytext leading-relaxed flex-grow mb-6">
+                                            <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed flex-grow mb-6">
                                                 {section.description}
                                             </p>
                                             <div className="inline-flex items-center text-brand-maroon group-hover:text-brand-darkmaroon font-semibold transition-colors duration-200">
@@ -303,7 +303,7 @@ export default function InvestorsPage() {
             </section>
 
             {/* Highlights Section */}
-            <section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 py-10">
+            <section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-10">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -311,10 +311,10 @@ export default function InvestorsPage() {
                         transition={{ duration: 0.8, delay: 0.6 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Investment Highlights
                         </h2>
-                        <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Key achievements, partnerships, and milestones that define our growth trajectory.
                         </p>
                     </motion.div>
@@ -327,14 +327,14 @@ export default function InvestorsPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.8 + (index * 0.1) }}
                             >
-                                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 py-0 h-full">
+                                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 py-0 h-full dark:bg-gray-800">
                                     <CardContent className="p-8">
                                         <div className="flex items-start gap-4 mb-6">
                                             <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white flex-shrink-0">
                                                 {highlight.icon}
                                             </div>
                                             <div className="flex-1">
-                                                <h3 className="text-2xl font-bold text-brand-darkmaroon mb-2">
+                                                <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-2">
                                                     {highlight.title}
                                                 </h3>
                                                 <p className="text-lg text-brand-maroon font-medium mb-4">
@@ -356,9 +356,9 @@ export default function InvestorsPage() {
                                                             >
                                                                 <div className="flex items-center justify-between">
                                                                     <div>
-                                                                        <h4 className="font-semibold text-brand-darkmaroon group-hover:text-brand-maroon transition-colors duration-200">{item.name}</h4>
+                                                                        <h4 className="font-semibold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon transition-colors duration-200">{item.name}</h4>
                                                                         {item.description && (
-                                                                            <p className="text-sm text-brand-graytext">{item.description}</p>
+                                                                            <p className="text-sm text-brand-graytext dark:text-dark-text-muted">{item.description}</p>
                                                                         )}
                                                                     </div>
                                                                     <FaExternalLinkAlt className="w-4 h-4 text-brand-maroon group-hover:text-brand-darkmaroon transition-colors duration-200" />
@@ -366,14 +366,14 @@ export default function InvestorsPage() {
                                                             </a>
                                                         ) : (
                                                             <div className="p-3 bg-brand-maroon/5 rounded-lg border-l-4 border-brand-maroon">
-                                                                <h4 className="font-semibold text-brand-darkmaroon">{item.name}</h4>
+                                                                <h4 className="font-semibold text-brand-darkmaroon dark:text-brand-yellow">{item.name}</h4>
                                                                 {item.description && (
-                                                                    <p className="text-sm text-brand-graytext">{item.description}</p>
+                                                                    <p className="text-sm text-brand-graytext dark:text-dark-text-muted">{item.description}</p>
                                                                 )}
                                                             </div>
                                                         )
                                                     ) : (
-                                                        <p className="text-brand-graytext leading-relaxed p-3 bg-white rounded-lg shadow-sm">
+                                                        <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
                                                             {item.description}
                                                         </p>
                                                     )}
@@ -389,7 +389,7 @@ export default function InvestorsPage() {
             </section>
 
             {/* FAQ Section */}
-            <section id="faq" className="relative bg-white py-10 scroll-mt-[66px]">
+            <section id="faq" className="relative  py-10 scroll-mt-[66px]">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -398,10 +398,10 @@ export default function InvestorsPage() {
                         viewport={{ once: true }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Frequently Asked Questions
                         </h2>
-                        <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Find answers to common investor questions about Sparq Systems.
                         </p>
                     </motion.div>
@@ -415,7 +415,7 @@ export default function InvestorsPage() {
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
                                 viewport={{ once: true }}
                             >
-                                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 py-0">
+                                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 py-0 dark:bg-gray-800">
                                     <CardContent className="p-0">
                                         <div
                                             className="bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80 p-6 text-white cursor-pointer"
@@ -449,12 +449,12 @@ export default function InvestorsPage() {
                                             transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
                                             className="overflow-hidden"
                                         >
-                                            <div className="p-6 bg-white">
+                                            <div className="p-6 bg-white dark:bg-gray-800">
                                                 <div className="space-y-6">
                                                     {faqCategory.subQuestions.map((subItem) => (
-                                                        <div key={subItem.id} className="border-b border-gray-100 last:border-b-0 pb-4 last:pb-0">
-                                                            <h4 className="font-bold text-brand-darkmaroon mb-3">{subItem.question}</h4>
-                                                            <div className="text-brand-graytext leading-relaxed">
+                                                        <div key={subItem.id} className="border-b border-gray-100 dark:border-gray-600 last:border-b-0 pb-4 last:pb-0">
+                                                            <h4 className="font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3">{subItem.question}</h4>
+                                                            <div className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
                                                                 {subItem.answer && Array.isArray(subItem.answer) ? (
                                                                     <div className="space-y-3">
                                                                         {subItem.answer.map((block, i) =>
@@ -470,7 +470,7 @@ export default function InvestorsPage() {
                                                                         )}
                                                                     </div>
                                                                 ) : (
-                                                                    <div className="leading-relaxed">
+                                                                    <div className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
                                                                         {subItem.answer as string}
                                                                     </div>
                                                                 )}

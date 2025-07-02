@@ -159,8 +159,6 @@ function BackgroundElements() {
     )
 }
 
-
-
 export default function HomeownersPage() {
     const trackEvent = useTrackEvent()
     const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
@@ -170,7 +168,6 @@ export default function HomeownersPage() {
 
     const resourceRef = useRef(null)
     const isResourceInView = useInView(resourceRef, { once: true })
-
 
     const cardVariants = {
         hidden: {
@@ -200,7 +197,7 @@ export default function HomeownersPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
             <BackgroundElements />
 
             {/* Hero Section */}
@@ -226,7 +223,7 @@ export default function HomeownersPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
                         Experience the future of solar energy with Sparq Systems&apos; revolutionary microinverter technology.
                         Cut your electricity bills, increase your home value, and contribute to a sustainable future.
@@ -251,7 +248,7 @@ export default function HomeownersPage() {
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-white text-brand-darkmaroon font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 cursor-pointer"
+                                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer"
                             >
                                 Explore Products
                             </motion.button>
@@ -268,10 +265,10 @@ export default function HomeownersPage() {
                     transition={{ duration: 0.8, delay: 0.5 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6 dark:text-brand-yellow">
                         Why Choose Sparq Systems?
                     </h2>
-                    <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                         Revolutionary technology that delivers unmatched performance, safety, and value for your home solar investment.
                     </p>
                 </motion.div>
@@ -285,7 +282,7 @@ export default function HomeownersPage() {
                             transition={{ duration: 0.6, delay: 0.7 + (index * 0.2) }}
                             className="group"
                         >
-                            <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0">
+                            <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 dark:bg-gray-800">
                                 <CardContent className="p-0">
                                     <div className={`${benefit.accentColor} p-6 text-white`}>
                                         <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4 mx-auto">
@@ -293,8 +290,8 @@ export default function HomeownersPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-center mb-4">{benefit.title}</h3>
                                     </div>
-                                    <div className="p-6 bg-white">
-                                        <p className="text-brand-graytext leading-relaxed">{benefit.description}</p>
+                                    <div className="p-6 bg-white dark:bg-gray-800">
+                                        <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">{benefit.description}</p>
                                     </div>
                                 </CardContent>
                             </Card>
@@ -304,7 +301,7 @@ export default function HomeownersPage() {
             </section>
 
             {/* Technology Showcase */}
-            <section id="discover" className="relative bg-white py-10">
+            <section id="discover" className="relative bg-white dark:bg-gray-900 py-10">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -314,11 +311,11 @@ export default function HomeownersPage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                            <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent">
+                            <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent dark:from-brand-yellow dark:to-brand-logo">
                                 Advanced Technology
                             </span>
                         </h2>
-                        <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Experience cutting-edge innovations that set Sparq Systems apart from traditional solar solutions.
                         </p>
                     </motion.div>
@@ -338,14 +335,14 @@ export default function HomeownersPage() {
                                         <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white">
                                             {feature.icon}
                                         </div>
-                                        <h3 className="text-3xl font-bold text-brand-darkmaroon">{feature.title}</h3>
+                                        <h3 className="text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow">{feature.title}</h3>
                                     </div>
-                                    <p className="text-lg text-brand-graytext mb-6 leading-relaxed">{feature.description}</p>
+                                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-6 leading-relaxed">{feature.description}</p>
                                     <div className="grid grid-cols-2 gap-3">
                                         {feature.benefits.map((benefit, i) => (
                                             <div key={i} className="flex items-center gap-3">
                                                 <div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo" />
-                                                <span className="text-brand-graytext font-medium">{benefit}</span>
+                                                <span className="text-brand-graytext dark:text-dark-text-secondary font-medium">{benefit}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -374,10 +371,10 @@ export default function HomeownersPage() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6 dark:text-brand-yellow">
                         Your Solar Journey
                     </h2>
-                    <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                         Follow these simple steps to transform your home with clean, renewable solar energy.
                     </p>
                 </motion.div>
@@ -397,12 +394,12 @@ export default function HomeownersPage() {
                             transition={{ duration: 0.6, delay: index * 0.1 }}
                             viewport={{ once: true }}
                         >
-                            <Card className="p-6 border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                            <Card className="p-6 border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800">
                                 <div className="flex items-start gap-4">
                                     <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white font-bold flex-shrink-0">
                                         {index + 1}
                                     </div>
-                                    <p className="text-brand-graytext font-medium leading-relaxed">{step}</p>
+                                    <p className="text-brand-graytext dark:text-dark-text-secondary font-medium leading-relaxed">{step}</p>
                                 </div>
                             </Card>
                         </motion.div>
@@ -416,15 +413,15 @@ export default function HomeownersPage() {
                     viewport={{ once: true }}
                     className="mb-16"
                 >
-                    <Card className="p-8 border-0 shadow-xl bg-gradient-to-br from-brand-maroon/5 to-brand-logo/5">
-                        <h3 className="text-2xl font-bold text-brand-darkmaroon mb-6 text-center">
+                    <Card className="p-8 border-0 shadow-xl bg-gradient-to-br from-brand-maroon/5 to-brand-logo/5 dark:from-gray-800/50 dark:to-gray-700/50">
+                        <h3 className="text-2xl font-bold text-brand-darkmaroon mb-6 text-center dark:text-brand-yellow">
                             Important Considerations
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {importantConsiderations.map((consideration, index) => (
                                 <div key={index} className="flex items-center gap-3">
                                     <div className="w-3 h-3 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-                                    <span className="text-brand-graytext font-medium">{consideration}</span>
+                                    <span className="text-brand-graytext dark:text-dark-text-secondary font-medium">{consideration}</span>
                                 </div>
                             ))}
                         </div>
@@ -444,7 +441,7 @@ export default function HomeownersPage() {
             </section>
 
             {/* Product & Resource Links */}
-            <section className="relative bg-white py-10">
+            <section className="relative bg-white dark:bg-gray-900 py-10">
                 <div className="container mx-auto px-6">
                     <div
                         className="grid grid-cols-1 lg:grid-cols-2 gap-16"
@@ -461,7 +458,7 @@ export default function HomeownersPage() {
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >
-                            <Card className="h-full overflow-hidden border-0 shadow-xl group hover:shadow-2xl transition-all duration-300 py-0">
+                            <Card className="h-full overflow-hidden border-0 shadow-xl group hover:shadow-2xl transition-all duration-300 py-0 dark:bg-gray-800">
                                 <div className="relative h-64 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon">
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                                     <div className="absolute bottom-6 left-6 right-6">
@@ -495,7 +492,7 @@ export default function HomeownersPage() {
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >
-                            <Card className="h-full overflow-hidden border-0 shadow-xl group hover:shadow-2xl transition-all duration-300 py-0">
+                            <Card className="h-full overflow-hidden border-0 shadow-xl group hover:shadow-2xl transition-all duration-300 py-0 dark:bg-gray-800">
                                 <div className="relative h-64 bg-gradient-to-br from-brand-logo to-brand-yellow">
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                                     <div className="absolute bottom-6 left-6 right-6">
@@ -533,42 +530,42 @@ export default function HomeownersPage() {
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
                 >
-                    <Card className="p-8 md:p-12 border-2 border-brand-logo bg-gradient-to-br from-neutral-50 to-stone-50 shadow-2xl">
+                    <Card className="p-8 md:p-12 border-2 border-brand-logo bg-gradient-to-br from-neutral-50 to-stone-50 dark:from-gray-800 dark:to-gray-900 shadow-2xl">
                         <div className="text-center mb-12">
                             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                                <span className="bg-gradient-to-r from-brand-maroon to-brand-darkmaroon bg-clip-text text-transparent">
+                                <span className="bg-gradient-to-r from-brand-maroon to-brand-darkmaroon bg-clip-text text-transparent dark:text-brand-yellow">
                                     Design My System
                                 </span>
                             </h2>
-                            <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                            <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                                 Calculate your energy needs and discover how many Q2000 units you&apos;ll need for optimal performance.
                             </p>
                         </div>
 
                         <div className="space-y-8">
-                            <div className="bg-white p-6 rounded-lg shadow-lg">
-                                <p className="text-lg text-brand-graytext mb-4">
+                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                                <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-4">
                                     Use NREL&apos;s PVWatts calculator to estimate your energy production by entering your address:
                                     <Link href="https://pvwatts.nrel.gov/" target="_blank" className="text-brand-maroon hover:underline font-semibold ml-2">
                                         pvwatts.nrel.gov
                                     </Link>
                                 </p>
-                                <p className="text-lg text-brand-graytext">
+                                <p className="text-lg text-brand-graytext dark:text-dark-text-secondary">
                                     <strong>Important:</strong> Set the &quot;DC System Size (kW)&quot; field to 2.
                                 </p>
                             </div>
 
-                            <div className="bg-white p-6 rounded-lg shadow-lg">
-                                <h3 className="text-2xl font-bold text-brand-darkmaroon mb-4">3 Easy Steps:</h3>
-                                <ol className="list-decimal list-inside space-y-3 text-lg text-brand-graytext">
+                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                                <h3 className="text-2xl font-bold text-brand-darkmaroon mb-4 dark:text-brand-yellow">3 Easy Steps:</h3>
+                                <ol className="list-decimal list-inside space-y-3 text-lg text-brand-graytext dark:text-dark-text-secondary">
                                     <li>Follow the instructions above to receive your estimated energy generation.</li>
                                     <li>Sum the last 12 months of kWh energy usage from your utility provider.</li>
                                     <li>Divide the estimated generation by your yearly usage.</li>
                                 </ol>
                             </div>
 
-                            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-                                <p className="text-lg text-brand-graytext mb-6">
+                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                                <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-6">
                                     Once you have a rough idea of your system,{' '}
                                     <Link href="/contact" className="text-brand-maroon hover:underline font-semibold">
                                         contact us
@@ -592,10 +589,10 @@ export default function HomeownersPage() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6 dark:text-brand-yellow">
                         Frequently Asked Questions
                     </h2>
-                    <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                         Get answers to common questions about solar systems, our products, and the installation process.
                     </p>
                 </motion.div>
@@ -643,12 +640,12 @@ export default function HomeownersPage() {
                                         transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
                                         className="overflow-hidden"
                                     >
-                                        <div className="p-6 bg-white">
+                                        <div className="p-6 bg-white dark:bg-gray-800">
                                             <div className="space-y-6">
                                                 {faqCategory.subQuestions.map((subItem) => (
                                                     <div key={subItem.id} className="border-b border-gray-100 last:border-b-0 pb-4 last:pb-0">
-                                                        <h4 className="font-bold text-brand-darkmaroon mb-3">{subItem.question}</h4>
-                                                        <div className="text-brand-graytext leading-relaxed">
+                                                        <h4 className="font-bold text-brand-darkmaroon mb-3 dark:text-brand-yellow">{subItem.question}</h4>
+                                                        <div className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
                                                             {subItem.answer && Array.isArray(subItem.answer) ? (
                                                                 <div className="space-y-3">
                                                                     {subItem.answer.map((block, i) =>

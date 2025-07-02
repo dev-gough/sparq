@@ -85,22 +85,22 @@ const ChartControls: React.FC<ChartControlsProps> = ({ onSettingsChange }) => {
         <div className="absolute top-4 right-20 z-20">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="bg-white border border-brand-gray/30 rounded-lg px-3 py-2 text-sm font-medium text-brand-graytext shadow-sm hover:bg-brand-yellow/10 focus:outline-none focus:ring-2 focus:ring-brand-maroon"
+                className="bg-white dark:bg-gray-700 border border-brand-gray/30 dark:border-gray-600 rounded-lg px-3 py-2 text-sm font-medium text-brand-graytext dark:text-dark-text-secondary shadow-sm hover:bg-brand-yellow/10 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-brand-maroon"
             >
                 ⚙️ Settings
             </button>
 
             {isOpen && (
-                <div className="absolute top-12 right-0 bg-white border border-brand-gray/30 rounded-lg shadow-lg p-4 w-64 z-30">
+                <div className="absolute top-12 right-0 bg-white dark:bg-gray-700 border border-brand-gray/30 dark:border-gray-600 rounded-lg shadow-lg p-4 w-64 z-30">
                     <div className="space-y-4">
                         <div>
-                            <label className="block text-xs font-medium text-brand-graytext mb-2">
+                            <label className="block text-xs font-medium text-brand-graytext dark:text-dark-text-secondary mb-2">
                                 Interval
                             </label>
                             <select
                                 value={interval}
                                 onChange={(e) => setInterval(e.target.value)}
-                                className="w-full px-3 py-2 text-sm border border-brand-gray/30 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-maroon text-brand-graytext"
+                                className="w-full px-3 py-2 text-sm border border-brand-gray/30 dark:border-gray-600 bg-white dark:bg-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-maroon text-brand-graytext dark:text-dark-text-secondary"
                             >
                                 {intervals.map((opt) => (
                                     <option key={opt.value} value={opt.value}>
@@ -111,13 +111,13 @@ const ChartControls: React.FC<ChartControlsProps> = ({ onSettingsChange }) => {
                         </div>
 
                         <div>
-                            <label className="block text-xs font-medium text-brand-graytext mb-2">
+                            <label className="block text-xs font-medium text-brand-graytext dark:text-dark-text-secondary mb-2">
                                 Date Range
                             </label>
                             <select
                                 value={dateRange}
                                 onChange={(e) => setDateRange(e.target.value)}
-                                className="w-full px-3 py-2 text-sm border border-brand-gray/30 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-maroon text-brand-graytext"
+                                className="w-full px-3 py-2 text-sm border border-brand-gray/30 dark:border-gray-600 bg-white dark:bg-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-maroon text-brand-graytext dark:text-dark-text-secondary"
                             >
                                 {dateRanges.map((opt) => (
                                     <option key={opt.value} value={opt.value}>
@@ -130,25 +130,25 @@ const ChartControls: React.FC<ChartControlsProps> = ({ onSettingsChange }) => {
                         {dateRange === 'custom' && (
                             <div className="space-y-3">
                                 <div>
-                                    <label className="block text-xs font-medium text-brand-graytext mb-1">
+                                    <label className="block text-xs font-medium text-brand-graytext dark:text-dark-text-secondary mb-1">
                                         Start Date
                                     </label>
                                     <input
                                         type="date"
                                         value={customStartDate}
                                         onChange={(e) => setCustomStartDate(e.target.value)}
-                                        className="w-full px-3 py-2 text-sm border border-brand-gray/30 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-maroon text-brand-graytext"
+                                        className="w-full px-3 py-2 text-sm border border-brand-gray/30 dark:border-gray-600 bg-white dark:bg-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-maroon text-brand-graytext dark:text-dark-text-secondary"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-medium text-brand-graytext mb-1">
+                                    <label className="block text-xs font-medium text-brand-graytext dark:text-dark-text-secondary mb-1">
                                         End Date
                                     </label>
                                     <input
                                         type="date"
                                         value={customEndDate}
                                         onChange={(e) => setCustomEndDate(e.target.value)}
-                                        className="w-full px-3 py-2 text-sm border border-brand-gray/30 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-maroon text-brand-graytext"
+                                        className="w-full px-3 py-2 text-sm border border-brand-gray/30 dark:border-gray-600 bg-white dark:bg-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-maroon text-brand-graytext dark:text-dark-text-secondary"
                                     />
                                 </div>
                             </div>
@@ -163,7 +163,7 @@ const ChartControls: React.FC<ChartControlsProps> = ({ onSettingsChange }) => {
                             </button>
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="flex-1 bg-brand-gray/20 text-brand-graytext text-sm font-medium py-2 px-3 rounded-md hover:bg-brand-gray/30 focus:outline-none focus:ring-2 focus:ring-brand-gray"
+                                className="flex-1 bg-brand-gray/20 dark:bg-gray-600 text-brand-graytext dark:text-dark-text-secondary text-sm font-medium py-2 px-3 rounded-md hover:bg-brand-gray/30 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-gray"
                             >
                                 Cancel
                             </button>

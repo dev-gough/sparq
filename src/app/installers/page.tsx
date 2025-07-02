@@ -187,7 +187,7 @@ export default function InstallersPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
             <BackgroundElements />
 
             {/* Hero Section */}
@@ -213,7 +213,7 @@ export default function InstallersPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
                         Revolutionize your solar installations with Sparq Systems&apos; Quad microinverter technology.
                         Faster installations, higher margins, and satisfied customers.
@@ -238,7 +238,7 @@ export default function InstallersPage() {
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-white text-brand-darkmaroon font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 cursor-pointer"
+                                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer"
                             >
                                 BOM Calculator
                             </motion.button>
@@ -255,10 +255,10 @@ export default function InstallersPage() {
                     transition={{ duration: 0.8, delay: 0.5 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                         Why Installers Choose Sparq
                     </h2>
-                    <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                         Revolutionary technology that delivers unmatched performance, reliability, and profitability for your business.
                     </p>
                 </motion.div>
@@ -272,7 +272,7 @@ export default function InstallersPage() {
                             transition={{ duration: 0.6, delay: 0.7 + (index * 0.1) }}
                             className="group"
                         >
-                            <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0">
+                            <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 dark:bg-gray-800">
                                 <CardContent className="p-0">
                                     <div className={`${benefit.accentColor} p-6 text-white`}>
                                         <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4 mx-auto">
@@ -280,8 +280,8 @@ export default function InstallersPage() {
                                         </div>
                                         <h3 className="text-xl font-bold text-center mb-4">{benefit.title}</h3>
                                     </div>
-                                    <div className="p-6 bg-white">
-                                        <p className="text-brand-graytext leading-relaxed">{benefit.description}</p>
+                                    <div className="p-6 bg-white dark:bg-gray-800">
+                                        <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">{benefit.description}</p>
                                     </div>
                                 </CardContent>
                             </Card>
@@ -291,7 +291,7 @@ export default function InstallersPage() {
             </section>
 
             {/* Quad Architecture Features */}
-            <section id="discover" className="relative bg-white py-10">
+            <section id="discover" className="relative bg-white dark:bg-gray-900 py-10">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -301,11 +301,11 @@ export default function InstallersPage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                            <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent">
+                            <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent dark:from-brand-yellow dark:to-brand-logo">
                                 Quad Architecture Advantage
                             </span>
                         </h2>
-                        <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Revolutionary technology that transforms the solar installation experience with unmatched efficiency and reliability.
                         </p>
                     </motion.div>
@@ -317,17 +317,17 @@ export default function InstallersPage() {
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >
-                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300 p-8 bg-gradient-to-br from-white to-gray-50/50 h-full">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300 p-8 bg-gradient-to-br from-white to-gray-50/50 dark:from-gray-800 dark:to-gray-700/50 h-full">
                                 <div className="text-center mb-8">
                                     <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-2xl mb-6">
                                         <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                                         </svg>
                                     </div>
-                                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon mb-4">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">
                                         Quad Architecture Benefits
                                     </h3>
-                                    <p className="text-brand-graytext leading-relaxed">
+                                    <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
                                         Experience the power of our revolutionary 4-in-1 microinverter design
                                     </p>
                                 </div>
@@ -339,14 +339,14 @@ export default function InstallersPage() {
                                             whileInView={{ opacity: 1, x: 0 }}
                                             transition={{ duration: 0.5, delay: index * 0.1 }}
                                             viewport={{ once: true }}
-                                            className="flex items-center gap-4 p-4 rounded-lg bg-white shadow-sm border border-gray-100"
+                                            className="flex items-center gap-4 p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-600"
                                         >
                                             <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-brand-logo to-brand-yellow rounded-full flex-shrink-0">
                                                 <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                 </svg>
                                             </div>
-                                            <span className="text-brand-graytext font-medium leading-relaxed">{item}</span>
+                                            <span className="text-brand-graytext dark:text-dark-text-secondary font-medium leading-relaxed">{item}</span>
                                         </motion.div>
                                     ))}
                                 </div>
@@ -359,17 +359,17 @@ export default function InstallersPage() {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             viewport={{ once: true }}
                         >
-                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300 p-8 bg-gradient-to-br from-white to-gray-50/50 h-full">
+                            <Card className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300 p-8 bg-gradient-to-br from-white to-gray-50/50 dark:from-gray-800 dark:to-gray-700/50 h-full">
                                 <div className="text-center mb-8">
                                     <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-logo to-brand-yellow rounded-2xl mb-6">
                                         <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                         </svg>
                                     </div>
-                                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon mb-4">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">
                                         4-In-1 Installation Advantages
                                     </h3>
-                                    <p className="text-brand-graytext leading-relaxed">
+                                    <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
                                         Streamlined installation process with superior performance benefits
                                     </p>
                                 </div>
@@ -381,12 +381,12 @@ export default function InstallersPage() {
                                             whileInView={{ opacity: 1, x: 0 }}
                                             transition={{ duration: 0.4, delay: index * 0.05 }}
                                             viewport={{ once: true }}
-                                            className="flex items-start gap-3 p-3 rounded-lg bg-white shadow-sm border border-gray-100"
+                                            className="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-600"
                                         >
                                             <div className="flex items-center justify-center w-6 h-6 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-full flex-shrink-0 mt-0.5">
                                                 <div className="w-2 h-2 bg-white rounded-full" />
                                             </div>
-                                            <span className="text-brand-graytext font-medium text-sm leading-relaxed">{item}</span>
+                                            <span className="text-brand-graytext dark:text-dark-text-secondary font-medium text-sm leading-relaxed">{item}</span>
                                         </motion.div>
                                     ))}
                                 </div>
@@ -396,7 +396,7 @@ export default function InstallersPage() {
                 </div>
             </section>
 
-            <section className="relative bg-white py-10">
+            <section className="relative bg-white dark:bg-gray-900 py-10">
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                         <motion.div
@@ -406,7 +406,7 @@ export default function InstallersPage() {
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >
-                            <Card className="h-full overflow-hidden border-0 shadow-xl group hover:shadow-2xl transition-all duration-300 py-0">
+                            <Card className="h-full overflow-hidden border-0 shadow-xl group hover:shadow-2xl transition-all duration-300 py-0 dark:bg-gray-800">
                                 <div className="relative h-64 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon">
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                                     <div className="absolute bottom-6 left-6 right-6">
@@ -440,7 +440,7 @@ export default function InstallersPage() {
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                         >
-                            <Card className="h-full overflow-hidden border-0 shadow-xl group hover:shadow-2xl transition-all duration-300 py-0">
+                            <Card className="h-full overflow-hidden border-0 shadow-xl group hover:shadow-2xl transition-all duration-300 py-0 dark:bg-gray-800">
                                 <div className="relative h-64 bg-gradient-to-br from-brand-logo to-brand-yellow">
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                                     <div className="absolute bottom-6 left-6 right-6">
@@ -480,11 +480,11 @@ export default function InstallersPage() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                        <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent dark:from-brand-yellow dark:to-brand-logo">
                             BOM Calculator
                         </span>
                     </h2>
-                    <p className="text-xl text-brand-graytext max-w-4xl mx-auto">
+                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto">
                         Calculate your Bill of Materials and system requirements with our comprehensive planning tool.
                     </p>
                 </motion.div>
@@ -500,10 +500,10 @@ export default function InstallersPage() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                         Frequently Asked Questions
                     </h2>
-                    <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                         Get answers to common questions about our products, installation process, and technical specifications.
                     </p>
                 </motion.div>
@@ -517,7 +517,7 @@ export default function InstallersPage() {
                             transition={{ duration: 0.6, delay: index * 0.1 }}
                             viewport={{ once: true }}
                         >
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 py-0">
+                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 py-0 dark:bg-gray-800">
                                 <CardContent className="p-0">
                                     <div
                                         className="bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80 p-6 text-white cursor-pointer"
@@ -551,12 +551,12 @@ export default function InstallersPage() {
                                         transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
                                         className="overflow-hidden"
                                     >
-                                        <div className="p-6 bg-white">
+                                        <div className="p-6 bg-white dark:bg-gray-800">
                                             <div className="space-y-6">
                                                 {faqCategory.subQuestions.map((subItem) => (
-                                                    <div key={subItem.id} className="border-b border-gray-100 last:border-b-0 pb-4 last:pb-0">
-                                                        <h4 className="font-bold text-brand-darkmaroon mb-3">{subItem.question}</h4>
-                                                        <div className="text-brand-graytext leading-relaxed">
+                                                    <div key={subItem.id} className="border-b border-gray-100 dark:border-gray-600 last:border-b-0 pb-4 last:pb-0">
+                                                        <h4 className="font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3">{subItem.question}</h4>
+                                                        <div className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
                                                             {subItem.answer && Array.isArray(subItem.answer) ? (
                                                                 <div className="space-y-3">
                                                                     {subItem.answer.map((block, i) =>

@@ -37,7 +37,7 @@ interface AggregatedFAQProps {
 
 const renderAnswer = (answer: string | Array<string | string[]>, index: number = 0): React.ReactNode => {
     if (typeof answer === 'string') {
-        return <p className="text-brand-graytext leading-relaxed">{answer}</p>
+        return <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">{answer}</p>
     }
 
     if (Array.isArray(answer)) {
@@ -46,7 +46,7 @@ const renderAnswer = (answer: string | Array<string | string[]>, index: number =
                 {answer.map((item, i) => {
                     if (typeof item === 'string') {
                         return (
-                            <p key={`${index}-${i}`} className="text-brand-graytext leading-relaxed">
+                            <p key={`${index}-${i}`} className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
                                 {item}
                             </p>
                         )
@@ -54,7 +54,7 @@ const renderAnswer = (answer: string | Array<string | string[]>, index: number =
                         return (
                             <ul key={`${index}-${i}`} className="list-disc list-inside space-y-2 ml-4">
                                 {item.map((subItem: string, j: number) => (
-                                    <li key={`${index}-${i}-${j}`} className="text-brand-graytext leading-relaxed">
+                                    <li key={`${index}-${i}-${j}`} className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
                                         {subItem}
                                     </li>
                                 ))}
@@ -159,10 +159,10 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                 transition={{ duration: 0.8 }}
                 className="text-center mb-16"
             >
-                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                     Frequently Asked Questions
                 </h2>
-                <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                     Find answers to common questions across all our audiences - homeowners, installers, and investors.
                 </p>
             </motion.div>
@@ -176,19 +176,19 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
             >
                 <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <Search className="h-5 w-5 text-brand-graytext" />
+                        <Search className="h-5 w-5 text-brand-graytext dark:text-dark-text-secondary" />
                     </div>
                     <input
                         type="text"
                         placeholder={`Search ${currentCategory.title} FAQs...`}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-12 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-maroon focus:border-transparent outline-none transition-all duration-200 text-brand-darkmaroon placeholder-brand-graytext"
+                        className="w-full pl-12 pr-12 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-brand-maroon focus:border-transparent outline-none transition-all duration-200 text-brand-darkmaroon dark:text-dark-text-primary placeholder-brand-graytext dark:placeholder-dark-text-muted"
                     />
                     {searchQuery && (
                         <button
                             onClick={() => setSearchQuery('')}
-                            className="absolute inset-y-0 right-0 pr-4 flex items-center text-brand-graytext hover:text-brand-maroon transition-colors duration-200"
+                            className="absolute inset-y-0 right-0 pr-4 flex items-center text-brand-graytext dark:text-dark-text-secondary hover:text-brand-maroon transition-colors duration-200"
                         >
                             <X className="h-5 w-5" />
                         </button>
@@ -198,7 +198,7 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="mt-2 text-center text-sm text-brand-graytext"
+                        className="mt-2 text-center text-sm text-brand-graytext dark:text-dark-text-secondary"
                     >
                         {totalResults === 0 
                             ? `No results found for "${searchQuery}"`
@@ -224,7 +224,7 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                         }}
                         className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${activeCategory === key
                                 ? `${category.color} ${category.bgColor} shadow-md`
-                                : 'text-brand-graytext bg-white hover:bg-gray-50 border border-gray-200'
+                                : 'text-brand-graytext dark:text-dark-text-secondary bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
                             }`}
                     >
                         {category.icon}
@@ -249,11 +249,11 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                             animate={{ opacity: 1, y: 0 }}
                             className="text-center py-16"
                         >
-                            <div className="flex items-center justify-center w-20 h-20 bg-gray-100 rounded-full mx-auto mb-6">
+                            <div className="flex items-center justify-center w-20 h-20 bg-gray-100 dark:bg-gray-700 rounded-full mx-auto mb-6">
                                 <Search className="w-10 h-10 text-gray-400" />
                             </div>
-                            <h3 className="text-xl font-bold text-brand-darkmaroon mb-4">No FAQs Found</h3>
-                            <p className="text-brand-graytext max-w-md mx-auto mb-6">
+                            <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">No FAQs Found</h3>
+                            <p className="text-brand-graytext dark:text-dark-text-secondary max-w-md mx-auto mb-6">
                                 {searchQuery 
                                     ? `No questions or answers match "${searchQuery}". Try a different search term.`
                                     : "No FAQs available in this category."
@@ -272,7 +272,7 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                     ) : (
                         filteredData.faqs.map((section) => (
                             <div key={section.id} className="mb-12">
-                                <h3 className="text-2xl font-bold text-brand-darkmaroon mb-6 flex items-center gap-3">
+                                <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6 flex items-center gap-3">
                                     <div className={`w-2 h-8 ${currentCategory.bgColor.replace('bg-', 'bg-').replace('-50', '-500')} rounded-full`} />
                                     {section.questionBrand}
                                 </h3>
@@ -287,17 +287,17 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                                             key={question.id}
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
-                                            className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200"
+                                            className="bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow duration-200"
                                         >
                                             <button
                                                 onClick={() => toggleQuestion(questionKey)}
-                                                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                                                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-600 rounded-lg transition-colors duration-200"
                                             >
-                                                <span className="font-medium text-brand-darkmaroon pr-4">
+                                                <span className="font-medium text-brand-darkmaroon dark:text-brand-yellow pr-4">
                                                     {question.question}
                                                 </span>
                                                 <ChevronDown
-                                                    className={`w-5 h-5 text-brand-graytext transition-transform duration-200 flex-shrink-0 ${isOpen ? 'rotate-180' : ''
+                                                    className={`w-5 h-5 text-brand-graytext dark:text-dark-text-secondary transition-transform duration-200 flex-shrink-0 ${isOpen ? 'rotate-180' : ''
                                                         }`}
                                                 />
                                             </button>
@@ -311,7 +311,7 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                                                         transition={{ duration: 0.3 }}
                                                         className="overflow-hidden"
                                                     >
-                                                        <div className="px-6 pb-4 border-t border-gray-100">
+                                                        <div className="px-6 pb-4 border-t border-gray-100 dark:border-gray-600">
                                                             <div className="pt-4">
                                                                 {renderAnswer(question.answer, question.id)}
                                                             </div>

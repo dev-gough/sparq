@@ -66,8 +66,8 @@ export default function NewsItems() {
 				<div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full mx-auto mb-6">
 					<FaExternalLinkAlt className="w-8 h-8 text-white" />
 				</div>
-				<h3 className="text-2xl font-bold text-brand-darkmaroon mb-4">No News Available</h3>
-				<p className="text-brand-graytext">Check back soon for the latest company updates and announcements.</p>
+				<h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">No News Available</h3>
+				<p className="text-brand-graytext dark:text-dark-text-secondary">Check back soon for the latest company updates and announcements.</p>
 			</motion.div>
 		)
 	}
@@ -80,10 +80,10 @@ export default function NewsItems() {
 				transition={{ duration: 0.8, delay: 0.2, ease: [0.23, 1, 0.320, 1] }}
 				className="text-center mb-16"
 			>
-				<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+				<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
 					Latest News
 				</h2>
-				<p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+				<p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
 					Stay up to date with our latest announcements, partnerships, and company developments.
 				</p>
 			</motion.div>
@@ -97,17 +97,17 @@ export default function NewsItems() {
 						transition={{ duration: 0.6, delay: 0.4 + (index * 0.1) }}
 						className="group"
 					>
-						<Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0">
+						<Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 bg-white dark:bg-gray-700">
 							<CardContent className="p-0">
 								<div className="p-8">
 									<div className="flex items-start justify-between gap-4 mb-4">
 										<div className="flex-1">
 											<Link href={item.canonical_url} target="_blank" rel="noopener noreferrer">
-												<h3 className="text-2xl font-bold text-brand-darkmaroon group-hover:text-brand-maroon transition-colors duration-300 mb-3 line-clamp-2">
+												<h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon dark:group-hover:text-brand-logo transition-colors duration-300 mb-3 line-clamp-2">
 													{item.title}
 												</h3>
 											</Link>
-											<div className="flex items-center gap-2 text-brand-graytext mb-4">
+											<div className="flex items-center gap-2 text-brand-graytext dark:text-dark-text-muted mb-4">
 												<FaCalendar className="w-4 h-4" />
 												<span className="text-sm font-medium">
 													{new Date(item.date).toLocaleDateString('en-US', {
@@ -123,7 +123,7 @@ export default function NewsItems() {
 										</div>
 									</div>
 
-									<p className="text-brand-graytext leading-relaxed mb-6 line-clamp-3">
+									<p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-6 line-clamp-3">
 										{item.summary}
 									</p>
 
@@ -132,13 +132,13 @@ export default function NewsItems() {
 											href={item.canonical_url}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="inline-flex items-center gap-2 text-brand-maroon hover:text-brand-darkmaroon font-semibold transition-colors duration-200 group/link"
+											className="inline-flex items-center gap-2 text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-semibold transition-colors duration-200 group/link"
 										>
 											<span>Read Full Article</span>
 											<FaArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" />
 										</Link>
-										<div className="px-3 py-1 bg-gradient-to-r from-brand-maroon/10 to-brand-logo/10 rounded-full">
-											<span className="text-sm font-medium text-brand-darkmaroon">Company News</span>
+										<div className="px-3 py-1 bg-gradient-to-r from-brand-maroon/10 to-brand-logo/10 dark:from-brand-logo/20 dark:to-brand-yellow/20 rounded-full">
+											<span className="text-sm font-medium text-brand-darkmaroon dark:text-brand-yellow">Company News</span>
 										</div>
 									</div>
 								</div>
@@ -155,19 +155,19 @@ export default function NewsItems() {
 					transition={{ duration: 0.8, delay: 0.8 }}
 					className="text-center mt-16"
 				>
-					<Card className="max-w-2xl mx-auto border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 py-0">
+					<Card className="max-w-2xl mx-auto border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 dark:from-gray-700 dark:to-gray-600/50 py-0">
 						<CardContent className="p-8">
 							<div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full mx-auto mb-6">
 								<FaExternalLinkAlt className="w-8 h-8 text-white" />
 							</div>
-							<h3 className="text-2xl font-bold text-brand-darkmaroon mb-4">
+							<h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">
 								Stay Connected
 							</h3>
-							<p className="text-brand-graytext leading-relaxed mb-6">
+							<p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-6">
 								Follow us for real-time updates and subscribe to our investor communications
 								to never miss important company announcements.
 							</p>
-							<Link href="/contact" className="text-brand-maroon hover:text-brand-darkmaroon font-semibold transition-colors duration-200">
+							<Link href="/contact" className="text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-semibold transition-colors duration-200">
 								Contact Investor Relations →
 							</Link>
 						</CardContent>

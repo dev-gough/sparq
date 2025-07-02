@@ -115,7 +115,7 @@ export default function VideosPage() {
     const currentCategory = videoCategories.find(cat => cat.id === selectedCategory) || videoCategories[0]
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
             <BackgroundElements />
 
             {/* Hero Section */}
@@ -141,7 +141,7 @@ export default function VideosPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
                         Discover our comprehensive video library featuring technical presentations, market insights,
                         and educational content for investors, installers, and homeowners.
@@ -157,10 +157,10 @@ export default function VideosPage() {
                     transition={{ duration: 0.8, delay: 0.5 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                         Choose Your Category
                     </h2>
-                    <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                         Select a category to explore relevant video content tailored to your interests and needs.
                     </p>
                 </motion.div>
@@ -175,7 +175,7 @@ export default function VideosPage() {
                             className="group"
                         >
                             <Card
-                                className={`overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 ${
+                                className={`overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700 ${
                                     selectedCategory === category.id ? 'ring-2 ring-brand-maroon' : ''
                                 }`}
                                 onClick={() => setSelectedCategory(category.id)}
@@ -186,11 +186,11 @@ export default function VideosPage() {
                                             {category.icon}
                                         </div>
                                         <div>
-                                            <h3 className="text-xl font-bold text-brand-darkmaroon">{category.title}</h3>
-                                            <p className="text-brand-graytext text-sm">{category.videoIds.length} videos</p>
+                                            <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow">{category.title}</h3>
+                                            <p className="text-brand-graytext dark:text-dark-text-muted text-sm">{category.videoIds.length} videos</p>
                                         </div>
                                     </div>
-                                    <p className="text-brand-graytext leading-relaxed">{category.description}</p>
+                                    <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">{category.description}</p>
                                 </CardContent>
                             </Card>
                         </motion.div>
@@ -199,7 +199,7 @@ export default function VideosPage() {
             </section>
 
             {/* Video Gallery */}
-            <section className="relative bg-white py-10">
+            <section className="relative bg-white dark:bg-gray-900 py-10">
                 <div className="container mx-auto px-6">
                     {currentCategory && (
                         <motion.div
@@ -209,10 +209,10 @@ export default function VideosPage() {
                             transition={{ duration: 0.8 }}
                         >
                             <div className="text-center mb-16">
-                                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                                     {currentCategory.title}
                                 </h2>
-                                <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                                <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                                     {currentCategory.description}
                                 </p>
                             </div>

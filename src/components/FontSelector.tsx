@@ -39,7 +39,7 @@ export default function FontSelector({ currentFont, onFontChange, fonts }: FontS
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-brand-graytext hover:text-brand-maroon bg-white/80 hover:bg-brand-maroon/5 border border-brand-maroon/20 rounded-lg transition-all duration-200"
+                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-brand-graytext dark:text-dark-text-secondary hover:text-brand-maroon bg-white/80 hover:bg-brand-maroon/5 border border-brand-maroon/20 rounded-lg transition-all duration-200"
             >
                 <Type size={16} />
                 <span className="hidden sm:inline">{currentFontName}</span>
@@ -70,7 +70,7 @@ export default function FontSelector({ currentFont, onFontChange, fonts }: FontS
                                     className={`w-full text-left px-4 py-2 text-sm transition-colors ${
                                         currentFont === font.value
                                             ? 'text-brand-maroon bg-brand-maroon/10'
-                                            : 'text-brand-graytext hover:text-brand-maroon'
+                                            : 'text-brand-graytext dark:text-dark-text-secondary hover:text-brand-maroon'
                                     } ${font.className}`}
                                 >
                                     {font.name}

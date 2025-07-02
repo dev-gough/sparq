@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { Inter, Poppins, Geist, Nunito, Roboto_Flex, Quicksand, PT_Sans, Raleway, Crimson_Text } from "next/font/google"
 import RootLayoutClient from "@/components/RootLayoutClient"
+import { getServerTheme } from "@/lib/theme-server"
 
 export const metadata: Metadata = {
 	title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
@@ -139,8 +140,11 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode,
 }>) {
+	const theme = getServerTheme()
+	const themeClass = theme === 'dark' ? 'dark' : ''
+	
 	return (
-		<html lang="en">
+		<html lang="en" className={`bg-white dark:bg-gray-900 ${themeClass}`}>
 			<RootLayoutClient navbarItems={navbarItems} fontOptions={fontOptions}>
 				{children}
 			</RootLayoutClient>

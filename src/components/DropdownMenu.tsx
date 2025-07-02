@@ -52,8 +52,8 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
                 href={navItem.href}
                 className={`relative flex items-center gap-1 px-4 py-2 text-lg font-medium transition-all duration-300 rounded-lg ${
                     isParentActive
-                        ? 'text-brand-maroon bg-brand-maroon/5'
-                        : 'text-brand-graytext hover:text-brand-maroon hover:bg-brand-maroon/5'
+                        ? 'text-brand-maroon dark:text-brand-yellow bg-brand-maroon/5 dark:bg-brand-yellow/10'
+                        : 'text-brand-graytext dark:text-dark-text-primary hover:text-brand-maroon dark:hover:text-brand-yellow hover:bg-brand-maroon/5 dark:hover:bg-brand-yellow/10'
                 }`}
             >
                 <span>{navItem.label}</span>
@@ -66,7 +66,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
                 {isParentActive && (
                     <motion.div
                         layoutId="activeTab"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-maroon rounded-full"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-maroon dark:bg-brand-yellow rounded-full"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
@@ -82,7 +82,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -10, scale: 0.95 }}
                         transition={{ duration: 0.2, ease: [0.23, 1, 0.320, 1] }}
-                        className="absolute top-full left-0 mt-2 w-56 bg-white/95 backdrop-blur-md shadow-xl rounded-xl border border-brand-maroon/10 overflow-hidden"
+                        className="absolute top-full left-0 mt-2 w-56 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-xl rounded-xl border border-brand-maroon/10 dark:border-gray-700/50 overflow-hidden"
                     >
                         <div className="py-2">
                             {navItem.dropdown && navItem.dropdown.map((subItem, index) => {
@@ -98,8 +98,8 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
                                             href={subItem.href}
                                             className={`block px-4 py-3 mx-2 text-base font-medium transition-all duration-200 rounded-lg ${
                                                 isSubActive
-                                                    ? 'text-brand-maroon bg-brand-maroon/10'
-                                                    : 'text-brand-graytext hover:text-brand-maroon hover:bg-brand-maroon/5'
+                                                    ? 'text-brand-maroon dark:text-brand-yellow bg-brand-maroon/10 dark:bg-brand-yellow/10'
+                                                    : 'text-brand-graytext dark:text-dark-text-secondary hover:text-brand-maroon dark:hover:text-brand-yellow hover:bg-brand-maroon/5 dark:hover:bg-brand-yellow/10'
                                             }`}
                                             aria-current={isSubActive ? 'page' : undefined}
                                         >

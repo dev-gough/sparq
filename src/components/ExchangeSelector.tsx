@@ -91,7 +91,7 @@ export default function ExchangeSelector({ currentExchange, onExchangeChange }: 
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -10, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute right-0 top-full mt-2 w-72 bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden"
+                        className="absolute right-0 top-full mt-2 w-72 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg z-50 overflow-hidden"
                     >
                         <div className="py-2">
                             {exchanges.map((exchange) => (
@@ -104,18 +104,18 @@ export default function ExchangeSelector({ currentExchange, onExchangeChange }: 
                                     }}
                                     className={`w-full text-left px-4 py-3 transition-colors ${
                                         currentExchange === exchange.code
-                                            ? 'text-brand-maroon bg-brand-maroon/10'
-                                            : 'text-brand-graytext hover:text-brand-maroon'
+                                            ? 'text-brand-maroon dark:text-brand-yellow bg-brand-maroon/10 dark:bg-brand-yellow/10'
+                                            : 'text-brand-graytext dark:text-dark-text-secondary hover:text-brand-maroon dark:hover:text-brand-yellow'
                                     }`}
                                 >
                                     <div className="flex items-center justify-between">
                                         <div>
                                             <div className="font-medium">{exchange.name}</div>
-                                            <div className="text-sm text-gray-500">{exchange.country}</div>
+                                            <div className="text-sm text-gray-500 dark:text-gray-400">{exchange.country}</div>
                                         </div>
                                         <div className="text-right">
-                                            <div className="font-bold text-brand-maroon">{exchange.symbol}</div>
-                                            <div className="text-sm text-gray-500">{exchange.currency}</div>
+                                            <div className="font-bold text-brand-maroon dark:text-brand-yellow">{exchange.symbol}</div>
+                                            <div className="text-sm text-gray-500 dark:text-gray-400">{exchange.currency}</div>
                                         </div>
                                     </div>
                                 </motion.button>

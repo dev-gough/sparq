@@ -21,7 +21,7 @@ function image() {
 
 function body() {
 	return (
-		<p className="text-brand-gray mt-4">
+		<p className="text-brand-gray dark:text-dark-text-secondary mt-4">
 			Manage multi-site monitoring with SparqVu, a performance management system with intuitive displays to help you quickly spot issues and troubleshoot in real time.</p>
 	)
 }
@@ -38,9 +38,9 @@ const accordionSections: AccordionSection[] = [
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (
 			<div className="space-y-6">
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-					<h3 className="font-bold text-brand-darkmaroon mb-3">Data when you need it</h3>
-					<ul className="space-y-2 text-brand-graytext">
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Data when you need it</h3>
+					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
 						<li className="flex items-start gap-3">
 							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
 							<span>Advanced performance and communication tools with no app required</span>
@@ -55,9 +55,9 @@ const accordionSections: AccordionSection[] = [
 						</li>
 					</ul>
 				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-					<h3 className="font-bold text-brand-darkmaroon mb-3">Quick Installation</h3>
-					<ul className="space-y-2 text-brand-graytext">
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Quick Installation</h3>
+					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
 						<li className="flex items-start gap-3">
 							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
 							<span>Automatically detects connected inverters before AC is connected</span>
@@ -75,8 +75,8 @@ const accordionSections: AccordionSection[] = [
 		title: "Documentation",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-				<h3 className="font-bold text-brand-darkmaroon mb-4">Manual</h3>
+			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Manual</h3>
 				<div className="flex items-center gap-3">
 					<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
 					<Link href="/SparqVu.pdf" target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors">
@@ -173,7 +173,7 @@ export default function SparqVuPage() {
 									transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
 									className="overflow-hidden"
 								>
-									<div className="p-6 bg-white">
+									<div className="p-6 bg-white dark:bg-gray-800">
 										{section.content}
 									</div>
 								</motion.div>

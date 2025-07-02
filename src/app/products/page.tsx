@@ -224,7 +224,7 @@ export default function ProductsPage() {
     const accessoryProducts = productCards.filter(p => p.category === 'Accessories')
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative scroll-mt-[115px]">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
             <BackgroundElements />
 
             <div className="relative container mx-auto px-6 pt-10">
@@ -240,7 +240,7 @@ export default function ProductsPage() {
                             Our Products
                         </span>
                     </h1>
-                    <p className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed">
+                    <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed">
                         Discover our complete range of solar solutions designed to maximize efficiency,
                         reliability, and performance for every installation.
                     </p>
@@ -253,7 +253,7 @@ export default function ProductsPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
-                        className="text-3xl md:text-4xl font-bold text-brand-darkmaroon text-center mb-12"
+                        className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-maroon text-center mb-12"
                     >
                         Microinverters
                     </motion.h2>
@@ -269,7 +269,7 @@ export default function ProductsPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.5 }}
-                        className="text-3xl md:text-4xl font-bold text-brand-darkmaroon text-center mb-12"
+                        className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-maroon text-center mb-12"
                     >
                         Monitoring & Management
                     </motion.h2>
@@ -285,7 +285,7 @@ export default function ProductsPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.7 }}
-                        className="text-3xl md:text-4xl font-bold text-brand-darkmaroon text-center mb-12"
+                        className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-maroon text-center mb-12"
                     >
                         Accessories
                     </motion.h2>
@@ -305,10 +305,10 @@ export default function ProductsPage() {
                         transition={{ duration: 0.8, delay: 1 }}
                         className="text-center"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon mb-6">
+                        <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Ready to transform your solar installation?
                         </h2>
-                        <p className="text-lg text-brand-graytext mb-12 max-w-2xl mx-auto">
+                        <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-2xl mx-auto">
                             Explore our comprehensive solutions and discover how Sparq Systems can optimize your solar energy system.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">

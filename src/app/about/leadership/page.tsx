@@ -83,7 +83,7 @@ function TeamMemberCard({ member, index, onClick }: TeamMemberCardProps) {
             onClick={onClick}
             className="cursor-pointer group"
         >
-            <Card className="h-full backdrop-blur-md bg-white/90 border-brand-maroon/10 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden rounded-2xl py-0">
+            <Card className="h-full backdrop-blur-md bg-white/90 dark:bg-gray-800/90 border-brand-maroon/10 dark:border-gray-600/30 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden rounded-2xl py-0">
                 <motion.div
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
@@ -100,10 +100,10 @@ function TeamMemberCard({ member, index, onClick }: TeamMemberCardProps) {
                             <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
                         <div className="px-6 pb-6 pt-4 text-center">
-                            <h2 className="text-xl font-bold text-brand-darkmaroon mb-2 group-hover:text-brand-maroon transition-colors duration-300">
+                            <h2 className="text-xl font-bold text-brand-darkmaroon dark:text-dark-text-primary mb-2 group-hover:text-brand-maroon dark:group-hover:text-brand-yellow transition-colors duration-300">
                                 {member.name}
                             </h2>
-                            <p className="text-brand-graytext font-medium">
+                            <p className="text-brand-graytext dark:text-dark-text-secondary font-medium">
                                 {member.title}
                             </p>
                         </div>
@@ -174,7 +174,7 @@ export default function LeadershipPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative scroll-mt-[115px]">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
             <BackgroundElements />
 
             <div className="relative container mx-auto px-4 py-10">
@@ -192,7 +192,7 @@ export default function LeadershipPage() {
                         </span>
                     </h1>
 
-                    <p className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed">
+                    <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed">
                         The visionary executives and technical experts driving innovation in solar energy technology.
                     </p>
                 </motion.div>
@@ -224,7 +224,7 @@ export default function LeadershipPage() {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
                         transition={{ duration: 0.3 }}
-                        className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[80vh] md:max-h-[85vh] overflow-y-auto border border-brand-maroon/20"
+                        className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[80vh] md:max-h-[85vh] overflow-y-auto border border-brand-maroon/20 dark:border-gray-600/50"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="relative p-4 md:p-8">
@@ -237,17 +237,17 @@ export default function LeadershipPage() {
                                 ✕
                             </motion.button>
 
-                            <div className="border-b border-brand-maroon/20 pb-4 md:pb-6 mb-4 md:mb-6">
-                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-darkmaroon mb-2">
+                            <div className="border-b border-brand-maroon/20 dark:border-gray-600/50 pb-4 md:pb-6 mb-4 md:mb-6">
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-darkmaroon dark:text-dark-text-primary mb-2">
                                     {selectedMember.name}
                                 </h2>
-                                <p className="text-lg md:text-xl lg:text-2xl text-brand-logo font-medium">
+                                <p className="text-lg md:text-xl lg:text-2xl text-brand-logo dark:text-brand-yellow font-medium">
                                     {selectedMember.title}
                                 </p>
                             </div>
 
                             <div className="prose prose-sm md:prose-lg max-w-none">
-                                <p className="text-brand-graytext leading-relaxed text-sm md:text-base lg:text-lg">
+                                <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed text-sm md:text-base lg:text-lg">
                                     {selectedMember.blurb}
                                 </p>
                             </div>

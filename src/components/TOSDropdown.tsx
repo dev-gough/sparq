@@ -57,7 +57,7 @@ export default function TOSDropdown({ isOpen }: TOSProps) {
                         animate={{ opacity: 1, height: "auto", y: 0 }}
                         exit={{ opacity: 0, height: 0, y: -20 }}
                         transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
-                        className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 sm:p-10 mt-4 text-brand-graytext overflow-hidden"
+                        className="bg-white dark:bg-gray-700 rounded-xl shadow-lg border border-gray-100 dark:border-gray-600 p-6 sm:p-10 mt-4 text-brand-graytext dark:text-dark-text-secondary overflow-hidden"
                     >
                         <motion.div
                             initial={{ opacity: 0 }}

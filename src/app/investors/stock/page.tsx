@@ -102,15 +102,15 @@ export default function StockPage() {
 
     if (error) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative flex items-center justify-center">
                 <BackgroundElements />
-                <Card className="max-w-md mx-6 border-0 shadow-2xl py-0">
+                <Card className="max-w-md mx-6 border-0 shadow-2xl py-0 bg-white dark:bg-gray-800">
                     <CardContent className="p-8 text-center">
                         <div className="flex items-center justify-center w-16 h-16 bg-red-500 rounded-full mx-auto mb-6">
                             <FaInfoCircle className="w-8 h-8 text-white" />
                         </div>
-                        <h3 className="text-2xl font-bold text-brand-darkmaroon mb-4">Data Unavailable</h3>
-                        <p className="text-brand-graytext">Unable to load stock data. Please try again later.</p>
+                        <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">Data Unavailable</h3>
+                        <p className="text-brand-graytext dark:text-dark-text-secondary">Unable to load stock data. Please try again later.</p>
                     </CardContent>
                 </Card>
             </div>
@@ -119,9 +119,9 @@ export default function StockPage() {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative flex items-center justify-center">
                 <BackgroundElements />
-                <Card className="max-w-md mx-6 border-0 shadow-2xl py-0">
+                <Card className="max-w-md mx-6 border-0 shadow-2xl py-0 bg-white dark:bg-gray-800">
                     <CardContent className="p-8 text-center">
                         <div className="flex justify-center items-center mb-6">
                             <div className="flex space-x-2">
@@ -142,8 +142,8 @@ export default function StockPage() {
                                 />
                             </div>
                         </div>
-                        <h3 className="text-2xl font-bold text-brand-darkmaroon mb-4">Loading Stock Data</h3>
-                        <p className="text-brand-graytext">Fetching the latest market information...</p>
+                        <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">Loading Stock Data</h3>
+                        <p className="text-brand-graytext dark:text-dark-text-secondary">Fetching the latest market information...</p>
                     </CardContent>
                 </Card>
             </div>
@@ -151,7 +151,7 @@ export default function StockPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
             <BackgroundElements />
 
             {/* Hero Section */}
@@ -168,7 +168,7 @@ export default function StockPage() {
                             SPRQ
                         </span>
                         <br />
-                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent dark:from-brand-yellow dark:to-brand-logo">
                             Stock Performance
                         </span>
                     </h1>
@@ -177,7 +177,7 @@ export default function StockPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
                         Track Sparq Systems&apos; real-time stock performance with interactive charts
                         and comprehensive market data from the {currentExchangeData.name}.
@@ -186,14 +186,14 @@ export default function StockPage() {
             </section>
 
             {/* Chart Section */}
-            <section className="relative bg-white">
+            <section className="relative bg-white dark:bg-gray-900">
                 <div className="container mx-auto px-6 pb-8">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.8 }}
                     >
-                        <Card className="overflow-hidden border-0 shadow-2xl py-0 mb-8">
+                        <Card className="overflow-hidden border-0 shadow-2xl py-0 mb-8 dark:bg-gray-800">
                             <CardContent className="p-0">
                                 <div className="bg-gradient-to-r from-brand-maroon to-brand-logo p-6">
                                     <div className="flex items-center justify-between text-white">
@@ -217,7 +217,7 @@ export default function StockPage() {
                                     </div>
                                 </div>
 
-                                <div className="bg-white relative" style={{ height: '700px' }}>
+                                <div className="bg-white dark:bg-gray-800 relative" style={{ height: '700px' }}>
                                     <ChartControls onSettingsChange={handleSettingsChange} />
                                     {data && data.values && (
                                         <StockChart data={data.values} symbol={currentExchangeData.symbol} />
@@ -230,7 +230,7 @@ export default function StockPage() {
             </section>
 
             {/* Additional Information */}
-            <section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 py-10">
+            <section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 py-10">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -238,10 +238,10 @@ export default function StockPage() {
                         transition={{ duration: 0.8, delay: 1.0 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Market Information
                         </h2>
-                        <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Comprehensive market data and trading information for informed investment decisions.
                         </p>
                     </motion.div>
@@ -252,13 +252,13 @@ export default function StockPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 1.2 }}
                         >
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full">
+                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full dark:bg-gray-700">
                                 <CardContent className="p-6 text-center h-full flex flex-col">
                                     <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full mx-auto mb-6">
                                         <FaChartLine className="w-8 h-8 text-white" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-brand-darkmaroon mb-4">{currentExchangeData.name}</h3>
-                                    <p className="text-brand-graytext flex-grow mb-6">
+                                    <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">{currentExchangeData.name}</h3>
+                                    <p className="text-brand-graytext dark:text-dark-text-secondary flex-grow mb-6">
                                         {currentExchangeData.code === 'TSXV' && "Trading on Canada's premier venture capital marketplace for emerging companies."}
                                         {currentExchangeData.code === 'FSX' && "Trading on Germany's leading stock exchange, providing European market access."}
                                         {currentExchangeData.code === 'NEO' && "Trading on Canada's innovative exchange designed for modern capital markets."}
@@ -273,7 +273,7 @@ export default function StockPage() {
                                         }
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 text-brand-maroon hover:text-brand-darkmaroon font-semibold transition-colors duration-200"
+                                        className="inline-flex items-center gap-2 text-brand-maroon hover:text-brand-darkmaroon dark:text-brand-yellow dark:hover:text-brand-logo font-semibold transition-colors duration-200"
                                     >
                                         <span>Visit Exchange</span>
                                         <FaExternalLinkAlt className="w-4 h-4" />
@@ -287,16 +287,16 @@ export default function StockPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 1.3 }}
                         >
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full">
+                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full dark:bg-gray-700">
                                 <CardContent className="p-6 text-center h-full flex flex-col">
                                     <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full mx-auto mb-6">
                                         <FaInfoCircle className="w-8 h-8 text-white" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-brand-darkmaroon mb-4">Symbol: {currentExchangeData.symbol}</h3>
-                                    <p className="text-brand-graytext flex-grow mb-6">Our ticker symbol on the {currentExchangeData.name} for easy identification and trading.</p>
+                                    <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">Symbol: {currentExchangeData.symbol}</h3>
+                                    <p className="text-brand-graytext dark:text-dark-text-secondary flex-grow mb-6">Our ticker symbol on the {currentExchangeData.name} for easy identification and trading.</p>
                                     <div className="flex items-center justify-center gap-2">
-                                        <div className="text-2xl font-bold text-brand-maroon">{currentExchangeData.symbol}</div>
-                                        <div className="text-sm text-brand-graytext bg-gray-100 px-2 py-1 rounded">
+                                        <div className="text-2xl font-bold text-brand-maroon dark:text-brand-logo">{currentExchangeData.symbol}</div>
+                                        <div className="text-sm text-brand-graytext dark:text-dark-text-muted bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">
                                             {currentExchangeData.currency}
                                         </div>
                                     </div>
@@ -309,14 +309,14 @@ export default function StockPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 1.4 }}
                         >
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full">
+                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full dark:bg-gray-700">
                                 <CardContent className="p-6 text-center h-full flex flex-col">
                                     <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full mx-auto mb-6">
                                         <FaClock className="w-8 h-8 text-white" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-brand-darkmaroon mb-4">Market Information</h3>
-                                    <p className="text-brand-graytext flex-grow mb-6">Live market data updates every 15 minutes during trading hours for accurate tracking.</p>
-                                    <div className="text-sm text-brand-graytext">
+                                    <h3 className="text-xl font-bold text-brand-darkmaroon mb-4 dark:text-brand-yellow">Market Information</h3>
+                                    <p className="text-brand-graytext dark:text-dark-text-secondary flex-grow mb-6">Live market data updates every 15 minutes during trading hours for accurate tracking.</p>
+                                    <div className="text-sm text-brand-graytext dark:text-dark-text-muted">
                                         <strong>Trading Hours:</strong><br />
                                         {currentExchangeData.code === 'TSXV' && "9:30 AM - 4:00 PM EST"}
                                         {currentExchangeData.code === 'FSX' && "9:00 AM - 5:30 PM CET"}

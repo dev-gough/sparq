@@ -111,31 +111,31 @@ const timelineEvents: TimelineEvent[] = [
 const categoryConfig = {
     foundation: {
         color: "from-red-500 to-red-700",
-        bgColor: "from-red-50 to-red-100",
+        bgColor: "from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/30",
         icon: Target,
         label: "Foundation"
     },
     innovation: {
         color: "from-blue-500 to-blue-700",
-        bgColor: "from-blue-50 to-blue-100",
+        bgColor: "from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/30",
         icon: Zap,
         label: "Innovation"
     },
     product: {
         color: "from-green-500 to-green-700",
-        bgColor: "from-green-50 to-green-100",
+        bgColor: "from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/30",
         icon: Package,
         label: "Products"
     },
     growth: {
         color: "from-purple-500 to-purple-700",
-        bgColor: "from-purple-50 to-purple-100",
+        bgColor: "from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/30",
         icon: Trophy,
         label: "Growth"
     },
     future: {
         color: "from-brand-yellow to-brand-logo",
-        bgColor: "from-yellow-50 to-orange-100",
+        bgColor: "from-yellow-50 to-orange-100 dark:from-yellow-900/20 dark:to-orange-800/30",
         icon: Eye,
         label: "Future"
     }
@@ -184,7 +184,7 @@ function TimelineNode({ event, index }: TimelineNodeProps) {
                                     <div className={`p-2 bg-gradient-to-br ${config.color} rounded-lg text-white`}>
                                         <IconComponent size={16} />
                                     </div>
-                                    <span className="text-xs font-medium text-brand-graytext uppercase tracking-wide">
+                                    <span className="text-xs font-medium text-brand-graytext dark:text-dark-text-muted uppercase tracking-wide">
                                         {config.label}
                                     </span>
                                 </div>
@@ -193,7 +193,7 @@ function TimelineNode({ event, index }: TimelineNodeProps) {
                                     {event.title}
                                 </h3>
 
-                                <p className="text-brand-graytext leading-relaxed mb-4 text-sm">
+                                <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-4 text-sm">
                                     {event.description}
                                 </p>
 
@@ -209,28 +209,28 @@ function TimelineNode({ event, index }: TimelineNodeProps) {
                                             {event.details.map((detail, i) => (
                                                 <div key={i} className="flex items-start gap-2">
                                                     <div className={`w-2 h-2 rounded-full bg-gradient-to-br ${config.color} mt-2 flex-shrink-0`} />
-                                                    <p className="text-sm text-brand-graytext">{detail}</p>
+                                                    <p className="text-sm text-brand-graytext dark:text-dark-text-secondary">{detail}</p>
                                                 </div>
                                             ))}
                                         </div>
                                     )}
 
                                     {event.achievements && (
-                                        <div className="bg-white/60 rounded-lg p-4">
+                                        <div className="bg-white/60 dark:bg-gray-800/80 rounded-lg p-4">
                                             <h4 className="font-semibold text-brand-darkmaroon mb-2 flex items-center gap-2">
                                                 <Award size={16} />
                                                 Key Achievements
                                             </h4>
                                             <div className="space-y-1">
                                                 {event.achievements.map((achievement, i) => (
-                                                    <p key={i} className="text-sm text-brand-graytext">{achievement}</p>
+                                                    <p key={i} className="text-sm text-brand-graytext dark:text-dark-text-secondary">{achievement}</p>
                                                 ))}
                                             </div>
                                         </div>
                                     )}
                                 </motion.div>
 
-                                <div className="text-xs text-brand-graytext/60 mt-2">
+                                <div className="text-xs text-brand-graytext/60 dark:text-dark-text-muted mt-2">
                                     Click to {isExpanded ? 'collapse' : 'expand'}
                                 </div>
                             </CardContent>
@@ -277,16 +277,16 @@ function TimelineNode({ event, index }: TimelineNodeProps) {
                                     <div className={`p-2 bg-gradient-to-br ${config.color} rounded-lg text-white`}>
                                         <IconComponent size={20} />
                                     </div>
-                                    <span className="text-sm font-medium text-brand-graytext uppercase tracking-wide">
+                                    <span className="text-sm font-medium text-brand-graytext dark:text-dark-text-muted uppercase tracking-wide">
                                         {config.label}
                                     </span>
                                 </div>
 
-                                <h3 className="text-xl font-bold text-brand-darkmaroon mb-2">
+                                <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-logo mb-2">
                                     {event.title}
                                 </h3>
 
-                                <p className="text-brand-graytext leading-relaxed mb-4">
+                                <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-4">
                                     {event.description}
                                 </p>
 
@@ -302,21 +302,21 @@ function TimelineNode({ event, index }: TimelineNodeProps) {
                                             {event.details.map((detail, i) => (
                                                 <div key={i} className={`flex items-start gap-2 ${isLeft ? 'flex-row-reverse' : 'flex-row'}`}>
                                                     <div className={`w-2 h-2 rounded-full bg-gradient-to-br ${config.color} mt-2 flex-shrink-0`} />
-                                                    <p className="text-sm text-brand-graytext">{detail}</p>
+                                                    <p className="text-sm text-brand-graytext dark:text-dark-text-secondary">{detail}</p>
                                                 </div>
                                             ))}
                                         </div>
                                     )}
 
                                     {event.achievements && (
-                                        <div className={`bg-white/60 rounded-lg p-4 ${isLeft ? 'text-right' : 'text-left'}`}>
+                                        <div className={`bg-white/60 dark:bg-gray-800/80 rounded-lg p-4 ${isLeft ? 'text-right' : 'text-left'}`}>
                                             <h4 className="font-semibold text-brand-darkmaroon mb-2 flex items-center gap-2 justify-start">
                                                 <Award size={16} />
                                                 Key Achievements
                                             </h4>
                                             <div className="space-y-1">
                                                 {event.achievements.map((achievement, i) => (
-                                                    <p key={i} className="text-sm text-brand-graytext">{achievement}</p>
+                                                    <p key={i} className="text-sm text-brand-graytext dark:text-dark-text-secondary">{achievement}</p>
                                                 ))}
                                             </div>
                                         </div>
@@ -324,7 +324,7 @@ function TimelineNode({ event, index }: TimelineNodeProps) {
                                 </motion.div>
 
                                 {(event.achievements || event.details) && (
-                                    <div className={`text-xs text-brand-graytext/60 ${isLeft ? 'text-right' : 'text-left'}`}>
+                                    <div className={`text-xs text-brand-graytext/60 dark:text-dark-text-muted ${isLeft ? 'text-right' : 'text-left'}`}>
                                         Click to {isExpanded ? 'collapse' : 'expand'}
                                     </div>
                                 )}
@@ -395,7 +395,7 @@ export default function AboutPage() {
     const isInView = useInView(titleRef, { once: true })
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative scroll-mt-[115px]">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
             {/* Hero Section */}
             <div className="relative container mx-auto px-6 pt-10 pb-8">
                 <motion.div
@@ -411,7 +411,7 @@ export default function AboutPage() {
                         </span>
                     </h1>
 
-                    <p className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed">
+                    <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed">
                         From vision to reality - discover how we&apos;re revolutionizing solar energy
                         through innovation, passion, and a commitment to a sustainable future.
                     </p>
@@ -441,10 +441,10 @@ export default function AboutPage() {
                     transition={{ duration: 0.8, delay: 1 }}
                     className="text-center"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon mb-6 dark:text-brand-yellow">
                         Ready to be part of the solar revolution?
                     </h2>
-                    <p className="text-lg text-brand-graytext mb-12 max-w-2xl mx-auto">
+                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-2xl mx-auto">
                         Join thousands who have chosen Sparq Systems to power their sustainable future.
                     </p>
                     <div className="flex flex-col lg:flex-row justify-center gap-6 max-w-4xl mx-auto">

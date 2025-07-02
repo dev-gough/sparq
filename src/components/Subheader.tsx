@@ -91,8 +91,8 @@ function SubheadingItem({ label, href, target }: SubheadingItemProps) {
             <Link
                 href={href}
                 className={`relative flex flex-shrink-0 items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${isActive
-                    ? "text-brand-maroon bg-brand-maroon/20"
-                    : "text-brand-graytext hover:text-brand-maroon hover:bg-brand-maroon/20"
+                    ? "text-brand-maroon dark:text-brand-yellow bg-brand-maroon/20 dark:bg-brand-yellow/20"
+                    : "text-brand-graytext dark:text-dark-text-secondary hover:text-brand-maroon dark:hover:text-brand-yellow hover:bg-brand-maroon/20 dark:hover:bg-brand-yellow/20"
                     } whitespace-nowrap`}
                 target={target ? target : (isExternal ? "_blank" : "")}
                 rel={isExternal ? "noopener noreferrer" : ""}
@@ -104,7 +104,7 @@ function SubheadingItem({ label, href, target }: SubheadingItemProps) {
                 {isActive && (
                     <motion.div
                         layoutId="activeSubTab"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-maroon rounded-full"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-maroon dark:bg-brand-yellow rounded-full"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
@@ -151,9 +151,9 @@ export default function Subheader({ items }: SubheaderProps) {
                 duration: 0.5,
                 ease: [0.23, 1, 0.320, 1]
             }}
-            className="sticky top-[75px] z-50 flex justify-center"
+            className="sticky top-[75px] z-50 flex justify-center bg-white/95 dark:bg-gray-700/90"
         >
-            <div className={`bg-white/95 backdrop-blur-md border border-brand-maroon/10 shadow-lg rounded-b-xl ${getMaxWidth()} mx-3 sm:mx-6 w-full`}>
+            <div className={`bg-white/95 dark:bg-gray-800/90 backdrop-blur-md border border-brand-maroon/10 dark:border-gray-700/50 shadow-lg rounded-b-xl ${getMaxWidth()} mx-3 sm:mx-6 w-full`}>
                 <div className="px-3 sm:px-6 py-4">
                     <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-hide">
                         {items.map((item, index) => (

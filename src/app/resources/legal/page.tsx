@@ -15,7 +15,7 @@ export default function LegalPage() {
     const privacyInView = useInView(privacyRef, { once: true, margin: "-100px" })
 
     return (
-        <div className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50">
+        <div className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
             <div className="container mx-auto px-6 py-10">
                 <motion.div 
                     ref={headerRef}
@@ -25,11 +25,11 @@ export default function LegalPage() {
                     className="text-center mb-16"
                 >
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
-                        <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent">
-                            Legal
+                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
+                            Legal Documents
                         </span>
                     </h1>
-                    <p className="text-xl md:text-2xl text-brand-graytext max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">
                         Important legal information for our products and services
                     </p>
                 </motion.div>

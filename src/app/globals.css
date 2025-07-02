@@ -14,6 +14,11 @@
     --color-brand-yellow: #fcb900;
     --color-brand-logo: #c5952c;
 
+    /* Dark mode bright text colors */
+    --color-dark-text-primary: #f8fafc;
+    --color-dark-text-secondary: #e2e8f0;
+    --color-dark-text-muted: #cbd5e1;
+
     --color-mission: #ff4d4d;
     --color-vision: #4dc8ff;
     --color-values: #ff9f4d;
@@ -24,6 +29,32 @@
 
 html {
     scroll-behavior: smooth !important;
+}
+
+/* Minimize flash with better defaults */
+html {
+    color-scheme: light dark;
+}
+
+/* Set system-aware defaults */
+@media (prefers-color-scheme: light) {
+    html:not(.dark) {
+        background-color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    html:not(.dark) {
+        background-color: rgb(17, 24, 39);
+        color: rgb(255, 255, 255);
+    }
+}
+
+/* Override with explicit dark class */
+html.dark {
+    background-color: rgb(17, 24, 39);
+    color: rgb(255, 255, 255);
 }
 
 .logo-slider .swiper-wrapper {
@@ -138,16 +169,17 @@ html {
 }
 
 @utility container {
-  margin-inline: auto;
-  padding-inline: 1.5rem;
-  max-width: 1600px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    max-width: 1600px;
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+
+    body {
+        @apply bg-background text-foreground;
     }
 }

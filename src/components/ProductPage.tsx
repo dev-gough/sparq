@@ -107,9 +107,9 @@ export default function ProductPage({
     }
 
     return (
-        <div className='bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 min-h-screen'>
+        <div className='bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen'>
             <div className='container mx-auto py-6 px-4 lg:px-8'>
-                <div className='flex justify-left items-center mb-8 text-sm md:text-base text-brand-graytext'>
+                <div className='flex justify-left items-center mb-8 text-sm md:text-base text-brand-graytext dark:text-dark-text-secondary'>
                     <Link href="/products" className='hover:underline px-2 transition-colors duration-200'>
                         Products
                     </Link>{" "}
@@ -184,7 +184,7 @@ export default function ProductPage({
                                                     </div>
 
                                                     {/* Compact Content */}
-                                                    <div className="p-4 bg-white flex-1 flex flex-col">
+                                                    <div className="p-4 bg-white dark:bg-gray-800 flex-1 flex flex-col">
                                                         <div className="space-y-3 flex-1">
                                                             {items.slice(0, 2).map((item, i) => (
                                                                 <motion.div
@@ -196,10 +196,10 @@ export default function ProductPage({
                                                                         duration: 0.3,
                                                                         ease: [0.23, 1, 0.320, 1]
                                                                     }}
-                                                                    className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors duration-200 group/item"
+                                                                    className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors duration-200 group/item"
                                                                 >
                                                                     <div className={`w-2 h-2 rounded-full ${getAccentColor(index)} mt-2 flex-shrink-0`}></div>
-                                                                    <span className="text-brand-graytext font-medium text-sm leading-relaxed group-hover/item:text-brand-darkmaroon transition-colors duration-200">
+                                                                    <span className="text-brand-graytext dark:text-dark-text-secondary font-medium text-sm leading-relaxed group-hover/item:text-brand-darkmaroon transition-colors duration-200">
                                                                         {item}
                                                                     </span>
                                                                 </motion.div>
@@ -226,10 +226,10 @@ export default function ProductPage({
                                                                                 duration: 0.3,
                                                                                 ease: [0.23, 1, 0.320, 1]
                                                                             }}
-                                                                            className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors duration-200 group/item"
+                                                                            className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors duration-200 group/item"
                                                                         >
                                                                             <div className={`w-2 h-2 rounded-full ${getAccentColor(index)} mt-2 flex-shrink-0`}></div>
-                                                                            <span className="text-brand-graytext font-medium text-sm leading-relaxed group-hover/item:text-brand-darkmaroon transition-colors duration-200">
+                                                                            <span className="text-brand-graytext dark:text-dark-text-secondary font-medium text-sm leading-relaxed group-hover/item:text-brand-darkmaroon transition-colors duration-200">
                                                                                 {item}
                                                                             </span>
                                                                         </motion.div>
@@ -277,7 +277,7 @@ export default function ProductPage({
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className='text-lg md:text-xl text-brand-graytext leading-relaxed'
+                        className='text-lg md:text-xl text-brand-graytext dark:text-dark-text-secondary leading-relaxed'
                     >
                         {bodyContent}
                     </motion.div>
@@ -295,7 +295,7 @@ export default function ProductPage({
                                 animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.4 }}
-                                className="text-base md:text-lg text-brand-graytext leading-relaxed"
+                                className="text-base md:text-lg text-brand-graytext dark:text-dark-text-secondary leading-relaxed"
                             >
                                 {expandedContent}
                             </motion.div>
@@ -327,7 +327,7 @@ export default function ProductPage({
                                     whileTap={{ scale: 0.98 }}
                                     className={`px-4 py-2 rounded-lg text-sm md:text-base font-medium cursor-pointer transition-all duration-500 ${m === selectedModel
                                         ? "bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white shadow-lg"
-                                        : "bg-white text-brand-graytext border-2 border-brand-maroon/20 hover:border-brand-maroon/40 hover:shadow-md"
+                                        : "bg-white dark:bg-gray-800 text-brand-graytext dark:text-dark-text-secondary border-2 border-brand-maroon/20 dark:border-gray-600/50 hover:border-brand-maroon/40 dark:hover:border-gray-500/70 hover:shadow-md"
                                         }`}
                                     onClick={() => setSelectedModel(m)}
                                 >

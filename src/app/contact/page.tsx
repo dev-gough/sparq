@@ -81,15 +81,15 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 			transition={{ duration: 0.6, delay: 0.1 * index }}
 			className="group"
 		>
-			<Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 h-full">
+			<Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 h-full bg-white dark:bg-gray-700">
 				<CardContent className="p-6 h-full flex flex-col">
 					<div className="flex items-start gap-4 mb-6">
 						<div className="flex items-center justify-center w-12 h-12 min-w-[3rem] min-h-[3rem] bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white flex-shrink-0">
 							<FaMapMarkerAlt className="w-5 h-5" />
 						</div>
 						<div className="flex-1">
-							<h3 className="text-xl font-bold text-brand-darkmaroon leading-tight">{title}</h3>
-							<p className="text-lg font-semibold text-brand-graytext">{companyName}</p>
+							<h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow leading-tight">{title}</h3>
+							<p className="text-lg font-semibold text-brand-graytext dark:text-dark-text-secondary">{companyName}</p>
 						</div>
 					</div>
 
@@ -97,7 +97,7 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 						{address && (
 							<div className="flex items-start gap-3">
 								<FaMapMarkerAlt className="w-4 h-4 mt-1 text-brand-maroon flex-shrink-0" />
-								<p className="text-brand-graytext leading-relaxed">
+								<p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
 									{address.split('\n').map((line, index) => (
 										<span key={index}>
 											{line}
@@ -113,7 +113,7 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 								<Link
 									onClick={() => handleClick("phone", phone)}
 									href={`tel:${phone}`}
-									className="text-brand-maroon hover:text-brand-darkmaroon font-medium transition-colors duration-200"
+									className="text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-medium transition-colors duration-200"
 								>
 									{phone}
 								</Link>
@@ -125,7 +125,7 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 								<Link
 									onClick={() => handleClick("email", email)}
 									href={`mailto:${email}`}
-									className="text-brand-maroon hover:text-brand-darkmaroon font-medium transition-colors duration-200"
+									className="text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-medium transition-colors duration-200"
 								>
 									{email}
 								</Link>
@@ -139,7 +139,7 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 									href={website}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-brand-maroon hover:text-brand-darkmaroon font-medium transition-colors duration-200"
+									className="text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-medium transition-colors duration-200"
 								>
 									{website}
 								</Link>
@@ -157,7 +157,7 @@ export default function ContactPage() {
 	const isHeroInView = useInView(heroRef, { once: true })
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+		<div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
 			<BackgroundElements />
 
 			{/* Hero Section */}
@@ -183,7 +183,7 @@ export default function ContactPage() {
 						initial={{ opacity: 0, y: 30 }}
 						animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
 						transition={{ duration: 0.8, delay: 0.4 }}
-						className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+						className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
 					>
 						Connect with our global network of offices and distribution partners to discover
 						how Sparq microinverter technology can power your solar projects.
@@ -192,7 +192,7 @@ export default function ContactPage() {
 			</section>
 
 			{/* Our Offices Section */}
-			<section className="relative bg-white py-10">
+			<section className="relative bg-white dark:bg-gray-900 py-10">
 				<div className="container mx-auto px-6">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
@@ -200,10 +200,10 @@ export default function ContactPage() {
 						transition={{ duration: 0.8, delay: 0.5 }}
 						className="text-center mb-16"
 					>
-						<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+						<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
 							Our Offices
 						</h2>
-						<p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+						<p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
 							Reach out to our global offices for sales inquiries, technical support, and partnership opportunities.
 						</p>
 					</motion.div>
@@ -230,7 +230,7 @@ export default function ContactPage() {
 			</section>
 
 			{/* Distribution Partners Section */}
-			<section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 py-10">
+			<section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-10">
 				<div className="container mx-auto px-6">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
@@ -238,10 +238,10 @@ export default function ContactPage() {
 						transition={{ duration: 0.8, delay: 0.7 }}
 						className="text-center mb-16"
 					>
-						<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+						<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
 							How to Order
 						</h2>
-						<p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+						<p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
 							Contact our authorized distribution partners worldwide for product orders and local support.
 						</p>
 					</motion.div>

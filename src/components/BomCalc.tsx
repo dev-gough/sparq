@@ -230,8 +230,8 @@ export default function BoMCalc() {
 			<section className="mx-auto max-w-7xl space-y-10 px-4 pt-10 pb-6">
 
 				{/* DESIGN DETAILS */}
-				<div className="rounded-lg bg-[var(--color-brand-graytext)]/5 p-6 shadow space-y-6">
-					<h2 className="text-xl font-semibold text-black">Design Details</h2>
+				<div className="rounded-lg bg-white dark:bg-gray-800 p-6 shadow-lg border border-gray-200 dark:border-gray-600 space-y-6">
+					<h2 className="text-xl font-semibold text-brand-darkmaroon dark:text-brand-yellow">Design Details</h2>
 
 					{/* 1st row: Region & Project Type & Project Name */}
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -299,19 +299,19 @@ export default function BoMCalc() {
 				</div>
 
 				{/* BILL OF MATERIALS */}
-				<div className="rounded-lg bg-[var(--color-brand-graytext)]/5 px-6 pt-6 shadow space-y-4">
-					<h2 className="text-xl font-semibold">Bill of Materials</h2>
+				<div className="rounded-lg bg-white dark:bg-gray-800 px-6 pt-6 shadow-lg border border-gray-200 dark:border-gray-600 space-y-4">
+					<h2 className="text-xl font-semibold text-brand-darkmaroon dark:text-brand-yellow">Bill of Materials</h2>
 					{bom.length > 0 ? (
 						<div className="space-y-6 p-2 text-sm">
 							<div>
-								<h3 className="text-lg font-semibold mb-2">SPARQ Products</h3>
+								<h3 className="text-lg font-semibold mb-2 text-brand-darkmaroon dark:text-brand-yellow">SPARQ Products</h3>
 								<ul className="space-y-2">
 									{bom.filter(r => !r.sku.startsWith("65020"))
 										.map(row => <BOMItem key={row.sku} row={row} imageMap={imageMap} />)}
 								</ul>
 							</div>
 							<div>
-								<h3 className="text-lg font-semibold">Third-Party Products</h3>
+								<h3 className="text-lg font-semibold text-brand-darkmaroon dark:text-brand-yellow">Third-Party Products</h3>
 								<ul className="space-y-2">
 									{bom.filter(r => r.sku.startsWith("65020"))
 										.map(row => <BOMItem key={row.sku} row={row} imageMap={imageMap} />)}
@@ -319,15 +319,15 @@ export default function BoMCalc() {
 							</div>
 						</div>
 					) : (
-						<p className="text-[var(--color-brand-graytext)] text-sm">
+						<p className="text-brand-graytext dark:text-dark-text-secondary text-sm">
 							Please enter valid system parameters.
 						</p>
 					)}
 				</div>
 
 				{/* SYSTEM SUMMARY */}
-				<aside className="rounded-lg bg-[var(--color-brand-graytext)]/5 p-6 shadow space-y-4 text-sm">
-					<h2 className="text-xl font-semibold text-[var(--color-brand-graytext)]">System Summary</h2>
+				<aside className="rounded-lg bg-white dark:bg-gray-800 p-6 shadow-lg border border-gray-200 dark:border-gray-600 space-y-4 text-sm">
+					<h2 className="text-xl font-semibold text-brand-darkmaroon dark:text-brand-yellow">System Summary</h2>
 					<SummarySection title="Location & Grid">
 						<SummaryRow label="Region" value={form.region} />
 						<SummaryRow label="Project Type" value={form.projectType} />
@@ -347,11 +347,11 @@ export default function BoMCalc() {
 			{/* ACTIONS */}
 			<div className="flex justify-center space-x-4 pt-6 pb-12">
 				<button onClick={handleDownload}
-					className="rounded bg-[var(--color-brand-maroon)] px-8 py-4 text-sm text-white font-medium hover:bg-[var(--color-brand-darkmaroon)] cursor-pointer">
+					className="rounded-xl bg-gradient-to-r from-brand-maroon to-brand-darkmaroon px-8 py-4 text-sm text-white font-semibold hover:shadow-lg transition-all duration-300 cursor-pointer">
 					Download Summary
 				</button>
 				<Link href="/contact"
-					className="rounded border-2 border-[var(--color-brand-maroon)] px-8 py-4 text-sm text-[var(--color-brand-maroon)] font-medium hover:bg-[var(--color-brand-maroon)] hover:text-white">
+					className="rounded-xl border-2 border-brand-maroon dark:border-brand-yellow px-8 py-4 text-sm text-brand-maroon dark:text-brand-yellow font-semibold hover:bg-brand-maroon dark:hover:bg-brand-yellow hover:text-white dark:hover:text-gray-900 transition-all duration-300">
 					Contact Us
 				</Link>
 			</div>
@@ -367,25 +367,25 @@ function BOMItem({
 	imageMap: Record<string, string>;
 }) {
 	return (
-		<li className="flex items-center gap-6 py-6">
+		<li className="flex items-center gap-6 py-6 border-b border-gray-100 dark:border-gray-600 last:border-b-0">
 			{imageMap[row.sku] ? (
 				<Image
 					src={imageMap[row.sku]}
 					alt={row.label}
 					width={96}
 					height={96}
-					className="rounded"
+					className="rounded bg-gray-50 dark:bg-gray-700"
 				/>
 			) : (
-				<div className="h-24 w-24 rounded bg-[var(--color-brand-gray)] flex items-center justify-center text-base text-[var(--color-brand-yellow)]">
+				<div className="h-24 w-24 rounded bg-brand-gray dark:bg-gray-700 flex items-center justify-center text-base text-brand-yellow">
 					img
 				</div>
 			)}
 			<div className="flex-1 space-y-1">
-				<h3 className="text-lg font-medium">{row.label}</h3>
-				<p className="text-base">{row.sku}</p>
+				<h3 className="text-lg font-medium text-gray-900 dark:text-dark-text-primary">{row.label}</h3>
+				<p className="text-base text-brand-graytext dark:text-dark-text-secondary">{row.sku}</p>
 			</div>
-			<span className="text-2xl font-semibold">{row.qty}</span>
+			<span className="text-2xl font-semibold text-brand-darkmaroon dark:text-brand-yellow">{row.qty}</span>
 		</li>
 	);
 }
@@ -412,7 +412,7 @@ function NumberField({
 
 	return (
 		<label className="block text-base">
-			<span className="mb-1	block font-medium text-[var(--color-brand-graytext)]">{label}</span>
+			<span className="mb-1	block font-medium text-brand-graytext dark:text-dark-text-secondary">{label}</span>
 			<input
 				type="number"
 				value={value}
@@ -421,11 +421,11 @@ function NumberField({
 				max={max}
 				onChange={e => onChange(e.target.value)}
 				className={`
-          w-full rounded-lg px-4 py-2 text-base placeholder:text-gray-400
+          w-full rounded-lg px-4 py-2 text-base placeholder:text-gray-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-dark-text-primary
           border ${invalid
 						? "border-red-500 focus:ring-red-500"
-						: "border-[var(--color-brand-gray)] focus:ring-[var(--color-brand-yellow)]"
-					} focus:outline-none
+						: "border-gray-300 dark:border-gray-600 focus:ring-brand-yellow focus:border-brand-yellow"
+					} focus:outline-none transition-colors
         `}
 			/>
 		</label>
@@ -445,11 +445,11 @@ function SelectField({
 }) {
 	return (
 		<label className="block text-base">
-			<span className="mb-1	block font-medium text-[var(--color-brand-graytext)]">{label}</span>
+			<span className="mb-1	block font-medium text-brand-graytext dark:text-dark-text-secondary">{label}</span>
 			<select
 				value={value}
 				onChange={e => onChange(e.target.value)}
-				className="w-full rounded-lg border border-[var(--color-brand-gray)] px-4 py-2 text-base focus:border-[var(--color-brand-yellow)] focus:ring-[var(--color-brand-yellow)]"
+				className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-base bg-white dark:bg-gray-700 text-gray-900 dark:text-dark-text-primary focus:border-brand-yellow focus:ring-brand-yellow focus:outline-none transition-colors"
 			>
 				{options.map(o => (
 					<option key={o} value={o}>{o}</option>
@@ -472,13 +472,13 @@ function TextField({
 }) {
 	return (
 		<label className="block text-base">
-			<span className="mb-1	block font-medium text-[var(--color-brand-graytext)]">{label}</span>
+			<span className="mb-1	block font-medium text-brand-graytext dark:text-dark-text-secondary">{label}</span>
 			<input
 				type="text"
 				value={value}
 				placeholder={placeholder}
 				onChange={e => onChange(e.target.value)}
-				className="w-full rounded-lg border border-[var(--color-brand-gray)] px-4 py-2 text-base placeholder:text-gray-400 focus:border-[var(--color-brand-yellow)] focus:ring-[var(--color-brand-yellow)] focus:outline-none"
+				className="w-full rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-2 text-base placeholder:text-gray-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-dark-text-primary focus:border-brand-yellow focus:ring-brand-yellow focus:outline-none transition-colors"
 			/>
 		</label>
 	);
@@ -493,7 +493,7 @@ function SummarySection({
 }) {
 	return (
 		<div className="mb-4 last:mb-0">
-			<p className="mb-2 text-base font-semibold text-[var(--color-brand-gray)]">{title}</p>
+			<p className="mb-2 text-base font-semibold text-brand-gray dark:text-brand-yellow">{title}</p>
 			<div className="space-y-1">{children}</div>
 		</div>
 	);
@@ -501,9 +501,9 @@ function SummarySection({
 
 function SummaryRow({ label, value }: { label: string; value: string }) {
 	return (
-		<div className="flex justify-between text-base">
+		<div className="flex justify-between text-base text-gray-700 dark:text-dark-text-secondary">
 			<span>{label}</span>
-			<span className="font-medium">{value}</span>
+			<span className="font-medium text-gray-900 dark:text-dark-text-primary">{value}</span>
 		</div>
 	);
 }

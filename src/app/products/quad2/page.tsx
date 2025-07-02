@@ -87,9 +87,9 @@ const accordionSections: AccordionSection[] = [
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (
 			<div className="space-y-6">
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-					<h3 className="font-bold text-brand-darkmaroon mb-3">Superior Value</h3>
-					<ul className="space-y-2 text-brand-graytext">
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Superior Value</h3>
+					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
 						<li className="flex items-start gap-3">
 							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
 							<span>Low design/installation costs</span>
@@ -108,9 +108,9 @@ const accordionSections: AccordionSection[] = [
 						</li>
 					</ul>
 				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-					<h3 className="font-bold text-brand-darkmaroon mb-3">High Energy Harvest</h3>
-					<ul className="space-y-2 text-brand-graytext">
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">High Energy Harvest</h3>
+					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
 						<li className="flex items-start gap-3">
 							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
 							<span>Greater energy harvest compared to string inverters</span>
@@ -125,9 +125,9 @@ const accordionSections: AccordionSection[] = [
 						</li>
 					</ul>
 				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-					<h3 className="font-bold text-brand-darkmaroon mb-3">Best in-class reliability</h3>
-					<ul className="space-y-2 text-brand-graytext">
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Best in-class reliability</h3>
+					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
 						<li className="flex items-start gap-3">
 							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
 							<span>No electrolytic capacitors or other components with short lifetimes</span>
@@ -146,9 +146,9 @@ const accordionSections: AccordionSection[] = [
 						</li>
 					</ul>
 				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-					<h3 className="font-bold text-brand-darkmaroon mb-3">Easy to Install</h3>
-					<ul className="space-y-2 text-brand-graytext">
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Easy to Install</h3>
+					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
 						<li className="flex items-start gap-3">
 							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
 							<span>Quad system design reduces the required number of conventional microinverters by a factor of 4</span>
@@ -170,8 +170,8 @@ const accordionSections: AccordionSection[] = [
 		title: "Technical Specifications",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (selectedModel: string) => (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-				<h3 className="font-bold text-brand-darkmaroon mb-4">Datasheet for {selectedModel}</h3>
+			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheet for {selectedModel}</h3>
 				<div className="flex items-center gap-3">
 					<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
 					{selectedModel === "Q2000-4102" && (
@@ -198,8 +198,8 @@ const accordionSections: AccordionSection[] = [
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (
 			<div className="space-y-6">
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-					<h3 className="font-bold text-brand-darkmaroon mb-4">Reports</h3>
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Reports</h3>
 					<div className="grid gap-3">
 						{[
 							{ name: "EN_61683", href: "/Q2000/reports/EN_61683.pdf" },
@@ -217,8 +217,8 @@ const accordionSections: AccordionSection[] = [
 						))}
 					</div>
 				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-					<h3 className="font-bold text-brand-darkmaroon mb-4">Certifications</h3>
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Certifications</h3>
 					<div className="grid gap-3">
 						{[
 							{ name: "CU72239343.01-.02", href: "/Q2000/certs/CU72239343.01-.02.pdf" },
@@ -242,8 +242,8 @@ const accordionSections: AccordionSection[] = [
 		title: "Documentation",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (selectedModel: string) => (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-				<h3 className="font-bold text-brand-darkmaroon mb-4">Installation Manuals for {selectedModel}</h3>
+			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manuals for {selectedModel}</h3>
 				<div className="grid gap-3">
 					{[
 						{ name: "North America", href: "/Q2000/Q2000_Americas.pdf" },
@@ -266,7 +266,7 @@ const accordionSections: AccordionSection[] = [
 		title: "Comparison with Leading Microinverter",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
+			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
 				<div className="flex items-center gap-3">
 					<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
 					<Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors">
@@ -380,7 +380,7 @@ export default function Quad2Page() {
 									transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
 									className="overflow-hidden"
 								>
-									<div className="p-6 bg-white">
+									<div className="p-6 bg-white dark:bg-gray-800">
 										{typeof section.content === 'function' ? section.content(selectedModel) : section.content}
 									</div>
 								</motion.div>

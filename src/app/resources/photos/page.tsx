@@ -93,7 +93,7 @@ export default function PhotosPage() {
     const currentSite = installationSites.find(site => site.id === selectedSite) || installationSites[0]
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
             <BackgroundElements />
             
             {/* Hero Section */}
@@ -119,7 +119,7 @@ export default function PhotosPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
                         Explore our portfolio of successful solar installations featuring Sparq microinverter technology 
                         across various sites and applications.
@@ -136,10 +136,10 @@ export default function PhotosPage() {
                         transition={{ duration: 0.8, delay: 0.5 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Installation Sites
                         </h2>
-                        <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Select a site to view detailed photos and project information.
                         </p>
                     </motion.div>
@@ -154,7 +154,7 @@ export default function PhotosPage() {
                                 className="group"
                             >
                                 <Card 
-                                    className={`overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 ${
+                                    className={`overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700 ${
                                         selectedSite === site.id ? 'ring-2 ring-brand-maroon' : ''
                                     }`}
                                     onClick={() => setSelectedSite(site.id)}
@@ -167,12 +167,12 @@ export default function PhotosPage() {
                                                 </svg>
                                             </div>
                                             <div>
-                                                <h3 className="text-xl font-bold text-brand-darkmaroon">{site.name}</h3>
-                                                <p className="text-brand-graytext">{site.location}</p>
+                                                <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow">{site.name}</h3>
+                                                <p className="text-brand-graytext dark:text-dark-text-muted">{site.location}</p>
                                             </div>
                                         </div>
-                                        <p className="text-brand-graytext leading-relaxed mb-4">{site.description}</p>
-                                        <div className="flex justify-between text-sm text-brand-graytext">
+                                        <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-4">{site.description}</p>
+                                        <div className="flex justify-between text-sm text-brand-graytext dark:text-dark-text-muted">
                                             <span><strong>Completed:</strong> {site.completionDate}</span>
                                             <span><strong>System:</strong> {site.systemSize}</span>
                                         </div>
@@ -185,7 +185,7 @@ export default function PhotosPage() {
             )}
 
             {/* Photo Gallery */}
-            <section className="relative bg-white py-10">
+            <section className="relative bg-white dark:bg-gray-900 py-10">
                 <div className="container mx-auto px-6">
                     {currentSite && (
                         <motion.div

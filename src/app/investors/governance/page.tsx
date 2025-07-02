@@ -159,23 +159,20 @@ function DocumentCard({ document, index }: { document: GovernanceDocument, index
             transition={{ duration: 0.6, delay: 0.1 * index }}
             className="group"
         >
-            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 h-full">
+            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 h-full bg-white dark:bg-gray-700">
                 <CardContent className="p-6 h-full flex flex-col">
                     <div className="flex items-start gap-4 mb-4">
                         <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white group-hover:scale-110 transition-transform duration-300">
                             {document.icon}
                         </div>
                         <div className="flex-1">
-                            <h3 className="text-lg font-bold text-brand-darkmaroon group-hover:text-brand-maroon transition-colors duration-300 mb-2">
+                            <h3 className="text-lg font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon dark:group-hover:text-brand-logo transition-colors duration-300 mb-2">
                                 {document.title}
                             </h3>
-                            <span className="inline-block px-3 py-1 bg-gradient-to-r from-brand-maroon/10 to-brand-logo/10 rounded-full text-sm font-medium text-brand-darkmaroon mb-3">
-                                {categoryLabels[document.category]}
-                            </span>
                         </div>
                     </div>
 
-                    <p className="text-brand-graytext leading-relaxed mb-6 flex-grow">
+                    <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-6 flex-grow">
                         {document.description}
                     </p>
 
@@ -184,12 +181,12 @@ function DocumentCard({ document, index }: { document: GovernanceDocument, index
                             href={document.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-brand-maroon hover:text-brand-darkmaroon font-semibold transition-colors duration-200 group/link"
+                            className="inline-flex items-center gap-2 text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-semibold transition-colors duration-200 group/link"
                         >
                             <FaDownload className="w-4 h-4" />
                             <span>Download PDF</span>
                         </Link>
-                        <div className="flex items-center gap-2 text-brand-graytext">
+                        <div className="flex items-center gap-2 text-brand-graytext dark:text-dark-text-muted">
                             <FaFileAlt className="w-4 h-4" />
                             <span className="text-sm">PDF</span>
                         </div>
@@ -207,7 +204,7 @@ export default function GovernancePage() {
     const categories = Object.keys(categoryLabels) as Array<keyof typeof categoryLabels>
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
             <BackgroundElements />
             
             {/* Hero Section */}
@@ -233,7 +230,7 @@ export default function GovernancePage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
                         Access our comprehensive governance documents, policies, and committee charters 
                         that guide our commitment to transparency and responsible corporate stewardship.
@@ -242,7 +239,7 @@ export default function GovernancePage() {
             </section>
 
             {/* Documents Section */}
-            <section className="relative bg-white py-10">
+            <section className="relative bg-white dark:bg-gray-900 py-10">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -250,10 +247,10 @@ export default function GovernancePage() {
                         transition={{ duration: 0.8, delay: 0.5 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Governance Documents
                         </h2>
-                        <p className="text-xl text-brand-graytext max-w-3xl mx-auto">
+                        <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Download and review our governance framework, policies, and committee charters.
                         </p>
                     </motion.div>
@@ -270,7 +267,7 @@ export default function GovernancePage() {
                                     transition={{ duration: 0.6, delay: 0.7 + (categoryIndex * 0.1) }}
                                     className="mb-8"
                                 >
-                                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon mb-2">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-2">
                                         {categoryLabels[category]}
                                     </h3>
                                     <div className="w-20 h-1 bg-gradient-to-r from-brand-maroon to-brand-logo rounded-full"></div>

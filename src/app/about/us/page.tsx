@@ -113,7 +113,7 @@ function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps
                         transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
                         className="md:hidden"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-3">
+                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3">
                             {leader.name}
                         </h2>
                         <p className="text-xl md:text-2xl text-brand-logo font-medium mb-8">
@@ -127,7 +127,7 @@ function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps
                         transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
                         className="hidden md:block"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-3">
+                        <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3">
                             {leader.name}
                         </h2>
                         <p className="text-xl md:text-2xl text-brand-logo font-medium mb-8">
@@ -140,10 +140,10 @@ function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6, delay: index * 0.2 + 0.5 }}
-                        className="relative bg-gradient-to-r from-brand-maroon/5 to-brand-logo/5 rounded-2xl p-8 border border-brand-maroon/10"
+                        className="relative bg-gradient-to-r from-brand-maroon/5 to-brand-logo/5 dark:from-gray-700/30 dark:to-gray-600/40 rounded-2xl p-8 border border-brand-maroon/10"
                     >
-                        <Quote className="absolute top-4 left-4 text-brand-maroon/30" size={24} />
-                        <p className="text-lg md:text-xl text-brand-darkmaroon font-medium italic leading-relaxed pl-8">
+                        <Quote className="absolute top-4 left-4 text-brand-maroon/30 dark:text-brand-darkmaroon" size={24} />
+                        <p className="text-lg md:text-xl text-brand-darkmaroon dark:text-brand-maroon font-medium italic leading-relaxed pl-8">
                             &quot;{leader.quote}&quot;
                         </p>
                     </motion.div>
@@ -154,7 +154,7 @@ function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6, delay: index * 0.2 + 0.6 }}
                     >
-                        <p className="text-lg text-brand-graytext leading-relaxed mb-8">
+                        <p className="text-lg text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-8">
                             {leader.bio}
                         </p>
                     </motion.div>
@@ -167,9 +167,9 @@ function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps
                         className="grid grid-cols-1 md:grid-cols-2 gap-4"
                     >
                         {leader.achievements.map((achievement, i) => (
-                            <div key={i} className="flex items-center gap-3 bg-white/60 rounded-xl p-4 border border-brand-maroon/5">
+                            <div key={i} className="flex items-center gap-3 bg-white/60 dark:bg-gray-700/50 rounded-xl p-4 border border-brand-maroon/5">
                                 <div className="w-2 h-2 rounded-full bg-brand-maroon flex-shrink-0" />
-                                <span className="text-brand-graytext font-medium">{achievement}</span>
+                                <span className="text-brand-graytext dark:text-dark-text-secondary font-medium">{achievement}</span>
                             </div>
                         ))}
                     </motion.div>
@@ -197,10 +197,10 @@ function CompanyValuesSection() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-center mb-16"
             >
-                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6">
+                <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6 dark:text-brand-yellow">
                     What Drives Us
                 </h2>
-                <p className="text-xl text-brand-graytext max-w-3xl mx-auto leading-relaxed">
+                <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">
                     Our core principles guide every decision, every innovation, and every relationship we build.
                 </p>
             </motion.div>
@@ -217,10 +217,10 @@ function CompanyValuesSection() {
                         <div className="w-20 h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-2xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg">
                             {value.icon}
                         </div>
-                        <h3 className="text-2xl font-bold text-brand-darkmaroon mb-4">
+                        <h3 className="text-2xl font-bold text-brand-darkmaroon mb-4 dark:text-brand-yellow">
                             {value.title}
                         </h3>
-                        <p className="text-lg text-brand-graytext leading-relaxed">
+                        <p className="text-lg text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
                             {value.description}
                         </p>
                     </motion.div>
@@ -235,7 +235,7 @@ export default function AboutUsPage() {
     const isInView = useInView(titleRef, { once: true })
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative scroll-mt-[115px]">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
             {/* Hero Section */}
             <div className="relative container mx-auto px-6 pt-10 sm:pb-8">
                 <motion.div
@@ -255,7 +255,7 @@ export default function AboutUsPage() {
                         </span>
                     </h1>
 
-                    <p className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed">
+                    <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed">
                         The visionary leaders and technical innovators driving the future of solar energy technology.
                     </p>
                 </motion.div>
@@ -284,12 +284,12 @@ export default function AboutUsPage() {
                     transition={{ duration: 0.8, delay: 0.5 }}
                     className="max-w-4xl mx-auto text-center"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon mb-8">
+                    <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon mb-8 dark:text-brand-yellow">
                         Built on Strong Values
                     </h2>
-                    <div className="bg-white/80 rounded-3xl p-8 border border-brand-maroon/10 shadow-lg">
-                        <p className="text-lg text-brand-graytext leading-relaxed">
-                            <span className="font-semibold text-brand-darkmaroon">Integrity, Collaboration, Innovation, Quality, Social Responsibility, and Teamwork</span> -
+                    <div className="bg-white/80 dark:bg-gray-700/60 rounded-3xl p-8 border border-brand-maroon/10 shadow-lg">
+                        <p className="text-lg text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
+                            <span className="font-semibold text-brand-darkmaroon dark:text-brand-yellow">Integrity, Collaboration, Innovation, Quality, Social Responsibility, and Teamwork</span> -
                             these aren&apos;t just words on our website. They&apos;re the foundation of how we operate,
                             how we innovate, and how we build lasting relationships with our customers,
                             partners, and communities around the world.

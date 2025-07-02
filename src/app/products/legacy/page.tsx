@@ -21,7 +21,7 @@ function image() {
 
 function body() {
 	return (
-		<p className="text-brand-gray mt-4">
+		<p className="text-brand-gray dark:text-dark-text-secondary mt-4">
 			The Q1200 is a legacy product that has been discontinued.  See below for the technical manuals, or <Link href="/contact" className="text-blue-400 hover:underline">contact us</Link> for support.
 		</p>
 	)
@@ -38,8 +38,8 @@ const accordionSections: AccordionSection[] = [
 		title: "Technical Specifications",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (selectedModel: string) => (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-				<h3 className="font-bold text-brand-darkmaroon mb-4">Datasheet for {selectedModel}</h3>
+			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheet for {selectedModel}</h3>
 				<div className="flex items-center gap-3">
 					<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
 					{selectedModel === "Q1200-4102-GT" && (
@@ -60,8 +60,8 @@ const accordionSections: AccordionSection[] = [
 		title: "Documentation",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (selectedModel: string) => (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50">
-				<h3 className="font-bold text-brand-darkmaroon mb-4">Installation Manuals for {selectedModel}</h3>
+			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manuals for {selectedModel}</h3>
 				<div className="grid gap-3">
 					{[
 						{ name: "North America", href: "/Q1200/Q1200-Installer-NA.pdf" },
@@ -168,7 +168,7 @@ export default function LegacyProductPage() {
 									transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
 									className="overflow-hidden"
 								>
-									<div className="p-6 bg-white">
+									<div className="p-6 bg-white dark:bg-gray-800">
 										{typeof section.content === 'function' ? section.content(selectedModel) : section.content}
 									</div>
 								</motion.div>

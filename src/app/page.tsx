@@ -104,10 +104,10 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                             {product.title}
                         </span>
                     </h2>
-                    <p className="text-xl md:text-2xl font-semibold text-brand-darkmaroon mb-6">
+                    <p className="text-xl md:text-2xl font-semibold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                         {product.tagline}
                     </p>
-                    <p className="text-lg text-brand-graytext mb-8 leading-relaxed">
+                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-8 leading-relaxed">
                         {product.description}
                     </p>
                     <div className="grid grid-cols-2 gap-4 mb-8">
@@ -120,7 +120,7 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                                 className="flex items-center gap-3"
                             >
                                 <div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo" />
-                                <span className="text-brand-graytext font-medium">{feature}</span>
+                                <span className="text-brand-graytext dark:text-dark-text-secondary font-medium">{feature}</span>
                             </motion.div>
                         ))}
                     </div>
@@ -159,7 +159,7 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                     onMouseLeave={() => setIsHovered(false)}
                     style={{ perspective: '1000px' }}
                 >
-                    <div className="relative overflow-hidden border-0 shadow-2xl rounded-2xl h-64 sm:h-80 lg:h-96 w-full bg-neutral-100">
+                    <div className="relative overflow-hidden border-0 shadow-2xl rounded-2xl h-64 sm:h-80 lg:h-96 w-full bg-neutral-100 dark:bg-gray-800/60">
                         <Image
                             src={product.image}
                             alt={product.title}
@@ -243,7 +243,7 @@ export default function Home() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 relative">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
             <BackgroundElements />
 
             {/* Hero Section */}
@@ -269,7 +269,7 @@ export default function Home() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-brand-graytext max-w-4xl mx-auto leading-relaxed mb-12"
+                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
                         Discover our revolutionary microinverter technology that&apos;s transforming solar energy
                         with unmatched efficiency, reliability, and innovation.
@@ -294,7 +294,7 @@ export default function Home() {
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-white text-brand-darkmaroon font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 cursor-pointer"
+                                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer"
                             >
                                 Learn More
                             </motion.button>
@@ -323,10 +323,10 @@ export default function Home() {
                     transition={{ duration: 0.8, delay: 1 }}
                     className="text-center"
                 >
-                    <h2 className="xs:text-3xl sm:text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-8">
+                    <h2 className="xs:text-3xl sm:text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8">
                         Ready to Transform Your Solar Future?
                     </h2>
-                    <p className="text-xl text-brand-graytext mb-12 max-w-3xl mx-auto">
+                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-3xl mx-auto">
                         Join thousands of satisfied customers who have chosen Sparq Systems for their solar energy needs.
                         Experience the difference that cutting-edge technology makes.
                     </p>

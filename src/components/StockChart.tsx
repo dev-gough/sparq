@@ -95,14 +95,25 @@ const LightweightChart: React.FC<ChartProps> = ({
 			chartRef.current.remove()
 		}
 
+		// Detect dark mode
+		const isDarkMode = document.documentElement.classList.contains('dark')
+
 		console.log(wrapperRef.current.clientHeight)
 
 		const chart = createChart(wrapperRef.current, {
 			width: width || wrapperRef.current.clientWidth,
 			height: height || wrapperRef.current.clientHeight,
 			layout: {
-				background: { type: ColorType.Solid, color: "#fff" },
-				textColor: "#666666",
+				background: { type: ColorType.Solid, color: isDarkMode ? "#374151" : "#fff" },
+				textColor: isDarkMode ? "#d1d5db" : "#666666",
+			},
+			grid: {
+				vertLines: {
+					color: isDarkMode ? "#4b5563" : "#e5e7eb",
+				},
+				horzLines: {
+					color: isDarkMode ? "#4b5563" : "#e5e7eb",
+				},
 			},
 			rightPriceScale: {
 				visible: true,
@@ -153,6 +164,7 @@ const LightweightChart: React.FC<ChartProps> = ({
 		legendEl.style.fontFamily = "monospace"
 		legendEl.style.fontSize = "12px"
 		legendEl.style.pointerEvents = "none"
+		legendEl.style.color = isDarkMode ? "#d1d5db" : "#666666"
 
 		const numberFmt = new Intl.NumberFormat("en-US")
 
@@ -189,14 +201,44 @@ const LightweightChart: React.FC<ChartProps> = ({
 		/***** Handle resize *****/
 		const handleResize = () => {
 			chart.applyOptions({ width: wrapperRef.current?.clientWidth || width })
-			chart.applyOptions({ height: wrapperRef.current?.clientHeight || height})
+			chart.applyOptions({ height: wrapperRef.current?.clientHeight || height })
 		}
 		window.addEventListener("resize", handleResize)
+
+		/***** Handle theme changes *****/
+		const handleThemeChange = () => {
+			const newIsDarkMode = document.documentElement.classList.contains('dark')
+			chart.applyOptions({
+				layout: {
+					background: { type: ColorType.Solid, color: newIsDarkMode ? "#374151" : "#fff" },
+					textColor: newIsDarkMode ? "#d1d5db" : "#666666",
+				},
+				grid: {
+					vertLines: {
+						color: newIsDarkMode ? "#4b5563" : "#e5e7eb",
+					},
+					horzLines: {
+						color: newIsDarkMode ? "#4b5563" : "#e5e7eb",
+					},
+				},
+			})
+			if (legendEl) {
+				legendEl.style.color = newIsDarkMode ? "#d1d5db" : "#666666"
+			}
+		}
+
+		// Create observer to watch for theme changes
+		const observer = new MutationObserver(handleThemeChange)
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['class']
+		})
 
 		chart.timeScale().fitContent()
 
 		return () => {
 			window.removeEventListener("resize", handleResize)
+			observer.disconnect()
 		}
 	}, [data, height, symbol, width, chartRef])
 
