@@ -140,7 +140,7 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode,
 }>) {
-	const theme = getServerTheme()
+	const theme = await getServerTheme()
 	const themeClass = theme === 'dark' ? 'dark' : ''
 	
 	return (

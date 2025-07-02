@@ -6,7 +6,7 @@ import Footer from "@/components/Footer"
 import ForceScroll from "@/components/ForceScroll"
 import LeavingSite from "@/components/LeavingSite"
 import { AnimationProvider } from '@/contexts/AnimationContext'
-import { ThemeProvider, useTheme } from '@/contexts/ThemeContext'
+import { ThemeProvider } from '@/contexts/ThemeContext'
 
 interface NavItem {
     href: string
@@ -105,10 +105,11 @@ export default function RootLayoutClient({ children, navbarItems, fontOptions }:
             <ThemeProvider>
                 <AnimationProvider>
                     <RootLayoutContent
-                        children={children}
                         navbarItems={navbarItems}
                         fontOptions={fontOptions}
-                    />
+                    >
+                        {children}
+                    </RootLayoutContent>
                 </AnimationProvider>
             </ThemeProvider>
         </body>

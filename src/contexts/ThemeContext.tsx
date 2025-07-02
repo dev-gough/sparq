@@ -13,7 +13,6 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Initialize with a default state to avoid hydration mismatch
   const [isDarkMode, setIsDarkMode] = useState(false)
-  const [isInitialized, setIsInitialized] = useState(false)
 
   useEffect(() => {
     // Check if dark class is already applied (from server-side)
@@ -39,7 +38,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     
     setIsDarkMode(preferredDark)
     updateDocumentClass(preferredDark)
-    setIsInitialized(true)
   }, [])
 
   const updateDocumentClass = (isDark: boolean) => {
