@@ -76,13 +76,15 @@ const timelineEvents: TimelineEvent[] = [
         year: "2022",
         title: "Global Manufacturing",
         description: "Expanded manufacturing to China, dramatically reducing costs and increasing global accessibility.",
-        category: "growth"
+        category: "growth",
+        image: "/SLC/005.JPG"
     },
     {
         year: "2024",
         title: "Strategic Partnerships & Innovation",
         description: "Formed partnership with Jio Reliance and launched next-generation three-phase microinverter technology.",
         category: "growth",
+        image: "/iljinline.jpg",
         details: [
             "Partnership with Jio Reliance, India's largest IoT company",
             "Q2000 Dual-mode microinverter launch",

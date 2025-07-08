@@ -6,7 +6,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import DropdownMenu from './DropdownMenu'
-import FontSelector from './FontSelector'
 import AnimationToggle from './AnimationToggle'
 import DarkModeToggle from './DarkModeToggle'
 import { Menu, X } from 'lucide-react'
@@ -17,19 +16,10 @@ interface NavItem {
     dropdown?: NavItem[]
 }
 
-interface FontOption {
-    name: string
-    value: string
-    className: string
-}
-
 interface HeaderProps {
     navItems: NavItem[]
-    currentFont?: string
-    onFontChange?: (fontValue: string) => void
-    fontOptions?: FontOption[]
 }
-export default function Header({ navItems, currentFont, onFontChange, fontOptions }: HeaderProps) {
+export default function Header({ navItems }: HeaderProps) {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -89,17 +79,10 @@ export default function Header({ navItems, currentFont, onFontChange, fontOption
                 </nav>
 
                 {/* Controls - Right Side */}
-                {currentFont && onFontChange && fontOptions && (
-                    <div className="hidden lg:flex items-center gap-3 absolute right-0">
-                        <DarkModeToggle />
-                        <AnimationToggle />
-                        <FontSelector
-                            currentFont={currentFont}
-                            onFontChange={onFontChange}
-                            fonts={fontOptions}
-                        />
-                    </div>
-                )}
+                <div className="hidden lg:flex items-center gap-3 absolute right-0">
+                    <DarkModeToggle />
+                    <AnimationToggle />
+                </div>
 
                 {/* Mobile Menu Button */}
                 <motion.button

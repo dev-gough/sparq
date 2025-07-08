@@ -12,7 +12,7 @@ function expanded() {
 		<>
 			<p className="mt-4">Effortlessly track real-time energy data, monitor system health, and explore historical performance trends right from your smartphone. SparqSync gives you complete visibility over your installations, helping you make informed decisions and stay up to date.</p>
 			<p className="mt-4">Designed with a sleek, intuitive interface, SparqSync brings clarity and confidence to solar system monitoring.</p>
-			<p className="font-bold text-black mt-4">Stay in sync with your solar system - with SparqSync</p>
+			<p className="font-bold text-black dark:text-dark-text-secondary mt-4">Stay in sync with your solar system - with SparqSync</p>
 		</>
 	)
 }
@@ -47,7 +47,6 @@ function body() {
 	return (
 		<div>
 			<p className="mt-4">Now unveiling SparqSync, the all-new mobile monitoring solution designed exclusively for Sparq customers. With SparqSync, staying connected to your solar energy system has never been easier - or more powerful.</p>
-			<p className="font-bold mt-4 text-black">Coming to iOS and Android in May 2025.</p>
 		</div>
 	)
 }
@@ -107,6 +106,10 @@ const accordionSections: AccordionSection[] = [
 						<li className="flex items-start gap-3">
 							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
 							<span>Set up new projects as they are built</span>
+						</li>
+						<li className="flex items-start gap-3">
+							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
+							<span>Push notifications for any issues</span>
 						</li>
 					</ul>
 				</div>

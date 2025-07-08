@@ -5,6 +5,7 @@ import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
+import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface TeamMemberData {
     imgSrc: string;
@@ -114,52 +115,6 @@ function TeamMemberCard({ member, index, onClick }: TeamMemberCardProps) {
     )
 }
 
-// Background shapes for consistency
-const backgroundShapes = [
-    { width: 140, height: 90, left: 8, top: 12, duration: 18, delay: 1.2, borderRadius: '50% 50% 70% 30%' },
-    { width: 100, height: 120, left: 85, top: 20, duration: 15, delay: 2.5, borderRadius: '40% 60% 60% 40%' },
-    { width: 180, height: 60, left: 35, top: 45, duration: 20, delay: 0.8, borderRadius: '30% 70% 70% 30%' },
-    { width: 80, height: 80, left: 75, top: 75, duration: 14, delay: 1.8, borderRadius: '50%' },
-    { width: 110, height: 150, left: 15, top: 85, duration: 16, delay: 3.2, borderRadius: '70% 30% 50% 50%' },
-]
-
-function BackgroundElements() {
-    return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {backgroundShapes.map((shape, i) => (
-                <motion.div
-                    key={i}
-                    className="absolute bg-gradient-to-br from-brand-maroon/4 via-brand-logo/3 to-brand-yellow/2"
-                    style={{
-                        width: shape.width,
-                        height: shape.height,
-                        left: `${shape.left}%`,
-                        top: `${shape.top}%`,
-                        borderRadius: shape.borderRadius,
-                    }}
-                    animate={{
-                        y: [0, -20, 0],
-                        x: [0, 10, 0],
-                        scale: [1, 1.05, 1],
-                        rotate: [0, 360],
-                        borderRadius: [
-                            shape.borderRadius,
-                            shape.borderRadius === '50%' ? '30% 70% 70% 30%' : '50%',
-                            shape.borderRadius
-                        ]
-                    }}
-                    transition={{
-                        duration: shape.duration,
-                        repeat: Infinity,
-                        delay: shape.delay,
-                        ease: "easeInOut"
-                    }}
-                />
-            ))}
-        </div>
-    )
-}
-
 export default function LeadershipPage() {
     const [selectedMember, setMember] = useState<TeamMemberData | null>(null)
     const trackEvent = useTrackEvent()
@@ -175,7 +130,7 @@ export default function LeadershipPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
-            <BackgroundElements />
+            <SolarBackgroundElements />
 
             <div className="relative container mx-auto px-4 py-10">
                 {/* Hero section */}

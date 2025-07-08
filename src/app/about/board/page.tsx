@@ -5,6 +5,7 @@ import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
+import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface BoardMemberData {
     imgSrc: string;
@@ -118,52 +119,6 @@ function BoardMemberCard({ member, index, onClick }: BoardMemberCardProps) {
     )
 }
 
-// Background shapes for consistency
-const backgroundShapes = [
-    { width: 130, height: 85, left: 12, top: 18, duration: 17, delay: 0.9, borderRadius: '50% 50% 70% 30%' },
-    { width: 95, height: 115, left: 82, top: 25, duration: 14, delay: 2.2, borderRadius: '40% 60% 60% 40%' },
-    { width: 170, height: 55, left: 38, top: 50, duration: 19, delay: 1.5, borderRadius: '30% 70% 70% 30%' },
-    { width: 75, height: 75, left: 78, top: 80, duration: 15, delay: 0.7, borderRadius: '50%' },
-    { width: 105, height: 145, left: 18, top: 90, duration: 16, delay: 3.8, borderRadius: '70% 30% 50% 50%' },
-]
-
-function BackgroundElements() {
-    return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {backgroundShapes.map((shape, i) => (
-                <motion.div
-                    key={i}
-                    className="absolute bg-gradient-to-br from-brand-maroon/4 via-brand-logo/3 to-brand-yellow/2"
-                    style={{
-                        width: shape.width,
-                        height: shape.height,
-                        left: `${shape.left}%`,
-                        top: `${shape.top}%`,
-                        borderRadius: shape.borderRadius,
-                    }}
-                    animate={{
-                        y: [0, -18, 0],
-                        x: [0, 8, 0],
-                        scale: [1, 1.04, 1],
-                        rotate: [0, 360],
-                        borderRadius: [
-                            shape.borderRadius,
-                            shape.borderRadius === '50%' ? '30% 70% 70% 30%' : '50%',
-                            shape.borderRadius
-                        ]
-                    }}
-                    transition={{
-                        duration: shape.duration,
-                        repeat: Infinity,
-                        delay: shape.delay,
-                        ease: "easeInOut"
-                    }}
-                />
-            ))}
-        </div>
-    )
-}
-
 export default function BoardPage() {
     const [selectedMember, setMember] = useState<BoardMemberData | null>(null)
     const trackEvent = useTrackEvent()
@@ -179,7 +134,7 @@ export default function BoardPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
-            <BackgroundElements />
+            <SolarBackgroundElements />
 
             <div className="relative container mx-auto px-4 pb-20 pt-10">
                 {/* Hero section */}

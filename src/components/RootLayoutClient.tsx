@@ -43,41 +43,10 @@ function BackgroundWrapper({ children }: { children: React.ReactNode }) {
     )
 }
 
-function RootLayoutContent({ children, navbarItems, fontOptions }: RootLayoutClientProps) {
-    const [currentFont, setCurrentFont] = useState('pt_sans')
-
-    useEffect(() => {
-        const savedFont = localStorage.getItem('selectedFont')
-        if (savedFont && fontOptions[savedFont]) {
-            setCurrentFont(savedFont)
-        }
-    }, [fontOptions])
-
-    const handleFontChange = (fontKey: string) => {
-        setCurrentFont(fontKey)
-        localStorage.setItem('selectedFont', fontKey)
-    }
-
-    const fontSelectOptions = [
-        { name: 'PT Sans', value: 'pt_sans', className: fontOptions.pt_sans.className },
-        { name: 'Nunito', value: 'nunito', className: fontOptions.nunito.className },
-        { name: 'Roboto Flex', value: 'roboto_flex', className: fontOptions.roboto_flex.className },
-        { name: 'Quicksand', value: 'quicksand', className: fontOptions.quicksand.className },
-        { name: 'Inter', value: 'inter', className: fontOptions.inter.className },
-        { name: 'Poppins', value: 'poppins', className: fontOptions.poppins.className },
-        { name: 'Geist', value: 'geist', className: fontOptions.geist.className },
-        { name: "Raleway", value: 'raleway', className: fontOptions.raleway.className },
-        { name: "Crimson Text", value: 'crimson', className: fontOptions.crimson.className },
-    ]
-
+function RootLayoutContent({ children, navbarItems }: Omit<RootLayoutClientProps, 'fontOptions'>) {
     return (
         <BackgroundWrapper>
-            <Header
-                navItems={navbarItems}
-                currentFont={currentFont}
-                onFontChange={handleFontChange}
-                fontOptions={fontSelectOptions}
-            />
+            <Header navItems={navbarItems} />
             <ForceScroll />
             <LeavingSite />
             <main className="flex-grow h-full">
@@ -89,16 +58,7 @@ function RootLayoutContent({ children, navbarItems, fontOptions }: RootLayoutCli
 }
 
 export default function RootLayoutClient({ children, navbarItems, fontOptions }: RootLayoutClientProps) {
-    const [currentFont, setCurrentFont] = useState('pt_sans')
-
-    useEffect(() => {
-        const savedFont = localStorage.getItem('selectedFont')
-        if (savedFont && fontOptions[savedFont]) {
-            setCurrentFont(savedFont)
-        }
-    }, [fontOptions])
-
-    const activeFont = fontOptions[currentFont] || fontOptions['pt_sans']
+    const activeFont = fontOptions['inter']
 
     return (
         <body className={`${activeFont.className} flex flex-col min-h-screen overflow-y-scroll`} suppressHydrationWarning>
@@ -106,7 +66,6 @@ export default function RootLayoutClient({ children, navbarItems, fontOptions }:
                 <AnimationProvider>
                     <RootLayoutContent
                         navbarItems={navbarItems}
-                        fontOptions={fontOptions}
                     >
                         {children}
                     </RootLayoutContent>

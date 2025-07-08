@@ -7,6 +7,7 @@ import { useState, useRef } from 'react'
 import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
+import YouTube from 'react-youtube'
 
 function expanded() {
     return (
@@ -155,18 +156,26 @@ const accordionSections: AccordionSection[] = [
 		)
 	},
 	{
-		title: "Technical Specifications",
+		title: "Watch the Demo",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (selectedModel: string) => (
+		content: (
 			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheet for {selectedModel}</h3>
-				<div className="flex items-center gap-3">
-					<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-					{selectedModel === "Quad3-4301" && (
-						<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Quad3/quad3_datasheet.pdf" target="_blank">
-							Download Quad3-4301 Datasheet (PDF)
-						</Link>
-					)}
+				<div className="w-full aspect-video min-h-[400px]">
+					<YouTube
+						videoId="4Ngk_vP-dIQ"
+						opts={{
+							width: '100%',
+							height: '400',
+							playerVars: {
+								autoplay: 0,
+								controls: 1,
+								rel: 0,
+								showinfo: 0,
+								modestbranding: 1,
+							},
+						}}
+						className="w-full h-full"
+					/>
 				</div>
 			</div>
 		)
@@ -213,12 +222,27 @@ const accordionSections: AccordionSection[] = [
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (selectedModel: string) => (
 			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manual for {selectedModel}</h3>
-				<div className="flex items-center gap-3">
-					<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-					<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Quad3.pdf" target="_blank">
-						All Regions
-					</Link>
+				<div className="space-y-6">
+					<div>
+						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheet for {selectedModel}</h3>
+						<div className="flex items-center gap-3">
+							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+							{selectedModel === "Quad3-4301" && (
+								<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Quad3/quad3_datasheet.pdf" target="_blank">
+									Download Quad3-4301 Datasheet (PDF)
+								</Link>
+							)}
+						</div>
+					</div>
+					<div>
+						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manual for {selectedModel}</h3>
+						<div className="flex items-center gap-3">
+							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+							<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Quad3.pdf" target="_blank">
+								All Regions
+							</Link>
+						</div>
+					</div>
 				</div>
 			</div>
 		)
@@ -260,6 +284,13 @@ export default function TestPage() {
             return (
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+            )
+        }
+        if (title.toLowerCase().includes('demo') || title.toLowerCase().includes('watch')) {
+            return (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l2.828 2.828a1 1 0 01.293.707V15M9 10v4a1 1 0 001 1h4M9 10V9a1 1 0 011-1h4a1 1 0 011 1v1m-6 0h6" />
                 </svg>
             )
         }

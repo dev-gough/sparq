@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
 import AggregatedFAQ from '@/components/AggregatedFAQ'
+import SolarBackgroundElements from '@/components/SolarBackgroundElements'
 
 import homeownersData from '@/app/homeowners/home_faq.json'
 import installersData from '@/app/installers/installer_faq.json'
@@ -18,51 +19,6 @@ const videos = [
     { id: 5, title: "JioThings Sparq Microinverter Overview", thumbnail: "/jio_thumbnail.jpg", url: "a9tKIsI6t4I", iFrame: true }
 ]
 
-const backgroundShapes = [
-    { width: 200, height: 140, left: 5, top: 15, duration: 18, delay: 0.5, borderRadius: '60% 40% 30% 70%' },
-    { width: 120, height: 180, left: 85, top: 25, duration: 20, delay: 1.2, borderRadius: '40% 60% 60% 40%' },
-    { width: 240, height: 100, left: 45, top: 35, duration: 17, delay: 2.1, borderRadius: '30% 70% 70% 30%' },
-    { width: 140, height: 140, left: 90, top: 65, duration: 19, delay: 0.8, borderRadius: '50%' },
-    { width: 160, height: 220, left: 15, top: 75, duration: 21, delay: 1.8, borderRadius: '70% 30% 50% 50%' },
-    { width: 100, height: 100, left: 70, top: 90, duration: 16, delay: 2.5, borderRadius: '50%' }
-]
-
-function BackgroundElements() {
-    return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {backgroundShapes.map((shape, i) => (
-                <motion.div
-                    key={i}
-                    className="absolute bg-gradient-to-br from-brand-maroon/5 via-brand-logo/3 to-brand-yellow/2"
-                    style={{
-                        width: shape.width,
-                        height: shape.height,
-                        left: `${shape.left}%`,
-                        top: `${shape.top}%`,
-                        borderRadius: shape.borderRadius,
-                    }}
-                    animate={{
-                        y: [0, -40, 0],
-                        x: [0, 20, 0],
-                        scale: [1, 1.15, 1],
-                        rotate: [0, 360],
-                        borderRadius: [
-                            shape.borderRadius,
-                            shape.borderRadius === '50%' ? '30% 70% 70% 30%' : '50%',
-                            shape.borderRadius
-                        ]
-                    }}
-                    transition={{
-                        duration: shape.duration,
-                        repeat: Infinity,
-                        delay: shape.delay,
-                        ease: "easeInOut"
-                    }}
-                />
-            ))}
-        </div>
-    )
-}
 
 interface VideoPopupProps {
     url: string;
@@ -155,7 +111,7 @@ export default function LearningPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
-            <BackgroundElements />
+            <SolarBackgroundElements />
 
             {/* Hero Section */}
             <section className="relative container mx-auto px-6 pt-10 sm:pb-16">

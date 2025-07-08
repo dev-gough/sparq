@@ -7,6 +7,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
 import { useIsMobile } from "@/hooks/useIsMobile"
+import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface FeaturedProduct {
     id: string
@@ -185,51 +186,6 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
     )
 }
 
-const backgroundShapes = [
-    { width: 220, height: 160, left: 5, top: 10, duration: 18, delay: 0.5, borderRadius: '60% 40% 30% 70%' },
-    { width: 140, height: 200, left: 85, top: 20, duration: 20, delay: 1.2, borderRadius: '40% 60% 60% 40%' },
-    { width: 280, height: 120, left: 45, top: 30, duration: 17, delay: 2.1, borderRadius: '30% 70% 70% 30%' },
-    { width: 160, height: 160, left: 90, top: 60, duration: 19, delay: 0.8, borderRadius: '50%' },
-    { width: 180, height: 240, left: 15, top: 70, duration: 21, delay: 1.8, borderRadius: '70% 30% 50% 50%' },
-    { width: 120, height: 120, left: 75, top: 85, duration: 16, delay: 2.5, borderRadius: '50%' },
-]
-
-function BackgroundElements() {
-    return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {backgroundShapes.map((shape, i) => (
-                <motion.div
-                    key={i}
-                    className="absolute bg-gradient-to-br from-brand-maroon/4 via-brand-logo/3 to-brand-yellow/2"
-                    style={{
-                        width: shape.width,
-                        height: shape.height,
-                        left: `${shape.left}%`,
-                        top: `${shape.top}%`,
-                        borderRadius: shape.borderRadius,
-                    }}
-                    animate={{
-                        y: [0, -50, 0],
-                        x: [0, 25, 0],
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 360],
-                        borderRadius: [
-                            shape.borderRadius,
-                            shape.borderRadius === '50%' ? '30% 70% 70% 30%' : '50%',
-                            shape.borderRadius
-                        ]
-                    }}
-                    transition={{
-                        duration: shape.duration,
-                        repeat: Infinity,
-                        delay: shape.delay,
-                        ease: "easeInOut"
-                    }}
-                />
-            ))}
-        </div>
-    )
-}
 
 export default function Home() {
     const trackEvent = useTrackEvent()
@@ -244,7 +200,7 @@ export default function Home() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
-            <BackgroundElements />
+            <SolarBackgroundElements/>
 
             {/* Hero Section */}
             <section className="relative container mx-auto px-6 pt-10 pb-16">
