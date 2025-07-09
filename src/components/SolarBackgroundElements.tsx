@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react"
 import { useIsMobile } from "@/hooks/useIsMobile"
+import { useTheme } from "@/contexts/ThemeContext"
 
 interface SolarPanelProps {
     x: number
@@ -31,7 +32,7 @@ function SolarPanel({ x, y, size, rotation, delay }: SolarPanelProps) {
                 {Array.from({ length: 4 }).map((_, index) => (
                     <motion.div
                         key={index}
-                        className="relative bg-gradient-to-br from-blue-900/20 via-slate-700/15 to-gray-900/20 rounded-sm border border-slate-400/20"
+                        className="relative bg-gradient-to-br from-slate-200/30 via-slate-300/20 to-slate-400/25 dark:from-blue-900/20 dark:via-slate-700/15 dark:to-gray-900/20 rounded-sm border border-slate-300/30 dark:border-slate-400/20"
                         animate={{
                             boxShadow: [
                                 "0 0 0 rgba(59, 130, 246, 0.1)",
@@ -51,13 +52,13 @@ function SolarPanel({ x, y, size, rotation, delay }: SolarPanelProps) {
                             {Array.from({ length: 3 }).map((_, lineIndex) => (
                                 <div
                                     key={lineIndex}
-                                    className="h-px bg-gradient-to-r from-transparent via-slate-400/30 to-transparent"
+                                    className="h-px bg-gradient-to-r from-transparent via-slate-400/40 to-transparent dark:via-slate-400/30"
                                 />
                             ))}
                         </div>
                         
                         {/* Vertical center line */}
-                        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-slate-400/30 to-transparent" />
+                        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-slate-400/40 to-transparent dark:via-slate-400/30" />
                     </motion.div>
                 ))}
             </div>
@@ -72,6 +73,7 @@ interface ConnectionCableProps {
 }
 
 function ConnectionCable({ from, to, delay }: ConnectionCableProps) {
+    const { isDarkMode } = useTheme()
     // Create a path with multiple control points for realistic cable routing
     const deltaX = to.x - from.x
     const deltaY = to.y - from.y
@@ -94,7 +96,12 @@ function ConnectionCable({ from, to, delay }: ConnectionCableProps) {
             transition={{ duration: 0.5, delay }}
         >
             <defs>
-                <linearGradient id={`cable-gradient-${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient id={`cable-gradient-light-${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="rgb(226, 232, 240)" stopOpacity="0.08" />
+                    <stop offset="50%" stopColor="rgb(203, 213, 225)" stopOpacity="0.12" />
+                    <stop offset="100%" stopColor="rgb(226, 232, 240)" stopOpacity="0.08" />
+                </linearGradient>
+                <linearGradient id={`cable-gradient-dark-${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="rgb(51, 65, 85)" stopOpacity="0.25" />
                     <stop offset="50%" stopColor="rgb(30, 41, 59)" stopOpacity="0.35" />
                     <stop offset="100%" stopColor="rgb(51, 65, 85)" stopOpacity="0.25" />
@@ -103,7 +110,7 @@ function ConnectionCable({ from, to, delay }: ConnectionCableProps) {
             
             <motion.path
                 d={pathData}
-                stroke={`url(#cable-gradient-${delay})`}
+                stroke={`url(#cable-gradient-${isDarkMode ? 'dark' : 'light'}-${delay})`}
                 strokeWidth="0.15"
                 fill="none"
                 strokeLinecap="round"
@@ -115,12 +122,12 @@ function ConnectionCable({ from, to, delay }: ConnectionCableProps) {
             
             <motion.path
                 d={pathData}
-                stroke="rgb(30, 41, 59)"
+                stroke={isDarkMode ? "rgb(30, 41, 59)" : "rgb(226, 232, 240)"}
                 strokeWidth="0.06"
                 fill="none"
                 strokeLinecap="round"
                 strokeDasharray="1 3"
-                strokeOpacity="0.4"
+                strokeOpacity={isDarkMode ? "0.4" : "0.12"}
                 initial={{ pathLength: 0, strokeDashoffset: 0 }}
                 animate={{ 
                     pathLength: 1,
