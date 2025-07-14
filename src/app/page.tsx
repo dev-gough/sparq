@@ -279,7 +279,7 @@ export default function Home() {
                     transition={{ duration: 0.8, delay: 1 }}
                     className="text-center"
                 >
-                    <h2 className="xs:text-3xl sm:text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8">
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8">
                         Ready to Transform Your Solar Future?
                     </h2>
                     <p className="text-xl text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-3xl mx-auto">

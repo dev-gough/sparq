@@ -4,6 +4,7 @@ import { useRef } from "react"
 import { motion, useInView } from "motion/react"
 import Image from "next/image"
 import { Quote, Award, Target, Lightbulb } from "lucide-react"
+import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface Leader {
     name: string
@@ -236,6 +237,7 @@ export default function AboutUsPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
+            <SolarBackgroundElements/>
             {/* Hero Section */}
             <div className="relative container mx-auto px-6 pt-10 sm:pb-8">
                 <motion.div

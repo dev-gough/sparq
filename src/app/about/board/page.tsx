@@ -97,7 +97,7 @@ function BoardMemberCard({ member, index, onClick }: BoardMemberCardProps) {
                                 alt={member.name}
                                 width={512}
                                 height={512}
-                                className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                                className="w-full h-80 object-contain sm:object-cover group-hover:scale-105 transition-transform duration-500"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
@@ -158,7 +158,7 @@ export default function BoardPage() {
                 </motion.div>
 
                 {/* Board grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto [&>*]:w-full [&>*]:sm:w-[calc(50%-1rem)] [&>*]:lg:w-[calc(33.333%-1.33rem)] [&>*]:xl:w-[calc(25%-1.5rem)]">
                     {boardMembers.map((member, index) => (
                         <BoardMemberCard
                             key={index}

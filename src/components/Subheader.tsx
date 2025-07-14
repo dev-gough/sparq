@@ -155,7 +155,7 @@ export default function Subheader({ items }: SubheaderProps) {
         >
             <div className={`bg-white/95 dark:bg-gray-800/90 backdrop-blur-md border border-brand-maroon/10 dark:border-gray-700/50 shadow-lg rounded-b-xl ${getMaxWidth()} mx-3 sm:mx-6 w-full`}>
                 <div className="px-3 sm:px-6 py-4">
-                    <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-hide">
+                    <div className="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto scrollbar-hide">
                         {items.map((item, index) => (
                             <motion.div
                                 key={item.href}

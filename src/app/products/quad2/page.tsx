@@ -168,7 +168,7 @@ const accordionSections: AccordionSection[] = [
 		)
 	},
 	{
-		title: "Watch the Demo",
+		title: "Installation Video",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (
 			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">

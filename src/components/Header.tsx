@@ -29,19 +29,19 @@ export default function Header({ navItems }: HeaderProps) {
             animate={{ y: 0, opacity: 1 }}
             className="sticky top-0 z-[999] bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-brand-maroon/30 dark:border-gray-700/50 shadow-sm h-[75px]"
         >
-            <div className="container mx-auto flex justify-center items-center px-6 h-full relative">
+            <div className="container flex justify-center items-center h-full relative px-0">
                 <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-6"
+                    className="absolute lg:max-[1075px]:left-0 left-6"
                 >
                     <Link href="/" onClick={() => setIsMenuOpen(false)}>
-                        <Image src="/logo.png" alt="Sparq Systems" width={85} height={55} className="h-auto" />
+                        <Image src="/logo.png" alt="Sparq Systems" width={75} height={48} className="h-auto" />
                     </Link>
                 </motion.div>
 
                 {/* Desktop Navigation - Centered */}
-                <nav className="hidden lg:flex items-center space-x-8">
+                <nav className="hidden lg:flex items-center space-x-0 xl:space-x-3">
                     {navItems.map((item, index) => {
                         const isActive = item.dropdown
                             ? item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
@@ -57,7 +57,7 @@ export default function Header({ navItems }: HeaderProps) {
                             >
                                 <Link
                                     href={item.href}
-                                    className={`relative px-4 py-2 text-lg font-medium transition-all duration-300 rounded-lg ${isActive
+                                    className={`relative px-3 py-2 text-base xl:text-lg font-medium transition-all duration-300 rounded-lg ${isActive
                                             ? 'text-brand-maroon dark:text-brand-yellow bg-brand-maroon/5 dark:bg-brand-yellow/10'
                                             : 'text-brand-graytext dark:text-dark-text-primary hover:text-brand-maroon dark:hover:text-brand-yellow hover:bg-brand-maroon/5 dark:hover:bg-brand-yellow/10'
                                         }`}
@@ -78,20 +78,24 @@ export default function Header({ navItems }: HeaderProps) {
                     })}
                 </nav>
 
-                {/* Controls - Right Side */}
-                <div className="hidden lg:flex items-center gap-3 absolute right-0">
+                {/* Desktop Controls - Right Side */}
+                <div className="hidden lg:flex items-center gap-2 xl:gap-3 absolute right-0">
                     <DarkModeToggle />
                     <AnimationToggle />
                 </div>
 
-                {/* Mobile Menu Button */}
-                <motion.button
-                    whileTap={{ scale: 0.95 }}
-                    className="lg:hidden p-2 rounded-lg bg-brand-maroon/5 dark:bg-brand-yellow/10 text-brand-maroon dark:text-brand-yellow hover:bg-brand-maroon/10 dark:hover:bg-brand-yellow/20 transition-colors absolute right-6"
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                >
-                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </motion.button>
+                {/* Mobile Controls - Right Side */}
+                <div className="lg:hidden flex items-center gap-3 absolute right-6">
+                    <DarkModeToggle />
+                    <AnimationToggle />
+                    <motion.button
+                        whileTap={{ scale: 0.95 }}
+                        className="p-2 rounded-lg bg-brand-maroon/5 dark:bg-brand-yellow/10 text-brand-maroon dark:text-brand-yellow hover:bg-brand-maroon/10 dark:hover:bg-brand-yellow/20 transition-colors"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
+                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </motion.button>
+                </div>
             </div>
 
             {/* Mobile Navigation */}

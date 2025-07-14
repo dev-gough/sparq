@@ -99,7 +99,7 @@ export default function VideosPage() {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
-                        Discover our comprehensive video library featuring technical presentations, market insights,
+                        Watch our collection of technical presentations, market insights,
                         and educational content for investors, installers, and homeowners.
                     </motion.p>
                 </motion.div>

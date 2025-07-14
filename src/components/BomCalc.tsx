@@ -319,7 +319,7 @@ export default function BoMCalc() {
 							</div>
 						</div>
 					) : (
-						<p className="text-brand-graytext dark:text-dark-text-secondary text-sm">
+						<p className="text-brand-graytext dark:text-dark-text-secondary text-sm pb-2">
 							Please enter valid system parameters.
 						</p>
 					)}

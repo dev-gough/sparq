@@ -440,7 +440,7 @@ export default function InstallersPage() {
                         </span>
                     </h2>
                     <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto">
-                        Calculate your Bill of Materials and system requirements with our comprehensive planning tool.
+                        Calculate your Bill of Materials and system requirements with our planning tool.
                     </p>
                 </motion.div>
                 <BoMCalc />

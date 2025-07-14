@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
 import { Zap, Package, Trophy, Target, Eye, Award } from "lucide-react"
+import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface TimelineEvent {
     year: string
@@ -398,6 +399,7 @@ export default function AboutPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
+            <SolarBackgroundElements/>
             {/* Hero Section */}
             <div className="relative container mx-auto px-6 pt-10 pb-8">
                 <motion.div

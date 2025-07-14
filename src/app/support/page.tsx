@@ -79,7 +79,7 @@ export default function SupportTicketPage() {
 											</svg>
 										</div>
 										<div>
-											<h2 className="xs:text-xl text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow">Submit a Support Ticket</h2>
+											<h2 className="text-xl sm:text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow">Submit a Support Ticket</h2>
 											<p className="text-brand-graytext dark:text-dark-text-secondary">Choose your issue category for specialized support</p>
 										</div>
 									</div>
@@ -156,7 +156,7 @@ export default function SupportTicketPage() {
 												id="message"
 												rows={4}
 												placeholder="Describe your issue in detail..."
-												className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 p-3 text-brand-darkmaroon dark:text-dark-text-primary bg-white dark:bg-gray-900/90 shadow-sm focus:border-brand-maroon dark:focus:border-brand-yellow focus:ring-2 focus:ring-brand-maroon/20 dark:focus:ring-brand-yellow/20 transition-all duration-200 resize-none"
+												className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 p-3 text-brand-darkmaroon dark:text-dark-text-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 bg-white dark:bg-gray-900/90 shadow-sm focus:border-brand-maroon dark:focus:border-brand-yellow focus:ring-2 focus:ring-brand-maroon/20 dark:focus:ring-brand-yellow/20 transition-all duration-200 resize-none"
 											/>
 										</div>
 

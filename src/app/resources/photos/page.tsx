@@ -77,8 +77,8 @@ export default function PhotosPage() {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
-                        Explore our portfolio of successful solar installations featuring Sparq microinverter technology 
-                        across various sites and applications.
+                        View photos from our St. Lawrence College installation featuring Sparq microinverter technology.
+                        More installations coming soon!
                     </motion.p>
                 </motion.div>
             </section>
