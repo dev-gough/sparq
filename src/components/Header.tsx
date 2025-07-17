@@ -29,72 +29,82 @@ export default function Header({ navItems }: HeaderProps) {
             animate={{ y: 0, opacity: 1 }}
             className="sticky top-0 z-[999] bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-brand-maroon/30 dark:border-gray-700/50 shadow-sm h-[75px]"
         >
-            <div className="container flex justify-center items-center h-full relative px-0">
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute lg:max-[1075px]:left-0 left-6"
-                >
-                    <Link href="/" onClick={() => setIsMenuOpen(false)}>
-                        <Image src="/logo.png" alt="Sparq Systems" width={75} height={48} className="h-auto" />
-                    </Link>
-                </motion.div>
+            <div className="container mx-auto px-2 sm:px-4 lg:px-6 h-full">
+                {/* 3-Column Grid Layout */}
+                <div className="grid grid-cols-3 items-center h-full">
+                    {/* Left Column - Logo */}
+                    <div className="flex justify-start">
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            <Link href="/" onClick={() => setIsMenuOpen(false)}>
+                                <Image src="/logo.png" alt="Sparq Systems" width={75} height={48} className="h-auto" />
+                            </Link>
+                        </motion.div>
+                    </div>
 
-                {/* Desktop Navigation - Centered */}
-                <nav className="hidden lg:flex items-center space-x-0 xl:space-x-3">
-                    {navItems.map((item, index) => {
-                        const isActive = item.dropdown
-                            ? item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
-                            : pathname === item.href
+                    {/* Center Column - Desktop Navigation */}
+                    <div className="flex justify-center">
+                        <nav className="hidden lg:flex items-center space-x-0 xl:space-x-3">
+                            {navItems.map((item, index) => {
+                                const isActive = item.dropdown
+                                    ? item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
+                                    : pathname === item.href
 
-                        return item.dropdown ? (
-                            <DropdownMenu key={index} navItem={item} isActive={isActive} />
-                        ) : (
-                            <motion.div
-                                key={index}
-                                whileHover={{ y: -2 }}
-                                transition={{ duration: 0.2 }}
+                                return item.dropdown ? (
+                                    <DropdownMenu key={index} navItem={item} isActive={isActive} />
+                                ) : (
+                                    <motion.div
+                                        key={index}
+                                        whileHover={{ y: -2 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <Link
+                                            href={item.href}
+                                            className={`relative px-3 py-2 text-base xl:text-lg font-medium transition-all duration-300 rounded-lg ${isActive
+                                                    ? 'text-brand-maroon dark:text-brand-yellow bg-brand-maroon/5 dark:bg-brand-yellow/10'
+                                                    : 'text-brand-graytext dark:text-dark-text-primary hover:text-brand-maroon dark:hover:text-brand-yellow hover:bg-brand-maroon/5 dark:hover:bg-brand-yellow/10'
+                                                }`}
+                                        >
+                                            {item.label}
+                                            {isActive && (
+                                                <motion.div
+                                                    layoutId="activeTab"
+                                                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-maroon dark:bg-brand-yellow rounded-full"
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    transition={{ duration: 0.3 }}
+                                                />
+                                            )}
+                                        </Link>
+                                    </motion.div>
+                                )
+                            })}
+                        </nav>
+                    </div>
+
+                    {/* Right Column - Controls */}
+                    <div className="flex justify-end">
+                        {/* Desktop Controls */}
+                        <div className="hidden lg:flex items-center gap-2 xl:gap-3">
+                            <DarkModeToggle />
+                            <AnimationToggle />
+                        </div>
+
+                        {/* Mobile Controls */}
+                        <div className="lg:hidden flex items-center gap-2 sm:gap-3">
+                            <DarkModeToggle />
+                            <AnimationToggle />
+                            <motion.button
+                                whileTap={{ scale: 0.95 }}
+                                className="p-2 rounded-lg bg-brand-maroon/5 dark:bg-brand-yellow/10 text-brand-maroon dark:text-brand-yellow hover:bg-brand-maroon/10 dark:hover:bg-brand-yellow/20 transition-colors"
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
                             >
-                                <Link
-                                    href={item.href}
-                                    className={`relative px-3 py-2 text-base xl:text-lg font-medium transition-all duration-300 rounded-lg ${isActive
-                                            ? 'text-brand-maroon dark:text-brand-yellow bg-brand-maroon/5 dark:bg-brand-yellow/10'
-                                            : 'text-brand-graytext dark:text-dark-text-primary hover:text-brand-maroon dark:hover:text-brand-yellow hover:bg-brand-maroon/5 dark:hover:bg-brand-yellow/10'
-                                        }`}
-                                >
-                                    {item.label}
-                                    {isActive && (
-                                        <motion.div
-                                            layoutId="activeTab"
-                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-maroon dark:bg-brand-yellow rounded-full"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            transition={{ duration: 0.3 }}
-                                        />
-                                    )}
-                                </Link>
-                            </motion.div>
-                        )
-                    })}
-                </nav>
-
-                {/* Desktop Controls - Right Side */}
-                <div className="hidden lg:flex items-center gap-2 xl:gap-3 absolute right-0">
-                    <DarkModeToggle />
-                    <AnimationToggle />
-                </div>
-
-                {/* Mobile Controls - Right Side */}
-                <div className="lg:hidden flex items-center gap-3 absolute right-6">
-                    <DarkModeToggle />
-                    <AnimationToggle />
-                    <motion.button
-                        whileTap={{ scale: 0.95 }}
-                        className="p-2 rounded-lg bg-brand-maroon/5 dark:bg-brand-yellow/10 text-brand-maroon dark:text-brand-yellow hover:bg-brand-maroon/10 dark:hover:bg-brand-yellow/20 transition-colors"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    >
-                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                    </motion.button>
+                                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                            </motion.button>
+                        </div>
+                    </div>
                 </div>
             </div>
 

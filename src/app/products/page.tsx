@@ -41,8 +41,8 @@ const productCards: ProductCard[] = [
     },
     {
         id: "legacy",
-        title: "Legacy Products",
-        description: "Proven solutions with continued support and service",
+        title: "Q1200 (Legacy)",
+        description: "Documentation & data sheet for the discontinued Q1200",
         href: "/products/legacy",
         image: "/q1200-discontinued.png",
         category: "Microinverters",
@@ -272,7 +272,7 @@ export default function ProductsPage() {
                                 <motion.button
                                     whileHover={{ scale: 1.02, y: -2 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                                    className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                                 >
                                     For Homeowners
                                 </motion.button>
@@ -281,7 +281,7 @@ export default function ProductsPage() {
                                 <motion.button
                                     whileHover={{ scale: 1.02, y: -2 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                                    className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                                 >
                                     For Installers
                                 </motion.button>

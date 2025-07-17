@@ -12,10 +12,17 @@ import YouTube from 'react-youtube'
 function expanded() {
 	return (
 		<>
-			<p className="mt-8">SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
-			</p>
 			<p className="mt-4">Our microinverters have been designed for high reliability, using patented technologies that eliminate the use of short-life electrolytic capacitors. This feature gives our microinverters high reliability and a design life of 25 years, matching the design life of PV modules.</p>
 			<p className="mt-4">The Q2000 microinverter is the industry&apos;s first highest power rating microinverter that produces electrical energy from four PV panels of 550W+ each, without any power clipping under all operating conditions. The Q2000 is designed to connect 4 PV panels, up to 550W, to the AC power grid.</p>
+		</>
+	)
+}
+
+function body() {
+	return (
+		<>
+			<p className="mt-8">SPARQ&apos;s revolutionary Quad microinverters are game changers for the solar power industry. Unlike traditional microinverters that have one photovoltaic (PV) module inputting into one microinverter, our Quad microinverters have four individual DC input channels to enable independent peak power tracking for up to four PV modules. This allows significant reduction in installation time and cable costs. Based on a Per-Watt rating, our Quad microinverters have <strong>the lowest microinverter cost, the highest power output, the highest power density, and the lowest weight in the industry.</strong>
+			</p>
 		</>
 	)
 }
@@ -83,7 +90,7 @@ interface AccordionSection {
 }
 
 const accordionSections: AccordionSection[] = [
-	{
+	/* {
 		title: "Features",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (
@@ -166,7 +173,7 @@ const accordionSections: AccordionSection[] = [
 				</div>
 			</div>
 		)
-	},
+	}, */
 	{
 		title: "Installation Video",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
@@ -188,51 +195,6 @@ const accordionSections: AccordionSection[] = [
 						}}
 						className="w-full h-full"
 					/>
-				</div>
-			</div>
-		)
-	},
-	{
-		title: "Certifications",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="space-y-6">
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Reports</h3>
-					<div className="grid gap-3">
-						{[
-							{ name: "EN_61683", href: "/Q2000/reports/EN_61683.pdf" },
-							{ name: "IEC_60068-2-xx", href: "/Q2000/reports/IEC_60068-2-xx.pdf" },
-							{ name: "IEC_61727", href: "/Q2000/reports/IEC_61727.pdf" },
-							{ name: "IEC_62109_1_2", href: "/Q2000/reports/IEC_62109_1_2.pdf" },
-							{ name: "UL1741-Report", href: "/Q2000/reports/UL1741-Report.pdf" }
-						].map((report) => (
-							<div key={report.name} className="flex items-center gap-3">
-								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-								<Link target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href={report.href}>
-									{report.name}
-								</Link>
-							</div>
-						))}
-					</div>
-				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Certifications</h3>
-					<div className="grid gap-3">
-						{[
-							{ name: "CU72239343.01-.02", href: "/Q2000/certs/CU72239343.01-.02.pdf" },
-							{ name: "CU72239343.03", href: "/Q2000/certs/CU72239343.03.pdf" },
-							{ name: "CU72239343.04", href: "/Q2000/certs/CU72239343.04.pdf" },
-							{ name: "SPARQ_Cert_CS000052", href: "/Q2000/certs/SPARQ_Cert_CS000052.pdf" }
-						].map((cert) => (
-							<div key={cert.name} className="flex items-center gap-3">
-								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-								<Link target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href={cert.href}>
-									{cert.name}
-								</Link>
-							</div>
-						))}
-					</div>
 				</div>
 			</div>
 		)
@@ -296,6 +258,51 @@ const accordionSections: AccordionSection[] = [
 					<Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors">
 						Comparison with Enphase IQ8H (PDF)
 					</Link>
+				</div>
+			</div>
+		)
+	},
+	{
+		title: "Certifications",
+		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
+		content: (
+			<div className="space-y-6">
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Reports</h3>
+					<div className="grid gap-3">
+						{[
+							{ name: "EN_61683", href: "/Q2000/reports/EN_61683.pdf" },
+							{ name: "IEC_60068-2-xx", href: "/Q2000/reports/IEC_60068-2-xx.pdf" },
+							{ name: "IEC_61727", href: "/Q2000/reports/IEC_61727.pdf" },
+							{ name: "IEC_62109_1_2", href: "/Q2000/reports/IEC_62109_1_2.pdf" },
+							{ name: "UL1741-Report", href: "/Q2000/reports/UL1741-Report.pdf" }
+						].map((report) => (
+							<div key={report.name} className="flex items-center gap-3">
+								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+								<Link target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href={report.href}>
+									{report.name}
+								</Link>
+							</div>
+						))}
+					</div>
+				</div>
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Certifications</h3>
+					<div className="grid gap-3">
+						{[
+							{ name: "CU72239343.01-.02", href: "/Q2000/certs/CU72239343.01-.02.pdf" },
+							{ name: "CU72239343.03", href: "/Q2000/certs/CU72239343.03.pdf" },
+							{ name: "CU72239343.04", href: "/Q2000/certs/CU72239343.04.pdf" },
+							{ name: "SPARQ_Cert_CS000052", href: "/Q2000/certs/SPARQ_Cert_CS000052.pdf" }
+						].map((cert) => (
+							<div key={cert.name} className="flex items-center gap-3">
+								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+								<Link target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href={cert.href}>
+									{cert.name}
+								</Link>
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		)
@@ -435,6 +442,7 @@ export default function Quad2Page() {
 				parent="Quad2"
 				href="quad2"
 				animatedList={listContent}
+				bodyContent={body()}
 				expandedContent={expanded()}
 				accordianContent={Accordion()}
 				imageContent={image()}

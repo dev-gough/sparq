@@ -25,7 +25,7 @@ const boardMembers: BoardMemberData[] = [
             "Dr. Jain is the Founder and the CEO of SPARQ. He has considerable industrial experience in power electronics, working and consulting with Canadian Astronautics, Nortel Networks, Astec, Intel, Freescale, and GE. He founded CHiL Semiconductor, a digital power control chip company, which was acquired by International Rectifier (later merged with Infineon). Dr. Jain is a Fellow of the Royal Society of Canada, the Institute of Electrical and Electronics Engineers (IEEE), the Engineering Institute of Canada, and the Canadian Academy of Engineering. He is the recipient of the 2021 IEEE Medal in Power Engineering, the 2017 IEEE Canada Electric Power Medal, the 2011 IEEE William E. Newell Power Electronics Award, and the 2004 Engineering Medal from Ontario Professional Engineers. He holds over 100 patents. Dr. Jain obtained his PhD from the University of Toronto."
     },
     {
-        imgSrc: '/Team/nishithgoel.jpg',
+        imgSrc: '/Team/nishith.png',
         name: 'Dr. Nishith Goel',
         location: 'Ottawa, Ontario',
         title: 'Director as of: December 31, 2021',
@@ -107,9 +107,6 @@ function BoardMemberCard({ member, index, onClick }: BoardMemberCardProps) {
                             </h2>
                             <p className="text-brand-graytext dark:text-dark-text-secondary font-medium mb-1">
                                 {member.location}
-                            </p>
-                            <p className="text-brand-graytext dark:text-dark-text-secondary text-sm">
-                                {member.title}
                             </p>
                         </div>
                     </CardContent>

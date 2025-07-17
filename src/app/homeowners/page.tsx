@@ -8,6 +8,7 @@ import { useTrackEvent } from "@/hooks/useTrackEvent"
 import Image from "next/image"
 import FAQs from './home_faq.json'
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
+import { FaPlay } from "react-icons/fa"
 
 interface FAQData {
     id: number
@@ -190,22 +191,23 @@ export default function HomeownersPage() {
                         transition={{ duration: 0.8, delay: 0.6 }}
                         className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto"
                     >
-                        <Link href="#design" onClick={() => handleCtaClick('design_system')}>
+                        <Link href="/homeowner_ppt.pdf" target="_blank" onClick={() => handleCtaClick('presentation')}>
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
                             >
-                                Design My System
+                                <FaPlay className="mr-2" />
+                                View Homeowner Presentation
                             </motion.button>
                         </Link>
-                        <Link href="/products" onClick={() => handleCtaClick('explore_products')}>
+                        <Link href="#design"  onClick={() => handleCtaClick('design_system')}>
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
                                 className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer"
                             >
-                                Explore Products
+                                Design My System
                             </motion.button>
                         </Link>
                     </motion.div>
@@ -478,7 +480,7 @@ export default function HomeownersPage() {
             </section>
 
             {/* Design System Section */}
-            <section id="design" className="relative container mx-auto px-6 py-10">
+            <section id="design" className="relative container mx-auto px-6 py-10 scroll-mt-[74px]">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}

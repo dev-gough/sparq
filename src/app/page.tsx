@@ -199,11 +199,11 @@ export default function Home() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
             <SolarBackgroundElements/>
 
             {/* Hero Section */}
-            <section className="relative container mx-auto px-6 pt-10 pb-16">
+            <section className="relative container mx-auto pt-10 pb-16">
                 <motion.div
                     ref={titleRef}
                     initial={{ opacity: 0, y: 50 }}
@@ -260,7 +260,7 @@ export default function Home() {
             </section>
 
             {/* Featured Products */}
-            <section className="relative container mx-auto px-6 py-10">
+            <section className="relative container mx-auto py-10">
                 {featuredProducts.map((product, index) => (
                     <FloatingProductHero
                         key={product.id}
@@ -272,7 +272,7 @@ export default function Home() {
             </section>
 
             {/* Call to Action */}
-            <section className="relative container mx-auto px-6 sm:py-32">
+            <section className="relative container mx-auto sm:py-32">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}

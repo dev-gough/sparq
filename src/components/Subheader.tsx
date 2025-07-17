@@ -122,7 +122,7 @@ interface SubheaderProps {
 export default function Subheader({ items }: SubheaderProps) {
     const scrollDirection = useScrollDirection()
     const [isVisible, setIsVisible] = useState(true)
-
+    const pathname = usePathname()
     useEffect(() => {
         if (scrollDirection === 'down') {
             setIsVisible(false)
@@ -153,9 +153,9 @@ export default function Subheader({ items }: SubheaderProps) {
             }}
             className="sticky top-[75px] z-50 flex justify-center bg-white/95 dark:bg-gray-700/90"
         >
-            <div className={`bg-white/95 dark:bg-gray-800/90 backdrop-blur-md border border-brand-maroon/10 dark:border-gray-700/50 shadow-lg rounded-b-xl ${getMaxWidth()} mx-3 sm:mx-6 w-full`}>
-                <div className="px-3 sm:px-6 py-4">
-                    <div className="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto scrollbar-hide">
+            <div className={`bg-white/95 dark:bg-gray-800/90 backdrop-blur-md border border-brand-maroon/10 dark:border-gray-700/50 shadow-lg rounded-b-xl ${getMaxWidth()} mx-2 sm:mx-4 lg:mx-6 w-full`}>
+                <div className="px-2 sm:px-4 lg:px-6 py-4">
+                    <div className={`flex items-center justify-center ${pathname === '/investors' ? 'justify-start lg:justify-center' : ''} justify-center gap-2 overflow-x-auto scrollbar-hide`}>
                         {items.map((item, index) => (
                             <motion.div
                                 key={item.href}

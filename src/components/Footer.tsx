@@ -12,7 +12,7 @@ export default function Footer() {
         { href: "/homeowners", label: "Homeowners" },
         { href: "/contact", label: "Contact" },
         { href: "/installers", label: "Installers" },
-        { href: "/legal", label: "Legal" },
+        { href: "/resources/legal", label: "Legal" },
         { href: "/investors", label: "Investors" },
     ];
 

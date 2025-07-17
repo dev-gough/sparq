@@ -9,6 +9,7 @@ import InstallerFAQData from "./installer_faq.json"
 
 import BoMCalc from "@/components/BomCalc"
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
+import { FaPlay } from "react-icons/fa"
 
 interface FAQData {
     id: number
@@ -184,8 +185,9 @@ export default function InstallersPage() {
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
                             >
+                                <FaPlay className="mr-2" />
                                 View Installer Presentation
                             </motion.button>
                         </Link>
