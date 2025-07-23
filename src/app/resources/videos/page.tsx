@@ -26,9 +26,8 @@ const videoCategories: VideoCategory[] = [
         ),
         videoIds: [
             "gaFi_dPnYNk",
-            "I3an6Yqga1Y",
-            "8OJ02vvC-Os",
             "am7VzIpn5TI",
+            "0sdcGgL9228",
         ]
     },
     {

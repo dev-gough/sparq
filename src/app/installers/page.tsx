@@ -369,7 +369,7 @@ export default function InstallersPage() {
                                     <div className="absolute bottom-6 left-6 right-6">
                                         <h3 className="text-3xl font-bold text-white mb-2">Sparq Product Family</h3>
                                         <p className="text-white/90">
-                                            Discover our robust microinverters engineered for commercial solar arrays, delivering maximum ROI and minimal maintenance.
+                                            Discover our robust microinverters engineered for rooftop and Commercial & Industrial (C&I) solar arrays, delivering maximum ROI and minimal maintenance.
                                         </p>
                                     </div>
                                 </div>

@@ -101,11 +101,11 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                     transition={{ duration: 0.8, delay: index * 0.3 + 0.2 }}
                 >
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                        <span className="bg-gradient-to-r from-brand-darkmaroon  to-brand-maroon bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent dark:from-brand-yellow dark:to-brand-logo">
                             {product.title}
                         </span>
                     </h2>
-                    <p className="text-xl md:text-2xl font-semibold text-brand-darkmaroon dark:text-brand-yellow mb-6">
+                    <p className="text-xl md:text-2xl font-semibold text-brand-darkmaroon dark:text-brand-maroon mb-6">
                         {product.tagline}
                     </p>
                     <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-8 leading-relaxed">
@@ -227,7 +227,7 @@ export default function Home() {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
-                        Discover our revolutionary microinverter technology that&apos;s transforming solar energy
+                    Discover our cutting-edge microinverter technology that&apos;s transforming solar energy
                         with unmatched efficiency, reliability, and innovation.
                     </motion.p>
 
@@ -257,6 +257,159 @@ export default function Home() {
                         </Link>
                     </motion.div>
                 </motion.div>
+            </section>
+
+            {/* Technology Innovation Section */}
+            <section className="relative bg-white dark:bg-gray-900/80 py-10">
+                <div className="container mx-auto px-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                            <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent dark:from-brand-yellow dark:to-brand-logo">
+                                Revolutionary Technology
+                            </span>
+                        </h2>
+                        <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed">
+                            Three breakthrough innovations that set Sparq Systems apart from every other solar microinverter company in the world.
+                        </p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.1 }}
+                            viewport={{ once: true }}
+                            className="group"
+                        >
+                            <div className="h-full bg-gradient-to-br from-slate-100 to-neutral-200 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105 flex flex-col">
+                                <div className="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-2xl mb-6 mx-auto group-hover:rotate-6 transition-transform duration-500">
+                                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4 text-center">
+                                    Quad Architecture
+                                </h3>
+                                <p className="text-brand-graytext dark:text-dark-text-secondary text-center mb-6 leading-relaxed">
+                                    One microinverter powers four solar panels with individual MPPT optimization for each panel, reducing installation complexity by 75% while maximizing energy harvest.
+                                </p>
+                                <div className="text-center mt-auto">
+                                    <div className="inline-flex items-center gap-2 text-sm font-semibold text-brand-maroon dark:text-brand-logo">
+                                        <span>4x Fewer Components</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            viewport={{ once: true }}
+                            className="group"
+                        >
+                            <div className="h-full bg-gradient-to-br from-slate-100 to-neutral-200 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105 flex flex-col">
+                                <div className="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-brand-logo to-brand-yellow rounded-2xl mb-6 mx-auto group-hover:rotate-6 transition-transform duration-500">
+                                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4 text-center">
+                                    Electrolytic-Free Design
+                                </h3>
+                                <p className="text-brand-graytext dark:text-dark-text-secondary text-center mb-6 leading-relaxed">
+                                    Revolutionary power electronics that eliminate failure-prone electrolytic capacitors and other short-lifetime components for unmatched 25-year reliability.
+                                </p>
+                                <div className="text-center mt-auto">
+                                    <div className="inline-flex items-center gap-2 text-sm font-semibold text-brand-maroon dark:text-brand-logo">
+                                        <span>25-Year Design Life</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            viewport={{ once: true }}
+                            className="group"
+                        >
+                            <div className="h-full bg-gradient-to-br from-slate-100 to-neutral-200 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105 flex flex-col">
+                                <div className="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-brand-gray to-brand-graytext rounded-2xl mb-6 mx-auto group-hover:rotate-6 transition-transform duration-500">
+                                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4 text-center">
+                                    Dual-Mode Operation
+                                </h3>
+                                <p className="text-brand-graytext dark:text-dark-text-secondary text-center mb-6 leading-relaxed">
+                                    Seamlessly switch between grid-tied operation for maximum efficiency and off-grid capability during outages, providing true energy independence without batteries.
+                                </p>
+                                <div className="text-center mt-auto">
+                                    <div className="inline-flex items-center gap-2 text-sm font-semibold text-brand-maroon dark:text-brand-logo">
+                                        <span>Grid Independence Ready</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        viewport={{ once: true }}
+                        className="text-center bg-gradient-to-br from-brand-maroon/5 to-brand-logo/5 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl p-8"
+                    >
+                        <h3 className="text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
+                            The Result: Industry-Leading Performance
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div className="text-center">
+                                <div className="text-4xl font-bold text-brand-maroon dark:text-brand-logo mb-2">75%</div>
+                                <div className="text-brand-graytext dark:text-dark-text-secondary font-medium">Fewer Installation Components</div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-4xl font-bold text-brand-maroon dark:text-brand-logo mb-2">Lowest</div>
+                                <div className="text-brand-graytext dark:text-dark-text-secondary font-medium">Cost Per Watt in Industry</div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-4xl font-bold text-brand-maroon dark:text-brand-logo mb-2">Zero</div>
+                                <div className="text-brand-graytext dark:text-dark-text-secondary font-medium">Maintenance Required</div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Section Divider */}
+            <section className="relative py-16">
+                <div className="container mx-auto px-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="text-center"
+                    >
+                        <h2 className="text-3xl md:text-5xl font-bold mb-6">
+                            <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent dark:from-brand-yellow dark:to-brand-logo">
+                                Our Product Line
+                            </span>
+                        </h2>
+                        <p className="text-lg md:text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">
+                            Single-phase and three-phase microinverter solutions for residential and commercial solar installations.
+                        </p>
+                    </motion.div>
+                </div>
             </section>
 
             {/* Featured Products */}

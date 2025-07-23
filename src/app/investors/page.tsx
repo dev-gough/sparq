@@ -66,8 +66,8 @@ const highlights = [
         title: "Strategic Test Sites for R&D",
         subtitle: "with Leading Institutions and C&I Sites",
         content: [
-            { name: "Queen's University", url: "https://www.investkingston.ca/rd/#1643990910571-444406ce-b63e", description: "Research and development facility" },
-            { name: "St. Lawrence College", url: "https://www.energy-manager.ca/st-lawrence-college-installs-largest-solar-system-for-post-secondary-facility-856/", description: "Largest solar system for post-secondary facility" },
+            { name: "Queen's University", url: "https://www.queensu.ca/epower/", description: "Research and development facility" },
+            { name: "St. Lawrence College", url: "https://www.stlawrencecollege.ca/", description: "20kW installation" },
             { name: "Modern Niagara", url: "https://modernniagara.com/", description: "Sparq Headquarter Office installation" }
         ],
         icon: <FaRocket className="w-8 h-8" />
@@ -108,8 +108,9 @@ const highlights = [
         title: "CEO Interview",
         subtitle: "Dr. Praveen Jain Discussion",
         content: [
-            { description: "In this interview, Justin sits down with Dr. Praveen Jain, CEO of Sparq Systems (TSXV:SPRQ, OTC:SPRQF), a company revolutionizing solar energy with its next-generation single-phase microinverters." },
-            { name: "Watch Here", url: "https://www.youtube.com/watch?v=8OJ02vvC-Os", description: "Video interview" }
+            { description: "In this interview, CEO Dr. Praveen Jain shares how Sparq is meeting the global demand for clean energy through cutting-edge technology." },
+            { name: "Watch Here", url: "https://www.youtube.com/watch?v=0sdcGgL9228", description: "Video interview" },
+            { name: "Read Blog", url: "https://dealgateway.com/sparq-systems-the-microinverter-powering-a-smarter-solar-future-interview-with-ceo-praveen-jain/" }
         ],
         icon: <FaPlay className="w-8 h-8" />
     }
@@ -138,7 +139,7 @@ export default function InvestorsPage() {
     }
 
     return (
-        <div className='min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative'>
+        <div className='min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative z-1'>
 
             {/* Hero Section */}
             <section className="relative container mx-auto px-6 pt-10 pb-16">

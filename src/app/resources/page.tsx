@@ -139,7 +139,7 @@ export default function LearningPage() {
                         className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
                         Explore our comprehensive collection of educational videos, technical documentation,
-                        and interactive tools designed to enhance your solar knowledge.
+                        and FAQs designed to enhance your solar knowledge.
                     </motion.p>
                 </motion.div>
             </section>

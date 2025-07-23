@@ -83,7 +83,7 @@ interface AccordionSection {
 }
 
 const accordionSections: AccordionSection[] = [
-	{
+	/* {
 		title: "Features",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (
@@ -154,28 +154,33 @@ const accordionSections: AccordionSection[] = [
 				</div>
 			</div>
 		)
-	},
+	}, */
 	{
-		title: "Installation Video",
+		title: "Documentation",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
+		content: (selectedModel: string) => (
 			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<div className="w-full aspect-video min-h-[400px]">
-					<YouTube
-						videoId="4Ngk_vP-dIQ"
-						opts={{
-							width: '100%',
-							height: '400',
-							playerVars: {
-								autoplay: 0,
-								controls: 1,
-								rel: 0,
-								showinfo: 0,
-								modestbranding: 1,
-							},
-						}}
-						className="w-full h-full"
-					/>
+				<div className="space-y-6">
+					<div>
+						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheet for {selectedModel}</h3>
+						<div className="flex items-center gap-3">
+							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+							{selectedModel === "Quad3-4301" && (
+								<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Quad3/quad3_datasheet.pdf" target="_blank">
+									Download Quad3-4301 Datasheet (PDF)
+								</Link>
+							)}
+						</div>
+					</div>
+					<div>
+						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manual for {selectedModel}</h3>
+						<div className="flex items-center gap-3">
+							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+							<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Quad3.pdf" target="_blank">
+								All Regions
+							</Link>
+						</div>
+					</div>
 				</div>
 			</div>
 		)
@@ -218,31 +223,26 @@ const accordionSections: AccordionSection[] = [
 		)
 	},
 	{
-		title: "Documentation",
+		title: "Installation Video",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (selectedModel: string) => (
+		content: (
 			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<div className="space-y-6">
-					<div>
-						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheet for {selectedModel}</h3>
-						<div className="flex items-center gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-							{selectedModel === "Quad3-4301" && (
-								<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Quad3/quad3_datasheet.pdf" target="_blank">
-									Download Quad3-4301 Datasheet (PDF)
-								</Link>
-							)}
-						</div>
-					</div>
-					<div>
-						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manual for {selectedModel}</h3>
-						<div className="flex items-center gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-							<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Quad3.pdf" target="_blank">
-								All Regions
-							</Link>
-						</div>
-					</div>
+				<div className="w-full aspect-video min-h-[400px]">
+					<YouTube
+						videoId="4Ngk_vP-dIQ"
+						opts={{
+							width: '100%',
+							height: '400',
+							playerVars: {
+								autoplay: 0,
+								controls: 1,
+								rel: 0,
+								showinfo: 0,
+								modestbranding: 1,
+							},
+						}}
+						className="w-full h-full"
+					/>
 				</div>
 			</div>
 		)
