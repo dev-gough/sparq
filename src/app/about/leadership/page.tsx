@@ -171,43 +171,51 @@ export default function LeadershipPage() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 bg-black/80 z-40 flex items-center justify-center p-4"
+                    className="fixed inset-0 bg-black/80 z-[60]"
                     onClick={() => setMember(null)}
                 >
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                        transition={{ duration: 0.3 }}
-                        className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[80vh] md:max-h-[85vh] overflow-y-auto border border-brand-maroon/20 dark:border-gray-600/50"
-                        onClick={(e) => e.stopPropagation()}
+                    <div
+                        className="absolute w-full flex items-center justify-center px-4"
+                        style={{
+                            top: '153px', // Header (75px) + Subheader (78px)
+                            height: 'calc(100dvh - 153px)', // Use dynamic viewport height for mobile browser compatibility
+                        }}
                     >
-                        <div className="relative p-4 md:p-8">
-                            <motion.button
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                className="absolute top-4 right-4 w-10 h-10 bg-brand-maroon/10 hover:bg-brand-maroon text-brand-maroon hover:text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
-                                onClick={() => setMember(null)}
-                            >
-                                ✕
-                            </motion.button>
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            transition={{ duration: 0.3 }}
+                            className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-full overflow-y-auto border border-brand-maroon/20 dark:border-gray-600/50"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="relative p-4 md:p-8">
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className="absolute top-4 right-4 w-10 h-10 bg-brand-maroon/10 hover:bg-brand-maroon text-brand-maroon hover:text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
+                                    onClick={() => setMember(null)}
+                                >
+                                    ✕
+                                </motion.button>
 
-                            <div className="border-b border-brand-maroon/20 dark:border-gray-600/50 pb-4 md:pb-6 mb-4 md:mb-6">
-                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-darkmaroon dark:text-dark-text-primary mb-2">
-                                    {selectedMember.name}
-                                </h2>
-                                <p className="text-lg md:text-xl lg:text-2xl text-brand-logo dark:text-brand-yellow font-medium">
-                                    {selectedMember.title}
-                                </p>
-                            </div>
+                                <div className="border-b border-brand-maroon/20 dark:border-gray-600/50 pb-4 md:pb-6 mb-4 md:mb-6">
+                                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-darkmaroon dark:text-dark-text-primary mb-2">
+                                        {selectedMember.name}
+                                    </h2>
+                                    <p className="text-lg md:text-xl lg:text-2xl text-brand-logo dark:text-brand-yellow font-medium">
+                                        {selectedMember.title}
+                                    </p>
+                                </div>
 
-                            <div className="prose prose-sm md:prose-lg max-w-none">
-                                <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed text-sm md:text-base lg:text-lg">
-                                    {selectedMember.blurb}
-                                </p>
+                                <div className="prose prose-sm md:prose-lg max-w-none">
+                                    <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed text-sm md:text-base lg:text-lg">
+                                        {selectedMember.blurb}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                    </div>
                 </motion.div>
             )}
         </div>

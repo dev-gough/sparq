@@ -438,7 +438,7 @@ export default function InstallersPage() {
                 >
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">
                         <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent dark:from-brand-yellow dark:to-brand-logo">
-                            BOM Calculator
+                            BoM Calculator
                         </span>
                     </h2>
                     <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto">
