@@ -297,11 +297,11 @@ export default function Home() {
                                     Quad Architecture
                                 </h3>
                                 <p className="text-brand-graytext dark:text-dark-text-secondary text-center mb-6 leading-relaxed">
-                                    One microinverter powers four solar panels with individual MPPT optimization for each panel, reducing installation complexity by 75% while maximizing energy harvest.
+                                    One microinverter powers four solar panels with individual MPPT optimization for each panel, reducing installation cost by 70%, and Bill of Materials cost by &gt;25%, all while maximizing energy harvest.
                                 </p>
                                 <div className="text-center mt-auto">
                                     <div className="inline-flex items-center gap-2 text-sm font-semibold text-brand-maroon dark:text-brand-logo">
-                                        <span>4x Fewer Components</span>
+                                        <span>4x Fewer Inverters Needed</span>
                                     </div>
                                 </div>
                             </div>
@@ -324,7 +324,7 @@ export default function Home() {
                                     Electrolytic-Free Design
                                 </h3>
                                 <p className="text-brand-graytext dark:text-dark-text-secondary text-center mb-6 leading-relaxed">
-                                    Revolutionary power electronics that eliminate failure-prone electrolytic capacitors and other short-lifetime components for unmatched 25-year reliability.
+                                    Revolutionary power electronics that eliminate failure-prone electrolytic capacitors and other short-lifetime components for the industry-standard 25-year reliability.
                                 </p>
                                 <div className="text-center mt-auto">
                                     <div className="inline-flex items-center gap-2 text-sm font-semibold text-brand-maroon dark:text-brand-logo">
@@ -351,7 +351,7 @@ export default function Home() {
                                     Dual-Mode Operation
                                 </h3>
                                 <p className="text-brand-graytext dark:text-dark-text-secondary text-center mb-6 leading-relaxed">
-                                    Seamlessly switch between grid-tied operation for maximum efficiency and off-grid capability during outages, providing true energy independence without batteries.
+                                    Seamlessly switch between grid-tied operation for maximum efficiency and off-grid capability during outages, providing true energy independence.
                                 </p>
                                 <div className="text-center mt-auto">
                                     <div className="inline-flex items-center gap-2 text-sm font-semibold text-brand-maroon dark:text-brand-logo">

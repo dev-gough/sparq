@@ -60,7 +60,6 @@ const videoCategories: VideoCategory[] = [
     }
 ]
 
-
 export default function VideosPage() {
     const [selectedCategory, setSelectedCategory] = useState<string>(videoCategories[1]?.id || '')
 
