@@ -104,61 +104,48 @@ function FloatingProductCard({ product, index }: FloatingProductCardProps) {
                 animate={isInView ? {
                     opacity: 1,
                     y: 0,
-                    rotateX: 0,
-                    scale: isHovered ? 1.02 : 1
+                    rotateX: 0
                 } : {}}
                 transition={{
                     duration: 0.8,
                     delay: index * 0.1,
                     ease: [0.23, 1, 0.320, 1]
                 }}
-                className="relative group cursor-pointer h-[500px] md:h-[550px] w-full rounded-2xl overflow-hidden"
+                className="relative group cursor-pointer w-full rounded-2xl overflow-hidden"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 style={{ perspective: '1000px' }}
             >
-                <Card className="h-full w-full overflow-hidden border-0 shadow-2xl rounded-2xl">
-                    <div className="absolute inset-0 bg-white">
+                <Card className="h-full w-full overflow-hidden border border-brand-maroon/20 dark:border-gray-600/30 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl bg-white dark:bg-gray-800/90 backdrop-blur-sm py-0">
+                    {/* Image Section */}
+                    <div className="relative h-64 md:h-80 bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
                         <Image
                             src={product.image}
                             alt={product.title}
                             fill
-                            className={`${product.category === 'Microinverters' ? 'object-contain scale-125' : 'object-cover scale-100'} transition-all duration-500 ease-out ${product.title === 'SparqLinq' ? 'object-left' : 'object-center'}`}
+                            className={`${product.category === 'Microinverters' ? 'object-contain scale-90' : 'object-cover scale-100'} transition-all duration-500 ease-out ${product.title === 'SparqLinq' ? 'object-left' : 'object-center'}`}
                             style={{
                                 filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
                             }}
                         />
                     </div>
 
-                    <motion.div
-                        className={`absolute inset-0 ${product.accentColor}`}
-                        animate={{
-                            opacity: isHovered ? 0.6 : 0.7
-                        }}
-                        transition={{ duration: 0.3 }}
-                    />
-
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-white/20 transform rotate-45 translate-x-12 -translate-y-12" />
-
-                    <CardContent className="relative z-10 h-full flex flex-col justify-center p-8">
+                    {/* Content Section */}
+                    <CardContent className="p-6">
                         <div className="text-center">
-
-                            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
+                            <h2 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow leading-tight mb-3">
                                 {product.title}
                             </h2>
-                            <p className="text-white/90 text-lg md:text-xl font-medium max-w-md mx-auto">
+                            <p className="text-brand-graytext dark:text-gray-200 text-base md:text-lg font-medium mb-6 leading-relaxed">
                                 {product.description}
                             </p>
-                        </div>
-
-                        <div className="mt-8 text-center">
+                            
                             <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="inline-flex px-6 py-3 bg-white/20 backdrop-blur-sm rounded-xl text-white font-semibold hover:bg-white/30 transition-all duration-300 border border-white/30"
+                                whileHover={{ scale: 1.1, x: 4 }}
+                                whileTap={{ scale: 0.9 }}
+                                className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-maroon/10 hover:bg-brand-maroon hover:text-white text-brand-maroon dark:bg-brand-yellow/10 dark:hover:bg-brand-yellow dark:hover:text-black dark:text-brand-yellow transition-all duration-300 group"
                             >
-                                Learn More
-                                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
                             </motion.div>
