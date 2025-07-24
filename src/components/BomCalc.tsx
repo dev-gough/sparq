@@ -333,12 +333,14 @@ export default function BoMCalc() {
                         <div
                         className={`max-w-xl rounded-md border px-4 py-2 text-sm leading-5 ${
                             SystemOK
-                            ? "border-green-200 bg-green-50 text-green-700"
-                            : "border-red-200 bg-red-50 text-red-700"
+                            ? "border-green-200 bg-green-50 text-green-700 dark:border-green-600/40 dark:bg-green-900/30 dark:text-green-300"
+                            : "border-red-200 bg-red-50 text-red-700 dark:border-red-600/40 dark:bg-red-900/30 dark:text-red-300"
                         }`}
                         >
                         {SystemOK ? (
-                            <span className="font-medium">Panel is compatible. System sizing acceptable.</span>
+                            <span className="font-medium">
+                            Panel is compatible. System sizing acceptable.
+                            </span>
                         ) : (
                             <ul className="ml-4 list-disc space-y-0.5">
                             {panelFailReasons.map((reason, i) => (
@@ -349,26 +351,26 @@ export default function BoMCalc() {
                         </div>
                     )}
 
-                        <div className="ml-auto flex gap-3">
+                    <div className="ml-auto flex gap-3">
                         <button
-                            onClick={handleClear}
-                            className="rounded border border-gray-300 px-5 py-3 text-sm font-medium text-gray-600 hover:bg-gray-100"
+                        onClick={handleClear}
+                        className="rounded border border-gray-300 dark:border-gray-600 px-5 py-3 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                         >
-                            Clear
+                        Clear
                         </button>
                         <button
-                            onClick={handleGenerate}
-                            disabled={!allFilled}
-                            className={`rounded px-6 py-3 text-sm font-medium transition ${
+                        onClick={handleGenerate}
+                        disabled={!allFilled}
+                        className={`rounded px-6 py-3 text-sm font-medium transition ${
                             allFilled
-                                ? "bg-[var(--color-brand-maroon)] text-white hover:bg-[var(--color-brand-darkmaroon)]"
-                                : "cursor-not-allowed bg-gray-300 text-gray-500"
-                            }`}
+                            ? "bg-[var(--color-brand-maroon)] text-white hover:bg-[var(--color-brand-darkmaroon)] dark:bg-brand-yellow dark:text-gray-900 dark:hover:bg-brand-yellow/80"
+                            : "cursor-not-allowed bg-gray-300 text-gray-500 dark:bg-gray-700 dark:text-gray-500"
+                        }`}
                         >
-                            Generate Bill of Materials
+                        Generate Bill of Materials
                         </button>
-                        </div>
                     </div>
+                </div>
                 </div>
 
                 {/* BILL OF MATERIALS */}
