@@ -167,7 +167,7 @@ export default function ProductPage({
                                                         </div>
                                                         <div className="flex items-center justify-between">
                                                             <div className="text-white/80 text-sm">
-                                                                {items.length} key features
+                                                                {allCardsExpanded ? 'All features' : 'Key features'}
                                                             </div>
                                                             {items.length > 2 && (
                                                                 <motion.div
@@ -249,7 +249,7 @@ export default function ProductPage({
                                                                     <span>
                                                                         {allCardsExpanded
                                                                             ? 'Show less'
-                                                                            : `+${items.length - 2} more features`
+                                                                            : 'Show more'
                                                                         }
                                                                     </span>
                                                                     <motion.div

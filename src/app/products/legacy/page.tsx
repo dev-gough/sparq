@@ -29,7 +29,7 @@ function body() {
 
 interface AccordionSection {
 	title: string
-	content: React.ReactNode | ((selectedModel: string) => React.ReactNode)
+	content: React.ReactNode
 	accentColor: string
 }
 
@@ -37,21 +37,25 @@ const accordionSections: AccordionSection[] = [
 	{
 		title: "Technical Specifications",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (selectedModel: string) => (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheet for {selectedModel}</h3>
-				<div className="flex items-center gap-3">
-					<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-					{selectedModel === "Q1200-4102-GT" && (
+		content: (
+			<div className="space-y-3">
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Q1200-4102-GT</h3>
+					<div className="flex items-center gap-3">
+						<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
 						<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Q1200/Q1200-GT-discontinued.pdf" target="_blank">
 							Download Q1200-4102-GT Datasheet (PDF)
 						</Link>
-					)}
-					{selectedModel === "Q1200-4102-DM" && (
+					</div>
+				</div>
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Q1200-4102-DM</h3>
+					<div className="flex items-center gap-3">
+						<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
 						<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Q1200/Q1200-DM-discontinued.pdf" target="_blank">
 							Download Q1200-4102-DM Datasheet (PDF)
 						</Link>
-					)}
+					</div>
 				</div>
 			</div>
 		)
@@ -59,9 +63,9 @@ const accordionSections: AccordionSection[] = [
 	{
 		title: "Documentation",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (selectedModel: string) => (
+		content: (
 			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manuals for {selectedModel}</h3>
+				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manuals</h3>
 				<div className="grid gap-3">
 					{[
 						{ name: "North America", href: "/Q1200/Q1200-Installer-NA.pdf" },
@@ -81,8 +85,6 @@ const accordionSections: AccordionSection[] = [
 ]
 
 export default function LegacyProductPage() {
-	const models = ["Q1200-4102-GT", "Q1200-4102-DM"]
-	const [selectedModel, setSelectedModel] = useState<string>(models[0])
 	const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({ 0: true, 1: true })
 	const trackEvent = useTrackEvent()
 
@@ -169,7 +171,7 @@ export default function LegacyProductPage() {
 									className="overflow-hidden"
 								>
 									<div className="p-6 bg-white dark:bg-gray-800">
-										{typeof section.content === 'function' ? section.content(selectedModel) : section.content}
+										{section.content}
 									</div>
 								</motion.div>
 							</CardContent>
@@ -183,10 +185,6 @@ export default function LegacyProductPage() {
 	return (
 		<div>
 			<ProductPage
-				models={models}
-				selectedModel={selectedModel}
-				setSelectedModel={setSelectedModel}
-				model="Q1200"
 				heading="Q1200 Microinverter"
 				parent="Legacy Products"
 				href="legacy"

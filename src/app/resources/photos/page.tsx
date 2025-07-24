@@ -90,10 +90,10 @@ export default function PhotosPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
+                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-5xl mx-auto leading-relaxed mb-12"
                     >
-                        View photos from our St. Lawrence College installation featuring Sparq microinverter technology.
-                        More installations coming soon!
+                        Explore photos from installations featuring Sparq microinverter technology deployed at various sites.
+                        See our products in action across different environments!
                     </motion.p>
                 </motion.div>
             </section>
