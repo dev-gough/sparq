@@ -71,7 +71,7 @@ const timelineEvents: TimelineEvent[] = [
         title: "Going Public & Global Expansion",
         description: "Raised $64M in venture funding and went public on TSXV, accelerating global market penetration.",
         category: "growth",
-        image: "/bg-4.jpg"
+        image: "/Queens/3.jpg"
     },
     {
         year: "2022",

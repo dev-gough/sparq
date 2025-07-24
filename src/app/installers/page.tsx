@@ -428,7 +428,7 @@ export default function InstallersPage() {
             </section>
 
             {/* BOM Calculator Section */}
-            <section id="bom" className="relative container mx-auto px-6 py-10">
+            <section id="bom" className="relative container mx-auto px-6 py-10 scroll-mt-[75px]">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}

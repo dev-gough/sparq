@@ -23,7 +23,7 @@ const installationSites: InstallationSite[] = [
         location: "Kingston, Ontario",
         description: "A comprehensive solar installation showcasing our Quad microinverter technology in an educational environment.",
         completionDate: "2023",
-        systemSize: "50kW",
+        systemSize: "19kW",
         photos: [
             {src: "/SLC/001.JPG", alt: "St. Lawrence College installation overview"},
             {src: "/SLC/002.JPG", alt: "Solar panel array configuration"},
@@ -34,6 +34,21 @@ const installationSites: InstallationSite[] = [
             {src: "/SLC/007.JPG", alt: "Completed installation aerial view"},
             {src: "/SLC/008.JPG", alt: "Installation team at work"},
             {src: "/SLC/009.JPG", alt: "Final system commissioning"},
+        ]
+    },
+    {
+        id: "queens",
+        name: "Queens University",
+        location: "Kingston, Ontario",
+        description: "Our main test site, in collaboration with Queens University.",
+        completionDate: "2023",
+        systemSize: "15kW",
+        photos: [
+            {src: "/Queens/1.jpg", alt: ""},
+            {src: "/Queens/2.jpg", alt: ""},
+            {src: "/Queens/3.jpg", alt: ""},
+            {src: "/Queens/4.jpg", alt: ""},
+            {src: "/Queens/5.jpg", alt: ""},
         ]
     }
     // Future sites can be added here
@@ -107,15 +122,15 @@ export default function PhotosPage() {
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.7 + (index * 0.1) }}
-                                className="group"
+                                className="group h-full"
                             >
                                 <Card 
-                                    className={`overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700 ${
+                                    className={`h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700 ${
                                         selectedSite === site.id ? 'ring-2 ring-brand-maroon' : ''
                                     }`}
                                     onClick={() => setSelectedSite(site.id)}
                                 >
-                                    <CardContent className="p-6">
+                                    <CardContent className="p-6 h-full flex flex-col">
                                         <div className="flex items-center gap-4 mb-4">
                                             <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full">
                                                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -127,8 +142,8 @@ export default function PhotosPage() {
                                                 <p className="text-brand-graytext dark:text-dark-text-muted">{site.location}</p>
                                             </div>
                                         </div>
-                                        <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-4">{site.description}</p>
-                                        <div className="flex justify-between text-sm text-brand-graytext dark:text-dark-text-muted">
+                                        <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-4 flex-grow">{site.description}</p>
+                                        <div className="flex justify-between text-sm text-brand-graytext dark:text-dark-text-muted mt-auto">
                                             <span><strong>Completed:</strong> {site.completionDate}</span>
                                             <span><strong>System:</strong> {site.systemSize}</span>
                                         </div>

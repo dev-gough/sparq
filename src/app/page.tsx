@@ -375,7 +375,7 @@ export default function Home() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="text-center">
                                 <div className="text-4xl font-bold text-brand-maroon dark:text-brand-logo mb-2">75%</div>
-                                <div className="text-brand-graytext dark:text-dark-text-secondary font-medium">Fewer Installation Components</div>
+                                <div className="text-brand-graytext dark:text-dark-text-secondary font-medium">Fewer Inverters Required</div>
                             </div>
                             <div className="text-center">
                                 <div className="text-4xl font-bold text-brand-maroon dark:text-brand-logo mb-2">Lowest</div>
