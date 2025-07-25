@@ -303,7 +303,7 @@ export default function BoMCalc() {
                             label="AC System Size (kW)"
                             value={form.Pgrid}
                             onChange={v => setForm(f => ({ ...f, Pgrid: v }))}
-                            min={1}
+                            min={0}
                             max={200}
                         />
                         <NumberField
@@ -321,7 +321,7 @@ export default function BoMCalc() {
                             label="PV System Size (kW)"
                             value={form.Ppv}
                             onChange={v => setForm(f => ({ ...f, Ppv: v }))}
-                            min={1}
+                            min={0}
                             max={200}
                         />
                         <NumberField
@@ -342,7 +342,7 @@ export default function BoMCalc() {
                             label="Panel Short Circuit Current (Isc)"
                             value={form.Iscpanel}
                             onChange={v => setForm(f => ({ ...f, Iscpanel: v }))}
-                            min={1}
+                            min={0}
                             max={20}
                         />
                     </div>
