@@ -222,7 +222,7 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                             setActiveCategory(key)
                             setSearchQuery('') // Clear search when switching categories
                         }}
-                        className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${activeCategory === key
+                        className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 cursor-pointer ${activeCategory === key
                                 ? `${category.color} ${category.bgColor} shadow-md`
                                 : 'text-brand-graytext dark:text-dark-text-secondary bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
                             }`}

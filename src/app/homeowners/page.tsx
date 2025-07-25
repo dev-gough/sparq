@@ -68,7 +68,7 @@ const benefitCards: BenefitCard[] = [
 const techFeatures: TechFeature[] = [
     {
         title: "Quad Architecture",
-        description: "Revolutionary design connects four PV panels to a single microinverter, reducing installation complexity by 75%.",
+        description: "Revolutionary design connects four PV panels to a single microinverter, reducing installation cost by 70%.",
         benefits: ["4x fewer inverters needed", "Simplified wiring", "Faster installation", "Lower system cost"],
         icon: (
             <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -331,7 +331,7 @@ export default function HomeownersPage() {
                     <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon mb-6 dark:text-brand-yellow">
                         Your Solar Journey
                     </h2>
-                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
+                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto">
                         Follow these simple steps to transform your home with clean, renewable solar energy.
                     </p>
                 </motion.div>
