@@ -434,7 +434,7 @@ export default function InstallersPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-8"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">
                         <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent dark:from-brand-yellow dark:to-brand-logo">

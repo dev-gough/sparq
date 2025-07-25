@@ -2,10 +2,10 @@
 "use client";
 
 import ExcelJS from 'exceljs';
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { calculate } from "@/lib/designMath";
+import { calculate, type Row } from "@/lib/designMath";
 
 type ProjectType = "Residential" | "Commercial" | "Industrial";
 type GridType = "On-grid" | "Off-grid" | "Water Pump";
@@ -22,83 +22,123 @@ type FormInputs = {
     Iscpanel: string;
 };
 
+const initialForm: FormInputs = {
+  region: "North America",
+  projectType: "Residential",
+  gridType: "On-grid",
+  Vgrid: "",
+  Pgrid: "",
+  Ppv: "",
+  Ppanel: "",
+  Vpanel: "",
+  Iscpanel: "",
+};
+
 export default function BoMCalc() {
-    const [form, setForm] = useState<FormInputs>({
-        region: "North America",
-        projectType: "Residential",
-        gridType: "On-grid",
-        Vgrid: "",
-        Pgrid: "",
-        Ppv: "",
-        Ppanel: "",
-        Vpanel: "",
-        Iscpanel: "",
-    });
+  const [form, setForm] = useState<FormInputs>(initialForm);
+  const [bom, setBom] = useState<Row[]>([]);
+  const [showBom, setShowBom] = useState(false);
 
-    const Pgrid = parseFloat(form.Pgrid) || 0;
-    const Vgrid = parseFloat(form.Vgrid) || 0;
-    const Ppv = parseFloat(form.Ppv) || 0;
-    const Ppanel = parseFloat(form.Ppanel) || 0;
-    const Vpanel = parseFloat(form.Vpanel) || 0;
-    const Iscpanel = parseFloat(form.Iscpanel) || 0;
+  // numbers
+  const Pgrid = +form.Pgrid || 0;
+  const Vgrid = +form.Vgrid || 0;
+  const Ppv = +form.Ppv || 0;
+  const Ppanel = +form.Ppanel || 0;
+  const Vpanel = +form.Vpanel || 0;
+  const Iscpanel = +form.Iscpanel || 0;
 
-    const bomRaw = useMemo(() => {
-        if (Pgrid <= 0 || Vgrid <= 0 || Ppv <= 0 || Ppanel <= 0) return [];
-        return calculate({ Pgrid, Vgrid, Ppv, Ppanel, region: form.region });
-    }, [Pgrid, Vgrid, Ppv, Ppanel, form.region]);
+  const ratio = Pgrid > 0 ? Ppv / Pgrid : NaN;
 
-    const nameMap: Record<string, string> = {
-        "Q2000-4102": "Quad 2000 Single Phase Inverter",
-        "Q3000-4301": "Quad 3000 Three-Phase Inverter",
-        "65020-01": "Junction Box",
-        "65020-05": "Junction Box",
-        "65015-09": "T5 to T6 Cable 0.7m",
-        "65015-17": "T5 to T6 Cable 0.7m",
-        "65013-16/17": "T6 Female to Tee Male",
-        "65013-08/09": "T6 Female to Tee Male",
-        "65015-10": "T5 to T6 Cable 3m",
-        "65015-18": "T5 to T6 Cable 3m",
-        "65012-14/15": "T6 Tee Male to Open",
-        "65012-02/03": "T6 Tee Male to Open",
-    };
+  // compatibility
+  const SystemOK =
+    Vpanel <= 68 &&
+    Ppanel >= 400 &&
+    Ppanel <= 750 &&
+    Iscpanel <= 20 &&
+    ratio > 1 &&
+    ratio < 1.4;
 
-    const isThreePhase = form.projectType === "Industrial" || form.gridType === "Water Pump";
-    const inverterSku = isThreePhase ? "Q3000-4301" : "Q2000-4102";
-    const modelLabel = isThreePhase ? "Q3000 Three-Phase Inverter" : "Q2000 Single-Phase Inverter";
+  const panelFailReasons: string[] = [];
+  if (Vpanel > 68) panelFailReasons.push("Panel Voc Too High! Voc must be within 20V-68V range");
+  if (Ppanel > 750) panelFailReasons.push("Panel STC Power Too High! Must be less than 750W");
+  if (Ppanel < 400) panelFailReasons.push("Undersized PV panel! Suggestion: Use higher power panel");
+  if (Iscpanel > 20) panelFailReasons.push("Panel Isc Too High! Must be less than 20A");
+  if (Ppv/Pgrid > 1.4) panelFailReasons.push("Oversized DC Side! Suggestion: Increase AC side for better PV/microinverter utilization")
+  if (Ppv/Pgrid < 1) panelFailReasons.push("Undersized DC Side! Suggestion: Increase DC side for better microinverter utilization ")
 
-    const bom = bomRaw.map(r => {
-        if (r.label === "Inverter") { return { ...r, sku: inverterSku, label: modelLabel } }
-        return r;
-    });
+  // inverter choice
+  const isThreePhase = form.projectType === "Industrial" || form.gridType === "Water Pump";
+  const inverterSku = isThreePhase ? "Q3000-4301" : "Q2000-4102";
+  const modelLabel = isThreePhase ? "Q3000 Three-Phase Inverter" : "Q2000 Single-Phase Inverter";
 
-    const inverterCount = bom.find(r => r.sku === inverterSku)?.qty ?? 0;
+  // required fields
+  const requiredKeys: (keyof FormInputs)[] = [
+    "Pgrid",
+    "Vgrid",
+    "Ppv",
+    "Ppanel",
+    "Vpanel",
+    "Iscpanel",
+    "region",
+    "projectType",
+    "gridType",
+  ];
+  const allFilled = requiredKeys.every(k => (form[k] ?? "").toString().trim() !== "");
+  const showStatus = allFilled;
 
-    const imageMap: Record<string, string> = {
-        "Q2000-4102": "/quad4inverter.png",
-        "Q3000-4301": "/quad4inverter.png",
-        "SL200-2001": "/sparqlinq.png",
-        "65020-01": "/junctionbox.png",
-        "65020-05": "/junctionbox.png",
-        "65015-09": "/type2cable.png",
-        "65015-17": "/type2cable.png",
-        "65013-16/17": "/t6ftom.png",
-        "65013-08/09": "/t6ftom.png",
-        "65015-10": "/type1cable.png",
-        "65015-18": "/type1cable.png",
-        "65012-14/15": "/opencable.png",
-        "65012-02/03": "/opencable.png",
-    };
+  const handleGenerate = () => {
+    if (!allFilled) return; // block if not all fields
+    if (!(Pgrid > 0 && Vgrid > 0 && Ppv > 0 && Ppanel > 0)) {
+      setBom([]);
+      setShowBom(false);
+      return;
+    }
+    const result = calculate({ Pgrid, Vgrid, Ppv, Ppanel, region: form.region });
+    const mapped = result.map(r =>
+      r.label === "Inverter" ? { ...r, sku: inverterSku, label: modelLabel } : r
+    );
+    setBom(mapped);
+    setShowBom(true);
+  };
 
-    const panelOk =
-        Vpanel <= 68 &&
-        Ppanel <= 750 &&
-        Iscpanel <= 20;
+  const handleClear = () => {
+    setForm(initialForm);
+    setBom([]);
+    setShowBom(false);
+  };
 
-    const panelFailReasons: string[] = [];
-    if (Vpanel > 68) panelFailReasons.push("Panel STC Voltage > 68 V");
-    if (Ppanel > 750) panelFailReasons.push("Panel STC Power > 750 W");
-    if (Iscpanel > 20) panelFailReasons.push("Panel Short Circuit Current > 20 A");
+  const inverterCount = bom.find(r => r.sku === inverterSku)?.qty ?? 0;
 
+  const nameMap: Record<string, string> = {
+    "Q2000-4102": "Quad 2000 Single Phase Inverter",
+    "Q3000-4301": "Quad 3000 Three-Phase Inverter",
+    "65020-01": "Junction Box",
+    "65020-05": "Junction Box",
+    "65015-09": "T5 to T6 Cable 0.7m",
+    "65015-17": "T5 to T6 Cable 0.7m",
+    "65013-16/17": "T6 Female to Tee Male",
+    "65013-08/09": "T6 Female to Tee Male",
+    "65015-10": "T5 to T6 Cable 3m",
+    "65015-18": "T5 to T6 Cable 3m",
+    "65012-14/15": "T6 Tee Male to Open",
+    "65012-02/03": "T6 Tee Male to Open",
+  };
+
+  const imageMap: Record<string, string> = {
+    "Q2000-4102": "/quad4inverter.png",
+    "Q3000-4301": "/quad4inverter.png",
+    "SL200-2001": "/sparqlinq.png",
+    "65020-01": "/junctionbox.png",
+    "65020-05": "/junctionbox.png",
+    "65015-09": "/type2cable.png",
+    "65015-17": "/type2cable.png",
+    "65013-16/17": "/t6ftom.png",
+    "65013-08/09": "/t6ftom.png",
+    "65015-10": "/type1cable.png",
+    "65015-18": "/type1cable.png",
+    "65012-14/15": "/opencable.png",
+    "65012-02/03": "/opencable.png",
+  };
 
     async function handleDownload() {
         // Create workbook & worksheet
@@ -209,7 +249,7 @@ export default function BoMCalc() {
     return (
         <main className="text-sm">
             {/* BODY */}
-            <section className="mx-auto max-w-7xl space-y-10 px-4 pt-10 pb-6">
+            <section className="mx-auto max-w-7xl space-y-10 px-4 pt-0 pb-6">
 
                 {/* DESIGN DETAILS */}
                 <div className="rounded-lg bg-white dark:bg-gray-800 p-6 shadow-lg border border-gray-200 dark:border-gray-600 space-y-6">
@@ -268,8 +308,8 @@ export default function BoMCalc() {
                             label="Panel STC Power (W)"
                             value={form.Ppanel}
                             onChange={v => setForm(f => ({ ...f, Ppanel: v }))}
-                            min={0}
-                            max={1000}
+                            min={400}
+                            max={750}
                         />
                         <NumberField
                             label="Panel STC Voltage (V)"
@@ -286,42 +326,81 @@ export default function BoMCalc() {
                             max={20}
                         />
                     </div>
-                    {/* COMPATIBILITY TAG */}
-                    {(form.Vpanel || form.Ppanel || form.Iscpanel) && (
-                        <p
-                            className={`text-lg md:text-medium font-semibold ${panelOk ? "text-green-600" : "text-red-600"}`}
+
+                    {/* BUTTONS + STATUS */}
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start">
+                    {showStatus && (
+                        <div
+                        className={`max-w-xl rounded-md border px-4 py-2 text-sm leading-5 ${
+                            SystemOK
+                            ? "border-green-200 bg-green-50 text-green-700 dark:border-green-600/40 dark:bg-green-900/30 dark:text-green-300"
+                            : "border-red-200 bg-red-50 text-red-700 dark:border-red-600/40 dark:bg-red-900/30 dark:text-red-300"
+                        }`}
                         >
-                            {panelOk ? "Panel Setup Compatible" : `Panel Setup Incompatible: ${panelFailReasons.join(", ")}`}
-                        </p>
+                        {SystemOK ? (
+                            <span className="font-medium">
+                            Panel is compatible. System sizing acceptable.
+                            </span>
+                        ) : (
+                            <ul className="ml-4 list-disc space-y-0.5">
+                            {panelFailReasons.map((reason, i) => (
+                                <li key={i}>{reason}</li>
+                            ))}
+                            </ul>
+                        )}
+                        </div>
                     )}
+
+                    <div className="ml-auto flex gap-3">
+                        <button
+                        onClick={handleClear}
+                        className="rounded border border-gray-300 dark:border-gray-600 px-5 py-3 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        >
+                        Clear
+                        </button>
+                        <button
+                        onClick={handleGenerate}
+                        disabled={!allFilled}
+                        className={`rounded px-6 py-3 text-sm font-medium transition ${
+                            allFilled
+                            ? "bg-[var(--color-brand-maroon)] text-white hover:bg-[var(--color-brand-darkmaroon)] dark:bg-brand-yellow dark:text-gray-900 dark:hover:bg-brand-yellow/80"
+                            : "cursor-not-allowed bg-gray-300 text-gray-500 dark:bg-gray-700 dark:text-gray-500"
+                        }`}
+                        >
+                        Generate Bill of Materials
+                        </button>
+                    </div>
+                </div>
                 </div>
 
                 {/* BILL OF MATERIALS */}
-                <div className="rounded-lg bg-white dark:bg-gray-800 px-6 pt-6 shadow-lg border border-gray-200 dark:border-gray-600 space-y-4">
-                    <h2 className="text-xl font-semibold text-brand-darkmaroon dark:text-brand-yellow">Bill of Materials</h2>
-                    {bom.length > 0 ? (
-                        <div className="space-y-6 p-2 text-sm">
-                            <div>
-                                <h3 className="text-lg font-semibold mb-2 text-brand-darkmaroon dark:text-brand-yellow">SPARQ Products</h3>
-                                <ul className="space-y-2">
-                                    {bom.filter(r => !r.sku.startsWith("65020"))
-                                        .map(row => <BOMItem key={row.sku} row={row} imageMap={imageMap} />)}
-                                </ul>
+                {showBom && (
+                    <div className="rounded-lg bg-white dark:bg-gray-800 px-6 pt-6 shadow-lg border border-gray-200 dark:border-gray-600 space-y-4">
+                        <h2 className="text-xl font-semibold text-brand-darkmaroon dark:text-brand-yellow">Bill of Materials</h2>
+                        {bom.length > 0 ? (
+                            <div className="space-y-6 p-2 text-sm">
+                                <div>
+                                    <h3 className="text-lg font-semibold mb-2 text-brand-darkmaroon dark:text-brand-yellow">SPARQ Products</h3>
+                                    <ul className="space-y-2">
+                                        {bom.filter(r => !r.sku.startsWith("65020"))
+                                            .map(row => <BOMItem key={row.sku} row={row} imageMap={imageMap} />)}
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-semibold text-brand-darkmaroon dark:text-brand-yellow">Third-Party Products</h3>
+                                    <ul className="space-y-2">
+                                        {bom.filter(r => r.sku.startsWith("65020"))
+                                            .map(row => <BOMItem key={row.sku} row={row} imageMap={imageMap} />)}
+                                    </ul>
+                                </div>
                             </div>
-                            <div>
-                                <h3 className="text-lg font-semibold text-brand-darkmaroon dark:text-brand-yellow">Third-Party Products</h3>
-                                <ul className="space-y-2">
-                                    {bom.filter(r => r.sku.startsWith("65020"))
-                                        .map(row => <BOMItem key={row.sku} row={row} imageMap={imageMap} />)}
-                                </ul>
-                            </div>
-                        </div>
-                    ) : (
-                        <p className="text-brand-graytext dark:text-dark-text-secondary text-sm pb-2">
-                            Please enter valid system parameters.
-                        </p>
-                    )}
-                </div>
+                        ) : (
+                            <p className="text-brand-graytext dark:text-dark-text-secondary text-sm pb-2">
+                                Please enter valid system parameters.
+                            </p>
+                        )}
+                    </div>
+                )}
 
                 {/* SYSTEM SUMMARY */}
                 <aside className="rounded-lg bg-white dark:bg-gray-800 p-6 shadow-lg border border-gray-200 dark:border-gray-600 space-y-4 text-sm">
