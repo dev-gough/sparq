@@ -113,32 +113,32 @@ const timelineEvents: TimelineEvent[] = [
 
 const categoryConfig = {
     foundation: {
-        color: "from-red-500 to-red-700",
-        bgColor: "from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/30",
+        color: "from-brand-gray to-brand-graytext",
+        bgColor: "from-brand-gray/10 to-brand-gray/20 dark:from-brand-gray/20 dark:to-brand-gray/30",
         icon: Target,
         label: "Foundation"
     },
     innovation: {
-        color: "from-blue-500 to-blue-700",
-        bgColor: "from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/30",
+        color: "from-brand-yellow to-brand-logo",
+        bgColor: "from-brand-yellow/10 to-brand-yellow/20 dark:from-brand-yellow/20 dark:to-brand-yellow/30",
         icon: Zap,
         label: "Innovation"
     },
     product: {
-        color: "from-green-500 to-green-700",
-        bgColor: "from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/30",
+        color: "from-brand-yellow to-brand-logo",
+        bgColor: "from-brand-yellow/10 to-brand-yellow/20 dark:from-brand-yellow/20 dark:to-brand-yellow/30",
         icon: Package,
         label: "Products"
     },
     growth: {
-        color: "from-purple-500 to-purple-700",
-        bgColor: "from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/30",
+        color: "from-brand-maroon to-brand-darkmaroon",
+        bgColor: "from-brand-maroon/10 to-brand-maroon/20 dark:from-brand-maroon/20 dark:to-brand-maroon/30",
         icon: Trophy,
         label: "Growth"
     },
     future: {
-        color: "from-brand-yellow to-brand-logo",
-        bgColor: "from-yellow-50 to-orange-100 dark:from-yellow-900/20 dark:to-orange-800/30",
+        color: "from-brand-darkmaroon to-brand-maroon",
+        bgColor: "from-brand-darkmaroon/10 to-brand-darkmaroon/20 dark:from-brand-darkmaroon/20 dark:to-brand-darkmaroon/30",
         icon: Eye,
         label: "Future"
     }

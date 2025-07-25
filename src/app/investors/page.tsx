@@ -139,11 +139,11 @@ export default function InvestorsPage() {
     }
 
     return (
-        <div className='min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative z-1'>
+        <div className='min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative z-10'>
+            <SolarBackgroundElements />
 
             {/* Hero Section */}
             <section className="relative container mx-auto px-6 pt-10 pb-16">
-            <SolarBackgroundElements />
 
                 <motion.div
                     ref={heroRef}
@@ -188,13 +188,13 @@ export default function InvestorsPage() {
                                 View Investor Presentation
                             </motion.button>
                         </Link>
-                        <Link href="/contact">
+                        <Link href="/resources/videos?category=investors&video=0sdcGgL9228">
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
                                 className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer"
                             >
-                                Contact IR Team
+                                Watch CEO Interview
                             </motion.button>
                         </Link>
                     </motion.div>
@@ -446,7 +446,7 @@ export default function InvestorsPage() {
             </section>
 
             {/* Call to Action */}
-            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-10">
+            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon dark:from-gray-700 dark:to-gray-800 py-10">
                 <div className="container mx-auto px-6 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

@@ -51,8 +51,9 @@ function VideoPopup({ url, onClose, iFrame }: VideoPopupProps) {
                     top: '140px', // Clear space for header + subheader
                     height: 'calc(100vh - 140px)', // Use remaining viewport height
                 }}
+                onClick={onClose}
             >
-                <div className="relative w-full max-w-7xl mx-4">
+                <div className="relative w-full max-w-7xl mx-4" onClick={(e) => e.stopPropagation()}>
                     {/* Close Button outside video div */}
                     <button
                         onClick={onClose}

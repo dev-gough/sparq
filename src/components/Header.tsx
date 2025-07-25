@@ -46,7 +46,7 @@ export default function Header({ navItems }: HeaderProps) {
 
                     {/* Center Column - Desktop Navigation */}
                     <div className="flex justify-center">
-                        <nav className="hidden lg:flex items-center space-x-0 xl:space-x-3">
+                        <nav className="hidden lg:flex items-center space-x-0 xl:space-x-1">
                             {navItems.map((item, index) => {
                                 const isActive = item.dropdown
                                     ? item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
@@ -62,7 +62,7 @@ export default function Header({ navItems }: HeaderProps) {
                                     >
                                         <Link
                                             href={item.href}
-                                            className={`relative px-3 py-2 text-base xl:text-lg font-medium transition-all duration-300 rounded-lg ${isActive
+                                            className={`relative flex items-center px-3 py-2 text-sm xl:text-lg font-medium transition-all duration-300 rounded-lg ${isActive
                                                     ? 'text-brand-maroon dark:text-brand-yellow bg-brand-maroon/5 dark:bg-brand-yellow/10'
                                                     : 'text-brand-graytext dark:text-dark-text-primary hover:text-brand-maroon dark:hover:text-brand-yellow hover:bg-brand-maroon/5 dark:hover:bg-brand-yellow/10'
                                                 }`}
@@ -87,7 +87,7 @@ export default function Header({ navItems }: HeaderProps) {
                     {/* Right Column - Controls */}
                     <div className="flex justify-end">
                         {/* Desktop Controls */}
-                        <div className="hidden lg:flex items-center gap-2 xl:gap-3">
+                        <div className="hidden lg:flex items-center gap-3 xl:gap-4">
                             <DarkModeToggle />
                             <AnimationToggle />
                         </div>

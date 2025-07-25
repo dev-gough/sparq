@@ -382,17 +382,6 @@ export default function HomeownersPage() {
                                 </div>
                             ))}
                         </div>
-                        <div className="text-center mt-8">
-                            <Link href="/homeowner_ppt.pdf" target="_blank" onClick={() => handleCtaClick('presentation')}>
-                                <motion.button
-                                    whileHover={{ scale: 1.02, y: -2 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="px-8 py-3 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                                >
-                                    Download Homeowner Presentation
-                                </motion.button>
-                            </Link>
-                        </div>
                     </Card>
                 </motion.div>
             </section>
@@ -634,7 +623,7 @@ export default function HomeownersPage() {
             </section>
 
             {/* Final CTA Section */}
-            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-10">
+            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon dark:from-gray-700 dark:to-gray-800 py-10">
                 <div className="container mx-auto px-6 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

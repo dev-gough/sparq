@@ -22,7 +22,7 @@ function image() {
 function body() {
 	return (
 		<p className="text-brand-gray dark:text-dark-text-secondary mt-4">
-			Access and monitor your energy system data at any time with SparqLinq, our smart interface for the Quad 2000 and Quad3. SparqLinq can be used on nearly any device and is backed by industry standard Zigbee wireless communication, providing access to real-time data and historical records.</p>
+			Access and monitor your energy system data at any time with SparqLinq, our smart interface for the Quad2 and Quad3. SparqLinq can be used on nearly any device and is backed by industry standard Zigbee wireless communication, providing access to real-time data and historical records.</p>
 	)
 }
 

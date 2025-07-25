@@ -80,22 +80,22 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
             title: 'Homeowners',
             icon: <Users className="w-5 h-5" />,
             data: homeownersData,
-            color: 'text-green-600',
-            bgColor: 'bg-green-50 border-green-200'
+            color: 'text-brand-maroon dark:text-brand-maroon',
+            bgColor: 'bg-brand-maroon/10 border-brand-maroon/30 dark:bg-brand-maroon/20 dark:border-brand-maroon/40'
         },
         installers: {
             title: 'Installers',
             icon: <Wrench className="w-5 h-5" />,
             data: installersData,
-            color: 'text-blue-600',
-            bgColor: 'bg-blue-50 border-blue-200'
+            color: 'text-brand-yellow dark:text-brand-yellow',
+            bgColor: 'bg-brand-yellow/10 border-brand-yellow/30 dark:bg-brand-yellow/20 dark:border-brand-yellow/40'
         },
         investors: {
             title: 'Investors',
             icon: <TrendingUp className="w-5 h-5" />,
             data: investorsData,
-            color: 'text-purple-600',
-            bgColor: 'bg-purple-50 border-purple-200'
+            color: 'text-brand-graytext dark:text-brand-gray',
+            bgColor: 'bg-brand-gray/10 border-brand-gray/30 dark:bg-brand-gray/20 dark:border-brand-gray/40'
         }
     }), [homeownersData, installersData, investorsData])
 

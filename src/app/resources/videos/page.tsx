@@ -1,10 +1,74 @@
 'use client'
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
+import { useSearchParams, useRouter } from "next/navigation"
 import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
 import YTVideo from "@/components/YTVideo"
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
+
+interface VideoPopupProps {
+    videoId: string;
+    onClose: () => void;
+}
+
+function VideoPopup({ videoId, onClose }: VideoPopupProps) {
+    useEffect(() => {
+        const handleEsc = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') onClose();
+        };
+        document.addEventListener('keydown', handleEsc);
+        return () => document.removeEventListener('keydown', handleEsc);
+    }, [onClose]);
+
+    return (
+        <div className="fixed inset-0 z-[60] overflow-y-auto">
+            <div
+                className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+                onClick={onClose}
+            />
+
+            <div
+                className="absolute w-full h-full flex items-center justify-center"
+                style={{
+                    top: '140px',
+                    height: 'calc(100vh - 140px)',
+                }}
+                onClick={onClose}
+            >
+                <div className="relative w-full max-w-7xl mx-4" onClick={(e) => e.stopPropagation()}>
+                    <button
+                        onClick={onClose}
+                        aria-label="Close"
+                        className="absolute -top-4 -right-4 z-20 bg-gray-800 rounded-full p-2 shadow-lg text-gray-300 hover:text-white hover:bg-gray-900 focus:outline-none cursor-pointer"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <div className="bg-gray-900 rounded-xl shadow-xl overflow-hidden">
+                        <div className="relative pt-[56.25%]">
+                            <iframe
+                                className="absolute top-0 left-0 w-full h-full"
+                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`}
+                                allow="autoplay; encrypted-media"
+                                allowFullScreen
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 interface VideoCategory {
     id: string
@@ -12,6 +76,22 @@ interface VideoCategory {
     description: string
     icon: React.ReactNode
     videoIds: string[]
+}
+
+// Video titles mapping - add titles for your video IDs here
+const videoTitles: Record<string, string> = {
+    // Investor videos
+    "gaFi_dPnYNk": "Sparq Systems Investor Presentation",
+    "am7VzIpn5TI": "Sparq Technology Overview",
+    "0sdcGgL9228": "CEO Interview - Market Strategy",
+
+    // Installer videos
+    "5u3KVFYHfk0": "Installation Guide - Technical Overview",
+    "4Ngk_vP-dIQ": "Product Installation Demonstration",
+    "nhH8LrnONxs": "Advanced Installation Techniques",
+
+    // Homeowner videos
+    "Ibs0snk6nH0": "Solar Energy Benefits for Homeowners"
 }
 
 const videoCategories: VideoCategory[] = [
@@ -61,10 +141,63 @@ const videoCategories: VideoCategory[] = [
 ]
 
 export default function VideosPage() {
+    const searchParams = useSearchParams()
+    const router = useRouter()
     const [selectedCategory, setSelectedCategory] = useState<string>(videoCategories[1]?.id || '')
+    const [selectedVideo, setSelectedVideo] = useState<string>('')
+    const [showPopup, setShowPopup] = useState<boolean>(false)
 
     const heroRef = useRef(null)
     const isHeroInView = useInView(heroRef, { once: true })
+
+    // Initialize from URL parameters
+    useEffect(() => {
+        const categoryParam = searchParams.get('category')
+        const videoParam = searchParams.get('video')
+
+        if (categoryParam && videoCategories.some(cat => cat.id === categoryParam)) {
+            setSelectedCategory(categoryParam)
+        }
+        if (videoParam) {
+            setSelectedVideo(videoParam)
+            setShowPopup(true) // Auto-open popup when video is in URL
+        }
+    }, [searchParams])
+
+    // Update URL when category changes
+    const handleCategoryChange = (categoryId: string) => {
+        setSelectedCategory(categoryId)
+        setSelectedVideo('') // Clear video selection when changing category
+        setShowPopup(false) // Close popup when changing category
+
+        const params = new URLSearchParams(searchParams.toString())
+        params.set('category', categoryId)
+        params.delete('video') // Remove video param when changing category
+        router.push(`/resources/videos?${params.toString()}`, { scroll: false })
+    }
+
+    // Update URL when video is selected
+    const handleVideoSelect = (videoId: string) => {
+        setSelectedVideo(videoId)
+        setShowPopup(true) // Open popup when video is selected
+
+        const params = new URLSearchParams(searchParams.toString())
+        params.set('video', videoId)
+        if (!params.has('category')) {
+            params.set('category', selectedCategory)
+        }
+        router.push(`/resources/videos?${params.toString()}`, { scroll: false })
+    }
+
+    // Close popup and remove video from URL
+    const handleClosePopup = () => {
+        setShowPopup(false)
+        setSelectedVideo('')
+
+        const params = new URLSearchParams(searchParams.toString())
+        params.delete('video')
+        router.push(`/resources/videos?${params.toString()}`, { scroll: false })
+    }
 
     const currentCategory = videoCategories.find(cat => cat.id === selectedCategory) || videoCategories[0]
 
@@ -129,10 +262,9 @@ export default function VideosPage() {
                             className="group"
                         >
                             <Card
-                                className={`overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700 ${
-                                    selectedCategory === category.id ? 'ring-2 ring-brand-maroon' : ''
-                                }`}
-                                onClick={() => setSelectedCategory(category.id)}
+                                className={`overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700 ${selectedCategory === category.id ? 'ring-2 ring-brand-maroon' : ''
+                                    }`}
+                                onClick={() => handleCategoryChange(category.id)}
                             >
                                 <CardContent className="p-6">
                                     <div className="flex items-center gap-4 mb-4">
@@ -170,14 +302,18 @@ export default function VideosPage() {
                                     {currentCategory.description}
                                 </p>
                             </div>
-                            <YTVideo videoIds={currentCategory.videoIds} />
+                            <YTVideo
+                                videoIds={currentCategory.videoIds}
+                                videoTitles={videoTitles}
+                                onVideoSelect={handleVideoSelect}
+                            />
                         </motion.div>
                     )}
                 </div>
             </section>
 
             {/* Call to Action */}
-            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-10">
+            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon dark:from-gray-700 dark:to-gray-800 py-10">
                 <div className="container mx-auto px-6 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -214,6 +350,10 @@ export default function VideosPage() {
                     </motion.div>
                 </div>
             </section>
+
+            {showPopup && selectedVideo && (
+                <VideoPopup videoId={selectedVideo} onClose={handleClosePopup} />
+            )}
         </div>
     )
 }

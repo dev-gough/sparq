@@ -22,7 +22,7 @@ const productCards: ProductCard[] = [
     {
         id: "quad2",
         // title: "Q2000 1φ",
-        title: "Quad 2",
+        title: "Quad2",
         description: "Single-phase microinverters for residential installations",
         href: "/products/quad2",
         image: "/q2000.webp",

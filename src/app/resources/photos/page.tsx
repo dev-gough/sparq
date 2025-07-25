@@ -11,7 +11,6 @@ interface InstallationSite {
     name: string
     location: string
     description: string
-    completionDate: string
     systemSize: string
     photos: { src: string; alt?: string }[]
 }
@@ -21,9 +20,8 @@ const installationSites: InstallationSite[] = [
         id: "slc",
         name: "St. Lawrence College",
         location: "Kingston, Ontario",
-        description: "A comprehensive solar installation showcasing our Quad microinverter technology in an educational environment.",
-        completionDate: "2023",
-        systemSize: "19kW",
+        description: "A comprehensive solar installation showcasing our Quad microinverter technology.",
+        systemSize: "20kW",
         photos: [
             {src: "/SLC/001.JPG", alt: "St. Lawrence College installation overview"},
             {src: "/SLC/002.JPG", alt: "Solar panel array configuration"},
@@ -41,7 +39,6 @@ const installationSites: InstallationSite[] = [
         name: "Queens University",
         location: "Kingston, Ontario",
         description: "Our main test site, in collaboration with Queens University.",
-        completionDate: "2023",
         systemSize: "15kW",
         photos: [
             {src: "/Queens/1.jpg", alt: ""},
@@ -108,7 +105,7 @@ export default function PhotosPage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
-                            Installation Sites
+                            Key R&D Test Sites
                         </h2>
                         <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Select a site to view detailed photos and project information.
@@ -143,9 +140,8 @@ export default function PhotosPage() {
                                             </div>
                                         </div>
                                         <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-4 flex-grow">{site.description}</p>
-                                        <div className="flex justify-between text-sm text-brand-graytext dark:text-dark-text-muted mt-auto">
-                                            <span><strong>Completed:</strong> {site.completionDate}</span>
-                                            <span><strong>System:</strong> {site.systemSize}</span>
+                                        <div className="flex justify-center text-sm text-brand-graytext dark:text-dark-text-muted mt-auto">
+                                            <span><strong>System Size:</strong> {site.systemSize}</span>
                                         </div>
                                     </CardContent>
                                 </Card>
@@ -175,7 +171,7 @@ export default function PhotosPage() {
             </section>
 
             {/* Call to Action */}
-            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-10">
+            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon dark:from-gray-700 dark:to-gray-800 py-10">
                 <div className="container mx-auto px-6 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

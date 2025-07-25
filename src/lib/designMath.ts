@@ -54,8 +54,8 @@ export function calculate({ Pgrid, Vgrid, Ppv, Ppanel, region }: Inputs): Row[] 
   const na = region;
 
   // number of inverters
-  const invsFromPV = Math.ceil((Ppv * 1000) / (4 * Ppanel));
-  const invsFromAC = Math.ceil(Pgrid / 2);
+  const invsFromPV = Math.round((Ppv * 1000) / (4 * Ppanel));
+  const invsFromAC = Math.round(Pgrid / 2);
   const totalInverters = Math.max(invsFromPV, invsFromAC);
 
   // trunk calc

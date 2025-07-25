@@ -50,7 +50,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
         >
             <Link
                 href={navItem.href}
-                className={`relative flex items-center gap-1 px-3 py-2 text-base xl:text-lg font-medium transition-all duration-300 rounded-lg ${
+                className={`relative flex items-center gap-1 px-3 py-2 text-sm xl:text-lg font-medium transition-all duration-300 rounded-lg ${
                     isParentActive
                         ? 'text-brand-maroon dark:text-brand-yellow bg-brand-maroon/5 dark:bg-brand-yellow/10'
                         : 'text-brand-graytext dark:text-dark-text-primary hover:text-brand-maroon dark:hover:text-brand-yellow hover:bg-brand-maroon/5 dark:hover:bg-brand-yellow/10'
@@ -96,7 +96,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
                                     >
                                         <Link
                                             href={subItem.href}
-                                            className={`block px-4 py-3 mx-2 text-base font-medium transition-all duration-200 rounded-lg ${
+                                            className={`block px-4 py-3 mx-2 text-sm xl:text-base font-medium transition-all duration-200 rounded-lg ${
                                                 isSubActive
                                                     ? 'text-brand-maroon dark:text-brand-yellow bg-brand-maroon/10 dark:bg-brand-yellow/10'
                                                     : 'text-brand-graytext dark:text-dark-text-secondary hover:text-brand-maroon dark:hover:text-brand-yellow hover:bg-brand-maroon/5 dark:hover:bg-brand-yellow/10'

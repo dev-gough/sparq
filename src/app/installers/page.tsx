@@ -545,7 +545,7 @@ export default function InstallersPage() {
             </section>
 
             {/* Final CTA Section */}
-            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon py-10">
+            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon dark:from-gray-700 dark:to-gray-800 py-10">
                 <div className="container mx-auto px-6 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -557,7 +557,7 @@ export default function InstallersPage() {
                             Ready to Partner with Sparq?
                         </h2>
                         <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
-                            Join hundreds of successful installers who have chosen Sparq Systems for their commercial solar projects.
+                            Join professional installers who have chosen Sparq Systems for their commercial solar projects.
                             Start maximizing your profits today.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
@@ -574,9 +574,10 @@ export default function InstallersPage() {
                                 <motion.button
                                     whileHover={{ scale: 1.02, y: -2 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full sm:w-auto px-8 py-4 bg-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                    className="w-full sm:w-auto px-8 py-4 bg-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
                                 >
-                                    Download Presentation
+                                    <FaPlay className="mr-2" />
+                                    View Installer Presentation
                                 </motion.button>
                             </Link>
                         </div>
