@@ -6,39 +6,35 @@ import Image from "next/image"
 import { Quote, Award, Target, Lightbulb } from "lucide-react"
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
-interface Leader {
-    name: string
+interface CulturePrinciple {
     title: string
+    description: string
     image: string
     quote: string
-    bio: string
-    achievements: string[]
+    principles: string[]
 }
 
-const leaders: Leader[] = [
+const culturePrinciples: CulturePrinciple[] = [
     {
-        name: "Dr. Praveen Jain",
-        title: "Founder & CEO",
-        image: "/Team/drjain.png",
+        title: "Innovative Mindset",
+        description: "Our commitment to breakthrough thinking and continuous improvement drives every solution we create.",
+        image: "/iljinline.jpg",
         quote: "Innovation isn't just about technology - it's about transforming how the world thinks about energy.",
-        bio: "Dr. Jain is the visionary founder who identified the critical need for revolutionary microinverter technology. A Fellow of the Royal Society of Canada and recipient of the 2021 IEEE Medal in Power Engineering, he brings decades of power electronics expertise from companies like Intel, GE, and his successful exit from CHiL Semiconductor.",
-        achievements: ["100+ Patents", "IEEE Medal in Power Engineering 2021", "Fellow of Royal Society of Canada", "Founded CHiL Semiconductor (acquired by International Rectifier)"]
+        principles: ["Collaborative problem-solving approach", "Evidence-based decision making", "Continuous learning and adaptation", "Bold thinking with practical execution"]
     },
     {
-        name: "Dr. Majid Pahlevaninezhad",
-        title: "Chief Technology Officer",
-        image: "/Team/Majid-Pahlevaninezhad.jpg",
+        title: "Technical Expertise",
+        description: "We pursue uncompromising quality and reliability in every aspect of our engineering and manufacturing.",
+        image: "/Queens/4.jpg",
         quote: "The future of solar lies not just in better panels, but in smarter, safer power conversion.",
-        bio: "Dr. Pahlevani is the technical mastermind behind Sparq's QUAD microinverter family. With 210+ publications and 85+ US patents, he has pioneered innovative power circuitry and digital control techniques that define our competitive advantage. His work spans from pure electric vehicle power systems to cutting-edge solar microinverters.",
-        achievements: ["210+ Technical Publications", "85+ US Patents", "Engineering Excellence Award Queen's University", "IEEE Research Excellence Award Canada"]
+        principles: ["Rigorous testing and validation processes", "Industry-leading safety standards", "Performance optimization mindset", "Long-term reliability focus"]
     },
     {
-        name: "Dr. Shangzhi Pan",
-        title: "VP of Engineering",
-        image: "/Team/Dr-Shangzhi-Pan.png",
-        quote: "Every microinverter we design is built to outlast the solar panel it serves - that's our engineering promise.",
-        bio: "Dr. Pan has led the research, development, and certification of Sparq's microinverters since 2009. His decade of applied research at Queen's University has resulted in breakthrough digital control techniques that power our industry-leading reliability and efficiency. He bridges the gap between laboratory innovation and field-proven products.",
-        achievements: ["22+ US Patents", "15+ Years Microinverter Development", "Senior IEEE Member", "Queen's University PhD Power Electronics"]
+        title: "Customer-Centric Focus",
+        description: "Every decision we make is guided by our commitment to delivering exceptional value and experience to our customers.",
+        image: "/SLC/009.JPG",
+        quote: "Every product we design is built to exceed expectations - that's our engineering promise.",
+        principles: ["User experience at the forefront", "Transparent communication", "Responsive support and service", "Building lasting partnerships"]
     }
 ]
 
@@ -66,13 +62,13 @@ const companyValues: CompanyValue[] = [
     }
 ]
 
-interface LeaderSectionProps {
-    leader: Leader
+interface CultureSectionProps {
+    principle: CulturePrinciple
     index: number
     isReversed?: boolean
 }
 
-function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps) {
+function CultureSection({ principle, index, isReversed = false }: CultureSectionProps) {
     const sectionRef = useRef(null)
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
@@ -93,12 +89,12 @@ function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps
                     className="lg:w-1/3"
                 >
                     <div className="relative">
-                        <div className="w-80 h-80 mx-auto rounded-3xl overflow-hidden shadow-2xl">
+                        <div className="w-96 h-72 mx-auto rounded-3xl overflow-hidden shadow-2xl">
                             <Image
-                                src={leader.image}
-                                alt={leader.name}
-                                width={320}
-                                height={320}
+                                src={principle.image}
+                                alt={principle.title}
+                                width={384}
+                                height={288}
                                 className="w-full h-full object-cover"
                             />
                         </div>
@@ -115,10 +111,10 @@ function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps
                         className="md:hidden"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3">
-                            {leader.name}
+                            {principle.title}
                         </h2>
                         <p className="text-xl md:text-2xl text-brand-logo font-medium mb-8">
-                            {leader.title}
+                            {principle.description}
                         </p>
                     </motion.div>
 
@@ -129,10 +125,10 @@ function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps
                         className="hidden md:block"
                     >
                         <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3">
-                            {leader.name}
+                            {principle.title}
                         </h2>
                         <p className="text-xl md:text-2xl text-brand-logo font-medium mb-8">
-                            {leader.title}
+                            {principle.description}
                         </p>
                     </motion.div>
 
@@ -145,32 +141,21 @@ function LeaderSection({ leader, index, isReversed = false }: LeaderSectionProps
                     >
                         <Quote className="absolute top-4 left-4 text-brand-maroon/30 dark:text-brand-darkmaroon" size={24} />
                         <p className="text-lg md:text-xl text-brand-darkmaroon dark:text-brand-maroon font-medium italic leading-relaxed pl-8">
-                            &quot;{leader.quote}&quot;
+                            &quot;{principle.quote}&quot;
                         </p>
                     </motion.div>
 
-                    {/* Bio */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.6, delay: index * 0.2 + 0.6 }}
-                    >
-                        <p className="text-lg text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-8">
-                            {leader.bio}
-                        </p>
-                    </motion.div>
-
-                    {/* Achievements */}
+                    {/* Principles */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6, delay: index * 0.2 + 0.7 }}
                         className="grid grid-cols-1 md:grid-cols-2 gap-4"
                     >
-                        {leader.achievements.map((achievement, i) => (
-                            <div key={i} className="flex items-center gap-3 bg-white/60 dark:bg-gray-700/50 rounded-xl p-4 border border-brand-maroon/5">
+                        {principle.principles.map((item, i) => (
+                            <div key={i} className="flex items-center gap-3 bg-white dark:bg-gray-700/50 rounded-xl p-4 border border-brand-maroon/20 shadow-sm">
                                 <div className="w-2 h-2 rounded-full bg-brand-maroon flex-shrink-0" />
-                                <span className="text-brand-graytext dark:text-dark-text-secondary font-medium">{achievement}</span>
+                                <span className="text-brand-graytext dark:text-dark-text-secondary font-medium">{item}</span>
                             </div>
                         ))}
                     </motion.div>
@@ -249,26 +234,26 @@ export default function AboutUsPage() {
                 >
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
-                            Meet the Minds
+                            Our Culture
                         </span>
                         <br />
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
-                            Behind the Mission
+                            Our Purpose
                         </span>
                     </h1>
 
                     <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed">
-                        The visionary leaders and technical innovators driving the future of solar energy technology.
+                        Discover the values, principles, and collaborative spirit that drive our mission to revolutionize solar energy.
                     </p>
                 </motion.div>
             </div>
 
-            {/* Leaders Section */}
+            {/* Culture Principles Section */}
             <div className="relative container mx-auto px-6 py-10">
-                {leaders.map((leader, index) => (
-                    <LeaderSection
-                        key={leader.name}
-                        leader={leader}
+                {culturePrinciples.map((principle, index) => (
+                    <CultureSection
+                        key={principle.title}
+                        principle={principle}
                         index={index}
                         isReversed={index % 2 === 1}
                     />
@@ -287,12 +272,34 @@ export default function AboutUsPage() {
                     className="max-w-4xl mx-auto text-center"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon mb-8 dark:text-brand-yellow">
-                        Built on Strong Values
+                        Our Cultural Foundation
                     </h2>
                     <div className="bg-white/80 dark:bg-gray-700/60 rounded-3xl p-8 border border-brand-maroon/10 shadow-lg">
-                        <p className="text-lg text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
-                            <span className="font-semibold text-brand-darkmaroon dark:text-brand-yellow">Integrity, Collaboration, Innovation, Quality, Social Responsibility, and Teamwork</span> -
-                            these aren&apos;t just words on our website. They&apos;re the foundation of how we operate,
+                        <p className="text-lg text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-6">
+                            At SPARQ Systems, our culture is built on six foundational principles that guide every decision and every interaction:
+                        </p>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                            <div className="p-4 bg-brand-maroon/5 dark:bg-gray-600/60 rounded-xl border border-brand-maroon/10 dark:border-gray-500/30">
+                                <span className="font-semibold text-brand-darkmaroon dark:text-brand-yellow">Integrity</span>
+                            </div>
+                            <div className="p-4 bg-brand-maroon/5 dark:bg-gray-600/60 rounded-xl border border-brand-maroon/10 dark:border-gray-500/30">
+                                <span className="font-semibold text-brand-darkmaroon dark:text-brand-yellow">Collaboration</span>
+                            </div>
+                            <div className="p-4 bg-brand-maroon/5 dark:bg-gray-600/60 rounded-xl border border-brand-maroon/10 dark:border-gray-500/30">
+                                <span className="font-semibold text-brand-darkmaroon dark:text-brand-yellow">Innovation</span>
+                            </div>
+                            <div className="p-4 bg-brand-maroon/5 dark:bg-gray-600/60 rounded-xl border border-brand-maroon/10 dark:border-gray-500/30">
+                                <span className="font-semibold text-brand-darkmaroon dark:text-brand-yellow">Quality</span>
+                            </div>
+                            <div className="p-4 bg-brand-maroon/5 dark:bg-gray-600/60 rounded-xl border border-brand-maroon/10 dark:border-gray-500/30">
+                                <span className="font-semibold text-brand-darkmaroon dark:text-brand-yellow">Social Responsibility</span>
+                            </div>
+                            <div className="p-4 bg-brand-maroon/5 dark:bg-gray-600/60 rounded-xl border border-brand-maroon/10 dark:border-gray-500/30">
+                                <span className="font-semibold text-brand-darkmaroon dark:text-brand-yellow">Teamwork</span>
+                            </div>
+                        </div>
+                        <p className="text-lg text-brand-graytext dark:text-dark-text-secondary leading-relaxed mt-6">
+                            These values aren&apos;t just words on our website. They&apos;re the living foundation of how we operate,
                             how we innovate, and how we build lasting relationships with our customers,
                             partners, and communities around the world.
                         </p>

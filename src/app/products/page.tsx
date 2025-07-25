@@ -44,7 +44,7 @@ const productCards: ProductCard[] = [
         title: "Q1200 (Legacy)",
         description: "Documentation & data sheet for the discontinued Q1200",
         href: "/products/legacy",
-        image: "/q1200-discontinued.png",
+        image: "/q2000.webp",
         category: "Microinverters",
         accentColor: "bg-gradient-to-br from-brand-maroon to-brand-darkmaroon"
     },

@@ -215,7 +215,7 @@ export default function HomeownersPage() {
             </section>
 
             {/* Why Sparq Section */}
-            <section id="whysparq" className="relative container mx-auto px-6 py-10">
+            <section id="whysparq" className="relative container mx-auto px-6 py-10 scroll-mt-[75px]">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -258,7 +258,7 @@ export default function HomeownersPage() {
             </section>
 
             {/* Technology Showcase */}
-            <section id="discover" className="relative bg-white dark:bg-gray-900 py-10">
+            <section id="discover" className="relative bg-white dark:bg-gray-900 py-10 scroll-mt-[75px]">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -527,7 +527,7 @@ export default function HomeownersPage() {
                 </motion.div>
             </section>
             {/* FAQ Section */}
-            <section id="faq" className="relative container mx-auto px-6 py-10">
+            <section id="faq" className="relative container mx-auto px-6 py-10 scroll-mt-[75px]">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
