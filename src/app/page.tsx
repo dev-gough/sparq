@@ -18,30 +18,41 @@ interface FeaturedProduct {
     image: string
     features: string[]
     accentColor: string
+    variants?: {
+        id: string
+        title: string
+        tagline: string
+        href: string
+        image: string
+    }[]
 }
 
-const featuredProducts: FeaturedProduct[] = [
-    {
-        id: "quad2",
-        title: "Quad2",
-        tagline: "Single-Phase Power Optimization",
-        description: "Revolutionary single-phase microinverter technology with advanced monitoring and superior efficiency for residential and light commercial solar installations.",
-        href: "/products/quad2",
-        image: "/q2000.webp",
-        features: ["Advanced MPPT Technology", "Real-time Monitoring", "Weather Resistant Design", "Easy Installation"],
-        accentColor: "bg-gradient-to-bl from-brand-gray/80 to-brand-graytext/80"
-    },
-    {
-        id: "quad3",
-        title: "Quad3",
-        tagline: "Three-Phase Power Solutions",
-        description: "Advanced three-phase microinverter technology delivering exceptional performance, reliability, and efficiency for commercial & industrial solar systems.",
-        href: "/products/quad3",
-        image: "/quad3.webp",
-        features: ["Superior Performance", "Compact Design", "Intelligent Control", "Proven Reliability"],
-        accentColor: "bg-gradient-to-bl from-brand-gray/80 to-brand-graytext/80"
-    }
-]
+const unifiedQuadProduct: FeaturedProduct = {
+    id: "quad-series",
+    title: "Quad Series",
+    tagline: "Revolutionary Microinverter Technology",
+    description: "Advanced microinverter technology delivering exceptional performance, reliability, and efficiency. Available in single-phase and three-phase configurations for residential, commercial & industrial solar installations.",
+    href: "/products/quad2", // Default to quad2
+    image: "/q2000.webp",
+    features: ["Advanced MPPT Technology", "Real-time Monitoring", "No Failure-Prone Components", "Easy Installation"],
+    accentColor: "bg-gradient-to-bl from-brand-gray/80 to-brand-graytext/80",
+    variants: [
+        {
+            id: "quad2",
+            title: "Quad2",
+            tagline: "Single-Phase",
+            href: "/products/quad2",
+            image: "/q2000.webp"
+        },
+        {
+            id: "quad3",
+            title: "Quad3",
+            tagline: "Three-Phase",
+            href: "/products/quad3",
+            image: "/quad3.webp"
+        }
+    ]
+}
 
 interface FloatingProductHeroProps {
     product: FeaturedProduct
@@ -52,9 +63,12 @@ interface FloatingProductHeroProps {
 function FloatingProductHero({ product, index, isReversed = false }: FloatingProductHeroProps) {
     const [isHovered, setIsHovered] = useState(false)
     const [isButtonHovered, setIsButtonHovered] = useState(false)
+    const [selectedVariant, setSelectedVariant] = useState(product.variants?.[0] || null)
     const cardRef = useRef(null)
     const isInView = useInView(cardRef, { once: true, margin: "-100px" })
     const isMobile = useIsMobile()
+
+    const trackEvent = useTrackEvent()
 
     // Animation variants for different screen sizes
     const textVariants = {
@@ -125,27 +139,62 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                             </motion.div>
                         ))}
                     </div>
-                    <Link href={product.href}>
-                        <motion.button
-                            whileHover={{ scale: 1.02, y: -2 }}
-                            whileTap={{ scale: 0.98 }}
-                            onMouseEnter={() => setIsButtonHovered(true)}
-                            onMouseLeave={() => setIsButtonHovered(false)}
-                            className="px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-100 cursor-pointer"
-                        >
-                            Explore {product.title}
-                            <motion.svg
-                                className="inline-block ml-2 w-5 h-5"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                animate={{ x: isButtonHovered ? 8 : 0 }}
-                                transition={{ duration: 0.2, ease: "easeOut" }}
+
+                    {/* Product variants buttons or single product button */}
+                    {product.variants ? (
+                        <div className="flex gap-4 w-full">
+                            {product.variants.map((variant, i) => (
+                                <Link key={variant.id} href={variant.href} className="flex-1">
+                                    <motion.button
+                                        whileHover={{ scale: 1.02, y: -2 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        onClick={() => {
+                                            trackEvent("product_variant_clicked", {
+                                                variant: variant.id,
+                                                product: product.id
+                                            })
+                                        }}
+                                        className={`w-full px-6 py-5 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${i === 0
+                                                ? 'bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white'
+                                                : 'bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow border-2 border-brand-maroon/20 dark:border-brand-yellow/30'
+                                            }`}
+                                        onMouseEnter={() => {
+                                            setSelectedVariant(variant)
+                                            setIsButtonHovered(true)
+                                        }}
+                                        onMouseLeave={() => setIsButtonHovered(false)}
+                                    >
+                                        <div className="flex flex-col items-center gap-1">
+                                            <span className="text-lg">Explore {variant.title}</span>
+                                            <span className="text-sm opacity-80">{variant.tagline}</span>
+                                        </div>
+                                    </motion.button>
+                                </Link>
+                            ))}
+                        </div>
+                    ) : (
+                        <Link href={product.href}>
+                            <motion.button
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                onMouseEnter={() => setIsButtonHovered(true)}
+                                onMouseLeave={() => setIsButtonHovered(false)}
+                                className="px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-100 cursor-pointer"
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </motion.svg>
-                        </motion.button>
-                    </Link>
+                                Explore {product.title}
+                                <motion.svg
+                                    className="inline-block ml-2 w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    animate={{ x: isButtonHovered ? 8 : 0 }}
+                                    transition={{ duration: 0.2, ease: "easeOut" }}
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </motion.svg>
+                            </motion.button>
+                        </Link>
+                    )}
                 </motion.div>
             </div>
 
@@ -162,8 +211,8 @@ function FloatingProductHero({ product, index, isReversed = false }: FloatingPro
                 >
                     <div className="relative overflow-hidden border-0 shadow-2xl rounded-2xl h-64 sm:h-80 lg:h-96 w-full bg-neutral-100 dark:bg-gray-800/60">
                         <Image
-                            src={product.image}
-                            alt={product.title}
+                            src={selectedVariant?.image || product.image}
+                            alt={selectedVariant?.title || product.title}
                             fill
                             className="object-contain transition-all duration-500 ease-out"
                             style={{
@@ -200,7 +249,7 @@ export default function Home() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
-            <SolarBackgroundElements/>
+            <SolarBackgroundElements />
 
             {/* Hero Section */}
             <section className="relative container mx-auto pt-10 pb-16">
@@ -227,7 +276,7 @@ export default function Home() {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
                     >
-                    Discover our cutting-edge microinverter technology that&apos;s transforming solar energy
+                        Discover our cutting-edge microinverter technology that&apos;s transforming solar energy
                         with unmatched efficiency, reliability, and innovation.
                     </motion.p>
 
@@ -414,14 +463,12 @@ export default function Home() {
 
             {/* Featured Products */}
             <section className="relative container mx-auto py-10">
-                {featuredProducts.map((product, index) => (
-                    <FloatingProductHero
-                        key={product.id}
-                        product={product}
-                        index={index}
-                        isReversed={index % 2 === 1}
-                    />
-                ))}
+                <FloatingProductHero
+                    key={unifiedQuadProduct.id}
+                    product={unifiedQuadProduct}
+                    index={0}
+                    isReversed={false}
+                />
             </section>
 
             {/* Call to Action */}

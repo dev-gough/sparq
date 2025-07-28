@@ -105,9 +105,9 @@ const videoTitles: Record<string, string> = {
 
     // Installer videos
     "5u3KVFYHfk0": "Sparq Microinverter Overview",
-    "4Ngk_vP-dIQ": "Quad2/3 Installation Guide",
+    "Bci42uwLmGY": "Quad2/3 Installation Guide",
     "nhH8LrnONxs": "SparqLinq Installation Guide",
-    "/external-sparq-app.mp4": "Sparq App Demo",
+    "/external-sparq-app.mp4": "SparqSync Demo",
 
     // Homeowner videos
     "Ibs0snk6nH0": "Solar Energy Benefits for Homeowners",
@@ -145,7 +145,7 @@ const videoCategories: VideoCategory[] = [
         ),
         videoIds: [
             "5u3KVFYHfk0",
-            "4Ngk_vP-dIQ",
+            "Bci42uwLmGY",
             "nhH8LrnONxs",
             "/external-sparq-app.mp4",
         ]

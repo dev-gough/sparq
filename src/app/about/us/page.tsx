@@ -3,7 +3,7 @@
 import { useRef } from "react"
 import { motion, useInView } from "motion/react"
 import Image from "next/image"
-import { Quote, Award, Target, Lightbulb } from "lucide-react"
+import { Award, Target, Lightbulb } from "lucide-react"
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface CulturePrinciple {
@@ -133,7 +133,7 @@ function CultureSection({ principle, index, isReversed = false }: CultureSection
                     </motion.div>
 
                     {/* Quote */}
-                    <motion.div
+                    {/* <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6, delay: index * 0.2 + 0.5 }}
@@ -143,7 +143,7 @@ function CultureSection({ principle, index, isReversed = false }: CultureSection
                         <p className="text-lg md:text-xl text-brand-darkmaroon dark:text-brand-maroon font-medium italic leading-relaxed pl-8">
                             &quot;{principle.quote}&quot;
                         </p>
-                    </motion.div>
+                    </motion.div> */}
 
                     {/* Principles */}
                     <motion.div
