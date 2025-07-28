@@ -7,6 +7,7 @@ import { useTrackEvent } from '@/hooks/useTrackEvent'
 interface YTProps {
   videoIds: string[]
   videoTitles?: Record<string, string>
+  localVideoThumbnails?: Record<string, string>
   onVideoSelect?: (videoId: string) => void
   fullWidth?: boolean
 }
@@ -15,22 +16,34 @@ interface VideoData {
   id: string
   title: string
   thumbnail: string
+  isLocal: boolean
 }
 
-export default function YTVideo({ videoIds, videoTitles, onVideoSelect, fullWidth = false }: YTProps) {
+// Helper function to determine if a video ID is for a local video
+const isLocalVideo = (videoId: string): boolean => {
+  return videoId.startsWith('/') || videoId.includes('.mp4') || videoId.includes('.webm') || videoId.includes('.mov')
+}
+
+export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, onVideoSelect, fullWidth = false }: YTProps) {
   const trackEvent = useTrackEvent()
   const [videosData, setVideosData] = useState<VideoData[]>([])
   const [playingVideo, setPlayingVideo] = useState<string | null>(null)
 
   useEffect(() => {
     // Create video data with thumbnails and titles
-    const videos = videoIds.map(videoId => ({
-      id: videoId,
-      title: videoTitles?.[videoId] || `YouTube Video ${videoId}`,
-      thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
-    }))
+    const videos = videoIds.map(videoId => {
+      const isLocal = isLocalVideo(videoId)
+      return {
+        id: videoId,
+        title: videoTitles?.[videoId] || (isLocal ? `Local Video` : `YouTube Video ${videoId}`),
+        thumbnail: isLocal
+          ? (localVideoThumbnails?.[videoId] || '/default-video-thumbnail.jpg')
+          : `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+        isLocal
+      }
+    })
     setVideosData(videos)
-  }, [videoIds, videoTitles])
+  }, [videoIds, videoTitles, localVideoThumbnails])
 
   const handleVideoClick = (videoId: string) => {
     trackEvent("youtube_video_clicked")
@@ -49,13 +62,25 @@ export default function YTVideo({ videoIds, videoTitles, onVideoSelect, fullWidt
           <div key={video.id} className="w-full">
             {playingVideo === video.id ? (
               <div className="w-full aspect-video rounded-lg overflow-hidden">
-                <iframe
-                  src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1`}
-                  title={video.title}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                {video.isLocal ? (
+                  <video
+                    src={video.id}
+                    controls
+                    autoPlay
+                    className="w-full h-full object-cover"
+                    title={video.title}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1`}
+                    title={video.title}
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                )}
               </div>
             ) : (
               <button

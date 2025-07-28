@@ -12,6 +12,11 @@ interface VideoPopupProps {
     onClose: () => void;
 }
 
+// Helper function to determine if a video ID is for a local video
+const isLocalVideo = (videoId: string): boolean => {
+    return videoId.startsWith('/') || videoId.includes('.mp4') || videoId.includes('.webm') || videoId.includes('.mov')
+}
+
 function VideoPopup({ videoId, onClose }: VideoPopupProps) {
     useEffect(() => {
         const handleEsc = (e: KeyboardEvent) => {
@@ -20,6 +25,8 @@ function VideoPopup({ videoId, onClose }: VideoPopupProps) {
         document.addEventListener('keydown', handleEsc);
         return () => document.removeEventListener('keydown', handleEsc);
     }, [onClose]);
+
+    const isLocal = isLocalVideo(videoId)
 
     return (
         <div className="fixed inset-0 z-[60] overflow-y-auto">
@@ -56,12 +63,23 @@ function VideoPopup({ videoId, onClose }: VideoPopupProps) {
 
                     <div className="bg-gray-900 rounded-xl shadow-xl overflow-hidden">
                         <div className="relative pt-[56.25%]">
-                            <iframe
-                                className="absolute top-0 left-0 w-full h-full"
-                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`}
-                                allow="autoplay; encrypted-media"
-                                allowFullScreen
-                            />
+                            {isLocal ? (
+                                <video
+                                    className="absolute top-0 left-0 w-full h-full object-cover"
+                                    src={videoId}
+                                    controls
+                                    autoPlay
+                                >
+                                    Your browser does not support the video tag.
+                                </video>
+                            ) : (
+                                <iframe
+                                    className="absolute top-0 left-0 w-full h-full"
+                                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`}
+                                    allow="autoplay; encrypted-media"
+                                    allowFullScreen
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -89,9 +107,15 @@ const videoTitles: Record<string, string> = {
     "5u3KVFYHfk0": "Sparq Microinverter Overview",
     "4Ngk_vP-dIQ": "Quad2/3 Installation Guide",
     "nhH8LrnONxs": "SparqLinq Installation Guide",
+    "/external-sparq-app.mp4": "Sparq App Demo",
 
     // Homeowner videos
-    "Ibs0snk6nH0": "Solar Energy Benefits for Homeowners"
+    "Ibs0snk6nH0": "Solar Energy Benefits for Homeowners",
+}
+
+// Local video thumbnails mapping - add thumbnail paths for local videos
+const localVideoThumbnails: Record<string, string> = {
+    "/external-sparq-app.mp4": "/sparqsync_splash.jpg"
 }
 
 const videoCategories: VideoCategory[] = [
@@ -123,6 +147,7 @@ const videoCategories: VideoCategory[] = [
             "5u3KVFYHfk0",
             "4Ngk_vP-dIQ",
             "nhH8LrnONxs",
+            "/external-sparq-app.mp4",
         ]
     },
     {
@@ -136,6 +161,7 @@ const videoCategories: VideoCategory[] = [
         ),
         videoIds: [
             "Ibs0snk6nH0",
+            "/external-sparq-app.mp4",
         ]
     }
 ]
@@ -305,6 +331,7 @@ export default function VideosPage() {
                             <YTVideo
                                 videoIds={currentCategory.videoIds}
                                 videoTitles={videoTitles}
+                                localVideoThumbnails={localVideoThumbnails}
                                 onVideoSelect={handleVideoSelect}
                             />
                         </motion.div>
