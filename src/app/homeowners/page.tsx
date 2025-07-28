@@ -8,7 +8,7 @@ import { useTrackEvent } from "@/hooks/useTrackEvent"
 import Image from "next/image"
 import FAQs from './home_faq.json'
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
-import { FaPlay } from "react-icons/fa"
+import { FaFilePdf, FaPlay } from "react-icons/fa"
 
 interface FAQData {
     id: number
@@ -197,17 +197,18 @@ export default function HomeownersPage() {
                                 whileTap={{ scale: 0.98 }}
                                 className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
                             >
-                                <FaPlay className="mr-2" />
+                                <FaFilePdf className="mr-2" />
                                 View Homeowner Presentation
                             </motion.button>
                         </Link>
-                        <Link href="#design"  onClick={() => handleCtaClick('design_system')}>
+                        <Link href="/resources/videos?category=homeowners&video=Ibs0snk6nH0"  onClick={() => handleCtaClick('design_system')}>
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer"
+                                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center"
                             >
-                                Design My System
+                                <FaPlay className="mr-2" />
+                                Watch Homeowner Video
                             </motion.button>
                         </Link>
                     </motion.div>

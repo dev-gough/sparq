@@ -9,7 +9,7 @@ import InstallerFAQData from "./installer_faq.json"
 
 import BoMCalc from "@/components/BomCalc"
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
-import { FaPlay } from "react-icons/fa"
+import { FaPlay, FaFilePdf } from "react-icons/fa"
 
 interface FAQData {
     id: number
@@ -179,7 +179,7 @@ export default function InstallersPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto"
+                        className="flex flex-col sm:flex-row justify-center gap-6 max-w-3xl mx-auto"
                     >
                         <Link href="/installer_ppt.pdf" target="_blank" onClick={() => handleCtaClick('presentation')}>
                             <motion.button
@@ -187,7 +187,7 @@ export default function InstallersPage() {
                                 whileTap={{ scale: 0.98 }}
                                 className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
                             >
-                                <FaPlay className="mr-2" />
+                                <FaFilePdf className="mr-2" />
                                 View Installer Presentation
                             </motion.button>
                         </Link>
@@ -198,6 +198,16 @@ export default function InstallersPage() {
                                 className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer"
                             >
                                 BOM Calculator
+                            </motion.button>
+                        </Link>
+                        <Link href="/resources/videos?video=5u3KVFYHfk0&category=installers" onClick={() => handleCtaClick('marketing')}>
+                            <motion.button
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center"
+                            >
+                                <FaPlay className="mr-2" />
+                                Watch Video
                             </motion.button>
                         </Link>
                     </motion.div>
@@ -576,7 +586,7 @@ export default function InstallersPage() {
                                     whileTap={{ scale: 0.98 }}
                                     className="w-full sm:w-auto px-8 py-4 bg-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
                                 >
-                                    <FaPlay className="mr-2" />
+                                    <FaFilePdf className="mr-2" />
                                     View Installer Presentation
                                 </motion.button>
                             </Link>

@@ -86,9 +86,9 @@ const videoTitles: Record<string, string> = {
     "0sdcGgL9228": "CEO Interview - Market Strategy",
 
     // Installer videos
-    "5u3KVFYHfk0": "Installation Guide - Technical Overview",
-    "4Ngk_vP-dIQ": "Product Installation Demonstration",
-    "nhH8LrnONxs": "Advanced Installation Techniques",
+    "5u3KVFYHfk0": "Sparq Microinverter Overview",
+    "4Ngk_vP-dIQ": "Quad2/3 Installation Guide",
+    "nhH8LrnONxs": "SparqLinq Installation Guide",
 
     // Homeowner videos
     "Ibs0snk6nH0": "Solar Energy Benefits for Homeowners"

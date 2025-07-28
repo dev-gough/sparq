@@ -8,6 +8,7 @@ interface YTProps {
   videoIds: string[]
   videoTitles?: Record<string, string>
   onVideoSelect?: (videoId: string) => void
+  fullWidth?: boolean
 }
 
 interface VideoData {
@@ -16,9 +17,10 @@ interface VideoData {
   thumbnail: string
 }
 
-export default function YTVideo({ videoIds, videoTitles, onVideoSelect }: YTProps) {
+export default function YTVideo({ videoIds, videoTitles, onVideoSelect, fullWidth = false }: YTProps) {
   const trackEvent = useTrackEvent()
   const [videosData, setVideosData] = useState<VideoData[]>([])
+  const [playingVideo, setPlayingVideo] = useState<string | null>(null)
 
   useEffect(() => {
     // Create video data with thumbnails and titles
@@ -32,9 +34,68 @@ export default function YTVideo({ videoIds, videoTitles, onVideoSelect }: YTProp
 
   const handleVideoClick = (videoId: string) => {
     trackEvent("youtube_video_clicked")
-    onVideoSelect?.(videoId)
+    if (fullWidth) {
+      setPlayingVideo(videoId)
+    } else {
+      onVideoSelect?.(videoId)
+    }
   }
 
+  if (fullWidth) {
+    // Full width layout for dropdown usage
+    return (
+      <div className="w-full">
+        {videosData.map((video) => (
+          <div key={video.id} className="w-full">
+            {playingVideo === video.id ? (
+              <div className="w-full aspect-video rounded-lg overflow-hidden">
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1`}
+                  title={video.title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <button
+                onClick={() => handleVideoClick(video.id)}
+                className="w-full text-left group"
+              >
+                <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+                  <Image
+                    height={720}
+                    width={1280}
+                    src={video.thumbnail}
+                    alt={video.title}
+                    className="w-full h-full object-cover group-hover:blur-sm transition-all duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border-2 border-white/50 group-hover:scale-110 transition-transform duration-300">
+                      <svg
+                        className="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </button>
+            )}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  // Default card-based grid layout
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {videosData.map((video, index) => (

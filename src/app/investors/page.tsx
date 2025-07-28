@@ -6,7 +6,7 @@ import { motion, useInView } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
 import { useTrackEvent } from '@/hooks/useTrackEvent'
 import FAQs from './investor_faq.json'
-import { FaChartLine, FaNewspaper, FaCalendarAlt, FaShieldAlt, FaExternalLinkAlt, FaHandshake, FaRocket, FaAward, FaTrophy, FaPlay } from 'react-icons/fa'
+import { FaChartLine, FaNewspaper, FaCalendarAlt, FaShieldAlt, FaExternalLinkAlt, FaHandshake, FaRocket, FaAward, FaTrophy, FaPlay, FaFilePdf } from 'react-icons/fa'
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface FAQData {
@@ -184,7 +184,7 @@ export default function InvestorsPage() {
                                 whileTap={{ scale: 0.98 }}
                                 className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
                             >
-                                <FaPlay className="mr-2" />
+                                <FaFilePdf className="mr-2" />
                                 View Investor Presentation
                             </motion.button>
                         </Link>
@@ -192,8 +192,9 @@ export default function InvestorsPage() {
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer"
+                                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center"
                             >
+                                <FaPlay className="mr-2" />
                                 Watch CEO Interview
                             </motion.button>
                         </Link>
@@ -476,7 +477,7 @@ export default function InvestorsPage() {
                                     whileTap={{ scale: 0.98 }}
                                     className="w-full sm:w-auto px-8 py-4 bg-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
                                 >
-                                    <FaPlay className="mr-2" />
+                                    <FaFilePdf className="mr-2" />
                                     View Installer Presentation
                                 </motion.button>
                             </Link>

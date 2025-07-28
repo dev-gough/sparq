@@ -47,6 +47,16 @@ const installationSites: InstallationSite[] = [
             {src: "/Queens/4.jpg", alt: ""},
             {src: "/Queens/5.jpg", alt: ""},
         ]
+    },
+    {
+        id: "modern_niagara",
+        name: "Sparq Headquarters",
+        location: "Kingston, Ontario",
+        description: "A new R&D site atop our HQ in Kingston.",
+        systemSize: "10kW",
+        photos: [
+            //todo add photos
+        ]
     }
     // Future sites can be added here
 ]

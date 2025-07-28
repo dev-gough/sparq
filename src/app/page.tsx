@@ -402,7 +402,7 @@ export default function Home() {
                     >
                         <h2 className="text-3xl md:text-5xl font-bold mb-6">
                             <span className="bg-gradient-to-r from-brand-darkmaroon to-brand-maroon bg-clip-text text-transparent dark:from-brand-yellow dark:to-brand-logo">
-                                Our Product Line
+                                Microinverter Product Family
                             </span>
                         </h2>
                         <p className="text-lg md:text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">

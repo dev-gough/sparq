@@ -6,6 +6,7 @@ import { useState, useRef } from 'react'
 import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
+import YTVideo from "@/components/YTVideo"
 
 function image() {
 	return (
@@ -111,6 +112,19 @@ const accordionSections: AccordionSection[] = [
 						</div>
 					</div>
 				</div>
+			</div>
+		)
+	},
+	{
+		title: "Installation Video",
+		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
+		content: (
+			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+				<YTVideo
+					videoIds={["nhH8LrnONxs"]}
+					videoTitles={{ "nhH8LrnONxs": "SparqLinq Installation Guide" }}
+					fullWidth={true}
+				/>
 			</div>
 		)
 	}
