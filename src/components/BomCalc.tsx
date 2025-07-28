@@ -51,22 +51,22 @@ export default function BoMCalc() {
 
     const ratio = Pgrid > 0 ? Ppv / Pgrid : NaN;
 
-    // compatibility
-    const SystemOK =
-        Vpanel <= 68 &&
-        Ppanel >= 400 &&
-        Ppanel <= 750 &&
-        Iscpanel <= 20 &&
-        ratio >= 1 &&
-        ratio <= 1.5;
+  // compatibility
+  const SystemOK =
+    Vpanel <= 68 &&
+    Ppanel >= 400 &&
+    Ppanel <= 750 &&
+    Iscpanel <= 20 &&
+    ratio > 1 &&
+    ratio < 1.4;
 
-    const panelFailReasons: string[] = [];
-    if (Vpanel > 68) panelFailReasons.push("Panel Voc Too High! Voc must be within 20V-68V range");
-    if (Ppanel > 750) panelFailReasons.push("Panel STC Power Too High! Must be less than 750W");
-    if (Ppanel < 400) panelFailReasons.push("Undersized PV panel! Suggestion: Use higher power panel");
-    if (Iscpanel > 20) panelFailReasons.push("Panel Isc Too High! Must be less than 20A");
-    if (Ppv / Pgrid > 1.5) panelFailReasons.push("Oversized DC Side! Suggestion: Increase AC side for better PV/microinverter utilization")
-    if (Ppv / Pgrid < 1) panelFailReasons.push("Undersized DC Side! Suggestion: Increase DC side for better microinverter utilization ")
+  const panelFailReasons: string[] = [];
+  if (Vpanel > 68) panelFailReasons.push("Panel Voc Too High! Voc must be within 20V-68V range");
+  if (Ppanel > 750) panelFailReasons.push("Panel STC Power Too High! Must be less than 750W");
+  if (Ppanel < 400) panelFailReasons.push("Undersized PV panel! Suggestion: Use higher power panel");
+  if (Iscpanel > 20) panelFailReasons.push("Panel Isc Too High! Must be less than 20A");
+  if (Ppv/Pgrid > 1.4) panelFailReasons.push("Oversized DC Side! Suggestion: Increase AC side for better PV/microinverter utilization")
+  if (Ppv/Pgrid < 1) panelFailReasons.push("Undersized DC Side! Suggestion: Increase DC side for better microinverter utilization ")
 
     // inverter choice
     const isThreePhase = form.projectType === "Industrial" || form.gridType === "Water Pump";
