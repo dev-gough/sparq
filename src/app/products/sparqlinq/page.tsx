@@ -2,6 +2,7 @@
 import ProductPage from "@/components/ProductPage"
 import Image from "next/image"
 import Link from "next/link"
+import { ListEntry } from "@/components/ProductPage"
 import { useState, useRef } from 'react'
 import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -27,6 +28,24 @@ function body() {
 	)
 }
 
+const listContent: ListEntry[] = [
+	{
+		heading: "Data when you need it",
+		items: [
+			"Advanced performance and communication tools with no app required",
+			"Real-time metrics, historical records and panel-by-panel information",
+			"Cloud-based monitoring"
+		]
+	},
+	{
+		heading: "Quick Installation",
+		items: [
+			"Automatically detects connected inverters before AC is connected",
+			"Installation layout syncs automatically to your cloud account"
+		]
+	}
+]
+
 interface AccordionSection {
 	title: string
 	content: React.ReactNode | ((selectedModel: string) => React.ReactNode)
@@ -35,80 +54,44 @@ interface AccordionSection {
 
 const accordionSections: AccordionSection[] = [
 	{
-		title: "Features",
+		title: "Documentation",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (
 			<div className="space-y-6">
 				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Data when you need it</h3>
-					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Advanced performance and communication tools with no app required</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Real-time metrics, historical records and panel-by-panel information</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Cloud-based monitoring</span>
-						</li>
-					</ul>
-				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Quick Installation</h3>
-					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Automatically detects connected inverters before AC is connected</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Installation layout syncs automatically to your cloud account</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		)
-	},
-	{
-		title: "Technical specifications",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheet for SL200-2001</h3>
-				<div className="flex items-center gap-3">
-					<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-					<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/sparqlinq-specsheet.pdf" target="_blank">
-						Download SL200-2001 Datasheet (PDF)
-					</Link>
-				</div>
-			</div>
-		)
-	},
-	{
-		title: "Documentation",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<div className="space-y-4">
-					<div>
-						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-2">Quick Install Guide for SL200-2001</h3>
-						<div className="flex items-center gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-							<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/sparqlinq-quickinstall.pdf" target="_blank">
-								All Regions
-							</Link>
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Technical Specifications</h3>
+					<div className="space-y-3">
+						<div>
+							<h4 className="font-semibold text-brand-graytext dark:text-dark-text-secondary mb-2">SL200-2001 Datasheet</h4>
+							<div className="flex items-center gap-3">
+								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+								<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/sparqlinq-specsheet.pdf" target="_blank">
+									Download SL200-2001 Datasheet (PDF)
+								</Link>
+							</div>
 						</div>
 					</div>
-					<div>
-						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-2">LED Indicator Guide for SL200-2001</h3>
-						<div className="flex items-center gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-							<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/sparqlinq-ledguide.pdf" target="_blank">
-								SparqLinq-LEDGuide.pdf
-							</Link>
+				</div>
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Documentation</h3>
+					<div className="grid gap-3">
+						<div>
+							<h4 className="font-semibold text-brand-graytext dark:text-dark-text-secondary mb-2">Quick Install Guide for SL200-2001</h4>
+							<div className="flex items-center gap-3">
+								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+								<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/sparqlinq-quickinstall.pdf" target="_blank">
+									All Regions
+								</Link>
+							</div>
+						</div>
+						<div>
+							<h4 className="font-semibold text-brand-graytext dark:text-dark-text-secondary mb-2">LED Indicator Guide for SL200-2001</h4>
+							<div className="flex items-center gap-3">
+								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+								<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/sparqlinq-ledguide.pdf" target="_blank">
+									SparqLinq-LEDGuide.pdf
+								</Link>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -245,8 +228,10 @@ export default function SparqLinqPage() {
 				setSelectedModel={setSelectedModel}
 				model="SL200-2001"
 				heading="SparqLinq: Real-time performance monitoring"
+				animated={true}
 				parent="SparqLinq"
 				href="sparqlinq"
+				animatedList={listContent}
 				bodyContent={body()}
 				accordianContent={Accordion()}
 				imageContent={image()}

@@ -2,6 +2,7 @@
 import ProductPage from "@/components/ProductPage"
 import Image from "next/image"
 import VideoPlayer from "@/components/VideoPlayer"
+import { ListEntry } from "@/components/ProductPage"
 import { useState, useRef } from 'react'
 import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -51,6 +52,38 @@ function body() {
 	)
 }
 
+const listContent: ListEntry[] = [
+	{
+		heading: "Real-time insights",
+		items: [
+			"Track energy data, grid voltage, and energy totals",
+			"Alerts for system faults, inverter health, and more",
+			"On-site current and future weather",
+			<span key="per-inverter-details">
+				<span className="font-bold">Per-inverter details:</span>
+				<ul className="mt-1 ml-4 space-y-1">
+					<li className="flex items-start gap-2">
+						<div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-1.5 flex-shrink-0" />
+						<span>Power, Voltage, and Energy</span>
+					</li>
+					<li className="flex items-start gap-2">
+						<div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-1.5 flex-shrink-0" />
+						<span>Temperature, lifetime energy, and VAr-Hours</span>
+					</li>
+				</ul>
+			</span>
+		]
+	},
+	{
+		heading: "Control in the palm of your hand",
+		items: [
+			"View/Manage Ground Faults (GFDI)",
+			"Set up new projects as they are built",
+			"Push notifications for any issues"
+		]
+	}
+]
+
 interface AccordionSection {
 	title: string
 	content: React.ReactNode
@@ -58,64 +91,6 @@ interface AccordionSection {
 }
 
 const accordionSections: AccordionSection[] = [
-	{
-		title: "Features",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="space-y-6">
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Real-time insights</h3>
-					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Track energy data, grid voltage, and energy totals</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Alerts for system faults, inverter health, and more</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>On-site current and future weather</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<div>
-								<span className="font-bold">Per-inverter details:</span>
-								<ul className="mt-1 ml-4 space-y-1">
-									<li className="flex items-start gap-2">
-										<div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-1.5 flex-shrink-0" />
-										<span>Power, Voltage, and Energy</span>
-									</li>
-									<li className="flex items-start gap-2">
-										<div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-1.5 flex-shrink-0" />
-										<span>Temperature, lifetime energy, and VAr-Hours</span>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Control in the palm of your hand</h3>
-					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>View/Manage Ground Faults (GFDI)</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Set up new projects as they are built</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Push notifications for any issues</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		)
-	},
 	{
 		title: "Watch the Demo",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
@@ -230,8 +205,10 @@ export default function SparqSyncPage() {
 		<div>
 			<ProductPage
 				heading="SparqSync Mobile App"
+				animated={true}
 				parent="SparqSync"
 				href="app"
+				animatedList={listContent}
 				bodyContent={body()}
 				expandedContent={expanded()}
 				accordianContent={Accordion()}

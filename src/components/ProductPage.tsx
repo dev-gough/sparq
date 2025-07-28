@@ -167,9 +167,9 @@ export default function ProductPage({
                                                         </div>
                                                         <div className="flex items-center justify-between">
                                                             <div className="text-white/80 text-sm">
-                                                                {allCardsExpanded ? 'All features' : 'Key features'}
+                                                                {items.length <= 3 ? 'All features' : (allCardsExpanded ? 'All features' : 'Key features')}
                                                             </div>
-                                                            {items.length > 2 && (
+                                                            {items.length > 3 && (
                                                                 <motion.div
                                                                     animate={{ rotate: allCardsExpanded ? 180 : 0 }}
                                                                     transition={{ duration: 0.2 }}
@@ -186,7 +186,8 @@ export default function ProductPage({
                                                     {/* Compact Content */}
                                                     <div className="p-4 bg-white dark:bg-gray-800 flex-1 flex flex-col">
                                                         <div className="space-y-3 flex-1">
-                                                            {items.slice(0, 2).map((item, i) => (
+                                                            {/* Show all items if 3 or fewer, otherwise show first 2 */}
+                                                            {(items.length <= 3 ? items : items.slice(0, 2)).map((item, i) => (
                                                                 <motion.div
                                                                     key={i}
                                                                     initial={{ opacity: 0, x: -10 }}
@@ -205,42 +206,44 @@ export default function ProductPage({
                                                                 </motion.div>
                                                             ))}
 
-                                                            {/* Expandable additional items */}
-                                                            <motion.div
-                                                                initial={false}
-                                                                animate={{
-                                                                    height: allCardsExpanded ? 'auto' : 0,
-                                                                    opacity: allCardsExpanded ? 1 : 0
-                                                                }}
-                                                                transition={{ duration: 0.3, ease: [0.23, 1, 0.320, 1] }}
-                                                                className="overflow-hidden"
-                                                            >
-                                                                <div className="space-y-3 pt-1">
-                                                                    {items.slice(2).map((item, i) => (
-                                                                        <motion.div
-                                                                            key={i + 2}
-                                                                            initial={{ opacity: 0, x: -10 }}
-                                                                            animate={allCardsExpanded ? { opacity: 1, x: 0 } : {}}
-                                                                            transition={{
-                                                                                delay: i * 0.1,
-                                                                                duration: 0.3,
-                                                                                ease: [0.23, 1, 0.320, 1]
-                                                                            }}
-                                                                            className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors duration-200 group/item"
-                                                                        >
-                                                                            <div className={`w-2 h-2 rounded-full ${getAccentColor(index)} mt-2 flex-shrink-0`}></div>
-                                                                            <span className="text-brand-graytext dark:text-dark-text-secondary font-medium text-sm leading-relaxed group-hover/item:text-brand-darkmaroon transition-colors duration-200">
-                                                                                {item}
-                                                                            </span>
-                                                                        </motion.div>
-                                                                    ))}
-                                                                </div>
-                                                            </motion.div>
+                                                            {/* Expandable additional items - only show if more than 3 items */}
+                                                            {items.length > 3 && (
+                                                                <motion.div
+                                                                    initial={false}
+                                                                    animate={{
+                                                                        height: allCardsExpanded ? 'auto' : 0,
+                                                                        opacity: allCardsExpanded ? 1 : 0
+                                                                    }}
+                                                                    transition={{ duration: 0.3, ease: [0.23, 1, 0.320, 1] }}
+                                                                    className="overflow-hidden"
+                                                                >
+                                                                    <div className="space-y-3 pt-1">
+                                                                        {items.slice(2).map((item, i) => (
+                                                                            <motion.div
+                                                                                key={i + 2}
+                                                                                initial={{ opacity: 0, x: -10 }}
+                                                                                animate={allCardsExpanded ? { opacity: 1, x: 0 } : {}}
+                                                                                transition={{
+                                                                                    delay: i * 0.1,
+                                                                                    duration: 0.3,
+                                                                                    ease: [0.23, 1, 0.320, 1]
+                                                                                }}
+                                                                                className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors duration-200 group/item"
+                                                                            >
+                                                                                <div className={`w-2 h-2 rounded-full ${getAccentColor(index)} mt-2 flex-shrink-0`}></div>
+                                                                                <span className="text-brand-graytext dark:text-dark-text-secondary font-medium text-sm leading-relaxed group-hover/item:text-brand-darkmaroon transition-colors duration-200">
+                                                                                    {item}
+                                                                                </span>
+                                                                            </motion.div>
+                                                                        ))}
+                                                                    </div>
+                                                                </motion.div>
+                                                            )}
 
                                                         </div>
 
-                                                        {/* Expand/Collapse Button - Fixed at bottom */}
-                                                        {items.length > 2 && (
+                                                        {/* Expand/Collapse Button - Only show if more than 3 items */}
+                                                        {items.length > 3 && (
                                                             <div className="text-center pt-3 mt-auto">
                                                                 <button
                                                                     onClick={() => toggleAllCardsExpanded()}
@@ -249,7 +252,7 @@ export default function ProductPage({
                                                                     <span>
                                                                         {allCardsExpanded
                                                                             ? 'Show less'
-                                                                            : 'Show more'
+                                                                            : `Show ${items.length - 2} more`
                                                                         }
                                                                     </span>
                                                                     <motion.div

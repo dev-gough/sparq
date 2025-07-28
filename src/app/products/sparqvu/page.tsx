@@ -2,6 +2,7 @@
 import ProductPage from "@/components/ProductPage"
 import Image from "next/image"
 import Link from "next/link"
+import { ListEntry } from "@/components/ProductPage"
 import { useState, useRef } from 'react'
 import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -26,6 +27,24 @@ function body() {
 	)
 }
 
+const listContent: ListEntry[] = [
+	{
+		heading: "Data when you need it",
+		items: [
+			"Advanced performance and communication tools with no app required",
+			"Real-time metrics, historical records and panel-by-panel information",
+			"Cloud-based monitoring"
+		]
+	},
+	{
+		heading: "Quick Installation",
+		items: [
+			"Automatically detects connected inverters before AC is connected",
+			"Installation layout syncs automatically to your cloud account"
+		]
+	}
+]
+
 interface AccordionSection {
 	title: string
 	content: React.ReactNode
@@ -33,44 +52,6 @@ interface AccordionSection {
 }
 
 const accordionSections: AccordionSection[] = [
-	{
-		title: "Features",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="space-y-6">
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Data when you need it</h3>
-					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Advanced performance and communication tools with no app required</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Real-time metrics, historical records and panel-by-panel information</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Cloud-based monitoring</span>
-						</li>
-					</ul>
-				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Quick Installation</h3>
-					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Automatically detects connected inverters before AC is connected</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Installation layout syncs automatically to your cloud account</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		)
-	},
 	{
 		title: "Documentation",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
@@ -189,8 +170,10 @@ export default function SparqVuPage() {
 		<div>
 			<ProductPage
 				heading="SparqVu - Your Energy Management System"
+				animated={true}
 				parent="SparqVu"
 				href="sparqvu"
+				animatedList={listContent}
 				bodyContent={body()}
 				accordianContent={Accordion()}
 				imageContent={image()}

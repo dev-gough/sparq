@@ -96,7 +96,7 @@ export default function DropdownMenu({ navItem }: DropdownMenuProps) {
                                     >
                                         <Link
                                             href={subItem.href}
-                                            className={`block px-4 py-3 mx-2 text-sm xl:text-base font-medium transition-all duration-200 rounded-lg ${
+                                            className={`block px-4 py-3 mx-2 my-1 text-sm xl:text-base font-medium transition-all duration-200 rounded-lg ${
                                                 isSubActive
                                                     ? 'text-brand-maroon dark:text-brand-yellow bg-brand-maroon/10 dark:bg-brand-yellow/10'
                                                     : 'text-brand-graytext dark:text-dark-text-secondary hover:text-brand-maroon dark:hover:text-brand-yellow hover:bg-brand-maroon/5 dark:hover:bg-brand-yellow/10'
