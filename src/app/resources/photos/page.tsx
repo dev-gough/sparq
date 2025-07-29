@@ -55,10 +55,12 @@ const installationSites: InstallationSite[] = [
         description: "A new R&D site atop our HQ in Kingston.",
         systemSize: "10kW",
         photos: [
-            //todo add photos
+            {src: "/SparqHQ/1.jpg", alt: ""},
+            {src: "/SparqHQ/2.jpg", alt: ""},
+            {src: "/SparqHQ/3.jpg", alt: ""},
+
         ]
     }
-    // Future sites can be added here
 ]
 
 
