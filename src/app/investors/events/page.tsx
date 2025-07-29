@@ -104,7 +104,8 @@ function EventCard({ event, index, isUpcoming }: { event: EventItem, index: numb
                                     <FaArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" />
                                 </Link>
                             ) : (
-                                <span className="text-brand-graytext dark:text-dark-text-muted font-medium">More details coming soon</span>
+                                <div>
+                                </div>
                             )}
                             <div className="px-3 py-1 bg-gradient-to-r from-brand-maroon/10 to-brand-logo/10 dark:from-brand-logo/20 dark:to-brand-yellow/20 rounded-full">
                                 <span className="text-sm font-medium text-brand-darkmaroon dark:text-brand-yellow">

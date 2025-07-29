@@ -104,13 +104,13 @@ const videoTitles: Record<string, string> = {
     "0sdcGgL9228": "CEO Interview - Market Strategy",
 
     // Installer videos
-    "5u3KVFYHfk0": "Sparq Microinverter Overview",
-    "Bci42uwLmGY": "Quad2/3 Installation Guide",
+    "r05zC7wY7NQ": "Quad2/3 Installation Guide",
     "nhH8LrnONxs": "SparqLinq Installation Guide",
     "/external-sparq-app.mp4": "SparqSync Demo",
 
     // Homeowner videos
     "Ibs0snk6nH0": "Solar Energy Benefits for Homeowners",
+    "5u3KVFYHfk0": "Sparq Microinverter Overview",
 }
 
 // Local video thumbnails mapping - add thumbnail paths for local videos
@@ -144,8 +144,7 @@ const videoCategories: VideoCategory[] = [
             </svg>
         ),
         videoIds: [
-            "5u3KVFYHfk0",
-            "Bci42uwLmGY",
+            "r05zC7wY7NQ",
             "nhH8LrnONxs",
             "/external-sparq-app.mp4",
         ]
@@ -160,6 +159,7 @@ const videoCategories: VideoCategory[] = [
             </svg>
         ),
         videoIds: [
+            "5u3KVFYHfk0",
             "Ibs0snk6nH0",
             "/external-sparq-app.mp4",
         ]

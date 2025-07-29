@@ -271,7 +271,7 @@ const accordionSections: AccordionSection[] = [
 			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
 				<div className="w-full aspect-video min-h-[400px]">
 					<YouTube
-						videoId="Bci42uwLmGY"
+						videoId="r05zC7wY7NQ"
 						opts={{
 							width: '100%',
 							height: '400',

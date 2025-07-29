@@ -201,7 +201,7 @@ export default function HomeownersPage() {
                                 View Homeowner Presentation
                             </motion.button>
                         </Link>
-                        <Link href="/resources/videos?category=homeowners&video=Ibs0snk6nH0"  onClick={() => handleCtaClick('design_system')}>
+                        <Link href="/resources/videos?category=installers&video=5u3KVFYHfk0"  onClick={() => handleCtaClick('design_system')}>
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}

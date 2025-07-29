@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react'
+import { useSearchParams, useRouter } from "next/navigation"
 import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
 import AggregatedFAQ from '@/components/AggregatedFAQ'
@@ -104,17 +105,41 @@ function VideoPopup({ url, onClose, iFrame }: VideoPopupProps) {
 
 
 export default function LearningPage() {
+    const searchParams = useSearchParams()
+    const router = useRouter()
     const [showingID, setShowingID] = useState<number | null>(null)
 
     const heroRef = useRef(null)
     const isHeroInView = useInView(heroRef, { once: true })
 
+    // Initialize from URL parameters
+    useEffect(() => {
+        const videoParam = searchParams.get('video')
+        if (videoParam) {
+            const videoId = parseInt(videoParam)
+            if (!isNaN(videoId) && videos.some(video => video.id === videoId)) {
+                setShowingID(videoId)
+            }
+        }
+    }, [searchParams])
+
     const handleShow = (id: number) => {
         setShowingID(id)
+
+        // Update URL with video parameter
+        const params = new URLSearchParams(searchParams.toString())
+        params.set('video', id.toString())
+        router.push(`/resources?${params.toString()}`, { scroll: false })
     }
 
     const handleClose = () => {
         setShowingID(null)
+
+        // Remove video parameter from URL
+        const params = new URLSearchParams(searchParams.toString())
+        params.delete('video')
+        const newUrl = params.toString() ? `/resources?${params.toString()}` : '/resources'
+        router.push(newUrl, { scroll: false })
     }
 
     const selectedVideo = videos.find((video) => video.id === showingID)

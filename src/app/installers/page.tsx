@@ -200,7 +200,7 @@ export default function InstallersPage() {
                                 BOM Calculator
                             </motion.button>
                         </Link>
-                        <Link href="/resources/videos?video=5u3KVFYHfk0&category=installers" onClick={() => handleCtaClick('marketing')}>
+                        <Link href="/resources?video=4" onClick={() => handleCtaClick('marketing')}>
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
