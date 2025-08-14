@@ -77,7 +77,7 @@ const productCards: ProductCard[] = [
     },
     {
         id: "accessories",
-        title: "Cables & Accessories",
+        title: "Cables & Tools",
         description: "Complete range of installation accessories and components",
         href: "/products/accessories",
         image: "/Accessories/cables.png",

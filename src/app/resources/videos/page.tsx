@@ -130,7 +130,6 @@ const videoCategories: VideoCategory[] = [
         ),
         videoIds: [
             "gaFi_dPnYNk",
-            "am7VzIpn5TI",
             "0sdcGgL9228",
         ]
     },

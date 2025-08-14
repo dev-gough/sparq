@@ -249,7 +249,7 @@ export default function AboutUsPage() {
             </div>
 
             {/* Culture Principles Section */}
-            <div className="relative container mx-auto px-6 py-10">
+            <div className="relative container mx-auto px-6 pt-10">
                 {culturePrinciples.map((principle, index) => (
                     <CultureSection
                         key={principle.title}
@@ -259,12 +259,11 @@ export default function AboutUsPage() {
                     />
                 ))}
 
-                {/* Company Values */}
                 <CompanyValuesSection />
             </div>
 
             {/* Core Values Legacy Section */}
-            <div className="relative container mx-auto px-6 py-10">
+            <div className="relative container mx-auto px-6 pb-10">
                 <motion.div
                     initial={{ opacity: 0, y: 60 }}
                     animate={{ opacity: 1, y: 0 }}

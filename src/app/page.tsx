@@ -343,10 +343,10 @@ export default function Home() {
                                     </svg>
                                 </div>
                                 <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4 text-center">
-                                    Quad Architecture
+                                    Proprietary Quad Architecture
                                 </h3>
                                 <p className="text-brand-graytext dark:text-dark-text-secondary text-center mb-6 leading-relaxed">
-                                    One microinverter powers four solar panels with individual MPPT optimization for each panel, reducing installation cost by 70%, and Bill of Materials cost by &gt;25%, all while maximizing energy harvest.
+                                    One microinverter powers four PV panels with individual MPPT, reducing the cost of installation and Bill of Materials considerably.
                                 </p>
                                 <div className="text-center mt-auto">
                                     <div className="inline-flex items-center gap-2 text-sm font-semibold text-brand-maroon dark:text-brand-logo">
@@ -370,10 +370,10 @@ export default function Home() {
                                     </svg>
                                 </div>
                                 <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4 text-center">
-                                    Electrolytic-Free Design
+                                    Electrolytic Capacitor Free Design
                                 </h3>
                                 <p className="text-brand-graytext dark:text-dark-text-secondary text-center mb-6 leading-relaxed">
-                                    Revolutionary power electronics that eliminate failure-prone electrolytic capacitors and other short-lifetime components for the industry-standard 25-year reliability.
+                                    Revolutionary power electronics that eliminate failure-prone electrolytic capacitors, matching the true lifetime of PV panels.
                                 </p>
                                 <div className="text-center mt-auto">
                                     <div className="inline-flex items-center gap-2 text-sm font-semibold text-brand-maroon dark:text-brand-logo">
@@ -400,7 +400,7 @@ export default function Home() {
                                     Dual-Mode Operation
                                 </h3>
                                 <p className="text-brand-graytext dark:text-dark-text-secondary text-center mb-6 leading-relaxed">
-                                    Seamlessly switch between grid-tied operation for maximum efficiency and off-grid capability during outages, providing true energy independence.
+                                    Seamlessly switch between on-grid and off-grid operation; providing reliable electricity generation during grid outages and independent of energy storage.
                                 </p>
                                 <div className="text-center mt-auto">
                                     <div className="inline-flex items-center gap-2 text-sm font-semibold text-brand-maroon dark:text-brand-logo">
@@ -482,7 +482,7 @@ export default function Home() {
                     <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8">
                         Ready to Transform Your Solar Future?
                     </h2>
-                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-3xl mx-auto">
+                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-4xl mx-auto">
                         Join thousands of satisfied customers who have chosen Sparq Systems for their solar energy needs.
                         Experience the difference that cutting-edge technology makes.
                     </p>

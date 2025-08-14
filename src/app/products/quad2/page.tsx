@@ -13,7 +13,6 @@ function expanded() {
 	return (
 		<>
 			<p className="mt-4">Our microinverters have been designed for high reliability, using patented technologies that eliminate the use of short-life electrolytic capacitors. This feature gives our microinverters high reliability and a design life of 25 years, matching the design life of PV modules.</p>
-			<p className="mt-4">The Q2000 microinverter is the industry&apos;s first highest power rating microinverter that produces electrical energy from four PV panels of 550W+ each, without any power clipping under all operating conditions. The Q2000 is designed to connect 4 PV panels, up to 550W, to the AC power grid.</p>
 		</>
 	)
 }
@@ -41,44 +40,36 @@ function image() {
 
 const listContent: ListEntry[] = [
 	{
-		heading: "Best in-class Performance",
+		heading: "Best In-Class",
 		items: [
 			<span key={"quad2-1"}>Highest power per unit weight [W/kg] or volume [W/in<sup>3</sup>]</span>,
 			"Maximum energy harvesting",
 			"Dual-mode operation (on/off-grid)",
 			"Individual MPPT for each panel",
-			"Ultra high-frequency, soft switching topolgy",
-			"Grid Resiliency without energy storage",
-			"Grid Independence and energy self-sufficiency",
 			<span key={"quad2-2"}><Link href="/products/sparqlinq" className="hover:underline">SparqLinq</Link>: advanced gateway to rule them all</span>,
 			<span key={"quad2-3"}><Link href="/products/sparqvu" className="hover:underline">SparqVu</Link>: Web monitoring with intuitive displays</span>,
 			<span key={"quad2-4"}><Link href="/products/app" className="hover:underline">SparqSync</Link>: User-friendly mobile app</span>
 		]
 	},
 	{
-		heading: "Safe & Reliable",
+		heading: "Reliable & Safe",
 		items: [
 			"No failure-prone electrolytic capacitors",
-			"Other low-lifetime components eliminated",
-			"All AC cabling with inherent Rapid Shutdown compliance",
 			"No risk of high voltage DC arcing",
+			"All AC cabling with inherent Rapid Shutdown compliance",
 			"No high voltage shock hazard for 1st responders",
-			"High reliability and system availability",
 			"No single point of failure for the PV system",
-			"Fewer system components to install/maintain",
 			"Best-in-class longevity"
 		]
 	},
 	{
 		heading: "Cost-Effectiveness",
 		items: [
-			"Quad Architecture is the most cost-effective",
-			"Reduced manufacturing Bill of Materials",
-			"Reduced Balance of System (cabling, grounding, ect)",
-			"Lower manufacturing and installation costs",
+			"Outlier on Performance-Cost curve",
+			"Reduced cost of cabling",
+			"Lower installation costs",
 			"Maintenance-free",
 			"Lowest lifecycle cost",
-			"Outlier on Performance-Cost curve",
 		]
 	}
 ]
@@ -289,7 +280,7 @@ const accordionSections: AccordionSection[] = [
 			</div>
 		)
 	},
-	{
+	/* {
 		title: "Comparison with Leading Microinverter",
 		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
 		content: (
@@ -302,7 +293,7 @@ const accordionSections: AccordionSection[] = [
 				</div>
 			</div>
 		)
-	}
+	} */
 ]
 
 export default function Quad2Page() {
