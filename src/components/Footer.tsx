@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { FiPhone, FiMail, FiMapPin, FiGlobe } from "react-icons/fi";
+import { FiMail, FiMapPin, FiGlobe } from "react-icons/fi";
 
 export default function Footer() {
     const navigationLinks = [
@@ -61,19 +61,6 @@ export default function Footer() {
                         </p>
 
                         <div className="space-y-4">
-                            <motion.div
-                                whileHover={{ x: 4 }}
-                                className="flex items-center gap-3 text-brand-graytext dark:text-dark-text-secondary"
-                            >
-                                <FiPhone size={18} className="text-brand-maroon dark:text-brand-yellow flex-shrink-0" />
-                                <Link
-                                    href="tel:1-855-947-7277"
-                                    className="font-semibold hover:text-brand-maroon dark:hover:text-brand-yellow transition-colors duration-300"
-                                >
-                                    1-855-947-7277
-                                </Link>
-                            </motion.div>
-
                             <motion.div
                                 whileHover={{ x: 4 }}
                                 className="flex items-center gap-3 text-brand-graytext dark:text-dark-text-secondary"

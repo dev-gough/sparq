@@ -152,14 +152,24 @@ export default function AccessoriesPage() {
 
 			{/* ------------------------------ AC Cables ------------------------------ */}
 			<section id="cables" className="scroll-mt-20">
-				<h2 className="mb-4 text-2xl font-semibold text-brand-logo dark:text-brand-logo">AC Cable Specifications</h2>
-				<div className="mb-6 flex justify-center">
+				<h2 className="mb-4 text-2xl font-semibold text-brand-maroon dark:text-brand-logo">AC Cable Specifications</h2>
+				<div className="mb-6 flex justify-center relative">
+					{/* Light mode image */}
 					<Image
-						src="/Accessories/cables.png" // add this fourth image
+						src="/Accessories/cables-t.png"
 						alt="AC cable family photo"
 						width={800}
 						height={400}
-						className="h-auto w-full max-w-3xl object-contain rounded-lg border"
+						className="h-auto w-full max-w-3xl object-contain rounded-lg border-3 dark:hidden"
+						priority
+					/>
+					{/* Dark mode image */}
+					<Image
+						src="/Accessories/cables-td.png"
+						alt="AC cable family photo"
+						width={800}
+						height={400}
+						className="h-auto w-full max-w-3xl object-contain rounded-lg border-3 hidden dark:block"
 						priority
 					/>
 				</div>
@@ -168,28 +178,38 @@ export default function AccessoriesPage() {
 
 			{/* -------------------------- Waterproof Cable Caps ---------------------- */}
 			<section id="caps" className="mt-16 scroll-mt-20">
-				<h2 className="mb-4 text-2xl font-semibold text-brand-logo dark:text-brand-logo">Waterproof Cable Caps</h2>
-				<div className="flex justify-center">
+				<h2 className="mb-4 text-2xl font-semibold text-brand-maroon dark:text-brand-logo">Waterproof Cable Caps</h2>
+				<div className="flex justify-center relative">
+					{/* Light mode image */}
 					<Image
-						src="/Accessories/caps.png"
+						src="/Accessories/caps-t.png"
 						alt="T‑series waterproof cable caps"
 						width={900}
 						height={250}
-						className="h-auto w-full max-w-4xl object-contain rounded-lg border"
+						className="h-auto w-full max-w-4xl object-contain rounded-lg border-3 dark:hidden"
+					/>
+					{/* Dark mode image */}
+					<Image
+						src="/Accessories/caps-td.png"
+						alt="T‑series waterproof cable caps"
+						width={900}
+						height={250}
+						className="h-auto w-full max-w-4xl object-contain rounded-lg border-3 hidden dark:block"
 					/>
 				</div>
 			</section>
 
 			{/* ------------------------------ Tools ---------------------------------- */}
 			<section id="tools" className="mt-16 scroll-mt-20">
-				<h2 className="mb-4 text-2xl font-semibold text-brand-logo dark:text-brand-logo">DC/AC Unlock Tool</h2>
-				<div className="flex justify-center">
+				<h2 className="mb-4 text-2xl font-semibold text-brand-maroon dark:text-brand-logo">DC/AC Unlock Tool</h2>
+				<div className="flex justify-center relative">
+					{/* Light mode image */}
 					<Image
-						src="/Accessories/unlocking.png"
+						src="/Accessories/unlocking-t.png"
 						alt="AC unlocking tool"
 						width={600}
 						height={300}
-						className="h-auto w-full max-w-xl object-contain rounded-lg border"
+						className="h-auto w-full max-w-xl object-contain rounded-lg border-3"
 					/>
 				</div>
 			</section>

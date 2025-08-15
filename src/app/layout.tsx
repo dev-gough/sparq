@@ -93,19 +93,19 @@ const investorDropdown = [
 	{ label: "Governance", href: "/investors/governance" },
 ]
 
-const homeownerDropdown = [
-	{ label: "Why Sparq", href: "/homeowners#whysparq" },
-	{ label: "Sparq Advantage", href: "/homeowners#discover" },
-	{ label: "Design My System", href: "/homeowners#design" },
-	{ label: "FAQs", href: "/homeowners#faq" }
-]
+// const homeownerDropdown = [
+// 	{ label: "Why Sparq", href: "/homeowners#whysparq" },
+// 	{ label: "Sparq Advantage", href: "/homeowners#discover" },
+// 	{ label: "Design My System", href: "/homeowners#design" },
+// 	{ label: "FAQs", href: "/homeowners#faq" }
+// ]
 
-const installerDropdown = [
-	{ label: "Why Sparq", href: "/installers#whysparq" },
-	{ label: "Sparq Advantage", href: "/installers#discover" },
-	{ label: "BoM Calculator", href: "/installers#bom" },
-	{ label: "FAQs", href: "/installers#faq" },
-]
+// const installerDropdown = [
+// 	{ label: "Why Sparq", href: "/installers#whysparq" },
+// 	{ label: "Sparq Advantage", href: "/installers#discover" },
+// 	{ label: "BoM Calculator", href: "/installers#bom" },
+// 	{ label: "FAQs", href: "/installers#faq" },
+// ]
 
 const productDropdown = [
 	{ label: "Quad2", href: "/products/quad2" },
@@ -127,8 +127,9 @@ const resourcesDropdown = [
 const navbarItems = [
 	{ label: "About", href: "/about", dropdown: aboutDropdown },
 	{ label: "Products", href: "/products", dropdown: productDropdown },
-	{ label: "Homeowners", href: "/homeowners", dropdown: homeownerDropdown },
-	{ label: "Installers", href: "/installers", dropdown: installerDropdown },
+	// { label: "Homeowners", href: "/homeowners", dropdown: homeownerDropdown },
+	// { label: "Installers", href: "/installers", dropdown: installerDropdown },
+	{ label: "Technology", href: "/technology"},
 	{ label: "Investors", href: "/investors", dropdown: investorDropdown },
 	{ label: "Resources", href: "/resources", dropdown: resourcesDropdown },
 	{ label: "Contact", href: "/contact" },

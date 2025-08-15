@@ -1,496 +1,109 @@
 'use client'
 
-import { useState, useRef } from "react"
-import { motion, useInView, useScroll, useTransform } from "motion/react"
-import { Card, CardContent } from "@/components/ui/card"
-import Link from "next/link"
-import Image from "next/image"
-import { Zap, Package, Trophy, Target, Eye, Award } from "lucide-react"
+import { useRef } from "react"
+import { motion, useInView } from "motion/react"
+import { Target, Lightbulb, Award } from "lucide-react"
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
-
-interface TimelineEvent {
-    year: string
-    date?: string
-    title: string
-    description: string
-    category: 'foundation' | 'innovation' | 'product' | 'growth' | 'future'
-    image?: string
-    details?: string[]
-    achievements?: string[]
-}
-
-const timelineEvents: TimelineEvent[] = [
-    {
-        year: "2009",
-        title: "The Problem & The Vision",
-        description: "Dr. Praveen Jain identified critical flaws in traditional solar technology and founded SPARQ to revolutionize the industry.",
-        category: "foundation",
-        image: "/thumbnail_image.png",
-        details: [
-            "Fossil fuel causing global warming",
-            "Unsafe components with short lifetimes",
-            "Fire risk and high voltage arcing",
-            "High electricity bills due to centralized power generation"
-        ]
-    },
-    {
-        year: "2009-2018",
-        title: "Innovation & Development",
-        description: "Years of passionate R&D developing breakthrough microinverter technology with revolutionary HF soft-switching architecture.",
-        category: "innovation",
-        image: "/bg-2.jpg",
-        details: [
-            "HF soft-switching quad and duo architecture driven by real-time controls",
-            "Elimination of electrolytic caps and short-life components",
-            "Safe and highly reliable, without risk of high voltage DC arcing",
-            "Best in-class performance, efficiency, and lowest cost per Watt"
-        ],
-        achievements: ["85+ patents awarded and pending", "Frost & Sullivan 2017 New Product Innovation Award"]
-    },
-    {
-        year: "2018",
-        title: "Manufacturing Breakthrough",
-        description: "Began manufacturing in North America, bringing revolutionary microinverter technology to market.",
-        category: "growth",
-        image: "/SLC/009.JPG"
-    },
-    {
-        year: "2020",
-        title: "Product Launch Era",
-        description: "Launched complete solar solution ecosystem with Q2000 microinverter and comprehensive monitoring systems.",
-        category: "product",
-        image: "/q2000.webp",
-        details: [
-            "Q2000 single-phase microinverter",
-            "SparqLinq energy management system",
-            "SparqVu cloud-based monitoring platform"
-        ]
-    },
-    {
-        year: "2021",
-        title: "Going Public & Global Expansion",
-        description: "Raised $64M in venture funding and went public on TSXV, accelerating global market penetration.",
-        category: "growth",
-        image: "/Queens/3.jpg"
-    },
-    {
-        year: "2022",
-        title: "Global Manufacturing",
-        description: "Expanded manufacturing to China, dramatically reducing costs and increasing global accessibility.",
-        category: "growth",
-        image: "/SLC/005.JPG"
-    },
-    {
-        year: "2024",
-        title: "Strategic Partnerships & Innovation",
-        description: "Formed partnership with Jio Reliance and launched next-generation three-phase microinverter technology.",
-        category: "growth",
-        image: "/iljinline.jpg",
-        details: [
-            "Partnership with Jio Reliance, India's largest IoT company",
-            "Q2000 Dual-mode microinverter launch",
-            "Grid-tied three-phase microinverter (Quad3)"
-        ]
-    },
-    {
-        year: "2025",
-        title: "Industry Leadership & Future Vision",
-        description: "Recognized in TSX Venture 50 and launching integrated PV-battery solutions for complete energy independence.",
-        category: "future",
-        image: "/testing2.jpg",
-        details: [
-            "TSX Venture 50 recognition in Clean Technology",
-            "Integrated PV and Battery Quad microinverter",
-            "SparqSync mobile app for Android and iOS"
-        ],
-        achievements: [
-            "Reduce energy consumption",
-            "Cut carbon footprint",
-            "Enable self-sufficiency with solar power"
-        ]
-    }
-]
-
-const categoryConfig = {
-    foundation: {
-        color: "from-brand-gray to-brand-graytext",
-        bgColor: "from-brand-gray/10 to-brand-gray/20 dark:from-brand-gray/20 dark:to-brand-gray/30",
-        icon: Target,
-        label: "Foundation"
-    },
-    innovation: {
-        color: "from-brand-yellow to-brand-logo",
-        bgColor: "from-brand-yellow/10 to-brand-yellow/20 dark:from-brand-yellow/20 dark:to-brand-yellow/30",
-        icon: Zap,
-        label: "Innovation"
-    },
-    product: {
-        color: "from-brand-yellow to-brand-logo",
-        bgColor: "from-brand-yellow/10 to-brand-yellow/20 dark:from-brand-yellow/20 dark:to-brand-yellow/30",
-        icon: Package,
-        label: "Products"
-    },
-    growth: {
-        color: "from-brand-maroon to-brand-darkmaroon",
-        bgColor: "from-brand-maroon/10 to-brand-maroon/20 dark:from-brand-maroon/20 dark:to-brand-maroon/30",
-        icon: Trophy,
-        label: "Growth"
-    },
-    future: {
-        color: "from-brand-darkmaroon to-brand-maroon",
-        bgColor: "from-brand-darkmaroon/10 to-brand-darkmaroon/20 dark:from-brand-darkmaroon/20 dark:to-brand-darkmaroon/30",
-        icon: Eye,
-        label: "Future"
-    }
-}
-
-interface TimelineNodeProps {
-    event: TimelineEvent
-    index: number
-}
-
-function TimelineNode({ event, index }: TimelineNodeProps) {
-    const [isExpanded, setIsExpanded] = useState(false)
-    const nodeRef = useRef(null)
-    const isInView = useInView(nodeRef, { once: true, margin: "-100px" })
-    const isLeft = index % 2 === 0
-    const config = categoryConfig[event.category]
-    const IconComponent = config.icon
-
-    return (
-        <div ref={nodeRef} className="relative">
-            {/* Mobile Layout */}
-            <div className="flex flex-row gap-4 mb-8 md:hidden">
-                {/* Mobile Timeline Node */}
-                <div className="flex-shrink-0">
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={isInView ? { scale: 1 } : {}}
-                        transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                        className={`w-12 h-12 bg-gradient-to-br ${config.color} rounded-full flex items-center justify-center text-white font-bold text-xs text-center shadow-lg z-10 relative border-2 border-white`}
-                    >
-                        <span className="leading-tight">{event.year}</span>
-                    </motion.div>
-                </div>
-
-                {/* Mobile Content Container */}
-                <div className="flex-1">
-                    {/* Content Card */}
-                    <motion.div
-                        whileHover={{ scale: 1.02 }}
-                        className="cursor-pointer mb-4"
-                        onClick={() => setIsExpanded(!isExpanded)}
-                    >
-                        <Card className={`bg-gradient-to-br ${config.bgColor} border-2 border-transparent hover:border-brand-maroon/20 shadow-lg transition-all duration-300`}>
-                            <CardContent className="p-4">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className={`p-2 bg-gradient-to-br ${config.color} rounded-lg text-white`}>
-                                        <IconComponent size={16} />
-                                    </div>
-                                    <span className="text-xs font-medium text-brand-graytext dark:text-dark-text-muted uppercase tracking-wide">
-                                        {config.label}
-                                    </span>
-                                </div>
-
-                                <h3 className="text-lg font-bold text-brand-darkmaroon mb-2">
-                                    {event.title}
-                                </h3>
-
-                                <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-4 text-sm">
-                                    {event.description}
-                                </p>
-
-                                {/* Expandable Details */}
-                                <motion.div
-                                    initial={false}
-                                    animate={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="overflow-hidden"
-                                >
-                                    {event.details && (
-                                        <div className="space-y-2 mb-4">
-                                            {event.details.map((detail, i) => (
-                                                <div key={i} className="flex items-start gap-2">
-                                                    <div className={`w-2 h-2 rounded-full bg-gradient-to-br ${config.color} mt-2 flex-shrink-0`} />
-                                                    <p className="text-sm text-brand-graytext dark:text-dark-text-secondary">{detail}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-
-                                    {event.achievements && (
-                                        <div className="bg-white/60 dark:bg-gray-800/80 rounded-lg p-4">
-                                            <h4 className="font-semibold text-brand-darkmaroon mb-2 flex items-center gap-2">
-                                                <Award size={16} />
-                                                Key Achievements
-                                            </h4>
-                                            <div className="space-y-1">
-                                                {event.achievements.map((achievement, i) => (
-                                                    <p key={i} className="text-sm text-brand-graytext dark:text-dark-text-secondary">{achievement}</p>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-                                </motion.div>
-
-                                <div className="text-xs text-brand-graytext/60 dark:text-dark-text-muted mt-2">
-                                    Click to {isExpanded ? 'collapse' : 'expand'}
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
-
-                    {/* Mobile Image */}
-                    {event.image && (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                            transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
-                            className="relative h-48 rounded-xl overflow-hidden shadow-lg"
-                        >
-                            <Image
-                                src={event.image}
-                                alt={event.title}
-                                fill
-                                className="object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                        </motion.div>
-                    )}
-                </div>
-            </div>
-
-            {/* Desktop Layout */}
-            <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className={`hidden md:flex items-start gap-8 mb-8 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
-            >
-                {/* Desktop Content Side */}
-                <div className={`flex-1 max-w-lg ${isLeft ? 'text-right' : 'text-left'}`}>
-                    <motion.div
-                        whileHover={{ scale: 1.02 }}
-                        className="cursor-pointer"
-                        onClick={() => setIsExpanded(!isExpanded)}
-                    >
-                        <Card className={`bg-gradient-to-br ${config.bgColor} border-2 border-transparent hover:border-brand-maroon/20 shadow-lg transition-all duration-300`}>
-                            <CardContent className="p-6">
-                                <div className={`flex items-center gap-3 mb-4 ${isLeft ? 'justify-end' : 'justify-start'}`}>
-                                    <div className={`p-2 bg-gradient-to-br ${config.color} rounded-lg text-white`}>
-                                        <IconComponent size={20} />
-                                    </div>
-                                    <span className="text-sm font-medium text-brand-graytext dark:text-dark-text-muted uppercase tracking-wide">
-                                        {config.label}
-                                    </span>
-                                </div>
-
-                                <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-logo mb-2">
-                                    {event.title}
-                                </h3>
-
-                                <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed mb-4">
-                                    {event.description}
-                                </p>
-
-                                {/* Expandable Details */}
-                                <motion.div
-                                    initial={false}
-                                    animate={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="overflow-hidden"
-                                >
-                                    {event.details && (
-                                        <div className="space-y-2 mb-4">
-                                            {event.details.map((detail, i) => (
-                                                <div key={i} className={`flex items-start gap-2 ${isLeft ? 'flex-row-reverse' : 'flex-row'}`}>
-                                                    <div className={`w-2 h-2 rounded-full bg-gradient-to-br ${config.color} mt-2 flex-shrink-0`} />
-                                                    <p className="text-sm text-brand-graytext dark:text-dark-text-secondary">{detail}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-
-                                    {event.achievements && (
-                                        <div className={`bg-white/60 dark:bg-gray-800/80 rounded-lg p-4 ${isLeft ? 'text-right' : 'text-left'}`}>
-                                            <h4 className="font-semibold text-brand-darkmaroon mb-2 flex items-center gap-2 justify-start">
-                                                <Award size={16} />
-                                                Key Achievements
-                                            </h4>
-                                            <div className="space-y-1">
-                                                {event.achievements.map((achievement, i) => (
-                                                    <p key={i} className="text-sm text-brand-graytext dark:text-dark-text-secondary">{achievement}</p>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-                                </motion.div>
-
-                                {(event.achievements || event.details) && (
-                                    <div className={`text-xs text-brand-graytext/60 dark:text-dark-text-muted ${isLeft ? 'text-right' : 'text-left'}`}>
-                                        Click to {isExpanded ? 'collapse' : 'expand'}
-                                    </div>
-                                )}
-
-                            </CardContent>
-                        </Card>
-                    </motion.div>
-                </div>
-
-                {/* Desktop Timeline Node */}
-                <div className="relative flex-shrink-0">
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={isInView ? { scale: 1 } : {}}
-                        transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                        className={`w-20 h-20 bg-gradient-to-br ${config.color} rounded-full flex items-center justify-center text-white font-bold text-xs text-center shadow-lg z-10 relative border-4 border-white`}
-                    >
-                        {event.year}
-                    </motion.div>
-                </div>
-
-                {/* Desktop Image Side */}
-                <div className="flex-1 max-w-lg">
-                    {event.image && (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                            transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
-                            className="relative h-64 rounded-xl overflow-hidden shadow-lg"
-                        >
-                            <Image
-                                src={event.image}
-                                alt={event.title}
-                                fill
-                                className="object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                        </motion.div>
-                    )}
-                </div>
-            </motion.div>
-        </div>
-    )
-}
-
-function TimelineProgress() {
-    const containerRef = useRef<HTMLDivElement>(null)
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start center", "end center"]
-    })
-
-    const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1])
-
-    return (
-        <div ref={containerRef} className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 md:w-1 md:transform md:-translate-x-0.5">
-            <div className="w-full h-full bg-brand-maroon/10 rounded-full" />
-            <motion.div
-                style={{ scaleY }}
-                className="absolute top-0 left-0 w-full h-full bg-brand-maroon rounded-full origin-top"
-            />
-        </div>
-    )
-}
 
 export default function AboutPage() {
     const titleRef = useRef(null)
-    const isInView = useInView(titleRef, { once: true })
+    const contentRef = useRef(null)
+    const valuesRef = useRef(null)
+    const titleInView = useInView(titleRef, { once: true })
+    const contentInView = useInView(contentRef, { once: true })
+    const valuesInView = useInView(valuesRef, { once: true })
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
-            <SolarBackgroundElements/>
-            {/* Hero Section */}
-            <div className="relative container mx-auto px-6 pt-10 pb-8">
+            <SolarBackgroundElements />
+            <div className="relative container mx-auto px-6 py-8 sm:py-16 max-w-6xl">
+                {/* Hero Section */}
                 <motion.div
                     ref={titleRef}
                     initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    animate={titleInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-8"
+                    className="text-center mb-16"
                 >
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-6">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
-                            The Sparq Story
+                            About Sparq Systems
                         </span>
                     </h1>
-
-                    <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed">
-                        From vision to reality - discover how we&apos;re revolutionizing solar energy
-                        through innovation, passion, and a commitment to a sustainable future.
-                    </p>
                 </motion.div>
-            </div>
 
-            {/* Timeline Section */}
-            <div className="relative container mx-auto px-6 py-10">
-                <div className="max-w-6xl mx-auto relative">
-                    <TimelineProgress />
-
-                    {timelineEvents.map((event, index) => (
-                        <TimelineNode
-                            key={`${event.year}-${index}`}
-                            event={event}
-                            index={index}
-                        />
-                    ))}
-                </div>
-            </div>
-
-            {/* Call to Action */}
-            <section className="relative container mx-auto px-6 py-10">
+                {/* Main Content */}
                 <motion.div
+                    ref={contentRef}
                     initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1 }}
-                    className="text-center"
+                    animate={contentInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="mb-16"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon mb-6 dark:text-brand-yellow">
-                        Ready to be part of the solar revolution?
-                    </h2>
-                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-2xl mx-auto">
-                        Join thousands who have chosen Sparq Systems to power their sustainable future.
-                    </p>
-                    <div className="flex flex-col lg:flex-row justify-center gap-6 max-w-4xl mx-auto">
-                        <Link href="/homeowners" className="flex-1">
-                            <motion.button
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                            >
-                                <div className="flex flex-col items-center gap-1">
-                                    <span className="text-lg">For Homeowners</span>
-                                    <span className="text-sm opacity-90">Discover Solar Benefits</span>
-                                </div>
-                            </motion.button>
-                        </Link>
-                        <Link href="/installers" className="flex-1">
-                            <motion.button
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                            >
-                                <div className="flex flex-col items-center gap-1">
-                                    <span className="text-lg">For Installers</span>
-                                    <span className="text-sm opacity-90">Professional Solutions</span>
-                                </div>
-                            </motion.button>
-                        </Link>
-                        <Link href="/investors" className="flex-1">
-                            <motion.button
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full px-8 py-4 bg-gradient-to-r from-brand-gray to-brand-graytext text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                            >
-                                <div className="flex flex-col items-center gap-1">
-                                    <span className="text-lg">For Investors</span>
-                                    <span className="text-sm opacity-90">Financial Information</span>
-                                </div>
-                            </motion.button>
-                        </Link>
+                    <div className="space-y-8 text-brand-graytext dark:text-dark-text-secondary leading-relaxed text-lg sm:text-xl lg:text-2xl">
+                        <p>
+                            Founded in 2009 by Dr. Praveen Jain, Sparq Systems emerged from a critical observation: traditional solar technology was fundamentally flawed. With issues ranging from unsafe components and fire risks to inefficient centralized power generation, the industry needed a complete rethink.
+                        </p>
+
+                        <p>
+                            Dr. Jain&apos;s vision was clear - create a solar solution that would be safe, reliable, and truly cost-effective. This led to years of passionate research and development, culminating in our revolutionary HF soft-switching microinverter technology. Our breakthrough eliminates the electrolytic capacitors and short-life components that plague traditional systems, while delivering industry-leading performance and efficiency.
+                        </p>
+
+                        <p>
+                            Today, we&apos;re a publicly traded company (TSX-V: SPARQ) with global manufacturing capabilities and strategic partnerships, including our collaboration with Jio Reliance, India&apos;s largest IoT company. From our initial Q2000 single-phase microinverter to our latest three-phase Quad3 technology, we continue to push the boundaries of what&apos;s possible in solar energy conversion.
+                        </p>
+
+                        <p>
+                            Our culture is built on six core principles: <strong>Integrity</strong>, <strong>Collaboration</strong>, <strong>Innovation</strong>, <strong>Quality</strong>, <strong>Social Responsibility</strong>, and <strong>Teamwork</strong>. These aren&apos;t just values on paper - they guide every decision we make, every product we design, and every relationship we build.
+                        </p>
                     </div>
                 </motion.div>
-            </section>
+
+                {/* Company Values */}
+                <motion.div
+                    ref={valuesRef}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={valuesInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="grid md:grid-cols-3 gap-8"
+                >
+                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border border-brand-maroon/10">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-xl flex items-center justify-center text-white mx-auto mb-4">
+                            <Target size={24} className="sm:w-8 sm:h-8" />
+                        </div>
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3 sm:mb-4">
+                            Our Mission
+                        </h3>
+                        <p className="text-base sm:text-lg lg:text-xl text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
+                            Accelerate the transition to energy self-sufficiency by serving residential, commercial and industrial customers world-wide.
+                        </p>
+                    </div>
+
+                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border border-brand-maroon/10">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-xl flex items-center justify-center text-white mx-auto mb-4">
+                            <Lightbulb size={24} className="sm:w-8 sm:h-8" />
+                        </div>
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3 sm:mb-4">
+                            Our Vision
+                        </h3>
+                        <p className="text-base sm:text-lg lg:text-xl text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
+                            Become the #1 Leader for Microinverters, Battery Storage, and Energy Management.
+                        </p>
+                    </div>
+
+                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border border-brand-maroon/10">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-xl flex items-center justify-center text-white mx-auto mb-4">
+                            <Award size={24} className="sm:w-8 sm:h-8" />
+                        </div>
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3 sm:mb-4">
+                            Our Promise
+                        </h3>
+                        <p className="text-base sm:text-lg lg:text-xl text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
+                            Deliver safe, reliable, and cost-effective solutions that are best-in-class, easy to install, and maintenance-free.
+                        </p>
+                    </div>
+                </motion.div>
+            </div>
         </div>
     )
 }

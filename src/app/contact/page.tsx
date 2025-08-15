@@ -169,7 +169,6 @@ export default function ContactPage() {
 							title="Head Office - Canada"
 							companyName='Sparq Systems Inc.'
 							address={`945 Princess Street\nKingston, Ontario, Canada\nK7L 0E9`}
-							phone='855-947-7277'
 							email='sales@sparqsys.com'
 							website='https://www.sparqsys.com/'
 							index={0}

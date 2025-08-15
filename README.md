@@ -52,26 +52,14 @@ Add to Quad2 & Quad3 pages once complete.
 
 For Quad3, emphasize that it's a native three phase product.
 
-For SparqVu, use Queens Site 60 cell on Aug 11.
-
 Think about using window.history to restore scroll position.
-
-For accessories page, dark mode photo, and remove all text other than cable type (t5, ect)
 
 For SparqSync, redo app demo same way as installation and sparqlinq, also use the Queens Site 60 Cell on Aug 11 for the image.
 Also do dark mode photos
 
-Think about other ways to display the /about and /about-us.
-
-Perhaps remove the homeowners/installers in favour of a technology page.
-
-Remove phone number sitewide
-
 Four videos will be PV Systems 101, Global Warming 101, Climate Change 101, and the remade Jiothings Sparq Microinverter video
 
 I am on point for getting the Jiothings video professionally remade.
-
-For the header: [Home, About, Products, Technology, Investors, Resources, Contact]
 
 The main point here is to avoid trying to stretch the content we have into something approximating a multibillion dollar coproration.  Just display what we have, focus on the technology which differentiates us.
 
@@ -86,3 +74,17 @@ Remove Events entirely
 Add all annual/quarterly reports from SEDAR, along with other filings.
 
 Add the TSXV marketing video to the investors video page.
+
+## Completed
+
+Think about other ways to display the /about and /about-us.
+
+For the header: [Home, About, Products, Technology, Investors, Resources, Contact]
+
+Remove phone number sitewide
+
+Perhaps remove the homeowners/installers in favour of a technology page.
+
+For accessories page, dark mode photo, and remove all text other than cable type (t5, ect)
+
+For SparqVu, use Queens Site 60 cell on Aug 11.

@@ -80,7 +80,7 @@ const productCards: ProductCard[] = [
         title: "Cables & Tools",
         description: "Complete range of installation accessories and components",
         href: "/products/accessories",
-        image: "/Accessories/cables.png",
+        image: "/Accessories/cables-t.png",
         category: "Accessories",
         accentColor: "bg-gradient-to-br from-values to-brand-darkmaroon"
     }
@@ -119,15 +119,40 @@ function FloatingProductCard({ product, index }: FloatingProductCardProps) {
                 <Card className="h-full w-full overflow-hidden border border-brand-maroon/20 dark:border-gray-600/30 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl bg-white dark:bg-gray-800/90 backdrop-blur-sm py-0">
                     {/* Image Section */}
                     <div className="relative h-64 md:h-80 bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-                        <Image
-                            src={product.image}
-                            alt={product.title}
-                            fill
-                            className={`${product.category === 'Microinverters' ? 'object-contain scale-90' : 'object-cover scale-100'} transition-all duration-500 ease-out ${product.title === 'SparqLinq' ? 'object-left' : 'object-center'}`}
-                            style={{
-                                filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
-                            }}
-                        />
+                        {product.id === 'accessories' ? (
+                            <>
+                                {/* Light mode image */}
+                                <Image
+                                    src={product.image}
+                                    alt={product.title}
+                                    fill
+                                    className={`${product.category === 'Microinverters' ? 'object-contain scale-90' : 'object-cover scale-100'} transition-all duration-500 ease-out ${product.title === 'SparqLinq' ? 'object-left' : 'object-center'} ${product.title === 'Cables & Tools' ? 'object-fill' : ''} dark:hidden`}
+                                    style={{
+                                        filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
+                                    }}
+                                />
+                                {/* Dark mode image */}
+                                <Image
+                                    src="/Accessories/cables-td.png"
+                                    alt={product.title}
+                                    fill
+                                    className={`${product.category === 'Microinverters' ? 'object-contain scale-90' : 'object-cover scale-100'} transition-all duration-500 ease-out ${product.title === 'SparqLinq' ? 'object-left' : 'object-center'} ${product.title === 'Cables & Tools' ? 'object-fill' : ''} hidden dark:block`}
+                                    style={{
+                                        filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
+                                    }}
+                                />
+                            </>
+                        ) : (
+                            <Image
+                                src={product.image}
+                                alt={product.title}
+                                fill
+                                className={`${product.category === 'Microinverters' ? 'object-contain scale-90' : 'object-cover scale-100'} transition-all duration-500 ease-out ${product.title === 'SparqLinq' ? 'object-left' : 'object-center'} ${product.title === 'Cables & Tools' ? 'object-fill' : ''}`}
+                                style={{
+                                    filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
+                                }}
+                            />
+                        )}
                     </div>
 
                     {/* Content Section */}
