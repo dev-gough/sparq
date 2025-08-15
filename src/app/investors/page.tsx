@@ -6,7 +6,7 @@ import { motion, useInView } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
 import { useTrackEvent } from '@/hooks/useTrackEvent'
 import FAQs from './investor_faq.json'
-import { FaChartLine, FaNewspaper, FaCalendarAlt, FaShieldAlt, FaExternalLinkAlt, FaHandshake, FaRocket, FaAward, FaTrophy, FaPlay, FaFilePdf } from 'react-icons/fa'
+import { FaChartLine, FaNewspaper, FaShieldAlt, FaExternalLinkAlt, FaHandshake, FaRocket, FaAward, FaTrophy, FaPlay, FaFilePdf } from 'react-icons/fa'
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface FAQData {
@@ -21,7 +21,7 @@ const investorSections = [
     {
         title: "Stock Performance",
         description: "Real-time stock data and interactive charts for SPRQ on TSX Venture Exchange.",
-        href: "/investors/stock",
+        href: "https://money.tmx.com/en/quote/SPRQ",
         icon: <FaChartLine className="w-6 h-6" />,
         gradient: "from-brand-maroon to-brand-logo"
     },
@@ -32,13 +32,13 @@ const investorSections = [
         icon: <FaNewspaper className="w-6 h-6" />,
         gradient: "from-brand-logo to-brand-yellow"
     },
-    {
-        title: "Upcoming Events",
-        description: "Investor meetings, earnings calls, and important corporate events calendar.",
-        href: "/investors/events",
-        icon: <FaCalendarAlt className="w-6 h-6" />,
-        gradient: "from-brand-yellow to-brand-maroon"
-    },
+    // {
+    //     title: "Upcoming Events",
+    //     description: "Investor meetings, earnings calls, and important corporate events calendar.",
+    //     href: "/investors/events",
+    //     icon: <FaCalendarAlt className="w-6 h-6" />,
+    //     gradient: "from-brand-yellow to-brand-maroon"
+    // },
     {
         title: "Governance",
         description: "Corporate governance documents, policies, and committee charters.",
@@ -176,7 +176,7 @@ export default function InvestorsPage() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto"
+                        className="flex flex-col sm:flex-row justify-center gap-6 max-w-4xl mx-auto"
                     >
                         <Link href="/investors_ppt.pdf" onClick={handlePresentationClick} target="_blank">
                             <motion.button
@@ -188,7 +188,7 @@ export default function InvestorsPage() {
                                 View Investor Presentation
                             </motion.button>
                         </Link>
-                        <Link href="/resources/videos?category=investors&video=0sdcGgL9228">
+                        <Link href="/resources/videos?category=investors&video=0sdcGgL9228" target="_blank">
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
@@ -196,6 +196,16 @@ export default function InvestorsPage() {
                             >
                                 <FaPlay className="mr-2" />
                                 Watch CEO Interview
+                            </motion.button>
+                        </Link>
+                        <Link href="/resources/videos?category=investors&video=gaFi_dPnYNk" target="_blank">
+                            <motion.button
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center"
+                            >
+                                <FaPlay className="mr-2" />
+                                Watch TSXV 50 Listing
                             </motion.button>
                         </Link>
                     </motion.div>
@@ -219,7 +229,7 @@ export default function InvestorsPage() {
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {investorSections.map((section, index) => (
                             <motion.div
                                 key={section.title}

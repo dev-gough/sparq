@@ -63,17 +63,13 @@ I am on point for getting the Jiothings video professionally remade.
 
 The main point here is to avoid trying to stretch the content we have into something approximating a multibillion dollar coproration.  Just display what we have, focus on the technology which differentiates us.
 
-For investors/stock, just link to tsxv stock page for sprq.  (save the monthly sub price)
-
-Add Ravi's video for TSXV into the /investors page.
-
 Filter out all non press releases from the News section.
-
-Remove Events entirely
 
 Add all annual/quarterly reports from SEDAR, along with other filings.
 
 Add the TSXV marketing video to the investors video page.
+
+Change the investors subpages to be [highlights, stock ->, press releases, reports, governance]
 
 ## Completed
 
@@ -88,3 +84,9 @@ Perhaps remove the homeowners/installers in favour of a technology page.
 For accessories page, dark mode photo, and remove all text other than cable type (t5, ect)
 
 For SparqVu, use Queens Site 60 cell on Aug 11.
+
+For investors/stock, just link to tsxv stock page for sprq.  (save the monthly sub price)
+
+Add Ravi's video for TSXV into the /investors page.
+
+Remove Events entirely

@@ -87,9 +87,9 @@ const aboutDropdown = [
 const investorDropdown = [
 	{ label: "Investor Highlights", href: "/investors#highlights" },
 	{ label: "FAQ", href: "/investors#faq" },
-	{ label: "Stock", href: "/investors/stock" },
+	{ label: "Stock", href: "https://money.tmx.com/en/quote/SPRQ" },
 	{ label: "News", href: "/investors/news" },
-	{ label: "Events", href: "/investors/events" },
+	// { label: "Events", href: "/investors/events" },
 	{ label: "Governance", href: "/investors/governance" },
 ]
 

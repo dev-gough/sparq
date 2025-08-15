@@ -27,7 +27,7 @@ const coreInnovations: TechFeature[] = [
     },
     {
         title: "Quad Architecture",
-        description: "Industry-first 4-in-1 microinverter design handling up to 2,000W total capacity (up to 680W per channel) with four independent transformer-isolated DC input channels, reducing inverter count by 75% and installation costs dramatically.",
+        description: "Industry-first 4-in-1 microinverter design handling up to 2,000W total capacity (up to 680W panels) with four independent DC input channels, reducing inverter count by 75% and installation costs dramatically.",
         benefits: ["75% fewer inverters needed", "2,000W total capacity", "Independent channel isolation", "Lowest per-watt cost"],
         details: "Each Quad unit processes four independent PV panel inputs with 16A maximum DC current per channel. Features wide MPPT voltage range (20-60V extended, 34-45V full power) with MC4 compatible receptacles. NEMA 6/IP-67 rated enclosure weighs only 4kg while delivering the highest power output per unit in the microinverter industry.",
         icon: <Layers className="w-12 h-12" />
