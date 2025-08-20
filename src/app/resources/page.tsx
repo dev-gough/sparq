@@ -12,13 +12,36 @@ import homeownersData from '@/app/homeowners/home_faq.json'
 import installersData from '@/app/installers/installer_faq.json'
 import investorsData from '@/app/investors/investor_faq.json'
 
-const videos = [
+// Educational Videos
+const educationalVideos = [
     { id: 1, title: 'PV Systems 101', thumbnail: '/pv101_thumbnail.jpg', url: 'gl5tY5Noacc', iFrame: true },
     { id: 2, title: 'Global Warming 101', thumbnail: '/globalwarming101_thumbnail.jpg', url: 'oJAbATJCugs', iFrame: true },
     { id: 3, title: 'Climate Change 101', thumbnail: '/climatechange101_thumbnail.jpg', url: 'jAa58N4Jlos', iFrame: true },
     { id: 4, title: "Learn More About Sparq Products", thumbnail: "/hassan_presentation_thumbnail.png", url: "/hassan_presentation.mp4", iFrame: false },
     { id: 5, title: "JioThings Sparq Microinverter Overview", thumbnail: "/jio_thumbnail.jpg", url: "a9tKIsI6t4I", iFrame: true }
 ]
+
+// Investor Videos
+const investorVideos = [
+    { id: 6, title: 'Sparq Systems Investor Presentation', thumbnail: 'https://img.youtube.com/vi/gaFi_dPnYNk/maxresdefault.jpg', url: 'gaFi_dPnYNk', iFrame: true },
+    { id: 7, title: 'CEO Interview - Market Strategy', thumbnail: 'https://img.youtube.com/vi/0sdcGgL9228/maxresdefault.jpg', url: '0sdcGgL9228', iFrame: true }
+]
+
+// Installer Videos
+const installerVideos = [
+    { id: 8, title: 'Quad2/3 Installation Guide', thumbnail: 'https://img.youtube.com/vi/r05zC7wY7NQ/maxresdefault.jpg', url: 'r05zC7wY7NQ', iFrame: true },
+    { id: 9, title: 'SparqLinq Installation Guide', thumbnail: 'https://img.youtube.com/vi/nhH8LrnONxs/maxresdefault.jpg', url: 'nhH8LrnONxs', iFrame: true },
+    { id: 10, title: 'SparqSync Demo', thumbnail: '/sparqsync_splash.jpg', url: '/external-sparq-app.mp4', iFrame: false }
+]
+
+// Homeowner Videos
+const homeownerVideos = [
+    { id: 11, title: 'Solar Energy Benefits for Homeowners', thumbnail: 'https://img.youtube.com/vi/Ibs0snk6nH0/maxresdefault.jpg', url: 'Ibs0snk6nH0', iFrame: true },
+    { id: 12, title: 'Sparq Microinverter Overview', thumbnail: 'https://img.youtube.com/vi/5u3KVFYHfk0/maxresdefault.jpg', url: '5u3KVFYHfk0', iFrame: true }
+]
+
+// All videos combined for popup handling
+const allVideos = [...educationalVideos, ...investorVideos, ...installerVideos, ...homeownerVideos]
 
 
 interface VideoPopupProps {
@@ -117,7 +140,7 @@ export default function LearningPage() {
         const videoParam = searchParams.get('video')
         if (videoParam) {
             const videoId = parseInt(videoParam)
-            if (!isNaN(videoId) && videos.some(video => video.id === videoId)) {
+            if (!isNaN(videoId) && allVideos.some(video => video.id === videoId)) {
                 setShowingID(videoId)
             }
         }
@@ -142,7 +165,7 @@ export default function LearningPage() {
         router.push(newUrl, { scroll: false })
     }
 
-    const selectedVideo = videos.find((video) => video.id === showingID)
+    const selectedVideo = allVideos.find((video) => video.id === showingID)
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
@@ -179,7 +202,7 @@ export default function LearningPage() {
                 </motion.div>
             </section>
 
-            {/* Videos Section */}
+            {/* All Videos Section */}
             <section className="relative container mx-auto px-6 py-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -188,63 +211,251 @@ export default function LearningPage() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
-                        Educational Videos
+                        Video Library
                     </h2>
                     <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
-                        Learn from our collection of expert presentations and educational content.
+                        Explore our comprehensive collection of educational content, technical presentations, and product demonstrations.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-                    {videos.map((video, index) => (
-                        <motion.div
-                            key={video.id}
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.7 + (index * 0.1) }}
-                            className="group"
-                        >
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
-                                <button
-                                    onClick={() => handleShow(video.id)}
-                                    className="w-full text-left"
-                                >
-                                    <div className="relative">
-                                        <Image
-                                            height={1920}
-                                            width={1080}
-                                            src={video.thumbnail}
-                                            alt={video.title}
-                                            className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                                        <div className="absolute inset-0 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                                            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border-2 border-white/50 group-hover:scale-110 transition-transform duration-300">
-                                                <svg
-                                                    className="w-8 h-8 text-white"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 20 20"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
+                {/* Educational Videos */}
+                <div className="mb-16">
+                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8 text-center">
+                        Educational Content
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+                        {educationalVideos.map((video, index) => (
+                            <motion.div
+                                key={video.id}
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.7 + (index * 0.1) }}
+                                className="group"
+                            >
+                                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
+                                    <button
+                                        onClick={() => handleShow(video.id)}
+                                        className="w-full text-left"
+                                    >
+                                        <div className="relative">
+                                            <Image
+                                                height={1920}
+                                                width={1080}
+                                                src={video.thumbnail}
+                                                alt={video.title}
+                                                className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                                                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border-2 border-white/50 group-hover:scale-110 transition-transform duration-300">
+                                                    <svg
+                                                        className="w-8 h-8 text-white"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                    >
+                                                        <path
+                                                            fillRule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                                            clipRule="evenodd"
+                                                        />
+                                                    </svg>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <CardContent className="p-6">
-                                        <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon dark:group-hover:text-brand-logo transition-colors duration-300">
-                                            {video.title}
-                                        </h3>
-                                    </CardContent>
-                                </button>
-                            </Card>
-                        </motion.div>
-                    ))}
+                                        <CardContent className="p-6">
+                                            <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon dark:group-hover:text-brand-logo transition-colors duration-300">
+                                                {video.title}
+                                            </h3>
+                                        </CardContent>
+                                    </button>
+                                </Card>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
 
+                <hr className="border-brand-maroon/20 dark:border-brand-logo/20 mb-16" />
+
+                {/* Investor Videos */}
+                <div className="mb-16">
+                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8 text-center">
+                        For Investors
+                    </h3>
+                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary max-w-2xl mx-auto text-center mb-8">
+                        Learn about Sparq&apos;s market opportunities, financial performance, and growth strategy.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+                        {investorVideos.map((video, index) => (
+                            <motion.div
+                                key={video.id}
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.2 + (index * 0.1) }}
+                                className="group"
+                            >
+                                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
+                                    <button
+                                        onClick={() => handleShow(video.id)}
+                                        className="w-full text-left"
+                                    >
+                                        <div className="relative">
+                                            <Image
+                                                height={1920}
+                                                width={1080}
+                                                src={video.thumbnail}
+                                                alt={video.title}
+                                                className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                                                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border-2 border-white/50 group-hover:scale-110 transition-transform duration-300">
+                                                    <svg
+                                                        className="w-8 h-8 text-white"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                    >
+                                                        <path
+                                                            fillRule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                                            clipRule="evenodd"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <CardContent className="p-6">
+                                            <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon dark:group-hover:text-brand-logo transition-colors duration-300">
+                                                {video.title}
+                                            </h3>
+                                        </CardContent>
+                                    </button>
+                                </Card>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+
+                <hr className="border-brand-maroon/20 dark:border-brand-logo/20 mb-16" />
+
+                {/* Installer Videos */}
+                <div className="mb-16">
+                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8 text-center">
+                        For Installers
+                    </h3>
+                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary max-w-2xl mx-auto text-center mb-8">
+                        Technical insights, installation guides, and product demonstrations for professional installers.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+                        {installerVideos.map((video, index) => (
+                            <motion.div
+                                key={video.id}
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.2 + (index * 0.1) }}
+                                className="group"
+                            >
+                                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
+                                    <button
+                                        onClick={() => handleShow(video.id)}
+                                        className="w-full text-left"
+                                    >
+                                        <div className="relative">
+                                            <Image
+                                                height={1920}
+                                                width={1080}
+                                                src={video.thumbnail}
+                                                alt={video.title}
+                                                className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                                                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border-2 border-white/50 group-hover:scale-110 transition-transform duration-300">
+                                                    <svg
+                                                        className="w-8 h-8 text-white"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                    >
+                                                        <path
+                                                            fillRule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                                            clipRule="evenodd"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <CardContent className="p-6">
+                                            <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon dark:group-hover:text-brand-logo transition-colors duration-300">
+                                                {video.title}
+                                            </h3>
+                                        </CardContent>
+                                    </button>
+                                </Card>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+
+                <hr className="border-brand-maroon/20 dark:border-brand-logo/20 mb-16" />
+
+                {/* Homeowner Videos */}
+                <div className="mb-16">
+                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8 text-center">
+                        For Homeowners
+                    </h3>
+                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary max-w-2xl mx-auto text-center mb-8">
+                        Educational content to help homeowners understand solar energy and Sparq&apos;s benefits.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+                        {homeownerVideos.map((video, index) => (
+                            <motion.div
+                                key={video.id}
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.2 + (index * 0.1) }}
+                                className="group"
+                            >
+                                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
+                                    <button
+                                        onClick={() => handleShow(video.id)}
+                                        className="w-full text-left"
+                                    >
+                                        <div className="relative">
+                                            <Image
+                                                height={1920}
+                                                width={1080}
+                                                src={video.thumbnail}
+                                                alt={video.title}
+                                                className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                                                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border-2 border-white/50 group-hover:scale-110 transition-transform duration-300">
+                                                    <svg
+                                                        className="w-8 h-8 text-white"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                    >
+                                                        <path
+                                                            fillRule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                                                            clipRule="evenodd"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <CardContent className="p-6">
+                                            <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon dark:group-hover:text-brand-logo transition-colors duration-300">
+                                                {video.title}
+                                            </h3>
+                                        </CardContent>
+                                    </button>
+                                </Card>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
 
             </section>
 

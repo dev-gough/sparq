@@ -188,7 +188,7 @@ export default function InvestorsPage() {
                                 View Investor Presentation
                             </motion.button>
                         </Link>
-                        <Link href="/resources/videos?category=investors&video=0sdcGgL9228" target="_blank">
+                        <Link href="/resources?video=7" target="_blank">
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
@@ -198,7 +198,7 @@ export default function InvestorsPage() {
                                 Watch CEO Interview
                             </motion.button>
                         </Link>
-                        <Link href="/resources/videos?category=investors&video=gaFi_dPnYNk" target="_blank">
+                        <Link href="/resources?video=6" target="_blank">
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}

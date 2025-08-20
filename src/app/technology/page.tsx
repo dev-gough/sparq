@@ -19,7 +19,7 @@ interface TechFeature {
 
 const coreInnovations: TechFeature[] = [
     {
-        title: "HF Soft-Switching Architecture",
+        title: "High Frequency Soft-Switching Architecture",
         description: "Proprietary high-frequency soft-switching power electronics that eliminate electrolytic capacitors - the primary failure point in conventional microinverters - achieving 97.5% maximum efficiency and 25+ year operational life.",
         benefits: ["No electrolytic capacitors", "97.5% maximum efficiency", "25+ year lifespan", "Maintenance-free operation"],
         details: "Our patented soft-switching technology operates at higher frequencies to minimize switching losses while eliminating short-life electrolytic capacitors. Operating temperature range of -40°C to +65°C with power factor >0.99 and output THD <2%. This revolutionary approach eliminates single-point failures and delivers the highest power density and lowest weight in the industry.",
@@ -30,10 +30,11 @@ const coreInnovations: TechFeature[] = [
         description: "Industry-first 4-in-1 microinverter design handling up to 2,000W total capacity (up to 680W panels) with four independent DC input channels, reducing inverter count by 75% and installation costs dramatically.",
         benefits: ["75% fewer inverters needed", "2,000W total capacity", "Independent channel isolation", "Lowest per-watt cost"],
         details: "Each Quad unit processes four independent PV panel inputs with 16A maximum DC current per channel. Features wide MPPT voltage range (20-60V extended, 34-45V full power) with MC4 compatible receptacles. NEMA 6/IP-67 rated enclosure weighs only 4kg while delivering the highest power output per unit in the microinverter industry.",
-        icon: <Layers className="w-12 h-12" />
+        icon: <Layers className="w-12 h-12" />,
+        img: "/4in1-2.jpg"
     },
     {
-        title: "Individual MPPT Tracking",
+        title: "Individual MPPT",
         description: "Four completely independent Maximum Power Point Tracking controllers achieve 99.85% static and 99.8% dynamic MPPT efficiency, with each panel optimized individually for maximum energy harvest even under partial shading conditions.",
         benefits: ["99.85% static MPPT efficiency", "Independent optimization", "Fast dynamic response", "Shade tolerance"],
         details: "Advanced real-time algorithms continuously track and optimize each panel's power output with dedicated MPPT controllers per channel. Wide voltage tracking range accommodates various panel types while maintaining peak performance. Eliminates power loss from series string effects and provides individual panel monitoring and diagnostics capabilities.",
@@ -42,9 +43,9 @@ const coreInnovations: TechFeature[] = [
     },
     {
         title: "Native Three-Phase Technology",
-        description: "True three-phase microinverter (Quad3) delivering balanced three-phase power directly without phase balancing solutions. Supports 380V/400V/480V grid systems with programmable 2.5-130Hz output frequency and 0.1% accuracy for commercial and industrial applications.",
-        benefits: ["Native three-phase output", "380V/400V/480V compatibility", "0.1% frequency accuracy", "Motor drive capability"],
-        details: "Commercial-grade design supports induction, BLDC, and PMSM motors with tri-mode operation (grid-tied, off-grid, MPPT motor drive). Features programmable voltage/frequency ride-through for smart grid compliance, parallel operation capability for higher power applications, and comprehensive protection including over-current, over-voltage, dry run, and speed excessive protection.",
+        description: "True three-phase microinverter (Quad3) delivering balanced three-phase power directly without phase balancing solutions. Supports 380V/400V/480V grid systems.",
+        benefits: ["Native three-phase output", "380V/400V/480V compatibility", "0.1% frequency tolerance", "Motor drive capability"],
+        details: "Commercial-grade design supports induction, BLDC, and PMSM motors with tri-mode operation (grid-tied, off-grid, MPPT motor drive). Features programmable voltage/frequency ride-through for smart grid compliance, a programmable 0-130Hz output frequency with 0.1% tolerance for C&I applications, parallel operation capability for higher power applications, and comprehensive protection including over-current, over-voltage, dry run, and speed excessive protection.",
         icon: <Cpu className="w-12 h-12" />
     }
 ]
@@ -191,12 +192,12 @@ export default function TechnologyPage() {
                                 {tech.img && (
                                     <div className="flex-1 max-w-lg">
                                         <Card className="overflow-hidden border-0 shadow-xl py-0">
-                                            <div className="aspect-video bg-gradient-to-br from-brand-maroon/10 to-brand-logo/10 flex items-center justify-center">
+                                            <div className="aspect-video bg-gradient-to-br from-brand-maroon/10 to-brand-logo/10 relative">
                                                 <Image
                                                     src={tech.img}
-                                                    width={1920}
-                                                    height={1080}
+                                                    fill
                                                     alt=""
+                                                    className="object-cover"
                                                 />
                                             </div>
                                         </Card>

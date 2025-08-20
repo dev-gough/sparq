@@ -63,13 +63,6 @@ I am on point for getting the Jiothings video professionally remade.
 
 The main point here is to avoid trying to stretch the content we have into something approximating a multibillion dollar coproration.  Just display what we have, focus on the technology which differentiates us.
 
-Filter out all non press releases from the News section.
-
-Add all annual/quarterly reports from SEDAR, along with other filings.
-
-Add the TSXV marketing video to the investors video page.
-
-Change the investors subpages to be [highlights, stock ->, press releases, reports, governance]
 
 ## Completed
 
@@ -90,3 +83,11 @@ For investors/stock, just link to tsxv stock page for sprq.  (save the monthly s
 Add Ravi's video for TSXV into the /investors page.
 
 Remove Events entirely
+
+Add the TSXV marketing video to the investors video page.
+
+Add all annual/quarterly reports from SEDAR, along with other filings.
+
+Filter out all non press releases from the News section.
+
+Change the investors subpages to be [highlights, stock ->, reports, governance]
