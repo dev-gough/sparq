@@ -226,6 +226,14 @@ export default function LearningPage() {
                     >
                         Educational Content
                     </motion.h3>
+                    <motion.p
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.7 }}
+                        className="text-lg text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto text-center mb-8"
+                    >
+                        Foundational educational videos covering PV systems basics, climate change, and global warming fundamentals.
+                    </motion.p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
                         {educationalVideos.map((video, index) => (
                             <motion.div
@@ -284,7 +292,7 @@ export default function LearningPage() {
                     <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8 text-center">
                         For Investors
                     </h3>
-                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary max-w-2xl mx-auto text-center mb-8">
+                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto text-center mb-8">
                         Learn about Sparq&apos;s market opportunities, financial performance, and growth strategy.
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
@@ -406,7 +414,7 @@ export default function LearningPage() {
                     <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8 text-center">
                         For Homeowners
                     </h3>
-                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary max-w-2xl mx-auto text-center mb-8">
+                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto text-center mb-8">
                         Educational content to help homeowners understand solar energy and Sparq&apos;s benefits.
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
