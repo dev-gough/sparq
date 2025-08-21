@@ -1,7 +1,6 @@
 // Design Your System page
 "use client";
 
-import ExcelJS from 'exceljs';
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -51,22 +50,22 @@ export default function BoMCalc() {
 
     const ratio = Pgrid > 0 ? Ppv / Pgrid : NaN;
 
-  // compatibility
-  const SystemOK =
-    Vpanel <= 68 &&
-    Ppanel >= 400 &&
-    Ppanel <= 750 &&
-    Iscpanel <= 20 &&
-    ratio > 0.999 &&
-    ratio < 1.4001;
+    // compatibility
+    const SystemOK =
+        Vpanel <= 68 &&
+        Ppanel >= 400 &&
+        Ppanel <= 750 &&
+        Iscpanel <= 20 &&
+        ratio > 0.999 &&
+        ratio < 1.4001;
 
-  const panelFailReasons: string[] = [];
-  if (Vpanel > 68) panelFailReasons.push("Panel Voc Too High! Voc must be within 20V-68V range");
-  if (Ppanel > 750) panelFailReasons.push("Panel STC Power Too High! Must be less than 750W");
-  if (Ppanel < 400) panelFailReasons.push("Undersized PV panel! Suggestion: Use higher power panel");
-  if (Iscpanel > 20) panelFailReasons.push("Panel Isc Too High! Must be less than 20A");
-  if (Ppv/Pgrid > 1.4001) panelFailReasons.push("Oversized DC Side! Suggestion: Increase AC side for better PV/microinverter utilization")
-  if (Ppv/Pgrid < 0.999) panelFailReasons.push("Undersized DC Side! Suggestion: Increase DC side for better microinverter utilization ")
+    const panelFailReasons: string[] = [];
+    if (Vpanel > 68) panelFailReasons.push("Panel Voc Too High! Voc must be within 20V-68V range");
+    if (Ppanel > 750) panelFailReasons.push("Panel STC Power Too High! Must be less than 750W");
+    if (Ppanel < 400) panelFailReasons.push("Undersized PV panel! Suggestion: Use higher power panel");
+    if (Iscpanel > 20) panelFailReasons.push("Panel Isc Too High! Must be less than 20A");
+    if (Ppv / Pgrid > 1.4001) panelFailReasons.push("Oversized DC Side! Suggestion: Increase AC side for better PV/microinverter utilization")
+    if (Ppv / Pgrid < 0.999) panelFailReasons.push("Undersized DC Side! Suggestion: Increase DC side for better microinverter utilization ")
 
     // inverter choice
     const isThreePhase = form.projectType === "Industrial" || form.gridType === "Water Pump";
@@ -147,6 +146,9 @@ export default function BoMCalc() {
     };
 
     async function handleDownload() {
+        // Dynamically import ExcelJS to avoid SSR issues
+        const ExcelJS = (await import('exceljs')).default;
+
         // Create workbook & worksheet
         const wb = new ExcelJS.Workbook();
         const ws = wb.addWorksheet("System Summary");
@@ -160,7 +162,7 @@ export default function BoMCalc() {
 
         // Styling
         const headerFont = { bold: true, size: 12 };
-        const thinBorder: ExcelJS.Border = { style: 'thin' as ExcelJS.BorderStyle, color: { argb: "FF000000" } };
+        const thinBorder = { style: 'thin' as const, color: { argb: "FF000000" } };
 
         // Company details
         ws.addRows([

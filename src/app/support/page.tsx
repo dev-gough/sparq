@@ -19,12 +19,84 @@ type Category = keyof typeof CATEGORY_EMAIL_MAP
 
 export default function SupportTicketPage() {
 	const [category, setCategory] = useState<"" | Category>("")
+	const [formData, setFormData] = useState({
+		userEmail: '',
+		ccEmail: '',
+		subject: '',
+		message: ''
+	})
+	const [isSubmitting, setIsSubmitting] = useState(false)
+	const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+	const [errorMessage, setErrorMessage] = useState('')
+	
 	const heroRef = useRef(null)
 	const isHeroInView = useInView(heroRef, { once: true })
 
 	const email = useMemo(() => {
 		return category ? CATEGORY_EMAIL_MAP[category] : "info@sparqsys.com"
 	}, [category])
+
+	const handleInputChange = (field: keyof typeof formData) => (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
+		setFormData(prev => ({
+			...prev,
+			[field]: e.target.value
+		}))
+	}
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault()
+		
+		if (!formData.userEmail || !formData.subject || !formData.message) {
+			setErrorMessage('Please fill in all required fields')
+			setSubmitStatus('error')
+			return
+		}
+
+		setIsSubmitting(true)
+		setSubmitStatus('idle')
+		setErrorMessage('')
+
+		try {
+			const response = await fetch('/api/send-email', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					category: category || 'General Support',
+					supportEmail: email,
+					ccEmail: formData.ccEmail,
+					subject: formData.subject,
+					message: formData.message,
+					userEmail: formData.userEmail,
+				}),
+			})
+
+			const result = await response.json()
+
+			if (response.ok) {
+				setSubmitStatus('success')
+				// Reset form
+				setFormData({
+					userEmail: '',
+					ccEmail: '',
+					subject: '',
+					message: ''
+				})
+				setCategory("")
+			} else {
+				setErrorMessage(result.error || 'Failed to send email')
+				setSubmitStatus('error')
+			}
+		} catch {
+			setErrorMessage('Network error. Please try again.')
+			setSubmitStatus('error')
+		} finally {
+			setIsSubmitting(false)
+		}
+	}
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
@@ -84,7 +156,7 @@ export default function SupportTicketPage() {
 										</div>
 									</div>
 
-									<form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+									<form className="space-y-6" onSubmit={handleSubmit}>
 										{/* Category Dropdown */}
 										<div>
 											<label htmlFor="category" className="block text-sm font-semibold text-brand-darkmaroon dark:text-brand-yellow mb-2">
@@ -107,10 +179,26 @@ export default function SupportTicketPage() {
 											</select>
 										</div>
 
-										{/* Email Field */}
+										{/* User Email Field */}
+										<div>
+											<label htmlFor="userEmail" className="block text-sm font-semibold text-brand-darkmaroon dark:text-brand-yellow mb-2">
+												Your Email Address <span className="text-red-500">*</span>
+											</label>
+											<input
+												id="userEmail"
+												type="email"
+												value={formData.userEmail}
+												onChange={handleInputChange('userEmail')}
+												placeholder="your.email@example.com"
+												required
+												className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 p-3 text-brand-darkmaroon dark:text-gray-200 bg-white dark:bg-gray-900/90 shadow-sm focus:border-brand-maroon dark:focus:border-brand-yellow focus:ring-2 focus:ring-brand-maroon/20 dark:focus:ring-brand-yellow/20 transition-all duration-200"
+											/>
+										</div>
+
+										{/* Support Email Field */}
 										<div>
 											<label htmlFor="supportEmail" className="block text-sm font-semibold text-brand-darkmaroon dark:text-brand-yellow mb-2">
-												Support Email
+												Will be sent to
 											</label>
 											<input
 												id="supportEmail"
@@ -129,6 +217,8 @@ export default function SupportTicketPage() {
 											<input
 												id="ccEmail"
 												type="email"
+												value={formData.ccEmail}
+												onChange={handleInputChange('ccEmail')}
 												placeholder="Optional..."
 												className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 p-3 text-brand-darkmaroon dark:text-gray-200 bg-white dark:bg-gray-900/90 shadow-sm focus:border-brand-maroon dark:focus:border-brand-yellow focus:ring-2 focus:ring-brand-maroon/20 dark:focus:ring-brand-yellow/20 transition-all duration-200"
 											/>
@@ -137,12 +227,15 @@ export default function SupportTicketPage() {
 										{/* Subject */}
 										<div>
 											<label htmlFor="subject" className="block text-sm font-semibold text-brand-darkmaroon dark:text-brand-yellow mb-2">
-												Subject
+												Subject <span className="text-red-500">*</span>
 											</label>
 											<input
 												id="subject"
 												type="text"
+												value={formData.subject}
+												onChange={handleInputChange('subject')}
 												placeholder="Brief description"
+												required
 												className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 p-3 text-brand-darkmaroon dark:text-gray-200 bg-white dark:bg-gray-900/90 shadow-sm focus:border-brand-maroon dark:focus:border-brand-yellow focus:ring-2 focus:ring-brand-maroon/20 dark:focus:ring-brand-yellow/20 transition-all duration-200"
 											/>
 										</div>
@@ -150,23 +243,68 @@ export default function SupportTicketPage() {
 										{/* Message */}
 										<div>
 											<label htmlFor="message" className="block text-sm font-semibold text-brand-darkmaroon dark:text-brand-yellow mb-2">
-												Message
+												Message <span className="text-red-500">*</span>
 											</label>
 											<textarea
 												id="message"
 												rows={4}
+												value={formData.message}
+												onChange={handleInputChange('message')}
 												placeholder="Describe your issue in detail..."
+												required
 												className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 p-3 text-brand-darkmaroon dark:text-dark-text-primary placeholder:text-gray-400 dark:placeholder:text-gray-500 bg-white dark:bg-gray-900/90 shadow-sm focus:border-brand-maroon dark:focus:border-brand-yellow focus:ring-2 focus:ring-brand-maroon/20 dark:focus:ring-brand-yellow/20 transition-all duration-200 resize-none"
 											/>
 										</div>
 
+										{/* Status Messages */}
+										{submitStatus === 'success' && (
+											<div className="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg">
+												<div className="flex items-center">
+													<svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+													</svg>
+													<p className="text-green-700 dark:text-green-300 font-semibold">
+														Support ticket submitted successfully! We&apos;ll get back to you soon.
+													</p>
+												</div>
+											</div>
+										)}
+
+										{submitStatus === 'error' && (
+											<div className="p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 rounded-lg">
+												<div className="flex items-center">
+													<svg className="w-5 h-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+													</svg>
+													<p className="text-red-700 dark:text-red-300 font-semibold">
+														{errorMessage}
+													</p>
+												</div>
+											</div>
+										)}
+
 										<motion.button
 											type="submit"
-											whileHover={{ scale: 1.02, y: -2 }}
-											whileTap={{ scale: 0.98 }}
-											className="w-full rounded-xl bg-gradient-to-r from-brand-maroon to-brand-logo px-6 py-4 font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+											disabled={isSubmitting}
+											whileHover={!isSubmitting ? { scale: 1.02, y: -2 } : {}}
+											whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+											className={`w-full rounded-xl px-6 py-4 font-semibold text-white shadow-lg transition-all duration-300 ${
+												isSubmitting 
+													? 'bg-gray-400 cursor-not-allowed' 
+													: 'bg-gradient-to-r from-brand-maroon to-brand-logo hover:shadow-xl cursor-pointer'
+											}`}
 										>
-											Submit Support Ticket
+											{isSubmitting ? (
+												<div className="flex items-center justify-center">
+													<svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+														<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+														<path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+													</svg>
+													Sending...
+												</div>
+											) : (
+												'Submit Support Ticket'
+											)}
 										</motion.button>
 									</form>
 								</CardContent>
