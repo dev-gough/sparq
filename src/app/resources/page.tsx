@@ -17,8 +17,6 @@ const educationalVideos = [
     { id: 1, title: 'PV Systems 101', thumbnail: '/pv101_thumbnail.jpg', url: 'gl5tY5Noacc', iFrame: true },
     { id: 2, title: 'Global Warming 101', thumbnail: '/globalwarming101_thumbnail.jpg', url: 'oJAbATJCugs', iFrame: true },
     { id: 3, title: 'Climate Change 101', thumbnail: '/climatechange101_thumbnail.jpg', url: 'jAa58N4Jlos', iFrame: true },
-    { id: 4, title: "Learn More About Sparq Products", thumbnail: "/hassan_presentation_thumbnail.png", url: "/hassan_presentation.mp4", iFrame: false },
-    { id: 5, title: "JioThings Sparq Microinverter Overview", thumbnail: "/jio_thumbnail.jpg", url: "a9tKIsI6t4I", iFrame: true }
 ]
 
 // Investor Videos
@@ -36,7 +34,7 @@ const installerVideos = [
 
 // Homeowner Videos
 const homeownerVideos = [
-    { id: 11, title: 'Solar Energy Benefits for Homeowners', thumbnail: 'https://img.youtube.com/vi/Ibs0snk6nH0/maxresdefault.jpg', url: 'Ibs0snk6nH0', iFrame: true },
+    { id: 5, title: "JioThings Sparq Microinverter Overview", thumbnail: "/jio_thumbnail.jpg", url: "a9tKIsI6t4I", iFrame: true },
     { id: 12, title: 'Sparq Microinverter Overview', thumbnail: 'https://img.youtube.com/vi/5u3KVFYHfk0/maxresdefault.jpg', url: '5u3KVFYHfk0', iFrame: true }
 ]
 
@@ -220,9 +218,14 @@ export default function LearningPage() {
 
                 {/* Educational Videos */}
                 <div className="mb-16">
-                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8 text-center">
+                    <motion.h3
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                        className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8 text-center"
+                    >
                         Educational Content
-                    </h3>
+                    </motion.h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
                         {educationalVideos.map((video, index) => (
                             <motion.div

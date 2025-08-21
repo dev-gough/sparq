@@ -6,6 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { Zap, Cpu, Shield, Smartphone, BarChart3, Layers, Award } from "lucide-react"
+import { useIsMobile } from "@/hooks/useIsMobile"
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface TechFeature {
@@ -20,7 +21,7 @@ interface TechFeature {
 const coreInnovations: TechFeature[] = [
     {
         title: "High Frequency Soft-Switching Architecture",
-        description: "Proprietary high-frequency soft-switching power electronics that eliminate electrolytic capacitors - the primary failure point in conventional microinverters - achieving 97.5% maximum efficiency and 25+ year operational life.",
+        description: "Proprietary HF soft-switching power electronics that eliminate electrolytic capacitors - the primary failure point in conventional microinverters - achieving 97.5% maximum efficiency and 25+ year operational life.",
         benefits: ["No electrolytic capacitors", "97.5% maximum efficiency", "25+ year lifespan", "Maintenance-free operation"],
         details: "Our patented soft-switching technology operates at higher frequencies to minimize switching losses while eliminating short-life electrolytic capacitors. Operating temperature range of -40°C to +65°C with power factor >0.99 and output THD <2%. This revolutionary approach eliminates single-point failures and delivers the highest power density and lowest weight in the industry.",
         icon: <Zap className="w-12 h-12" />
@@ -89,6 +90,8 @@ export default function TechnologyPage() {
     const ecosystemRef = useRef(null)
     const specsRef = useRef(null)
 
+    const isMobile = useIsMobile()
+
     const titleInView = useInView(titleRef, { once: true })
     const coreInView = useInView(coreRef, { once: true })
     const ecosystemInView = useInView(ecosystemRef, { once: true })
@@ -149,20 +152,20 @@ export default function TechnologyPage() {
                             >
                                 <div className="flex-1">
                                     <div className="flex items-center gap-4 mb-6">
-                                        <div className="w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-2xl flex items-center justify-center text-white">
+                                        <div className="w-16 h-16 flex-shrink-0 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-2xl flex items-center justify-center text-white">
                                             {tech.icon}
                                         </div>
-                                        <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow">
+                                        <h3 className="text-xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow">
                                             {tech.title}
                                         </h3>
                                     </div>
 
-                                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-6 leading-relaxed">
+                                    <p className="text-base md:text-lg text-brand-graytext dark:text-dark-text-secondary mb-6 leading-relaxed">
                                         {tech.description}
                                     </p>
 
                                     {tech.details && (
-                                        <p className="text-base text-brand-graytext dark:text-dark-text-secondary mb-6 leading-relaxed italic">
+                                        <p className="text-sm md:text-base text-brand-graytext dark:text-dark-text-secondary mb-6 leading-relaxed italic">
                                             {tech.details}
                                         </p>
                                     )}
@@ -177,7 +180,7 @@ export default function TechnologyPage() {
                                     </div>
                                 </div>
 
-                                {!tech.img && (
+                                {!tech.img && !isMobile && (
                                     <div className="flex-1 max-w-lg">
                                         <Card className="overflow-hidden border-0 shadow-xl py-0">
                                             <div className="aspect-video bg-gradient-to-br from-brand-maroon/10 to-brand-logo/10 flex items-center justify-center">

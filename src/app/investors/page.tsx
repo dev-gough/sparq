@@ -26,9 +26,9 @@ const investorSections = [
         gradient: "from-brand-maroon to-brand-logo"
     },
     {
-        title: "Latest News",
-        description: "Stay updated with our latest announcements, press releases, and company updates.",
-        href: "/investors/news",
+        title: "Financial Reports",
+        description: "Access our latest SEDAR+ filings, financial statements, and regulatory documents.",
+        href: "/investors/reports",
         icon: <FaNewspaper className="w-6 h-6" />,
         gradient: "from-brand-logo to-brand-yellow"
     },
@@ -237,7 +237,11 @@ export default function InvestorsPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.4 + (index * 0.1) }}
                             >
-                                <Link href={section.href}>
+                                <Link
+                                    href={section.href}
+                                    target={section.href.startsWith('http') ? '_blank' : undefined}
+                                    rel={section.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                >
                                     <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full group cursor-pointer dark:bg-gray-800">
                                         <CardContent className="p-6 text-center h-full flex flex-col">
                                             <div className={`flex items-center justify-center w-16 h-16 bg-gradient-to-br ${section.gradient} rounded-full mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
@@ -271,7 +275,7 @@ export default function InvestorsPage() {
             </section>
 
             {/* Highlights Section */}
-            <section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-10">
+            <section id="highlights" className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-10 scroll-mt-[75px]">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

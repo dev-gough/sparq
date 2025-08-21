@@ -9,9 +9,11 @@ export default function Footer() {
         { href: "/", label: "Home" },
         { href: "/about", label: "About" },
         { href: "/products", label: "Products" },
+        { href: "/investors", label: "Investors" },
+        { href: "/technology", label: "Technology"},
         { href: "/contact", label: "Contact" },
         { href: "/resources/legal", label: "Legal" },
-        { href: "/investors", label: "Investors" },
+        { href: "/support", label: "Support"}
     ];
 
     return (

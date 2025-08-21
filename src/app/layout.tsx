@@ -119,6 +119,7 @@ const productDropdown = [
 
 const resourcesDropdown = [
 	{ label: "Learning Hub", href: "/resources" },
+	{ label: "BOM Calculator", href: "/resources/calculator" },
 	{ label: "Legal", href: "/resources/legal" }
 ]
 

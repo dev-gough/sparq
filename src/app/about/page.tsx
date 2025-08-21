@@ -67,7 +67,7 @@ export default function AboutPage() {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="grid md:grid-cols-3 gap-8"
                 >
-                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border border-brand-maroon/10">
+                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border-3 border-brand-maroon/10 dark:border-brand-logo/10">
                         <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-xl flex items-center justify-center text-white mx-auto mb-4">
                             <Target size={24} className="sm:w-8 sm:h-8" />
                         </div>
@@ -79,7 +79,7 @@ export default function AboutPage() {
                         </p>
                     </div>
 
-                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border border-brand-maroon/10">
+                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border-3 border-brand-maroon/10 dark:border-brand-logo/10">
                         <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-xl flex items-center justify-center text-white mx-auto mb-4">
                             <Lightbulb size={24} className="sm:w-8 sm:h-8" />
                         </div>
@@ -91,7 +91,7 @@ export default function AboutPage() {
                         </p>
                     </div>
 
-                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border border-brand-maroon/10">
+                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border-3 border-brand-maroon/10 dark:border-brand-logo/10">
                         <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-xl flex items-center justify-center text-white mx-auto mb-4">
                             <Award size={24} className="sm:w-8 sm:h-8" />
                         </div>

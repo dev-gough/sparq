@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import ForceScroll from "@/components/ForceScroll"
-import LeavingSite from "@/components/LeavingSite"
 import { AnimationProvider } from '@/contexts/AnimationContext'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
@@ -48,7 +47,6 @@ function RootLayoutContent({ children, navbarItems }: Omit<RootLayoutClientProps
         <BackgroundWrapper>
             <Header navItems={navbarItems} />
             <ForceScroll />
-            <LeavingSite />
             <main className="flex-grow h-full">
                 {children}
             </main>
