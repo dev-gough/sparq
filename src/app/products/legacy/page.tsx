@@ -10,11 +10,11 @@ import { useTrackEvent } from "@/hooks/useTrackEvent"
 function image() {
 	return (
 		<Image
-			src="/q1200-discontinued.png"
+			src="/q2000.webp"
 			alt="Q2000 Microinverter"
 			width={1920}
 			height={1084}
-			className="object-contain sticky top-16 z-10"
+			className="object-contain sticky top-[100px] z-10"
 		/>
 	)
 }

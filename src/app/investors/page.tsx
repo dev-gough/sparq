@@ -457,43 +457,41 @@ export default function InvestorsPage() {
             </section>
 
             {/* Call to Action */}
-            <section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon dark:from-gray-700 dark:to-gray-800 py-10">
-                <div className="container mx-auto px-6 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 1.8 }}
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                            Ready to Invest?
-                        </h2>
-                        <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
-                            Connect with our investor relations team to learn more about investment
-                            opportunities with Sparq Systems and our revolutionary solar technology.
-                        </p>
-                        <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-                            <Link href="/contact">
-                                <motion.button
-                                    whileHover={{ scale: 1.02, y: -2 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="w-full sm:w-auto px-8 py-4 bg-white text-brand-maroon font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                                >
-                                    Contact Investor Relations
-                                </motion.button>
-                            </Link>
-                            <Link href="/investors_ppt.pdf" target="_blank">
-                                <motion.button
-                                    whileHover={{ scale: 1.02, y: -2 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="w-full sm:w-auto px-8 py-4 bg-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
-                                >
-                                    <FaFilePdf className="mr-2" />
-                                    View Installer Presentation
-                                </motion.button>
-                            </Link>
-                        </div>
-                    </motion.div>
-                </div>
+            <section className="container mx-auto px-6 pb-20 sm:py-20">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1.8 }}
+                    className="text-center"
+                >
+                    <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
+                        Ready to Invest?
+                    </h2>
+                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-2xl mx-auto">
+                        Connect with our investor relations team to learn more about investment opportunities with Sparq Systems.
+                    </p>
+                    <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
+                        <Link href="/contact">
+                            <motion.button
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                            >
+                                Contact Investor Relations
+                            </motion.button>
+                        </Link>
+                        <Link href="/investors_ppt.pdf" target="_blank">
+                            <motion.button
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
+                            >
+                                <FaFilePdf className="mr-2" />
+                                View Presentation
+                            </motion.button>
+                        </Link>
+                    </div>
+                </motion.div>
             </section>
         </div>
     )

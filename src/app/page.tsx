@@ -472,58 +472,38 @@ export default function Home() {
             </section>
 
             {/* Call to Action */}
-            <section className="relative container mx-auto sm:py-32">
+            <section className="container mx-auto px-6 pb-20 sm:py-20">
                 <motion.div
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 1 }}
                     className="text-center"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8">
+                    <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                         Ready to Transform Your Solar Future?
                     </h2>
-                    <p className="text-xl text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-4xl mx-auto">
+                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-2xl mx-auto">
                         Join thousands of satisfied customers who have chosen Sparq Systems for their solar energy needs.
-                        Experience the difference that cutting-edge technology makes.
                     </p>
-                    <div className="flex flex-col md:flex-row justify-center gap-6 max-w-4xl mx-auto mb-4">
-                        <Link href="/homeowners" className="flex-1">
+                    <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
+                        <Link href="/technology">
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                                onClick={() => handleCtaClick('homeowners')}
+                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                onClick={() => handleCtaClick('technology')}
                             >
-                                <div className="flex flex-col items-center gap-2">
-                                    <span className="text-lg">For Homeowners</span>
-                                    <span className="text-sm opacity-90">Discover Solar Benefits</span>
-                                </div>
+                                Explore Technology
                             </motion.button>
                         </Link>
-                        <Link href="/installers" className="flex-1">
+                        <Link href="/investors">
                             <motion.button
                                 whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                                onClick={() => handleCtaClick('installers')}
-                            >
-                                <div className="flex flex-col items-center gap-2">
-                                    <span className="text-lg">For Installers</span>
-                                    <span className="text-sm opacity-90">Professional Solutions</span>
-                                </div>
-                            </motion.button>
-                        </Link>
-                        <Link href="/investors" className="flex-1">
-                            <motion.button
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full sm:px-8 py-3 sm:py-6 bg-gradient-to-r from-brand-gray to-brand-graytext text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                                 onClick={() => handleCtaClick('investors')}
                             >
-                                <div className="flex flex-col items-center gap-2">
-                                    <span className="text-lg">For Investors</span>
-                                    <span className="text-sm opacity-90">Financial Information</span>
-                                </div>
+                                For Investors
                             </motion.button>
                         </Link>
                     </div>

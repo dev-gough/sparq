@@ -301,41 +301,41 @@ export default function TechnologyPage() {
                 </motion.div>
 
                 {/* Call to Action */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                    className="text-center"
-                >
-                    <Card className="p-8 bg-gradient-to-br from-brand-maroon/5 to-brand-logo/5 border border-brand-maroon/20">
-                        <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">
-                            Experience Our Technology
-                        </h3>
-                        <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-8 max-w-2xl mx-auto">
-                            Discover how our innovative microinverter solutions can transform your solar energy system.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link href="/products">
-                                <motion.button
-                                    whileHover={{ scale: 1.02, y: -2 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="px-8 py-3 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                                >
-                                    Explore Products
-                                </motion.button>
-                            </Link>
-                            <Link href="/resources">
-                                <motion.button
-                                    whileHover={{ scale: 1.02, y: -2 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="px-8 py-3 bg-white dark:bg-gray-800 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-brand-maroon/20"
-                                >
-                                    Technical Resources
-                                </motion.button>
-                            </Link>
-                        </div>
-                    </Card>
+                <section className="container mx-auto px-6 pb-20 sm:py-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                        className="text-center"
+                    >
+                    <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
+                        Experience Our Technology
+                    </h2>
+                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-2xl mx-auto">
+                        Discover how our innovative microinverter solutions can transform your solar energy system.
+                    </p>
+                    <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
+                        <Link href="/products">
+                            <motion.button
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                            >
+                                Explore Products
+                            </motion.button>
+                        </Link>
+                        <Link href="/resources">
+                            <motion.button
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                            >
+                                Technical Resources
+                            </motion.button>
+                        </Link>
+                    </div>
                 </motion.div>
+            </section>
             </div>
         </div>
     )

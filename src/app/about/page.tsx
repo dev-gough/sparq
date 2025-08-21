@@ -46,11 +46,11 @@ export default function AboutPage() {
                         </p>
 
                         <p>
-                            Dr. Jain&apos;s vision was clear - create a solar solution that would be safe, reliable, and truly cost-effective. This led to years of passionate research and development, culminating in our revolutionary HF soft-switching microinverter technology. Our breakthrough eliminates the electrolytic capacitors and short-life components that plague traditional systems, while delivering industry-leading performance and efficiency.
+                            Dr. Jain&apos;s vision was clear - create a solar solution that would be safe, reliable, and truly cost-effective. This led to years of passionate research and development, culminating in our revolutionary high frequency soft-switching microinverter technology. Our breakthrough eliminates the electrolytic capacitors and short-life components that plague traditional systems, while delivering industry-leading performance and efficiency.
                         </p>
 
                         <p>
-                            Today, we&apos;re a publicly traded company (TSX-V: SPARQ) with global manufacturing capabilities and strategic partnerships, including our collaboration with Jio Reliance, India&apos;s largest IoT company. From our initial Q2000 single-phase microinverter to our latest three-phase Quad3 technology, we continue to push the boundaries of what&apos;s possible in solar energy conversion.
+                            Today, we&apos;re a publicly traded company (TSXV: SPRQ) with global manufacturing capabilities and strategic partnerships, including our collaboration with Jio Reliance, India&apos;s largest IoT company. From our initial Quad2 single-phase microinverter to our latest three-phase Quad3 technology, we continue to push the boundaries of what&apos;s possible in solar energy conversion.
                         </p>
 
                         <p>

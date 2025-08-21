@@ -232,42 +232,40 @@ export default function ContactPage() {
 			</section>
 
 			{/* Call to Action */}
-			<section className="relative bg-gradient-to-br from-brand-maroon to-brand-darkmaroon dark:from-gray-700 dark:to-gray-800 py-10">
-				<div className="container mx-auto px-6 text-center">
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 1.0 }}
-					>
-						<h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-							Ready to Get Started?
-						</h2>
-						<p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
-							Whether you&apos;re an installer, homeowner, or investor, our team is ready to help you
-							harness the power of advanced microinverter technology.
-						</p>
-						<div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-							<a href="/installers">
-								<motion.button
-									whileHover={{ scale: 1.02, y: -2 }}
-									whileTap={{ scale: 0.98 }}
-									className="w-full sm:w-auto px-8 py-4 bg-white text-brand-maroon font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-								>
-									For Installers
-								</motion.button>
-							</a>
-							<a href="/homeowners">
-								<motion.button
-									whileHover={{ scale: 1.02, y: -2 }}
-									whileTap={{ scale: 0.98 }}
-									className="w-full sm:w-auto px-8 py-4 bg-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-								>
-									For Homeowners
-								</motion.button>
-							</a>
-						</div>
-					</motion.div>
-				</div>
+			<section className="container mx-auto px-6 pb-20 sm:py-20">
+				<motion.div
+					initial={{ opacity: 0, y: 30 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.8, delay: 1.0 }}
+					className="text-center"
+				>
+					<h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
+						Ready to Get Started?
+					</h2>
+					<p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-2xl mx-auto">
+						Discover our breakthrough microinverter technology and explore our complete product portfolio.
+					</p>
+					<div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
+						<Link href="/technology">
+							<motion.button
+								whileHover={{ scale: 1.02, y: -2 }}
+								whileTap={{ scale: 0.98 }}
+								className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+							>
+								Explore Technology
+							</motion.button>
+						</Link>
+						<Link href="/products">
+							<motion.button
+								whileHover={{ scale: 1.02, y: -2 }}
+								whileTap={{ scale: 0.98 }}
+								className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+							>
+								View Products
+							</motion.button>
+						</Link>
+					</div>
+				</motion.div>
 			</section>
 		</div>
 	)

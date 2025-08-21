@@ -26,17 +26,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Todo
 
-## Highest Prio
-
-- send email to pvwats with the content from 'design my system'
-    - ask for their feedback, if it's correct
-    - incl a link to the site
-
-### Functionality
 - /support
     - integrate AWS email service to send out support ticket emails
-
-
 
 
 ## Notes
@@ -58,11 +49,6 @@ For SparqSync, redo app demo same way as installation and sparqlinq, also use th
 Also do dark mode photos
 
 Four videos will be PV Systems 101, Global Warming 101, Climate Change 101, and the remade Jiothings Sparq Microinverter video
-
-I am on point for getting the Jiothings video professionally remade.
-
-The main point here is to avoid trying to stretch the content we have into something approximating a multibillion dollar coproration.  Just display what we have, focus on the technology which differentiates us.
-
 
 ## Completed
 
@@ -91,3 +77,7 @@ Add all annual/quarterly reports from SEDAR, along with other filings.
 Filter out all non press releases from the News section.
 
 Change the investors subpages to be [highlights, stock ->, reports, governance]
+
+Standardize the CTA
+
+Remove references to homeowners/installers pages

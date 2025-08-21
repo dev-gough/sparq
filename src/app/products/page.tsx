@@ -277,25 +277,25 @@ export default function ProductsPage() {
                             Ready to transform your solar installation?
                         </h2>
                         <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-2xl mx-auto">
-                            Explore our comprehensive solutions and discover how Sparq Systems can optimize your solar energy system.
+                            Learn more about our breakthrough technology or get in touch to discuss your specific requirements.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-                            <Link href="/homeowners">
+                            <Link href="/technology">
                                 <motion.button
                                     whileHover={{ scale: 1.02, y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                                 >
-                                    For Homeowners
+                                    Explore Technology
                                 </motion.button>
                             </Link>
-                            <Link href="/installers">
+                            <Link href="/contact">
                                 <motion.button
                                     whileHover={{ scale: 1.02, y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                                 >
-                                    For Installers
+                                    Contact Us
                                 </motion.button>
                             </Link>
                         </div>
