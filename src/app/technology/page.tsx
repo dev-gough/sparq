@@ -23,20 +23,20 @@ const coreInnovations: TechFeature[] = [
         title: "High Frequency Soft-Switching Architecture",
         description: "Proprietary HF soft-switching power electronics that eliminate electrolytic capacitors - the primary failure point in conventional microinverters - achieving 97.5% maximum efficiency and 25+ year operational life.",
         benefits: ["No electrolytic capacitors", "97.5% maximum efficiency", "25+ year lifespan", "Maintenance-free operation"],
-        details: "Our patented soft-switching technology operates at higher frequencies to minimize switching losses while eliminating short-life electrolytic capacitors. Operating temperature range of -40°C to +65°C with power factor >0.99 and output THD <2%. This revolutionary approach eliminates single-point failures and delivers the highest power density and lowest weight in the industry.",
+        details: "Our patented soft-switching technology facilities high switching frequency conversion to lower the passive electrical component size for a more compact power electronics design. We are the industry leader in eliminating short-life electrolytic capacitors by utilizing thin-film technologies along with sophisticated control algorithms.",
         icon: <Zap className="w-12 h-12" />
     },
     {
         title: "Quad Architecture",
-        description: "Industry-first 4-in-1 microinverter design handling up to 2,000W total capacity (up to 680W panels) with four independent DC input channels, reducing inverter count by 75% and installation costs dramatically.",
+        description: "Industry-first 4-in-1 microinverter design handling up to 2,000W total nominal capacity (suitable for 680W+ panels per PV input) with four independent PV MPPT input channels, reducing inverter count by 75% and significantly lowering installation and AC wiring costs.",
         benefits: ["75% fewer inverters needed", "2,000W total capacity", "Independent channel isolation", "Lowest per-watt cost"],
-        details: "Each Quad unit processes four independent PV panel inputs with 16A maximum DC current per channel. Features wide MPPT voltage range (20-60V extended, 34-45V full power) with MC4 compatible receptacles. NEMA 6/IP-67 rated enclosure weighs only 4kg while delivering the highest power output per unit in the microinverter industry.",
+        details: "Each Quad unit processes four independent PV panel inputs with independent MPPT per channel. Features wide MPPT voltage range with MC4 compatible receptacles. NEMA 6/IP-67 rated enclosure weighs only 4kg while delivering the highest power output per unit in the microinverter industry.",
         icon: <Layers className="w-12 h-12" />,
         img: "/4in1-2.jpg"
     },
     {
         title: "Individual MPPT",
-        description: "Four completely independent Maximum Power Point Tracking controllers achieve 99.85% static and 99.8% dynamic MPPT efficiency, with each panel optimized individually for maximum energy harvest even under partial shading conditions.",
+        description: "Four completely independent Maximum Power Point Tracking controllers achieve 99.85% static and >99.8% dynamic MPPT efficiency, with each panel optimized individually for maximum energy harvest even under partial shading conditions and panel soiling.",
         benefits: ["99.85% static MPPT efficiency", "Independent optimization", "Fast dynamic response", "Shade tolerance"],
         details: "Advanced real-time algorithms continuously track and optimize each panel's power output with dedicated MPPT controllers per channel. Wide voltage tracking range accommodates various panel types while maintaining peak performance. Eliminates power loss from series string effects and provides individual panel monitoring and diagnostics capabilities.",
         icon: <BarChart3 className="w-12 h-12" />,
@@ -44,9 +44,9 @@ const coreInnovations: TechFeature[] = [
     },
     {
         title: "Native Three-Phase Technology",
-        description: "True three-phase microinverter (Quad3) delivering balanced three-phase power directly without phase balancing solutions. Supports 380V/400V/480V grid systems.",
-        benefits: ["Native three-phase output", "380V/400V/480V compatibility", "0.1% frequency tolerance", "Motor drive capability"],
-        details: "Commercial-grade design supports induction, BLDC, and PMSM motors with tri-mode operation (grid-tied, off-grid, MPPT motor drive). Features programmable voltage/frequency ride-through for smart grid compliance, a programmable 0-130Hz output frequency with 0.1% tolerance for C&I applications, parallel operation capability for higher power applications, and comprehensive protection including over-current, over-voltage, dry run, and speed excessive protection.",
+        description: "True three-phase microinverter (Quad3) delivering balanced three-phase power in an efficient manner for commercial/industrial buildings, as well as next generation large scale PV farms. Supports 380V/400V/480V grid systems.",
+        benefits: ["Native three-phase output", "380V/400V/480V compatibility", "4 PV inputs with independent MPPT", "Motor drive capability"],
+        details: "Sparq's three-phase microinverter supports tri-mode operation (grid-tied, off-grid, MPPT motor drive). Features anti-islanding protection, programmable voltage/frequency ride-through as well as rule 21 and IEC 50549 functions for smart grid compliance.  Quad 3 can operate as a variable frequency drive with 0-130Hz output frequency with 0.1% tolerance for MPPT motor drive applications, that can run induction, PMSM, and BLDC motors. Moreover, multiple Quad 3 units can be placed in parallel to run higher power motors. It offers built-in comprehensive protections including over-current, over-voltage, dry run, and speed excessive protection.",
         icon: <Cpu className="w-12 h-12" />
     }
 ]
@@ -76,7 +76,7 @@ const technicalSpecs = [
     { label: "Patents Awarded & Pending", value: "85+" },
     { label: "Maximum Efficiency", value: "97.5%" },
     { label: "MPPT Efficiency (Static/Dynamic)", value: "99.85% / 99.8%" },
-    { label: "Total Capacity per Unit", value: "2,000W" },
+    { label: "Total Nominal Capacity per Unit", value: "2,000W" },
     { label: "Power Factor", value: ">0.99" },
     { label: "Output THD", value: "<2%" },
     { label: "Operating Temperature", value: "-40°C to +65°C" },

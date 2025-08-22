@@ -12,9 +12,9 @@ import YouTube from 'react-youtube'
 function expanded() {
 	return (
 		<>
-			<p className="mt-4"><strong>Safety You Can Count On</strong>: The Quad3 eliminates traditional risks with no HV DC cabling, no electrolytic capacitors, and all-AC wiring that complies with Rapid Shutdown (RSD) regulations. It&apos;s a high-reliability, high-availability solution with no single point of failure, minimizing risk while maximizing uptime.</p>
-			<p className="mt-4"><strong>Cost-Effectiveness Without Compromise</strong>: Backed by a Quad Architecture that reduces both manufacturing and installation costs, the Quad3 also minimizes Balance of System (BoS) requirements. With lowest lifecycle cost and maintenance-free operation, it stands out as an outlier on the Performance-Cost curve.</p>
-			<p className="text-brand-gray dark:text-dark-text-secondary font-semibold mt-2">Whether you&apos;re powering a home or a commercial system, the Quad3 microinverter delivers unmatched value, reliability, and smart energy management - all in one compact, user-friendly package.</p>
+			<p className="mt-4"><strong>Native Three-Phase Power Generation</strong>: The Quad3 is a true native three-phase microinverter that generates balanced three-phase power directly from solar panels, eliminating the complexity and losses associated with single-phase inverters in three-phase systems. Supporting 380V/400V/480V grid connections, it delivers 2,000W of clean power with exceptional grid compliance and anti-islanding protection.</p>
+			<p className="mt-4"><strong>Revolutionary Tri-Mode Operation</strong>: Beyond traditional grid-tied operation, the Quad3 uniquely supports off-grid standalone mode and MPPT motor drive applications. It can operate as a variable frequency drive (0-130Hz) to run induction, BLDC, and PMSM motors directly from solar power, with parallel operation capability for higher power requirements. This versatility makes it ideal for commercial buildings, industrial facilities, and next-generation PV farms.</p>
+			<p className="text-brand-gray dark:text-dark-text-secondary font-semibold mt-2">Whether you&apos;re powering a home or a commercial system, the Quad3 microinverter delivers unmatched value, reliability, and smart energy management - all in one compact, user-friendly package</p>
 		</>
 	)
 }
@@ -22,7 +22,7 @@ function expanded() {
 function body() {
 	return (
 		<>
-			<p className="mt-4"><strong>Performance That Powers More</strong>: Engineered with high-frequency, soft-switching power electronics and advanced real-time control, the Quad3 ensures maximum energy harvesting and grid resilience. With individual MPPT for each panel, your system achieves optimal output even in partially shaded conditions. It&apos;s also built for the future - scalable, flexible, and ready for both on-grid and off-grid operations.</p>
+			<p className="mt-4"><strong>Industry-Leading Three-Phase Architecture</strong>: The Quad3 delivers native three-phase power through our patented soft-switching technology, achieving 97.5% maximum efficiency while completely eliminating failure-prone electrolytic capacitors. This breakthrough design provides a 25+ year operational life with maintenance-free reliability. Four independent PV input channels with dedicated MPPT controllers ensure maximum energy harvest from each panel, delivering up to 2,000W total nominal capacity with the highest power density in the microinverter industry.</p>
 		</>
 	)
 }

@@ -58,7 +58,7 @@ For the header: [Home, About, Products, Technology, Investors, Resources, Contac
 
 Remove phone number sitewide
 
-Perhaps remove the homeowners/installers in favour of a technology page.
+Remove the homeowners/installers in favour of a technology page.
 
 For accessories page, dark mode photo, and remove all text other than cable type (t5, ect)
 
