@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { Inter, Poppins, Geist, Nunito, Roboto_Flex, Quicksand, PT_Sans, Raleway, Crimson_Text } from "next/font/google"
+import { Inter } from "next/font/google"
 import RootLayoutClient from "@/components/RootLayoutClient"
 import { getServerTheme } from "@/lib/theme-server"
 
@@ -10,72 +10,11 @@ export const metadata: Metadata = {
 	icons: '/logo.png',
 }
 
-const nunito = Nunito({
-	subsets: ['latin'],
-	weight: ["300", "400", "500", "600", "700", "800", "900"],
-	display: 'swap',
-})
-
-const robo_flex = Roboto_Flex({
-	subsets: ['latin'],
-	weight: ["300", "400", "500", "600", "700", "800", "900"],
-	display: 'swap',
-})
-
-const pt_sans = PT_Sans({
-	subsets: ['latin'],
-	weight: ["400", "700"],
-	display: 'swap',
-})
-
-const quicksand = Quicksand({
-	subsets: ['latin'],
-	weight: ["300", "400", "500", "600", "700"],
-	display: 'swap',
-})
-
 const inter = Inter({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 	display: 'swap',
 })
-
-const poppins = Poppins({
-	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700", "800", "900"],
-	display: 'swap',
-})
-
-const geist = Geist({
-	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700", "800", "900"],
-	display: 'swap',
-})
-
-const rale = Raleway({
-	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700", "800", "900"],
-	display: 'swap',
-})
-
-const crimson = Crimson_Text({
-	subsets: ["latin"],
-	weight: ["400", "600", "700"],
-	display: 'swap',
-})
-
-// Font objects for dynamic switching
-export const fontOptions = {
-	'pt_sans': pt_sans,
-	'nunito': nunito,
-	'roboto_flex': robo_flex,
-	'quicksand': quicksand,
-	'inter': inter,
-	'poppins': poppins,
-	'geist': geist,
-	'raleway': rale,
-	'crimson': crimson,
-}
 
 const aboutDropdown = [
 	{ label: "About Us", href: "/about" },
@@ -84,28 +23,12 @@ const aboutDropdown = [
 ]
 
 const investorDropdown = [
-	{ label: "Investor Highlights", href: "/investors#highlights" },
+	{ label: "Partnerships", href: "/investors#partnerships" },
 	{ label: "FAQ", href: "/investors#faq" },
 	{ label: "Stock", href: "https://money.tmx.com/en/quote/SPRQ" },
 	{ label: "Reports & Filings", href: "/investors/reports"},
-	// { label: "News", href: "/investors/news" },
-	// { label: "Events", href: "/investors/events" },
 	{ label: "Governance", href: "/investors/governance" },
 ]
-
-// const homeownerDropdown = [
-// 	{ label: "Why Sparq", href: "/homeowners#whysparq" },
-// 	{ label: "Sparq Advantage", href: "/homeowners#discover" },
-// 	{ label: "Design My System", href: "/homeowners#design" },
-// 	{ label: "FAQs", href: "/homeowners#faq" }
-// ]
-
-// const installerDropdown = [
-// 	{ label: "Why Sparq", href: "/installers#whysparq" },
-// 	{ label: "Sparq Advantage", href: "/installers#discover" },
-// 	{ label: "BoM Calculator", href: "/installers#bom" },
-// 	{ label: "FAQs", href: "/installers#faq" },
-// ]
 
 const productDropdown = [
 	{ label: "Quad2", href: "/products/quad2" },
@@ -125,10 +48,8 @@ const resourcesDropdown = [
 
 const navbarItems = [
 	{ label: "About", href: "/about", dropdown: aboutDropdown },
-	{ label: "Products", href: "/products", dropdown: productDropdown },
-	// { label: "Homeowners", href: "/homeowners", dropdown: homeownerDropdown },
-	// { label: "Installers", href: "/installers", dropdown: installerDropdown },
 	{ label: "Technology", href: "/technology"},
+	{ label: "Products", href: "/products", dropdown: productDropdown },
 	{ label: "Investors", href: "/investors", dropdown: investorDropdown },
 	{ label: "Resources", href: "/resources", dropdown: resourcesDropdown },
 	{ label: "Contact", href: "/contact" },
@@ -144,8 +65,8 @@ export default async function RootLayout({
 	const themeClass = theme === 'dark' ? 'dark' : ''
 	
 	return (
-		<html lang="en" className={`bg-white dark:bg-gray-900 ${themeClass}`}>
-			<RootLayoutClient navbarItems={navbarItems} fontOptions={fontOptions}>
+		<html lang="en" className={`bg-white dark:bg-gray-900 ${themeClass} ${inter.className}`}>
+			<RootLayoutClient navbarItems={navbarItems}>
 				{children}
 			</RootLayoutClient>
 		</html>

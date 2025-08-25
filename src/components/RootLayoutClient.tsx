@@ -20,7 +20,7 @@ interface FontOption {
 interface RootLayoutClientProps {
     children: React.ReactNode
     navbarItems: NavItem[]
-    fontOptions: Record<string, FontOption>
+    fontOptions?: Record<string, FontOption>
 }
 
 function BackgroundWrapper({ children }: { children: React.ReactNode }) {
@@ -55,11 +55,10 @@ function RootLayoutContent({ children, navbarItems }: Omit<RootLayoutClientProps
     )
 }
 
-export default function RootLayoutClient({ children, navbarItems, fontOptions }: RootLayoutClientProps) {
-    const activeFont = fontOptions['inter']
+export default function RootLayoutClient({ children, navbarItems }: RootLayoutClientProps) {
 
     return (
-        <body className={`${activeFont.className} flex flex-col min-h-screen overflow-y-scroll`} suppressHydrationWarning>
+        <body className={`flex flex-col min-h-screen overflow-y-scroll`} suppressHydrationWarning>
             <ThemeProvider>
                 <AnimationProvider>
                     <RootLayoutContent

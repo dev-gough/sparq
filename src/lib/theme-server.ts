@@ -7,6 +7,6 @@ export async function getServerTheme(): Promise<'light' | 'dark'> {
   if (theme === 'dark') return 'dark'
   if (theme === 'light') return 'light'
   
-  // Default to light mode if no preference is set
-  return 'light'
+  // Default to dark mode if no preference is set
+  return 'dark'
 }

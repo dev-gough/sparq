@@ -21,7 +21,7 @@ interface TechFeature {
 const coreInnovations: TechFeature[] = [
     {
         title: "High Frequency Soft-Switching Architecture",
-        description: "Proprietary HF soft-switching power electronics that eliminate electrolytic capacitors - the primary failure point in conventional microinverters - achieving 97.5% maximum efficiency and 25+ year operational life.",
+        description: "The combination of our proprietary HF soft-switching power electronics and the elimination of electrolytic capacitors - the primary failure point in conventional microinverters - results in a 97.5% maximum efficiency and 25+ year operational life.",
         benefits: ["No electrolytic capacitors", "97.5% maximum efficiency", "25+ year lifespan", "Maintenance-free operation"],
         details: "Our patented soft-switching technology facilities high switching frequency conversion to lower the passive electrical component size for a more compact power electronics design. We are the industry leader in eliminating short-life electrolytic capacitors by utilizing thin-film technologies along with sophisticated control algorithms.",
         icon: <Zap className="w-12 h-12" />

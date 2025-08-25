@@ -101,9 +101,9 @@ export default function ReportsPage() {
     return sortedGrouped
   }
 
-  // Check if any title in a year group needs 2 lines (rough estimate: >50 characters)
+  // Check if any title in a year group needs 2 lines (rough estimate: >30 characters)
   const needsTwoLines = (yearDocs: typeof filteredDocs) => {
-    return yearDocs.some(doc => doc.title.length > 50)
+    return yearDocs.some(doc => doc.title.length > 30)
   }
 
   const availableYears = [...new Set(documents.map(doc => doc.year))].sort((a, b) => b - a)

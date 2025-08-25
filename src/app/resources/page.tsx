@@ -7,121 +7,12 @@ import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
 import AggregatedFAQ from '@/components/AggregatedFAQ'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
+import VideoPopup from '@/components/VideoPopup'
+import { educationalVideos, installerVideos, homeownerVideos, allVideos } from '@/data/videos'
 
 import homeownersData from '@/app/homeowners/home_faq.json'
 import installersData from '@/app/installers/installer_faq.json'
 import investorsData from '@/app/investors/investor_faq.json'
-
-// Educational Videos
-const educationalVideos = [
-    { id: 1, title: 'PV Systems 101', thumbnail: '/pv101_thumbnail.jpg', url: 'gl5tY5Noacc', iFrame: true },
-    { id: 2, title: 'Global Warming 101', thumbnail: '/globalwarming101_thumbnail.jpg', url: 'oJAbATJCugs', iFrame: true },
-    { id: 3, title: 'Climate Change 101', thumbnail: '/climatechange101_thumbnail.jpg', url: 'jAa58N4Jlos', iFrame: true },
-]
-
-// Investor Videos
-const investorVideos = [
-    { id: 6, title: 'Sparq Systems Investor Presentation', thumbnail: 'https://img.youtube.com/vi/gaFi_dPnYNk/maxresdefault.jpg', url: 'gaFi_dPnYNk', iFrame: true },
-    { id: 7, title: 'CEO Interview - Market Strategy', thumbnail: 'https://img.youtube.com/vi/0sdcGgL9228/maxresdefault.jpg', url: '0sdcGgL9228', iFrame: true }
-]
-
-// Installer Videos
-const installerVideos = [
-    { id: 8, title: 'Quad2/3 Installation Guide', thumbnail: 'https://img.youtube.com/vi/r05zC7wY7NQ/maxresdefault.jpg', url: 'r05zC7wY7NQ', iFrame: true },
-    { id: 9, title: 'SparqLinq Installation Guide', thumbnail: 'https://img.youtube.com/vi/nhH8LrnONxs/maxresdefault.jpg', url: 'nhH8LrnONxs', iFrame: true },
-    { id: 10, title: 'SparqSync Demo', thumbnail: '/sparqsync_splash.jpg', url: '/external-sparq-app.mp4', iFrame: false }
-]
-
-// Homeowner Videos
-const homeownerVideos = [
-    { id: 5, title: "JioThings Sparq Microinverter Overview", thumbnail: "/jio_thumbnail.jpg", url: "a9tKIsI6t4I", iFrame: true },
-    { id: 12, title: 'Sparq Microinverter Overview', thumbnail: 'https://img.youtube.com/vi/5u3KVFYHfk0/maxresdefault.jpg', url: '5u3KVFYHfk0', iFrame: true }
-]
-
-// All videos combined for popup handling
-const allVideos = [...educationalVideos, ...investorVideos, ...installerVideos, ...homeownerVideos]
-
-
-interface VideoPopupProps {
-    url: string;
-    onClose: () => void;
-    iFrame: boolean
-}
-
-function VideoPopup({ url, onClose, iFrame }: VideoPopupProps) {
-    // Close on Escape key
-    useEffect(() => {
-        const handleEsc = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') onClose();
-        };
-        document.addEventListener('keydown', handleEsc);
-        return () => document.removeEventListener('keydown', handleEsc);
-    }, [onClose]);
-
-    return (
-        <div className="fixed inset-0 z-[60] overflow-y-auto">
-            {/* Backdrop */}
-            <div
-                className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-                onClick={onClose}
-            />
-
-            {/* Wrapper to position popup between header and bottom */}
-            <div
-                className="absolute w-full h-full flex items-center justify-center"
-                style={{
-                    top: '140px', // Clear space for header + subheader
-                    height: 'calc(100vh - 140px)', // Use remaining viewport height
-                }}
-                onClick={onClose}
-            >
-                <div className="relative w-full max-w-7xl mx-4" onClick={(e) => e.stopPropagation()}>
-                    {/* Close Button outside video div */}
-                    <button
-                        onClick={onClose}
-                        aria-label="Close"
-                        className="absolute -top-4 -right-4 z-20 bg-gray-800 rounded-full p-2 shadow-lg text-gray-300 hover:text-white hover:bg-gray-900 focus:outline-none cursor-pointer"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-
-                    {/* Modal Container */}
-                    <div className="bg-gray-900 rounded-xl shadow-xl overflow-hidden">
-                        {/* Video Embed */}
-                        <div className="relative pt-[56.25%]">
-                            {iFrame ? (
-                                <iframe
-                                    className="absolute top-0 left-0 w-full h-full"
-                                    src={`https://www.youtube.com/embed/${url}?autoplay=1&modestbranding=1&rel=0`}
-                                    allow="autoplay; encrypted-media"
-                                    allowFullScreen
-                                />
-                            ) : (
-                                <video
-                                    className="absolute top-0 left-0 w-full h-full bg-black"
-                                    controls
-                                    autoPlay
-                                >
-                                    <source src={url} />
-                                    Your browser does not support the video tag.
-                                </video>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
 
 
 
@@ -241,67 +132,6 @@ export default function LearningPage() {
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.7 + (index * 0.1) }}
-                                className="group"
-                            >
-                                <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
-                                    <button
-                                        onClick={() => handleShow(video.id)}
-                                        className="w-full text-left"
-                                    >
-                                        <div className="relative">
-                                            <Image
-                                                height={1920}
-                                                width={1080}
-                                                src={video.thumbnail}
-                                                alt={video.title}
-                                                className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                                            <div className="absolute inset-0 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                                                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border-2 border-white/50 group-hover:scale-110 transition-transform duration-300">
-                                                    <svg
-                                                        className="w-8 h-8 text-white"
-                                                        fill="currentColor"
-                                                        viewBox="0 0 20 20"
-                                                    >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                                            clipRule="evenodd"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <CardContent className="p-6">
-                                            <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon dark:group-hover:text-brand-logo transition-colors duration-300">
-                                                {video.title}
-                                            </h3>
-                                        </CardContent>
-                                    </button>
-                                </Card>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-
-                <hr className="border-brand-maroon/20 dark:border-brand-logo/20 mb-16" />
-
-                {/* Investor Videos */}
-                <div className="mb-16">
-                    <h3 className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8 text-center">
-                        For Investors
-                    </h3>
-                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto text-center mb-8">
-                        Learn about Sparq&apos;s market opportunities, financial performance, and growth strategy.
-                    </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-                        {investorVideos.map((video, index) => (
-                            <motion.div
-                                key={video.id}
-                                initial={{ opacity: 0, y: 50 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 + (index * 0.1) }}
                                 className="group"
                             >
                                 <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">

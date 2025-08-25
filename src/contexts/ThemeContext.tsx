@@ -12,7 +12,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Initialize with a default state to avoid hydration mismatch
-  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(true)
 
   useEffect(() => {
     // Check if dark class is already applied (from server-side)
@@ -21,7 +21,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Check cookie preference
     const cookieTheme = getThemeFromCookie()
     
-    let preferredDark = false
+    let preferredDark = true
     
     if (cookieTheme !== null) {
       // Use cookie preference
@@ -30,9 +30,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       // Use existing dark class
       preferredDark = true
     } else {
-      // Check system preference
-      preferredDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      // Save the system preference to cookie
+      // Default to dark mode (ignore system preference)
+      preferredDark = true
+      // Save the default preference to cookie
       setThemeCookie(preferredDark)
     }
     
