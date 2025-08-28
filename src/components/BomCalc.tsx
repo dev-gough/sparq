@@ -143,6 +143,7 @@ export default function BoMCalc() {
         "65015-18": "/type1cable.png",
         "65012-14/15": "/opencable.png",
         "65012-02/03": "/opencable.png",
+        "SOLAR-PANEL": "/bompanel.png",
     };
 
     async function handleDownload() {
@@ -204,8 +205,8 @@ export default function BoMCalc() {
         ]);
 
         // BOM
-        const sparq = bom.filter(r => !r.sku.startsWith("65020"));
-        const third = bom.filter(r => r.sku.startsWith("65020"));
+        const sparq = bom.filter(r => !r.sku.startsWith("65020") && r.sku !== "SOLAR-PANEL");
+        const third = bom.filter(r => r.sku.startsWith("65020") || r.sku === "SOLAR-PANEL");
         const bomHeader = ws.addRow(["", "Bill of Materials", "", ""]);
         bomHeader.font = headerFont;
         bomHeader.eachCell({ includeEmpty: true }, (cell, colNumber) => {
@@ -402,15 +403,18 @@ export default function BoMCalc() {
                                 <div>
                                     <h3 className="text-lg font-semibold mb-2 text-brand-darkmaroon dark:text-brand-yellow">SPARQ Products</h3>
                                     <ul className="space-y-2">
-                                        {bom.filter(r => !r.sku.startsWith("65020"))
+                                        {bom.filter(r => !r.sku.startsWith("65020") && r.sku !== "SOLAR-PANEL")
                                             .map(row => <BOMItem key={row.sku} row={row} imageMap={imageMap} />)}
                                     </ul>
                                 </div>
                                 <div>
                                     <h3 className="text-lg font-semibold text-brand-darkmaroon dark:text-brand-yellow">Third-Party Products</h3>
                                     <ul className="space-y-2">
-                                        {bom.filter(r => r.sku.startsWith("65020"))
-                                            .map(row => <BOMItem key={row.sku} row={row} imageMap={imageMap} />)}
+                                        {bom.filter(r => r.sku.startsWith("65020") || r.sku === "SOLAR-PANEL")
+                                            .map(row => row.sku === "SOLAR-PANEL" ?
+                                                <BOMItem key={row.sku} row={{ ...row, sku: `${Ppanel}W, ${Vpanel}V, ${Iscpanel}A` }} imageMap={{ ...imageMap, [`${Ppanel}W, ${Vpanel}V, ${Iscpanel}A`]: "/bompanel.png" }} /> :
+                                                <BOMItem key={row.sku} row={row} imageMap={imageMap} />
+                                            )}
                                     </ul>
                                 </div>
                             </div>
@@ -445,6 +449,7 @@ export default function BoMCalc() {
                             <SummaryRow label="Panel Isc" value={`${Iscpanel} A`} />
                             <SummaryRow label="Inverter Model" value={modelLabel} />
                             <SummaryRow label="Inverter Quantity" value={inverterCount.toString()} />
+                            <SummaryRow label={`Panel Quantity (${Ppanel}W)`} value={(4 * inverterCount).toString()} />
                         </SummarySection>
                     </aside>
                 )}

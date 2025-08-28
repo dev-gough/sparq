@@ -74,6 +74,7 @@ export function calculate({ Pgrid, Vgrid, Ppv, Ppanel, region }: Inputs): Row[] 
     { label: "T6 Female to Tee Male", qty: Math.max(totalInverters - 2, 0), sku: na ? "65013-16/17" : "65013-08/09" },
     { label: "T5 to T6 Cable 3m", qty: 1, sku: na ? "65015-10" : "65015-18" },
     { label: "T6 Tee Male to Open", qty: 1, sku: na ? "65012-14/15" : "65012-02/03" },
+    { label: "Solar Panels", qty: 4 * totalInverters, sku: "SOLAR-PANEL" },
   ];
 }
 
