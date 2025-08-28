@@ -282,7 +282,7 @@ export default function BoMCalc() {
                         <SelectField
                             label="Region"
                             value={form.region}
-                            options={["North America", "Europe", "India", "China", "Africa"]}
+                            options={["North America", "Europe", "India", "China", "Africa", "Middle-East"]}
                             onChange={r => setForm(f => ({ ...f, region: r }))}
                         />
                         <SelectField

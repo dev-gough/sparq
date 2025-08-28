@@ -25,7 +25,7 @@ export default function CalculatorPage() {
                 >
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
-                            BOM Calculator
+                            BoM Calculator
                         </span>
                     </h1>
                     <motion.p

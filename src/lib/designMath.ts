@@ -51,7 +51,8 @@ export interface Row {
 }
 
 export function calculate({ Pgrid, Vgrid, Ppv, Ppanel, region }: Inputs): Row[] {
-  const na = region;
+  // bool is true if region is NA
+  const na = region === "North America";
 
   // number of inverters
   const invsFromPV = Math.round((Ppv * 1000) / (4 * Ppanel));

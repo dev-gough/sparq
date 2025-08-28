@@ -4,7 +4,7 @@ import Subheader from "@/components/Subheader"
 
 const items = [
     { label: "Learning Hub", href: "/resources"},
-    { label: "BOM Calculator", href: "/resources/calculator"},
+    { label: "BoM Calculator", href: "/resources/calculator"},
 	{ label: "Legal", href: "/resources/legal"}
 ]
 
