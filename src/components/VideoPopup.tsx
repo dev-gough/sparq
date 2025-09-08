@@ -40,7 +40,7 @@ export default function VideoPopup({ url, onClose, iFrame }: VideoPopupProps) {
                     <button
                         onClick={onClose}
                         aria-label="Close"
-                        className="absolute -top-4 -right-4 z-20 bg-gray-800 rounded-full p-2 shadow-lg text-gray-300 hover:text-white hover:bg-gray-900 focus:outline-none cursor-pointer"
+                        className="absolute -top-4 -right-4 z-20 bg-red-600 rounded-full p-2 shadow-lg text-white hover:text-white hover:bg-red-700 focus:outline-none cursor-pointer transition-colors duration-200"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

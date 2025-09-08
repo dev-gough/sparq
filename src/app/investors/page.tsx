@@ -257,7 +257,7 @@ export default function InvestorsPage() {
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
                         {/* Queen's University */}
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -415,82 +415,6 @@ export default function InvestorsPage() {
                         </motion.div>
 
                         {/* Modern Niagara */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 1.1 }}
-                        >
-                            <a
-                                href="https://modernniagara.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block h-full"
-                            >
-                                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer dark:bg-gray-800">
-                                    <CardContent className="p-6 h-full flex flex-col">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform p-2 shadow-sm">
-                                                <Image
-                                                    src="/Logos/modernniagara-c.jpg"
-                                                    alt="Modern Niagara"
-                                                    width={60}
-                                                    height={60}
-                                                    className="rounded-lg object-contain w-full h-full"
-                                                />
-                                            </div>
-                                            <div className="flex-1">
-                                                <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon transition-colors">
-                                                    Modern Niagara
-                                                </h3>
-                                                <p className="text-sm text-brand-maroon font-medium">Installation Partner</p>
-                                            </div>
-                                        </div>
-                                        <p className="text-brand-graytext dark:text-dark-text-secondary flex-1">
-                                            Real-world validation of our microinverter technology in commercial installations.
-                                        </p>
-                                    </CardContent>
-                                </Card>
-                            </a>
-                        </motion.div>
-
-                        {/* St. Lawrence College */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 1.2 }}
-                        >
-                            <a
-                                href="https://www.stlawrencecollege.ca/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block h-full"
-                            >
-                                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer dark:bg-gray-800">
-                                    <CardContent className="p-6 h-full flex flex-col">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform p-2 shadow-sm">
-                                                <Image
-                                                    src="/Logos/slc-c.png"
-                                                    alt="St. Lawrence College"
-                                                    width={60}
-                                                    height={60}
-                                                    className="rounded-lg object-contain w-full h-full"
-                                                />
-                                            </div>
-                                            <div className="flex-1">
-                                                <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon transition-colors">
-                                                    St. Lawrence College
-                                                </h3>
-                                                <p className="text-sm text-brand-maroon font-medium">Testing Partner</p>
-                                            </div>
-                                        </div>
-                                        <p className="text-brand-graytext dark:text-dark-text-secondary flex-1">
-                                            Testing and validation of our solar microinverter systems.
-                                        </p>
-                                    </CardContent>
-                                </Card>
-                            </a>
-                        </motion.div>
                     </div>
                 </div>
             </section>

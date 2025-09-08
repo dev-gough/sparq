@@ -80,228 +80,23 @@ interface AccordionSection {
 	accentColor: string
 }
 
-const accordionSections: AccordionSection[] = [
-	/* {
-		title: "Features",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="space-y-6">
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Superior Value</h3>
-					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Low design/installation costs</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Lowest cost per Watt in the industry</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Reduced installation costs</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Robust IOT gateway for monitoring and control</span>
-						</li>
-					</ul>
-				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">High Energy Harvest</h3>
-					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Greater energy harvest compared to string inverters</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Advanced power electronics for low-light environments</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Independent maximum energy harvest for each module</span>
-						</li>
-					</ul>
-				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Best in-class reliability</h3>
-					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>No electrolytic capacitors or other components with short lifetimes</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Smart-grid ready, works on any grid, anywhere</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>No single point of failure</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Rapid-Shutdown compliance</span>
-						</li>
-					</ul>
-				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-3">Easy to Install</h3>
-					<ul className="space-y-2 text-brand-graytext dark:text-dark-text-secondary">
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Quad system design reduces the required number of conventional microinverters by a factor of 4</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>&quot;All AC&quot; solution promotes safe installation and operation with low voltage</span>
-						</li>
-						<li className="flex items-start gap-3">
-							<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo mt-2 flex-shrink-0" />
-							<span>Industry-standard Amphenol AC connectors, using Zigbee&apos;s open wireless communication protocol for individual node monitoring</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		)
-	}, */
-	{
-		title: "Documentation",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<div className="space-y-6">
-					<div>
-						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheets</h3>
-						<div className="grid gap-3">
-							<div className="flex items-center gap-3">
-								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-								<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Q2000/Datasheet_Q20004102_DM.pdf" target="_blank">
-									Download Q2000-4102-DM Datasheet (PDF)
-								</Link>
-							</div>
-							<div className="flex items-center gap-3">
-								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-								<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Q2000/Datasheet_Q20004102_GT_V2.pdf" target="_blank">
-									Download Q2000-4102-GT Datasheet (PDF)
-								</Link>
-							</div>
-						</div>
-					</div>
-					<div>
-						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manuals</h3>
-						<div className="grid gap-3">
-							{[
-								{ name: "North America", href: "/Q2000/Q2000_Americas.pdf" },
-								{ name: "China", href: "/Q2000/Q2000_Chinese.pdf" },
-								{ name: "Europe", href: "/Q2000/Q2000_Europe.pdf" },
-								{ name: "India", href: "/Q2000/Q2000_India.pdf" }
-							].map((manual) => (
-								<div key={manual.name} className="flex items-center gap-3">
-									<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-									<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href={manual.href} target="_blank">
-										{manual.name}
-									</Link>
-								</div>
-							))}
-						</div>
-					</div>
-				</div>
-			</div>
-		)
-	},
-	{
-		title: "Certifications",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="space-y-6">
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Reports</h3>
-					<div className="grid gap-3">
-						{[
-							{ name: "EN_61683", href: "/Q2000/reports/EN_61683.pdf" },
-							{ name: "IEC_60068-2-xx", href: "/Q2000/reports/IEC_60068-2-xx.pdf" },
-							{ name: "IEC_61727", href: "/Q2000/reports/IEC_61727.pdf" },
-							{ name: "IEC_62109_1_2", href: "/Q2000/reports/IEC_62109_1_2.pdf" },
-							{ name: "UL1741-Report", href: "/Q2000/reports/UL1741-Report.pdf" }
-						].map((report) => (
-							<div key={report.name} className="flex items-center gap-3">
-								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-								<Link target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href={report.href}>
-									{report.name}
-								</Link>
-							</div>
-						))}
-					</div>
-				</div>
-				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-					<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Certifications</h3>
-					<div className="grid gap-3">
-						{[
-							{ name: "CU72239343.01-.02", href: "/Q2000/certs/CU72239343.01-.02.pdf" },
-							{ name: "CU72239343.03", href: "/Q2000/certs/CU72239343.03.pdf" },
-							{ name: "CU72239343.04", href: "/Q2000/certs/CU72239343.04.pdf" },
-							{ name: "SPARQ_Cert_CS000052", href: "/Q2000/certs/SPARQ_Cert_CS000052.pdf" }
-						].map((cert) => (
-							<div key={cert.name} className="flex items-center gap-3">
-								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-								<Link target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href={cert.href}>
-									{cert.name}
-								</Link>
-							</div>
-						))}
-					</div>
-				</div>
-			</div>
-		)
-	},
-	{
-		title: "Installation Video",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<div className="w-full aspect-video min-h-[400px]">
-					<YouTube
-						videoId="r05zC7wY7NQ"
-						opts={{
-							width: '100%',
-							height: '400',
-							playerVars: {
-								autoplay: 0,
-								controls: 1,
-								rel: 0,
-								showinfo: 0,
-								modestbranding: 1,
-							},
-						}}
-						className="w-full h-full"
-					/>
-				</div>
-			</div>
-		)
-	},
-	/* {
-		title: "Comparison with Leading Microinverter",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<div className="flex items-center gap-3">
-					<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-					<Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors">
-						Comparison with Enphase IQ8H (PDF)
-					</Link>
-				</div>
-			</div>
-		)
-	} */
-]
-
 export default function Quad2Page() {
 	const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
 	const trackEvent = useTrackEvent()
 
+	const youtubeRefs = useRef<(YouTube | null)[]>([])
+
 	const toggleExpanded = (i: number) => {
+		const wasExpanded = dropdownExpanded[i]
 		setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
+
+		// If closing dropdown and it has a YouTube video, reset it to beginning
+		if (wasExpanded && youtubeRefs.current[i]?.getInternalPlayer) {
+			const player = youtubeRefs.current[i]!.getInternalPlayer()
+			player.seekTo(0)
+			player.pauseVideo()
+		}
+
 		if (!dropdownExpanded[i]) {
 			trackEvent("dropdown_opened", {
 				"parent": "quad2",
@@ -309,6 +104,139 @@ export default function Quad2Page() {
 			})
 		}
 	}
+
+	const accordionSections: AccordionSection[] = [
+		{
+			title: "Documentation",
+			accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
+			content: (
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<div className="space-y-6">
+						<div>
+							<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheets</h3>
+							<div className="grid gap-3">
+								<div className="flex items-center gap-3">
+									<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+									<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Q2000/Datasheet_Q20004102_DM.pdf" target="_blank">
+										Download Q2000-4102-DM Datasheet (PDF)
+									</Link>
+								</div>
+								<div className="flex items-center gap-3">
+									<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+									<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Q2000/Datasheet_Q20004102_GT_V2.pdf" target="_blank">
+										Download Q2000-4102-GT Datasheet (PDF)
+									</Link>
+								</div>
+							</div>
+						</div>
+						<div>
+							<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manuals</h3>
+							<div className="grid gap-3">
+								{[
+									{ name: "North America", href: "/Q2000/Q2000_Americas.pdf" },
+									{ name: "China", href: "/Q2000/Q2000_Chinese.pdf" },
+									{ name: "Europe", href: "/Q2000/Q2000_Europe.pdf" },
+									{ name: "India", href: "/Q2000/Q2000_India.pdf" }
+								].map((manual) => (
+									<div key={manual.name} className="flex items-center gap-3">
+										<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+										<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href={manual.href} target="_blank">
+											{manual.name}
+										</Link>
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
+				</div>
+			)
+		},
+		{
+			title: "Certifications",
+			accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
+			content: (
+				<div className="space-y-6">
+					<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Reports</h3>
+						<div className="grid gap-3">
+							{[
+								{ name: "EN_61683", href: "/Q2000/reports/EN_61683.pdf" },
+								{ name: "IEC_60068-2-xx", href: "/Q2000/reports/IEC_60068-2-xx.pdf" },
+								{ name: "IEC_61727", href: "/Q2000/reports/IEC_61727.pdf" },
+								{ name: "IEC_62109_1_2", href: "/Q2000/reports/IEC_62109_1_2.pdf" },
+								{ name: "UL1741-Report", href: "/Q2000/reports/UL1741-Report.pdf" }
+							].map((report) => (
+								<div key={report.name} className="flex items-center gap-3">
+									<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+									<Link target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href={report.href}>
+										{report.name}
+									</Link>
+								</div>
+							))}
+						</div>
+					</div>
+					<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Certifications</h3>
+						<div className="grid gap-3">
+							{[
+								{ name: "CU72239343.01-.02", href: "/Q2000/certs/CU72239343.01-.02.pdf" },
+								{ name: "CU72239343.03", href: "/Q2000/certs/CU72239343.03.pdf" },
+								{ name: "CU72239343.04", href: "/Q2000/certs/CU72239343.04.pdf" },
+								{ name: "SPARQ_Cert_CS000052", href: "/Q2000/certs/SPARQ_Cert_CS000052.pdf" }
+							].map((cert) => (
+								<div key={cert.name} className="flex items-center gap-3">
+									<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+									<Link target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href={cert.href}>
+										{cert.name}
+									</Link>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			)
+		},
+		{
+			title: "Installation Video",
+			accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
+			content: (
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<div className="w-full aspect-video min-h-[400px]">
+						<YouTube
+							videoId="r05zC7wY7NQ"
+							opts={{
+								width: '100%',
+								height: '400',
+								playerVars: {
+									autoplay: 0,
+									controls: 1,
+									rel: 0,
+									showinfo: 0,
+									modestbranding: 1,
+								},
+							}}
+							className="w-full h-full"
+							ref={(el) => { youtubeRefs.current[2] = el }}
+						/>
+					</div>
+				</div>
+			)
+		},
+		/* {
+			title: "Comparison with Leading Microinverter",
+			accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
+			content: (
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<div className="flex items-center gap-3">
+						<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+						<Link href="/Q2000/Comparison-of-Q2000-4102-with-IQ8H.pdf" target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors">
+							Comparison with Enphase IQ8H (PDF)
+						</Link>
+					</div>
+				</div>
+			)
+		} */
+	]
 
 	const getIconForCategory = (title: string) => {
 		if (title.toLowerCase().includes('features')) {

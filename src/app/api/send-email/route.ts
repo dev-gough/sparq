@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses'
+import { headers } from 'next/headers'
 
 // Initialize SES client
 const sesClient = new SESClient({
@@ -12,6 +13,39 @@ const sesClient = new SESClient({
 
 export async function POST(request: NextRequest) {
   try {
+    // Security checks to prevent external abuse
+    const headersList = await headers()
+    const referer = headersList.get('referer')
+    const origin = headersList.get('origin')
+    const userAgent = headersList.get('user-agent')
+
+    // Check if request is coming from your domain
+    const allowedOrigins = [
+      'https://sparqsys.com',
+      'https://www.sparqsys.com',
+      'http://localhost:3000', // for development
+      'http://localhost:8080'  // production server port
+    ]
+
+    const isValidOrigin = origin && allowedOrigins.includes(origin)
+    const isValidReferer = referer && allowedOrigins.some(domain => referer.startsWith(domain))
+
+    // Reject requests that don't come from your site
+    if (!isValidOrigin && !isValidReferer) {
+      return NextResponse.json(
+        { error: 'Unauthorized access' },
+        { status: 403 }
+      )
+    }
+
+    // Additional check for suspicious user agents (basic bot detection)
+    if (!userAgent || userAgent.includes('curl') || userAgent.includes('wget') || userAgent.includes('python-requests')) {
+      return NextResponse.json(
+        { error: 'Unauthorized access' },
+        { status: 403 }
+      )
+    }
+
     const { category, supportEmail, ccEmail, subject, message, userEmail } = await request.json()
 
     // Validate required fields
@@ -91,7 +125,7 @@ This email was sent from the Sparq Systems support form at sparqsys.com/support
 
   } catch (error) {
     console.error('SES Email Error:', error)
-    
+
     // Return different error messages based on the error type
     if (error instanceof Error) {
       if (error.message.includes('MessageRejected')) {

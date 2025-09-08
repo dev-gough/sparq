@@ -20,11 +20,12 @@ interface TechFeature {
 
 const coreInnovations: TechFeature[] = [
     {
-        title: "High Frequency Soft-Switching Architecture",
-        description: "The combination of our proprietary HF soft-switching power electronics and the elimination of electrolytic capacitors - the primary failure point in conventional microinverters - results in a 97.5% maximum efficiency and 25+ year operational life.",
-        benefits: ["No electrolytic capacitors", "97.5% maximum efficiency", "25+ year lifespan", "Maintenance-free operation"],
-        details: "Our patented soft-switching technology facilities high switching frequency conversion to lower the passive electrical component size for a more compact power electronics design. We are the industry leader in eliminating short-life electrolytic capacitors by utilizing thin-film technologies along with sophisticated control algorithms.",
-        icon: <Zap className="w-12 h-12" />
+        title: "Our Unique Approach",
+        description: "While all competitive inverter technology companies utilize conventional hardware-based topologies, SPARQ takes a fundamentally different approach. Our smarter inverter technology is built with long-lasting hardware components driven by software-based algorithms derived by applying advanced mathematical techniques.",
+        benefits: ["Differential Geometry Control (DGC)", "97.5% maximum efficiency", "No electrolytic capacitors", "25+ year design lifespan"],
+        details: "SPARQ is breaking the hardware cost constraints with advanced mathematics. We reduce size and cost by moving the complexity from analog power circuitry into semiconductor software using Differential Geometry Control (DGC). Our patented approach combines proprietary high-frequency soft-switching power electronics with the elimination of electrolytic capacitors, achieving unprecedented reliability and performance.",
+        icon: <Zap className="w-12 h-12" />,
+        img: "/500kw.png"
     },
     {
         title: "Quad Architecture",
@@ -35,7 +36,7 @@ const coreInnovations: TechFeature[] = [
         img: "/4in1-2.jpg"
     },
     {
-        title: "Individual MPPT",
+        title: "Fastest Dynamic MPPT",
         description: "Four completely independent Maximum Power Point Tracking controllers achieve 99.85% static and >99.8% dynamic MPPT efficiency, with each panel optimized individually for maximum energy harvest even under partial shading conditions and panel soiling.",
         benefits: ["99.85% static MPPT efficiency", "Independent optimization", "Fast dynamic response", "Shade tolerance"],
         details: "Advanced real-time algorithms continuously track and optimize each panel's power output with dedicated MPPT controllers per channel. Wide voltage tracking range accommodates various panel types while maintaining peak performance. Eliminates power loss from series string effects and provides individual panel monitoring and diagnostics capabilities.",
@@ -47,7 +48,8 @@ const coreInnovations: TechFeature[] = [
         description: "True three-phase microinverter (Quad3) delivering balanced three-phase power in an efficient manner for commercial/industrial buildings, as well as next generation large scale PV farms. Supports 380V/400V/480V grid systems.",
         benefits: ["Native three-phase output", "380V/400V/480V compatibility", "4 PV inputs with independent MPPT", "Motor drive capability"],
         details: "Sparq's three-phase microinverter supports tri-mode operation (grid-tied, off-grid, MPPT motor drive). Features anti-islanding protection, programmable voltage/frequency ride-through as well as rule 21 and IEC 50549 functions for smart grid compliance.  Quad 3 can operate as a variable frequency drive with 0-130Hz output frequency with 0.1% tolerance for MPPT motor drive applications, that can run induction, PMSM, and BLDC motors. Moreover, multiple Quad 3 units can be placed in parallel to run higher power motors. It offers built-in comprehensive protections including over-current, over-voltage, dry run, and speed excessive protection.",
-        icon: <Cpu className="w-12 h-12" />
+        icon: <Cpu className="w-12 h-12" />,
+        img: "/carport-2.png"
     }
 ]
 
@@ -80,7 +82,7 @@ const technicalSpecs = [
     { label: "Power Factor", value: ">0.99" },
     { label: "Output THD", value: "<2%" },
     { label: "Operating Temperature", value: "-40°C to +65°C" },
-    { label: "Expected Lifespan", value: "25+ years" },
+    { label: "Design Lifespan", value: "25+ years" },
     { label: "Electrolytic Capacitors", value: "Zero" }
 ]
 

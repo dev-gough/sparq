@@ -23,7 +23,7 @@ interface ProductProps {
     animatedList?: ListEntry[]  // header: items[]
     bodyContent?: React.ReactNode   // <p> content, if no <motion.li> list
     expandedContent?: React.ReactNode
-    accordianContent: React.ReactNode
+    accordianContent?: React.ReactNode
     imageContent: React.ReactNode   // this needs to be a node to account for double image for SparqSync
 }
 
@@ -275,90 +275,93 @@ export default function ProductPage({
                             </motion.div>
                         )}
 
-                {bodyContent && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className='text-lg md:text-xl text-brand-graytext dark:text-dark-text-secondary leading-relaxed'
-                    >
-                        {bodyContent}
-                    </motion.div>
-                )}
-
-                {expandedContent && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                    >
-                        {isExpanded && (
+                        {bodyContent && (
                             <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.4 }}
-                                className="text-base md:text-lg text-brand-graytext dark:text-dark-text-secondary leading-relaxed"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                                className='text-lg md:text-xl text-brand-graytext dark:text-dark-text-secondary leading-relaxed'
                             >
-                                {expandedContent}
+                                {bodyContent}
                             </motion.div>
                         )}
-                        <motion.button
-                            onClick={handleClick}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            className='mt-6 px-6 py-3 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer'
-                        >
-                            {isExpanded ? "Read less" : "Read more"}
-                        </motion.button>
-                    </motion.div>
-                )}
 
-                {models && models.length > 1 && model && setSelectedModel && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                        className='mt-8'
-                    >
-                        <p className='text-base md:text-lg font-semibold text-brand-darkmaroon mb-4'>Model: {model}</p>
-                        <div className='flex flex-wrap gap-3'>
-                            {models.map((m) => (
+                        {expandedContent && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.8, delay: 0.4 }}
+                            >
+                                {isExpanded && (
+                                    <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.4 }}
+                                        className="text-base md:text-lg text-brand-graytext dark:text-dark-text-secondary leading-relaxed"
+                                    >
+                                        {expandedContent}
+                                    </motion.div>
+                                )}
                                 <motion.button
-                                    key={m}
+                                    onClick={handleClick}
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className={`px-4 py-2 rounded-lg text-sm md:text-base font-medium cursor-pointer transition-all duration-500 ${m === selectedModel
-                                        ? "bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white shadow-lg"
-                                        : "bg-white dark:bg-gray-800 text-brand-graytext dark:text-dark-text-secondary border-2 border-brand-maroon/20 dark:border-gray-600/50 hover:border-brand-maroon/40 dark:hover:border-gray-500/70 hover:shadow-md"
-                                        }`}
-                                    onClick={() => setSelectedModel(m)}
+                                    className='mt-6 px-6 py-3 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer'
                                 >
-                                    {m}
+                                    {isExpanded ? "Read less" : "Read more"}
                                 </motion.button>
-                            ))}
-                        </div>
+                            </motion.div>
+                        )}
+
+                        {models && models.length > 1 && model && setSelectedModel && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.8, delay: 0.6 }}
+                                className='mt-8'
+                            >
+                                <p className='text-base md:text-lg font-semibold text-brand-darkmaroon mb-4'>Model: {model}</p>
+                                <div className='flex flex-wrap gap-3'>
+                                    {models.map((m) => (
+                                        <motion.button
+                                            key={m}
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            className={`px-4 py-2 rounded-lg text-sm md:text-base font-medium cursor-pointer transition-all duration-500 ${m === selectedModel
+                                                ? "bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white shadow-lg"
+                                                : "bg-white dark:bg-gray-800 text-brand-graytext dark:text-dark-text-secondary border-2 border-brand-maroon/20 dark:border-gray-600/50 hover:border-brand-maroon/40 dark:hover:border-gray-500/70 hover:shadow-md"
+                                                }`}
+                                            onClick={() => setSelectedModel(m)}
+                                        >
+                                            {m}
+                                        </motion.button>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {accordianContent && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.8, delay: 0.8 }}
+                            >
+                                {accordianContent}
+                            </motion.div>
+                        )}
+
+                    </div>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className='flex-1'
+                    >
+                        {imageContent}
                     </motion.div>
-                )}
-
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                >
-                    {accordianContent}
-                </motion.div>
-            </div>
-
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className='flex-1'
-            >
-                {imageContent}
-            </motion.div>
-        </div>
+                </div>
             </div >
         </div >
     )

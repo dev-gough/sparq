@@ -1,12 +1,12 @@
 'use client'
 import ProductPage from "@/components/ProductPage"
 import Image from "next/image"
-import VideoPlayer from "@/components/VideoPlayer"
+//import VideoPlayer from "@/components/VideoPlayer"
 import { ListEntry } from "@/components/ProductPage"
-import { useState, useRef } from 'react'
-import { motion, useInView } from "motion/react"
-import { Card, CardContent } from "@/components/ui/card"
-import { useTrackEvent } from "@/hooks/useTrackEvent"
+//import { useState } from 'react'
+//import { motion, useInView } from "motion/react"
+//import { Card, CardContent } from "@/components/ui/card"
+//import { useTrackEvent } from "@/hooks/useTrackEvent"
 
 function expanded() {
 	return (
@@ -84,29 +84,31 @@ const listContent: ListEntry[] = [
 	}
 ]
 
-interface AccordionSection {
-	title: string
-	content: React.ReactNode
-	accentColor: string
-}
-
-const accordionSections: AccordionSection[] = [
-	{
-		title: "Watch the Demo",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<div className="w-full aspect-video">
-					<VideoPlayer src="/external-sparq-app.mp4" />
-				</div>
-			</div>
-		)
-	}
-]
+// interface AccordionSection {
+// 	title: string
+// 	content: React.ReactNode
+// 	accentColor: string
+// }
 
 export default function SparqSyncPage() {
+	/*
 	const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
 	const trackEvent = useTrackEvent()
+
+	const accordionSections: AccordionSection[] = [
+		{
+			title: "Watch the Demo",
+			accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
+			content: (
+				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+					<div className="w-full aspect-video">
+						<VideoPlayer src="/external-sparq-app.mp4" shouldPause={!dropdownExpanded[0]} />
+					</div>
+				</div>
+			)
+		}
+	]
+
 
 	const toggleExpanded = (i: number) => {
 		setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
@@ -199,7 +201,7 @@ export default function SparqSyncPage() {
 				))}
 			</motion.div>
 		)
-	}
+	} */
 
 	return (
 		<div>
@@ -211,7 +213,7 @@ export default function SparqSyncPage() {
 				animatedList={listContent}
 				bodyContent={body()}
 				expandedContent={expanded()}
-				accordianContent={Accordion()}
+				// accordianContent={Accordion()}
 				imageContent={image()}
 			>
 			</ProductPage>

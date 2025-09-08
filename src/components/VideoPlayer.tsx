@@ -8,10 +8,19 @@ interface VideoPlayerProps {
 	poster?: string
 	/** extra Tailwind classes if you need them */
 	className?: string
+	/** pause video when this becomes true */
+	shouldPause?: boolean
 }
 
-export default function VideoPlayer({ src, poster, className }: VideoPlayerProps) {
+export default function VideoPlayer({ src, poster, className, shouldPause }: VideoPlayerProps) {
 	const videoRef = useRef<HTMLVideoElement>(null);
+
+	// Pause video when shouldPause prop changes to true
+	useEffect(() => {
+		if (shouldPause && videoRef.current) {
+			videoRef.current.pause();
+		}
+	}, [shouldPause]);
 
 	// Pause and free resources when the component disappears (accordion closed)
 	useEffect(() => {

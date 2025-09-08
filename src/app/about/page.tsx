@@ -42,11 +42,11 @@ export default function AboutPage() {
                 >
                     <div className="space-y-8 text-brand-graytext dark:text-dark-text-secondary leading-relaxed text-lg sm:text-xl lg:text-2xl">
                         <p>
-                            Founded in 2009 by Dr. Praveen Jain, Sparq Systems emerged from a critical observation: traditional solar technology was fundamentally flawed. With issues ranging from unsafe components and fire risks to inefficient centralized power generation, the industry needed a complete rethink.
+                            Founded in 2009, Sparq Systems emerged from a critical observation: traditional solar technology was fundamentally flawed. With issues ranging from unsafe components and fire risks to inefficient centralized power generation, the industry needed a complete rethink.
                         </p>
 
                         <p>
-                            Dr. Jain&apos;s vision was clear - create a solar solution that would be safe, reliable, and truly cost-effective. This led to years of passionate research and development, culminating in our revolutionary high frequency soft-switching microinverter technology. Our breakthrough eliminates the electrolytic capacitors and short-life components that plague traditional systems, while delivering industry-leading performance and efficiency.
+                            The vision was clear - create a solar solution that would be safe, reliable, and truly cost-effective. This led to years of passionate research and development, culminating in our revolutionary high frequency soft-switching microinverter technology. Our breakthrough eliminates the electrolytic capacitors and short-life components that plague traditional systems, while delivering industry-leading performance and efficiency.
                         </p>
 
                         <p>
