@@ -23,8 +23,7 @@ export async function POST(request: NextRequest) {
     const allowedOrigins = [
       'https://sparqsys.com',
       'https://www.sparqsys.com',
-      'http://localhost:3000', // for development
-      'http://localhost:8080'  // production server port
+      ...(process.env.NODE_ENV === 'development' ? ['http://localhost:3000', 'http://localhost:8080'] : [])
     ]
 
     const isValidOrigin = origin && allowedOrigins.includes(origin)
