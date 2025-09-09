@@ -6,12 +6,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
 
 const CATEGORY_EMAIL_MAP = {
-	technical: "technical-q@sparqsys.com",
-	installation: "install@sparqsys.com",
-	warranty: "warranty@sparqsys.com",
+	ir: "ir@sparqsys.com",
 	"tech support": "support@sparqsys.com",
-	sales: "sales@sparqsys.com",
-	ux: "ux@sparqsys.com",
 } as const
 
 type Category = keyof typeof CATEGORY_EMAIL_MAP
@@ -170,12 +166,8 @@ export default function SupportTicketPage() {
 												className="w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-900/90 p-3 text-brand-darkmaroon dark:text-dark-text-primary shadow-sm focus:border-brand-maroon dark:focus:border-brand-yellow focus:ring-2 focus:ring-brand-maroon/20 dark:focus:ring-brand-yellow/20 transition-all duration-200"
 											>
 												<option value="">General Support</option>
-												<option value="technical">Technical Question</option>
-												<option value="installation">Installation</option>
-												<option value="warranty">Warranty</option>
+												<option value="ir">Investor Relations</option>
 												<option value="tech support">Tech Support</option>
-												<option value="sales">Sales</option>
-												<option value="ux">UX</option>
 											</select>
 										</div>
 

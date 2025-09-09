@@ -22,7 +22,7 @@ const coreInnovations: TechFeature[] = [
     {
         title: "Our Unique Approach",
         description: "While all competitive inverter technology companies utilize conventional hardware-based topologies, SPARQ takes a fundamentally different approach. Our smarter inverter technology is built with long-lasting hardware components driven by software-based algorithms derived by applying advanced mathematical techniques.",
-        benefits: ["Differential Geometry Control (DGC)", "97.5% maximum efficiency", "No electrolytic capacitors", "25+ year design lifespan"],
+        benefits: ["No electrolytic capacitors", "97.5% maximum efficiency", "25+ year design lifespan", "Ultra-low Total Harmonic Distortion (THD)"],
         details: "SPARQ is breaking the hardware cost constraints with advanced mathematics. We reduce size and cost by moving the complexity from analog power circuitry into semiconductor software using Differential Geometry Control (DGC). Our patented approach combines proprietary high-frequency soft-switching power electronics with the elimination of electrolytic capacitors, achieving unprecedented reliability and performance.",
         icon: <Zap className="w-12 h-12" />,
         img: "/500kw.png"
@@ -80,7 +80,7 @@ const technicalSpecs = [
     { label: "MPPT Efficiency (Static/Dynamic)", value: "99.85% / 99.8%" },
     { label: "Total Nominal Capacity per Unit", value: "2,000W" },
     { label: "Power Factor", value: ">0.99" },
-    { label: "Output THD", value: "<2%" },
+    { label: "Output THD", value: "<1%" },
     { label: "Operating Temperature", value: "-40°C to +65°C" },
     { label: "Design Lifespan", value: "25+ years" },
     { label: "Electrolytic Capacitors", value: "Zero" }
