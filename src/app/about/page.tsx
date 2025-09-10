@@ -46,7 +46,7 @@ export default function AboutPage() {
                         </p>
 
                         <p>
-                            The vision was clear - create a technological solution that would allow the extraction of all the available energy from every PV solar panel, convert it into high-quality AC electricity at the highest possible efficiency, and meet or exceed the life of a solar panel. This led to years of passionate research in coming up with *the most flexible inverter architecture that is driven by mathematical algorithms.
+                            The vision was clear - create a technological solution that would allow the extraction of all the available energy from every PV solar panel, convert it into high-quality AC electricity at the highest possible efficiency, and meet or exceed the life of a solar panel. This led to years of passionate research in coming up with the most flexible inverter architecture that is driven by mathematical algorithms.
                         </p>
 
                         <p>
