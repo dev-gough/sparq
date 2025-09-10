@@ -42,11 +42,15 @@ export default function AboutPage() {
                 >
                     <div className="space-y-8 text-brand-graytext dark:text-dark-text-secondary leading-relaxed text-lg sm:text-xl lg:text-2xl">
                         <p>
-                            Founded in 2009, Sparq Systems emerged from a critical observation: traditional solar technology was fundamentally flawed. With issues ranging from unsafe components and fire risks to inefficient centralized power generation, the industry needed a complete rethink.
+                            Founded in 2009, Sparq Systems emerged from a critical observation: traditional solar inverter technology was fundamentally flawed. With issues ranging from non-optimal energy production to low reliability, the industry needed a complete rethink.
                         </p>
 
                         <p>
-                            The vision was clear - create a solar solution that would be safe, reliable, and truly cost-effective. This led to years of passionate research and development, culminating in our revolutionary high frequency soft-switching microinverter technology. Our breakthrough eliminates the electrolytic capacitors and short-life components that plague traditional systems, while delivering industry-leading performance and efficiency.
+                            The vision was clear - create a technological solution that would allow the extraction of all the available energy from every PV solar panel, convert it into high-quality AC electricity at the highest possible efficiency, and meet or exceed the life of a solar panel. This led to years of passionate research in coming up with *the most flexible inverter architecture that is driven by mathematical algorithms.
+                        </p>
+
+                        <p>
+                            Breaking hardware constraints through implementation of differential geometry digital control has resulted in a compact, light-weight, low-cost, highly-efficient, and highly-reliable inverter design. Our patented &apos;Quad&apos; inverter offers higher performance at significantly lower cost than either the microinverter or the optimizer-string inverter based Module Level Power Electronics (MLPE) solutions currently available in the market. The Quad brings down the cost of a MLPE solution at par with the cost of a conventional string inverter solution, which is an industry first.
                         </p>
 
                         <p>

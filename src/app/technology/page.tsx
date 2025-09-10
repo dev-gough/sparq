@@ -23,7 +23,7 @@ const coreInnovations: TechFeature[] = [
         title: "Our Unique Approach",
         description: "While all competitive inverter technology companies utilize conventional hardware-based topologies, SPARQ takes a fundamentally different approach. Our smarter inverter technology is built with long-lasting hardware components driven by software-based algorithms derived by applying advanced mathematical techniques.",
         benefits: ["No electrolytic capacitors", "97.5% maximum efficiency", "25+ year design lifespan", "Ultra-low Total Harmonic Distortion (THD)"],
-        details: "SPARQ is breaking the hardware cost constraints with advanced mathematics. We reduce size and cost by moving the complexity from analog power circuitry into semiconductor software using Differential Geometry Control (DGC). Our patented approach combines proprietary high-frequency soft-switching power electronics with the elimination of electrolytic capacitors, achieving unprecedented reliability and performance.",
+        details: "SPARQ is breaking the hardware cost constraints with advanced mathematics. We reduce size and cost by moving the complexity from analog power circuitry into mathematical algorithms, which are digitally implemented. Our patented approach combines proprietary high-frequency soft-switching power electronics with digital technology, achieving unprecedented reliability and performance.",
         icon: <Zap className="w-12 h-12" />,
         img: "/500kw.png"
     },
