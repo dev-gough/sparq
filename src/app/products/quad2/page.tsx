@@ -123,7 +123,7 @@ export default function Quad2Page() {
 								</div>
 								<div className="flex items-center gap-3">
 									<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-									<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Q2000/Datasheet_Q20004102_GT_V2.pdf" target="_blank">
+									<Link className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Q2000/Datasheet_Q20004102_GT.pdf" target="_blank">
 										Download Q2000-4102-GT Datasheet (PDF)
 									</Link>
 								</div>
