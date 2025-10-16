@@ -18,7 +18,21 @@ const nextConfig: NextConfig = {
         pathname: '/vi/**',
       }
     ]
-  }
+  },
+  async redirects() {
+    return [
+      {
+        source: '/news-and-events',
+        destination: '/investors/reports',
+        permanent: true,
+      },
+      {
+        source: '/our-products',
+        destination: '/products',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

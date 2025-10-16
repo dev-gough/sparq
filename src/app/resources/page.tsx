@@ -10,8 +10,8 @@ import SolarBackgroundElements from '@/components/SolarBackgroundElements'
 import VideoPopup from '@/components/VideoPopup'
 import { educationalVideos, installerVideos, homeownerVideos, allVideos } from '@/data/videos'
 
-import homeownersData from '@/app/homeowners/home_faq.json'
-import installersData from '@/app/installers/installer_faq.json'
+import homeownersData from '@/data/home_faq.json'
+import installersData from '@/data/installer_faq.json'
 import investorsData from '@/app/investors/investor_faq.json'
 
 
