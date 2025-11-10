@@ -141,7 +141,7 @@
       "publishDate": "2024-06-27",
       "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=993bdd959afde8b35efbeac175cd4c73158dd234a50c2a565aed4e616c5bd77c",
       "description": "SPARQ Receives 12 MW Worth of Purchase Orders",
-      "key": true
+      "key": false
     },
     {
       "id": "aHR0cHM6Ly93d3cumeiwxzc1",
@@ -658,6 +658,27 @@
       "key": false
     },
     {
+      "id": "aHR0cHM6Ly93d3cumeaskdma",
+      "title": "Interim Financial Report",
+      "type": "quarterly-report",
+      "year": 2025,
+      "quarter": "Q2",
+      "publishDate": "2025-08-25",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=bfa245653d7c5ea213e6447a6ef4df074aea34b67f2dd9889fbf1e0e8bf0d8cb",
+      "description": "",
+      "key": false
+    },
+    {
+      "id": "aHR0cHM6Ly93d3cumksmdkds",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2025,
+      "publishDate": "2025-10-20",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=6ac63753cc64b9b6fefbff9c654d160afcf9bee5087125997f34916961e5c0c9",
+      "description": "Sparq Announces Development of Duo Microinverter",
+      "key": true
+    },
+    {
       "id": "aHR0cHM6Ly93d3cumeizappk",
       "title": "News Release",
       "type": "press-release",
@@ -665,6 +686,26 @@
       "publishDate": "2019-08-09",
       "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=16b16341c0740b8e07de1614dc6f3732016d58e6d790faa54dad5423efad217c",
       "description": "MJ Innovation Capital Corp. Completes Initial Public Offering",
+      "key": false
+    },
+    {
+      "id": "aHR0cHM6Ly93d3cumkaquad",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2025,
+      "publishDate": "2025-10-24",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=8d87be5fdeeda3b45cfc9f0d1a6ed5a40f6e3fe1fed310aee9d346519152f35e",
+      "description": "Sparq Announces Termination of Investor Relations Agreement",
+      "key": false
+    },
+    {
+      "id": "aHR0cajnqIH992jBAknksak",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2025,
+      "publishDate": "2025-11-06",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=a6c0bb96b45b01572e4c806f06250025e4dc7567d010afb317cea899ab678427",
+      "description": "Sparq Announces Termination of Investor Relations Agreement",
       "key": false
     }
   ]

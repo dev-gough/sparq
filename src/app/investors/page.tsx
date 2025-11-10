@@ -25,6 +25,7 @@ const FAQ: FAQData[] = FAQs.faqs
 // Key news releases - filter for items marked as key
 const keyNewsReleases = SedarDocs.documents
     .filter(doc => doc.key === true)
+    .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
 
 const investorSections = [
     {
