@@ -705,7 +705,17 @@
       "year": 2025,
       "publishDate": "2025-11-06",
       "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=a6c0bb96b45b01572e4c806f06250025e4dc7567d010afb317cea899ab678427",
-      "description": "Sparq Announces Termination of Investor Relations Agreement",
+      "description": "Sparq Announces Entry into African Microinverter Market",
+      "key": false
+    },
+    {
+      "id": "aHR0cajjqoiams91023amsa",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2025,
+      "publishDate": "2025-11-10",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=ea95c9b8047d073bb8b67b336c3ae6e1b1933587a6f30d31caac00624869fe62",
+      "description": "Sparq Announces AI-Driven Grid Power Control Device",
       "key": false
     }
   ]
