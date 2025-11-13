@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses'
 import { headers } from 'next/headers'
+import { logToFile } from '@/lib/fileLogger'
 
 // Initialize SES client
 const sesClient = new SESClient({
@@ -19,6 +20,18 @@ export async function POST(request: NextRequest) {
     const origin = headersList.get('origin')
     const userAgent = headersList.get('user-agent')
 
+    // Extract IP address and other identifying information
+    const ip = headersList.get('x-forwarded-for') ||
+               headersList.get('x-real-ip') ||
+               headersList.get('cf-connecting-ip') ||
+               'unknown'
+    const host = headersList.get('host')
+    const acceptLanguage = headersList.get('accept-language')
+    const acceptEncoding = headersList.get('accept-encoding')
+    const contentType = headersList.get('content-type')
+    const cfRay = headersList.get('cf-ray') // Cloudflare ray ID if using Cloudflare
+    const cfIpCountry = headersList.get('cf-ipcountry') // Country code if using Cloudflare
+
     // Check if request is coming from your domain
     const allowedOrigins = [
       'https://sparqsys.com',
@@ -29,8 +42,54 @@ export async function POST(request: NextRequest) {
     const isValidOrigin = origin && allowedOrigins.includes(origin)
     const isValidReferer = referer && allowedOrigins.some(domain => referer.startsWith(domain))
 
+    // Parse request body early for logging
+    let requestBody: Record<string, unknown> = {}
+    try {
+      requestBody = await request.json()
+    } catch (e) {
+      logToFile('INVALID_JSON', {
+        ip,
+        userAgent,
+        referer,
+        origin,
+        host,
+        error: e instanceof Error ? e.message : 'Unknown error'
+      })
+      return NextResponse.json(
+        { error: 'Invalid JSON in request body' },
+        { status: 400 }
+      )
+    }
+
+    // Log all incoming requests with comprehensive details
+    logToFile('INCOMING_REQUEST', {
+      ip,
+      userAgent,
+      referer,
+      origin,
+      host,
+      acceptLanguage,
+      acceptEncoding,
+      contentType,
+      cfRay,
+      cfIpCountry,
+      requestBody,
+      isValidOrigin,
+      isValidReferer
+    })
+
     // Reject requests that don't come from your site
     if (!isValidOrigin && !isValidReferer) {
+      logToFile('BLOCKED_INVALID_ORIGIN', {
+        ip,
+        userAgent,
+        referer,
+        origin,
+        host,
+        cfRay,
+        cfIpCountry,
+        requestBody
+      })
       return NextResponse.json(
         { error: 'Unauthorized access' },
         { status: 403 }
@@ -39,16 +98,50 @@ export async function POST(request: NextRequest) {
 
     // Additional check for suspicious user agents (basic bot detection)
     if (!userAgent || userAgent.includes('curl') || userAgent.includes('wget') || userAgent.includes('python-requests')) {
+      logToFile('BLOCKED_SUSPICIOUS_USER_AGENT', {
+        ip,
+        userAgent,
+        referer,
+        origin,
+        host,
+        cfRay,
+        cfIpCountry,
+        requestBody
+      })
       return NextResponse.json(
         { error: 'Unauthorized access' },
         { status: 403 }
       )
     }
 
-    const { category, supportEmail, ccEmail, subject, message, userEmail } = await request.json()
+    const { category, supportEmail, ccEmail, subject, message, userEmail } = requestBody
+
+    // Type validation - ensure required fields are strings
+    const supportEmailStr = typeof supportEmail === 'string' ? supportEmail : ''
+    const subjectStr = typeof subject === 'string' ? subject : ''
+    const messageStr = typeof message === 'string' ? message : ''
+    const userEmailStr = typeof userEmail === 'string' ? userEmail : ''
+    const categoryStr = typeof category === 'string' ? category : 'General Support'
+    const ccEmailStr = typeof ccEmail === 'string' ? ccEmail : undefined
 
     // Validate required fields
-    if (!supportEmail || !subject || !message || !userEmail) {
+    if (!supportEmailStr || !subjectStr || !messageStr || !userEmailStr) {
+      logToFile('VALIDATION_FAILED', {
+        ip,
+        userAgent,
+        referer,
+        origin,
+        host,
+        cfRay,
+        cfIpCountry,
+        requestBody,
+        missingFields: {
+          supportEmail: !supportEmail,
+          subject: !subject,
+          message: !message,
+          userEmail: !userEmail
+        }
+      })
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -59,12 +152,12 @@ export async function POST(request: NextRequest) {
     const emailParams = {
       Source: process.env.SES_FROM_EMAIL || 'support@sparqsys.com',
       Destination: {
-        ToAddresses: [supportEmail],
-        ...(ccEmail && { CcAddresses: [ccEmail] }),
+        ToAddresses: [supportEmailStr],
+        ...(ccEmailStr ? { CcAddresses: [ccEmailStr] } : {}),
       },
       Message: {
         Subject: {
-          Data: `Support Ticket: ${subject}`,
+          Data: `Support Ticket: ${subjectStr}`,
           Charset: 'UTF-8',
         },
         Body: {
@@ -74,13 +167,13 @@ export async function POST(request: NextRequest) {
                 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
                   <h2 style="color: #8B1538;">New Support Ticket</h2>
                   <div style="background: #f9f9f9; padding: 20px; border-left: 4px solid #8B1538; margin: 20px 0;">
-                    <p><strong>Category:</strong> ${category || 'General Support'}</p>
-                    <p><strong>From:</strong> ${userEmail}</p>
-                    <p><strong>Subject:</strong> ${subject}</p>
+                    <p><strong>Category:</strong> ${categoryStr}</p>
+                    <p><strong>From:</strong> ${userEmailStr}</p>
+                    <p><strong>Subject:</strong> ${subjectStr}</p>
                   </div>
                   <div style="margin: 20px 0;">
                     <h3 style="color: #8B1538;">Message:</h3>
-                    <p style="white-space: pre-wrap; background: #f9f9f9; padding: 15px; border-radius: 5px;">${message}</p>
+                    <p style="white-space: pre-wrap; background: #f9f9f9; padding: 15px; border-radius: 5px;">${messageStr}</p>
                   </div>
                   <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
                   <p style="font-size: 12px; color: #666;">
@@ -95,12 +188,12 @@ export async function POST(request: NextRequest) {
             Data: `
 New Support Ticket
 
-Category: ${category || 'General Support'}
-From: ${userEmail}
-Subject: ${subject}
+Category: ${categoryStr}
+From: ${userEmailStr}
+Subject: ${subjectStr}
 
 Message:
-${message}
+${messageStr}
 
 ---
 This email was sent from the Sparq Systems support form at sparqsys.com/support
@@ -109,12 +202,28 @@ This email was sent from the Sparq Systems support form at sparqsys.com/support
           },
         },
       },
-      ReplyToAddresses: [userEmail],
+      ReplyToAddresses: [userEmailStr],
     }
 
     // Send the email
     const command = new SendEmailCommand(emailParams)
     const response = await sesClient.send(command)
+
+    // Log successful email send
+    logToFile('EMAIL_SENT_SUCCESS', {
+      ip,
+      userAgent,
+      referer,
+      origin,
+      host,
+      cfRay,
+      cfIpCountry,
+      messageId: response.MessageId,
+      category: categoryStr,
+      userEmail: userEmailStr,
+      subject: subjectStr,
+      messageLength: messageStr.length
+    })
 
     return NextResponse.json({
       success: true,
@@ -123,7 +232,33 @@ This email was sent from the Sparq Systems support form at sparqsys.com/support
     })
 
   } catch (error) {
-    console.error('SES Email Error:', error)
+    // Enhanced error logging with request context
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    const errorStack = error instanceof Error ? error.stack : undefined
+
+    // Try to access request context even in error state
+    let errorLogData: Record<string, unknown> = {
+      errorMessage,
+      errorStack,
+      errorType: error instanceof Error ? error.constructor.name : typeof error
+    }
+
+    // Try to add request context if available
+    try {
+      const headersList = await headers()
+      errorLogData = {
+        ...errorLogData,
+        ip: headersList.get('x-forwarded-for') || headersList.get('x-real-ip') || 'unknown',
+        userAgent: headersList.get('user-agent'),
+        referer: headersList.get('referer'),
+        origin: headersList.get('origin'),
+        host: headersList.get('host')
+      }
+    } catch {
+      // If we can't get headers, continue without them
+    }
+
+    logToFile('EMAIL_SEND_ERROR', errorLogData)
 
     // Return different error messages based on the error type
     if (error instanceof Error) {
