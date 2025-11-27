@@ -16,6 +16,60 @@ function escapeHtml(text: string): string {
   return text.replace(/[&<>"'/]/g, (char) => map[char])
 }
 
+// Verify reCAPTCHA token
+async function verifyRecaptcha(token: string, ip: string): Promise<{ success: boolean; score?: number; error?: string }> {
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY
+
+  if (!secretKey) {
+    console.error('RECAPTCHA_SECRET_KEY not configured')
+    return { success: false, error: 'reCAPTCHA not configured' }
+  }
+
+  if (!token) {
+    return { success: false, error: 'No reCAPTCHA token provided' }
+  }
+
+  try {
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${secretKey}&response=${token}&remoteip=${ip}`,
+    })
+
+    const data = await response.json()
+
+    if (!data.success) {
+      return {
+        success: false,
+        error: `reCAPTCHA verification failed: ${data['error-codes']?.join(', ') || 'Unknown error'}`,
+      }
+    }
+
+    // reCAPTCHA v3 returns a score between 0.0 and 1.0
+    // 1.0 is very likely a good interaction, 0.0 is very likely a bot
+    const score = data.score || 0
+
+    // Require a minimum score of 0.5 (you can adjust this threshold)
+    if (score < 0.5) {
+      return {
+        success: false,
+        score,
+        error: `reCAPTCHA score too low: ${score}`,
+      }
+    }
+
+    return { success: true, score }
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error)
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error during verification',
+    }
+  }
+}
+
 // Initialize SES client
 const sesClient = new SESClient({
   region: process.env.AWS_REGION || 'us-east-1',
@@ -126,6 +180,40 @@ export async function POST(request: NextRequest) {
         { status: 403 }
       )
     }
+
+    // Verify reCAPTCHA token
+    const recaptchaToken = typeof requestBody.recaptchaToken === 'string' ? requestBody.recaptchaToken : ''
+    const recaptchaResult = await verifyRecaptcha(recaptchaToken, ip)
+
+    if (!recaptchaResult.success) {
+      logToFile('BLOCKED_RECAPTCHA_FAILED', {
+        ip,
+        userAgent,
+        referer,
+        origin,
+        host,
+        cfRay,
+        cfIpCountry,
+        recaptchaScore: recaptchaResult.score,
+        recaptchaError: recaptchaResult.error,
+        requestBody: {
+          category: requestBody.category,
+          userEmail: requestBody.userEmail,
+          subject: requestBody.subject,
+        }
+      })
+      return NextResponse.json(
+        { error: 'Security verification failed. Please try again.' },
+        { status: 403 }
+      )
+    }
+
+    // Log successful reCAPTCHA verification
+    logToFile('RECAPTCHA_VERIFIED', {
+      ip,
+      userAgent,
+      score: recaptchaResult.score,
+    })
 
     const { category, supportEmail, ccEmail, subject, message, userEmail } = requestBody
 

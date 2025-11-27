@@ -4,6 +4,17 @@ import { useState, useMemo, useRef } from "react"
 import { motion, useInView } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
+import Script from 'next/script'
+
+// Extend Window interface for reCAPTCHA
+declare global {
+	interface Window {
+		grecaptcha: {
+			ready: (callback: () => void) => void
+			execute: (siteKey: string, options: { action: string }) => Promise<string>
+		}
+	}
+}
 
 const CATEGORY_EMAIL_MAP = {
 	ir: "ir@sparqsys.com",
@@ -24,9 +35,12 @@ export default function SupportTicketPage() {
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 	const [errorMessage, setErrorMessage] = useState('')
-	
+	const [recaptchaLoaded, setRecaptchaLoaded] = useState(false)
+
 	const heroRef = useRef(null)
 	const isHeroInView = useInView(heroRef, { once: true })
+
+	const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
 
 	const email = useMemo(() => {
 		return category ? CATEGORY_EMAIL_MAP[category] : "info@sparqsys.com"
@@ -43,7 +57,7 @@ export default function SupportTicketPage() {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
-		
+
 		if (!formData.userEmail || !formData.subject || !formData.message) {
 			setErrorMessage('Please fill in all required fields')
 			setSubmitStatus('error')
@@ -55,6 +69,20 @@ export default function SupportTicketPage() {
 		setErrorMessage('')
 
 		try {
+			// Get reCAPTCHA token
+			let recaptchaToken = ''
+			if (recaptchaLoaded && window.grecaptcha && siteKey) {
+				try {
+					recaptchaToken = await window.grecaptcha.execute(siteKey, { action: 'submit_support_ticket' })
+				} catch (error) {
+					console.error('reCAPTCHA error:', error)
+					setErrorMessage('Security verification failed. Please refresh the page and try again.')
+					setSubmitStatus('error')
+					setIsSubmitting(false)
+					return
+				}
+			}
+
 			const response = await fetch('/api/send-email', {
 				method: 'POST',
 				headers: {
@@ -67,6 +95,7 @@ export default function SupportTicketPage() {
 					subject: formData.subject,
 					message: formData.message,
 					userEmail: formData.userEmail,
+					recaptchaToken,
 				}),
 			})
 
@@ -96,6 +125,15 @@ export default function SupportTicketPage() {
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
+			{/* Load reCAPTCHA v3 */}
+			{siteKey && (
+				<Script
+					src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`}
+					onLoad={() => setRecaptchaLoaded(true)}
+					strategy="lazyOnload"
+				/>
+			)}
+
 			<SolarBackgroundElements />
 			
 			{/* Hero Section */}
