@@ -3,6 +3,19 @@ import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses'
 import { headers } from 'next/headers'
 import { logToFile } from '@/lib/fileLogger'
 
+// HTML escape function to prevent injection attacks
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;',
+    '/': '&#x2F;'
+  }
+  return text.replace(/[&<>"'/]/g, (char) => map[char])
+}
+
 // Initialize SES client
 const sesClient = new SESClient({
   region: process.env.AWS_REGION || 'us-east-1',
@@ -148,6 +161,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Sanitize all user inputs to prevent HTML injection
+    const safeCategoryStr = escapeHtml(categoryStr)
+    const safeUserEmailStr = escapeHtml(userEmailStr)
+    const safeSubjectStr = escapeHtml(subjectStr)
+    const safeMessageStr = escapeHtml(messageStr)
+
     // Create email parameters
     const emailParams = {
       Source: process.env.SES_FROM_EMAIL || 'support@sparqsys.com',
@@ -157,7 +176,7 @@ export async function POST(request: NextRequest) {
       },
       Message: {
         Subject: {
-          Data: `Support Ticket: ${subjectStr}`,
+          Data: `Support Ticket: ${safeSubjectStr}`,
           Charset: 'UTF-8',
         },
         Body: {
@@ -167,13 +186,13 @@ export async function POST(request: NextRequest) {
                 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
                   <h2 style="color: #8B1538;">New Support Ticket</h2>
                   <div style="background: #f9f9f9; padding: 20px; border-left: 4px solid #8B1538; margin: 20px 0;">
-                    <p><strong>Category:</strong> ${categoryStr}</p>
-                    <p><strong>From:</strong> ${userEmailStr}</p>
-                    <p><strong>Subject:</strong> ${subjectStr}</p>
+                    <p><strong>Category:</strong> ${safeCategoryStr}</p>
+                    <p><strong>From:</strong> ${safeUserEmailStr}</p>
+                    <p><strong>Subject:</strong> ${safeSubjectStr}</p>
                   </div>
                   <div style="margin: 20px 0;">
                     <h3 style="color: #8B1538;">Message:</h3>
-                    <p style="white-space: pre-wrap; background: #f9f9f9; padding: 15px; border-radius: 5px;">${messageStr}</p>
+                    <p style="white-space: pre-wrap; background: #f9f9f9; padding: 15px; border-radius: 5px;">${safeMessageStr}</p>
                   </div>
                   <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
                   <p style="font-size: 12px; color: #666;">
