@@ -717,6 +717,27 @@
       "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=ea95c9b8047d073bb8b67b336c3ae6e1b1933587a6f30d31caac00624869fe62",
       "description": "Sparq Announces AI-Driven Grid Power Control Device",
       "key": false
+    },
+    {
+      "id": "aHdnqnu98n28h12unakjsand",
+      "title": "Interim Financial Report",
+      "type": "quarterly-report",
+      "year": 2025,
+      "quarter": "Q3",
+      "publishDate": "2025-11-27",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=964b42ac85e0ae73b615fbcfd06bdec58cb2081979f4a24bbabace6cf5bed779",
+      "description": "",
+      "key": false
+    },
+    {
+      "id": "aHRasjndKJNASO0910",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2025,
+      "publishDate": "2025-12-01",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=373ee6361a290c8d77b9c7f20782dcf4573ed3ade390e0f83feff2ae7a23d99b",
+      "description": "Majid Pahlevani, CTO of Sparq Systems Inc., Named an IEEE Fellow",
+      "key": false
     }
   ]
 }
