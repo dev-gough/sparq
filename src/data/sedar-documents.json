@@ -161,7 +161,7 @@
       "publishDate": "2024-06-06",
       "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=c07a7334a81c7ef4b7f4b61333930f23b032bd34f84ebed5af51f87ea9327ac0",
       "description": "SPARQ Announces Closing of First Tranche of Private Placement And Increase in Size of Private Placement",
-      "key": true
+      "key": false
     },
     {
       "id": "aHR0cHM6Ly93d3cumeim538p",
@@ -738,6 +738,16 @@
       "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=373ee6361a290c8d77b9c7f20782dcf4573ed3ade390e0f83feff2ae7a23d99b",
       "description": "Majid Pahlevani, CTO of Sparq Systems Inc., Named an IEEE Fellow",
       "key": false
+    },
+    {
+      "id": "irmasUqneoqmnax9amf8",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2026,
+      "publishDate": "2026-01-05",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=5f662972290be79ea2308869bf54d26c65fa6558641a4d4492583cfba7aa1281",
+      "description": "Praveen Jain, CEO of Sparq Systems Inc., Awarded Order of Canada",
+      "key": true
     }
   ]
 }

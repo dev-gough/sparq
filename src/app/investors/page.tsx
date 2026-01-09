@@ -22,6 +22,19 @@ interface FAQData {
 
 const FAQ: FAQData[] = FAQs.faqs
 
+// Format date without timezone issues
+const formatDate = (dateString: string) => {
+    // Parse the date as local date to avoid timezone issues
+    const [year, month, day] = dateString.split('-').map(Number)
+    const date = new Date(year, month - 1, day) // month is 0-indexed
+
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    })
+}
+
 // Key news releases - filter for items marked as key
 const keyNewsReleases = SedarDocs.documents
     .filter(doc => doc.key === true)
@@ -463,11 +476,7 @@ export default function InvestorsPage() {
                                                     <div className="flex items-center gap-2 mb-2">
                                                         <FaCalendarAlt className="w-4 h-4 text-brand-maroon" />
                                                         <span className="text-sm text-brand-graytext dark:text-dark-text-muted font-medium">
-                                                            {new Date(release.publishDate).toLocaleDateString('en-US', {
-                                                                year: 'numeric',
-                                                                month: 'long',
-                                                                day: 'numeric'
-                                                            })}
+                                                            {formatDate(release.publishDate)}
                                                         </span>
                                                     </div>
                                                     <h3 className="text-lg font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon transition-colors duration-300 mb-3">
