@@ -7,7 +7,7 @@
                 {
                     "id": 2,
                     "question": "What does Sparq Systems do?",
-                    "answer": "Sparq Systems Inc. is a Canadian clean technology company specializing in the design and manufacture of next-generation microinverters for residential, commercial, and light industrial solar electric applications. The company's flagship product—the Quad Microinverter—optimizes four photovoltaic (PV) modules with a single unit. This innovation simplifies system design and installation while reducing overall costs compared to traditional microinverters. "
+                    "answer": "Sparq Systems Inc. is a Canadian clean technology company specializing in the design and manufacture of next-generation microinverters for residential, commercial, and light industrial solar electric applications. The company's flagship product — the Quad Microinverter — optimizes four photovoltaic (PV) modules with a single unit. This innovation simplifies system design and installation while reducing overall costs compared to traditional microinverters. "
                 },
                 {
                     "id": 3,
@@ -22,7 +22,8 @@
                         [
                             "TSX Venture Exchange (Ticker: SPRQ)",
                             "OCTQB Market (USA) (Ticker:SPRQF)",
-                            "Frankfurt Stock Exchange (Ticker: M26)"
+                            "Frankfurt Stock Exchange (Ticker: M26)",
+                            "Cboe Canada (Formerly NEO) (Ticker: SPRQ)"
                         ]
                     ]
                 },
@@ -46,7 +47,7 @@
                 {
                     "id": 7,
                     "question": "What recent partnerships has Sparq formed?",
-                    "answer": "In February 2024, Sparq entered a technology partnership with Jio Things Limited, a subsidiary of Jio Platforms Limited and Reliance Industries in India. This collaboration aims to co-develop, manufacture, and distribute microinverters in India—combining Jio's scale with Sparq's software-centric inverter design for cost-effective, high-volume production."
+                    "answer": "In February 2024, Sparq entered a technology partnership with Jio Things Limited, a subsidiary of Jio Platforms Limited and Reliance Industries in India. This collaboration aims to co-develop, manufacture, and distribute microinverters in India - combining Jio's scale with Sparq's software-centric inverter design for cost-effective, high-volume production."
                 },
                 {
                     "id": 8,
@@ -87,7 +88,6 @@
                     "answer": [
                         "You can reach the Investor Relations team at:",
                         [
-                            "Phone: 1-855-947-7277",
                             "Email: info@sparqsys.com",
                             "Website: www.sparqsys.com",
                             "Head Office: 945 Princess Street, Kingston, ON, K7L 0E9, Canada"

@@ -4,8 +4,8 @@ import Subheader from "@/components/Subheader"
 
 const items = [
     { label: "Learning Hub", href: "/resources"},
-    { label: "Photos", href: "/resources/photos"},
-    { label: "Videos", href: "/resources/videos"},
+    { label: "BoM Calculator", href: "/resources/calculator"},
+	{ label: "Legal", href: "/resources/legal"}
 ]
 
 export default function InvestorLayout({children} : Readonly<{

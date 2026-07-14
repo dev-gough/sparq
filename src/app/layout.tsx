@@ -1,10 +1,8 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
-import { Nunito } from "next/font/google"
-import ForceScroll from "@/components/ForceScroll"
-import LeavingSite from "@/components/LeavingSite"
+import { Inter } from "next/font/google"
+import RootLayoutClient from "@/components/RootLayoutClient"
+import { getServerTheme } from "@/lib/theme-server"
 
 export const metadata: Metadata = {
 	title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
@@ -12,41 +10,24 @@ export const metadata: Metadata = {
 	icons: '/logo.png',
 }
 
-// english font
-const nunito = Nunito({
+const inter = Inter({
 	subsets: ["latin"],
-	weight: ["500", "800", "900"],
+	weight: ["300", "400", "500", "600", "700", "800", "900"],
+	display: 'swap',
 })
 
 const aboutDropdown = [
-	{ label: "Highlights", href: "/about"},
-	{ label: "Snapshot", href: "/about/snapshot" },
-	{ label: "Who We Are", href: "/about/us" },
+	{ label: "About Us", href: "/about" },
 	{ label: "Leadership", href: "/about/leadership" },
 	{ label: "Board of Directors", href: "/about/board" },
-	{ label: "Legal", href: "/legal"}
 ]
 
 const investorDropdown = [
-	{ label: "Investor Highlights", href: "/investors#highlights" },
-	{ label: "News", href: "/investors/news" },
-	{ label: "Events", href: "/investors/events" },
-	{ label: "Stock", href: "/investors/stock" },
+	{ label: "Partnerships", href: "/investors#partnerships" },
+	{ label: "FAQ", href: "/investors#faq" },
+	{ label: "Stock", href: "https://money.tmx.com/en/quote/SPRQ" },
+	{ label: "Reports & Filings", href: "/investors/reports"},
 	{ label: "Governance", href: "/investors/governance" },
-]
-
-const homeownerDropdown = [
-	{ label: "Sparq Video", href: "/homeowners" },
-	{ label: "Why Sparq", href: "/homeowners#whysparq" },
-	{ label: "Sparq Advantage", href: "/homeowners#discover"},
-	{ label: "FAQs", href: "/homeowners#faq"}
-]
-
-const installerDropdown = [
-	{ label: "Why Sparq", href: "/installers#whysparq"},
-	{ label: "Sparq Advantage", href: "/installers#discover"},
-	{ label: "BoM Calculator", href: "/installers#bom"},
-	{ label: "FAQs", href: "/installers#faq"},
 ]
 
 const productDropdown = [
@@ -60,16 +41,15 @@ const productDropdown = [
 ]
 
 const resourcesDropdown = [
-	{ label: "Learning Hub", href: "/resources"},
-	{ label: "Photo Gallery", href: "/resources/photos" },
-	{ label: "Video Gallery", href: "/resources/videos" },
+	{ label: "Learning Hub", href: "/resources" },
+	{ label: "BoM Calculator", href: "/resources/calculator" },
+	{ label: "Legal", href: "/resources/legal" }
 ]
 
 const navbarItems = [
 	{ label: "About", href: "/about", dropdown: aboutDropdown },
+	{ label: "Technology", href: "/technology"},
 	{ label: "Products", href: "/products", dropdown: productDropdown },
-	{ label: "Homeowners", href: "/homeowners", dropdown: homeownerDropdown },
-	{ label: "Installers", href: "/installers", dropdown: installerDropdown },
 	{ label: "Investors", href: "/investors", dropdown: investorDropdown },
 	{ label: "Resources", href: "/resources", dropdown: resourcesDropdown },
 	{ label: "Contact", href: "/contact" },
@@ -81,17 +61,14 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode,
 }>) {
+	const theme = await getServerTheme()
+	const themeClass = theme === 'dark' ? 'dark' : ''
+	
 	return (
-		<html lang="en">
-			<body className={`${nunito.className} flex flex-col min-h-screen overflow-y-scroll`}>
-				<Header navItems={navbarItems} />
-				<ForceScroll />
-				<LeavingSite />
-				<main className="flex-grow h-full">
-					{children}
-				</main>
-				<Footer />
-			</body>
+		<html lang="en" className={`bg-white dark:bg-gray-900 ${themeClass} ${inter.className}`}>
+			<RootLayoutClient navbarItems={navbarItems}>
+				{children}
+			</RootLayoutClient>
 		</html>
 	)
 }

@@ -1,129 +1,113 @@
 'use client'
 
-import { useState, } from "react"
-import AnimatedList from "@/components/AnimatedList"
-
-const passion_items = ['Support a greener future', 'Create cutting-edge solar energy solutions', 'Advance state of the art technology', 'Delight customers with best-in-class products']
-
-const goodbye_items = ["Fossil fuel causing global warming", "Unsafe components with short lifetimes", "Fire risk and high voltage arcing", "High electricity bills due to centralized power generation"]
-
-const reset_items = ["Safe, reliable, and maitenance-free products", "Lowest cost, weight, and volume per Watt in the industry", "Best-in-class and high performance solutions"]
-
-const green_items = ["Reduce energy consuption", "Cut your carbon footprint", "Enable self-sufficiency with solar power"]
-
-
-interface SlideSectionProps {
-    bgUrl: string
-    bgPositionClass: string
-    title: string
-    items: string[]
-    index: number
-    expanded: Record<number, boolean>
-}
-
-interface SlideData {
-    bgUrl: string
-    bgPositionClass: string
-    title: string,
-    items: string[]
-}
-
-const slides: SlideData[] = [
-    {
-        bgUrl: "/bg-4.jpg",
-        bgPositionClass: "bg-top",
-        title: "Say goodbye to past problems",
-        items: goodbye_items
-    },
-    {
-        bgUrl: "/thumbnail_image.png",
-        bgPositionClass: "bg-center",
-        title: "Born out of passion",
-        items: passion_items
-    },
-    {
-        bgUrl: "/bg-2.jpg",
-        bgPositionClass: "bg-center",
-        title: "Resetting the PV Industry",
-        items: reset_items
-    },
-    {
-        bgUrl: "/testing2.jpg",
-        bgPositionClass: "bg-center",
-        title: "Be part of a greener future",
-        items: green_items
-    }
-]
+import { useRef } from "react"
+import { motion, useInView } from "motion/react"
+import { Target, Lightbulb, Award } from "lucide-react"
+import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 export default function AboutPage() {
-
-    const [expanded, setExpanded] = useState<Record<number, boolean>>({})
-
-    const handleClick = (i: number) => {
-        if (expanded[i]) {
-            if (i === (slides.length - 1)) return // don't scroll anywhere if on last slide
-            // handle nav to next slide    
-            const next = (i + 1) % slides.length
-            const element = document.getElementById(`slide${next}`)
-            if (element) {
-                element.scrollIntoView({ behavior: "smooth" })
-            }
-        } else {
-            setExpanded(prev => ({ ...prev, [i]: !prev[i] }))
-        }
-    }
-
-    function SlideSection({ bgUrl, bgPositionClass, title, items, index, expanded }: SlideSectionProps) {
-        return (
-            <section
-                id={`slide${index}`}
-                className={`relative flex h-[calc(100vh-114px)] min-h-[400px] w-full bg-no-repeat bg-cover justify-center scroll-mt-[114px] ${bgPositionClass} `}
-                style={{ backgroundImage: `url(${bgUrl})` }}
-            >
-                <div className="absolute inset-x-0 top-4 sm:top-1/5 flex flex-col bg-transparent w-full items-center">
-                    {/* title */}
-                    <h2
-                        className="
-                        text-xl
-                        sm:text-3xl
-                        md:text-4xl
-                        lg:text-5xl
-                        xl:text-6xl
-                        2xl:text-7xl 
-                        3xl:text-8xl
-                      text-white bg-brand-maroon rounded-lg font-bold p-3">
-                        <span className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] uppercase">{title}</span>
-                    </h2>
-                    {expanded[index] && (
-                        <div className="mt-4 sm:mt-16">
-                            <AnimatedList items={items} />
-                        </div>
-                    )}
-                </div>
-                {/* ctrl */}
-                <div
-                    className="
-                    bottom-2 
-                    sm:bottom-10 sm:left-10 
-                    absolute flex space-x-8">
-                    <p
-                        onClick={() => handleClick(index)}
-                        className="text-white text-xl lg:text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8),0_1.2px_1.2px_rgba(0,0,0,0.8)] cursor-pointer">{expanded[index] ? (index === (slides.length-1)) ? "" : "Next" : "Read More"}</p>
-                </div>
-            </section>
-        )
-    }
+    const titleRef = useRef(null)
+    const contentRef = useRef(null)
+    const valuesRef = useRef(null)
+    const titleInView = useInView(titleRef, { once: true })
+    const contentInView = useInView(contentRef, { once: true })
+    const valuesInView = useInView(valuesRef, { once: true })
 
     return (
-        <div id="corporatestatements" className="flex flex-col items-center bg-white scroll-mt-[115px]">
-            {slides.map((config, idx) => (
-                <SlideSection
-                    key={idx}
-                    {...config} //spread the config
-                    index={idx}
-                    expanded={expanded}
-                />
-            ))}
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
+            <SolarBackgroundElements />
+            <div className="relative container mx-auto px-6 py-8 sm:py-16 max-w-6xl">
+                {/* Hero Section */}
+                <motion.div
+                    ref={titleRef}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={titleInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8 }}
+                    className="text-center mb-16"
+                >
+                    <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
+                            About Sparq Systems
+                        </span>
+                    </h1>
+                </motion.div>
+
+                {/* Main Content */}
+                <motion.div
+                    ref={contentRef}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={contentInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="mb-16"
+                >
+                    <div className="space-y-8 text-brand-graytext dark:text-dark-text-secondary leading-relaxed text-lg sm:text-xl lg:text-2xl">
+                        <p>
+                            Founded in 2009, Sparq Systems emerged from a critical observation: traditional solar inverter technology was fundamentally flawed. With issues ranging from non-optimal energy production to low reliability, the industry needed a complete rethink.
+                        </p>
+
+                        <p>
+                            The vision was clear - create a technological solution that would allow the extraction of all the available energy from every PV solar panel, convert it into high-quality AC electricity at the highest possible efficiency, and meet or exceed the life of a solar panel. This led to years of passionate research in coming up with the most flexible inverter architecture that is driven by mathematical algorithms.
+                        </p>
+
+                        <p>
+                            Breaking hardware constraints through implementation of differential geometry digital control has resulted in a compact, light-weight, low-cost, highly-efficient, and highly-reliable inverter design. Our patented &apos;Quad&apos; inverter offers higher performance at significantly lower cost than either the microinverter or the optimizer-string inverter based Module Level Power Electronics (MLPE) solutions currently available in the market. The Quad brings down the cost of a MLPE solution at par with the cost of a conventional string inverter solution, which is an industry first.
+                        </p>
+
+                        <p>
+                            Today, we&apos;re a publicly traded company (TSXV: SPRQ) with global manufacturing capabilities and strategic partnerships, including our collaboration with Jio Reliance, India&apos;s largest IoT company. From our initial Quad2 single-phase microinverter to our latest three-phase Quad3 technology, we continue to push the boundaries of what&apos;s possible in solar energy conversion.
+                        </p>
+
+                        <p>
+                            Our culture is built on six core principles: <strong>Integrity</strong>, <strong>Collaboration</strong>, <strong>Innovation</strong>, <strong>Quality</strong>, <strong>Social Responsibility</strong>, and <strong>Teamwork</strong>. These aren&apos;t just values on paper - they guide every decision we make, every product we design, and every relationship we build.
+                        </p>
+                    </div>
+                </motion.div>
+
+                {/* Company Values */}
+                <motion.div
+                    ref={valuesRef}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={valuesInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="grid md:grid-cols-3 gap-8"
+                >
+                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border-3 border-brand-maroon/10 dark:border-brand-logo/10">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-xl flex items-center justify-center text-white mx-auto mb-4">
+                            <Target size={24} className="sm:w-8 sm:h-8" />
+                        </div>
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3 sm:mb-4">
+                            Our Mission
+                        </h3>
+                        <p className="text-base sm:text-lg lg:text-xl text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
+                            Accelerate the transition to energy self-sufficiency by serving residential, commercial and industrial customers world-wide.
+                        </p>
+                    </div>
+
+                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border-3 border-brand-maroon/10 dark:border-brand-logo/10">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-xl flex items-center justify-center text-white mx-auto mb-4">
+                            <Lightbulb size={24} className="sm:w-8 sm:h-8" />
+                        </div>
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3 sm:mb-4">
+                            Our Vision
+                        </h3>
+                        <p className="text-base sm:text-lg lg:text-xl text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
+                            Become the #1 Leader for Microinverters, Battery Storage, and Energy Management.
+                        </p>
+                    </div>
+
+                    <div className="text-center p-6 sm:p-8 bg-white/50 dark:bg-gray-800/30 rounded-xl border-3 border-brand-maroon/10 dark:border-brand-logo/10">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-xl flex items-center justify-center text-white mx-auto mb-4">
+                            <Award size={24} className="sm:w-8 sm:h-8" />
+                        </div>
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3 sm:mb-4">
+                            Our Promise
+                        </h3>
+                        <p className="text-base sm:text-lg lg:text-xl text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
+                            Deliver safe, reliable, and cost-effective solutions that are best-in-class, easy to install, and maintenance-free.
+                        </p>
+                    </div>
+                </motion.div>
+            </div>
         </div>
     )
 }

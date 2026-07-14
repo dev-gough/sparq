@@ -84,17 +84,17 @@ const cableSpecs: CableSpec[] = [
 
 function CableTable() {
 	return (
-		<div className="overflow-x-auto rounded-lg border bg-white shadow">
-			<table className="min-w-full divide-y divide-gray-300 text-xl">
-				<thead className="bg-gray-50">
+		<div className="overflow-x-auto rounded-lg border bg-white dark:bg-gray-800 shadow">
+			<table className="min-w-full divide-y divide-gray-300 dark:divide-gray-600 text-xl">
+				<thead className="bg-gray-50 dark:bg-gray-700">
 					<tr>
-						<th className="px-4 py-3 text-left font-semibold text-gray-900">Description</th>
-						<th className="px-4 py-3 text-left font-semibold text-gray-900">Gauge</th>
-						<th className="px-4 py-3 text-left font-semibold text-gray-900">Length (m)</th>
-						<th className="px-4 py-3 text-left font-semibold text-gray-900">Part #</th>
+						<th className="px-4 py-3 text-left font-semibold text-gray-900 dark:text-dark-text-primary">Description</th>
+						<th className="px-4 py-3 text-left font-semibold text-gray-900 dark:text-dark-text-primary">Gauge</th>
+						<th className="px-4 py-3 text-left font-semibold text-gray-900 dark:text-dark-text-primary">Length (m)</th>
+						<th className="px-4 py-3 text-left font-semibold text-gray-900 dark:text-dark-text-primary">Part #</th>
 					</tr>
 				</thead>
-				<tbody className="divide-y divide-gray-200 bg-white">
+				<tbody className="divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-800">
 					{cableSpecs.map((spec) =>
 						spec.variants.map((v, idx) => (
 							<tr key={`${spec.description}-${v.length}`} className="whitespace-nowrap">
@@ -102,26 +102,26 @@ function CableTable() {
 									<>
 										<td
 											rowSpan={spec.variants.length}
-											className="px-4 py-3 align-top font-medium text-gray-900"
+											className="px-4 py-3 align-top font-medium text-gray-900 dark:text-dark-text-primary"
 										>
 											{spec.description}
 										</td>
 										<td
 											rowSpan={spec.variants.length}
-											className="px-4 py-3 align-top text-gray-700"
+											className="px-4 py-3 align-top text-gray-700 dark:text-dark-text-secondary"
 										>
 											{spec.gauge}
 										</td>
 									</>
 								)}
-								<td className="px-4 py-3 text-gray-700">{v.length}</td>
-								<td className="px-4 py-3 text-gray-700">{v.partNumber}</td>
+								<td className="px-4 py-3 text-gray-700 dark:text-dark-text-secondary">{v.length}</td>
+								<td className="px-4 py-3 text-gray-700 dark:text-dark-text-secondary">{v.partNumber}</td>
 							</tr>
 						))
 					)}
 				</tbody>
 			</table>
-			<p className="mt-2 px-4 pb-4 text-md italic text-gray-500">
+			<p className="mt-2 px-4 pb-4 text-md italic text-gray-500 dark:text-dark-text-muted">
 				* Color coding for North America:&nbsp;
 				<span className="font-semibold">Black</span> (Line 1),
 				<span className="font-semibold"> Red</span> (Line 2),
@@ -139,27 +139,37 @@ export default function AccessoriesPage() {
 	return (
 		<div className="container mx-auto px-4 py-8 lg:px-8">
 			{/* breadcrumb */}
-			<nav aria-label="Breadcrumb" className="mb-6 flex items-center text-sm text-brand-gray">
+			<nav aria-label="Breadcrumb" className="mb-6 flex items-center text-sm text-brand-gray dark:text-dark-text-muted">
 				<Link href="/products" className="px-2 hover:underline">
 					Products
 				</Link>
 				<span className="px-1">›</span>
-				<span className="px-2 text-brand-gray-600">Accessories</span>
+				<span className="px-2 text-brand-gray-600 dark:text-dark-text-muted">Accessories</span>
 			</nav>
 
 			{/* page title */}
-			<h1 className="mb-10 text-3xl font-bold text-gray-900">Accessories</h1>
+			<h1 className="mb-10 text-3xl font-bold text-gray-900 dark:text-dark-text-primary">Accessories</h1>
 
 			{/* ------------------------------ AC Cables ------------------------------ */}
 			<section id="cables" className="scroll-mt-20">
-				<h2 className="mb-4 text-2xl font-semibold text-gray-900">AC Cable Specifications</h2>
-				<div className="mb-6 flex justify-center">
+				<h2 className="mb-4 text-2xl font-semibold text-brand-maroon dark:text-brand-logo">AC Cable Specifications</h2>
+				<div className="mb-6 flex justify-center relative">
+					{/* Light mode image */}
 					<Image
-						src="/Accessories/cables.png" // add this fourth image
+						src="/Accessories/cables-t.png"
 						alt="AC cable family photo"
 						width={800}
 						height={400}
-						className="h-auto w-full max-w-3xl object-contain rounded-lg border"
+						className="h-auto w-full max-w-3xl object-contain rounded-lg border-3 dark:hidden"
+						priority
+					/>
+					{/* Dark mode image */}
+					<Image
+						src="/Accessories/cables-td.png"
+						alt="AC cable family photo"
+						width={800}
+						height={400}
+						className="h-auto w-full max-w-3xl object-contain rounded-lg border-3 hidden dark:block"
 						priority
 					/>
 				</div>
@@ -168,28 +178,38 @@ export default function AccessoriesPage() {
 
 			{/* -------------------------- Waterproof Cable Caps ---------------------- */}
 			<section id="caps" className="mt-16 scroll-mt-20">
-				<h2 className="mb-4 text-2xl font-semibold text-gray-900">Waterproof Cable Caps</h2>
-				<div className="flex justify-center">
+				<h2 className="mb-4 text-2xl font-semibold text-brand-maroon dark:text-brand-logo">Waterproof Cable Caps</h2>
+				<div className="flex justify-center relative">
+					{/* Light mode image */}
 					<Image
-						src="/Accessories/caps.png"
+						src="/Accessories/caps-t.png"
 						alt="T‑series waterproof cable caps"
 						width={900}
 						height={250}
-						className="h-auto w-full max-w-4xl object-contain rounded-lg border"
+						className="h-auto w-full max-w-4xl object-contain rounded-lg border-3 dark:hidden"
+					/>
+					{/* Dark mode image */}
+					<Image
+						src="/Accessories/caps-td.png"
+						alt="T‑series waterproof cable caps"
+						width={900}
+						height={250}
+						className="h-auto w-full max-w-4xl object-contain rounded-lg border-3 hidden dark:block"
 					/>
 				</div>
 			</section>
 
 			{/* ------------------------------ Tools ---------------------------------- */}
 			<section id="tools" className="mt-16 scroll-mt-20">
-				<h2 className="mb-4 text-2xl font-semibold text-gray-900">DC/AC Unlock Tool</h2>
-				<div className="flex justify-center">
+				<h2 className="mb-4 text-2xl font-semibold text-brand-maroon dark:text-brand-logo">DC/AC Unlock Tool</h2>
+				<div className="flex justify-center relative">
+					{/* Light mode image */}
 					<Image
-						src="/Accessories/unlocking.png"
+						src="/Accessories/unlocking-t.png"
 						alt="AC unlocking tool"
 						width={600}
 						height={300}
-						className="h-auto w-full max-w-xl object-contain rounded-lg border"
+						className="h-auto w-full max-w-xl object-contain rounded-lg border-3"
 					/>
 				</div>
 			</section>

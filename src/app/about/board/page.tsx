@@ -1,8 +1,11 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useRef } from "react"
+import { motion, useInView } from "motion/react"
+import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
-import { useTrackEvent } from "@/hooks/useTrackEvent";
+import { useTrackEvent } from "@/hooks/useTrackEvent"
+import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface BoardMemberData {
     imgSrc: string;
@@ -15,15 +18,15 @@ interface BoardMemberData {
 const boardMembers: BoardMemberData[] = [
     {
         imgSrc: '/Team/drjain.png',
-        name: 'Praveen Jain',
+        name: 'Dr. Praveen Jain',
         location: 'Kingston, Ontario',
         title: 'Director as of: December 31, 2021',
         blurb:
             "Dr. Jain is the Founder and the CEO of SPARQ. He has considerable industrial experience in power electronics, working and consulting with Canadian Astronautics, Nortel Networks, Astec, Intel, Freescale, and GE. He founded CHiL Semiconductor, a digital power control chip company, which was acquired by International Rectifier (later merged with Infineon). Dr. Jain is a Fellow of the Royal Society of Canada, the Institute of Electrical and Electronics Engineers (IEEE), the Engineering Institute of Canada, and the Canadian Academy of Engineering. He is the recipient of the 2021 IEEE Medal in Power Engineering, the 2017 IEEE Canada Electric Power Medal, the 2011 IEEE William E. Newell Power Electronics Award, and the 2004 Engineering Medal from Ontario Professional Engineers. He holds over 100 patents. Dr. Jain obtained his PhD from the University of Toronto."
     },
     {
-        imgSrc: '/Team/nishithgoel.jpg',
-        name: 'Nishith Goel',
+        imgSrc: '/Team/nishith.png',
+        name: 'Dr. Nishith Goel',
         location: 'Ottawa, Ontario',
         title: 'Director as of: December 31, 2021',
         blurb:
@@ -43,15 +46,15 @@ const boardMembers: BoardMemberData[] = [
         location: 'Toronto, Ontario',
         title: 'Director as of: December 31, 2021',
         blurb:
-            "Mr. Sood is the Managing Director of Signal 8 Limited, based in Toronto, Canada. Mr. Sood has been a founder and the principal investor in several businesses in emerging markets and currently serves as Chairman of Jade Power Trust (TSXV), Galane Gold Ltd. (TSXV), and Biomind Labs Inc. (NEO). He was the founder and Chief Executive Officer of Navina Asset Management Inc., a global asset management firm headquartered in Toronto, Canada. Mr. Sood led the investment activities of Navina and its predecessor company, Lawrence Asset Management Inc., from its founding in 2001 until he sold the firm in 2010. Mr. Sood was educated at the University of Waterloo (B. Mathematics), where he was a Descartes Fellow and the recipient of numerous national awards."
+            "Mr. Sood is an entrepreneur and investor with over 25 years experience in capital markets and operations across a variety of industries and geographies.  He is the Chairman of Abraxas Power, a renewable energy projects developer with projects in Asia, Europe and North America.  He is also the Chairman and CEO of Golconda Gold Ltd, a gold producer and a non-executive director of Elemental Altus Royalties and Biomind Labs Inc.  He was previously the founder and CEO of Navina Asset Management, a Toronto-based investment firm (acquired), the Chairman and co-founder of Jade Power Trust (acquired), a renewable energy project developer, and has served as a director of various companies in the technology, commodity, and financial services sectors.  Mr. Sood holds a B.Mathematics (Hons) degree from the University of Waterloo where he was a Descartes Fellow and the recipient of numerous national awards."
     },
     {
         imgSrc: '/Team/arul.png',
-        name: 'Arul Shanmugasundaram',
+        name: 'Dr. Arul Shanmugasundaram',
         location: 'Karnataka, India',
         title: 'Director as of: February 24, 2022',
         blurb:
-            "Dr. Arul Shanmugasundaram is currently the Executive Director of Ayana Renewable Power Private Limited, India, where he is responsible for business development, technology, and asset management functions. Previously, he was the Chief Operating Officer of Tata Power Solar Systems and led the EPC for utility-scale, rooftop, and pump projects. During nearly a decade at Tata Group, he was part of the leadership team that transformed Tata Power Solar from revenues of US$100 million to US$450 million. Dr. Shanmugasundaram started his career at Applied Materials in Silicon Valley, where he spent 15 years developing and launching several new products and process controls. Dr. Shanmugasundaram holds a Bachelor's degree from the Indian Institute of Technology Madras and Master's and Doctorate degrees from Cornell University. He has more than 40 US patents and several international publications."
+            "Dr Arul Shanmugasundaram is Chief Executive Officer and Managing Director of SWELECT Energy Systems Ltd., a renewable energy solutions company. Prior to this, he was the Executive Director of Ayana Renewable Power Private Limited, India, where he was responsible for business development, technology, and asset management functions. Previously, he was the Chief Operating Officer of Tata Power Solar Systems and led the EPC for utility-scale, rooftop, and pump projects. During nearly a decade at Tata Group, he was part of the leadership team that transformed Tata Power Solar from revenues of US$100 million to US$450 million. Dr. Shanmugasundaram started his career at Applied Materials in Silicon Valley, where he spent 15 years developing and launching several new products and process controls. Dr. Shanmugasundaram holds a Bachelor's degree from the Indian Institute of Technology Madras and Master's and Doctorate degrees from Cornell University. He has more than 40 US patents and several international publications."
     },
     {
         imgSrc: '/Team/magomet.png',
@@ -63,10 +66,61 @@ const boardMembers: BoardMemberData[] = [
     }
 ]
 
-export default function BoardPage() {
+interface BoardMemberCardProps {
+    member: BoardMemberData
+    index: number
+    onClick: () => void
+}
 
+function BoardMemberCard({ member, index, onClick }: BoardMemberCardProps) {
+    const cardRef = useRef(null)
+    const isInView = useInView(cardRef, { once: true, margin: "-50px" })
+
+    return (
+        <motion.div
+            ref={cardRef}
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            onClick={onClick}
+            className="cursor-pointer group"
+        >
+            <Card className="h-full backdrop-blur-md bg-white/90 dark:bg-gray-800/90 border-brand-maroon/10 dark:border-gray-600/30 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden rounded-2xl py-0">
+                <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    <CardContent className="p-0">
+                        <div className="relative overflow-hidden">
+                            <Image
+                                src={member.imgSrc}
+                                alt={member.name}
+                                width={512}
+                                height={512}
+                                className="w-full h-80 object-contain sm:object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        </div>
+                        <div className="px-6 pb-6 pt-4 text-center">
+                            <h2 className="text-xl font-bold text-brand-darkmaroon dark:text-dark-text-primary mb-2 group-hover:text-brand-maroon dark:group-hover:text-brand-yellow transition-colors duration-300">
+                                {member.name}
+                            </h2>
+                            <p className="text-brand-graytext dark:text-dark-text-secondary font-medium mb-1">
+                                {member.location}
+                            </p>
+                        </div>
+                    </CardContent>
+                </motion.div>
+            </Card>
+        </motion.div>
+    )
+}
+
+export default function BoardPage() {
     const [selectedMember, setMember] = useState<BoardMemberData | null>(null)
     const trackEvent = useTrackEvent()
+    const titleRef = useRef(null)
+    const isInView = useInView(titleRef, { once: true })
 
     const handleClick = (member: BoardMemberData) => {
         setMember(member)
@@ -76,53 +130,98 @@ export default function BoardPage() {
     }
 
     return (
-        <div className="container mx-auto py-8 px-4 pb-4">
-            <section id="bod" className="px-2 sm:px-0">
-                <h1 className="sm:text-5xl text-3xl font-bold text-brand-maroon text-center sm:mb-32 mb-8">Board of Directors</h1>
-                <div className="flex flex-wrap justify-center gap-16">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
+            <SolarBackgroundElements />
+
+            <div className="relative container mx-auto px-4 pb-20 pt-10">
+                {/* Hero section */}
+                <motion.div
+                    ref={titleRef}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8 }}
+                    className="text-center mb-16"
+                >
+
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
+                        <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
+                            Our Board
+                        </span>
+                    </h1>
+
+                    <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed">
+                        Distinguished directors providing strategic guidance and governance expertise to drive our mission forward.
+                    </p>
+                </motion.div>
+
+                {/* Board grid */}
+                <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto [&>*]:w-full [&>*]:sm:w-[calc(50%-1rem)] [&>*]:lg:w-[calc(33.333%-1.33rem)] [&>*]:xl:w-[calc(25%-1.5rem)]">
                     {boardMembers.map((member, index) => (
-                        <div
+                        <BoardMemberCard
                             key={index}
+                            member={member}
+                            index={index}
                             onClick={() => handleClick(member)}
-                            className={`bg-white flex flex-col items-center cursor-pointer transform transition duration-300 w-full sm:w-60 lg:w-72 3xl:w-90 ${selectedMember == member
-                                ? 'scale-100'
-                                : 'hover:scale-110 hover:z-100 hover:border-x hover:border-b hover:rounded-xl'
-                                }`}>
-                            <Image
-                                src={member.imgSrc}
-                                alt={member.name}
-                                width={512}
-                                height={512}
-                                className="w-full h-96 object-cover rounded-lg mb-4 pt-1"
-                            />
-                            <h2 className="text-xl font-medium text-black">{member.name}</h2>
-                            <p className="text-lg text-black">{member.title}</p>
-                        </div>
+                        />
                     ))}
                 </div>
-            </section>
+            </div>
+
+            {/* Modal */}
             {selectedMember && (
-                <div
-                    className="fixed inset-0 bg-black/80 z-40"
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 bg-black/80 z-[60]"
                     onClick={() => setMember(null)}
                 >
                     <div
-                        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl z-50 sm:max-w-4/5 max-h-4/5 min-h-2/5 w-full overflow-y-auto border-brand-maroon border-3"
-                        onClick={(e) => e.stopPropagation()}
+                        className="absolute w-full flex items-center justify-center px-4"
+                        style={{
+                            top: '153px', // Header (75px) + Subheader (78px)
+                            height: 'calc(100dvh - 153px)', // Use dynamic viewport height for mobile browser compatibility
+                        }}
                     >
-                        <button
-                            className="absolute top-4 right-4 bg-brand-maroon text-white px-4 py-2 rounded hover:bg-brand-darkmaroon z-10 cursor-pointer"
-                            onClick={() => setMember(null)}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            transition={{ duration: 0.3 }}
+                            className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-full overflow-y-auto border border-brand-maroon/20 dark:border-gray-600/50"
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            Close
-                        </button>
-                        <div className="border-b-4 pb-2 rounded-md border-brand-yellow">
-                            <h2 className="sm:text-4xl text-lg font-bold">{selectedMember.name}</h2>
-                            <p className="sm:text-3xl">{selectedMember.title}</p>
-                        </div>
-                        <p className="mt-4 text-gray-700 sm:text-2xl text-sm">{selectedMember.blurb}</p>
+                            <div className="relative p-4 md:p-8">
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className="absolute top-4 right-4 w-10 h-10 bg-brand-maroon/10 hover:bg-brand-maroon text-brand-maroon hover:text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
+                                    onClick={() => setMember(null)}
+                                >
+                                    ✕
+                                </motion.button>
+
+                                <div className="border-b border-brand-maroon/20 dark:border-gray-600/50 pb-4 md:pb-6 mb-4 md:mb-6">
+                                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-darkmaroon dark:text-dark-text-primary mb-2">
+                                        {selectedMember.name}
+                                    </h2>
+                                    <p className="text-lg md:text-xl lg:text-2xl text-brand-logo dark:text-brand-yellow font-medium mb-2">
+                                        {selectedMember.location}
+                                    </p>
+                                    <p className="text-base md:text-lg text-brand-graytext dark:text-dark-text-secondary">
+                                        {selectedMember.title}
+                                    </p>
+                                </div>
+
+                                <div className="prose prose-sm md:prose-lg max-w-none">
+                                    <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed text-sm md:text-base lg:text-lg">
+                                        {selectedMember.blurb}
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.div>
                     </div>
-                </div>
+                </motion.div>
             )}
         </div>
     )

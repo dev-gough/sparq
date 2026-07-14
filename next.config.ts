@@ -1,7 +1,38 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    optimizeCss: true,
+    cssChunking: 'strict',
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error']
+    } : false,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+        pathname: '/vi/**',
+      }
+    ]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/news-and-events',
+        destination: '/investors/reports',
+        permanent: true,
+      },
+      {
+        source: '/our-products',
+        destination: '/products',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
