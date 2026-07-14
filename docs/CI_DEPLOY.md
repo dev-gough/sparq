@@ -44,6 +44,27 @@ Pre-redesign site is preserved on branch **`old_design`**. Lab deploys track **`
 /home/server/bin/deploy-sparqsys.sh
 ```
 
+## Do not use `sudo npm`
+
+If `npm run build` only works with `sudo`, the tree has **root-owned** files under
+`.next/` and/or `node_modules/` (from a past `sudo npm …` or the old Actions
+workflow that `sudo cp`/`sudo find -delete`'d into the deploy dir).
+
+That is a permissions problem, not a Next.js quirk. Fix ownership, then always
+build as `server`:
+
+```bash
+sudo chown -R server:server /home/server/sparqsys
+# if builds still look stale:
+# sudo rm -rf /home/server/sparqsys/.next /home/server/sparqsys/node_modules
+cd /home/server/sparqsys
+npm ci
+npm run build
+sudo systemctl restart sparqsys   # only systemctl needs sudo
+```
+
+Never `sudo npm install` / `sudo npm run build` — it re-poisons the tree.
+
 ## Health check
 
 Post-deploy probe hits `http://127.0.0.1:8080/` (public homepage).  

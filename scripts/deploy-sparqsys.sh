@@ -55,6 +55,21 @@ log "deploying $APP_DIR (branch=$BRANCH) → unit $UNIT"
 
 cd "$APP_DIR"
 
+# Root-owned .next/node_modules from past `sudo npm …` breaks non-root builds.
+# Never use sudo for npm; fix ownership once instead.
+if find "$APP_DIR" \( -path "$APP_DIR/node_modules/*" -o -path "$APP_DIR/.next/*" -o -path "$APP_DIR/.next" -o -path "$APP_DIR/node_modules" \) -user root -print -quit 2>/dev/null | grep -q .; then
+  n_root="$(find "$APP_DIR" \( -path "$APP_DIR/node_modules/*" -o -path "$APP_DIR/.next/*" -o -path "$APP_DIR/.next" -o -path "$APP_DIR/node_modules" \) -user root 2>/dev/null | wc -l | tr -d ' ')"
+  die "found ${n_root} root-owned files under .next/ or node_modules/.
+This is why \`npm run build\` fails without sudo — root owns outputs from a prior
+\`sudo npm install/build\` (or an old CI job that ran as root).
+
+Fix once (as an admin), then never sudo npm again:
+  sudo chown -R server:server ${APP_DIR}
+  # optional hard reset of build artifacts:
+  # sudo rm -rf ${APP_DIR}/.next ${APP_DIR}/node_modules
+  # cd ${APP_DIR} && npm ci && npm run build"
+fi
+
 if [[ -n "$(git status --porcelain --untracked-files=no 2>/dev/null || true)" ]]; then
   log "warning: tracked files differ from HEAD before reset:"
   git status --short --untracked-files=no || true
