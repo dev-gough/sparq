@@ -113,7 +113,6 @@ export async function GET(request: Request) {
   const checks: HealthCheck[] = [
     { name: 'http', status: 'ok', latencyMs: 1, critical: true },
     checkSesConfig(),
-    checkStockApiConfig(),
     await checkSedarDocuments(),
   ]
 
