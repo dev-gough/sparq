@@ -82,20 +82,6 @@ function checkSesConfig(): HealthCheck {
   }
 }
 
-function checkStockApiConfig(): HealthCheck {
-  const started = Date.now()
-  const ok = Boolean(process.env.TWELVE_DATA_API_KEY)
-  return {
-    name: 'stock_api_config',
-    status: ok ? 'ok' : 'degraded',
-    latencyMs: Date.now() - started,
-    detail: ok
-      ? 'Twelve Data key present'
-      : 'TWELVE_DATA_API_KEY not set (investor chart may fail)',
-    critical: false,
-  }
-}
-
 function rollupStatus(checks: HealthCheck[]): HealthStatus {
   let worst: HealthStatus = 'ok'
   for (const c of checks) {
