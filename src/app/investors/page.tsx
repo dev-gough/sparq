@@ -10,7 +10,7 @@ import FAQs from './investor_faq.json'
 import SedarDocs from '@/data/sedar-documents.json'
 import VideoPopup from '@/components/VideoPopup'
 import { allVideos } from '@/data/videos'
-import { FaChartLine, FaNewspaper, FaShieldAlt, FaExternalLinkAlt, FaPlay, FaFilePdf, FaCalendarAlt } from 'react-icons/fa'
+import { TrendingUp, Newspaper, Shield, ExternalLink, Play, FileText, Calendar } from 'lucide-react'
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface FAQData {
@@ -44,21 +44,21 @@ const investorSections = [
         title: "Stock Performance",
         description: "View SPRQ quote and market data on the TSX Venture Exchange (external).",
         href: "https://money.tmx.com/en/quote/SPRQ",
-        icon: <FaChartLine className="w-6 h-6" />,
+        icon: <TrendingUp className="w-6 h-6" />,
         gradient: "from-brand-maroon to-brand-logo"
     },
     {
         title: "Financial Reports",
         description: "Access our latest SEDAR+ filings, financial statements, and regulatory documents.",
         href: "/investors/reports",
-        icon: <FaNewspaper className="w-6 h-6" />,
+        icon: <Newspaper className="w-6 h-6" />,
         gradient: "from-brand-logo to-brand-yellow"
     },
     {
         title: "Governance",
         description: "Corporate governance documents, policies, and committee charters.",
         href: "/investors/governance",
-        icon: <FaShieldAlt className="w-6 h-6" />,
+        icon: <Shield className="w-6 h-6" />,
         gradient: "from-brand-darkmaroon to-brand-maroon"
     }
 ]
@@ -147,18 +147,18 @@ function InvestorsPageContent() {
                     <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-4xl mx-auto">
                         <Link href="/investors_ppt.pdf" onClick={handlePresentationClick} target="_blank">
                             <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center">
-                                <FaFilePdf className="mr-2" />
+                                <FileText className="mr-2" />
                                 View Investor Presentation
                             </button>
                         </Link>
                         <button onClick={() => handleVideoShow(7)}
                             className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center">
-                            <FaPlay className="mr-2" />
+                            <Play className="mr-2" />
                             Watch CEO Interview
                         </button>
                         <button onClick={() => handleVideoShow(6)}
                             className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center">
-                            <FaPlay className="mr-2" />
+                            <Play className="mr-2" />
                             Watch TSXV 50 Listing
                         </button>
                     </div>
@@ -380,11 +380,11 @@ function InvestorsPageContent() {
                                         <CardContent className="p-6 h-full flex flex-col">
                                             <div className="flex items-start gap-4 mb-4">
                                                 <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white flex-shrink-0">
-                                                    <FaNewspaper className="w-5 h-5" />
+                                                    <Newspaper className="w-5 h-5" />
                                                 </div>
                                                 <div className="flex-1">
                                                     <div className="flex items-center gap-2 mb-2">
-                                                        <FaCalendarAlt className="w-4 h-4 text-brand-maroon" />
+                                                        <Calendar className="w-4 h-4 text-brand-maroon" />
                                                         <span className="text-sm text-brand-graytext dark:text-dark-text-muted font-medium">
                                                             {formatDate(release.publishDate)}
                                                         </span>
@@ -399,7 +399,7 @@ function InvestorsPageContent() {
                                                 <div className="inline-flex items-center text-brand-maroon group-hover:text-brand-darkmaroon font-semibold transition-colors duration-200">
                                                     <span>Read Full Release</span>
                                                     <span className="ml-2">
-                                                        <FaExternalLinkAlt className="w-4 h-4" />
+                                                        <ExternalLink className="w-4 h-4" />
                                                     </span>
                                                 </div>
                                             </div>
@@ -512,7 +512,7 @@ function InvestorsPageContent() {
                         </Link>
                         <Link href="/investors_ppt.pdf" target="_blank">
                             <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center">
-                                <FaFilePdf className="mr-2" />
+                                <FileText className="mr-2" />
                                 View Presentation
                             </button>
                         </Link>

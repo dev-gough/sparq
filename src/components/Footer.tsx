@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { FiMail, FiMapPin, FiGlobe } from 'react-icons/fi'
+import { Mail, MapPin, Globe } from 'lucide-react'
 
 /**
  * Server Component footer — no client JS, no Motion.
@@ -43,7 +43,7 @@ export default function Footer() {
 
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-brand-graytext dark:text-dark-text-secondary">
-                <FiMail
+                <Mail
                   size={18}
                   className="text-brand-maroon dark:text-brand-yellow flex-shrink-0"
                 />
@@ -56,7 +56,7 @@ export default function Footer() {
               </div>
 
               <div className="flex items-center gap-3 text-brand-graytext dark:text-dark-text-secondary">
-                <FiGlobe
+                <Globe
                   size={18}
                   className="text-brand-maroon dark:text-brand-yellow flex-shrink-0"
                 />
@@ -64,7 +64,7 @@ export default function Footer() {
               </div>
 
               <div className="flex items-start gap-3 text-brand-graytext dark:text-dark-text-secondary">
-                <FiMapPin
+                <MapPin
                   size={18}
                   className="text-brand-maroon dark:text-brand-yellow flex-shrink-0 mt-1"
                 />

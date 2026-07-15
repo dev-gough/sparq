@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Card, CardContent } from '@/components/ui/card'
-import { FaFileAlt, FaDownload, FaShieldAlt, FaUsers, FaGavel, FaEye } from 'react-icons/fa'
+import { FileText, Download, Shield, Users, Gavel, Eye } from 'lucide-react'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
 
 interface GovernanceDocument {
@@ -21,7 +21,7 @@ const governanceDocuments: GovernanceDocument[] = [
         description: 'Charter defining the responsibilities and authority of the Audit Committee.',
         url: '/Governance/Audit-Committee-Charter.pdf',
         category: 'committees',
-        icon: <FaShieldAlt className="w-5 h-5" />
+        icon: <Shield className="w-5 h-5" />
     },
     {
         id: 'board-survey',
@@ -29,7 +29,7 @@ const governanceDocuments: GovernanceDocument[] = [
         description: 'Assessment framework for evaluating board performance and effectiveness.',
         url: '/Governance/Board-Effectiveness-Survey.pdf',
         category: 'board',
-        icon: <FaUsers className="w-5 h-5" />
+        icon: <Users className="w-5 h-5" />
     },
     {
         id: 'code-conduct',
@@ -37,7 +37,7 @@ const governanceDocuments: GovernanceDocument[] = [
         description: 'Ethical guidelines and standards for all business operations and employees.',
         url: '/Governance/Business-Code-of-Conduct.pdf',
         category: 'policies',
-        icon: <FaGavel className="w-5 h-5" />
+        icon: <Gavel className="w-5 h-5" />
     },
     {
         id: 'ceo-mandate',
@@ -45,7 +45,7 @@ const governanceDocuments: GovernanceDocument[] = [
         description: 'Role definition and responsibilities of the Chief Executive Officer.',
         url: '/Governance/CEO-Mandate.pdf',
         category: 'mandates',
-        icon: <FaUsers className="w-5 h-5" />
+        icon: <Users className="w-5 h-5" />
     },
     {
         id: 'chairman-mandate',
@@ -53,7 +53,7 @@ const governanceDocuments: GovernanceDocument[] = [
         description: 'Duties and responsibilities of the Board Chairman position.',
         url: '/Governance/Chairmans-Mandate.pdf',
         category: 'mandates',
-        icon: <FaUsers className="w-5 h-5" />
+        icon: <Users className="w-5 h-5" />
     },
     {
         id: 'compensation-charter',
@@ -61,7 +61,7 @@ const governanceDocuments: GovernanceDocument[] = [
         description: 'Framework for executive compensation decisions and committee oversight.',
         url: '/Governance/Compensation-Committee-Charter.pdf',
         category: 'committees',
-        icon: <FaShieldAlt className="w-5 h-5" />
+        icon: <Shield className="w-5 h-5" />
     },
     {
         id: 'governance-charter',
@@ -69,7 +69,7 @@ const governanceDocuments: GovernanceDocument[] = [
         description: 'Charter governing corporate governance and nominating committee functions.',
         url: '/Governance/Corporate-Governance-and-Nominating-Committee-Charter.pdf',
         category: 'committees',
-        icon: <FaShieldAlt className="w-5 h-5" />
+        icon: <Shield className="w-5 h-5" />
     },
     {
         id: 'directors-mandate',
@@ -77,7 +77,7 @@ const governanceDocuments: GovernanceDocument[] = [
         description: 'Comprehensive guide to director roles, responsibilities, and expectations.',
         url: '/Governance/Directors-Mandate.pdf',
         category: 'mandates',
-        icon: <FaUsers className="w-5 h-5" />
+        icon: <Users className="w-5 h-5" />
     },
     {
         id: 'disclosure-policy',
@@ -85,7 +85,7 @@ const governanceDocuments: GovernanceDocument[] = [
         description: 'Guidelines for transparent and timely disclosure of material information.',
         url: '/Governance/Disclosure-Policy.pdf',
         category: 'policies',
-        icon: <FaEye className="w-5 h-5" />
+        icon: <Eye className="w-5 h-5" />
     },
     {
         id: 'insider-trading',
@@ -93,7 +93,7 @@ const governanceDocuments: GovernanceDocument[] = [
         description: 'Comprehensive policy on insider trading prevention and compliance.',
         url: '/Governance/Insider-Trading-Policy.pdf',
         category: 'policies',
-        icon: <FaGavel className="w-5 h-5" />
+        icon: <Gavel className="w-5 h-5" />
     }
 ]
 
@@ -130,11 +130,11 @@ function DocumentCard({ document }: { document: GovernanceDocument }) {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-semibold transition-colors duration-200 group/link">
-                            <FaDownload className="w-4 h-4" />
+                            <Download className="w-4 h-4" />
                             <span>Download PDF</span>
                         </Link>
                         <div className="flex items-center gap-2 text-brand-graytext dark:text-dark-text-muted">
-                            <FaFileAlt className="w-4 h-4" />
+                            <FileText className="w-4 h-4" />
                             <span className="text-sm">PDF</span>
                         </div>
                     </div>

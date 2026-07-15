@@ -3,8 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { motion } from 'motion/react'
-import { FaExternalLinkAlt } from 'react-icons/fa'
+import { ExternalLink } from 'lucide-react'
 
 function useScrollDirection() {
     const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null)
@@ -13,12 +12,12 @@ function useScrollDirection() {
     useEffect(() => {
         const updateScrollDirection = () => {
             const scrollY = window.scrollY
-            const direction = scrollY > lastScrollY ? 'down' : 'up'
+            const direction = scrollY> lastScrollY ? 'down' : 'up'
 
-            if (direction !== scrollDirection && Math.abs(scrollY - lastScrollY) > 10) {
+            if (direction !== scrollDirection && Math.abs(scrollY - lastScrollY)> 10) {
                 setScrollDirection(direction)
             }
-            setLastScrollY(scrollY > 0 ? scrollY : 0)
+            setLastScrollY(scrollY> 0 ? scrollY : 0)
         }
 
         window.addEventListener('scroll', updateScrollDirection)
@@ -83,11 +82,10 @@ function SubheadingItem({ label, href, target }: SubheadingItemProps) {
         (targetHash === "" || hash === `#${targetHash}`) // and-if present-same hash
 
     return (
-        <motion.div
-            whileHover={{ y: -1 }}
-            transition={{ duration: 0.2 }}
-            className="relative"
-        >
+        <div
+            
+            
+            className="relative">
             <Link
                 href={href}
                 className={`relative flex flex-shrink-0 items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${isActive
@@ -95,23 +93,22 @@ function SubheadingItem({ label, href, target }: SubheadingItemProps) {
                     : "text-brand-graytext dark:text-dark-text-secondary hover:text-brand-maroon dark:hover:text-brand-yellow hover:bg-brand-maroon/20 dark:hover:bg-brand-yellow/20"
                     } whitespace-nowrap`}
                 target={target ? target : (isExternal ? "_blank" : "")}
-                rel={isExternal ? "noopener noreferrer" : ""}
-            >
+                rel={isExternal ? "noopener noreferrer" : ""}>
                 <span className="text-base sm:text-lg">{label}</span>
                 {isExternal && (
-                    <FaExternalLinkAlt className="w-3 h-3 opacity-70" />
+                    <ExternalLink className="w-3 h-3 opacity-70" />
                 )}
                 {isActive && (
-                    <motion.div
-                        layoutId="activeSubTab"
+                    <div
+                        
                         className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-maroon dark:bg-brand-yellow rounded-full"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3 }}
+                        
+                        
+                        
                     />
                 )}
             </Link>
-        </motion.div>
+        </div>
     )
 }
 
@@ -140,35 +137,23 @@ export default function Subheader({ items }: SubheaderProps) {
     }
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{
-                opacity: isVisible ? 1 : 0,
-                y: isVisible ? 0 : -100,
-                scale: isVisible ? 1 : 0.95
-            }}
-            transition={{
-                duration: 0.5,
-                ease: [0.23, 1, 0.320, 1]
-            }}
-            className="sticky top-[75px] z-50 flex justify-center bg-white/95 dark:bg-gray-700/90"
-        >
+        <div
+            
+            
+            
+            className={`sticky top-[75px] z-50 flex justify-center bg-white/95 dark:bg-gray-700/90 transition-all duration-300 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}>
             <div className={`bg-white/95 dark:bg-gray-800/90 backdrop-blur-md border border-brand-maroon/10 dark:border-gray-700/50 shadow-lg rounded-b-xl ${getMaxWidth()} mx-2 sm:mx-4 lg:mx-6 w-full`}>
                 <div className="px-2 sm:px-4 lg:px-6 py-4">
                     <div className={`flex items-center justify-start lg:justify-center gap-2 overflow-x-auto scrollbar-hide`}>
-                        {items.map((item, index) => (
-                            <motion.div
-                                key={item.href}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                            >
+                        {items.map((item) => (
+                            <div
+                                key={item.href}>
                                 <SubheadingItem {...item} />
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </div>
     )
 }

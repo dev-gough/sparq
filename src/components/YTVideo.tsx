@@ -1,6 +1,7 @@
+'use client'
+
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { motion } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
 import { useTrackEvent } from '@/hooks/useTrackEvent'
 
@@ -68,8 +69,7 @@ export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, o
                     controls
                     autoPlay
                     className="w-full h-full object-cover"
-                    title={video.title}
-                  >
+                    title={video.title}>
                     Your browser does not support the video tag.
                   </video>
                 ) : (
@@ -85,8 +85,7 @@ export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, o
             ) : (
               <button
                 onClick={() => handleVideoClick(video.id)}
-                className="w-full text-left group"
-              >
+                className="w-full text-left group">
                 <div className="relative w-full aspect-video rounded-lg overflow-hidden">
                   <Image
                     height={720}
@@ -101,8 +100,7 @@ export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, o
                       <svg
                         className="w-8 h-8 text-white"
                         fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
+                        viewBox="0 0 20 20">
                         <path
                           fillRule="evenodd"
                           d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
@@ -123,19 +121,17 @@ export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, o
   // Default card-based grid layout
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {videosData.map((video, index) => (
-        <motion.div
+      {videosData.map((video) => (
+        <div
           key={video.id}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: index * 0.1 }}
-          className="group"
-        >
+          
+          
+          
+          className="group">
           <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
             <button
               onClick={() => handleVideoClick(video.id)}
-              className="w-full text-left"
-            >
+              className="w-full text-left">
               <div className="relative">
                 <Image
                   height={720}
@@ -150,8 +146,7 @@ export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, o
                     <svg
                       className="w-8 h-8 text-white"
                       fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
+                      viewBox="0 0 20 20">
                       <path
                         fillRule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
@@ -168,7 +163,7 @@ export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, o
               </CardContent>
             </button>
           </Card>
-        </motion.div>
+        </div>
       ))}
     </div>
   )

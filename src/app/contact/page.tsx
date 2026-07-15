@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaSitemap } from 'react-icons/fa'
+import { Phone, Mail, MapPin, Network } from 'lucide-react'
 import { useTrackEvent } from '@/hooks/useTrackEvent'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
 
@@ -41,7 +41,7 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 				<CardContent className="p-6 h-full flex flex-col">
 					<div className="flex items-start gap-4 mb-6">
 						<div className="flex items-center justify-center w-12 h-12 min-w-[3rem] min-h-[3rem] bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white flex-shrink-0">
-							<FaMapMarkerAlt className="w-5 h-5" />
+							<MapPin className="w-5 h-5" />
 						</div>
 						<div className="flex-1">
 							<h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow leading-tight">{title}</h3>
@@ -52,7 +52,7 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 					<div className="space-y-4 flex-grow">
 						{address && (
 							<div className="flex items-start gap-3">
-								<FaMapMarkerAlt className="w-4 h-4 mt-1 text-brand-maroon flex-shrink-0" />
+								<MapPin className="w-4 h-4 mt-1 text-brand-maroon flex-shrink-0" />
 								<p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
 									{address.split('\n').map((line, index) => (
 										<span key={index}>
@@ -65,7 +65,7 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 						)}
 						{phone && (
 							<div className="flex items-center gap-3">
-								<FaPhone className="w-4 h-4 text-brand-maroon flex-shrink-0" />
+								<Phone className="w-4 h-4 text-brand-maroon flex-shrink-0" />
 								<Link
 									onClick={() => handleClick("phone", phone)}
 									href={`tel:${phone}`}
@@ -77,7 +77,7 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 						)}
 						{email && (
 							<div className="flex items-center gap-3">
-								<FaEnvelope className="w-4 h-4 text-brand-maroon flex-shrink-0" />
+								<Mail className="w-4 h-4 text-brand-maroon flex-shrink-0" />
 								<Link
 									onClick={() => handleClick("email", email)}
 									href={`mailto:${email}`}
@@ -89,7 +89,7 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 						)}
 						{website && (
 							<div className="flex items-center gap-3">
-								<FaSitemap className="w-4 h-4 text-brand-maroon flex-shrink-0" />
+								<Network className="w-4 h-4 text-brand-maroon flex-shrink-0" />
 								<Link
 									onClick={() => handleClick("website", website)}
 									href={website}

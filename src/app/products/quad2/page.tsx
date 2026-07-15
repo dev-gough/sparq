@@ -7,7 +7,7 @@ import { useState, useRef } from 'react'
 import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
-import YouTube from 'react-youtube'
+import YouTubeFacade from '@/components/YouTubeFacade'
 
 function expanded() {
 	return (
@@ -84,20 +84,10 @@ export default function Quad2Page() {
 	const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
 	const trackEvent = useTrackEvent()
 
-	const youtubeRefs = useRef<(YouTube | null)[]>([])
-
-	const toggleExpanded = (i: number) => {
-		const wasExpanded = dropdownExpanded[i]
+		const toggleExpanded = (i: number) => {
 		setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
 
-		// If closing dropdown and it has a YouTube video, reset it to beginning
-		if (wasExpanded && youtubeRefs.current[i]?.getInternalPlayer) {
-			const player = youtubeRefs.current[i]!.getInternalPlayer()
-			player.seekTo(0)
-			player.pauseVideo()
-		}
-
-		if (!dropdownExpanded[i]) {
+				if (!dropdownExpanded[i]) {
 			trackEvent("dropdown_opened", {
 				"parent": "quad2",
 				"dropdown": accordionSections[i].title,
@@ -202,22 +192,7 @@ export default function Quad2Page() {
 			content: (
 				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
 					<div className="w-full aspect-video min-h-[400px]">
-						<YouTube
-							videoId="r05zC7wY7NQ"
-							opts={{
-								width: '100%',
-								height: '400',
-								playerVars: {
-									autoplay: 0,
-									controls: 1,
-									rel: 0,
-									showinfo: 0,
-									modestbranding: 1,
-								},
-							}}
-							className="w-full h-full"
-							ref={(el) => { youtubeRefs.current[2] = el }}
-						/>
+						<YouTubeFacade videoId="r05zC7wY7NQ" title="Installation Video" />
 					</div>
 				</div>
 			)

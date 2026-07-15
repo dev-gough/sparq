@@ -1,72 +1,11 @@
-'use client'
+/** Terms of Service body — server-safe content module (no client hooks). */
 
-import Link from "next/link"
-import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
-import { useTrackEvent } from "@/hooks/useTrackEvent"
+import Link from 'next/link'
 
-interface TOSProps {
-    isOpen?: boolean
-}
-
-export default function TOSDropdown({ isOpen }: TOSProps) {
-
-    const [open, setOpen] = useState<boolean>(isOpen ? true : false)
-    const trackEvent = useTrackEvent()
-
-    const handleOpen = () => {
-        setOpen(!open)
-        if (open) return
-        trackEvent("dropdown_opened", {
-            "dropdown": "tos",
-        })
-    }
-
-    return (
-        <div className="w-full relative">
-            {/* Dropdown menu button */}
-            <div
-                className={`p-6 cursor-pointer bg-gradient-to-r from-brand-maroon to-brand-darkmaroon rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]`}
-                onClick={handleOpen}
-                aria-expanded={open}
-            >
-                <div className="flex flex-row justify-between items-center text-xl md:text-2xl lg:text-3xl">
-                    <span className="text-white font-semibold">Terms of Service</span>
-                    <svg
-                        fill="#ffffff"
-                        height="24"
-                        width="24"
-                        version="1.1"
-                        id="Layer_1"
-                        viewBox="0 0 330.00 330.00"
-                        className={`transform transition-transform duration-300 ${open ? 'scale-y-[-1]' : ''
-                            }`}
-                    >
-                        <path
-                            id="XMLID_225_"
-                            d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
-                        />
-                    </svg>
-                </div>
-            </div>
-            {/* TOS content */}
-            <AnimatePresence>
-                {open && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0, y: -20 }}
-                        animate={{ opacity: 1, height: "auto", y: 0 }}
-                        exit={{ opacity: 0, height: 0, y: -20 }}
-                        transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
-                        className="bg-white dark:bg-gray-700 rounded-xl shadow-lg border border-gray-100 dark:border-gray-600 p-6 sm:p-10 mt-4 text-brand-graytext dark:text-dark-text-secondary overflow-hidden"
-                    >
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3, delay: 0.1 }}
-                            className="flex flex-col gap-4 sm:text-lg lg:text-xl"
-                        >
-                            <h2 className="font-bold">Last Updated: January 30, 2025</h2>
+export default function TermsOfServiceContent() {
+  return (
+    <div className="flex flex-col gap-4 sm:text-lg lg:text-xl">
+      <h2 className="font-bold">Last Updated: January 30, 2025</h2>
                             <p>Please read these Terms of Service (“Terms”) carefully. Your purchase of Products or access to or use of the Services (each as defined below) constitutes your agreement to be bound by these Terms. Notwithstanding anything herein to the contrary, if a written contract signed by both parties is in existence covering the sale of the Products and Services covered hereby, the terms and conditions of such contract shall prevail to the extent they are inconsistent with these Terms.</p>
                             <p>These Terms are between you (“you”) and SPARQ Systems Inc. (“SPARQ”, “we” or “us”) concerning the sale of microinverters and other goods and products by SPARQ (“Products”) and your access and/or use of SPARQ&apos;s platform, including its websites and applications, and the content, information and services provided through such platform (collectively, the “Services”).</p>
                             <p>By purchasing Products, accessing or using the Services, or by installing, copying or downloading any software that comprises a Service (such as an application) or that is made available through any Service, you agree to be bound by the terms and conditions of these Terms. If you do not agree to the terms and conditions of these Terms, you must not purchase Products or use the Services. We may revise these Terms from time to time in our sole discretion and provide you with notice of such change by any reasonable means, including by making available the revised version of these Terms through the Services.  You should periodically visit this page to review the then-current version of the Terms. The “Last Updated” legend at the top of this page indicates when these Terms were last revised. Your purchase of Products or continued access to or use of the Services following any changes will signify your acceptance of such changes and your agreement to be bound by them.</p>
@@ -203,10 +142,6 @@ export default function TOSDropdown({ isOpen }: TOSProps) {
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div >
-    )
+    </div>
+  )
 }
