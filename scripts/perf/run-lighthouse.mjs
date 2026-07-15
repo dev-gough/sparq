@@ -35,6 +35,7 @@ const CHROME =
   `${process.env.HOME}/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome`
 
 function parseArgs(argv) {
+  // Default 3 runs — enough for a stable median without long CI times.
   const out = { label: 'lab', runs: 3, startServer: true, port: 8080 }
   for (let i = 2; i < argv.length; i++) {
     if (argv[i] === '--label') out.label = argv[++i]

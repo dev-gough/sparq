@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, Suspense } from 'react'
 import { useSearchParams, useRouter } from "next/navigation"
 import { motion, useInView } from "motion/react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -16,7 +16,7 @@ import investorsData from '@/app/investors/investor_faq.json'
 
 
 
-export default function LearningPage() {
+function LearningPageContent() {
     const searchParams = useSearchParams()
     const router = useRouter()
     const [showingID, setShowingID] = useState<number | null>(null)
@@ -336,5 +336,13 @@ export default function LearningPage() {
                 <VideoPopup url={selectedVideo.url} onClose={handleClose} iFrame={selectedVideo.iFrame} />
             )}
         </div>
+    )
+}
+
+export default function LearningPage() {
+    return (
+        <Suspense fallback={null}>
+            <LearningPageContent />
+        </Suspense>
     )
 }

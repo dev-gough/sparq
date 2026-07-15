@@ -11,9 +11,12 @@ Captured during the optimization sweep (`docs/REPORT.md` / `docs/IDEAS.md`).
 
 ## How to re-capture
 
+**Always commit first**, then measure from that commit so baselines are re-runnable:
+
 ```bash
-npm run perf:build-baseline -- --label my-label
-npm run perf:lighthouse -- --label my-label --runs 3
+git rev-parse --short HEAD   # record in the label if useful
+npm run perf:build-baseline -- --label post-theme
+npm run perf:lighthouse -- --label post-theme --runs 3   # 3 runs default for lab
 ```
 
-Phase A is **not** expected to move First Load JS (dead code was already tree-shaken). Bundle wins land in Phase B (theme + RSC).
+Phase A is **not** expected to move First Load JS (dead code was already tree-shaken). Theme (no layout `cookies()`) + RSC batches are where static routes and FL JS wins land.

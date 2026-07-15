@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from "next/navigation"
 import { motion, useInView } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
@@ -65,7 +65,7 @@ const investorSections = [
 ]
 
 
-export default function InvestorsPage() {
+function InvestorsPageContent() {
     const heroRef = useRef(null)
     const isHeroInView = useInView(heroRef, { once: true })
     const trackEvent = useTrackEvent()
@@ -675,5 +675,13 @@ export default function InvestorsPage() {
                 ) : null
             })()}
         </div>
+    )
+}
+
+export default function InvestorsPage() {
+    return (
+        <Suspense fallback={null}>
+            <InvestorsPageContent />
+        </Suspense>
     )
 }

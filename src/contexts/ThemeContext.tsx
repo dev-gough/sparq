@@ -10,32 +10,28 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
+function readDomIsDark(): boolean {
+  if (typeof document === 'undefined') return true
+  return document.documentElement.classList.contains('dark')
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Initialize with a default state to avoid hydration mismatch
+  // Match the blocking layout script: dark by default; cookie / DOM win after mount.
   const [isDarkMode, setIsDarkMode] = useState(true)
 
   useEffect(() => {
-    // Check if dark class is already applied (from server-side)
-    const hasExistingDark = document.documentElement.classList.contains('dark')
-    
-    // Check cookie preference
     const cookieTheme = getThemeFromCookie()
-    
     let preferredDark = true
-    
+
     if (cookieTheme !== null) {
-      // Use cookie preference
       preferredDark = cookieTheme
-    } else if (hasExistingDark) {
-      // Use existing dark class
-      preferredDark = true
     } else {
-      // Default to dark mode (ignore system preference)
-      preferredDark = true
-      // Save the default preference to cookie
+      // Prefer class already set by the FOUC script; fall back to dark.
+      preferredDark = readDomIsDark()
+      // Persist default so preference stays stable across visits.
       setThemeCookie(preferredDark)
     }
-    
+
     setIsDarkMode(preferredDark)
     updateDocumentClass(preferredDark)
   }, [])

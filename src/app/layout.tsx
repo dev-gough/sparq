@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { Inter } from "next/font/google"
 import RootLayoutClient from "@/components/RootLayoutClient"
-import { getServerTheme } from "@/lib/theme-server"
 
 export const metadata: Metadata = {
 	title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
@@ -15,6 +14,14 @@ const inter = Inter({
 	weight: ["400", "500", "600", "700"],
 	display: 'swap',
 })
+
+/**
+ * Blocking FOUC script: reads theme-preference cookie, defaults to dark.
+ * Must stay in sync with src/lib/cookies.ts (cookie name + values).
+ * Lives in layout so we never call cookies() from next/headers (keeps
+ * marketing routes eligible for static generation).
+ */
+const themeInitScript = `(function(){try{var m=document.cookie.match(/(?:^|; )theme-preference=([^;]*)/);var t=m?decodeURIComponent(m[1]):null;if(t==='light'){document.documentElement.classList.remove('dark')}else{document.documentElement.classList.add('dark')}}catch(e){document.documentElement.classList.add('dark')}})();`
 
 const aboutDropdown = [
 	{ label: "About Us", href: "/about" },
@@ -56,16 +63,21 @@ const navbarItems = [
 	{ label: "Support", href: "/support" },
 ]
 
-export default async function RootLayout({
+export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode,
 }>) {
-	const theme = await getServerTheme()
-	const themeClass = theme === 'dark' ? 'dark' : ''
-	
+	// Default `dark` on <html> matches product default; script adjusts for light cookie before paint.
 	return (
-		<html lang="en" className={`bg-white dark:bg-gray-900 ${themeClass} ${inter.className}`}>
+		<html
+			lang="en"
+			className={`bg-white dark:bg-gray-900 dark ${inter.className}`}
+			suppressHydrationWarning
+		>
+			<head>
+				<script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+			</head>
 			<RootLayoutClient navbarItems={navbarItems}>
 				{children}
 			</RootLayoutClient>
