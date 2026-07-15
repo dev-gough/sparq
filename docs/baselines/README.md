@@ -10,6 +10,8 @@ Captured during the optimization sweep (`docs/REPORT.md` / `docs/IDEAS.md`).
 | `2026-07-15-post-phase-a-lighthouse.json` | Lab Lighthouse medians (3 runs) after Phase A |
 | `2026-07-15-post-theme-5904ab8.json` | Route table **after** theme PR (`5904ab8`): **22 static / 4 dynamic** (APIs only) |
 | `2026-07-15-post-theme-5904ab8-lighthouse.json` | Lab Lighthouse medians (3 runs) at commit `5904ab8` |
+| `2026-07-15-post-3a-1a7f29c.json` | After 3a (`1a7f29c`): home First Load **154 kB** (Firebase idle-split) |
+| `2026-07-15-post-3a-1a7f29c-lighthouse.json` | Lab Lighthouse medians (3 runs) at commit `1a7f29c` |
 
 Convention: measure **after** the feature commit, and put the short SHA in the label so you can `git checkout <sha>` and re-run.
 
