@@ -13,6 +13,8 @@ Captured during the optimization sweep (`docs/REPORT.md` / `docs/IDEAS.md`).
 
 Convention: measure **after** the feature commit, and put the short SHA in the label so you can `git checkout <sha>` and re-run.
 
+Only commit the summarized `*-lighthouse.json` + route-table JSON/logs — not `.lh-tmp-*` per-run dumps.
+
 ## How to re-capture
 
 **Always commit first**, then measure from that commit so baselines are re-runnable:

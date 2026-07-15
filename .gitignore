@@ -13,6 +13,7 @@
 # testing
 /coverage
 .lighthouseci/
+docs/baselines/.lh-tmp-*/
 
 # next.js
 /.next/

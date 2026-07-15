@@ -121,7 +121,8 @@ async function main() {
   }
 
   mkdirSync(BASELINES, { recursive: true })
-  const tmpDir = join(BASELINES, `.lh-tmp-${Date.now()}`)
+  // Temp per-run dumps (gitignored). Prefer /tmp so they never land in the repo.
+  const tmpDir = join('/tmp', `sparq-lh-${Date.now()}`)
   mkdirSync(tmpDir, { recursive: true })
 
   const urlResults = []
