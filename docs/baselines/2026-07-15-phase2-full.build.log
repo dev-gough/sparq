@@ -1,0 +1,61 @@
+
+> sparq@0.3.0 build
+> next build
+
+   ▲ Next.js 15.5.20
+   - Experiments (use with caution):
+     · cssChunking: "strict"
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 10.2s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/26) ...
+   Generating static pages (6/26) 
+   Generating static pages (12/26) 
+   Generating static pages (19/26) 
+ ✓ Generating static pages (26/26)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    6.29 kB         167 kB
+├ ○ /_not-found                            999 B         103 kB
+├ ○ /about                               2.42 kB         144 kB
+├ ○ /about/board                         6.75 kB         172 kB
+├ ○ /about/leadership                    7.49 kB         172 kB
+├ ƒ /api/health                            139 B         103 kB
+├ ƒ /api/ops/logs                          139 B         103 kB
+├ ƒ /api/sedar-documents                   139 B         103 kB
+├ ƒ /api/send-email                        139 B         103 kB
+├ ○ /contact                             5.82 kB         172 kB
+├ ○ /investors                           11.7 kB         188 kB
+├ ○ /investors/governance                5.89 kB         159 kB
+├ ○ /investors/reports                   3.73 kB         153 kB
+├ ○ /products                            4.99 kB         160 kB
+├ ○ /products/accessories                1.52 kB         113 kB
+├ ○ /products/app                        1.37 kB         173 kB
+├ ○ /products/legacy                     1.86 kB         173 kB
+├ ○ /products/quad2                      3.39 kB         181 kB
+├ ○ /products/quad3                      3.96 kB         181 kB
+├ ○ /products/sparqlinq                  3.24 kB         175 kB
+├ ○ /products/sparqvu                    1.87 kB         173 kB
+├ ○ /resources                           16.5 kB         173 kB
+├ ○ /resources/calculator                7.33 kB         154 kB
+├ ○ /resources/legal                     19.6 kB         175 kB
+├ ○ /support                                8 kB         154 kB
+└ ○ /technology                          5.12 kB         163 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/1255-2a00c48a91e35838.js      46.2 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js  54.2 kB
+  └ other shared chunks (total)          1.96 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+WARNING: LOG_ENCRYPTION_KEY not set or invalid length. Logs will not be encrypted!
+Generate a key with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+WARNING: LOG_ENCRYPTION_KEY not set or invalid length. Logs will not be encrypted!
+Generate a key with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"

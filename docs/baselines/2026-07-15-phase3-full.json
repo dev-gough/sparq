@@ -1,0 +1,300 @@
+{
+  "kind": "next-build-route-table",
+  "label": "phase3-full",
+  "capturedAt": "2026-07-15T19:14:58.447Z",
+  "date": "2026-07-15",
+  "git": {
+    "commit": "f993b8073e1ded6fbfadae027968593a31962935",
+    "commitShort": "f993b80",
+    "branch": "HEAD",
+    "subject": "Fix investors CLS: isolate useSearchParams in VideoDeepLink island"
+  },
+  "package": {
+    "name": "sparq",
+    "version": "0.3.0",
+    "next": "^15.5.20"
+  },
+  "summary": {
+    "totalRoutes": 26,
+    "pageCount": 21,
+    "apiCount": 4,
+    "byRendering": {
+      "static": 22,
+      "dynamic": 4
+    },
+    "sharedFirstLoadJs": "102 kB",
+    "homeFirstLoadJs": "124 kB",
+    "homeFirstLoadJsBytes": 126976,
+    "heaviestPages": [
+      {
+        "path": "/resources",
+        "firstLoadJs": "172 kB",
+        "size": "19.9 kB",
+        "rendering": "static"
+      },
+      {
+        "path": "/products/quad3",
+        "firstLoadJs": "163 kB",
+        "size": "4.44 kB",
+        "rendering": "static"
+      },
+      {
+        "path": "/products/quad2",
+        "firstLoadJs": "162 kB",
+        "size": "3.86 kB",
+        "rendering": "static"
+      },
+      {
+        "path": "/products/sparqlinq",
+        "firstLoadJs": "161 kB",
+        "size": "3.21 kB",
+        "rendering": "static"
+      },
+      {
+        "path": "/products/legacy",
+        "firstLoadJs": "160 kB",
+        "size": "1.85 kB",
+        "rendering": "static"
+      }
+    ]
+  },
+  "sharedJs": "102 kB",
+  "sharedJsBytes": 104448,
+  "routes": [
+    {
+      "path": "/",
+      "marker": "○",
+      "rendering": "static",
+      "size": "5.37 kB",
+      "sizeBytes": 5499,
+      "firstLoadJs": "124 kB",
+      "firstLoadJsBytes": 126976
+    },
+    {
+      "path": "/_not-found",
+      "marker": "○",
+      "rendering": "static",
+      "size": "990 B",
+      "sizeBytes": 990,
+      "firstLoadJs": "103 kB",
+      "firstLoadJsBytes": 105472
+    },
+    {
+      "path": "/about",
+      "marker": "○",
+      "rendering": "static",
+      "size": "1.67 kB",
+      "sizeBytes": 1710,
+      "firstLoadJs": "112 kB",
+      "firstLoadJsBytes": 114688
+    },
+    {
+      "path": "/about/board",
+      "marker": "○",
+      "rendering": "static",
+      "size": "5.74 kB",
+      "sizeBytes": 5878,
+      "firstLoadJs": "121 kB",
+      "firstLoadJsBytes": 123904
+    },
+    {
+      "path": "/about/leadership",
+      "marker": "○",
+      "rendering": "static",
+      "size": "6.47 kB",
+      "sizeBytes": 6625,
+      "firstLoadJs": "122 kB",
+      "firstLoadJsBytes": 124928
+    },
+    {
+      "path": "/api/health",
+      "marker": "ƒ",
+      "rendering": "dynamic",
+      "size": "134 B",
+      "sizeBytes": 134,
+      "firstLoadJs": "103 kB",
+      "firstLoadJsBytes": 105472
+    },
+    {
+      "path": "/api/ops/logs",
+      "marker": "ƒ",
+      "rendering": "dynamic",
+      "size": "134 B",
+      "sizeBytes": 134,
+      "firstLoadJs": "103 kB",
+      "firstLoadJsBytes": 105472
+    },
+    {
+      "path": "/api/sedar-documents",
+      "marker": "ƒ",
+      "rendering": "dynamic",
+      "size": "134 B",
+      "sizeBytes": 134,
+      "firstLoadJs": "103 kB",
+      "firstLoadJsBytes": 105472
+    },
+    {
+      "path": "/api/send-email",
+      "marker": "ƒ",
+      "rendering": "dynamic",
+      "size": "134 B",
+      "sizeBytes": 134,
+      "firstLoadJs": "103 kB",
+      "firstLoadJsBytes": 105472
+    },
+    {
+      "path": "/contact",
+      "marker": "○",
+      "rendering": "static",
+      "size": "5.09 kB",
+      "sizeBytes": 5212,
+      "firstLoadJs": "155 kB",
+      "firstLoadJsBytes": 158720
+    },
+    {
+      "path": "/investors",
+      "marker": "○",
+      "rendering": "static",
+      "size": "15.6 kB",
+      "sizeBytes": 15974,
+      "firstLoadJs": "135 kB",
+      "firstLoadJsBytes": 138240
+    },
+    {
+      "path": "/investors/governance",
+      "marker": "○",
+      "rendering": "static",
+      "size": "4.76 kB",
+      "sizeBytes": 4874,
+      "firstLoadJs": "118 kB",
+      "firstLoadJsBytes": 120832
+    },
+    {
+      "path": "/investors/reports",
+      "marker": "○",
+      "rendering": "static",
+      "size": "3.45 kB",
+      "sizeBytes": 3533,
+      "firstLoadJs": "117 kB",
+      "firstLoadJsBytes": 119808
+    },
+    {
+      "path": "/products",
+      "marker": "○",
+      "rendering": "static",
+      "size": "3.59 kB",
+      "sizeBytes": 3676,
+      "firstLoadJs": "123 kB",
+      "firstLoadJsBytes": 125952
+    },
+    {
+      "path": "/products/accessories",
+      "marker": "○",
+      "rendering": "static",
+      "size": "1.52 kB",
+      "sizeBytes": 1556,
+      "firstLoadJs": "113 kB",
+      "firstLoadJsBytes": 115712
+    },
+    {
+      "path": "/products/app",
+      "marker": "○",
+      "rendering": "static",
+      "size": "1.36 kB",
+      "sizeBytes": 1393,
+      "firstLoadJs": "123 kB",
+      "firstLoadJsBytes": 125952
+    },
+    {
+      "path": "/products/legacy",
+      "marker": "○",
+      "rendering": "static",
+      "size": "1.85 kB",
+      "sizeBytes": 1894,
+      "firstLoadJs": "160 kB",
+      "firstLoadJsBytes": 163840
+    },
+    {
+      "path": "/products/quad2",
+      "marker": "○",
+      "rendering": "static",
+      "size": "3.86 kB",
+      "sizeBytes": 3953,
+      "firstLoadJs": "162 kB",
+      "firstLoadJsBytes": 165888
+    },
+    {
+      "path": "/products/quad3",
+      "marker": "○",
+      "rendering": "static",
+      "size": "4.44 kB",
+      "sizeBytes": 4547,
+      "firstLoadJs": "163 kB",
+      "firstLoadJsBytes": 166912
+    },
+    {
+      "path": "/products/sparqlinq",
+      "marker": "○",
+      "rendering": "static",
+      "size": "3.21 kB",
+      "sizeBytes": 3287,
+      "firstLoadJs": "161 kB",
+      "firstLoadJsBytes": 164864
+    },
+    {
+      "path": "/products/sparqvu",
+      "marker": "○",
+      "rendering": "static",
+      "size": "1.86 kB",
+      "sizeBytes": 1905,
+      "firstLoadJs": "160 kB",
+      "firstLoadJsBytes": 163840
+    },
+    {
+      "path": "/resources",
+      "marker": "○",
+      "rendering": "static",
+      "size": "19.9 kB",
+      "sizeBytes": 20378,
+      "firstLoadJs": "172 kB",
+      "firstLoadJsBytes": 176128
+    },
+    {
+      "path": "/resources/calculator",
+      "marker": "○",
+      "rendering": "static",
+      "size": "6.16 kB",
+      "sizeBytes": 6308,
+      "firstLoadJs": "154 kB",
+      "firstLoadJsBytes": 157696
+    },
+    {
+      "path": "/resources/legal",
+      "marker": "○",
+      "rendering": "static",
+      "size": "1.86 kB",
+      "sizeBytes": 1905,
+      "firstLoadJs": "108 kB",
+      "firstLoadJsBytes": 110592
+    },
+    {
+      "path": "/support",
+      "marker": "○",
+      "rendering": "static",
+      "size": "6.89 kB",
+      "sizeBytes": 7055,
+      "firstLoadJs": "154 kB",
+      "firstLoadJsBytes": 157696
+    },
+    {
+      "path": "/technology",
+      "marker": "○",
+      "rendering": "static",
+      "size": "6.58 kB",
+      "sizeBytes": 6738,
+      "firstLoadJs": "126 kB",
+      "firstLoadJsBytes": 129024
+    }
+  ],
+  "buildLogSha256": "83acf9ff1ed016e6318d08613a30c473b752ba8af067a784e0e288ee5c880006"
+}

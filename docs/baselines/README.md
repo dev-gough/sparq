@@ -18,6 +18,11 @@ Captured during the optimization sweep (`docs/REPORT.md` / `docs/IDEAS.md`).
 | `2026-07-15-post-3c-db415d0-lighthouse.json` | Lab Lighthouse medians (3 runs) at commit `db415d0` |
 | `2026-07-15-post-3d-20b5707.json` | After 3d (`20b5707`): legal FL **~108 kB**; lucide-only; YT facade |
 | `2026-07-15-post-3d-20b5707-lighthouse.json` | Lab Lighthouse medians (3 runs) at commit `20b5707` |
+| `2026-07-15-pre-phase-a-full*.json` | **Full site** (21 pages) at `fc4e5ed` |
+| `2026-07-15-phase1-full*.json` | **Full site** at Phase 1 `2e2d2aa` |
+| `2026-07-15-phase2-full*.json` | **Full site** at Phase 2 theme `5904ab8` |
+| `2026-07-15-phase3-full*.json` | **Full site** at Phase 3 end `f993b80` (investors CLS fix) |
+| `PHASE-COMPARISON-FULL.md` | Cross-phase summary table |
 
 Convention: measure **after** the feature commit, and put the short SHA in the label so you can `git checkout <sha>` and re-run.
 
