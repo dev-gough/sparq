@@ -1,0 +1,220 @@
+{
+  "kind": "lighthouse-lab",
+  "label": "post-3c-db415d0",
+  "capturedAt": "2026-07-15T18:06:23.713Z",
+  "date": "2026-07-15",
+  "chromePath": "/home/devy/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome",
+  "formFactor": "desktop",
+  "urls": [
+    {
+      "url": "http://127.0.0.1:8080/",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 487.320875,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 205.41039999999998,
+        "ttfbMs": 3.8960000000000004,
+        "totalByteWeight": 559506
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 492.567125,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 211.65370000000001,
+          "ttfb": 3.8960000000000004,
+          "totalByteWeight": 559506
+        },
+        {
+          "score": 1,
+          "lcp": 487.320875,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.05669999999998,
+          "ttfb": 4.753,
+          "totalByteWeight": 559502
+        },
+        {
+          "score": 1,
+          "lcp": 484.7629999999999,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.41039999999998,
+          "ttfb": 2.069,
+          "totalByteWeight": 562134
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:8080/products/quad2",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 522.5614,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 203.87810000000002,
+        "ttfbMs": 2.055,
+        "totalByteWeight": 1950934
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 522.5614,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.5614,
+          "ttfb": 2.067,
+          "totalByteWeight": 1950934
+        },
+        {
+          "score": 1,
+          "lcp": 523.9928500000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.87810000000002,
+          "ttfb": 2.043,
+          "totalByteWeight": 1931263
+        },
+        {
+          "score": 1,
+          "lcp": 521.82135,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.7591,
+          "ttfb": 2.055,
+          "totalByteWeight": 1953571
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:8080/investors",
+      "runs": 3,
+      "median": {
+        "score": 0.8,
+        "lcpMs": 607.8767250000001,
+        "cls": 0.4542553191489362,
+        "tbtMs": 0,
+        "fcpMs": 206.07530000000003,
+        "ttfbMs": 1.949,
+        "totalByteWeight": 1865216
+      },
+      "allRuns": [
+        {
+          "score": 0.8,
+          "lcp": 607.8767250000001,
+          "cls": 0.4542553191489362,
+          "tbt": 0,
+          "fcp": 206.83409999999998,
+          "ttfb": 1.8410000000000002,
+          "totalByteWeight": 1867829
+        },
+        {
+          "score": 0.8,
+          "lcp": 601.6458750000002,
+          "cls": 0.4542553191489362,
+          "tbt": 0,
+          "fcp": 204.73149999999998,
+          "ttfb": 2.404,
+          "totalByteWeight": 1865216
+        },
+        {
+          "score": 0.8,
+          "lcp": 608.2070749999999,
+          "cls": 0.4542553191489362,
+          "tbt": 0,
+          "fcp": 206.07530000000003,
+          "ttfb": 1.949,
+          "totalByteWeight": 1865216
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:8080/resources/legal",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 703.5529750000001,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 204.0163,
+        "ttfbMs": 1.8039999999999998,
+        "totalByteWeight": 568136
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 703.5529750000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.0163,
+          "ttfb": 1.953,
+          "totalByteWeight": 568388
+        },
+        {
+          "score": 1,
+          "lcp": 594.7724500000002,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.22070000000002,
+          "ttfb": 1.701,
+          "totalByteWeight": 568136
+        },
+        {
+          "score": 0.94,
+          "lcp": 1674.4205000000002,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.75240000000002,
+          "ttfb": 1.8039999999999998,
+          "totalByteWeight": 568132
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:8080/resources/calculator",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 714.6266250000001,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 204.5005,
+        "ttfbMs": 2.063,
+        "totalByteWeight": 387896
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 714.3351000000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.4108,
+          "ttfb": 2.1100000000000003,
+          "totalByteWeight": 387896
+        },
+        {
+          "score": 1,
+          "lcp": 716.7999000000002,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.1692,
+          "ttfb": 2.031,
+          "totalByteWeight": 387896
+        },
+        {
+          "score": 1,
+          "lcp": 714.6266250000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.5005,
+          "ttfb": 2.063,
+          "totalByteWeight": 387896
+        }
+      ]
+    }
+  ]
+}
