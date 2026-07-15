@@ -43,7 +43,7 @@ const keyNewsReleases = SedarDocs.documents
 const investorSections = [
     {
         title: "Stock Performance",
-        description: "Real-time stock data and interactive charts for SPRQ on TSX Venture Exchange.",
+        description: "View SPRQ quote and market data on the TSX Venture Exchange (external).",
         href: "https://money.tmx.com/en/quote/SPRQ",
         icon: <FaChartLine className="w-6 h-6" />,
         gradient: "from-brand-maroon to-brand-logo"
