@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useRef } from "react"
-import { motion, useInView } from "motion/react"
+import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
@@ -67,32 +66,22 @@ const teamMembers: TeamMemberData[] = [
 
 interface TeamMemberCardProps {
     member: TeamMemberData
-    index: number
     onClick: () => void
 }
 
-function TeamMemberCard({ member, index, onClick }: TeamMemberCardProps) {
-    const cardRef = useRef(null)
-    const isInView = useInView(cardRef, { once: true, margin: "-50px" })
-
+function TeamMemberCard({ member, onClick }: TeamMemberCardProps) {
     return (
-        <motion.div
-            ref={cardRef}
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+        <div
+            
+            
+            
             onClick={onClick}
-            className="cursor-pointer group"
-        >
+            className="cursor-pointer group">
             <Card className="h-full backdrop-blur-md bg-white/90 dark:bg-gray-800/90 border-brand-maroon/10 dark:border-gray-600/30 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden rounded-2xl py-0">
-                <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                >
+                <div>
                     <CardContent className="p-0">
                         <div className="relative overflow-hidden">
-                            <Image
-                                src={member.imgSrc}
+                            <Image src={member.imgSrc}
                                 alt={member.name}
                                 width={512}
                                 height={512}
@@ -109,18 +98,15 @@ function TeamMemberCard({ member, index, onClick }: TeamMemberCardProps) {
                             </p>
                         </div>
                     </CardContent>
-                </motion.div>
+                </div>
             </Card>
-        </motion.div>
+        </div>
     )
 }
 
 export default function LeadershipPage() {
     const [selectedMember, setMember] = useState<TeamMemberData | null>(null)
     const trackEvent = useTrackEvent()
-    const titleRef = useRef(null)
-    const isInView = useInView(titleRef, { once: true })
-
     const handleClick = (member: TeamMemberData) => {
         setMember(member)
         trackEvent("popup_opened", {
@@ -134,13 +120,11 @@ export default function LeadershipPage() {
 
             <div className="relative container mx-auto px-4 py-10">
                 {/* Hero section */}
-                <motion.div
-                    ref={titleRef}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-8"
-                >
+                <div
+                    
+                    
+                    
+                    className="text-center mb-8">
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
                             Meet Our Leaders
@@ -150,15 +134,14 @@ export default function LeadershipPage() {
                     <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed">
                         The visionary executives and technical experts driving innovation in solar energy technology.
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Team grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
-                    {teamMembers.map((member, index) => (
+                    {teamMembers.map((member) => (
                         <TeamMemberCard
-                            key={index}
+                            key={member.name}
                             member={member}
-                            index={index}
                             onClick={() => handleClick(member)}
                         />
                     ))}
@@ -167,37 +150,20 @@ export default function LeadershipPage() {
 
             {/* Modal */}
             {selectedMember && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="fixed inset-0 bg-black/80 z-[60]"
-                    onClick={() => setMember(null)}
-                >
-                    <div
-                        className="absolute w-full flex items-center justify-center px-4"
+                <div className="fixed inset-0 bg-black/80 z-[60]"
+                    onClick={() => setMember(null)}>
+                    <div className="absolute w-full flex items-center justify-center px-4"
                         style={{
                             top: '153px', // Header (75px) + Subheader (78px)
                             height: 'calc(100dvh - 153px)', // Use dynamic viewport height for mobile browser compatibility
-                        }}
-                    >
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            transition={{ duration: 0.3 }}
-                            className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-full overflow-y-auto border border-brand-maroon/20 dark:border-gray-600/50"
-                            onClick={(e) => e.stopPropagation()}
-                        >
+                        }}>
+                        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-full overflow-y-auto border border-brand-maroon/20 dark:border-gray-600/50"
+                            onClick={(e) => e.stopPropagation()}>
                             <div className="relative p-4 md:p-8">
-                                <motion.button
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    className="absolute top-4 right-4 w-10 h-10 bg-brand-maroon/10 hover:bg-brand-maroon text-brand-maroon hover:text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
-                                    onClick={() => setMember(null)}
-                                >
+                                <button className="absolute top-4 right-4 w-10 h-10 bg-brand-maroon/10 hover:bg-brand-maroon text-brand-maroon hover:text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
+                                    onClick={() => setMember(null)}>
                                     ✕
-                                </motion.button>
+                                </button>
 
                                 <div className="border-b border-brand-maroon/20 dark:border-gray-600/50 pb-4 md:pb-6 mb-4 md:mb-6">
                                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-darkmaroon dark:text-dark-text-primary mb-2">
@@ -214,9 +180,9 @@ export default function LeadershipPage() {
                                     </p>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
-                </motion.div>
+                </div>
             )}
         </div>
     )

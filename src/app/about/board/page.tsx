@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useRef } from "react"
-import { motion, useInView } from "motion/react"
+import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
@@ -68,32 +67,22 @@ const boardMembers: BoardMemberData[] = [
 
 interface BoardMemberCardProps {
     member: BoardMemberData
-    index: number
     onClick: () => void
 }
 
-function BoardMemberCard({ member, index, onClick }: BoardMemberCardProps) {
-    const cardRef = useRef(null)
-    const isInView = useInView(cardRef, { once: true, margin: "-50px" })
-
+function BoardMemberCard({ member, onClick }: BoardMemberCardProps) {
     return (
-        <motion.div
-            ref={cardRef}
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+        <div
+            
+            
+            
             onClick={onClick}
-            className="cursor-pointer group"
-        >
+            className="cursor-pointer group">
             <Card className="h-full backdrop-blur-md bg-white/90 dark:bg-gray-800/90 border-brand-maroon/10 dark:border-gray-600/30 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden rounded-2xl py-0">
-                <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                >
+                <div>
                     <CardContent className="p-0">
                         <div className="relative overflow-hidden">
-                            <Image
-                                src={member.imgSrc}
+                            <Image src={member.imgSrc}
                                 alt={member.name}
                                 width={512}
                                 height={512}
@@ -110,18 +99,15 @@ function BoardMemberCard({ member, index, onClick }: BoardMemberCardProps) {
                             </p>
                         </div>
                     </CardContent>
-                </motion.div>
+                </div>
             </Card>
-        </motion.div>
+        </div>
     )
 }
 
 export default function BoardPage() {
     const [selectedMember, setMember] = useState<BoardMemberData | null>(null)
     const trackEvent = useTrackEvent()
-    const titleRef = useRef(null)
-    const isInView = useInView(titleRef, { once: true })
-
     const handleClick = (member: BoardMemberData) => {
         setMember(member)
         trackEvent("popup_opened", {
@@ -135,13 +121,11 @@ export default function BoardPage() {
 
             <div className="relative container mx-auto px-4 pb-20 pt-10">
                 {/* Hero section */}
-                <motion.div
-                    ref={titleRef}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
-                >
+                <div
+                    
+                    
+                    
+                    className="text-center mb-16">
 
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
@@ -152,15 +136,14 @@ export default function BoardPage() {
                     <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed">
                         Distinguished directors providing strategic guidance and governance expertise to drive our mission forward.
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Board grid */}
                 <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto [&>*]:w-full [&>*]:sm:w-[calc(50%-1rem)] [&>*]:lg:w-[calc(33.333%-1.33rem)] [&>*]:xl:w-[calc(25%-1.5rem)]">
-                    {boardMembers.map((member, index) => (
+                    {boardMembers.map((member) => (
                         <BoardMemberCard
-                            key={index}
+                            key={member.name}
                             member={member}
-                            index={index}
                             onClick={() => handleClick(member)}
                         />
                     ))}
@@ -169,37 +152,20 @@ export default function BoardPage() {
 
             {/* Modal */}
             {selectedMember && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="fixed inset-0 bg-black/80 z-[60]"
-                    onClick={() => setMember(null)}
-                >
-                    <div
-                        className="absolute w-full flex items-center justify-center px-4"
+                <div className="fixed inset-0 bg-black/80 z-[60]"
+                    onClick={() => setMember(null)}>
+                    <div className="absolute w-full flex items-center justify-center px-4"
                         style={{
                             top: '153px', // Header (75px) + Subheader (78px)
                             height: 'calc(100dvh - 153px)', // Use dynamic viewport height for mobile browser compatibility
-                        }}
-                    >
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            transition={{ duration: 0.3 }}
-                            className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-full overflow-y-auto border border-brand-maroon/20 dark:border-gray-600/50"
-                            onClick={(e) => e.stopPropagation()}
-                        >
+                        }}>
+                        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-full overflow-y-auto border border-brand-maroon/20 dark:border-gray-600/50"
+                            onClick={(e) => e.stopPropagation()}>
                             <div className="relative p-4 md:p-8">
-                                <motion.button
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    className="absolute top-4 right-4 w-10 h-10 bg-brand-maroon/10 hover:bg-brand-maroon text-brand-maroon hover:text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
-                                    onClick={() => setMember(null)}
-                                >
+                                <button className="absolute top-4 right-4 w-10 h-10 bg-brand-maroon/10 hover:bg-brand-maroon text-brand-maroon hover:text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
+                                    onClick={() => setMember(null)}>
                                     ✕
-                                </motion.button>
+                                </button>
 
                                 <div className="border-b border-brand-maroon/20 dark:border-gray-600/50 pb-4 md:pb-6 mb-4 md:mb-6">
                                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-darkmaroon dark:text-dark-text-primary mb-2">
@@ -219,9 +185,9 @@ export default function BoardPage() {
                                     </p>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
-                </motion.div>
+                </div>
             )}
         </div>
     )

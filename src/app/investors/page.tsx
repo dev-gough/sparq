@@ -2,9 +2,8 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useRef, useState, useEffect, Suspense } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from "next/navigation"
-import { motion, useInView } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
 import { useTrackEvent } from '@/hooks/useTrackEvent'
 import FAQs from './investor_faq.json'
@@ -66,8 +65,6 @@ const investorSections = [
 
 
 function InvestorsPageContent() {
-    const heroRef = useRef(null)
-    const isHeroInView = useInView(heroRef, { once: true })
     const trackEvent = useTrackEvent()
     const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
     const [showingVideoID, setShowingVideoID] = useState<number | null>(null)
@@ -127,13 +124,11 @@ function InvestorsPageContent() {
             {/* Hero Section */}
             <section className="relative z-20 container mx-auto px-6 pt-10 pb-16">
 
-                <motion.div
-                    ref={heroRef}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
-                    className="text-center mb-10"
-                >
+                <div
+                    
+                    
+                    
+                    className="text-center mb-10">
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
                             Investing in
@@ -144,84 +139,50 @@ function InvestorsPageContent() {
                         </span>
                     </h1>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
-                    >
+                    <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12">
                         Discover investment opportunities with Sparq Systems, a leader in next-generation
                         solar microinverter technology revolutionizing renewable energy solutions.
-                    </motion.p>
+                    </p>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                        className="flex flex-col sm:flex-row justify-center gap-6 max-w-4xl mx-auto"
-                    >
+                    <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-4xl mx-auto">
                         <Link href="/investors_ppt.pdf" onClick={handlePresentationClick} target="_blank">
-                            <motion.button
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
-                            >
+                            <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center">
                                 <FaFilePdf className="mr-2" />
                                 View Investor Presentation
-                            </motion.button>
+                            </button>
                         </Link>
-                        <motion.button
-                            whileHover={{ scale: 1.02, y: -2 }}
-                            whileTap={{ scale: 0.98 }}
-                            onClick={() => handleVideoShow(7)}
-                            className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center"
-                        >
+                        <button onClick={() => handleVideoShow(7)}
+                            className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center">
                             <FaPlay className="mr-2" />
                             Watch CEO Interview
-                        </motion.button>
-                        <motion.button
-                            whileHover={{ scale: 1.02, y: -2 }}
-                            whileTap={{ scale: 0.98 }}
-                            onClick={() => handleVideoShow(6)}
-                            className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center"
-                        >
+                        </button>
+                        <button onClick={() => handleVideoShow(6)}
+                            className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center">
                             <FaPlay className="mr-2" />
                             Watch TSXV 50 Listing
-                        </motion.button>
-                    </motion.div>
-                </motion.div>
+                        </button>
+                    </div>
+                </div>
             </section>
 
             {/* Investor Navigation Section */}
             <section className="relative z-20 bg-white dark:bg-gray-900 py-10">
                 <div className="container mx-auto px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-center mb-16"
-                    >
+                    <div className="text-center mb-16">
                         <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Investor Resources
                         </h2>
                         <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Access comprehensive financial information, governance documents, and market data.
                         </p>
-                    </motion.div>
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {investorSections.map((section, index) => (
-                            <motion.div
-                                key={section.title}
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.4 + (index * 0.1) }}
-                            >
-                                <Link
-                                    href={section.href}
+                        {investorSections.map((section) => (
+                            <div key={section.title}>
+                                <Link href={section.href}
                                     target={section.href.startsWith('http') ? '_blank' : undefined}
-                                    rel={section.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                                >
+                                    rel={section.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
                                     <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full group cursor-pointer dark:bg-gray-800">
                                         <CardContent className="p-6 text-center h-full flex flex-col">
                                             <div className={`flex items-center justify-center w-16 h-16 bg-gradient-to-br ${section.gradient} rounded-full mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
@@ -237,18 +198,14 @@ function InvestorsPageContent() {
                                             </p>
                                             <div className="inline-flex items-center text-brand-maroon group-hover:text-brand-darkmaroon font-semibold transition-colors duration-200">
                                                 <span>Learn More</span>
-                                                <motion.span
-                                                    className="ml-2"
-                                                    animate={{ x: [0, 4, 0] }}
-                                                    transition={{ duration: 1.5, repeat: Infinity }}
-                                                >
+                                                <span className="ml-2">
                                                     →
-                                                </motion.span>
+                                                </span>
                                             </div>
                                         </CardContent>
                                     </Card>
                                 </Link>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -257,39 +214,27 @@ function InvestorsPageContent() {
             {/* Global Strategic Partnerships Section */}
             <section id="partnerships" className="relative z-20 bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-10 scroll-mt-[75px]">
                 <div className="container mx-auto px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                        className="text-center mb-16"
-                    >
+                    <div className="text-center mb-16">
                         <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Global Strategic Partnerships
                         </h2>
                         <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Building the future of solar energy through strategic alliances with world-class partners in research, manufacturing, and market development.
                         </p>
-                    </motion.div>
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
                         {/* Queen's University */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.7 }}
-                        >
-                            <a
-                                href="https://www.queensu.ca/epower/"
+                        <div>
+                            <a href="https://www.queensu.ca/epower/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block h-full"
-                            >
+                                className="block h-full">
                                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer dark:bg-gray-800">
                                     <CardContent className="p-6 h-full flex flex-col">
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform p-2 shadow-sm">
-                                                <Image
-                                                    src="/Logos/queens-c.jpg"
+                                                <Image src="/Logos/queens-c.jpg"
                                                     alt="Queen's University"
                                                     width={60}
                                                     height={60}
@@ -309,26 +254,19 @@ function InvestorsPageContent() {
                                     </CardContent>
                                 </Card>
                             </a>
-                        </motion.div>
+                        </div>
 
                         {/* ILJIN Electronics */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.8 }}
-                        >
-                            <a
-                                href="https://www.iljin.co.in/"
+                        <div>
+                            <a href="https://www.iljin.co.in/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block h-full"
-                            >
+                                className="block h-full">
                                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer dark:bg-gray-800">
                                     <CardContent className="p-6 h-full flex flex-col">
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform p-2 shadow-sm">
-                                                <Image
-                                                    src="/Logos/iljin.png"
+                                                <Image src="/Logos/iljin.png"
                                                     alt="ILJIN Electronics"
                                                     width={60}
                                                     height={60}
@@ -348,26 +286,19 @@ function InvestorsPageContent() {
                                     </CardContent>
                                 </Card>
                             </a>
-                        </motion.div>
+                        </div>
 
                         {/* JioThings */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.9 }}
-                        >
-                            <a
-                                href="https://www.jiothings.com/"
+                        <div>
+                            <a href="https://www.jiothings.com/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block h-full"
-                            >
+                                className="block h-full">
                                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer dark:bg-gray-800">
                                     <CardContent className="p-6 h-full flex flex-col">
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform p- shadow-sm">
-                                                <Image
-                                                    src="/Logos/jiothings-c.jpeg"
+                                                <Image src="/Logos/jiothings-c.jpeg"
                                                     alt="JioThings"
                                                     width={60}
                                                     height={60}
@@ -387,26 +318,19 @@ function InvestorsPageContent() {
                                     </CardContent>
                                 </Card>
                             </a>
-                        </motion.div>
+                        </div>
 
                         {/* Reliance New Energy */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 1.0 }}
-                        >
-                            <a
-                                href="https://www.ril.com/businesses/new-energy-materials"
+                        <div>
+                            <a href="https://www.ril.com/businesses/new-energy-materials"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block h-full"
-                            >
+                                className="block h-full">
                                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer dark:bg-gray-800">
                                     <CardContent className="p-6 h-full flex flex-col">
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform p-2 shadow-sm">
-                                                <Image
-                                                    src="/Logos/rel-cir.png"
+                                                <Image src="/Logos/rel-cir.png"
                                                     alt="Reliance New Energy"
                                                     width={60}
                                                     height={60}
@@ -426,7 +350,7 @@ function InvestorsPageContent() {
                                     </CardContent>
                                 </Card>
                             </a>
-                        </motion.div>
+                        </div>
 
                         {/* Modern Niagara */}
                     </div>
@@ -436,36 +360,22 @@ function InvestorsPageContent() {
             {/* Key News Releases Section */}
             <section className="relative z-20 py-10">
                 <div className="container mx-auto px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-16"
-                    >
+                    <div className="text-center mb-16">
                         <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Key News Releases
                         </h2>
                         <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto">
                             Stay informed with our latest significant announcements and corporate developments.
                         </p>
-                    </motion.div>
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {keyNewsReleases.map((release, index) => (
-                            <motion.div
-                                key={release.id}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                            >
-                                <a
-                                    href={release.url}
+                        {keyNewsReleases.map((release) => (
+                            <div key={release.id}>
+                                <a href={release.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block h-full"
-                                >
+                                    className="block h-full">
                                     <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 py-0 h-full group cursor-pointer dark:bg-gray-800">
                                         <CardContent className="p-6 h-full flex flex-col">
                                             <div className="flex items-start gap-4 mb-4">
@@ -488,76 +398,48 @@ function InvestorsPageContent() {
                                             <div className="mt-auto">
                                                 <div className="inline-flex items-center text-brand-maroon group-hover:text-brand-darkmaroon font-semibold transition-colors duration-200">
                                                     <span>Read Full Release</span>
-                                                    <motion.span
-                                                        className="ml-2"
-                                                        animate={{ x: [0, 4, 0] }}
-                                                        transition={{ duration: 1.5, repeat: Infinity }}
-                                                    >
+                                                    <span className="ml-2">
                                                         <FaExternalLinkAlt className="w-4 h-4" />
-                                                    </motion.span>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </CardContent>
                                     </Card>
                                 </a>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
 
                     {/* View All Releases Link */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                        viewport={{ once: true }}
-                        className="text-center mt-12"
-                    >
+                    <div className="text-center mt-12">
                         <Link href="/investors/reports">
-                            <motion.button
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer"
-                            >
+                            <button className="px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer">
                                 View All Reports & Filings
-                            </motion.button>
+                            </button>
                         </Link>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
             {/* FAQ Section */}
             <section id="faq" className="relative z-20 py-10 scroll-mt-[66px]">
                 <div className="container mx-auto px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-16"
-                    >
+                    <div className="text-center mb-16">
                         <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Frequently Asked Questions
                         </h2>
                         <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                             Find answers to common investor questions about Sparq Systems.
                         </p>
-                    </motion.div>
+                    </div>
 
                     <div className="space-y-6 max-w-4xl mx-auto">
                         {FAQ.map((faqCategory, index) => (
-                            <motion.div
-                                key={faqCategory.id}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                            >
+                            <div key={faqCategory.id}>
                                 <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 py-0 dark:bg-gray-800">
                                     <CardContent className="p-0">
-                                        <div
-                                            className="bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80 p-6 text-white cursor-pointer"
-                                            onClick={() => toggleExpanded(index)}
-                                        >
+                                        <div className="bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80 p-6 text-white cursor-pointer"
+                                            onClick={() => toggleExpanded(index)}>
                                             <div className="flex items-center gap-4">
                                                 <div className="flex-shrink-0">
                                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -565,27 +447,15 @@ function InvestorsPageContent() {
                                                     </svg>
                                                 </div>
                                                 <h3 className="text-xl md:text-2xl font-bold flex-1">{faqCategory.questionBrand}</h3>
-                                                <motion.div
-                                                    animate={{ rotate: dropdownExpanded[index] ? 180 : 0 }}
-                                                    transition={{ duration: 0.3 }}
-                                                    className="flex-shrink-0"
-                                                >
+                                                <div className="flex-shrink-0">
                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                     </svg>
-                                                </motion.div>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <motion.div
-                                            initial={false}
-                                            animate={{
-                                                height: dropdownExpanded[index] ? 'auto' : 0,
-                                                opacity: dropdownExpanded[index] ? 1 : 0
-                                            }}
-                                            transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
-                                            className="overflow-hidden"
-                                        >
+                                        <div className="overflow-hidden">
                                             <div className="p-6 bg-white dark:bg-gray-800">
                                                 <div className="space-y-6">
                                                     {faqCategory.subQuestions.map((subItem) => (
@@ -616,10 +486,10 @@ function InvestorsPageContent() {
                                                     ))}
                                                 </div>
                                             </div>
-                                        </motion.div>
+                                        </div>
                                     </CardContent>
                                 </Card>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -627,12 +497,7 @@ function InvestorsPageContent() {
 
             {/* Call to Action */}
             <section className="relative z-20 container mx-auto px-6 pb-20 sm:py-20">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.8 }}
-                    className="text-center"
-                >
+                <div className="text-center">
                     <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                         Ready to Invest?
                     </h2>
@@ -641,34 +506,25 @@ function InvestorsPageContent() {
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
                         <Link href="/contact">
-                            <motion.button
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                            >
+                            <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
                                 Contact Investor Relations
-                            </motion.button>
+                            </button>
                         </Link>
                         <Link href="/investors_ppt.pdf" target="_blank">
-                            <motion.button
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center"
-                            >
+                            <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center">
                                 <FaFilePdf className="mr-2" />
                                 View Presentation
-                            </motion.button>
+                            </button>
                         </Link>
                     </div>
-                </motion.div>
+                </div>
             </section>
 
             {/* Video Popup */}
             {showingVideoID && (() => {
                 const selectedVideo = allVideos.find(video => video.id === showingVideoID)
                 return selectedVideo ? (
-                    <VideoPopup
-                        url={selectedVideo.url}
+                    <VideoPopup url={selectedVideo.url}
                         onClose={handleVideoClose}
                         iFrame={selectedVideo.iFrame}
                     />

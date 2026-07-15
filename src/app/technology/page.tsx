@@ -1,7 +1,5 @@
 'use client'
 
-import { useRef } from "react"
-import { motion, useInView } from "motion/react"
 import Link from "next/link"
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
@@ -37,7 +35,7 @@ const coreInnovations: TechFeature[] = [
     },
     {
         title: "Fastest Dynamic MPPT",
-        description: "Four completely independent Maximum Power Point Tracking controllers achieve 99.85% static and >99.8% dynamic MPPT efficiency, with each panel optimized individually for maximum energy harvest even under partial shading conditions and panel soiling.",
+        description: "Four completely independent Maximum Power Point Tracking controllers achieve 99.85% static and>99.8% dynamic MPPT efficiency, with each panel optimized individually for maximum energy harvest even under partial shading conditions and panel soiling.",
         benefits: ["99.85% static MPPT efficiency", "Independent optimization", "Fast dynamic response", "Shade tolerance"],
         details: "Advanced real-time algorithms continuously track and optimize each panel's power output with dedicated MPPT controllers per channel. Wide voltage tracking range accommodates various panel types while maintaining peak performance. Eliminates power loss from series string effects and provides individual panel monitoring and diagnostics capabilities.",
         icon: <BarChart3 className="w-12 h-12" />,
@@ -87,31 +85,18 @@ const technicalSpecs = [
 ]
 
 export default function TechnologyPage() {
-    const titleRef = useRef(null)
-    const coreRef = useRef(null)
-    const ecosystemRef = useRef(null)
-    const specsRef = useRef(null)
-
     const isMobile = useIsMobile()
-
-    const titleInView = useInView(titleRef, { once: true })
-    const coreInView = useInView(coreRef, { once: true })
-    const ecosystemInView = useInView(ecosystemRef, { once: true })
-    const specsInView = useInView(specsRef, { once: true })
-
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative scroll-mt-[115px]">
             <SolarBackgroundElements />
 
             <div className="relative container mx-auto px-6 py-16">
                 {/* Hero Section */}
-                <motion.div
-                    ref={titleRef}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={titleInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-20"
-                >
+                <div
+                    
+                    
+                    
+                    className="text-center mb-20">
                     <h1 className="text-4xl md:text-6xl font-bold mb-8">
                         <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
                             Revolutionary Solar Technology
@@ -124,16 +109,14 @@ export default function TechnologyPage() {
                         <Award className="w-6 h-6" />
                         <span className="text-lg font-semibold">85+ Patents Awarded & Pending</span>
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Core Technologies */}
-                <motion.div
-                    ref={coreRef}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={coreInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="mb-24"
-                >
+                <div
+                    
+                    
+                    
+                    className="mb-24">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Core Innovations
@@ -145,13 +128,11 @@ export default function TechnologyPage() {
 
                     <div className="space-y-16">
                         {coreInnovations.map((tech, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 50 }}
-                                animate={coreInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.6, delay: 0.3 + (index * 0.1) }}
-                                className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12`}
-                            >
+                            <div key={index}
+                                
+                                
+                                
+                                className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12`}>
                                 <div className="flex-1">
                                     <div className="flex items-center gap-4 mb-6">
                                         <div className="w-16 h-16 flex-shrink-0 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-2xl flex items-center justify-center text-white">
@@ -198,8 +179,7 @@ export default function TechnologyPage() {
                                     <div className="flex-1 max-w-lg">
                                         <Card className="overflow-hidden border-0 shadow-xl py-0">
                                             <div className="aspect-video bg-gradient-to-br from-brand-maroon/10 to-brand-logo/10 relative">
-                                                <Image
-                                                    src={tech.img}
+                                                <Image src={tech.img}
                                                     fill
                                                     alt=""
                                                     className="object-cover"
@@ -209,19 +189,17 @@ export default function TechnologyPage() {
                                     </div>
                                 )}
 
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Digital Ecosystem */}
-                <motion.div
-                    ref={ecosystemRef}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={ecosystemInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="mb-24"
-                >
+                <div
+                    
+                    
+                    
+                    className="mb-24">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Digital Ecosystem
@@ -233,12 +211,7 @@ export default function TechnologyPage() {
 
                     <div className="grid md:grid-cols-3 gap-8">
                         {digitalEcosystem.map((product, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={ecosystemInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.6, delay: 0.3 + (index * 0.1) }}
-                            >
+                            <div key={index}>
                                 <Card className="h-full p-6 bg-white/50 dark:bg-gray-800/30 border border-brand-maroon/10 hover:shadow-lg transition-all duration-300">
                                     <div className="text-center mb-6">
                                         <div className="w-16 h-16 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-xl flex items-center justify-center text-white mx-auto mb-4">
@@ -261,19 +234,17 @@ export default function TechnologyPage() {
                                         ))}
                                     </div>
                                 </Card>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Technical Specifications */}
-                <motion.div
-                    ref={specsRef}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={specsInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="mb-16"
-                >
+                <div
+                    
+                    
+                    
+                    className="mb-16">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                             Technical Overview
@@ -286,33 +257,26 @@ export default function TechnologyPage() {
                     <Card className="p-8 bg-white/50 dark:bg-gray-800/30 border border-brand-maroon/10 shadow-lg">
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {technicalSpecs.map((spec, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={specsInView ? { opacity: 1, scale: 1 } : {}}
-                                    transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
-                                    className="text-center p-4 bg-white dark:bg-gray-700 rounded-lg shadow-sm"
-                                >
+                                <div key={index}
+                                    
+                                    
+                                    
+                                    className="text-center p-4 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
                                     <div className="text-2xl font-bold text-brand-maroon dark:text-brand-logo mb-2">
                                         {spec.value}
                                     </div>
                                     <div className="text-sm text-brand-graytext dark:text-dark-text-secondary font-medium">
                                         {spec.label}
                                     </div>
-                                </motion.div>
+                                </div>
                             ))}
                         </div>
                     </Card>
-                </motion.div>
+                </div>
 
                 {/* Call to Action */}
                 <section className="container mx-auto px-6 pb-20 sm:py-20">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                        className="text-center"
-                    >
+                    <div className="text-center">
                     <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
                         Experience Our Technology
                     </h2>
@@ -321,25 +285,17 @@ export default function TechnologyPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
                         <Link href="/products">
-                            <motion.button
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                            >
+                            <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
                                 Explore Products
-                            </motion.button>
+                            </button>
                         </Link>
                         <Link href="/resources">
-                            <motion.button
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-                            >
+                            <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
                                 Technical Resources
-                            </motion.button>
+                            </button>
                         </Link>
                     </div>
-                </motion.div>
+                </div>
             </section>
             </div>
         </div>
