@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect, Suspense } from 'react'
-import { useSearchParams, useRouter } from "next/navigation"
+import { useState, useEffect, Suspense, useCallback } from 'react'
+import { useSearchParams, useRouter, usePathname } from "next/navigation"
 import { Card, CardContent } from '@/components/ui/card'
 import { useTrackEvent } from '@/hooks/useTrackEvent'
 import FAQs from './investor_faq.json'
@@ -12,6 +12,26 @@ import VideoPopup from '@/components/VideoPopup'
 import { allVideos } from '@/data/videos'
 import { TrendingUp, Newspaper, Shield, ExternalLink, Play, FileText, Calendar } from 'lucide-react'
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
+
+/**
+ * Isolated useSearchParams consumer — only this subtree is Suspense-gated.
+ * Renders nothing; opens the video popup when ?video= is present.
+ * fallback={null} is safe here (no layout impact).
+ */
+function VideoDeepLink({ onOpen }: { onOpen: (id: number) => void }) {
+	const searchParams = useSearchParams()
+
+	useEffect(() => {
+		const videoParam = searchParams.get('video')
+		if (!videoParam) return
+		const videoId = parseInt(videoParam, 10)
+		if (!isNaN(videoId) && allVideos.some((video) => video.id === videoId)) {
+			onOpen(videoId)
+		}
+	}, [searchParams, onOpen])
+
+	return null
+}
 
 interface FAQData {
     id: number
@@ -64,23 +84,16 @@ const investorSections = [
 ]
 
 
-function InvestorsPageContent() {
+export default function InvestorsPage() {
     const trackEvent = useTrackEvent()
     const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
     const [showingVideoID, setShowingVideoID] = useState<number | null>(null)
-    const searchParams = useSearchParams()
     const router = useRouter()
+    const pathname = usePathname()
 
-    // Initialize from URL parameters for video popup
-    useEffect(() => {
-        const videoParam = searchParams.get('video')
-        if (videoParam) {
-            const videoId = parseInt(videoParam)
-            if (!isNaN(videoId) && allVideos.some(video => video.id === videoId)) {
-                setShowingVideoID(videoId)
-            }
-        }
-    }, [searchParams])
+    const openVideo = useCallback((id: number) => {
+        setShowingVideoID(id)
+    }, [])
 
     const handlePresentationClick = () => {
         trackEvent("button_click", {
@@ -90,21 +103,13 @@ function InvestorsPageContent() {
 
     const handleVideoShow = (id: number) => {
         setShowingVideoID(id)
-
-        // Update URL with video parameter
-        const params = new URLSearchParams(searchParams.toString())
-        params.set('video', id.toString())
-        router.push(`/investors?${params.toString()}`, { scroll: false })
+        // Next router — no window.*; preserves App Router navigation
+        router.push(`${pathname}?video=${id}`, { scroll: false })
     }
 
     const handleVideoClose = () => {
         setShowingVideoID(null)
-
-        // Remove video parameter from URL
-        const params = new URLSearchParams(searchParams.toString())
-        params.delete('video')
-        const newUrl = params.toString() ? `/investors?${params.toString()}` : '/investors'
-        router.push(newUrl, { scroll: false })
+        router.push(pathname, { scroll: false })
     }
 
     const toggleExpanded = (i: number) => {
@@ -520,6 +525,11 @@ function InvestorsPageContent() {
                 </div>
             </section>
 
+            {/* Video deep-link island — only part that needs useSearchParams / Suspense */}
+            <Suspense fallback={null}>
+                <VideoDeepLink onOpen={openVideo} />
+            </Suspense>
+
             {/* Video Popup */}
             {showingVideoID && (() => {
                 const selectedVideo = allVideos.find(video => video.id === showingVideoID)
@@ -531,13 +541,5 @@ function InvestorsPageContent() {
                 ) : null
             })()}
         </div>
-    )
-}
-
-export default function InvestorsPage() {
-    return (
-        <Suspense fallback={null}>
-            <InvestorsPageContent />
-        </Suspense>
     )
 }
