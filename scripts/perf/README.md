@@ -1,42 +1,47 @@
-# Performance measurement (Phase 0)
+# Performance measurement
 
-Thin wrappers for before/after comparisons during the optimization sweep.
-See `docs/REPORT.md` and `docs/IDEAS.md`.
+Thin wrappers for before/after comparisons. See `docs/REPORT.md` and `docs/IDEAS.md`.
+
+## Site routes
+
+Marketing paths live in `site-routes.mjs` (`SITE_PATHS` = full crawl, `CORE_PATHS` = 5-URL sprint set).
 
 ## 1. Next.js build route table
 
-Deterministic, zero variance — primary metric for First Load JS and static vs dynamic counts.
-
 ```bash
-# Run production build + write docs/baselines/<date>-<label>.json
-node scripts/perf/parse-next-build.mjs --label pre-phase-a
-
-# Re-parse a saved log
-node scripts/perf/parse-next-build.mjs --from-log docs/baselines/2026-07-15-pre-phase-a.build.log --label pre-phase-a
+node scripts/perf/parse-next-build.mjs --label my-label
+# → docs/baselines/<date>-my-label.json + .build.log
 ```
 
-## 2. Lighthouse lab (preferred runner)
+**Always measure after the feature commit** so you can re-run from that SHA.
 
-Fixed URL list (do not change mid-sprint without noting it):
-
-- `/`
-- `/products/quad2`
-- `/investors`
-- `/resources/legal`
-- `/resources/calculator`
+## 2. Lighthouse lab
 
 ```bash
 npm run build
-# Uses Playwright Chromium + --no-sandbox (works on AppArmor-locked hosts)
-node scripts/perf/run-lighthouse.mjs --label post-phase-a --runs 3
-# → docs/baselines/<date>-<label>-lighthouse.json
+
+# Core 5 URLs (default)
+npm run perf:lighthouse -- --label post-x --runs 3
+
+# Full site (all marketing pages)
+npm run perf:lighthouse:all -- --label post-x-full --runs 3
 ```
 
-Optional LHCI wrapper (`scripts/perf/lighthouserc.js`) for later CI; on some Linux hosts LHCI does not reliably pass chromeFlags — use `run-lighthouse.mjs` for sprint baselines.
+Desktop profile, fixed throttling, Playwright Chromium + `--no-sandbox`.
 
-Use the **same URL list and throttling** before and after each PR.
+## 3. Bench a historical commit (full site)
 
-## 3. Budgets (track → gate post Phase B)
+Uses a **detached worktree**, overlays current `scripts/perf`, builds that commit, runs full LH, writes into this repo’s `docs/baselines/`.
+
+```bash
+# From current branch (with scripts/perf present)
+node scripts/perf/bench-at-commit.mjs --commit fc4e5ed --label pre-phase-a-full --all --runs 3
+node scripts/perf/bench-at-commit.mjs --commit 2e2d2aa --label phase1-full --all --runs 3
+node scripts/perf/bench-at-commit.mjs --commit 5904ab8 --label phase2-full --all --runs 3
+node scripts/perf/bench-at-commit.mjs --commit f993b80 --label phase3-full --all --runs 3
+```
+
+## 4. Budgets
 
 | Metric | Target |
 |--------|--------|
@@ -45,12 +50,3 @@ Use the **same URL list and throttling** before and after each PR.
 | CLS | ≤ 0.1 |
 | TBT | ≤ 200–300 ms |
 | Performance score | ≥ 0.85 (trend) |
-
-## Cadence
-
-```
-pre-phase-a baseline
-  → Phase A → re-run build parser (+ LHCI)
-  → theme PR → re-run all
-  → each RSC batch → re-run
-```
