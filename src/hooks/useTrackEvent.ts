@@ -1,28 +1,16 @@
-import { useCallback, useEffect, useState } from 'react';
-import { logEvent } from 'firebase/analytics';
-import { useAnalytics } from '@/lib/firebaseAnalytics';
+import { useCallback, useEffect } from 'react'
+import { prefetchAnalytics, trackEvent, type TrackEventParams } from '@/lib/firebaseAnalytics'
 
+/**
+ * Analytics tracking hook. Schedules Firebase load on idle (first mount)
+ * and never pulls the Firebase SDK into the module graph at import time.
+ */
 export const useTrackEvent = () => {
-    const analytics = useAnalytics();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [queue, setQueue] = useState<{ eventName: string; eventParams?: { [key: string]: any } }[]>([]);
+  useEffect(() => {
+    prefetchAnalytics()
+  }, [])
 
-    // Flush the queue when analytics becomes available
-    useEffect(() => {
-        if (analytics && queue.length > 0) {
-            queue.forEach(({ eventName, eventParams }) => {
-                logEvent(analytics, eventName, eventParams);
-            });
-            setQueue([]); // Clear the queue
-        }
-    }, [analytics, queue]);
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return useCallback((eventName: string, eventParams?: { [key: string]: any }) => {
-        if (analytics) {
-            logEvent(analytics, eventName, eventParams);
-        } else {
-            setQueue(prev => [...prev, { eventName, eventParams }]);
-        }
-    }, [analytics]);
-};
+  return useCallback((eventName: string, eventParams?: TrackEventParams) => {
+    void trackEvent(eventName, eventParams)
+  }, [])
+}
