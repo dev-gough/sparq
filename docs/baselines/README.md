@@ -12,6 +12,8 @@ Captured during the optimization sweep (`docs/REPORT.md` / `docs/IDEAS.md`).
 | `2026-07-15-post-theme-5904ab8-lighthouse.json` | Lab Lighthouse medians (3 runs) at commit `5904ab8` |
 | `2026-07-15-post-3a-1a7f29c.json` | After 3a (`1a7f29c`): home First Load **154 kB** (Firebase idle-split) |
 | `2026-07-15-post-3a-1a7f29c-lighthouse.json` | Lab Lighthouse medians (3 runs) at commit `1a7f29c` |
+| `2026-07-15-post-3b-b37c7a6.json` | After 3b (`b37c7a6`): home First Load **124 kB** (≤130 kB goal) |
+| `2026-07-15-post-3b-b37c7a6-lighthouse.json` | Lab Lighthouse medians (3 runs) at commit `b37c7a6` — LCP recovered |
 
 Convention: measure **after** the feature commit, and put the short SHA in the label so you can `git checkout <sha>` and re-run.
 

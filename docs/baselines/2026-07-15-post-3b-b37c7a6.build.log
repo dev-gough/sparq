@@ -1,0 +1,58 @@
+
+> sparq@0.3.0 build
+> next build
+
+   ▲ Next.js 15.5.20
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · cssChunking: "strict"
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 3.3s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/26) ...
+   Generating static pages (6/26) 
+   Generating static pages (12/26) 
+   Generating static pages (19/26) 
+ ✓ Generating static pages (26/26)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    5.32 kB         124 kB
+├ ○ /_not-found                            995 B         103 kB
+├ ○ /about                               1.67 kB         112 kB
+├ ○ /about/board                          5.7 kB         121 kB
+├ ○ /about/leadership                    6.43 kB         122 kB
+├ ƒ /api/health                            139 B         103 kB
+├ ƒ /api/ops/logs                          139 B         103 kB
+├ ƒ /api/sedar-documents                   139 B         103 kB
+├ ƒ /api/send-email                        139 B         103 kB
+├ ○ /contact                             5.32 kB         158 kB
+├ ○ /investors                           15.2 kB         137 kB
+├ ○ /investors/governance                4.52 kB         121 kB
+├ ○ /investors/reports                   3.41 kB         117 kB
+├ ○ /products                             3.6 kB         123 kB
+├ ○ /products/accessories                1.53 kB         113 kB
+├ ○ /products/app                        1.36 kB         123 kB
+├ ○ /products/legacy                     2.22 kB         160 kB
+├ ○ /products/quad2                      3.38 kB         168 kB
+├ ○ /products/quad3                      3.96 kB         168 kB
+├ ○ /products/sparqlinq                  3.58 kB         161 kB
+├ ○ /products/sparqvu                    2.21 kB         160 kB
+├ ○ /resources                           20.2 kB         172 kB
+├ ○ /resources/calculator                6.49 kB         154 kB
+├ ○ /resources/legal                     19.9 kB         162 kB
+├ ○ /support                             7.21 kB         154 kB
+└ ○ /technology                          6.54 kB         126 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/1255-2a00c48a91e35838.js      46.2 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js  54.2 kB
+  └ other shared chunks (total)          2.08 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
