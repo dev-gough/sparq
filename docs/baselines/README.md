@@ -16,6 +16,8 @@ Captured during the optimization sweep (`docs/REPORT.md` / `docs/IDEAS.md`).
 | `2026-07-15-post-3b-b37c7a6-lighthouse.json` | Lab Lighthouse medians (3 runs) at commit `b37c7a6` — LCP recovered |
 | `2026-07-15-post-3c-db415d0.json` | After 3c (`db415d0`): server Footer + Motion-free header chrome |
 | `2026-07-15-post-3c-db415d0-lighthouse.json` | Lab Lighthouse medians (3 runs) at commit `db415d0` |
+| `2026-07-15-post-3d-20b5707.json` | After 3d (`20b5707`): legal FL **~108 kB**; lucide-only; YT facade |
+| `2026-07-15-post-3d-20b5707-lighthouse.json` | Lab Lighthouse medians (3 runs) at commit `20b5707` |
 
 Convention: measure **after** the feature commit, and put the short SHA in the label so you can `git checkout <sha>` and re-run.
 
