@@ -2,6 +2,10 @@
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
+/**
+ * Scroll to top on client-side route changes (except hash / browser back-forward).
+ * Kept deliberately — Next soft navigations do not always reset scroll.
+ */
 export default function ForceScroll() {
   const pathname = usePathname();
   const isPop = useRef(false);

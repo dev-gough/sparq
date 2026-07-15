@@ -1,73 +1,49 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
-import ForceScroll from "@/components/ForceScroll"
+import Header from '@/components/Header'
+import ForceScroll from '@/components/ForceScroll'
 import { AnimationProvider } from '@/contexts/AnimationContext'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
 interface NavItem {
-    href: string
-    label: string
-    dropdown?: NavItem[]
-}
-
-interface FontOption {
-    className: string
+  href: string
+  label: string
+  dropdown?: NavItem[]
 }
 
 interface RootLayoutClientProps {
-    children: React.ReactNode
-    navbarItems: NavItem[]
-    fontOptions?: Record<string, FontOption>
+  children: React.ReactNode
+  navbarItems: NavItem[]
+  /** Server-rendered footer slot (passed from root layout). */
+  footer: React.ReactNode
 }
 
-function BackgroundWrapper({ children }: { children: React.ReactNode }) {
-    const [mounted, setMounted] = useState(false)
-    
-    useEffect(() => {
-        setMounted(true)
-    }, [])
-    
-    // Use system colors initially, then transition to custom gradients
-    const backgroundClass = mounted 
-        ? "min-h-screen bg-gradient-to-br from-slate-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-75"
-        : "min-h-screen bg-white dark:bg-gray-900"
-    
-    return (
-        <div className={backgroundClass} suppressHydrationWarning>
-            {children}
-        </div>
-    )
-}
-
-function RootLayoutContent({ children, navbarItems }: Omit<RootLayoutClientProps, 'fontOptions'>) {
-    return (
-        <BackgroundWrapper>
+/**
+ * Client shell: theme + animation context, header island, scroll reset.
+ * Background gradient is always applied (no mounted flash).
+ * Footer is a server component passed as children of this client boundary.
+ */
+export default function RootLayoutClient({
+  children,
+  navbarItems,
+  footer,
+}: RootLayoutClientProps) {
+  return (
+    <body className="flex flex-col min-h-screen overflow-y-scroll" suppressHydrationWarning>
+      <ThemeProvider>
+        <AnimationProvider>
+          <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
             <Header navItems={navbarItems} />
+            {/*
+              Keep ForceScroll: App Router client navigations otherwise leave
+              scroll mid-page. Manual restoration + top-on-pathname is intentional.
+            */}
             <ForceScroll />
-            <main className="flex-grow h-full">
-                {children}
-            </main>
-            <Footer />
-        </BackgroundWrapper>
-    )
-}
-
-export default function RootLayoutClient({ children, navbarItems }: RootLayoutClientProps) {
-
-    return (
-        <body className={`flex flex-col min-h-screen overflow-y-scroll`} suppressHydrationWarning>
-            <ThemeProvider>
-                <AnimationProvider>
-                    <RootLayoutContent
-                        navbarItems={navbarItems}
-                    >
-                        {children}
-                    </RootLayoutContent>
-                </AnimationProvider>
-            </ThemeProvider>
-        </body>
-    )
+            <main className="flex-grow h-full">{children}</main>
+            {footer}
+          </div>
+        </AnimationProvider>
+      </ThemeProvider>
+    </body>
+  )
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { Inter } from "next/font/google"
 import RootLayoutClient from "@/components/RootLayoutClient"
+import Footer from "@/components/Footer"
 
 export const metadata: Metadata = {
 	title: "Sparq Systems | High Performance and Cost-Effective Power Conversion",
@@ -78,7 +79,7 @@ export default function RootLayout({
 			<head>
 				<script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
 			</head>
-			<RootLayoutClient navbarItems={navbarItems}>
+			<RootLayoutClient navbarItems={navbarItems} footer={<Footer />}>
 				{children}
 			</RootLayoutClient>
 		</html>
