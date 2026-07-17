@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useMemo, useRef } from "react"
-import { motion, useInView } from 'motion/react'
+import { useState, useMemo } from "react"
 import { Card, CardContent } from '@/components/ui/card'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
 import Script from 'next/script'
@@ -36,9 +35,6 @@ export default function SupportTicketPage() {
 	const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 	const [errorMessage, setErrorMessage] = useState('')
 	const [recaptchaLoaded, setRecaptchaLoaded] = useState(false)
-
-	const heroRef = useRef(null)
-	const isHeroInView = useInView(heroRef, { once: true })
 
 	const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
 
@@ -138,11 +134,7 @@ export default function SupportTicketPage() {
 			
 			{/* Hero Section */}
 			<section className="relative container mx-auto px-6 pt-10 pb-8">
-				<motion.div
-					ref={heroRef}
-					initial={{ opacity: 0, y: 50 }}
-					animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-					transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
+				<div
 					className="text-center mb-6"
 				>
 					<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
@@ -155,26 +147,20 @@ export default function SupportTicketPage() {
 						</span>
 					</h1>
 
-					<motion.p
-						initial={{ opacity: 0, y: 30 }}
-						animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-						transition={{ duration: 0.8, delay: 0.4 }}
+					<p
 						className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-6"
 					>
 						Our technical support team is here to help with installation questions, 
 						warranty claims, and product guidance.
-					</motion.p>
-				</motion.div>
+					</p>
+				</div>
 			</section>
 
 			{/* Support Form Section */}
 			<section className="relative bg-white dark:bg-gray-900 py-10">
 				<div className="container mx-auto px-6">
 					<div className="max-w-2xl mx-auto">
-						<motion.div
-							initial={{ opacity: 0, y: 30 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.8, delay: 0.6 }}
+						<div
 						>
 							<Card className="overflow-hidden border-0 shadow-2xl py-0 bg-white dark:bg-gray-700">
 								<CardContent className="p-8">
@@ -313,11 +299,9 @@ export default function SupportTicketPage() {
 											</div>
 										)}
 
-										<motion.button
+										<button
 											type="submit"
 											disabled={isSubmitting}
-											whileHover={!isSubmitting ? { scale: 1.02, y: -2 } : {}}
-											whileTap={!isSubmitting ? { scale: 0.98 } : {}}
 											className={`w-full rounded-xl px-6 py-4 font-semibold text-white shadow-lg transition-all duration-300 ${
 												isSubmitting 
 													? 'bg-gray-400 cursor-not-allowed' 
@@ -335,11 +319,11 @@ export default function SupportTicketPage() {
 											) : (
 												'Submit Support Ticket'
 											)}
-										</motion.button>
+										</button>
 									</form>
 								</CardContent>
 							</Card>
-						</motion.div>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -347,10 +331,7 @@ export default function SupportTicketPage() {
 			{/* Additional Support Options */}
 			<section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-10">
 				<div className="container mx-auto px-6">
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 0.8 }}
+					<div
 						className="text-center mb-16"
 					>
 						<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
@@ -359,13 +340,10 @@ export default function SupportTicketPage() {
 						<p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
 							Explore additional resources and support channels for quick assistance.
 						</p>
-					</motion.div>
+					</div>
 
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<motion.div
-							initial={{ opacity: 0, y: 30 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.6, delay: 1.0 }}
+						<div
 						>
 							<Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full bg-white dark:bg-gray-700">
 								<CardContent className="p-6 text-center h-full flex flex-col">
@@ -381,12 +359,9 @@ export default function SupportTicketPage() {
 									</a>
 								</CardContent>
 							</Card>
-						</motion.div>
+						</div>
 
-						<motion.div
-							initial={{ opacity: 0, y: 30 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.6, delay: 1.1 }}
+						<div
 						>
 							<Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full bg-white dark:bg-gray-700">
 								<CardContent className="p-6 text-center h-full flex flex-col">
@@ -402,12 +377,9 @@ export default function SupportTicketPage() {
 									</a>
 								</CardContent>
 							</Card>
-						</motion.div>
+						</div>
 
-						<motion.div
-							initial={{ opacity: 0, y: 30 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.6, delay: 1.2 }}
+						<div
 						>
 							<Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full bg-white dark:bg-gray-700">
 								<CardContent className="p-6 text-center h-full flex flex-col">
@@ -423,7 +395,7 @@ export default function SupportTicketPage() {
 									</a>
 								</CardContent>
 							</Card>
-						</motion.div>
+						</div>
 					</div>
 				</div>
 			</section>

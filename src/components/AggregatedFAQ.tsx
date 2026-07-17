@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
 import { ChevronDown, Users, Wrench, TrendingUp, Search, X } from 'lucide-react'
 
 interface SubQuestion {
@@ -153,10 +152,7 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
 
     return (
         <section id={id} className="relative container mx-auto px-6 py-20">
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+            <div
                 className="text-center mb-16"
             >
                 <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
@@ -165,13 +161,10 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                 <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
                     Find answers to common questions across all our audiences - homeowners, installers, and investors.
                 </p>
-            </motion.div>
+            </div>
 
             {/* Search Bar */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+            <div
                 className="max-w-2xl mx-auto mb-8"
             >
                 <div className="relative">
@@ -195,24 +188,19 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                     )}
                 </div>
                 {searchQuery && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                    <div
                         className="mt-2 text-center text-sm text-brand-graytext dark:text-dark-text-secondary"
                     >
                         {totalResults === 0 
                             ? `No results found for "${searchQuery}"`
                             : `${totalResults} result${totalResults === 1 ? '' : 's'} found for "${searchQuery}"`
                         }
-                    </motion.div>
+                    </div>
                 )}
-            </motion.div>
+            </div>
 
             {/* Category Tabs */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+            <div
                 className="flex flex-wrap justify-center gap-4 mb-12"
             >
                 {Object.entries(categories).map(([key, category]) => (
@@ -231,22 +219,15 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                         {category.title}
                     </button>
                 ))}
-            </motion.div>
+            </div>
 
             {/* FAQ Content */}
-            <AnimatePresence mode="wait">
-                <motion.div
+            <div
                     key={activeCategory}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
                     className="max-w-4xl mx-auto"
                 >
                     {filteredData.faqs.length === 0 ? (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                        <div
                             className="text-center py-16"
                         >
                             <div className="flex items-center justify-center w-20 h-20 bg-gray-100 dark:bg-gray-700 rounded-full mx-auto mb-6">
@@ -268,7 +249,7 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                                     Clear Search
                                 </button>
                             )}
-                        </motion.div>
+                        </div>
                     ) : (
                         filteredData.faqs.map((section) => (
                             <div key={section.id} className="mb-12">
@@ -283,10 +264,8 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                                     const isOpen = openQuestions.has(questionKey)
 
                                     return (
-                                        <motion.div
+                                        <div
                                             key={question.id}
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: 0 }}
                                             className="bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow duration-200"
                                         >
                                             <button
@@ -302,13 +281,8 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                                                 />
                                             </button>
 
-                                            <AnimatePresence>
-                                                {isOpen && (
-                                                    <motion.div
-                                                        initial={{ opacity: 0, height: 0 }}
-                                                        animate={{ opacity: 1, height: 'auto' }}
-                                                        exit={{ opacity: 0, height: 0 }}
-                                                        transition={{ duration: 0.3 }}
+                                            {isOpen && (
+                                                    <div
                                                         className="overflow-hidden"
                                                     >
                                                         <div className="px-6 pb-4 border-t border-gray-100 dark:border-gray-600">
@@ -316,17 +290,15 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                                                                 {renderAnswer(question.answer, question.id)}
                                                             </div>
                                                         </div>
-                                                    </motion.div>
+                                                    </div>
                                                 )}
-                                            </AnimatePresence>
-                                        </motion.div>
+                                        </div>
                                     )
                                 })}
                             </div>
                         </div>
                     )))}
-                </motion.div>
-            </AnimatePresence>
+                </div>
         </section>
     )
 }

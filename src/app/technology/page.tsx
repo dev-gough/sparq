@@ -181,8 +181,9 @@ export default function TechnologyPage() {
                                             <div className="aspect-video bg-gradient-to-br from-brand-maroon/10 to-brand-logo/10 relative">
                                                 <Image src={tech.img}
                                                     fill
-                                                    alt=""
-                                                    sizes="(max-width: 1024px) 100vw, 512px"
+                                                    alt={tech.title}
+                                                    sizes="(max-width: 1024px) 100vw, 420px"
+                                                    priority={index === 0}
                                                     className="object-cover"
                                                 />
                                             </div>

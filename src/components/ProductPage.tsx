@@ -157,10 +157,10 @@ export default function ProductPage({
                                   {getIconForCategory(cardHeading)}
                                 </div>
                               </div>
-                              <h3 className="text-lg font-bold leading-tight flex-1">{cardHeading}</h3>
+                              <h2 className="text-lg font-bold leading-tight flex-1">{cardHeading}</h2>
                             </div>
                             <div className="flex items-center justify-between">
-                              <div className="text-white/80 text-sm">
+                              <div className="text-white text-sm font-medium">
                                 {items.length <= 3
                                   ? 'All features'
                                   : allCardsExpanded
@@ -169,7 +169,7 @@ export default function ProductPage({
                               </div>
                               {items.length > 3 && (
                                 <div
-                                  className={`text-white/60 transition-transform duration-200 ${
+                                  className={`text-white/90 transition-transform duration-200 ${
                                     allCardsExpanded ? 'rotate-180' : ''
                                   }`}
                                 >

@@ -1,10 +1,8 @@
 'use client'
 import ProductPage from "@/components/ProductPage"
 import Image from "next/image"
-import Link from "next/link"
 import { ListEntry } from "@/components/ProductPage"
-import { useState, useRef } from 'react'
-import { motion, useInView } from "motion/react"
+import { useState } from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import { useTrackEvent } from "@/hooks/useTrackEvent"
 
@@ -13,9 +11,9 @@ function image() {
 		<Image
 			src="/sparqvu.webp"
 			alt="SparqVu Monitoring Tool"
-			width={960}
-			height={542}
-			sizes="(max-width: 1024px) 90vw, 40vw"
+			width={800}
+			height={451}
+			sizes="(max-width: 1024px) 90vw, 480px"
 			className="object-contain sticky top-[100px] z-10 rounded-xl w-full h-auto"
 			priority
 		/>
@@ -62,9 +60,9 @@ const accordionSections: AccordionSection[] = [
 				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Manual</h3>
 				<div className="flex items-center gap-3">
 					<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-					<Link href="/SparqVu.pdf" target="_blank" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors">
+					<a href="/SparqVu.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors">
 						SparqVu Manual (PDF)
-					</Link>
+					</a>
 				</div>
 			</div>
 		)
@@ -107,20 +105,11 @@ export default function SparqVuPage() {
 		)
 	}
 	function Accordion() {
-		const containerRef = useRef(null)
-		const isInView = useInView(containerRef, { once: true, margin: "-50px" })
-
 		return (
-			<motion.div
-				ref={containerRef}
-				className="py-6 space-y-6 max-w-4xl"
-			>
+			<div className="py-6 space-y-6 max-w-4xl">
 				{accordionSections.map((section, index) => (
-					<motion.div
+					<div
 						key={index}
-						initial={{ opacity: 0, y: 30 }}
-						animate={isInView ? { opacity: 1, y: 0 } : {}}
-						transition={{ duration: 0.6, delay: 0.1 * index }}
 					>
 						<Card
 							className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 max-w-4xl py-0"
@@ -134,37 +123,27 @@ export default function SparqVuPage() {
 										<div className="flex-shrink-0">
 											{getIconForCategory(section.title)}
 										</div>
-										<h3 className="text-xl md:text-2xl font-bold flex-1">{section.title}</h3>
-										<motion.div
-											animate={{ rotate: dropdownExpanded[index] ? 180 : 0 }}
-											transition={{ duration: 0.3 }}
-											className="flex-shrink-0"
+										<h2 className="text-xl md:text-2xl font-bold flex-1">{section.title}</h2>
+										<div
+											className={`flex-shrink-0 transition-transform duration-300 ${dropdownExpanded[index] ? "rotate-180" : ""}`}
 										>
 											<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
 											</svg>
-										</motion.div>
+										</div>
 									</div>
 								</div>
 
-								<motion.div
-									initial={false}
-									animate={{
-										height: dropdownExpanded[index] ? 'auto' : 0,
-										opacity: dropdownExpanded[index] ? 1 : 0
-									}}
-									transition={{ duration: 0.4, ease: [0.23, 1, 0.320, 1] }}
-									className="overflow-hidden"
-								>
+								{dropdownExpanded[index] && (
 									<div className="p-6 bg-white dark:bg-gray-800">
 										{section.content}
 									</div>
-								</motion.div>
+								)}
 							</CardContent>
 						</Card>
-					</motion.div>
+					</div>
 				))}
-			</motion.div>
+			</div>
 		)
 	}
 

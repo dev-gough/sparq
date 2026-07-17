@@ -1,7 +1,6 @@
 'use client'
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { MotionGlobalConfig } from 'motion/react'
 
 interface AnimationContextType {
   animationsEnabled: boolean
@@ -10,18 +9,20 @@ interface AnimationContextType {
 
 const AnimationContext = createContext<AnimationContextType | undefined>(undefined)
 
+/**
+ * Gates CSS view transitions (and any future CSS animation classes).
+ * Motion library has been removed from the site.
+ */
 export function AnimationProvider({ children }: { children: React.ReactNode }) {
   const [animationsEnabled, setAnimationsEnabled] = useState(true)
 
   useEffect(() => {
     const saved = localStorage.getItem('animations-enabled')
     if (saved !== null) {
-      const enabled = JSON.parse(saved)
+      const enabled = JSON.parse(saved) as boolean
       setAnimationsEnabled(enabled)
-      MotionGlobalConfig.skipAnimations = !enabled
       document.documentElement.classList.toggle('animations-disabled', !enabled)
     } else {
-      MotionGlobalConfig.skipAnimations = false
       document.documentElement.classList.remove('animations-disabled')
     }
   }, [])
@@ -30,8 +31,6 @@ export function AnimationProvider({ children }: { children: React.ReactNode }) {
     const newValue = !animationsEnabled
     setAnimationsEnabled(newValue)
     localStorage.setItem('animations-enabled', JSON.stringify(newValue))
-    MotionGlobalConfig.skipAnimations = !newValue
-    // Also gates CSS view-transition animations (see globals.css)
     document.documentElement.classList.toggle('animations-disabled', !newValue)
   }
 

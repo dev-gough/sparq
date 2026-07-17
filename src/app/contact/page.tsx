@@ -1,8 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { useRef } from 'react'
-import { motion, useInView } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Phone, Mail, MapPin, Network } from 'lucide-react'
 import { useTrackEvent } from '@/hooks/useTrackEvent'
@@ -16,10 +14,9 @@ interface ContactSectionProps {
 	phone?: string
 	email?: string
 	website?: string
-	index?: number
-}
+	}
 
-function ContactSection({ title, companyName, address, phone, email, website, index = 0 }: ContactSectionProps) {
+function ContactSection({ title, companyName, address, phone, email, website }: ContactSectionProps) {
 
 	const trackEvent = useTrackEvent()
 
@@ -31,10 +28,7 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 	}
 
 	return (
-		<motion.div
-			initial={{ opacity: 0, y: 30 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.6, delay: 0.1 * index }}
+		<div
 			className="group"
 		>
 			<Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 h-full bg-white dark:bg-gray-700">
@@ -104,13 +98,11 @@ function ContactSection({ title, companyName, address, phone, email, website, in
 					</div>
 				</CardContent>
 			</Card>
-		</motion.div>
+		</div>
 	)
 }
 
 export default function ContactPage() {
-	const heroRef = useRef(null)
-	const isHeroInView = useInView(heroRef, { once: true })
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
@@ -118,11 +110,7 @@ export default function ContactPage() {
 
 			{/* Hero Section */}
 			<section className="relative container mx-auto px-6 pt-10 sm:pb-16">
-				<motion.div
-					ref={heroRef}
-					initial={{ opacity: 0, y: 50 }}
-					animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-					transition={{ duration: 1, ease: [0.23, 1, 0.320, 1] }}
+				<div
 					className="text-center mb-10"
 				>
 					<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
@@ -135,25 +123,19 @@ export default function ContactPage() {
 						</span>
 					</h1>
 
-					<motion.p
-						initial={{ opacity: 0, y: 30 }}
-						animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-						transition={{ duration: 0.8, delay: 0.4 }}
+					<p
 						className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
 					>
 						Connect with our global network of offices and distribution partners to discover
 						how Sparq microinverter technology can power your solar projects.
-					</motion.p>
-				</motion.div>
+					</p>
+				</div>
 			</section>
 
 			{/* Our Offices Section */}
 			<section className="relative bg-white dark:bg-gray-900 py-10">
 				<div className="container mx-auto px-6">
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 0.5 }}
+					<div
 						className="text-center mb-16"
 					>
 						<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
@@ -162,7 +144,7 @@ export default function ContactPage() {
 						<p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
 							Reach out to our global offices for sales inquiries, technical support, and partnership opportunities.
 						</p>
-					</motion.div>
+					</div>
 
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
 						<ContactSection
@@ -171,14 +153,12 @@ export default function ContactPage() {
 							address={`945 Princess Street\nKingston, Ontario, Canada\nK7L 0E9`}
 							email='sales@sparqsys.com'
 							website='https://www.sparqsys.com/'
-							index={0}
 						/>
 						<ContactSection
 							title="Office - India"
 							companyName="Sparq Systems India Pvt. Ltd."
 							email="sgupta@sparqsys.com"
 							phone='(+91) 9810 899 033'
-							index={1}
 						/>
 					</div>
 				</div>
@@ -187,10 +167,7 @@ export default function ContactPage() {
 			{/* Distribution Partners Section */}
 			<section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-10">
 				<div className="container mx-auto px-6">
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 0.7 }}
+					<div
 						className="text-center mb-16"
 					>
 						<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
@@ -199,7 +176,7 @@ export default function ContactPage() {
 						<p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
 							Contact our authorized distribution partners worldwide for product orders and local support.
 						</p>
-					</motion.div>
+					</div>
 
 					<div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
 						<ContactSection
@@ -207,7 +184,6 @@ export default function ContactPage() {
 							companyName="Jio Things Ltd."
 							website='https://www.jiothings.com/'
 							email='sales@jiothings.com'
-							index={0}
 						/>
 						<ContactSection
 							title="Africa, Australia, Gulf, Southeast Asia Distribution & Service"
@@ -216,7 +192,6 @@ export default function ContactPage() {
 							phone="(+91) 8595 414 392"
 							email="info@rolazge.com"
 							website='http://www.rolazge.com/'
-							index={1}
 						/>
 						<ContactSection
 							title="North America Distributer"
@@ -225,7 +200,6 @@ export default function ContactPage() {
 							phone='519-645-9649'
 							email='sales@gpsi.solar'
 							website='https://www.gpsi.ca/Solar-EV.htm'
-							index={2}
 						/>
 					</div>
 				</div>
@@ -233,10 +207,7 @@ export default function ContactPage() {
 
 			{/* Call to Action */}
 			<section className="container mx-auto px-6 pb-20 sm:py-20">
-				<motion.div
-					initial={{ opacity: 0, y: 30 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.8, delay: 1.0 }}
+				<div
 					className="text-center"
 				>
 					<h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
@@ -247,25 +218,21 @@ export default function ContactPage() {
 					</p>
 					<div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
 						<Link href="/technology">
-							<motion.button
-								whileHover={{ scale: 1.02, y: -2 }}
-								whileTap={{ scale: 0.98 }}
+							<button
 								className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
 							>
 								Explore Technology
-							</motion.button>
+							</button>
 						</Link>
 						<Link href="/products">
-							<motion.button
-								whileHover={{ scale: 1.02, y: -2 }}
-								whileTap={{ scale: 0.98 }}
+							<button
 								className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
 							>
 								View Products
-							</motion.button>
+							</button>
 						</Link>
 					</div>
-				</motion.div>
+				</div>
 			</section>
 		</div>
 	)

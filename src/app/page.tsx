@@ -91,27 +91,26 @@ function FloatingProductHero({ product }: { product: FeaturedProduct }) {
         {product.variants ? (
           <div className="flex gap-4 w-full">
             {product.variants.map((variant, i) => (
-              <Link key={variant.id} href={variant.href} className="flex-1">
-                <button
-                  type="button"
-                  onClick={() => {
-                    trackEvent('product_variant_clicked', {
-                      variant: variant.id,
-                      product: product.id,
-                    })
-                  }}
-                  className={`w-full px-6 py-5 font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer ${
-                    i === 0
-                      ? 'bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white'
-                      : 'bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow border-2 border-brand-maroon/20 dark:border-brand-yellow/30'
-                  }`}
-                  onMouseEnter={() => setSelectedVariant(variant)}
-                >
-                  <div className="flex flex-col items-center gap-1">
-                    <span className="text-lg">Explore {variant.title}</span>
-                    <span className="text-sm opacity-80">{variant.tagline}</span>
-                  </div>
-                </button>
+              <Link
+                key={variant.id}
+                href={variant.href}
+                className={`flex-1 min-h-[44px] px-6 py-5 font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer text-center ${
+                  i === 0
+                    ? 'bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white'
+                    : 'bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow border-2 border-brand-maroon/20 dark:border-brand-yellow/30'
+                }`}
+                onClick={() => {
+                  trackEvent('product_variant_clicked', {
+                    variant: variant.id,
+                    product: product.id,
+                  })
+                }}
+                onMouseEnter={() => setSelectedVariant(variant)}
+              >
+                <span className="flex flex-col items-center gap-1">
+                  <span className="text-lg">Explore {variant.title}</span>
+                  <span className="text-sm opacity-90">{variant.tagline}</span>
+                </span>
               </Link>
             ))}
           </div>
@@ -142,7 +141,7 @@ function FloatingProductHero({ product }: { product: FeaturedProduct }) {
               style={{
                 filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)',
               }}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
               priority
             />
             <div

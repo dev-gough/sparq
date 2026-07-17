@@ -126,13 +126,15 @@ function DocumentCard({ document }: { document: GovernanceDocument }) {
                     </p>
 
                     <div className="flex items-center justify-between">
-                        <Link href={document.url}
+                        <a
+                            href={document.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-semibold transition-colors duration-200 group/link">
-                            <Download className="w-4 h-4" />
-                            <span>Download PDF</span>
-                        </Link>
+                            className="inline-flex items-center gap-2 min-h-[44px] text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-semibold transition-colors duration-200 group/link"
+                        >
+                            <Download className="w-4 h-4" aria-hidden />
+                            <span>Download {document.title} PDF</span>
+                        </a>
                         <div className="flex items-center gap-2 text-brand-graytext dark:text-dark-text-muted">
                             <FileText className="w-4 h-4" />
                             <span className="text-sm">PDF</span>

@@ -1,9 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useEffect, useRef, Suspense, useCallback } from 'react'
+import { useState, useEffect, Suspense, useCallback } from 'react'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
-import { motion, useInView } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
 import AggregatedFAQ from '@/components/AggregatedFAQ'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
@@ -39,9 +38,6 @@ export default function LearningPage() {
   const pathname = usePathname()
   const [showingID, setShowingID] = useState<number | null>(null)
 
-  const heroRef = useRef(null)
-  const isHeroInView = useInView(heroRef, { once: true })
-
   const openVideo = useCallback((id: number) => {
     setShowingID(id)
   }, [])
@@ -70,11 +66,7 @@ export default function LearningPage() {
 
       {/* Hero Section */}
       <section className="relative container mx-auto px-6 pt-10 sm:pb-16">
-        <motion.div
-          ref={heroRef}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+        <div
           className="text-center mb-10"
         >
           <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
@@ -87,24 +79,18 @@ export default function LearningPage() {
             </span>
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <p
             className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
           >
             Explore our comprehensive collection of educational videos, technical documentation,
             and FAQs designed to enhance your solar knowledge.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* All Videos Section */}
       <section className="relative container mx-auto px-6 py-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+        <div
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
@@ -113,33 +99,24 @@ export default function LearningPage() {
           <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
             Explore our comprehensive collection of educational content, technical presentations, and product demonstrations.
           </p>
-        </motion.div>
+        </div>
 
         {/* Educational Videos */}
         <div className="mb-16">
-          <motion.h3
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+          <h3
             className="text-2xl md:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-8 text-center"
           >
             Educational Content
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+          </h3>
+          <p
             className="text-lg text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto text-center mb-8"
           >
             Foundational educational videos covering PV systems basics, climate change, and global warming fundamentals.
-          </motion.p>
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-            {educationalVideos.map((video, index) => (
-              <motion.div
+            {educationalVideos.map((video) => (
+              <div
                 key={video.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
                 className="group"
               >
                 <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
@@ -151,9 +128,9 @@ export default function LearningPage() {
                       <Image
                         height={360}
                         width={640}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
                         src={video.thumbnail}
-                        alt={video.title}
+                        alt=""
                         className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -180,7 +157,7 @@ export default function LearningPage() {
                     </CardContent>
                   </button>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -196,12 +173,9 @@ export default function LearningPage() {
             Technical insights, installation guides, and product demonstrations for professional installers.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-            {installerVideos.map((video, index) => (
-              <motion.div
+            {installerVideos.map((video) => (
+              <div
                 key={video.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                 className="group"
               >
                 <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
@@ -213,9 +187,9 @@ export default function LearningPage() {
                       <Image
                         height={360}
                         width={640}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
                         src={video.thumbnail}
-                        alt={video.title}
+                        alt=""
                         className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -242,7 +216,7 @@ export default function LearningPage() {
                     </CardContent>
                   </button>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -258,12 +232,9 @@ export default function LearningPage() {
             Educational content to help homeowners understand solar energy and Sparq&apos;s benefits.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-            {homeownerVideos.map((video, index) => (
-              <motion.div
+            {homeownerVideos.map((video) => (
+              <div
                 key={video.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                 className="group"
               >
                 <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
@@ -275,9 +246,9 @@ export default function LearningPage() {
                       <Image
                         height={360}
                         width={640}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
                         src={video.thumbnail}
-                        alt={video.title}
+                        alt=""
                         className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -304,7 +275,7 @@ export default function LearningPage() {
                     </CardContent>
                   </button>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -318,10 +289,7 @@ export default function LearningPage() {
         investorsData={investorsData}
       />
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.2 }}
+      <div
         className="text-center"
       >
         <Card className="max-w-2xl mx-auto border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 dark:from-gray-700 dark:to-gray-600/50 py-0 mb-8">
@@ -345,7 +313,7 @@ export default function LearningPage() {
             </p>
           </CardContent>
         </Card>
-      </motion.div>
+      </div>
 
       {selectedVideo && (
         <VideoPopup url={selectedVideo.url} onClose={handleClose} iFrame={selectedVideo.iFrame} />

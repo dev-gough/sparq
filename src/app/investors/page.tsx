@@ -150,12 +150,16 @@ export default function InvestorsPage() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-4xl mx-auto">
-                        <Link href="/investors_ppt.pdf" onClick={handlePresentationClick} target="_blank">
-                            <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center">
-                                <FileText className="mr-2" />
-                                View Investor Presentation
-                            </button>
-                        </Link>
+                        <a
+                            href="/investors_ppt.pdf"
+                            onClick={handlePresentationClick}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full sm:w-auto min-h-[44px] px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer inline-flex items-center justify-center"
+                        >
+                            <FileText className="mr-2" aria-hidden />
+                            View Investor Presentation
+                        </a>
                         <button onClick={() => handleVideoShow(7)}
                             className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center">
                             <Play className="mr-2" />
@@ -515,12 +519,15 @@ export default function InvestorsPage() {
                                 Contact Investor Relations
                             </button>
                         </Link>
-                        <Link href="/investors_ppt.pdf" target="_blank">
-                            <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center">
-                                <FileText className="mr-2" />
-                                View Presentation
-                            </button>
-                        </Link>
+                        <a
+                            href="/investors_ppt.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full sm:w-auto min-h-[44px] px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer inline-flex items-center justify-center"
+                        >
+                            <FileText className="mr-2" aria-hidden />
+                            View Investor Presentation
+                        </a>
                     </div>
                 </div>
             </section>
