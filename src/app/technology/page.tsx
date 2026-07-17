@@ -23,7 +23,7 @@ const coreInnovations: TechFeature[] = [
         benefits: ["No electrolytic capacitors", "97.5% maximum efficiency", "25+ year design lifespan", "Ultra-low Total Harmonic Distortion (THD)"],
         details: "SPARQ is breaking the hardware cost constraints with advanced mathematics. We reduce size and cost by moving the complexity from analog power circuitry into mathematical algorithms, which are digitally implemented. Our patented approach combines proprietary high-frequency soft-switching power electronics with digital technology, achieving unprecedented reliability and performance.",
         icon: <Zap className="w-12 h-12" />,
-        img: "/500kw.png"
+        img: "/500kw.webp"
     },
     {
         title: "Quad Architecture",
@@ -39,7 +39,7 @@ const coreInnovations: TechFeature[] = [
         benefits: ["99.85% static MPPT efficiency", "Independent optimization", "Fast dynamic response", "Shade tolerance"],
         details: "Advanced real-time algorithms continuously track and optimize each panel's power output with dedicated MPPT controllers per channel. Wide voltage tracking range accommodates various panel types while maintaining peak performance. Eliminates power loss from series string effects and provides individual panel monitoring and diagnostics capabilities.",
         icon: <BarChart3 className="w-12 h-12" />,
-        img: "/clouded-panels.png"
+        img: "/clouded-panels.webp"
     },
     {
         title: "Native Three-Phase Technology",
@@ -47,7 +47,7 @@ const coreInnovations: TechFeature[] = [
         benefits: ["Native three-phase output", "380V/400V/480V compatibility", "4 PV inputs with independent MPPT", "Motor drive capability"],
         details: "Sparq's three-phase microinverter supports tri-mode operation (grid-tied, off-grid, MPPT motor drive). Features anti-islanding protection, programmable voltage/frequency ride-through as well as rule 21 and IEC 50549 functions for smart grid compliance.  Quad 3 can operate as a variable frequency drive with 0-130Hz output frequency with 0.1% tolerance for MPPT motor drive applications, that can run induction, PMSM, and BLDC motors. Moreover, multiple Quad 3 units can be placed in parallel to run higher power motors. It offers built-in comprehensive protections including over-current, over-voltage, dry run, and speed excessive protection.",
         icon: <Cpu className="w-12 h-12" />,
-        img: "/carport-2.png"
+        img: "/carport-2.webp"
     }
 ]
 
@@ -182,6 +182,7 @@ export default function TechnologyPage() {
                                                 <Image src={tech.img}
                                                     fill
                                                     alt=""
+                                                    sizes="(max-width: 1024px) 100vw, 512px"
                                                     className="object-cover"
                                                 />
                                             </div>

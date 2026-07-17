@@ -14,9 +14,11 @@ function image() {
 		<Image
 			src="/SparqLinq.jpg"
 			alt="SparqLinq Monitoring Tool"
-			width={1920}
-			height={1084}
-			className="object-contain sticky top-16 z-10 rounded-xl"
+			width={960}
+			height={542}
+			sizes="(max-width: 1024px) 90vw, 40vw"
+			className="object-contain sticky top-16 z-10 rounded-xl w-full h-auto"
+			priority
 		/>
 	)
 }

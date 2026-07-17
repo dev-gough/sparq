@@ -32,9 +32,11 @@ function image() {
 		<Image
 			src="/quad3.webp"
 			alt="Quad3 Microinverter"
-			width={1920}
-			height={1084}
-			className="object-contain sticky top-16 z-10"
+			width={960}
+			height={542}
+			sizes="(max-width: 1024px) 90vw, 40vw"
+			className="object-contain sticky top-16 z-10 w-full h-auto"
+			priority
 		/>
 	)
 }

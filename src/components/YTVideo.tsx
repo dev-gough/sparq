@@ -88,8 +88,9 @@ export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, o
                 className="w-full text-left group">
                 <div className="relative w-full aspect-video rounded-lg overflow-hidden">
                   <Image
-                    height={720}
-                    width={1280}
+                    height={360}
+                    width={640}
+                    sizes="(max-width: 768px) 100vw, 640px"
                     src={video.thumbnail}
                     alt={video.title}
                     className="w-full h-full object-cover group-hover:blur-sm transition-all duration-300"
@@ -134,8 +135,9 @@ export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, o
               className="w-full text-left">
               <div className="relative">
                 <Image
-                  height={720}
-                  width={1280}
+                  height={360}
+                  width={640}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   src={video.thumbnail}
                   alt={video.title}
                   className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"

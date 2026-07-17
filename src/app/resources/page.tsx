@@ -149,8 +149,9 @@ export default function LearningPage() {
                   >
                     <div className="relative">
                       <Image
-                        height={1920}
-                        width={1080}
+                        height={360}
+                        width={640}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         src={video.thumbnail}
                         alt={video.title}
                         className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"
@@ -210,8 +211,9 @@ export default function LearningPage() {
                   >
                     <div className="relative">
                       <Image
-                        height={1920}
-                        width={1080}
+                        height={360}
+                        width={640}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         src={video.thumbnail}
                         alt={video.title}
                         className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"
@@ -271,8 +273,9 @@ export default function LearningPage() {
                   >
                     <div className="relative">
                       <Image
-                        height={1920}
-                        width={1080}
+                        height={360}
+                        width={640}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         src={video.thumbnail}
                         alt={video.title}
                         className="w-full h-64 object-cover group-hover:blur-sm transition-all duration-300"

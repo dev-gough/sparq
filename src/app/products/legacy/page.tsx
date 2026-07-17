@@ -12,9 +12,11 @@ function image() {
 		<Image
 			src="/q2000.webp"
 			alt="Q2000 Microinverter"
-			width={1920}
-			height={1084}
-			className="object-contain sticky top-[100px] z-10"
+			width={960}
+			height={542}
+			sizes="(max-width: 1024px) 90vw, 40vw"
+			className="object-contain sticky top-[100px] z-10 w-full h-auto"
+			priority
 		/>
 	)
 }

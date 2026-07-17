@@ -57,7 +57,7 @@ export default function YouTubeFacade({
         alt={title}
         fill
         className="object-cover group-hover:blur-sm transition-all duration-300"
-        sizes="(max-width: 768px) 100vw, 800px"
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 70vw, 560px"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
       <div className="absolute inset-0 flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity">

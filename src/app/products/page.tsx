@@ -61,7 +61,7 @@ const productCards: ProductCard[] = [
         title: "SparqVu",
         description: "Advanced performance management platform",
         href: "/products/sparqvu",
-        image: "/sparqvu.png",
+        image: "/sparqvu.webp",
         category: "Monitoring",
         accentColor: "bg-gradient-to-br from-mission to-brand-logo"
     },
@@ -110,6 +110,7 @@ function FloatingProductCard({ product }: FloatingProductCardProps) {
                                 <Image src={product.image}
                                     alt={product.title}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 400px"
                                     className={`${product.category === 'Microinverters' ? 'object-contain scale-90' : 'object-cover scale-100'} transition-all duration-500 ease-out ${product.title === 'SparqLinq' ? 'object-left' : 'object-center'} ${product.title === 'Cables & Tools' ? 'object-fill' : ''} dark:hidden`}
                                     style={{
                                         filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
@@ -119,6 +120,7 @@ function FloatingProductCard({ product }: FloatingProductCardProps) {
                                 <Image src="/Accessories/cables-td.png"
                                     alt={product.title}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 400px"
                                     className={`${product.category === 'Microinverters' ? 'object-contain scale-90' : 'object-cover scale-100'} transition-all duration-500 ease-out ${product.title === 'SparqLinq' ? 'object-left' : 'object-center'} ${product.title === 'Cables & Tools' ? 'object-fill' : ''} hidden dark:block`}
                                     style={{
                                         filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
@@ -129,6 +131,7 @@ function FloatingProductCard({ product }: FloatingProductCardProps) {
                             <Image src={product.image}
                                 alt={product.title}
                                 fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 400px"
                                 className={`${product.category === 'Microinverters' ? 'object-contain scale-90' : 'object-cover scale-100'} transition-all duration-500 ease-out ${product.title === 'SparqLinq' ? 'object-left' : 'object-center'} ${product.title === 'Cables & Tools' ? 'object-fill' : ''}`}
                                 style={{
                                     filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'

@@ -11,11 +11,13 @@ import { useTrackEvent } from "@/hooks/useTrackEvent"
 function image() {
 	return (
 		<Image
-			src="/sparqvu.png"
+			src="/sparqvu.webp"
 			alt="SparqVu Monitoring Tool"
-			width={1920}
-			height={1084}
-			className="object-contain sticky top-[100px] z-10 rounded-xl"
+			width={960}
+			height={542}
+			sizes="(max-width: 1024px) 90vw, 40vw"
+			className="object-contain sticky top-[100px] z-10 rounded-xl w-full h-auto"
+			priority
 		/>
 	)
 }
