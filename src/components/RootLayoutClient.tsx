@@ -2,6 +2,7 @@
 
 import Header from '@/components/Header'
 import ForceScroll from '@/components/ForceScroll'
+import PageTransition from '@/components/PageTransition'
 import { AnimationProvider } from '@/contexts/AnimationContext'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
@@ -39,7 +40,9 @@ export default function RootLayoutClient({
               scroll mid-page. Manual restoration + top-on-pathname is intentional.
             */}
             <ForceScroll />
-            <main className="flex-grow h-full">{children}</main>
+            <main className="flex-grow h-full">
+              <PageTransition>{children}</PageTransition>
+            </main>
             {footer}
           </div>
         </AnimationProvider>

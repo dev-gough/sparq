@@ -19,8 +19,10 @@ export function AnimationProvider({ children }: { children: React.ReactNode }) {
       const enabled = JSON.parse(saved)
       setAnimationsEnabled(enabled)
       MotionGlobalConfig.skipAnimations = !enabled
+      document.documentElement.classList.toggle('animations-disabled', !enabled)
     } else {
       MotionGlobalConfig.skipAnimations = false
+      document.documentElement.classList.remove('animations-disabled')
     }
   }, [])
 
@@ -29,6 +31,8 @@ export function AnimationProvider({ children }: { children: React.ReactNode }) {
     setAnimationsEnabled(newValue)
     localStorage.setItem('animations-enabled', JSON.stringify(newValue))
     MotionGlobalConfig.skipAnimations = !newValue
+    // Also gates CSS view-transition animations (see globals.css)
+    document.documentElement.classList.toggle('animations-disabled', !newValue)
   }
 
   return (

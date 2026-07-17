@@ -28,7 +28,11 @@ export default function Header({ navItems }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-[999] bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-brand-maroon/30 dark:border-gray-700/50 shadow-sm h-[75px]">
+    <header
+      // Anchor chrome during view transitions so only main content cross-fades
+      style={{ viewTransitionName: 'site-header' }}
+      className="sticky top-0 z-[999] bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-brand-maroon/30 dark:border-gray-700/50 shadow-sm h-[75px]"
+    >
       <div className="container mx-auto px-2 sm:px-4 lg:px-6 h-full">
         <div className="grid grid-cols-3 items-center h-full">
           <div className="flex justify-start">

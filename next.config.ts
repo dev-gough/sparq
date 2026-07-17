@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   experimental: {
     // optimizeCss/critters removed: ineffective for App Router streaming
     cssChunking: 'strict',
+    // Soft route navigations via browser View Transitions + React <ViewTransition>
+    // (experimental; falls back to instant swap where unsupported)
+    viewTransition: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? {
