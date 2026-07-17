@@ -82,9 +82,9 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">
+            <h2 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-4">
               Quick Links
-            </h3>
+            </h2>
             <div className="grid grid-cols-2 gap-2">
               {navigationLinks.map((link) => (
                 <div key={link.href}>

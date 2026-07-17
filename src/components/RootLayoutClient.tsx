@@ -34,13 +34,19 @@ export default function RootLayoutClient({
       <ThemeProvider>
         <AnimationProvider>
           <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[1000] focus:px-4 focus:py-2 focus:bg-brand-maroon focus:text-white focus:rounded-lg focus:shadow-lg"
+            >
+              Skip to main content
+            </a>
             <Header navItems={navbarItems} />
             {/*
               Keep ForceScroll: App Router client navigations otherwise leave
               scroll mid-page. Manual restoration + top-on-pathname is intentional.
             */}
             <ForceScroll />
-            <main className="flex-grow h-full">
+            <main id="main-content" className="flex-grow h-full" tabIndex={-1}>
               <PageTransition>{children}</PageTransition>
             </main>
             {footer}

@@ -71,28 +71,28 @@ interface TeamMemberCardProps {
 
 function TeamMemberCard({ member, onClick }: TeamMemberCardProps) {
     return (
-        <div
-            
-            
-            
+        <button
+            type="button"
             onClick={onClick}
-            className="cursor-pointer group">
+            className="cursor-pointer group text-left w-full"
+            aria-label={`View biography for ${member.name}`}
+        >
             <Card className="h-full backdrop-blur-md bg-white/90 dark:bg-gray-800/90 border-brand-maroon/10 dark:border-gray-600/30 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden rounded-2xl py-0">
                 <div>
                     <CardContent className="p-0">
                         <div className="relative overflow-hidden">
                             <Image src={member.imgSrc}
-                                alt={member.name}
+                                alt=""
                                 width={512}
                                 height={512}
                                 className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-brand-maroon/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden />
                         </div>
                         <div className="px-6 pb-6 pt-4 text-center">
-                            <h2 className="text-xl font-bold text-brand-darkmaroon dark:text-dark-text-primary mb-2 group-hover:text-brand-maroon dark:group-hover:text-brand-yellow transition-colors duration-300">
+                            <span className="block text-xl font-bold text-brand-darkmaroon dark:text-dark-text-primary mb-2 group-hover:text-brand-maroon dark:group-hover:text-brand-yellow transition-colors duration-300">
                                 {member.name}
-                            </h2>
+                            </span>
                             <p className="text-brand-graytext dark:text-dark-text-secondary font-medium">
                                 {member.title}
                             </p>
@@ -100,7 +100,7 @@ function TeamMemberCard({ member, onClick }: TeamMemberCardProps) {
                     </CardContent>
                 </div>
             </Card>
-        </div>
+        </button>
     )
 }
 
@@ -160,9 +160,13 @@ export default function LeadershipPage() {
                         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-full overflow-y-auto border border-brand-maroon/20 dark:border-gray-600/50"
                             onClick={(e) => e.stopPropagation()}>
                             <div className="relative p-4 md:p-8">
-                                <button className="absolute top-4 right-4 w-10 h-10 bg-brand-maroon/10 hover:bg-brand-maroon text-brand-maroon hover:text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
-                                    onClick={() => setMember(null)}>
-                                    ✕
+                                <button
+                                    type="button"
+                                    className="absolute top-4 right-4 min-h-[44px] min-w-[44px] bg-brand-maroon/10 hover:bg-brand-maroon text-brand-maroon hover:text-white rounded-full inline-flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
+                                    onClick={() => setMember(null)}
+                                    aria-label="Close biography"
+                                >
+                                    <span aria-hidden>✕</span>
                                 </button>
 
                                 <div className="border-b border-brand-maroon/20 dark:border-gray-600/50 pb-4 md:pb-6 mb-4 md:mb-6">

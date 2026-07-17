@@ -286,16 +286,12 @@ export default function TechnologyPage() {
                         Discover how our innovative microinverter solutions can transform your solar energy system.
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-                        <Link href="/products">
-                            <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
-                                Explore Products
-                            </button>
-                        </Link>
-                        <Link href="/resources">
-                            <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
-                                Technical Resources
-                            </button>
-                        </Link>
+                        <Link href="/products" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
+Explore Products
+</Link>
+                        <Link href="/resources" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
+Technical Resources
+</Link>
                     </div>
                 </div>
             </section>

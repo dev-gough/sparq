@@ -225,16 +225,12 @@ export default function GovernancePage() {
                             governance practices, policies, and commitment to transparency.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-                            <Link href="/contact">
-                                <button className="w-full sm:w-auto px-8 py-4 bg-white text-brand-maroon font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
-                                    Contact Investor Relations
-                                </button>
-                            </Link>
-                            <Link href="/investors">
-                                <button className="w-full sm:w-auto px-8 py-4 bg-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
-                                    Investor Overview
-                                </button>
-                            </Link>
+                            <Link href="/contact" className="w-full sm:w-auto px-8 py-4 bg-white text-brand-maroon font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
+Contact Investor Relations
+</Link>
+                            <Link href="/investors" className="w-full sm:w-auto px-8 py-4 bg-brand-yellow text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
+Investor Overview
+</Link>
                         </div>
                     </div>
                 </div>

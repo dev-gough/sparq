@@ -115,14 +115,9 @@ function FloatingProductHero({ product }: { product: FeaturedProduct }) {
             ))}
           </div>
         ) : (
-          <Link href={product.href}>
-            <button
-              type="button"
-              className="px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-100 cursor-pointer"
-            >
-              Explore {product.title}
-            </button>
-          </Link>
+          <Link href={product.href} className="px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-100 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
+Explore {product.title}
+</Link>
         )}
       </div>
 
@@ -189,21 +184,19 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-            <Link href="/products" onClick={() => handleCtaClick('explore_products')}>
-              <button
-                type="button"
-                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
-              >
-                Explore Our Products
-              </button>
+            <Link
+              href="/products"
+              onClick={() => handleCtaClick('explore_products')}
+              className="w-full sm:w-auto min-h-[44px] px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer inline-flex items-center justify-center text-center"
+            >
+              Explore Our Products
             </Link>
-            <Link href="/about" onClick={() => handleCtaClick('learn_more')}>
-              <button
-                type="button"
-                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer"
-              >
-                Learn More
-              </button>
+            <Link
+              href="/about"
+              onClick={() => handleCtaClick('learn_more')}
+              className="w-full sm:w-auto min-h-[44px] px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer inline-flex items-center justify-center text-center"
+            >
+              Learn More About Sparq
             </Link>
           </div>
         </div>
@@ -353,23 +346,19 @@ export default function Home() {
             needs.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-            <Link href="/technology">
-              <button
-                type="button"
-                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
-                onClick={() => handleCtaClick('technology')}
-              >
-                Explore Technology
-              </button>
+            <Link
+              href="/technology"
+              onClick={() => handleCtaClick('technology')}
+              className="w-full sm:w-auto min-h-[44px] px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer inline-flex items-center justify-center text-center"
+            >
+              Explore Technology
             </Link>
-            <Link href="/investors">
-              <button
-                type="button"
-                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
-                onClick={() => handleCtaClick('investors')}
-              >
-                For Investors
-              </button>
+            <Link
+              href="/investors"
+              onClick={() => handleCtaClick('investors')}
+              className="w-full sm:w-auto min-h-[44px] px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer inline-flex items-center justify-center text-center"
+            >
+              For Investors
             </Link>
           </div>
         </Reveal>

@@ -86,7 +86,7 @@ const investorSections = [
 
 export default function InvestorsPage() {
     const trackEvent = useTrackEvent()
-    const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
+    const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({ 0: true })
     const [showingVideoID, setShowingVideoID] = useState<number | null>(null)
     const router = useRouter()
     const pathname = usePathname()
@@ -160,14 +160,20 @@ export default function InvestorsPage() {
                             <FileText className="mr-2" aria-hidden />
                             View Investor Presentation
                         </a>
-                        <button onClick={() => handleVideoShow(7)}
-                            className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center">
-                            <Play className="mr-2" />
+                        <button
+                            type="button"
+                            onClick={() => handleVideoShow(7)}
+                            className="w-full sm:w-auto min-h-[44px] px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer inline-flex items-center justify-center"
+                        >
+                            <Play className="mr-2" aria-hidden />
                             Watch CEO Interview
                         </button>
-                        <button onClick={() => handleVideoShow(6)}
-                            className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer flex items-center justify-center">
-                            <Play className="mr-2" />
+                        <button
+                            type="button"
+                            onClick={() => handleVideoShow(6)}
+                            className="w-full sm:w-auto min-h-[44px] px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer inline-flex items-center justify-center"
+                        >
+                            <Play className="mr-2" aria-hidden />
                             Watch TSXV 50 Listing
                         </button>
                     </div>
@@ -189,12 +195,16 @@ export default function InvestorsPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {investorSections.map((section) => (
                             <div key={section.title}>
-                                <Link href={section.href}
+                                <Link
+                                    href={section.href}
                                     target={section.href.startsWith('http') ? '_blank' : undefined}
-                                    rel={section.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+                                    rel={section.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                    aria-label={`Learn more about ${section.title}`}
+                                    className="block h-full rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-maroon"
+                                >
                                     <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full group cursor-pointer dark:bg-gray-800">
                                         <CardContent className="p-6 text-center h-full flex flex-col">
-                                            <div className={`flex items-center justify-center w-16 h-16 bg-gradient-to-br ${section.gradient} rounded-full mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                                            <div className={`flex items-center justify-center w-16 h-16 bg-gradient-to-br ${section.gradient} rounded-full mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`} aria-hidden>
                                                 <div className="text-white">
                                                     {section.icon}
                                                 </div>
@@ -205,11 +215,9 @@ export default function InvestorsPage() {
                                             <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed flex-grow mb-6">
                                                 {section.description}
                                             </p>
-                                            <div className="inline-flex items-center text-brand-maroon group-hover:text-brand-darkmaroon font-semibold transition-colors duration-200">
-                                                <span>Learn More</span>
-                                                <span className="ml-2">
-                                                    →
-                                                </span>
+                                            <div className="inline-flex items-center text-brand-maroon group-hover:text-brand-darkmaroon font-semibold transition-colors duration-200" aria-hidden>
+                                                <span>Learn more</span>
+                                                <span className="ml-2">→</span>
                                             </div>
                                         </CardContent>
                                     </Card>
@@ -421,11 +429,9 @@ export default function InvestorsPage() {
 
                     {/* View All Releases Link */}
                     <div className="text-center mt-12">
-                        <Link href="/investors/reports">
-                            <button className="px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer">
-                                View All Reports & Filings
-                            </button>
-                        </Link>
+                        <Link href="/investors/reports" className="px-8 py-4 bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-maroon/20 dark:border-brand-yellow/30 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
+View All Reports & Filings
+</Link>
                     </div>
                 </div>
             </section>
@@ -447,23 +453,31 @@ export default function InvestorsPage() {
                             <div key={faqCategory.id}>
                                 <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 py-0 dark:bg-gray-800">
                                     <CardContent className="p-0">
-                                        <div className="bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80 p-6 text-white cursor-pointer"
-                                            onClick={() => toggleExpanded(index)}>
+                                        <button
+                                            type="button"
+                                            className="bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80 p-6 text-white cursor-pointer w-full text-left"
+                                            onClick={() => toggleExpanded(index)}
+                                            aria-expanded={!!dropdownExpanded[index]}
+                                        >
                                             <div className="flex items-center gap-4">
-                                                <div className="flex-shrink-0">
+                                                <div className="flex-shrink-0" aria-hidden>
                                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
                                                 </div>
-                                                <h3 className="text-xl md:text-2xl font-bold flex-1">{faqCategory.questionBrand}</h3>
-                                                <div className="flex-shrink-0">
+                                                <span className="text-xl md:text-2xl font-bold flex-1">{faqCategory.questionBrand}</span>
+                                                <div
+                                                    className={`flex-shrink-0 transition-transform duration-300 ${dropdownExpanded[index] ? 'rotate-180' : ''}`}
+                                                    aria-hidden
+                                                >
                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                     </svg>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </button>
 
+                                        {dropdownExpanded[index] && (
                                         <div className="overflow-hidden">
                                             <div className="p-6 bg-white dark:bg-gray-800">
                                                 <div className="space-y-6">
@@ -496,6 +510,7 @@ export default function InvestorsPage() {
                                                 </div>
                                             </div>
                                         </div>
+                                        )}
                                     </CardContent>
                                 </Card>
                             </div>
@@ -514,11 +529,9 @@ export default function InvestorsPage() {
                         Connect with our investor relations team to learn more about investment opportunities with Sparq Systems.
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-                        <Link href="/contact">
-                            <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
-                                Contact Investor Relations
-                            </button>
-                        </Link>
+                        <Link href="/contact" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
+Contact Investor Relations
+</Link>
                         <a
                             href="/investors_ppt.pdf"
                             target="_blank"

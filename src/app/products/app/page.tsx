@@ -19,7 +19,7 @@ function image() {
 			<div className="relative aspect-[9/19.5] w-[180px] md:w-[220px] lg:w-[260px] rounded-3xl border-8 border-gray-300 shadow-lg overflow-hidden">
 				<Image
 					src="/app1.jpg"
-					alt=""
+					alt="SparqSync mobile app home screen"
 					fill
 					className="object-cover"
 					sizes="(max-width: 768px) 180px, (max-width: 1024px) 220px, 260px"
@@ -29,7 +29,7 @@ function image() {
 			<div className="relative aspect-[9/19.5] w-[180px] md:w-[220px] lg:w-[260px] rounded-3xl border-8 border-gray-300 shadow-lg overflow-hidden">
 				<Image
 					src="/app2.jpg"
-					alt=""
+					alt="SparqSync app inverter detail screen"
 					fill
 					className="object-cover"
 					sizes="(max-width: 768px) 180px, (max-width: 1024px) 220px, 260px"

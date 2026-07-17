@@ -95,12 +95,13 @@ export default function Header({ navItems }: HeaderProps) {
               <AnimationToggle />
               <button
                 type="button"
-                className="p-2 rounded-lg bg-brand-maroon/5 dark:bg-brand-yellow/10 text-brand-maroon dark:text-brand-yellow hover:bg-brand-maroon/10 dark:hover:bg-brand-yellow/20 transition-colors"
+                className="p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg bg-brand-maroon/5 dark:bg-brand-yellow/10 text-brand-maroon dark:text-brand-yellow hover:bg-brand-maroon/10 dark:hover:bg-brand-yellow/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-maroon"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-expanded={isMenuOpen}
+                aria-controls="mobile-nav"
                 aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMenuOpen ? <X size={24} aria-hidden /> : <Menu size={24} aria-hidden />}
               </button>
             </div>
           </div>
@@ -109,10 +110,12 @@ export default function Header({ navItems }: HeaderProps) {
 
       {/* Mobile nav — CSS grid/max-height, no Motion */}
       <nav
+        id="mobile-nav"
         className={`lg:hidden overflow-hidden border-t border-brand-maroon/10 dark:border-gray-700/50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md transition-[max-height,opacity] duration-300 ease-out ${
           isMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0 border-t-0'
         }`}
         aria-hidden={!isMenuOpen}
+        aria-label="Mobile"
       >
         <div className="container mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           {navItems.map((item, index) => {

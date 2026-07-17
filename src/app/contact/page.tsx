@@ -59,7 +59,7 @@ function ContactSection({ title, companyName, address, phone, email, website }: 
 						)}
 						{phone && (
 							<div className="flex items-center gap-3">
-								<Phone className="w-4 h-4 text-brand-maroon flex-shrink-0" />
+								<Phone className="w-4 h-4 text-brand-maroon flex-shrink-0" aria-hidden />
 								<Link
 									onClick={() => handleClick("phone", phone)}
 									href={`tel:${phone}`}
@@ -71,7 +71,7 @@ function ContactSection({ title, companyName, address, phone, email, website }: 
 						)}
 						{email && (
 							<div className="flex items-center gap-3">
-								<Mail className="w-4 h-4 text-brand-maroon flex-shrink-0" />
+								<Mail className="w-4 h-4 text-brand-maroon flex-shrink-0" aria-hidden />
 								<Link
 									onClick={() => handleClick("email", email)}
 									href={`mailto:${email}`}
@@ -83,7 +83,7 @@ function ContactSection({ title, companyName, address, phone, email, website }: 
 						)}
 						{website && (
 							<div className="flex items-center gap-3">
-								<Network className="w-4 h-4 text-brand-maroon flex-shrink-0" />
+								<Network className="w-4 h-4 text-brand-maroon flex-shrink-0" aria-hidden />
 								<Link
 									onClick={() => handleClick("website", website)}
 									href={website}
@@ -217,20 +217,12 @@ export default function ContactPage() {
 						Discover our breakthrough microinverter technology and explore our complete product portfolio.
 					</p>
 					<div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-						<Link href="/technology">
-							<button
-								className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-							>
-								Explore Technology
-							</button>
-						</Link>
-						<Link href="/products">
-							<button
-								className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
-							>
-								View Products
-							</button>
-						</Link>
+						<Link href="/technology" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
+Explore Technology
+</Link>
+						<Link href="/products" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
+View Products
+</Link>
 					</div>
 				</div>
 			</section>

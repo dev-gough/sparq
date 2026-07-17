@@ -168,22 +168,28 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                 className="max-w-2xl mx-auto mb-8"
             >
                 <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <label htmlFor="faq-search" className="sr-only">
+                        Search {currentCategory.title} FAQs
+                    </label>
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none" aria-hidden>
                         <Search className="h-5 w-5 text-brand-graytext dark:text-dark-text-secondary" />
                     </div>
                     <input
-                        type="text"
+                        id="faq-search"
+                        type="search"
                         placeholder={`Search ${currentCategory.title} FAQs...`}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-12 pr-12 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-brand-maroon focus:border-transparent outline-none transition-all duration-200 text-brand-darkmaroon dark:text-dark-text-primary placeholder-brand-graytext dark:placeholder-dark-text-muted"
+                        className="w-full min-h-[44px] pl-12 pr-12 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-brand-maroon focus:border-transparent outline-none transition-all duration-200 text-brand-darkmaroon dark:text-dark-text-primary placeholder-brand-graytext dark:placeholder-dark-text-muted"
                     />
                     {searchQuery && (
                         <button
+                            type="button"
                             onClick={() => setSearchQuery('')}
-                            className="absolute inset-y-0 right-0 pr-4 flex items-center text-brand-graytext dark:text-dark-text-secondary hover:text-brand-maroon transition-colors duration-200"
+                            aria-label="Clear search"
+                            className="absolute inset-y-0 right-0 min-w-[44px] pr-2 flex items-center justify-center text-brand-graytext dark:text-dark-text-secondary hover:text-brand-maroon transition-colors duration-200"
                         >
-                            <X className="h-5 w-5" />
+                            <X className="h-5 w-5" aria-hidden />
                         </button>
                     )}
                 </div>
@@ -205,12 +211,14 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
             >
                 {Object.entries(categories).map(([key, category]) => (
                     <button
+                        type="button"
                         key={key}
                         onClick={() => {
                             setActiveCategory(key)
                             setSearchQuery('') // Clear search when switching categories
                         }}
-                        className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 cursor-pointer ${activeCategory === key
+                        aria-pressed={activeCategory === key}
+                        className={`flex items-center gap-2 min-h-[44px] px-6 py-3 rounded-lg font-medium transition-all duration-300 cursor-pointer ${activeCategory === key
                                 ? `${category.color} ${category.bgColor} shadow-md`
                                 : 'text-brand-graytext dark:text-dark-text-secondary bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
                             }`}
@@ -241,7 +249,7 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                                 }
                             </p>
                             {searchQuery && (
-                                <button
+                                <button type="button"
                                     onClick={() => setSearchQuery('')}
                                     className="inline-flex items-center gap-2 px-4 py-2 bg-brand-maroon text-white rounded-lg hover:bg-brand-darkmaroon transition-colors duration-200"
                                 >
@@ -269,8 +277,10 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                                             className="bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow duration-200"
                                         >
                                             <button
+                                                type="button"
                                                 onClick={() => toggleQuestion(questionKey)}
-                                                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-600 rounded-lg transition-colors duration-200"
+                                                aria-expanded={isOpen}
+                                                className="w-full min-h-[44px] px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-600 rounded-lg transition-colors duration-200"
                                             >
                                                 <span className="font-medium text-brand-darkmaroon dark:text-brand-yellow pr-4">
                                                     {question.question}
@@ -278,6 +288,7 @@ export default function AggregatedFAQ({ id, homeownersData, installersData, inve
                                                 <ChevronDown
                                                     className={`w-5 h-5 text-brand-graytext dark:text-dark-text-secondary transition-transform duration-200 flex-shrink-0 ${isOpen ? 'rotate-180' : ''
                                                         }`}
+                                                    aria-hidden
                                                 />
                                             </button>
 

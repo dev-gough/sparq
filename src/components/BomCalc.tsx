@@ -374,13 +374,13 @@ export default function BoMCalc() {
                         )}
 
                         <div className="ml-auto flex gap-3">
-                            <button
+                            <button type="button"
                                 onClick={handleClear}
                                 className="rounded border border-gray-300 dark:border-gray-600 px-5 py-3 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                             >
                                 Clear
                             </button>
-                            <button
+                            <button type="button"
                                 onClick={handleGenerate}
                                 disabled={!allFilled}
                                 className={`rounded px-6 py-3 text-sm font-medium transition ${allFilled
@@ -459,7 +459,7 @@ export default function BoMCalc() {
             {hasAnyInput && (
 
                 <div className="flex justify-center space-x-4 pt-6 pb-12">
-                    <button onClick={handleDownload}
+                    <button type="button" onClick={handleDownload}
                         className="rounded-xl bg-gradient-to-r from-brand-maroon to-brand-darkmaroon px-8 py-4 text-sm text-white font-semibold hover:shadow-lg transition-all duration-300 cursor-pointer">
                         Download Summary
                     </button>

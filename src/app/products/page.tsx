@@ -105,7 +105,7 @@ function FloatingProductCard({ product, priority = false }: FloatingProductCardP
                         {product.id === 'accessories' ? (
                             <>
                                 <Image src={product.image}
-                                    alt=""
+                                    alt={product.title}
                                     fill
                                     priority={priority}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 45vw, 360px"
@@ -115,7 +115,7 @@ function FloatingProductCard({ product, priority = false }: FloatingProductCardP
                                     }}
                                 />
                                 <Image src="/Accessories/cables-td.png"
-                                    alt=""
+                                    alt={product.title}
                                     fill
                                     priority={priority}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 45vw, 360px"
@@ -127,7 +127,7 @@ function FloatingProductCard({ product, priority = false }: FloatingProductCardP
                             </>
                         ) : (
                             <Image src={product.image}
-                                alt=""
+                                alt={product.title}
                                 fill
                                 priority={priority}
                                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 45vw, 360px"
@@ -235,16 +235,12 @@ export default function ProductsPage() {
                             Learn more about our breakthrough technology or get in touch to discuss your specific requirements.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-                            <Link href="/technology">
-                                <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
-                                    Explore Technology
-                                </button>
-                            </Link>
-                            <Link href="/contact">
-                                <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
-                                    Contact Us
-                                </button>
-                            </Link>
+                            <Link href="/technology" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
+Explore Technology
+</Link>
+                            <Link href="/contact" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
+Contact Us
+</Link>
                         </div>
                     </div>
                 </section>

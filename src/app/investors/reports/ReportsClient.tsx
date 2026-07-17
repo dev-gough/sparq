@@ -119,12 +119,14 @@ export default function ReportsClient({ documents }: { documents: DocumentData[]
           <Card className="p-6 bg-white/50 dark:bg-gray-800/30">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1">
-                <label className="block text-sm font-semibold mb-2 text-brand-darkmaroon dark:text-brand-yellow">
+                <label htmlFor="report-doc-type" className="block text-sm font-semibold mb-2 text-brand-darkmaroon dark:text-brand-yellow">
                   Document Type
                 </label>
-                <select value={selectedType}
+                <select
+                  id="report-doc-type"
+                  value={selectedType}
                   onChange={(e) => setSelectedType(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-brand-graytext dark:text-dark-text-secondary focus:ring-2 focus:ring-brand-maroon focus:border-transparent">
+                  className="w-full min-h-[44px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-brand-graytext dark:text-dark-text-secondary focus:ring-2 focus:ring-brand-maroon focus:border-transparent">
                   {documentTypes.map((type) => (
                     <option key={type.value} value={type.value}>
                       {type.label}
@@ -134,12 +136,14 @@ export default function ReportsClient({ documents }: { documents: DocumentData[]
               </div>
 
               <div className="flex-1">
-                <label className="block text-sm font-semibold mb-2 text-brand-darkmaroon dark:text-brand-yellow">
+                <label htmlFor="report-year" className="block text-sm font-semibold mb-2 text-brand-darkmaroon dark:text-brand-yellow">
                   Year
                 </label>
-                <select value={selectedYear}
+                <select
+                  id="report-year"
+                  value={selectedYear}
                   onChange={(e) => setSelectedYear(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-brand-graytext dark:text-dark-text-secondary focus:ring-2 focus:ring-brand-maroon focus:border-transparent">
+                  className="w-full min-h-[44px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-brand-graytext dark:text-dark-text-secondary focus:ring-2 focus:ring-brand-maroon focus:border-transparent">
                   <option value="">All Years</option>
                   {availableYears.map((year) => (
                     <option key={year} value={year}>
@@ -160,9 +164,9 @@ export default function ReportsClient({ documents }: { documents: DocumentData[]
           {filteredDocs.length === 0 ? (
             <div className="text-center py-16">
               <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-brand-darkmaroon dark:text-brand-yellow mb-2">
+              <h2 className="text-xl font-semibold text-brand-darkmaroon dark:text-brand-yellow mb-2">
                 No documents found
-              </h3>
+              </h2>
               <p className="text-brand-graytext dark:text-dark-text-secondary">
                 Try adjusting your filters to see more results.
               </p>

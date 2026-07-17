@@ -88,9 +88,9 @@ export default function AboutPage() {
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-brand-maroon to-brand-darkmaroon rounded-xl flex items-center justify-center text-white mx-auto mb-4">
                 <Icon size={24} className="sm:w-8 sm:h-8" />
               </div>
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3 sm:mb-4">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-3 sm:mb-4">
                 {title}
-              </h3>
+              </h2>
               <p className="text-base sm:text-lg lg:text-xl text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
                 {body}
               </p>

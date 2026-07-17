@@ -115,24 +115,27 @@ export default function SparqVuPage() {
 							className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 max-w-4xl py-0"
 						>
 							<CardContent className="p-0">
-								<div
-									className={`${section.accentColor} p-6 text-white cursor-pointer`}
+								<button
+									type="button"
+									className={`${section.accentColor} p-6 text-white cursor-pointer w-full text-left`}
 									onClick={() => toggleExpanded(index)}
+									aria-expanded={!!dropdownExpanded[index]}
 								>
 									<div className="flex items-center gap-4">
-										<div className="flex-shrink-0">
+										<div className="flex-shrink-0" aria-hidden>
 											{getIconForCategory(section.title)}
 										</div>
-										<h2 className="text-xl md:text-2xl font-bold flex-1">{section.title}</h2>
+										<span className="text-xl md:text-2xl font-bold flex-1">{section.title}</span>
 										<div
 											className={`flex-shrink-0 transition-transform duration-300 ${dropdownExpanded[index] ? "rotate-180" : ""}`}
+											aria-hidden
 										>
 											<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
 											</svg>
 										</div>
 									</div>
-								</div>
+								</button>
 
 								{dropdownExpanded[index] && (
 									<div className="p-6 bg-white dark:bg-gray-800">

@@ -147,17 +147,19 @@ export default function ProductPage({
                     <div key={index} className="flex-1">
                       <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group py-0 h-full">
                         <CardContent className="p-0 flex flex-col h-full">
-                          <div
-                            className={`${getAccentColor(index)} p-4 text-white group-hover:brightness-110 transition-all duration-300 cursor-pointer`}
+                          <button
+                            type="button"
+                            className={`${getAccentColor(index)} p-4 text-white group-hover:brightness-110 transition-all duration-300 cursor-pointer w-full text-left`}
                             onClick={() => toggleAllCardsExpanded()}
+                            aria-expanded={allCardsExpanded || items.length <= 3}
                           >
                             <div className="flex items-center gap-3 mb-3">
-                              <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+                              <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center" aria-hidden>
                                 <div className="text-white text-lg">
                                   {getIconForCategory(cardHeading)}
                                 </div>
                               </div>
-                              <h2 className="text-lg font-bold leading-tight flex-1">{cardHeading}</h2>
+                              <span className="text-lg font-bold leading-tight flex-1">{cardHeading}</span>
                             </div>
                             <div className="flex items-center justify-between">
                               <div className="text-white text-sm font-medium">
@@ -172,6 +174,7 @@ export default function ProductPage({
                                   className={`text-white/90 transition-transform duration-200 ${
                                     allCardsExpanded ? 'rotate-180' : ''
                                   }`}
+                                  aria-hidden
                                 >
                                   <svg
                                     className="w-4 h-4"
@@ -189,7 +192,7 @@ export default function ProductPage({
                                 </div>
                               )}
                             </div>
-                          </div>
+                          </button>
 
                           <div className="p-4 bg-white dark:bg-gray-800 flex-1 flex flex-col">
                             <div className="space-y-3 flex-1">
@@ -237,7 +240,7 @@ export default function ProductPage({
                                 <button
                                   type="button"
                                   onClick={() => toggleAllCardsExpanded()}
-                                  className="inline-flex items-center gap-2 px-3 py-1.5 text-brand-maroon hover:text-brand-darkmaroon text-xs font-medium hover:bg-brand-maroon/5 rounded-full transition-all duration-200"
+                                  className="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 text-brand-maroon hover:text-brand-darkmaroon text-sm font-medium hover:bg-brand-maroon/5 rounded-full transition-all duration-200"
                                 >
                                   <span>
                                     {allCardsExpanded
@@ -291,9 +294,10 @@ export default function ProductPage({
                 <button
                   type="button"
                   onClick={handleClick}
-                  className="mt-6 px-6 py-3 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                  className="mt-6 min-h-[44px] px-6 py-3 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                  aria-expanded={isExpanded}
                 >
-                  {isExpanded ? 'Read less' : 'Read more'}
+                  {isExpanded ? `Read less about ${heading}` : `Read more about ${heading}`}
                 </button>
               </div>
             )}
@@ -308,11 +312,12 @@ export default function ProductPage({
                     <button
                       type="button"
                       key={m}
-                      className={`px-4 py-2 rounded-lg text-sm md:text-base font-medium cursor-pointer transition-all duration-300 ${
+                      className={`min-h-[44px] px-4 py-2 rounded-lg text-sm md:text-base font-medium cursor-pointer transition-all duration-300 ${
                         m === selectedModel
                           ? 'bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white shadow-lg'
                           : 'bg-white dark:bg-gray-800 text-brand-graytext dark:text-dark-text-secondary border-2 border-brand-maroon/20 dark:border-gray-600/50 hover:border-brand-maroon/40 dark:hover:border-gray-500/70 hover:shadow-md'
                       }`}
+                      aria-pressed={m === selectedModel}
                       onClick={() => setSelectedModel(m)}
                     >
                       {m}

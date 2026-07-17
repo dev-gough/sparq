@@ -121,8 +121,10 @@ export default function LearningPage() {
               >
                 <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
                   <button
+                    type="button"
                     onClick={() => handleShow(video.id)}
-                    className="w-full text-left"
+                    className="w-full text-left min-h-[44px]"
+                    aria-label={`Play video: ${video.title}`}
                   >
                     <div className="relative">
                       <Image
@@ -180,8 +182,10 @@ export default function LearningPage() {
               >
                 <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
                   <button
+                    type="button"
                     onClick={() => handleShow(video.id)}
-                    className="w-full text-left"
+                    className="w-full text-left min-h-[44px]"
+                    aria-label={`Play video: ${video.title}`}
                   >
                     <div className="relative">
                       <Image
@@ -239,8 +243,10 @@ export default function LearningPage() {
               >
                 <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
                   <button
+                    type="button"
                     onClick={() => handleShow(video.id)}
-                    className="w-full text-left"
+                    className="w-full text-left min-h-[44px]"
+                    aria-label={`Play video: ${video.title}`}
                   >
                     <div className="relative">
                       <Image
