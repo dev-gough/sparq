@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sparq Systems · Performance Sweep — Before & After</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=IBM+Plex+Mono:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --paper: #efe7d4;
+  --paper-deep: #e6dcc4;
+  --paper-edge: #d6cab0;
+  --ink: #1c130a;
+  --ink-mid: #3b2c1c;
+  --ink-soft: #6a5a44;
+  --ink-faint: #a89a82;
+  --rule: #1c130a;
+  --signal: #c8312c;
+  --copper: #b85a2c;
+  --mustard: #b89143;
+  --sage: #5e7a6a;
+  --slate: #45556e;
+  --rust: #9a3f2a;
+  --moss: #6a7a3a;
+  --clay: #a86a4a;
+  --ink-blue: #2c3e54;
+  --pre: #9a3f2a;
+  --p1: #a86a4a;
+  --p2: #b89143;
+  --p3: #5e7a6a;
+  --final: #2c3e54;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(184,90,44,0.08), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 90% 20%, rgba(94,122,106,0.10), transparent 45%),
+    var(--paper);
+  color: var(--ink);
+  font-family: "Newsreader", Georgia, serif;
+  font-optical-sizing: auto;
+  line-height: 1.55;
+  min-height: 100vh;
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+  opacity: 0.35; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+main { max-width: 1280px; margin: 0 auto; padding: 0 56px 96px; }
+@media (max-width: 720px) { main { padding: 0 20px 64px; } }
+
+.masthead {
+  display: flex; align-items: center; gap: 14px;
+  padding: 28px 0 18px;
+  border-bottom: 2px solid var(--rule);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-mid);
+}
+.pulse {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--signal);
+  box-shadow: 0 0 0 0 rgba(200,49,44,0.5);
+  animation: pulse 2s ease-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(200,49,44,0.45); }
+  70% { box-shadow: 0 0 0 10px rgba(200,49,44,0); }
+  100% { box-shadow: 0 0 0 0 rgba(200,49,44,0); }
+}
+.masthead .sep { color: var(--ink-faint); }
+.masthead .right { margin-left: auto; }
+
+.hero { padding: 48px 0 36px; }
+.eyebrow {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: 18px;
+}
+h1 {
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  font-size: clamp(42px, 7vw, 88px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+  font-variation-settings: "SOFT" 50, "WONK" 1, "opsz" 144;
+}
+h1 em {
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--copper);
+  letter-spacing: -0.02em;
+}
+.hero-sub {
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-mid);
+  max-width: 42ch;
+  margin: 0 0 28px;
+}
+.lede {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 24px;
+  border-top: 1px solid var(--paper-edge);
+  padding-top: 24px;
+  max-width: 920px;
+}
+.lede-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-soft); padding-top: 6px;
+}
+.lede p {
+  margin: 0;
+  font-size: 1.12rem;
+  color: var(--ink-mid);
+  max-width: 62ch;
+}
+.drop {
+  font-family: "Fraunces", serif;
+  font-size: 3.2rem;
+  line-height: 0.8;
+  float: left;
+  margin: 4px 10px 0 0;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 144;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 2px solid var(--rule);
+  border-bottom: 2px solid var(--rule);
+  margin: 40px 0 56px;
+}
+@media (max-width: 800px) { .stats { grid-template-columns: 1fr 1fr; } }
+.stat {
+  padding: 22px 18px 26px;
+  border-right: 1px solid var(--paper-edge);
+}
+.stat:last-child { border-right: none; }
+.stat-key {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: 8px;
+}
+.stat-val {
+  font-family: "Fraunces", serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: "SOFT" 30, "opsz" 72;
+}
+.stat-val .unit { font-size: 0.45em; color: var(--ink-soft); margin-left: 4px; }
+.stat-sub {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px; letter-spacing: 0.08em;
+  color: var(--ink-soft); margin-top: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.stat-sub .delta-good { color: var(--moss); }
+.stat-sub .delta-bad { color: var(--rust); }
+
+section { margin: 64px 0; }
+.sec-head {
+  display: flex; align-items: baseline; gap: 16px;
+  border-bottom: 2px solid var(--rule);
+  padding-bottom: 12px; margin-bottom: 28px;
+}
+.sec-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--copper); white-space: nowrap;
+}
+.sec-head h2 {
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  font-size: clamp(26px, 3.5vw, 36px);
+  margin: 0;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 40, "WONK" 0.5, "opsz" 72;
+}
+.sec-head h2 em {
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--copper);
+}
+.sec-meta {
+  margin-left: auto;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.frame {
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.18);
+}
+.frame-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--paper-edge);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-mid);
+  background: rgba(230,220,196,0.45);
+}
+.frame-body { padding: 16px 12px 8px; }
+.frame-body.tight { padding: 8px 4px 4px; }
+
+.twocol {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+@media (max-width: 900px) { .twocol { grid-template-columns: 1fr; } }
+
+.callouts { display: flex; flex-direction: column; gap: 16px; }
+.callout {
+  border-left: 3px solid var(--copper);
+  padding: 10px 0 10px 16px;
+  background: linear-gradient(90deg, rgba(184,90,44,0.06), transparent 80%);
+}
+.callout .k {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: 4px;
+}
+.callout .v {
+  font-family: "Fraunces", serif;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+}
+.callout p {
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+}
+
+.phase-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+@media (max-width: 1000px) { .phase-cards { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .phase-cards { grid-template-columns: 1fr 1fr; } }
+.pcard {
+  border: 1px solid var(--paper-edge);
+  background: rgba(255,255,255,0.22);
+  padding: 0 0 14px;
+  position: relative;
+  overflow: hidden;
+}
+.pcard .bar { height: 4px; width: 100%; }
+.pcard .tag {
+  display: inline-block;
+  margin: 12px 12px 6px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 2px 7px;
+  border: 1px solid var(--paper-edge);
+  color: var(--ink-soft);
+}
+.pcard h3 {
+  font-family: "Fraunces", serif;
+  font-size: 1.35rem;
+  margin: 0 12px 4px;
+  font-weight: 500;
+}
+.pcard .note {
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin: 0 12px 12px;
+  min-height: 2.4em;
+}
+.pcard .big {
+  font-family: "Fraunces", serif;
+  font-size: 1.85rem;
+  letter-spacing: -0.02em;
+  margin: 0 12px;
+  font-variant-numeric: tabular-nums;
+}
+.pcard .big span { font-size: 0.5em; color: var(--ink-soft); }
+.pcard .mini {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6px 10px;
+  margin: 12px 12px 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.pcard .mini .mk { color: var(--ink-faint); letter-spacing: 0.08em; text-transform: uppercase; display: block; font-size: 9px; }
+.pcard .mini .mv { color: var(--ink-mid); }
+
+svg .axis-line { stroke: var(--ink); stroke-width: 1; }
+svg .grid-line { stroke: var(--ink); stroke-width: 0.5; stroke-dasharray: 1 4; opacity: 0.35; }
+svg .axis-text {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px; fill: var(--ink-mid); letter-spacing: 0.04em;
+}
+svg .axis-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px; fill: var(--ink-soft);
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+svg .panel-title {
+  font-family: "Fraunces", serif;
+  font-style: italic; font-size: 13px; fill: var(--ink);
+}
+
+.legend {
+  display: flex; flex-wrap: wrap; gap: 14px 20px;
+  padding: 4px 0 12px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-mid);
+}
+.legend i {
+  display: inline-block; width: 12px; height: 12px;
+  margin-right: 6px; vertical-align: -2px;
+  border-radius: 2px;
+}
+
+.reftable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.reftable thead th {
+  text-align: left;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: var(--ink-soft);
+  padding: 10px 10px;
+  border-bottom: 2px solid var(--rule);
+}
+.reftable tbody td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--paper-edge);
+  color: var(--ink-mid);
+}
+.reftable tbody tr:hover td { background: rgba(255,255,255,0.28); }
+.reftable .path {
+  color: var(--ink);
+  border-left: 3px solid var(--slate);
+  font-weight: 500;
+}
+.reftable .good { color: var(--moss); font-weight: 500; }
+.reftable .bad { color: var(--rust); font-weight: 500; }
+.reftable .num { text-align: right; }
+.reftable tfoot td {
+  border-top: 2px solid var(--rule);
+  background: rgba(28,19,10,0.04);
+  font-weight: 500;
+  color: var(--ink);
+  padding: 12px 10px;
+}
+
+.notes {
+  font-size: 0.98rem;
+  color: var(--ink-mid);
+  columns: 2; column-gap: 36px;
+}
+@media (max-width: 720px) { .notes { columns: 1; } }
+.notes p { margin: 0 0 12px; break-inside: avoid; }
+.notes strong { color: var(--ink); font-weight: 600; }
+
+.colophon {
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 2px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+@media (max-width: 720px) { .colophon { grid-template-columns: 1fr; } }
+.colophon h4 {
+  margin: 0 0 8px;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-mid); font-weight: 500;
+}
+.colophon p { margin: 0; line-height: 1.6; }
+
+.rise { opacity: 0; transform: translateY(12px); animation: rise 0.7s ease forwards; }
+.d1 { animation-delay: 0.05s; }
+.d2 { animation-delay: 0.12s; }
+.d3 { animation-delay: 0.2s; }
+.d4 { animation-delay: 0.28s; }
+.d5 { animation-delay: 0.36s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+.scroll-x { overflow-x: auto; }
+</style>
+</head>
+<body>
+<main>
+  <div class="masthead rise d1">
+    <span class="pulse" aria-hidden="true"></span>
+    <span>Dispatch · PERF-2026-07</span>
+    <span class="sep">·</span>
+    <span>Sparq Systems</span>
+    <span class="right">Lab · Desktop · 21 pages × 3</span>
+  </div>
+
+  <header class="hero">
+    <div class="eyebrow rise d1">Optimization sweep · audit/minification-report</div>
+    <h1 class="rise d2">Twenty-one pages,<br /><em>one clean pass.</em></h1>
+    <p class="hero-sub rise d3">From fully dynamic SSR and multi-second LCPs to static HTML, zero CLS, and a perfect lab score on every route.</p>
+    <div class="lede rise d4">
+      <div class="lede-label">Editor’s note</div>
+      <p><span class="drop">T</span>his brief compares the site at the start of the performance sweep (<code style="font-family:IBM Plex Mono,monospace;font-size:0.85em">fc4e5ed</code>) against the tip of <code style="font-family:IBM Plex Mono,monospace;font-size:0.85em">audit/minification-report</code> (<code style="font-family:IBM Plex Mono,monospace;font-size:0.85em">3637207</code>). Intermediate milestones capture Phase&nbsp;1 (deps), Phase&nbsp;2 (static routes), and Phase&nbsp;3 (RSC / Motion / CLS). All Lighthouse figures are <em>desktop lab medians</em> — not field CrUX.</p>
+    </div>
+  </header>
+
+  <div class="stats rise d5" id="hero-stats"></div>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">§ 01 ·</span>
+      <h2>Five milestones, <em>one trajectory</em></h2>
+      <span class="sec-meta">Build + lab medians</span>
+    </div>
+    <div class="phase-cards" id="phase-cards"></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">§ 02 ·</span>
+      <h2>How LCP <em>collapsed</em></h2>
+      <span class="sec-meta">Sitewide aggregates</span>
+    </div>
+    <div class="twocol">
+      <div class="frame">
+        <div class="frame-head"><span>Mean &amp; max LCP by phase</span><span>ms</span></div>
+        <div class="frame-body" id="chart-lcp-phase"></div>
+      </div>
+      <div class="callouts" id="lcp-callouts"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">§ 03 ·</span>
+      <h2>First Load JS <em>by route</em></h2>
+      <span class="sec-meta">Pre → Final</span>
+    </div>
+    <div class="frame">
+      <div class="frame-head"><span>First Load JS delta (kB)</span><span>sorted by savings</span></div>
+      <div class="frame-body tight" id="chart-fl-bars"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">§ 04 ·</span>
+      <h2>Where LCP <em>used to hurt</em></h2>
+      <span class="sec-meta">Pre vs Final, ranked</span>
+    </div>
+    <div class="frame">
+      <div class="frame-head"><span>LCP before / after (ms)</span><span>dumbbell chart</span></div>
+      <div class="frame-body tight" id="chart-lcp-dumbbell"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">§ 05 ·</span>
+      <h2>CLS: the <em>static-route tax</em></h2>
+      <span class="sec-meta">Phase 2 hole → island fix</span>
+    </div>
+    <div class="twocol">
+      <div class="frame">
+        <div class="frame-head"><span>Max CLS across site</span><span>per phase</span></div>
+        <div class="frame-body" id="chart-cls"></div>
+      </div>
+      <div class="callouts">
+        <div class="callout" style="border-color: var(--mustard)">
+          <div class="k">Phase 2 introduction</div>
+          <div class="v">CLS ≈ 0.46</div>
+          <p>Static marketing routes plus a full-page <code style="font-family:IBM Plex Mono,monospace;font-size:0.85em">Suspense fallback={null}</code> around <code style="font-family:IBM Plex Mono,monospace;font-size:0.85em">useSearchParams</code> on /investors and /resources caused a late paint shift.</p>
+        </div>
+        <div class="callout" style="border-color: var(--sage)">
+          <div class="k">Island isolation</div>
+          <div class="v">CLS → 0</div>
+          <p>VideoDeepLink islands fixed /investors in Phase&nbsp;3 and /resources immediately after. Final lab: <strong>max CLS 0</strong> on every page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">§ 06 ·</span>
+      <h2>Transfer size <em>reality check</em></h2>
+      <span class="sec-meta">Lab total byte weight</span>
+    </div>
+    <div class="frame">
+      <div class="frame-head"><span>Mean transfer per page (kB)</span><span>includes images / fonts / JS</span></div>
+      <div class="frame-body" id="chart-bytes"></div>
+    </div>
+    <p style="margin:16px 0 0;color:var(--ink-soft);font-family:IBM Plex Mono,monospace;font-size:11px;letter-spacing:0.06em;">
+      LEGACY PAGE: Pre lab ~14&nbsp;MB → Final ~0.5&nbsp;MB (LCP no longer gated on oversized media). Mean site transfer −59%.
+    </p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">§ 07 ·</span>
+      <h2>The numbers, <em>plainly</em></h2>
+      <span class="sec-meta">Full route table</span>
+    </div>
+    <div class="scroll-x">
+      <table class="reftable" id="ref-table">
+        <thead>
+          <tr>
+            <th>Path</th>
+            <th class="num">Pre FL</th>
+            <th class="num">Fin FL</th>
+            <th class="num">Δ FL</th>
+            <th class="num">Pre LCP</th>
+            <th class="num">Fin LCP</th>
+            <th class="num">Δ LCP</th>
+            <th class="num">Pre CLS</th>
+            <th class="num">Fin CLS</th>
+            <th class="num">Score</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">§ 08 ·</span>
+      <h2>What moved the <em>needle</em></h2>
+      <span class="sec-meta">Narrative</span>
+    </div>
+    <div class="notes">
+      <p><strong>Phase 1</strong> upgraded Next and stripped dead packages. First Load JS stayed flat — expected; those packages were already tree-shaken out of client bundles.</p>
+      <p><strong>Phase 2</strong> removed layout <code style="font-family:IBM Plex Mono,monospace;font-size:0.85em">cookies()</code> theme FOUC and flipped <strong>22 of 22 marketing routes to static</strong>. Lab CLS spiked until search-param islands landed.</p>
+      <p><strong>Phase 3</strong> carried the bulk of the JS cut: Firebase idle-split, Motion entrance removal, server Footer, lucide-only icons, legal content split. Home First Load hit the ≤130&nbsp;kB budget at 124&nbsp;kB.</p>
+      <p><strong>Final stretch</strong> removed remaining Motion sitewide, fixed oversized images (<code style="font-family:IBM Plex Mono,monospace;font-size:0.85em">sizes</code> + WebP heroes), closed /resources CLS, added experimental view transitions (shared JS rose to 115&nbsp;kB — home now 137&nbsp;kB), and completed the a11y pass.</p>
+      <p><strong>Still open (ops-gated):</strong> public media cull, API/secrets review, standalone output. Optional polish: DropdownMenu keyboard, modal focus trap, live axe/LHCI a11y gates.</p>
+      <p><strong>Method note:</strong> Desktop Chromium lab with fixed throttling, three runs per URL, medians reported. Production <code style="font-family:IBM Plex Mono,monospace;font-size:0.85em">next start</code> on localhost. Field mobile LCP will differ.</p>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <div>
+      <h4>Source</h4>
+      <p>docs/baselines/*-full*.json<br />docs/baselines/2026-07-17-final-3637207*</p>
+    </div>
+    <div>
+      <h4>Method</h4>
+      <p>next build route tables<br />Lighthouse desktop · 3-run median<br />Playwright Chromium · no sandbox</p>
+    </div>
+    <div>
+      <h4>Brief</h4>
+      <p>Generated 2026-07-16<br />Branch audit/minification-report<br />Tip 3637207</p>
+    </div>
+  </footer>
+</main>
+
+<script id="data" type="application/json">{"meta":{"title":"Sparq Systems \u00b7 Performance Sweep","subtitle":"Before vs after lab benchmarks","generated":"2026-07-16","method":"Desktop Lighthouse lab \u00b7 Playwright Chromium \u00b7 21 marketing pages \u00d7 3 runs (median) \u00b7 next build First Load JS","commits":{"Pre":"fc4e5ed","P1":"2e2d2aa","P2":"5904ab8","P3":"f993b80","Final":"3637207"},"phaseNotes":{"Pre":"Baseline: all dynamic, Next 15.2 era","P1":"Phase A: dead deps out, Next 15.5.20","P2":"Theme FOUC: 22 static routes","P3":"RSC + Motion trim + CLS islands","Final":"Motion gone, images, VT, a11y, resources CLS"}},"aggregates":[{"phase":"Pre","commit":"","homeFlKb":165,"sharedFlKb":100,"static":0,"dynamic":27,"medianLcp":616,"meanLcp":1392,"maxLcp":12181,"maxCls":0.0039,"pagesWithCls":0,"meanScore":0.972,"medianScore":1,"medianBytesKb":306,"meanBytesKb":1169,"perfectScores":17,"pageCount":21},{"phase":"P1","commit":"","homeFlKb":167,"sharedFlKb":102,"static":0,"dynamic":26,"medianLcp":596,"meanLcp":1388,"maxLcp":12183,"maxCls":0.0039,"pagesWithCls":0,"meanScore":0.972,"medianScore":1,"medianBytesKb":306,"meanBytesKb":1169,"perfectScores":17,"pageCount":21},{"phase":"P2","commit":"","homeFlKb":167,"sharedFlKb":102,"static":22,"dynamic":4,"medianLcp":759,"meanLcp":1536,"maxLcp":12325,"maxCls":0.4593,"pagesWithCls":2,"meanScore":0.95,"medianScore":1,"medianBytesKb":422,"meanBytesKb":1282,"perfectScores":14,"pageCount":21},{"phase":"P3","commit":"","homeFlKb":124,"sharedFlKb":102,"static":22,"dynamic":4,"medianLcp":523,"meanLcp":555,"maxLcp":812,"maxCls":0.4543,"pagesWithCls":1,"meanScore":0.99,"medianScore":1,"medianBytesKb":409,"meanBytesKb":1157,"perfectScores":20,"pageCount":21},{"phase":"Final","commit":"","homeFlKb":137,"sharedFlKb":115,"static":22,"dynamic":4,"medianLcp":526,"meanLcp":528,"maxLcp":570,"maxCls":0,"pagesWithCls":0,"meanScore":1.0,"medianScore":1,"medianBytesKb":511,"meanBytesKb":480,"perfectScores":21,"pageCount":21}],"routes":[{"path":"/","preLcp":576,"finLcp":526,"dLcp":50,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":280,"finBytesKb":516,"preFlKb":165,"finFlKb":137,"dFlKb":28,"preMode":"dynamic","finMode":"static","p3Lcp":492,"p3Cls":0,"p3FlKb":124},{"path":"/about","preLcp":577,"finLcp":505,"dLcp":72,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":249,"finBytesKb":331,"preFlKb":142,"finFlKb":124,"dFlKb":18,"preMode":"dynamic","finMode":"static","p3Lcp":470,"p3Cls":0,"p3FlKb":112},{"path":"/about/board","preLcp":618,"finLcp":533,"dLcp":85,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":299,"finBytesKb":540,"preFlKb":170,"finFlKb":134,"dFlKb":36,"preMode":"dynamic","finMode":"static","p3Lcp":513,"p3Cls":0,"p3FlKb":121},{"path":"/about/leadership","preLcp":627,"finLcp":570,"dLcp":57,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":322,"finBytesKb":563,"preFlKb":171,"finFlKb":135,"dFlKb":36,"preMode":"dynamic","finMode":"static","p3Lcp":509,"p3Cls":0,"p3FlKb":122},{"path":"/contact","preLcp":568,"finLcp":506,"dLcp":62,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":267,"finBytesKb":491,"preFlKb":170,"finFlKb":131,"dFlKb":39,"preMode":"dynamic","finMode":"static","p3Lcp":668,"p3Cls":0,"p3FlKb":155},{"path":"/investors","preLcp":1732,"finLcp":532,"dLcp":1199,"preCls":0,"finCls":0,"preScore":0.93,"finScore":1,"preBytesKb":1543,"finBytesKb":525,"preFlKb":187,"finFlKb":148,"dFlKb":39,"preMode":"dynamic","finMode":"static","p3Lcp":531,"p3Cls":0,"p3FlKb":135},{"path":"/investors/governance","preLcp":570,"finLcp":505,"dLcp":64,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":258,"finBytesKb":335,"preFlKb":157,"finFlKb":131,"dFlKb":26,"preMode":"dynamic","finMode":"static","p3Lcp":469,"p3Cls":0,"p3FlKb":118},{"path":"/investors/reports","preLcp":648,"finLcp":547,"dLcp":102,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":276,"finBytesKb":341,"preFlKb":151,"finFlKb":130,"dFlKb":21,"preMode":"dynamic","finMode":"static","p3Lcp":510,"p3Cls":0,"p3FlKb":117},{"path":"/products","preLcp":715,"finLcp":549,"dLcp":167,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":647,"finBytesKb":412,"preFlKb":158,"finFlKb":135,"dFlKb":23,"preMode":"dynamic","finMode":"static","p3Lcp":671,"p3Cls":0,"p3FlKb":123},{"path":"/products/accessories","preLcp":492,"finLcp":545,"dLcp":-53,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":327,"finBytesKb":413,"preFlKb":110,"finFlKb":125,"dFlKb":-15,"preMode":"dynamic","finMode":"static","p3Lcp":510,"p3Cls":0,"p3FlKb":113},{"path":"/products/app","preLcp":616,"finLcp":530,"dLcp":86,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":284,"finBytesKb":522,"preFlKb":171,"finFlKb":136,"dFlKb":35,"preMode":"dynamic","finMode":"static","p3Lcp":486,"p3Cls":0,"p3FlKb":123},{"path":"/products/legacy","preLcp":12181,"finLcp":526,"dLcp":11655,"preCls":0,"finCls":0,"preScore":0.75,"finScore":1,"preBytesKb":13893,"finBytesKb":524,"preFlKb":171,"finFlKb":136,"dFlKb":35,"preMode":"dynamic","finMode":"static","p3Lcp":526,"p3Cls":0,"p3FlKb":160},{"path":"/products/quad2","preLcp":2511,"finLcp":525,"dLcp":1986,"preCls":0,"finCls":0,"preScore":0.87,"finScore":1,"preBytesKb":1636,"finBytesKb":527,"preFlKb":179,"finFlKb":138,"dFlKb":41,"preMode":"dynamic","finMode":"static","p3Lcp":523,"p3Cls":0,"p3FlKb":162},{"path":"/products/quad3","preLcp":2518,"finLcp":525,"dLcp":1993,"preCls":0,"finCls":0,"preScore":0.87,"finScore":1,"preBytesKb":1633,"finBytesKb":527,"preFlKb":180,"finFlKb":139,"dFlKb":41,"preMode":"dynamic","finMode":"static","p3Lcp":524,"p3Cls":0,"p3FlKb":163},{"path":"/products/sparqlinq","preLcp":589,"finLcp":508,"dLcp":81,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":321,"finBytesKb":511,"preFlKb":173,"finFlKb":138,"dFlKb":35,"preMode":"dynamic","finMode":"static","p3Lcp":525,"p3Cls":0,"p3FlKb":161},{"path":"/products/sparqvu","preLcp":582,"finLcp":506,"dLcp":76,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":306,"finBytesKb":509,"preFlKb":171,"finFlKb":136,"dFlKb":35,"preMode":"dynamic","finMode":"static","p3Lcp":524,"p3Cls":0,"p3FlKb":160},{"path":"/resources","preLcp":708,"finLcp":545,"dLcp":163,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":538,"finBytesKb":409,"preFlKb":171,"finFlKb":147,"dFlKb":24,"preMode":"dynamic","finMode":"static","p3Lcp":812,"p3Cls":0.4543,"p3FlKb":172},{"path":"/resources/calculator","preLcp":586,"finLcp":505,"dLcp":81,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":249,"finBytesKb":343,"preFlKb":152,"finFlKb":130,"dFlKb":22,"preMode":"dynamic","finMode":"static","p3Lcp":712,"p3Cls":0,"p3FlKb":154},{"path":"/resources/legal","preLcp":589,"finLcp":544,"dLcp":45,"preCls":0.0039,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":273,"finBytesKb":522,"preFlKb":173,"finFlKb":120,"dFlKb":53,"preMode":"dynamic","finMode":"static","p3Lcp":503,"p3Cls":0,"p3FlKb":108},{"path":"/support","preLcp":592,"finLcp":504,"dLcp":88,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":252,"finBytesKb":766,"preFlKb":153,"finFlKb":129,"dFlKb":24,"preMode":"dynamic","finMode":"static","p3Lcp":669,"p3Cls":0,"p3FlKb":154},{"path":"/technology","preLcp":629,"finLcp":549,"dLcp":80,"preCls":0,"finCls":0,"preScore":1,"finScore":1,"preBytesKb":703,"finBytesKb":443,"preFlKb":161,"finFlKb":138,"dFlKb":23,"preMode":"dynamic","finMode":"static","p3Lcp":503,"p3Cls":0,"p3FlKb":126}],"lcpSeries":{"/":[576,577,741,492,526],"/about":[577,573,736,470,505],"/about/board":[618,622,756,513,533],"/about/leadership":[627,640,784,509,570],"/contact":[568,590,700,668,506],"/investors":[1732,1757,1781,531,532],"/investors/governance":[570,572,815,469,505],"/investors/reports":[648,648,759,510,547],"/products":[715,715,947,671,549],"/products/accessories":[492,490,488,510,545],"/products/app":[616,596,758,486,530],"/products/legacy":[12181,12183,12325,526,526],"/products/quad2":[2511,2555,2613,523,525],"/products/quad3":[2518,2367,2573,524,525],"/products/sparqlinq":[589,593,753,525,508],"/products/sparqvu":[582,579,748,524,506],"/resources":[708,712,890,812,545],"/resources/calculator":[586,580,774,712,505],"/resources/legal":[589,590,747,503,544],"/support":[592,569,706,669,504],"/technology":[629,632,852,503,549]},"flSeries":{"/":[165,167,167,124,137],"/about":[142,144,144,112,124],"/about/board":[170,172,172,121,134],"/about/leadership":[171,172,172,122,135],"/contact":[170,172,172,155,131],"/investors":[187,188,188,135,148],"/investors/governance":[157,159,159,118,131],"/investors/reports":[151,153,153,117,130],"/products":[158,160,160,123,135],"/products/accessories":[110,113,113,113,125],"/products/app":[171,173,173,123,136],"/products/legacy":[171,173,173,160,136],"/products/quad2":[179,181,181,162,138],"/products/quad3":[180,181,181,163,139],"/products/sparqlinq":[173,175,175,161,138],"/products/sparqvu":[171,173,173,160,136],"/resources":[171,173,173,172,147],"/resources/calculator":[152,154,154,154,130],"/resources/legal":[173,175,175,108,120],"/support":[153,154,154,154,129],"/technology":[161,163,163,126,138]},"phaseOrder":["Pre","P1","P2","P3","Final"]}</script>
+<script>
+(function () {
+  const DATA = JSON.parse(document.getElementById("data").textContent);
+  const phases = DATA.phaseOrder;
+  const agg = Object.fromEntries(DATA.aggregates.map(a => [a.phase, a]));
+  const colors = {
+    Pre: getCss("--pre"),
+    P1: getCss("--p1"),
+    P2: getCss("--p2"),
+    P3: getCss("--p3"),
+    Final: getCss("--final"),
+  };
+  const ink = getCss("--ink");
+  const inkMid = getCss("--ink-mid");
+  const inkSoft = getCss("--ink-soft");
+  const paperEdge = getCss("--paper-edge");
+  const moss = getCss("--moss");
+  const rust = getCss("--rust");
+  const copper = getCss("--copper");
+
+  function getCss(v) {
+    return getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  }
+  function esc(s) {
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+  function fmtMs(n) {
+    if (n >= 1000) return (n/1000).toFixed(n >= 10000 ? 1 : 2) + "s";
+    return Math.round(n) + " ms";
+  }
+  function deltaClass(n, invert) {
+    // positive n = improvement if !invert
+    const good = invert ? n < 0 : n > 0;
+    const bad = invert ? n > 0 : n < 0;
+    if (good) return "good";
+    if (bad) return "bad";
+    return "";
+  }
+
+  // ── Hero stats ──
+  const pre = agg.Pre, fin = agg.Final;
+  const hero = [
+    {
+      k: "Mean LCP",
+      v: fmtMs(fin.meanLcp),
+      sub: `was ${fmtMs(pre.meanLcp)} · <span class="delta-good">−${Math.round((1 - fin.meanLcp/pre.meanLcp)*100)}%</span>`,
+    },
+    {
+      k: "Max LCP",
+      v: fmtMs(fin.maxLcp),
+      sub: `was ${fmtMs(pre.maxLcp)} · <span class="delta-good">−${Math.round((1 - fin.maxLcp/pre.maxLcp)*100)}%</span>`,
+    },
+    {
+      k: "Home First Load",
+      v: fin.homeFlKb + '<span class="unit">kB</span>',
+      sub: `was ${pre.homeFlKb} kB · <span class="delta-good">−${pre.homeFlKb - fin.homeFlKb} kB</span>`,
+    },
+    {
+      k: "Lab scores",
+      v: fin.perfectScores + '<span class="unit">/ ' + fin.pageCount + "</span>",
+      sub: `perfect 1.0 · max CLS ${fin.maxCls} · was mean ${pre.meanScore}`,
+    },
+  ];
+  document.getElementById("hero-stats").innerHTML = hero.map(h =>
+    `<div class="stat"><div class="stat-key">${h.k}</div><div class="stat-val">${h.v}</div><div class="stat-sub">${h.sub}</div></div>`
+  ).join("");
+
+  // ── Phase cards ──
+  const notes = DATA.meta.phaseNotes;
+  const commits = DATA.meta.commits;
+  document.getElementById("phase-cards").innerHTML = phases.map(p => {
+    const a = agg[p];
+    return `<article class="pcard">
+      <div class="bar" style="background:${colors[p]}"></div>
+      <span class="tag">${commits[p]}</span>
+      <h3>${p}</h3>
+      <p class="note">${esc(notes[p])}</p>
+      <div class="big" style="color:${colors[p]}">${a.meanLcp}<span> ms LCP</span></div>
+      <div class="mini">
+        <div><span class="mk">Home FL</span><span class="mv">${a.homeFlKb} kB</span></div>
+        <div><span class="mk">Static</span><span class="mv">${a.static}/${a.static + a.dynamic - (p==="Pre"?0:0) || a.static}</span></div>
+        <div><span class="mk">Max CLS</span><span class="mv">${a.maxCls}</span></div>
+        <div><span class="mk">Score 1.0</span><span class="mv">${a.perfectScores}/${a.pageCount}</span></div>
+      </div>
+    </article>`;
+  }).join("");
+  // fix static display
+  document.querySelectorAll("#phase-cards .pcard").forEach((el, i) => {
+    const p = phases[i];
+    const a = agg[p];
+    el.querySelectorAll(".mini .mv")[1].textContent = `${a.static} static / ${a.dynamic} dyn`;
+  });
+
+  // ── LCP phase chart (grouped bars mean + max) ──
+  (function drawLcpPhase() {
+    const W = 640, H = 320, padL = 52, padR = 16, padT = 28, padB = 48;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    // use log-ish scale? max is 12k - use sqrt scale for readability
+    const maxY = 13000;
+    const yScale = v => padT + innerH - (Math.sqrt(v) / Math.sqrt(maxY)) * innerH;
+    const groupW = innerW / phases.length;
+    const barW = groupW * 0.28;
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="LCP by phase">`;
+    // grid
+    [0, 500, 1000, 2500, 5000, 12000].forEach(v => {
+      const y = yScale(v);
+      svg += `<line class="grid-line" x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}"/>`;
+      svg += `<text class="axis-text" x="${padL-8}" y="${y+3}" text-anchor="end">${v>=1000?(v/1000)+"s":v}</text>`;
+    });
+    phases.forEach((p, i) => {
+      const a = agg[p];
+      const cx = padL + i * groupW + groupW / 2;
+      const yMean = yScale(a.meanLcp);
+      const yMax = yScale(a.maxLcp);
+      const base = padT + innerH;
+      // max bar (behind)
+      svg += `<rect x="${cx - barW - 2}" y="${yMax}" width="${barW}" height="${base - yMax}" fill="${colors[p]}" opacity="0.35"/>`;
+      // mean bar
+      svg += `<rect x="${cx + 2}" y="${yMean}" width="${barW}" height="${base - yMean}" fill="${colors[p]}"/>`;
+      svg += `<text class="axis-text" x="${cx}" y="${H - 28}" text-anchor="middle">${p}</text>`;
+      svg += `<text class="axis-text" x="${cx + 2 + barW/2}" y="${yMean - 4}" text-anchor="middle" fill="${colors[p]}">${a.meanLcp}</text>`;
+    });
+    svg += `<line class="axis-line" x1="${padL}" y1="${padT+innerH}" x2="${W-padR}" y2="${padT+innerH}"/>`;
+    svg += `<text class="axis-label" x="${padL}" y="${H-8}">□ max · ■ mean · sqrt scale</text>`;
+    svg += `</svg>`;
+    document.getElementById("chart-lcp-phase").innerHTML = svg;
+  })();
+
+  document.getElementById("lcp-callouts").innerHTML = `
+    <div class="callout">
+      <div class="k">Mean LCP</div>
+      <div class="v">${pre.meanLcp} → ${fin.meanLcp} ms</div>
+      <p>Sitewide mean dropped ~${Math.round((1-fin.meanLcp/pre.meanLcp)*100)}%. The long tail vanished once product heroes and legacy media stopped dominating LCP.</p>
+    </div>
+    <div class="callout" style="border-color: var(--sage)">
+      <div class="k">Worst page</div>
+      <div class="v">12.2s → 0.57s</div>
+      <p>/products/legacy no longer spends twelve seconds on transfer. Final worst LCP is /about/leadership at 570&nbsp;ms.</p>
+    </div>
+    <div class="callout" style="border-color: var(--slate)">
+      <div class="k">Perf score</div>
+      <div class="v">21 / 21 at 1.0</div>
+      <p>Every marketing page scores a perfect lab 1.0 at Final. Pre had 17; Phase&nbsp;2 dipped to 14 while CLS was broken.</p>
+    </div>
+  `;
+
+  // ── FL horizontal bars ──
+  (function drawFlBars() {
+    const routes = [...DATA.routes].sort((a,b) => b.dFlKb - a.dFlKb);
+    const W = 900, rowH = 26, padL = 168, padR = 70, padT = 12, padB = 28;
+    const H = padT + padB + routes.length * rowH;
+    const maxAbs = Math.max(...routes.map(r => Math.abs(r.dFlKb)), 1);
+    const innerW = W - padL - padR;
+    const x0 = padL + innerW * 0.55; // zero line slightly right so negative can show
+    // Actually show Pre and Final as paired bars, or single delta bar
+    // Use dual: gray pre bar + final colored
+    const maxFl = Math.max(...routes.map(r => Math.max(r.preFlKb, r.finFlKb)));
+    const scale = v => (v / maxFl) * (innerW - 20);
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMinYMin meet" role="img" aria-label="First Load JS by route">`;
+    routes.forEach((r, i) => {
+      const y = padT + i * rowH;
+      const mid = y + rowH / 2;
+      svg += `<text class="axis-text" x="${padL - 10}" y="${mid + 3}" text-anchor="end">${esc(r.path)}</text>`;
+      // pre (faint)
+      svg += `<rect x="${padL}" y="${mid - 7}" width="${scale(r.preFlKb)}" height="6" fill="${colors.Pre}" opacity="0.35"/>`;
+      // final
+      svg += `<rect x="${padL}" y="${mid - 1}" width="${scale(r.finFlKb)}" height="6" fill="${colors.Final}"/>`;
+      const d = r.dFlKb;
+      const cls = d > 0 ? moss : d < 0 ? rust : inkSoft;
+      const label = (d > 0 ? "−" : d < 0 ? "+" : "") + Math.abs(d) + " kB";
+      svg += `<text class="axis-text" x="${padL + Math.max(scale(r.preFlKb), scale(r.finFlKb)) + 8}" y="${mid + 3}" fill="${cls}">${label}</text>`;
+    });
+    svg += `<text class="axis-label" x="${padL}" y="${H - 6}">faint = pre · solid = final · label = Δ First Load JS</text>`;
+    svg += `</svg>`;
+    document.getElementById("chart-fl-bars").innerHTML = svg;
+  })();
+
+  // ── LCP dumbbell ──
+  (function drawDumbbell() {
+    const routes = [...DATA.routes].sort((a,b) => b.preLcp - a.preLcp);
+    const W = 900, rowH = 28, padL = 168, padR = 80, padT = 16, padB = 32;
+    const H = padT + padB + routes.length * rowH;
+    // log scale for LCP to show 12s and 0.5s
+    const maxL = 13000;
+    const xOf = v => padL + (Math.log10(Math.max(v, 50)) - Math.log10(50)) / (Math.log10(maxL) - Math.log10(50)) * (W - padL - padR);
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMinYMin meet" role="img" aria-label="LCP before and after">`;
+    // grid ticks
+    [100, 250, 500, 1000, 2500, 5000, 12000].forEach(v => {
+      const x = xOf(v);
+      svg += `<line class="grid-line" x1="${x}" y1="${padT}" x2="${x}" y2="${H - padB}"/>`;
+      svg += `<text class="axis-text" x="${x}" y="${H - 10}" text-anchor="middle">${v >= 1000 ? (v/1000) + "s" : v}</text>`;
+    });
+    routes.forEach((r, i) => {
+      const y = padT + i * rowH + rowH / 2;
+      const x1 = xOf(r.preLcp), x2 = xOf(r.finLcp);
+      svg += `<text class="axis-text" x="${padL - 10}" y="${y + 3}" text-anchor="end">${esc(r.path)}</text>`;
+      svg += `<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${inkSoft}" stroke-width="1.5"/>`;
+      svg += `<circle cx="${x1}" cy="${y}" r="4.5" fill="${colors.Pre}"/>`;
+      svg += `<circle cx="${x2}" cy="${y}" r="4.5" fill="${colors.Final}"/>`;
+    });
+    svg += `<text class="axis-label" x="${padL}" y="${12}">● pre · ● final · log scale</text>`;
+    svg += `</svg>`;
+    document.getElementById("chart-lcp-dumbbell").innerHTML =
+      `<div class="legend"><span><i style="background:${colors.Pre}"></i>Pre</span><span><i style="background:${colors.Final}"></i>Final</span></div>` + svg;
+  })();
+
+  // ── CLS chart ──
+  (function drawCls() {
+    const W = 520, H = 240, padL = 48, padR = 16, padT = 20, padB = 40;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    const maxY = 0.5;
+    const yOf = v => padT + innerH - (v / maxY) * innerH;
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet">`;
+    [0, 0.1, 0.25, 0.5].forEach(v => {
+      const y = yOf(v);
+      svg += `<line class="grid-line" x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}"/>`;
+      svg += `<text class="axis-text" x="${padL-8}" y="${y+3}" text-anchor="end">${v}</text>`;
+    });
+    // good threshold
+    const yGood = yOf(0.1);
+    svg += `<line x1="${padL}" y1="${yGood}" x2="${W-padR}" y2="${yGood}" stroke="${moss}" stroke-width="1" stroke-dasharray="4 3" opacity="0.8"/>`;
+    svg += `<text class="axis-text" x="${W-padR}" y="${yGood-4}" text-anchor="end" fill="${moss}">budget 0.1</text>`;
+
+    const pts = phases.map((p, i) => {
+      const x = padL + (i / (phases.length - 1)) * innerW;
+      const y = yOf(agg[p].maxCls);
+      return { p, x, y, v: agg[p].maxCls };
+    });
+    let d = pts.map((pt, i) => (i ? "L" : "M") + pt.x.toFixed(1) + " " + pt.y.toFixed(1)).join(" ");
+    // area
+    const area = d + ` L${pts[pts.length-1].x} ${padT+innerH} L${pts[0].x} ${padT+innerH} Z`;
+    svg += `<path d="${area}" fill="${colors.P2}" opacity="0.12"/>`;
+    svg += `<path d="${d}" fill="none" stroke="${colors.P2}" stroke-width="2"/>`;
+    pts.forEach(pt => {
+      svg += `<circle cx="${pt.x}" cy="${pt.y}" r="5" fill="${colors[pt.p]}" stroke="${ink}" stroke-width="1"/>`;
+      svg += `<text class="axis-text" x="${pt.x}" y="${H-14}" text-anchor="middle">${pt.p}</text>`;
+      svg += `<text class="axis-text" x="${pt.x}" y="${pt.y - 10}" text-anchor="middle">${pt.v}</text>`;
+    });
+    svg += `</svg>`;
+    document.getElementById("chart-cls").innerHTML = svg;
+  })();
+
+  // ── Bytes chart ──
+  (function drawBytes() {
+    const W = 640, H = 260, padL = 52, padR = 16, padT = 24, padB = 44;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    const maxY = 1400;
+    const yOf = v => padT + innerH - (v / maxY) * innerH;
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet">`;
+    [0, 400, 800, 1200].forEach(v => {
+      const y = yOf(v);
+      svg += `<line class="grid-line" x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}"/>`;
+      svg += `<text class="axis-text" x="${padL-8}" y="${y+3}" text-anchor="end">${v}k</text>`;
+    });
+    const pts = phases.map((p, i) => {
+      const x = padL + (i / (phases.length - 1)) * innerW;
+      return { p, x, y: yOf(agg[p].meanBytesKb), v: agg[p].meanBytesKb };
+    });
+    let d = pts.map((pt, i) => (i ? "L" : "M") + pt.x.toFixed(1) + " " + pt.y.toFixed(1)).join(" ");
+    const area = d + ` L${pts[pts.length-1].x} ${padT+innerH} L${pts[0].x} ${padT+innerH} Z`;
+    svg += `<path d="${area}" fill="${colors.Final}" opacity="0.12"/>`;
+    svg += `<path d="${d}" fill="none" stroke="${colors.Final}" stroke-width="2.2"/>`;
+    pts.forEach(pt => {
+      svg += `<circle cx="${pt.x}" cy="${pt.y}" r="5" fill="${colors[pt.p]}"/>`;
+      svg += `<text class="axis-text" x="${pt.x}" y="${H-14}" text-anchor="middle">${pt.p}</text>`;
+      svg += `<text class="axis-text" x="${pt.x}" y="${pt.y - 12}" text-anchor="middle">${pt.v} kB</text>`;
+    });
+    svg += `</svg>`;
+    document.getElementById("chart-bytes").innerHTML = svg;
+  })();
+
+  // ── Reference table ──
+  const tbody = document.querySelector("#ref-table tbody");
+  const sorted = [...DATA.routes].sort((a,b) => a.path.localeCompare(b.path));
+  tbody.innerHTML = sorted.map(r => {
+    const dFl = r.dFlKb;
+    const dLcp = r.dLcp;
+    return `<tr>
+      <td class="path">${esc(r.path)}</td>
+      <td class="num">${r.preFlKb}</td>
+      <td class="num">${r.finFlKb}</td>
+      <td class="num ${dFl>0?"good":dFl<0?"bad":""}">${dFl>0?"−":dFl<0?"+":""}${Math.abs(dFl)}</td>
+      <td class="num">${r.preLcp.toLocaleString()}</td>
+      <td class="num">${r.finLcp}</td>
+      <td class="num ${dLcp>0?"good":dLcp<0?"bad":""}">${dLcp>0?"−":dLcp<0?"+":""}${Math.abs(dLcp).toLocaleString()}</td>
+      <td class="num">${r.preCls}</td>
+      <td class="num">${r.finCls}</td>
+      <td class="num">${r.finScore.toFixed(2)}</td>
+    </tr>`;
+  }).join("");
+  document.querySelector("#ref-table tfoot").innerHTML = `<tr>
+    <td class="path">Site · all pages</td>
+    <td class="num">${pre.homeFlKb}*</td>
+    <td class="num">${fin.homeFlKb}*</td>
+    <td class="num good">−${pre.homeFlKb - fin.homeFlKb}*</td>
+    <td class="num">${pre.meanLcp} mean</td>
+    <td class="num">${fin.meanLcp} mean</td>
+    <td class="num good">−${pre.meanLcp - fin.meanLcp}</td>
+    <td class="num">${pre.maxCls} max</td>
+    <td class="num">${fin.maxCls} max</td>
+    <td class="num">${fin.meanScore.toFixed(2)}</td>
+  </tr>`;
+})();
+</script>
+</body>
+</html>

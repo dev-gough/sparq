@@ -22,7 +22,9 @@ Captured during the optimization sweep (`docs/REPORT.md` / `docs/IDEAS.md`).
 | `2026-07-15-phase1-full*.json` | **Full site** at Phase 1 `2e2d2aa` |
 | `2026-07-15-phase2-full*.json` | **Full site** at Phase 2 theme `5904ab8` |
 | `2026-07-15-phase3-full*.json` | **Full site** at Phase 3 end `f993b80` (investors CLS fix) |
+| `2026-07-17-final-3637207*.json` | **Full site** at tip `3637207` (Motion gone, images, VT, a11y, resources CLS) |
 | `PHASE-COMPARISON-FULL.md` | Cross-phase summary table |
+| `perf-before-after.html` | Self-contained visual brief (charts) — open in a browser |
 
 Convention: measure **after** the feature commit, and put the short SHA in the label so you can `git checkout <sha>` and re-run.
 

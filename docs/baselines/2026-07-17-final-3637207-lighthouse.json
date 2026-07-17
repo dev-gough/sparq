@@ -1,0 +1,1013 @@
+{
+  "kind": "lighthouse-lab",
+  "label": "final-3637207",
+  "mode": "all",
+  "capturedAt": "2026-07-17T02:13:19.766Z",
+  "date": "2026-07-17",
+  "git": {
+    "commit": "3637207bee42bab9a455cd680e062c6cc0bae770",
+    "commitShort": "3637207",
+    "branch": "audit/minification-report",
+    "subject": "Thorough a11y pass: nested CTAs, dialogs, labels, targets"
+  },
+  "chromePath": "/home/devy/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome",
+  "formFactor": "desktop",
+  "runsPerUrl": 3,
+  "summary": {
+    "pathCount": 21,
+    "medianScore": 1,
+    "medianLcpMs": 525.8679,
+    "maxCls": 0,
+    "worstLcp": {
+      "path": "/about/leadership",
+      "url": "http://127.0.0.1:8080/about/leadership",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 570.242375,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 204.9939,
+        "ttfbMs": 1.986,
+        "totalByteWeight": 576149
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 570.242375,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.9939,
+          "ttfb": 1.903,
+          "totalByteWeight": 576151
+        },
+        {
+          "score": 1,
+          "lcp": 577.7515000000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 207.00119999999998,
+          "ttfb": 3.069,
+          "totalByteWeight": 576149
+        },
+        {
+          "score": 1,
+          "lcp": 564.9582499999999,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.96660000000003,
+          "ttfb": 1.986,
+          "totalByteWeight": 576147
+        }
+      ]
+    },
+    "worstCls": {
+      "path": "/",
+      "url": "http://127.0.0.1:8080/",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 525.8679,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 206.37150000000003,
+        "ttfbMs": 2.558,
+        "totalByteWeight": 528546
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 525.076,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 222.07600000000002,
+          "ttfb": 6.437,
+          "totalByteWeight": 528546
+        },
+        {
+          "score": 1,
+          "lcp": 525.8679,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.86790000000002,
+          "ttfb": 2.558,
+          "totalByteWeight": 528547
+        },
+        {
+          "score": 1,
+          "lcp": 526.3715,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 206.37150000000003,
+          "ttfb": 2.1029999999999998,
+          "totalByteWeight": 528544
+        }
+      ]
+    }
+  },
+  "urls": [
+    {
+      "path": "/",
+      "url": "http://127.0.0.1:8080/",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 525.8679,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 206.37150000000003,
+        "ttfbMs": 2.558,
+        "totalByteWeight": 528546
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 525.076,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 222.07600000000002,
+          "ttfb": 6.437,
+          "totalByteWeight": 528546
+        },
+        {
+          "score": 1,
+          "lcp": 525.8679,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.86790000000002,
+          "ttfb": 2.558,
+          "totalByteWeight": 528547
+        },
+        {
+          "score": 1,
+          "lcp": 526.3715,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 206.37150000000003,
+          "ttfb": 2.1029999999999998,
+          "totalByteWeight": 528544
+        }
+      ]
+    },
+    {
+      "path": "/about",
+      "url": "http://127.0.0.1:8080/about",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 505.2536,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 205.461,
+        "ttfbMs": 1.948,
+        "totalByteWeight": 338867
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 504.461,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.461,
+          "ttfb": 2.362,
+          "totalByteWeight": 338867
+        },
+        {
+          "score": 1,
+          "lcp": 505.2536,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.2536,
+          "ttfb": 1.8809999999999998,
+          "totalByteWeight": 338867
+        },
+        {
+          "score": 1,
+          "lcp": 507.36760000000004,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 207.36759999999998,
+          "ttfb": 1.948,
+          "totalByteWeight": 338869
+        }
+      ]
+    },
+    {
+      "path": "/about/board",
+      "url": "http://127.0.0.1:8080/about/board",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 532.9234000000001,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 205.92340000000002,
+        "ttfbMs": 2.175,
+        "totalByteWeight": 553313
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 532.9234000000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.92340000000002,
+          "ttfb": 2.175,
+          "totalByteWeight": 553320
+        },
+        {
+          "score": 1,
+          "lcp": 528.7028,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.70280000000002,
+          "ttfb": 1.8639999999999999,
+          "totalByteWeight": 553286
+        },
+        {
+          "score": 1,
+          "lcp": 533.3948,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 209.39479999999998,
+          "ttfb": 2.668,
+          "totalByteWeight": 553313
+        }
+      ]
+    },
+    {
+      "path": "/about/leadership",
+      "url": "http://127.0.0.1:8080/about/leadership",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 570.242375,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 204.9939,
+        "ttfbMs": 1.986,
+        "totalByteWeight": 576149
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 570.242375,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.9939,
+          "ttfb": 1.903,
+          "totalByteWeight": 576151
+        },
+        {
+          "score": 1,
+          "lcp": 577.7515000000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 207.00119999999998,
+          "ttfb": 3.069,
+          "totalByteWeight": 576149
+        },
+        {
+          "score": 1,
+          "lcp": 564.9582499999999,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.96660000000003,
+          "ttfb": 1.986,
+          "totalByteWeight": 576147
+        }
+      ]
+    },
+    {
+      "path": "/contact",
+      "url": "http://127.0.0.1:8080/contact",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 506.2439,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 204.75709999999998,
+        "ttfbMs": 2.074,
+        "totalByteWeight": 502696
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 509.75710000000004,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.75709999999998,
+          "ttfb": 2.882,
+          "totalByteWeight": 502699
+        },
+        {
+          "score": 1,
+          "lcp": 504.9475,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.9475,
+          "ttfb": 1.8639999999999999,
+          "totalByteWeight": 502695
+        },
+        {
+          "score": 1,
+          "lcp": 506.2439,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.2439,
+          "ttfb": 2.074,
+          "totalByteWeight": 502696
+        }
+      ]
+    },
+    {
+      "path": "/investors",
+      "url": "http://127.0.0.1:8080/investors",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 532.3543,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 206.35430000000002,
+        "ttfbMs": 2.986,
+        "totalByteWeight": 537870
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 534.1619000000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 208.1619,
+          "ttfb": 2.986,
+          "totalByteWeight": 537879
+        },
+        {
+          "score": 1,
+          "lcp": 523.8056000000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.80560000000003,
+          "ttfb": 2.2979999999999996,
+          "totalByteWeight": 537870
+        },
+        {
+          "score": 1,
+          "lcp": 532.3543,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 206.35430000000002,
+          "ttfb": 3.302,
+          "totalByteWeight": 537864
+        }
+      ]
+    },
+    {
+      "path": "/investors/governance",
+      "url": "http://127.0.0.1:8080/investors/governance",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 505.3682,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 204.63549999999998,
+        "ttfbMs": 2.293,
+        "totalByteWeight": 343109
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 505.3682,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.3682,
+          "ttfb": 2.293,
+          "totalByteWeight": 343109
+        },
+        {
+          "score": 1,
+          "lcp": 506.158,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.15800000000002,
+          "ttfb": 3.419,
+          "totalByteWeight": 343109
+        },
+        {
+          "score": 1,
+          "lcp": 504.6355,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.63549999999998,
+          "ttfb": 1.9060000000000001,
+          "totalByteWeight": 343111
+        }
+      ]
+    },
+    {
+      "path": "/investors/reports",
+      "url": "http://127.0.0.1:8080/investors/reports",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 546.6541,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 244.30939999999998,
+        "ttfbMs": 3.537,
+        "totalByteWeight": 349605
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 546.6541,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 245.65409999999997,
+          "ttfb": 4.276,
+          "totalByteWeight": 349605
+        },
+        {
+          "score": 1,
+          "lcp": 546.8927,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 243.8927,
+          "ttfb": 3.298,
+          "totalByteWeight": 349605
+        },
+        {
+          "score": 1,
+          "lcp": 545.3094,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 244.30939999999998,
+          "ttfb": 3.537,
+          "totalByteWeight": 349605
+        }
+      ]
+    },
+    {
+      "path": "/products",
+      "url": "http://127.0.0.1:8080/products",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 548.7548750000001,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 205.40390000000002,
+        "ttfbMs": 1.9179999999999997,
+        "totalByteWeight": 422143
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 551.68415,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 206.4561,
+          "ttfb": 1.859,
+          "totalByteWeight": 422147
+        },
+        {
+          "score": 1,
+          "lcp": 548.7548750000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.40390000000002,
+          "ttfb": 2.391,
+          "totalByteWeight": 422143
+        },
+        {
+          "score": 1,
+          "lcp": 546.62775,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.30220000000003,
+          "ttfb": 1.9179999999999997,
+          "totalByteWeight": 422141
+        }
+      ]
+    },
+    {
+      "path": "/products/accessories",
+      "url": "http://127.0.0.1:8080/products/accessories",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 545.10225,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 204.0818,
+        "ttfbMs": 1.814,
+        "totalByteWeight": 422788
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 554.45675,
+          "cls": 0.01470336897339955,
+          "tbt": 0,
+          "fcp": 204.36540000000002,
+          "ttfb": 1.814,
+          "totalByteWeight": 422792
+        },
+        {
+          "score": 1,
+          "lcp": 545.065625,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.0525,
+          "ttfb": 1.7909999999999997,
+          "totalByteWeight": 422788
+        },
+        {
+          "score": 1,
+          "lcp": 545.10225,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.0818,
+          "ttfb": 1.849,
+          "totalByteWeight": 422788
+        }
+      ]
+    },
+    {
+      "path": "/products/app",
+      "url": "http://127.0.0.1:8080/products/app",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 529.8510999999999,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 204.85109999999997,
+        "ttfbMs": 1.87,
+        "totalByteWeight": 535032
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 546.22525,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.98020000000002,
+          "ttfb": 2.3200000000000003,
+          "totalByteWeight": 535030
+        },
+        {
+          "score": 1,
+          "lcp": 524.0172,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.0172,
+          "ttfb": 1.743,
+          "totalByteWeight": 535032
+        },
+        {
+          "score": 1,
+          "lcp": 529.8510999999999,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.85109999999997,
+          "ttfb": 1.87,
+          "totalByteWeight": 535032
+        }
+      ]
+    },
+    {
+      "path": "/products/legacy",
+      "url": "http://127.0.0.1:8080/products/legacy",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 525.8311,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 203.8311,
+        "ttfbMs": 1.8520000000000003,
+        "totalByteWeight": 536347
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 526.0342,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.0342,
+          "ttfb": 1.756,
+          "totalByteWeight": 536347
+        },
+        {
+          "score": 1,
+          "lcp": 525.8311,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.8311,
+          "ttfb": 1.8520000000000003,
+          "totalByteWeight": 536345
+        },
+        {
+          "score": 1,
+          "lcp": 524.4590000000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.459,
+          "ttfb": 2.069,
+          "totalByteWeight": 536352
+        }
+      ]
+    },
+    {
+      "path": "/products/quad2",
+      "url": "http://127.0.0.1:8080/products/quad2",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 524.7667,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 203.76670000000001,
+        "ttfbMs": 1.841,
+        "totalByteWeight": 540119
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 524.7667,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.76670000000001,
+          "ttfb": 1.907,
+          "totalByteWeight": 540118
+        },
+        {
+          "score": 1,
+          "lcp": 523.8686,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 202.86860000000001,
+          "ttfb": 1.841,
+          "totalByteWeight": 540119
+        },
+        {
+          "score": 1,
+          "lcp": 526.5056999999999,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.5057,
+          "ttfb": 1.828,
+          "totalByteWeight": 540119
+        }
+      ]
+    },
+    {
+      "path": "/products/quad3",
+      "url": "http://127.0.0.1:8080/products/quad3",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 525.269,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 203.913,
+        "ttfbMs": 2.0989999999999998,
+        "totalByteWeight": 539810
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 546.913,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.913,
+          "ttfb": 3.903,
+          "totalByteWeight": 539810
+        },
+        {
+          "score": 1,
+          "lcp": 525.269,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.269,
+          "ttfb": 2.0359999999999996,
+          "totalByteWeight": 539812
+        },
+        {
+          "score": 1,
+          "lcp": 523.0723,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.07229999999998,
+          "ttfb": 2.0989999999999998,
+          "totalByteWeight": 539779
+        }
+      ]
+    },
+    {
+      "path": "/products/sparqlinq",
+      "url": "http://127.0.0.1:8080/products/sparqlinq",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 507.501625,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 203.60129999999998,
+        "ttfbMs": 2.287,
+        "totalByteWeight": 523756
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 509.0704999999999,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.0564,
+          "ttfb": 2.345,
+          "totalByteWeight": 523756
+        },
+        {
+          "score": 1,
+          "lcp": 507.501625,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.60129999999998,
+          "ttfb": 2.287,
+          "totalByteWeight": 523759
+        },
+        {
+          "score": 1,
+          "lcp": 505.76062500000006,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.00850000000003,
+          "ttfb": 1.866,
+          "totalByteWeight": 523732
+        }
+      ]
+    },
+    {
+      "path": "/products/sparqvu",
+      "url": "http://127.0.0.1:8080/products/sparqvu",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 506.1379999999999,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 203.5802,
+        "ttfbMs": 1.9980000000000002,
+        "totalByteWeight": 521024
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 504.42949999999996,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.54360000000003,
+          "ttfb": 1.9980000000000002,
+          "totalByteWeight": 521024
+        },
+        {
+          "score": 1,
+          "lcp": 506.47524999999996,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.5802,
+          "ttfb": 1.8699999999999999,
+          "totalByteWeight": 521025
+        },
+        {
+          "score": 1,
+          "lcp": 506.1379999999999,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.91039999999998,
+          "ttfb": 3.6950000000000003,
+          "totalByteWeight": 521023
+        }
+      ]
+    },
+    {
+      "path": "/resources",
+      "url": "http://127.0.0.1:8080/resources",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 545.4357,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 204.4357,
+        "ttfbMs": 2.109,
+        "totalByteWeight": 418305
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 526.3428,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.3428,
+          "ttfb": 2.092,
+          "totalByteWeight": 418310
+        },
+        {
+          "score": 1,
+          "lcp": 545.4357,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.4357,
+          "ttfb": 2.539,
+          "totalByteWeight": 418303
+        },
+        {
+          "score": 1,
+          "lcp": 547.2641,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.26409999999998,
+          "ttfb": 2.109,
+          "totalByteWeight": 418305
+        }
+      ]
+    },
+    {
+      "path": "/resources/calculator",
+      "url": "http://127.0.0.1:8080/resources/calculator",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 504.9755,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 204.9755,
+        "ttfbMs": 1.9329999999999998,
+        "totalByteWeight": 351193
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 504.836,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.836,
+          "ttfb": 1.9329999999999998,
+          "totalByteWeight": 351193
+        },
+        {
+          "score": 1,
+          "lcp": 504.9755,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.9755,
+          "ttfb": 1.9220000000000002,
+          "totalByteWeight": 351193
+        },
+        {
+          "score": 1,
+          "lcp": 505.09130000000005,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.0913,
+          "ttfb": 2.324,
+          "totalByteWeight": 351193
+        }
+      ]
+    },
+    {
+      "path": "/resources/legal",
+      "url": "http://127.0.0.1:8080/resources/legal",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 544.0061000000001,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 243.7258,
+        "ttfbMs": 2.869,
+        "totalByteWeight": 534350
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 543.7257999999999,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 243.7258,
+          "ttfb": 2.869,
+          "totalByteWeight": 534350
+        },
+        {
+          "score": 1,
+          "lcp": 544.0061000000001,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 244.0061,
+          "ttfb": 2.712,
+          "totalByteWeight": 534349
+        },
+        {
+          "score": 1,
+          "lcp": 545.6568,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 243.65679999999998,
+          "ttfb": 3.496,
+          "totalByteWeight": 534353
+        }
+      ]
+    },
+    {
+      "path": "/support",
+      "url": "http://127.0.0.1:8080/support",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 503.9663,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 203.74970000000002,
+        "ttfbMs": 1.8509999999999998,
+        "totalByteWeight": 784724
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 503.3868,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.3868,
+          "ttfb": 1.8509999999999998,
+          "totalByteWeight": 784724
+        },
+        {
+          "score": 1,
+          "lcp": 505.74969999999996,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.74970000000002,
+          "ttfb": 1.7779999999999998,
+          "totalByteWeight": 784725
+        },
+        {
+          "score": 1,
+          "lcp": 503.9663,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 203.9663,
+          "ttfb": 1.9220000000000002,
+          "totalByteWeight": 784724
+        }
+      ]
+    },
+    {
+      "path": "/technology",
+      "url": "http://127.0.0.1:8080/technology",
+      "runs": 3,
+      "median": {
+        "score": 1,
+        "lcpMs": 548.7405999999999,
+        "cls": 0,
+        "tbtMs": 0,
+        "fcpMs": 205.74059999999997,
+        "ttfbMs": 2.444,
+        "totalByteWeight": 453863
+      },
+      "allRuns": [
+        {
+          "score": 1,
+          "lcp": 548.5647,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 206.56470000000002,
+          "ttfb": 2.747,
+          "totalByteWeight": 453865
+        },
+        {
+          "score": 1,
+          "lcp": 548.7405999999999,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 205.74059999999997,
+          "ttfb": 2.3249999999999997,
+          "totalByteWeight": 453863
+        },
+        {
+          "score": 1,
+          "lcp": 553.9793,
+          "cls": 0,
+          "tbt": 0,
+          "fcp": 204.97930000000002,
+          "ttfb": 2.444,
+          "totalByteWeight": 453861
+        }
+      ]
+    }
+  ]
+}
