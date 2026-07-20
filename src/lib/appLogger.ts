@@ -1,19 +1,20 @@
 import { appendFileSync, existsSync, mkdirSync } from 'fs'
 import { join } from 'path'
 import { createCipheriv, randomBytes } from 'crypto'
+import { getLogDir } from '@/lib/logDir'
 
 /**
  * Lightweight app / Next.js-side file logger.
- * Writes JSON lines to logs/app-YYYY-MM-DD.log (optionally AES-GCM encrypted
+ * Writes JSON lines to {LOG_DIR}/app-YYYY-MM-DD.log (optionally AES-GCM encrypted
  * with the same LOG_ENCRYPTION_KEY as email logs).
  */
 
-const LOG_DIR = process.env.LOG_DIR || join(process.cwd(), 'logs')
 const ENCRYPTION_KEY = process.env.LOG_ENCRYPTION_KEY
 
 function ensureDir() {
-  if (!existsSync(LOG_DIR)) {
-    mkdirSync(LOG_DIR, { recursive: true })
+  const logDir = getLogDir()
+  if (!existsSync(logDir)) {
+    mkdirSync(logDir, { recursive: true })
   }
 }
 
@@ -36,7 +37,7 @@ function encryptLine(data: string): string {
 
 export function getAppLogFilePath(date = new Date()): string {
   const day = date.toISOString().split('T')[0]
-  return join(LOG_DIR, `app-${day}.log`)
+  return join(getLogDir(), `app-${day}.log`)
 }
 
 export function logAppEvent(

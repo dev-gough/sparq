@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { promises as fs } from 'fs'
 import path from 'path'
 import { logAppEvent } from '@/lib/appLogger'
+import { isLogDirConfigured } from '@/lib/logDir'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -82,6 +83,33 @@ function checkSesConfig(): HealthCheck {
   }
 }
 
+/** LOG_DIR required in production for email/app/Next logs + Control Center ops export. */
+function checkLogDirConfig(): HealthCheck {
+  const started = Date.now()
+  const configured = isLogDirConfigured()
+  const isProd = process.env.NODE_ENV === 'production'
+
+  if (configured) {
+    return {
+      name: 'log_dir',
+      status: 'ok',
+      latencyMs: Date.now() - started,
+      detail: 'LOG_DIR set',
+      critical: false,
+    }
+  }
+
+  return {
+    name: 'log_dir',
+    status: isProd ? 'degraded' : 'ok',
+    latencyMs: Date.now() - started,
+    detail: isProd
+      ? 'LOG_DIR missing (required in production for ops logs)'
+      : 'LOG_DIR unset; dev default ./logs',
+    critical: false,
+  }
+}
+
 function rollupStatus(checks: HealthCheck[]): HealthStatus {
   let worst: HealthStatus = 'ok'
   for (const c of checks) {
@@ -113,6 +141,7 @@ export async function GET(request: Request) {
   const checks: HealthCheck[] = [
     { name: 'http', status: 'ok', latencyMs: 1, critical: true },
     checkSesConfig(),
+    checkLogDirConfig(),
     await checkSedarDocuments(),
   ]
 

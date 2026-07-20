@@ -16,8 +16,8 @@ import {
 } from 'fs'
 import { join } from 'path'
 import { createCipheriv, randomBytes } from 'crypto'
+import { getLogDir } from '@/lib/logDir'
 
-const LOG_DIR = process.env.LOG_DIR || join(process.cwd(), 'logs')
 const ENCRYPTION_KEY = process.env.LOG_ENCRYPTION_KEY
 const MAX_NEXT_LOG_FILES = 14
 const MAX_LINE_CHARS = 16_000
@@ -27,8 +27,9 @@ let installed = false
 type StreamName = 'stdout' | 'stderr'
 
 function ensureDir() {
-  if (!existsSync(LOG_DIR)) {
-    mkdirSync(LOG_DIR, { recursive: true })
+  const logDir = getLogDir()
+  if (!existsSync(logDir)) {
+    mkdirSync(logDir, { recursive: true })
   }
 }
 
@@ -51,18 +52,19 @@ function encryptLine(data: string): string {
 
 function getNextLogFilePath(date = new Date()): string {
   const day = date.toISOString().split('T')[0]
-  return join(LOG_DIR, `next-${day}.log`)
+  return join(getLogDir(), `next-${day}.log`)
 }
 
 function pruneOldNextLogs() {
   try {
     ensureDir()
-    const files = readdirSync(LOG_DIR)
+    const logDir = getLogDir()
+    const files = readdirSync(logDir)
       .filter((f) => f.startsWith('next-') && f.endsWith('.log'))
       .map((name) => ({
         name,
-        path: join(LOG_DIR, name),
-        time: statSync(join(LOG_DIR, name)).mtime.getTime(),
+        path: join(logDir, name),
+        time: statSync(join(logDir, name)).mtime.getTime(),
       }))
       .sort((a, b) => b.time - a.time)
 

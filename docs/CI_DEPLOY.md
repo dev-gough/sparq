@@ -38,6 +38,16 @@ Pre-redesign site is preserved on branch **`old_design`**. Lab deploys track **`
 4. App checkout at `/home/server/sparqsys` with `origin` → Gitea remote.
    `.env.local` and `logs/` are preserved (`git reset --hard` does not delete ignored files).
 
+5. **`LOG_DIR` required in production** (email/app/Next logs + Control Center ops export).
+   Set in the host `.env.local` (or systemd `Environment=`), for example:
+
+   ```bash
+   LOG_DIR=/home/server/sparqsys/logs
+   # or: LOG_DIR=/var/log/sparqsys
+   ```
+
+   Without it, production log writes throw; `/api/health` reports `log_dir` as degraded.
+
 ## Manual deploy
 
 ```bash

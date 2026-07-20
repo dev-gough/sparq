@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs'
 import path from 'path'
 import { createDecipheriv } from 'crypto'
+import { getLogDir } from '@/lib/logDir'
 
 export type LogSourceId = 'app' | 'email' | 'next' | 'files'
 
@@ -31,7 +32,7 @@ const MAX_TOTAL_BYTES = 4 * 1024 * 1024 // 4 MiB
 const MAX_LINES_PER_FILE = 20_000
 
 function logDir(): string {
-  return process.env.LOG_DIR || path.join(process.cwd(), 'logs')
+  return getLogDir()
 }
 
 function encryptionKey(): string | undefined {
