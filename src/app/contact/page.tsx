@@ -1,232 +1,126 @@
-'use client'
-
 import Link from 'next/link'
-import { Card, CardContent } from '@/components/ui/card'
-import { Phone, Mail, MapPin, Network } from 'lucide-react'
-import { useTrackEvent, trackContactClick } from '@/hooks/useTrackEvent'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
+import ContactSection from '@/components/ContactSection'
 
-
-interface ContactSectionProps {
-	title: string
-	companyName: string
-	address?: string
-	phone?: string
-	email?: string
-	website?: string
-	}
-
-function ContactSection({ title, companyName, address, phone, email, website }: ContactSectionProps) {
-
-	useTrackEvent()
-
-	const handleClick = (type: string, detail: string) => {
-		const linkUrl =
-			type === 'phone' ? `tel:${detail}` :
-			type === 'email' ? `mailto:${detail}` :
-			detail
-		trackContactClick({ method: type, link_url: linkUrl })
-	}
-
-	return (
-		<div
-			className="group"
-		>
-			<Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 py-0 h-full bg-white dark:bg-gray-700">
-				<CardContent className="p-6 h-full flex flex-col">
-					<div className="flex items-start gap-4 mb-6">
-						<div className="flex items-center justify-center w-12 h-12 min-w-[3rem] min-h-[3rem] bg-gradient-to-br from-brand-maroon to-brand-logo rounded-full text-white flex-shrink-0">
-							<MapPin className="w-5 h-5" />
-						</div>
-						<div className="flex-1">
-							<h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow leading-tight">{title}</h3>
-							<p className="text-lg font-semibold text-brand-graytext dark:text-dark-text-secondary">{companyName}</p>
-						</div>
-					</div>
-
-					<div className="space-y-4 flex-grow">
-						{address && (
-							<div className="flex items-start gap-3">
-								<MapPin className="w-4 h-4 mt-1 text-brand-maroon flex-shrink-0" />
-								<p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed">
-									{address.split('\n').map((line, index) => (
-										<span key={index}>
-											{line}
-											<br />
-										</span>
-									))}
-								</p>
-							</div>
-						)}
-						{phone && (
-							<div className="flex items-center gap-3">
-								<Phone className="w-4 h-4 text-brand-maroon flex-shrink-0" aria-hidden />
-								<Link
-									onClick={() => handleClick("phone", phone)}
-									href={`tel:${phone}`}
-									className="text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-medium transition-colors duration-200"
-								>
-									{phone}
-								</Link>
-							</div>
-						)}
-						{email && (
-							<div className="flex items-center gap-3">
-								<Mail className="w-4 h-4 text-brand-maroon flex-shrink-0" aria-hidden />
-								<Link
-									onClick={() => handleClick("email", email)}
-									href={`mailto:${email}`}
-									className="text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-medium transition-colors duration-200"
-								>
-									{email}
-								</Link>
-							</div>
-						)}
-						{website && (
-							<div className="flex items-center gap-3">
-								<Network className="w-4 h-4 text-brand-maroon flex-shrink-0" aria-hidden />
-								<Link
-									onClick={() => handleClick("website", website)}
-									href={website}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-brand-maroon dark:text-brand-logo hover:text-brand-darkmaroon dark:hover:text-brand-yellow font-medium transition-colors duration-200"
-								>
-									{website}
-								</Link>
-							</div>
-						)}
-					</div>
-				</CardContent>
-			</Card>
-		</div>
-	)
-}
-
+/** Server page — contact cards are client islands for GA4 click tracking. */
 export default function ContactPage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
+      <SolarBackgroundElements />
 
-	return (
-		<div className="min-h-screen bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
-			<SolarBackgroundElements />
+      <section className="relative container mx-auto px-6 pt-10 sm:pb-16">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+            <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
+              Contact
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
+              Sparq Systems
+            </span>
+          </h1>
 
-			{/* Hero Section */}
-			<section className="relative container mx-auto px-6 pt-10 sm:pb-16">
-				<div
-					className="text-center mb-10"
-				>
-					<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-						<span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
-							Contact
-						</span>
-						<br />
-						<span className="bg-gradient-to-r from-brand-maroon via-brand-logo to-brand-darkmaroon bg-clip-text text-transparent">
-							Sparq Systems
-						</span>
-					</h1>
+          <p className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12">
+            Connect with our global network of offices and distribution partners to discover how Sparq
+            microinverter technology can power your solar projects.
+          </p>
+        </div>
+      </section>
 
-					<p
-						className="text-xl md:text-2xl text-brand-graytext dark:text-dark-text-secondary max-w-4xl mx-auto leading-relaxed mb-12"
-					>
-						Connect with our global network of offices and distribution partners to discover
-						how Sparq microinverter technology can power your solar projects.
-					</p>
-				</div>
-			</section>
+      <section className="relative bg-white dark:bg-gray-900 py-10">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
+              Our Offices
+            </h2>
+            <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
+              Reach out to our global offices for sales inquiries, technical support, and partnership
+              opportunities.
+            </p>
+          </div>
 
-			{/* Our Offices Section */}
-			<section className="relative bg-white dark:bg-gray-900 py-10">
-				<div className="container mx-auto px-6">
-					<div
-						className="text-center mb-16"
-					>
-						<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
-							Our Offices
-						</h2>
-						<p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
-							Reach out to our global offices for sales inquiries, technical support, and partnership opportunities.
-						</p>
-					</div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            <ContactSection
+              title="Head Office - Canada"
+              companyName="Sparq Systems Inc."
+              address={`945 Princess Street\nKingston, Ontario, Canada\nK7L 0E9`}
+              email="sales@sparqsys.com"
+              website="https://www.sparqsys.com/"
+            />
+            <ContactSection
+              title="Office - India"
+              companyName="Sparq Systems India Pvt. Ltd."
+              email="sgupta@sparqsys.com"
+              phone="(+91) 9810 899 033"
+            />
+          </div>
+        </div>
+      </section>
 
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-						<ContactSection
-							title="Head Office - Canada"
-							companyName='Sparq Systems Inc.'
-							address={`945 Princess Street\nKingston, Ontario, Canada\nK7L 0E9`}
-							email='sales@sparqsys.com'
-							website='https://www.sparqsys.com/'
-						/>
-						<ContactSection
-							title="Office - India"
-							companyName="Sparq Systems India Pvt. Ltd."
-							email="sgupta@sparqsys.com"
-							phone='(+91) 9810 899 033'
-						/>
-					</div>
-				</div>
-			</section>
+      <section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-10">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
+              How to Order
+            </h2>
+            <p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
+              Contact our authorized distribution partners worldwide for product orders and local
+              support.
+            </p>
+          </div>
 
-			{/* Distribution Partners Section */}
-			<section className="relative bg-gradient-to-br from-slate-50 via-neutral-50 to-stone-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-10">
-				<div className="container mx-auto px-6">
-					<div
-						className="text-center mb-16"
-					>
-						<h2 className="text-4xl md:text-5xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
-							How to Order
-						</h2>
-						<p className="text-xl text-brand-graytext dark:text-dark-text-secondary max-w-3xl mx-auto">
-							Contact our authorized distribution partners worldwide for product orders and local support.
-						</p>
-					</div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+            <ContactSection
+              title="India Distribution & Service"
+              companyName="Jio Things Ltd."
+              website="https://www.jiothings.com/"
+              email="sales@jiothings.com"
+            />
+            <ContactSection
+              title="Africa, Australia, Gulf, Southeast Asia Distribution & Service"
+              companyName="Rolaz Green Energy PVT. Ltd."
+              address={`Kalypso Tower 4, Unit 1202\nJaypee Greens Wish Town, Sector 128\nNoida, Uttar Pradesh, India 201304`}
+              phone="(+91) 8595 414 392"
+              email="info@rolazge.com"
+              website="http://www.rolazge.com/"
+            />
+            <ContactSection
+              title="North America Distributer"
+              companyName="GPSI Solar"
+              address={`131 Sheldon Drive, Unit 22\nCambridge, Ontario, Canada\nN1R 6S2`}
+              phone="519-645-9649"
+              email="sales@gpsi.solar"
+              website="https://www.gpsi.ca/Solar-EV.htm"
+            />
+          </div>
+        </div>
+      </section>
 
-					<div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-						<ContactSection
-							title="India Distribution & Service"
-							companyName="Jio Things Ltd."
-							website='https://www.jiothings.com/'
-							email='sales@jiothings.com'
-						/>
-						<ContactSection
-							title="Africa, Australia, Gulf, Southeast Asia Distribution & Service"
-							companyName="Rolaz Green Energy PVT. Ltd."
-							address={`Kalypso Tower 4, Unit 1202\nJaypee Greens Wish Town, Sector 128\nNoida, Uttar Pradesh, India 201304`}
-							phone="(+91) 8595 414 392"
-							email="info@rolazge.com"
-							website='http://www.rolazge.com/'
-						/>
-						<ContactSection
-							title="North America Distributer"
-							companyName='GPSI Solar'
-							address={`131 Sheldon Drive, Unit 22\nCambridge, Ontario, Canada\nN1R 6S2`}
-							phone='519-645-9649'
-							email='sales@gpsi.solar'
-							website='https://www.gpsi.ca/Solar-EV.htm'
-						/>
-					</div>
-				</div>
-			</section>
-
-			{/* Call to Action */}
-			<section className="container mx-auto px-6 pb-20 sm:py-20">
-				<div
-					className="text-center"
-				>
-					<h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
-						Ready to Get Started?
-					</h2>
-					<p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-2xl mx-auto">
-						Discover our breakthrough microinverter technology and explore our complete product portfolio.
-					</p>
-					<div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-						<Link href="/technology" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
-Explore Technology
-</Link>
-						<Link href="/products" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
-View Products
-</Link>
-					</div>
-				</div>
-			</section>
-		</div>
-	)
+      <section className="container mx-auto px-6 pb-20 sm:py-20">
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
+            Ready to Get Started?
+          </h2>
+          <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-2xl mx-auto">
+            Discover our breakthrough microinverter technology and explore our complete product
+            portfolio.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
+            <Link
+              href="/technology"
+              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 min-h-[44px] inline-flex items-center justify-center text-center"
+            >
+              Explore Technology
+            </Link>
+            <Link
+              href="/products"
+              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 min-h-[44px] inline-flex items-center justify-center text-center"
+            >
+              View Products
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
 }

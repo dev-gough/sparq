@@ -1,4 +1,3 @@
-'use client'
 import ProductPage from "@/components/ProductPage"
 import Image from "next/image"
 import { ListEntry } from "@/components/ProductPage"

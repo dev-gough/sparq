@@ -1,0 +1,180 @@
+'use client'
+import ProductPage from "@/components/ProductPage"
+import Image from "next/image"
+import Link from "next/link"
+import { useState } from 'react'
+import { Card, CardContent } from "@/components/ui/card"
+import { useTrackEvent, trackSelectContent } from "@/hooks/useTrackEvent"
+
+function image() {
+	return (
+		<Image
+			src="/q2000.webp"
+			alt="Q2000 Microinverter"
+			width={800}
+			height={451}
+			sizes="(max-width: 1024px) 90vw, 480px"
+			className="object-contain sticky top-[100px] z-10 w-full h-auto"
+			priority
+		/>
+	)
+}
+
+function body() {
+	return (
+		<p className="text-brand-gray dark:text-dark-text-secondary mt-4">
+			The Q1200 is a legacy product that has been discontinued.  See below for the technical manuals, or <Link href="/contact" className="text-blue-400 hover:underline">contact us</Link> for support.
+		</p>
+	)
+}
+
+interface AccordionSection {
+	title: string
+	content: React.ReactNode
+	accentColor: string
+}
+
+const accordionSections: AccordionSection[] = [
+	{
+		title: "Documentation",
+		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
+		content: (
+			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+				<div className="space-y-6">
+					<div>
+						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheets</h3>
+						<div className="grid gap-3">
+							<div className="flex items-center gap-3">
+								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+								<a className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Q1200/Q1200-GT-discontinued.pdf" target="_blank" rel="noopener noreferrer">
+									Download Q1200-4102-GT Datasheet (PDF)
+								</a>
+							</div>
+							<div className="flex items-center gap-3">
+								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+								<a className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Q1200/Q1200-DM-discontinued.pdf" target="_blank" rel="noopener noreferrer">
+									Download Q1200-4102-DM Datasheet (PDF)
+								</a>
+							</div>
+						</div>
+					</div>
+					<div>
+						<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manuals</h3>
+						<div className="grid gap-3">
+							{[
+								{ name: "North America", href: "/Q1200/Q1200-Installer-NA.pdf" },
+								{ name: "India", href: "/Q1200/Q1200-Installer-India.pdf" }
+							].map((manual) => (
+								<div key={manual.name} className="flex items-center gap-3">
+									<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+									<a className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href={manual.href} target="_blank" rel="noopener noreferrer">
+										{manual.name}
+									</a>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
+		)
+	}
+]
+
+export default function LegacyProductPage() {
+	const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({ 0: true, 1: true })
+	useTrackEvent()
+
+	const toggleExpanded = (i: number) => {
+		setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
+		if (!dropdownExpanded[i]) {
+			trackSelectContent({
+				content_type: 'accordion',
+				content_id: `legacy_${accordionSections[i].title.toLowerCase().replace(/\s+/g, '_')}`,
+				content_name: accordionSections[i].title,
+				item_list_name: 'legacy',
+			})
+		}
+	}
+
+	const getIconForCategory = (title: string) => {
+		if (title.toLowerCase().includes('technical') || title.toLowerCase().includes('specifications')) {
+			return (
+				<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v1a2 2 0 002 2h2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v1a2 2 0 01-2 2H9m-6 0a2 2 0 002 2v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1a2 2 0 012-2zm8 0V9a2 2 0 012-2h2a2 2 0 012 2v1a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+				</svg>
+			)
+		}
+		if (title.toLowerCase().includes('documentation')) {
+			return (
+				<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+				</svg>
+			)
+		}
+		return (
+			<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+			</svg>
+		)
+	}
+
+	function Accordion() {
+		return (
+			<div className="py-6 space-y-6 max-w-4xl">
+				{accordionSections.map((section, index) => (
+					<div
+						key={index}
+					>
+						<Card
+							className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 max-w-4xl py-0"
+						>
+							<CardContent className="p-0">
+								<button
+									type="button"
+									className={`${section.accentColor} p-6 text-white cursor-pointer w-full text-left`}
+									onClick={() => toggleExpanded(index)}
+									aria-expanded={!!dropdownExpanded[index]}
+								>
+									<div className="flex items-center gap-4">
+										<div className="flex-shrink-0" aria-hidden>
+											{getIconForCategory(section.title)}
+										</div>
+										<span className="text-xl md:text-2xl font-bold flex-1">{section.title}</span>
+										<div
+											className={`flex-shrink-0 transition-transform duration-300 ${dropdownExpanded[index] ? "rotate-180" : ""}`}
+											aria-hidden
+										>
+											<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+											</svg>
+										</div>
+									</div>
+								</button>
+
+								{dropdownExpanded[index] && (
+									<div className="p-6 bg-white dark:bg-gray-800">
+										{section.content}
+									</div>
+								)}
+							</CardContent>
+						</Card>
+					</div>
+				))}
+			</div>
+		)
+	}
+
+	return (
+		<div>
+			<ProductPage
+				heading="Q1200 Microinverter"
+				parent="Legacy Products"
+				href="legacy"
+				bodyContent={body()}
+				accordianContent={Accordion()}
+				imageContent={image()}
+			>
+			</ProductPage>
+		</div>
+	)
+}

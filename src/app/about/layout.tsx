@@ -1,20 +1,19 @@
-'use client'
-
-import Subheader from "@/components/Subheader"
+import Subheader from '@/components/Subheader'
 
 const items = [
-    { label: "About Us", href: "/about"},
-    { label: "Leadership", href: "/about/leadership" },
-    { label: "Board of Directors", href: "/about/board" },
+  { label: 'About Us', href: '/about' },
+  { label: 'Leadership', href: '/about/leadership' },
+  { label: 'Board of Directors', href: '/about/board' },
 ]
 
-export default function InvestorLayout({children} : Readonly<{
-    children: React.ReactNode;
-  }>) {
-    return (
-        <div className="flex-grow">
-        <Subheader items={items}/>
-        {children}
-        </div>
-    )
+/** Server layout — Subheader is a client island for scroll/path behavior. */
+export default function AboutLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <div className="flex-grow">
+      <Subheader items={items} />
+      {children}
+    </div>
+  )
 }

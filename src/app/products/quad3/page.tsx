@@ -1,11 +1,8 @@
-'use client'
+import DocsAccordion from '@/components/DocsAccordion'
 import ProductPage from "@/components/ProductPage"
 import Image from "next/image"
 import { ListEntry } from "@/components/ProductPage"
 import Link from "next/link"
-import { useState } from 'react'
-import { Card, CardContent } from "@/components/ui/card"
-import { useTrackEvent, trackSelectContent } from "@/hooks/useTrackEvent"
 import YouTubeFacade from '@/components/YouTubeFacade'
 
 function expanded() {
@@ -86,48 +83,29 @@ const listContent: ListEntry[] = [
 
 interface AccordionSection {
 	title: string
-	content: React.ReactNode | ((selectedModel: string) => React.ReactNode)
+	content: React.ReactNode
 	accentColor: string
 }
 
-export default function TestPage() {
-	const models = ["Quad3-4301"]
-	const [selectedModel, setSelectedModel] = useState<string>(models[0])
-	const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
-	useTrackEvent()
-
-	const toggleExpanded = (i: number) => {
-		setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
-		if (!dropdownExpanded[i]) {
-			trackSelectContent({
-				content_type: 'accordion',
-				content_id: `quad3_${accordionSections[i].title.toLowerCase().replace(/\s+/g, '_')}`,
-				content_name: accordionSections[i].title,
-				item_list_name: 'quad3',
-			})
-		}
-	}
-
+export default function Quad3Page() {
 	const accordionSections: AccordionSection[] = [
 		{
 			title: "Documentation",
 			accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-			content: (selectedModel: string) => (
+			content: (
 				<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
 					<div className="space-y-6">
 						<div>
-							<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheet for {selectedModel}</h3>
+							<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Datasheet for Quad3-4301</h3>
 							<div className="flex items-center gap-3">
 								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-								{selectedModel === "Quad3-4301" && (
-									<a className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Quad3/quad3_datasheet.pdf" target="_blank" rel="noopener noreferrer">
+																	<a className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Quad3/quad3_datasheet.pdf" target="_blank" rel="noopener noreferrer">
 										Download Quad3-4301 Datasheet (PDF)
 									</a>
-								)}
 							</div>
 						</div>
 						<div>
-							<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manual for {selectedModel}</h3>
+							<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Installation Manual for Quad3-4301</h3>
 							<div className="flex items-center gap-3">
 								<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
 								<a className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors" href="/Quad3.pdf" target="_blank" rel="noopener noreferrer">
@@ -203,101 +181,11 @@ export default function TestPage() {
 		// }
 	]
 
-	const getIconForCategory = (title: string) => {
-		if (title.toLowerCase().includes('features')) {
-			return (
-				<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-				</svg>
-			)
-		}
-		if (title.toLowerCase().includes('demo') || title.toLowerCase().includes('watch')) {
-			return (
-				<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l2.828 2.828a1 1 0 01.293.707V15M9 10v4a1 1 0 001 1h4M9 10V9a1 1 0 011-1h4a1 1 0 011 1v1m-6 0h6" />
-				</svg>
-			)
-		}
-		if (title.toLowerCase().includes('technical') || title.toLowerCase().includes('specifications')) {
-			return (
-				<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v1a2 2 0 002 2h2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v1a2 2 0 01-2 2H9m-6 0a2 2 0 002 2v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1a2 2 0 012-2zm8 0V9a2 2 0 012-2h2a2 2 0 012 2v1a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-				</svg>
-			)
-		}
-		if (title.toLowerCase().includes('certifications')) {
-			return (
-				<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-				</svg>
-			)
-		}
-		if (title.toLowerCase().includes('documentation')) {
-			return (
-				<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-				</svg>
-			)
-		}
-		return (
-			<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-			</svg>
-		)
-	}
 
-	function Accordion() {
-		return (
-			<div className="py-6 space-y-6 max-w-4xl">
-				{accordionSections.map((section, index) => (
-					<div
-						key={index}
-					>
-						<Card
-							className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 max-w-4xl py-0"
-						>
-							<CardContent className="p-0">
-								<button
-									type="button"
-									className={`${section.accentColor} p-6 text-white cursor-pointer w-full text-left`}
-									onClick={() => toggleExpanded(index)}
-									aria-expanded={!!dropdownExpanded[index]}
-								>
-									<div className="flex items-center gap-4">
-										<div className="flex-shrink-0" aria-hidden>
-											{getIconForCategory(section.title)}
-										</div>
-										<span className="text-xl md:text-2xl font-bold flex-1">{section.title}</span>
-										<div
-											className={`flex-shrink-0 transition-transform duration-300 ${dropdownExpanded[index] ? "rotate-180" : ""}`}
-											aria-hidden
-										>
-											<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-											</svg>
-										</div>
-									</div>
-								</button>
-
-								{dropdownExpanded[index] && (
-									<div className="p-6 bg-white dark:bg-gray-800">
-										{typeof section.content === 'function' ? section.content(selectedModel) : section.content}
-									</div>
-								)}
-							</CardContent>
-						</Card>
-					</div>
-				))}
-			</div>
-		)
-	}
 
 	return (
 		<div>
 			<ProductPage
-				models={models}
-				selectedModel={selectedModel}
-				setSelectedModel={setSelectedModel}
 				model="Q2000-4301"
 				heading="Quad3 Microinverter"
 				animated={true}
@@ -306,7 +194,7 @@ export default function TestPage() {
 				animatedList={listContent}
 				expandedContent={expanded()}
 				bodyContent={body()}
-				accordianContent={Accordion()}
+				accordianContent={<DocsAccordion parent="quad3" sections={accordionSections} />}
 				imageContent={image()}
 			>
 			</ProductPage>

@@ -1,170 +1,84 @@
-'use client'
-import ProductPage from "@/components/ProductPage"
-import Image from "next/image"
-import { ListEntry } from "@/components/ProductPage"
-import { useState } from 'react'
-import { Card, CardContent } from "@/components/ui/card"
-import { useTrackEvent, trackSelectContent } from "@/hooks/useTrackEvent"
+import ProductPage from '@/components/ProductPage'
+import Image from 'next/image'
+import { ListEntry } from '@/components/ProductPage'
+import DocsAccordion from '@/components/DocsAccordion'
 
 function image() {
-	return (
-		<Image
-			src="/sparqvu.webp"
-			alt="SparqVu Monitoring Tool"
-			width={800}
-			height={451}
-			sizes="(max-width: 1024px) 90vw, 480px"
-			className="object-contain sticky top-[100px] z-10 rounded-xl w-full h-auto"
-			priority
-		/>
-	)
+  return (
+    <Image
+      src="/sparqvu.webp"
+      alt="SparqVu Monitoring Tool"
+      width={800}
+      height={451}
+      sizes="(max-width: 1024px) 90vw, 480px"
+      className="object-contain sticky top-[100px] z-10 rounded-xl w-full h-auto"
+      priority
+    />
+  )
 }
 
 function body() {
-	return (
-		<p className="text-brand-gray dark:text-dark-text-secondary mt-4">
-			Manage multi-site monitoring with SparqVu, a performance management system with intuitive displays to help you quickly spot issues and troubleshoot in real time.</p>
-	)
+  return (
+    <p className="text-brand-gray dark:text-dark-text-secondary mt-4">
+      Manage multi-site monitoring with SparqVu, a performance management system with intuitive
+      displays to help you quickly spot issues and troubleshoot in real time.
+    </p>
+  )
 }
 
 const listContent: ListEntry[] = [
-	{
-		heading: "Data when you need it",
-		items: [
-			"Advanced performance and communication tools with no app required",
-			"Real-time metrics, historical records and panel-by-panel information",
-			"Cloud-based monitoring"
-		]
-	},
-	{
-		heading: "Quick Installation",
-		items: [
-			"Automatically detects connected inverters before AC is connected",
-			"Installation layout syncs automatically to your cloud account"
-		]
-	}
+  {
+    heading: 'Data when you need it',
+    items: [
+      'Advanced performance and communication tools with no app required',
+      'Real-time metrics, historical records and panel-by-panel information',
+      'Cloud-based monitoring',
+    ],
+  },
+  {
+    heading: 'Quick Installation',
+    items: [
+      'Automatically detects connected inverters before AC is connected',
+      'Installation layout syncs automatically to your cloud account',
+    ],
+  },
 ]
 
-interface AccordionSection {
-	title: string
-	content: React.ReactNode
-	accentColor: string
-}
-
-const accordionSections: AccordionSection[] = [
-	{
-		title: "Documentation",
-		accentColor: "bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80",
-		content: (
-			<div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
-				<h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Manual</h3>
-				<div className="flex items-center gap-3">
-					<div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
-					<a href="/SparqVu.pdf" target="_blank" rel="noopener noreferrer" className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors">
-						SparqVu Manual (PDF)
-					</a>
-				</div>
-			</div>
-		)
-	}
+const accordionSections = [
+  {
+    title: 'Documentation',
+    accentColor: 'bg-gradient-to-br from-brand-gray/60 to-brand-graytext/80',
+    content: (
+      <div className="p-4 rounded-lg bg-gradient-to-r from-slate-50 to-neutral-50 dark:from-gray-800 dark:to-gray-800">
+        <h3 className="font-bold text-brand-logo dark:text-brand-logo mb-4">Manual</h3>
+        <div className="flex items-center gap-3">
+          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-brand-maroon to-brand-logo flex-shrink-0" />
+          <a
+            href="/SparqVu.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand-maroon hover:text-brand-darkmaroon font-medium hover:underline transition-colors"
+          >
+            SparqVu Manual (PDF)
+          </a>
+        </div>
+      </div>
+    ),
+  },
 ]
 
+/** Server page — ProductPage + DocsAccordion are client islands. */
 export default function SparqVuPage() {
-	const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
-	useTrackEvent()
-
-	const toggleExpanded = (i: number) => {
-		setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
-		if (!dropdownExpanded[i]) {
-			trackSelectContent({
-				content_type: 'accordion',
-				content_id: `sparqvu_${accordionSections[i].title.toLowerCase().replace(/\s+/g, '_')}`,
-				content_name: accordionSections[i].title,
-				item_list_name: 'sparqvu',
-			})
-		}
-	}
-
-	const getIconForCategory = (title: string) => {
-		if (title.toLowerCase().includes('features')) {
-			return (
-				<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-				</svg>
-			)
-		}
-		if (title.toLowerCase().includes('documentation')) {
-			return (
-				<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-				</svg>
-			)
-		}
-		return (
-			<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-			</svg>
-		)
-	}
-	function Accordion() {
-		return (
-			<div className="py-6 space-y-6 max-w-4xl">
-				{accordionSections.map((section, index) => (
-					<div
-						key={index}
-					>
-						<Card
-							className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 max-w-4xl py-0"
-						>
-							<CardContent className="p-0">
-								<button
-									type="button"
-									className={`${section.accentColor} p-6 text-white cursor-pointer w-full text-left`}
-									onClick={() => toggleExpanded(index)}
-									aria-expanded={!!dropdownExpanded[index]}
-								>
-									<div className="flex items-center gap-4">
-										<div className="flex-shrink-0" aria-hidden>
-											{getIconForCategory(section.title)}
-										</div>
-										<span className="text-xl md:text-2xl font-bold flex-1">{section.title}</span>
-										<div
-											className={`flex-shrink-0 transition-transform duration-300 ${dropdownExpanded[index] ? "rotate-180" : ""}`}
-											aria-hidden
-										>
-											<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-											</svg>
-										</div>
-									</div>
-								</button>
-
-								{dropdownExpanded[index] && (
-									<div className="p-6 bg-white dark:bg-gray-800">
-										{section.content}
-									</div>
-								)}
-							</CardContent>
-						</Card>
-					</div>
-				))}
-			</div>
-		)
-	}
-
-	return (
-		<div>
-			<ProductPage
-				heading="SparqVu - Your Energy Management System"
-				animated={true}
-				parent="SparqVu"
-				href="sparqvu"
-				animatedList={listContent}
-				bodyContent={body()}
-				accordianContent={Accordion()}
-				imageContent={image()}
-			>
-			</ProductPage>
-		</div>
-	)
+  return (
+    <ProductPage
+      heading="SparqVu - Your Energy Management System"
+      animated={true}
+      parent="SparqVu"
+      href="sparqvu"
+      animatedList={listContent}
+      bodyContent={body()}
+      accordianContent={<DocsAccordion parent="sparqvu" sections={accordionSections} />}
+      imageContent={image()}
+    />
+  )
 }

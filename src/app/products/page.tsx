@@ -1,6 +1,3 @@
-'use client'
-
-import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 
 import Link from "next/link"
@@ -90,14 +87,11 @@ interface FloatingProductCardProps {
 }
 
 function FloatingProductCard({ product, priority = false }: FloatingProductCardProps & { priority?: boolean }) {
-    const [isHovered, setIsHovered] = useState(false)
-    const imageClass = `${product.category === 'Microinverters' ? 'object-contain scale-90' : 'object-cover'} transition-all duration-500 ease-out ${product.title === 'SparqLinq' ? 'object-left' : 'object-center'}`
+    const imageClass = `${product.category === 'Microinverters' ? 'object-contain scale-90' : 'object-cover'} transition-all duration-500 ease-out group-hover:brightness-110 group-hover:contrast-105 ${product.title === 'SparqLinq' ? 'object-left' : 'object-center'}`
     return (
         <Link href={product.href} className="block min-h-[44px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-maroon">
             <div
                 className="relative group cursor-pointer w-full rounded-2xl overflow-hidden"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 style={{ perspective: '1000px' }}>
                 <Card className="h-full w-full overflow-hidden border border-brand-maroon/20 dark:border-gray-600/30 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl bg-white dark:bg-gray-800/90 backdrop-blur-sm py-0">
                     {/* Image Section */}
@@ -110,9 +104,6 @@ function FloatingProductCard({ product, priority = false }: FloatingProductCardP
                                     priority={priority}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 45vw, 360px"
                                     className={`${imageClass} dark:hidden`}
-                                    style={{
-                                        filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
-                                    }}
                                 />
                                 <Image src="/Accessories/cables-td.webp"
                                     alt={product.title}
@@ -120,9 +111,6 @@ function FloatingProductCard({ product, priority = false }: FloatingProductCardP
                                     priority={priority}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 45vw, 360px"
                                     className={`${imageClass} hidden dark:block`}
-                                    style={{
-                                        filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
-                                    }}
                                 />
                             </>
                         ) : (
@@ -132,9 +120,6 @@ function FloatingProductCard({ product, priority = false }: FloatingProductCardP
                                 priority={priority}
                                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 45vw, 360px"
                                 className={imageClass}
-                                style={{
-                                    filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
-                                }}
                             />
                         )}
                     </div>
