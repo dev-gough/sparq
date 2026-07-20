@@ -10,7 +10,7 @@ import YTVideo from "@/components/YTVideo"
 function image() {
 	return (
 		<Image
-			src="/SparqLinq.jpg"
+			src="/SparqLinq.webp"
 			alt="SparqLinq Monitoring Tool"
 			width={800}
 			height={451}

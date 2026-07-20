@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import DropdownMenu from './DropdownMenu'
-import AnimationToggle from './AnimationToggle'
 import DarkModeToggle from './DarkModeToggle'
 import { Menu, X } from 'lucide-react'
 
@@ -21,7 +20,7 @@ interface HeaderProps {
 
 /**
  * Sticky header client island: pathname-aware nav + mobile drawer.
- * No Motion — painted immediately for LCP/chrome stability.
+ * Painted immediately for LCP/chrome stability (no JS animation library).
  */
 export default function Header({ navItems }: HeaderProps) {
   const pathname = usePathname()
@@ -87,12 +86,10 @@ export default function Header({ navItems }: HeaderProps) {
           <div className="flex justify-end">
             <div className="hidden lg:flex items-center gap-3 xl:gap-4">
               <DarkModeToggle />
-              <AnimationToggle />
             </div>
 
             <div className="lg:hidden flex items-center gap-2 sm:gap-3">
               <DarkModeToggle />
-              <AnimationToggle />
               <button
                 type="button"
                 className="p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg bg-brand-maroon/5 dark:bg-brand-yellow/10 text-brand-maroon dark:text-brand-yellow hover:bg-brand-maroon/10 dark:hover:bg-brand-yellow/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-maroon"
@@ -108,7 +105,7 @@ export default function Header({ navItems }: HeaderProps) {
         </div>
       </div>
 
-      {/* Mobile nav — CSS grid/max-height, no Motion */}
+      {/* Mobile nav — CSS max-height/opacity transition */}
       <nav
         id="mobile-nav"
         className={`lg:hidden overflow-hidden border-t border-brand-maroon/10 dark:border-gray-700/50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md transition-[max-height,opacity] duration-300 ease-out ${

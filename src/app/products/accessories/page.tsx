@@ -156,7 +156,7 @@ export default function AccessoriesPage() {
 				<div className="mb-6 flex justify-center relative">
 					{/* Light mode image */}
 					<Image
-						src="/Accessories/cables-t.png"
+						src="/Accessories/cables-t.webp"
 						alt="AC cable family photo"
 						width={800}
 						height={400}
@@ -165,7 +165,7 @@ export default function AccessoriesPage() {
 					/>
 					{/* Dark mode image */}
 					<Image
-						src="/Accessories/cables-td.png"
+						src="/Accessories/cables-td.webp"
 						alt="AC cable family photo"
 						width={800}
 						height={400}
@@ -182,7 +182,7 @@ export default function AccessoriesPage() {
 				<div className="flex justify-center relative">
 					{/* Light mode image */}
 					<Image
-						src="/Accessories/caps-t.png"
+						src="/Accessories/caps-t.webp"
 						alt="T‑series waterproof cable caps"
 						width={900}
 						height={250}
@@ -190,7 +190,7 @@ export default function AccessoriesPage() {
 					/>
 					{/* Dark mode image */}
 					<Image
-						src="/Accessories/caps-td.png"
+						src="/Accessories/caps-td.webp"
 						alt="T‑series waterproof cable caps"
 						width={900}
 						height={250}
@@ -205,7 +205,7 @@ export default function AccessoriesPage() {
 				<div className="flex justify-center relative">
 					{/* Light mode image */}
 					<Image
-						src="/Accessories/unlocking-t.png"
+						src="/Accessories/unlocking-t.webp"
 						alt="AC unlocking tool"
 						width={600}
 						height={300}

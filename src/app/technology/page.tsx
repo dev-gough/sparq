@@ -31,7 +31,7 @@ const coreInnovations: TechFeature[] = [
         benefits: ["75% fewer inverters needed", "2,000W total capacity", "Independent channel isolation", "Lowest per-watt cost"],
         details: "Each Quad unit processes four independent PV panel inputs with independent MPPT per channel. Features wide MPPT voltage range with MC4 compatible receptacles. NEMA 6/IP-67 rated enclosure weighs only 4kg while delivering the highest power output per unit in the microinverter industry.",
         icon: <Layers className="w-12 h-12" />,
-        img: "/4in1-2.jpg"
+        img: "/4in1-2.webp"
     },
     {
         title: "Fastest Dynamic MPPT",

@@ -130,20 +130,20 @@ export default function BoMCalc() {
     };
 
     const imageMap: Record<string, string> = {
-        "Q2000-4102": "/quad4inverter.png",
-        "Q3000-4301": "/quad4inverter.png",
-        "SL200-2001": "/sparqlinq.png",
-        "65020-01": "/junctionbox.png",
-        "65020-05": "/junctionbox.png",
-        "65015-09": "/type2cable.png",
-        "65015-17": "/type2cable.png",
-        "65013-16/17": "/t6ftom.png",
-        "65013-08/09": "/t6ftom.png",
-        "65015-10": "/type1cable.png",
-        "65015-18": "/type1cable.png",
-        "65012-14/15": "/opencable.png",
-        "65012-02/03": "/opencable.png",
-        "SOLAR-PANEL": "/bompanel.png",
+        "Q2000-4102": "/quad4inverter.webp",
+        "Q3000-4301": "/quad4inverter.webp",
+        "SL200-2001": "/sparqlinq.webp",
+        "65020-01": "/junctionbox.webp",
+        "65020-05": "/junctionbox.webp",
+        "65015-09": "/type2cable.webp",
+        "65015-17": "/type2cable.webp",
+        "65013-16/17": "/t6ftom.webp",
+        "65013-08/09": "/t6ftom.webp",
+        "65015-10": "/type1cable.webp",
+        "65015-18": "/type1cable.webp",
+        "65012-14/15": "/opencable.webp",
+        "65012-02/03": "/opencable.webp",
+        "SOLAR-PANEL": "/bompanel.webp",
     };
 
     async function handleDownload() {
@@ -412,7 +412,7 @@ export default function BoMCalc() {
                                     <ul className="space-y-2">
                                         {bom.filter(r => r.sku.startsWith("65020") || r.sku === "SOLAR-PANEL")
                                             .map(row => row.sku === "SOLAR-PANEL" ?
-                                                <BOMItem key={row.sku} row={{ ...row, sku: `${Ppanel}W, ${Vpanel}V, ${Iscpanel}A` }} imageMap={{ ...imageMap, [`${Ppanel}W, ${Vpanel}V, ${Iscpanel}A`]: "/bompanel.png" }} /> :
+                                                <BOMItem key={row.sku} row={{ ...row, sku: `${Ppanel}W, ${Vpanel}V, ${Iscpanel}A` }} imageMap={{ ...imageMap, [`${Ppanel}W, ${Vpanel}V, ${Iscpanel}A`]: "/bompanel.webp" }} /> :
                                                 <BOMItem key={row.sku} row={row} imageMap={imageMap} />
                                             )}
                                     </ul>

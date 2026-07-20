@@ -52,7 +52,7 @@ const productCards: ProductCard[] = [
         title: "SparqLinq",
         description: "Intelligent monitoring and management system",
         href: "/products/sparqlinq",
-        image: "/SparqLinq.jpg",
+        image: "/SparqLinq.webp",
         category: "Monitoring",
         accentColor: "bg-gradient-to-br from-vision to-brand-maroon"
     },
@@ -70,7 +70,7 @@ const productCards: ProductCard[] = [
         title: "SparqSync App",
         description: "Mobile application for system monitoring and control",
         href: "/products/app",
-        image: "/sparqsync_splash.jpg",
+        image: "/sparqsync_splash.webp",
         category: "Monitoring",
         accentColor: "bg-gradient-to-br from-brand-yellow to-brand-gray"
     },
@@ -79,7 +79,7 @@ const productCards: ProductCard[] = [
         title: "Cables & Tools",
         description: "Complete range of installation accessories and components",
         href: "/products/accessories",
-        image: "/Accessories/cables-t.png",
+        image: "/Accessories/cables-t.webp",
         category: "Accessories",
         accentColor: "bg-gradient-to-br from-values to-brand-darkmaroon"
     }
@@ -114,7 +114,7 @@ function FloatingProductCard({ product, priority = false }: FloatingProductCardP
                                         filter: isHovered ? 'brightness(1.1) contrast(1.05)' : 'brightness(1) contrast(1)'
                                     }}
                                 />
-                                <Image src="/Accessories/cables-td.png"
+                                <Image src="/Accessories/cables-td.webp"
                                     alt={product.title}
                                     fill
                                     priority={priority}

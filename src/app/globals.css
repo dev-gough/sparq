@@ -28,7 +28,13 @@
 }
 
 html {
-    scroll-behavior: smooth !important;
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 /* Minimize flash with better defaults */
@@ -55,10 +61,6 @@ html {
 html.dark {
     background-color: rgb(17, 24, 39);
     color: rgb(255, 255, 255);
-}
-
-.logo-slider .swiper-wrapper {
-    transition-timing-function: linear;
 }
 
 @theme inline {
@@ -272,7 +274,7 @@ html.dark {
     }
 }
 
-/* Instant swap when user prefers reduced motion or toggles animations off */
+/* Instant swap when user prefers reduced motion (OS/browser setting) */
 @media (prefers-reduced-motion: reduce) {
     ::view-transition-old(*),
     ::view-transition-new(*),
@@ -280,13 +282,6 @@ html.dark {
         animation-duration: 0s !important;
         animation-delay: 0s !important;
     }
-}
-
-html.animations-disabled ::view-transition-old(*),
-html.animations-disabled ::view-transition-new(*),
-html.animations-disabled ::view-transition-group(*) {
-    animation-duration: 0s !important;
-    animation-delay: 0s !important;
 }
 
 /* Decorative solar grid — no JS animation dependency */

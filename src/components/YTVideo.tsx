@@ -8,7 +8,6 @@ import { useTrackEvent } from '@/hooks/useTrackEvent'
 interface YTProps {
   videoIds: string[]
   videoTitles?: Record<string, string>
-  localVideoThumbnails?: Record<string, string>
   onVideoSelect?: (videoId: string) => void
   fullWidth?: boolean
 }
@@ -17,34 +16,21 @@ interface VideoData {
   id: string
   title: string
   thumbnail: string
-  isLocal: boolean
 }
 
-// Helper function to determine if a video ID is for a local video
-const isLocalVideo = (videoId: string): boolean => {
-  return videoId.startsWith('/') || videoId.includes('.mp4') || videoId.includes('.webm') || videoId.includes('.mov')
-}
-
-export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, onVideoSelect, fullWidth = false }: YTProps) {
+export default function YTVideo({ videoIds, videoTitles, onVideoSelect, fullWidth = false }: YTProps) {
   const trackEvent = useTrackEvent()
   const [videosData, setVideosData] = useState<VideoData[]>([])
   const [playingVideo, setPlayingVideo] = useState<string | null>(null)
 
   useEffect(() => {
-    // Create video data with thumbnails and titles
-    const videos = videoIds.map(videoId => {
-      const isLocal = isLocalVideo(videoId)
-      return {
-        id: videoId,
-        title: videoTitles?.[videoId] || (isLocal ? `Local Video` : `YouTube Video ${videoId}`),
-        thumbnail: isLocal
-          ? (localVideoThumbnails?.[videoId] || '/default-video-thumbnail.jpg')
-          : `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
-        isLocal
-      }
-    })
+    const videos = videoIds.map(videoId => ({
+      id: videoId,
+      title: videoTitles?.[videoId] || `YouTube Video ${videoId}`,
+      thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+    }))
     setVideosData(videos)
-  }, [videoIds, videoTitles, localVideoThumbnails])
+  }, [videoIds, videoTitles])
 
   const handleVideoClick = (videoId: string) => {
     trackEvent("youtube_video_clicked")
@@ -56,31 +42,19 @@ export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, o
   }
 
   if (fullWidth) {
-    // Full width layout for dropdown usage
     return (
       <div className="w-full">
         {videosData.map((video) => (
           <div key={video.id} className="w-full">
             {playingVideo === video.id ? (
               <div className="w-full aspect-video rounded-lg overflow-hidden">
-                {video.isLocal ? (
-                  <video
-                    src={video.id}
-                    controls
-                    autoPlay
-                    className="w-full h-full object-cover"
-                    title={video.title}>
-                    Your browser does not support the video tag.
-                  </video>
-                ) : (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1`}
-                    title={video.title}
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                )}
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1`}
+                  title={video.title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
               </div>
             ) : (
               <button type="button"
@@ -119,16 +93,10 @@ export default function YTVideo({ videoIds, videoTitles, localVideoThumbnails, o
     )
   }
 
-  // Default card-based grid layout
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {videosData.map((video) => (
-        <div
-          key={video.id}
-          
-          
-          
-          className="group">
+        <div key={video.id} className="group">
           <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer py-0 bg-white dark:bg-gray-700">
             <button type="button"
               onClick={() => handleVideoClick(video.id)}

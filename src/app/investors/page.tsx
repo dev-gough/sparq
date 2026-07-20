@@ -251,7 +251,7 @@ export default function InvestorsPage() {
                                     <CardContent className="p-6 h-full flex flex-col">
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform p-2 shadow-sm">
-                                                <Image src="/Logos/queens-c.jpg"
+                                                <Image src="/Logos/queens-c.webp"
                                                     alt="Queen's University"
                                                     width={60}
                                                     height={60}
@@ -315,7 +315,7 @@ export default function InvestorsPage() {
                                     <CardContent className="p-6 h-full flex flex-col">
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform p- shadow-sm">
-                                                <Image src="/Logos/jiothings-c.jpeg"
+                                                <Image src="/Logos/jiothings-c.webp"
                                                     alt="JioThings"
                                                     width={60}
                                                     height={60}
@@ -347,7 +347,7 @@ export default function InvestorsPage() {
                                     <CardContent className="p-6 h-full flex flex-col">
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform p-2 shadow-sm">
-                                                <Image src="/Logos/rel-cir.png"
+                                                <Image src="/Logos/rel-cir.webp"
                                                     alt="Reliance New Energy"
                                                     width={60}
                                                     height={60}

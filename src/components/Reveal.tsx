@@ -15,7 +15,8 @@ type RevealProps = {
 
 /**
  * Below-the-fold entrance via CSS classes in globals.css.
- * SSR renders fully visible content; client only toggles .is-visible for motion.
+ * SSR renders fully visible content; client only toggles .is-visible.
+ * Respects prefers-reduced-motion (no site-wide animation toggle).
  * Prefer plain markup for above-the-fold heroes (no reveal) so LCP is immediate.
  */
 export default function Reveal({

@@ -18,7 +18,7 @@ function image() {
 		<div className="flex items-center justify-center gap-4">
 			<div className="relative aspect-[9/19.5] w-[180px] md:w-[220px] lg:w-[260px] rounded-3xl border-8 border-gray-300 shadow-lg overflow-hidden">
 				<Image
-					src="/app1.jpg"
+					src="/app1.webp"
 					alt="SparqSync mobile app home screen"
 					fill
 					className="object-cover"
@@ -28,7 +28,7 @@ function image() {
 			</div>
 			<div className="relative aspect-[9/19.5] w-[180px] md:w-[220px] lg:w-[260px] rounded-3xl border-8 border-gray-300 shadow-lg overflow-hidden">
 				<Image
-					src="/app2.jpg"
+					src="/app2.webp"
 					alt="SparqSync app inverter detail screen"
 					fill
 					className="object-cover"
