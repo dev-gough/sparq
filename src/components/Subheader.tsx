@@ -118,15 +118,8 @@ interface SubheaderProps {
 
 export default function Subheader({ items }: SubheaderProps) {
     const scrollDirection = useScrollDirection()
-    const [isVisible, setIsVisible] = useState(true)
-
-    useEffect(() => {
-        if (scrollDirection === 'down') {
-            setIsVisible(false)
-        } else if (scrollDirection === 'up') {
-            setIsVisible(true)
-        }
-    }, [scrollDirection])
+    // Hide while scrolling down; show on up or before any scroll
+    const isVisible = scrollDirection !== 'down'
 
     // Calculate dynamic width based on number of items
     const getMaxWidth = () => {

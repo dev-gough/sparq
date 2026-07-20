@@ -70,10 +70,14 @@ export default function RootLayout({
 	children: React.ReactNode,
 }>) {
 	// Default `dark` on <html> matches product default; script adjusts for light cookie before paint.
+	// data-scroll-behavior="smooth": Next 16 no longer auto-overrides CSS smooth scrolling on SPA
+	// navigations; this attribute restores instant scroll-to-top during route changes while
+	// keeping smooth scroll for in-page anchors (pairs with ForceScroll).
 	return (
 		<html
 			lang="en"
 			className={`bg-white dark:bg-gray-900 dark ${inter.className}`}
+			data-scroll-behavior="smooth"
 			suppressHydrationWarning
 		>
 			<head>

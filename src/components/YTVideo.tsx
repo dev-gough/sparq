@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/card'
 import { useTrackEvent, trackVideoStart } from '@/hooks/useTrackEvent'
@@ -20,17 +20,17 @@ interface VideoData {
 
 export default function YTVideo({ videoIds, videoTitles, onVideoSelect, fullWidth = false }: YTProps) {
   useTrackEvent()
-  const [videosData, setVideosData] = useState<VideoData[]>([])
   const [playingVideo, setPlayingVideo] = useState<string | null>(null)
 
-  useEffect(() => {
-    const videos = videoIds.map(videoId => ({
-      id: videoId,
-      title: videoTitles?.[videoId] || `YouTube Video ${videoId}`,
-      thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
-    }))
-    setVideosData(videos)
-  }, [videoIds, videoTitles])
+  const videosData = useMemo<VideoData[]>(
+    () =>
+      videoIds.map((videoId) => ({
+        id: videoId,
+        title: videoTitles?.[videoId] || `YouTube Video ${videoId}`,
+        thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+      })),
+    [videoIds, videoTitles]
+  )
 
   const handleVideoClick = (videoId: string) => {
     const title = videoTitles?.[videoId]

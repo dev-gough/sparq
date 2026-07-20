@@ -4,7 +4,8 @@ import { createCipheriv, randomBytes } from 'crypto'
 
 // Log directory - configurable via environment variable
 // Defaults to ./logs relative to project root
-const LOG_DIR = process.env.LOG_DIR || join(process.cwd(), 'logs')
+const LOG_DIR =
+  process.env.LOG_DIR || join(/*turbopackIgnore: true*/ process.cwd(), 'logs')
 const MAX_LOG_FILES = 6
 const ENCRYPTION_KEY = process.env.LOG_ENCRYPTION_KEY
 

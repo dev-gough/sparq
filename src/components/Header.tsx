@@ -21,6 +21,9 @@ interface HeaderProps {
 /**
  * Sticky header client island: pathname-aware nav + mobile drawer.
  * Painted immediately for LCP/chrome stability (no JS animation library).
+ * Nav <Link>s use Next default prefetch; Next 16 layout-dedupe / incremental
+ * prefetch reduces shared-layout transfer when many product/investor links
+ * are in view.
  */
 export default function Header({ navItems }: HeaderProps) {
   const pathname = usePathname()

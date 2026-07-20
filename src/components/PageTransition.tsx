@@ -1,8 +1,6 @@
 'use client'
 
-/// <reference types="react/experimental" />
-
-import { unstable_ViewTransition as ViewTransition, type ReactNode } from 'react'
+import { ViewTransition, type ReactNode } from 'react'
 
 type PageTransitionProps = {
   children: ReactNode
@@ -10,8 +8,9 @@ type PageTransitionProps = {
 
 /**
  * Soft cross-fade for App Router navigations (Next experimental.viewTransition).
+ * Uses React 19.2+ <ViewTransition> (Next App Router canary channel).
  * Wraps page content only so header/footer stay anchored.
- * Unsupported browsers / reduced-motion: instant swap (no error).
+ * Unsupported browsers / reduced-motion: instant swap (see globals.css).
  */
 export default function PageTransition({ children }: PageTransitionProps) {
   return (

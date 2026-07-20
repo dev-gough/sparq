@@ -1,12 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Turbopack is the default bundler for `next dev` and `next build` in Next 16.
+  // Optional FS cache speeds cold restarts in development.
   experimental: {
-    // optimizeCss/critters removed: ineffective for App Router streaming
+    // Critical CSS / critters still ineffective for App Router streaming
     cssChunking: 'strict',
-    // Soft route navigations via browser View Transitions + React <ViewTransition>
-    // (experimental; falls back to instant swap where unsupported)
+    // Soft route navigations via React <ViewTransition> + browser View Transitions API
     viewTransition: true,
+    turbopackFileSystemCacheForDev: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? {
@@ -14,6 +16,7 @@ const nextConfig: NextConfig = {
     } : false,
   },
   images: {
+    // Next 16 defaults: qualities [75], minimumCacheTTL 4h — fine for marketing assets
     remotePatterns: [
       {
         protocol: 'https',

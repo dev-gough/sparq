@@ -52,14 +52,20 @@ function parseSizeToBytes(s) {
  *   ┌ ○ /                                    6.33 kB         165 kB
  *   ├ ƒ /about                               2.42 kB         142 kB
  *   └ ƒ /api/health                            153 B         101 kB
+ *
+ * Next 16 may omit size / First Load JS columns (metrics removed from build output).
+ * We still parse markers + paths; sizes become null when absent.
  * Markers: ○ Static, ● SSG, ƒ Dynamic, ℇ Edge, ƛ Middleware, ◐ Partial
  */
 function parseRouteTable(text) {
   const lines = text.split(/\r?\n/)
   const routes = []
-  // Match box-drawing prefix + marker + path + size + firstLoad
-  const re =
+  // Full Next 15-style: marker path size firstLoad
+  const reFull =
     /^[├└┌│\s]*([○●ƒℇƛ◐])\s+(\/[^\s]*)\s+([\d.]+\s*(?:B|kB|MB)?)\s+([\d.]+\s*(?:B|kB|MB)?)\s*$/
+  // Next 16 slim: marker path only (optional trailing sizes)
+  const reSlim =
+    /^[├└┌│\s]*([○●ƒℇƛ◐])\s+(\/[^\s]*)(?:\s+([\d.]+\s*(?:B|kB|MB)?))?(?:\s+([\d.]+\s*(?:B|kB|MB)?))?\s*$/
 
   const markerMap = {
     '○': 'static',
@@ -83,16 +89,16 @@ function parseRouteTable(text) {
       // blank after rows — might still have more; don't hard stop
     }
 
-    const m = line.match(re)
+    const m = line.match(reFull) || line.match(reSlim)
     if (m) {
       const [, marker, path, sizeStr, firstLoadStr] = m
       routes.push({
         path,
         marker,
         rendering: markerMap[marker] || 'unknown',
-        size: sizeStr.trim(),
+        size: sizeStr ? sizeStr.trim() : null,
         sizeBytes: parseSizeToBytes(sizeStr),
-        firstLoadJs: firstLoadStr.trim(),
+        firstLoadJs: firstLoadStr ? firstLoadStr.trim() : null,
         firstLoadJsBytes: parseSizeToBytes(firstLoadStr),
       })
     }

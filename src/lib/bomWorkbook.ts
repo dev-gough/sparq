@@ -150,7 +150,11 @@ export async function buildBomWorkbookBuffer(input: BomExportInput): Promise<Buf
   ws.views = [{ showGridLines: false }]
 
   try {
-    const logoPath = path.join(process.cwd(), 'public', 'logo.png')
+    const logoPath = path.join(
+      /*turbopackIgnore: true*/ process.cwd(),
+      'public',
+      'logo.png'
+    )
     const logoBuf = await readFile(logoPath)
     // exceljs Buffer typings lag Node 22 Buffer; Uint8Array is accepted at runtime
     const logoId = wb.addImage({

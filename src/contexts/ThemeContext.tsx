@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react'
 import { getThemeFromCookie, setThemeCookie } from '@/lib/cookies'
 
 interface ThemeContextType {
@@ -10,46 +10,42 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-function readDomIsDark(): boolean {
+function applyDocumentClass(isDark: boolean) {
+  if (typeof document === 'undefined') return
+  document.documentElement.classList.toggle('dark', isDark)
+}
+
+function readPreferredDark(): boolean {
   if (typeof document === 'undefined') return true
+  const cookieTheme = getThemeFromCookie()
+  if (cookieTheme !== null) return cookieTheme
   return document.documentElement.classList.contains('dark')
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Match the blocking layout script: dark by default; cookie / DOM win after mount.
+  // SSR + first paint: dark matches layout FOUC script (suppressHydrationWarning on <html>).
   const [isDarkMode, setIsDarkMode] = useState(true)
 
   useEffect(() => {
-    const cookieTheme = getThemeFromCookie()
-    let preferredDark = true
-
-    if (cookieTheme !== null) {
-      preferredDark = cookieTheme
-    } else {
-      // Prefer class already set by the FOUC script; fall back to dark.
-      preferredDark = readDomIsDark()
-      // Persist default so preference stays stable across visits.
-      setThemeCookie(preferredDark)
+    const preferred = readPreferredDark()
+    applyDocumentClass(preferred)
+    if (getThemeFromCookie() === null) {
+      setThemeCookie(preferred)
     }
-
-    setIsDarkMode(preferredDark)
-    updateDocumentClass(preferredDark)
+    // Defer setState so we don't cascade renders in the same effect turn (React 19 hooks rule).
+    queueMicrotask(() => {
+      setIsDarkMode(preferred)
+    })
   }, [])
 
-  const updateDocumentClass = (isDark: boolean) => {
-    if (isDark) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }
-
-  const toggleTheme = () => {
-    const newValue = !isDarkMode
-    setIsDarkMode(newValue)
-    setThemeCookie(newValue)
-    updateDocumentClass(newValue)
-  }
+  const toggleTheme = useCallback(() => {
+    setIsDarkMode((prev) => {
+      const next = !prev
+      setThemeCookie(next)
+      applyDocumentClass(next)
+      return next
+    })
+  }, [])
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
