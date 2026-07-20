@@ -36,7 +36,16 @@ function shouldEnableAnalytics(): boolean {
   const isProduction = process.env.NODE_ENV === 'production'
   if (!explicitlyEnabled && !isProduction) return false
 
-  return Boolean(measurementId())
+  if (!measurementId()) {
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(
+        '[analytics] enabled flag is on (or production) but no measurement ID — set NEXT_PUBLIC_GA_MEASUREMENT_ID or NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID'
+      )
+    }
+    return false
+  }
+
+  return true
 }
 
 function scheduleIdle(run: () => void) {
@@ -52,10 +61,12 @@ function scheduleIdle(run: () => void) {
 }
 
 function ensureGtagStub() {
+  // Official gtag snippet: push the Arguments object (not a rest-array).
   window.dataLayer = window.dataLayer || []
   if (!window.gtag) {
-    window.gtag = function gtag(...args: unknown[]) {
-      window.dataLayer!.push(args)
+    window.gtag = function gtag() {
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer!.push(arguments)
     }
   }
 }
@@ -99,6 +110,20 @@ function installPdfDownloadCapture() {
  */
 export function loadAnalytics(): Promise<boolean> {
   if (!shouldEnableAnalytics()) {
+    if (
+      typeof window !== 'undefined' &&
+      process.env.NODE_ENV === 'development' &&
+      process.env.NEXT_PUBLIC_ENABLE_ANALYTICS !== 'true'
+    ) {
+      // Once per session — helps debug “no Realtime hits” on localhost
+      const w = window as Window & { __analyticsDisabledLogged?: boolean }
+      if (!w.__analyticsDisabledLogged) {
+        w.__analyticsDisabledLogged = true
+        console.info(
+          '[analytics] disabled in dev (set NEXT_PUBLIC_ENABLE_ANALYTICS=true and restart next dev)'
+        )
+      }
+    }
     return Promise.resolve(false)
   }
 
@@ -113,22 +138,28 @@ export function loadAnalytics(): Promise<boolean> {
         window.gtag!('config', id, {
           anonymize_ip: true,
           send_page_view: false, // SPA: we send page_view on route changes ourselves
+          debug_mode: process.env.NODE_ENV === 'development', // shows in GA4 DebugView
         })
 
         const script = document.createElement('script')
         script.async = true
         script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`
         script.onload = () => {
+          if (process.env.NODE_ENV === 'development') {
+            console.info('[analytics] gtag loaded for', id)
+          }
           installPdfDownloadCapture()
           resolve(true)
         }
         script.onerror = () => {
-          console.error('Failed to load gtag.js')
+          console.error(
+            '[analytics] Failed to load gtag.js — check Brave shields / tracker blockers for googletagmanager.com'
+          )
           resolve(false)
         }
         document.head.appendChild(script)
       } catch (err) {
-        console.error('Analytics init failed:', err)
+        console.error('[analytics] init failed:', err)
         resolve(false)
       }
     })

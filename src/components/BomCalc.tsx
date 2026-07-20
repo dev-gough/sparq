@@ -115,21 +115,6 @@ export default function BoMCalc() {
 
     const inverterCount = bom.find(r => r.sku === inverterSku)?.qty ?? 0;
 
-    const nameMap: Record<string, string> = {
-        "Q2000-4102": "Quad 2000 Single Phase Inverter",
-        "Q3000-4301": "Quad 3000 Three-Phase Inverter",
-        "65020-01": "Junction Box",
-        "65020-05": "Junction Box",
-        "65015-09": "T5 to T6 Cable 0.7m",
-        "65015-17": "T5 to T6 Cable 0.7m",
-        "65013-16/17": "T6 Female to Tee Male",
-        "65013-08/09": "T6 Female to Tee Male",
-        "65015-10": "T5 to T6 Cable 3m",
-        "65015-18": "T5 to T6 Cable 3m",
-        "65012-14/15": "T6 Tee Male to Open",
-        "65012-02/03": "T6 Tee Male to Open",
-    };
-
     const imageMap: Record<string, string> = {
         "Q2000-4102": "/quad4inverter.webp",
         "Q3000-4301": "/quad4inverter.webp",
@@ -147,125 +132,67 @@ export default function BoMCalc() {
         "SOLAR-PANEL": "/bompanel.webp",
     };
 
+    const [downloading, setDownloading] = useState(false);
+
+    /** Server builds branded XLSX (exceljs stays off the client). */
     async function handleDownload() {
-        // Dynamically import ExcelJS to avoid SSR issues
-        const ExcelJS = (await import('exceljs')).default;
-
-        // Create workbook & worksheet
-        const wb = new ExcelJS.Workbook();
-        const ws = wb.addWorksheet("System Summary");
-
-        // Add logo
-        ws.views = [{ showGridLines: false }];
-        const logoResp = await fetch("/logo.png");
-        const logoBuf = await logoResp.arrayBuffer();
-        const logoId = wb.addImage({ buffer: logoBuf, extension: "png" });
-        ws.addImage(logoId, { tl: { col: 1, row: 1 }, ext: { width: 100, height: 60 } });
-
-        // Styling
-        const headerFont = { bold: true, size: 12 };
-        const thinBorder = { style: 'thin' as const, color: { argb: "FF000000" } };
-
-        // Company details
-        ws.addRows([
-            [], [], [],
-            ["", "SPARQ Systems Inc."],
-            ["", "945 Princess Street"],
-            ["", "Kingston, ON, K7L 0E9"],
-            ["", "Phone: (855) 947-7277"],
-            ["", "Email: info@sparqsys.com"],
-            [],
-        ]);
-        ws.getRow(6).getCell(2).font = { bold: true };
-
-        // System summary header
-        const sysHeader = ws.addRow(["", "System Summary", "", ""]);
-        sysHeader.font = headerFont;
-        sysHeader.eachCell({ includeEmpty: true }, (cell, colNumber) => {
-            if (colNumber >= 2 && colNumber <= 4) {
-                cell.border = { bottom: thinBorder };
-            }
-        });
-
-        // System specs
-        const generationDate = new Date().toLocaleString();
-        ws.addRows([
-            ["", "Project Name", form.projectName || "Untitled Project"],
-            ["", "Report Generated", generationDate],
-            [""],
-            ["", "Region", form.region],
-            ["", "Project Type", form.projectType],
-            ["", "Grid Type", form.gridType],
-            ["", "Grid System Size (kW)", Pgrid],
-            ["", "Grid Voltage (VAC)", Vgrid],
-            ["", "PV System Size (kW)", Ppv],
-            ["", "Panel STC Power (W)", Ppanel],
-            ["", "Panel STC Voltage (V)", Vpanel],
-            ["", "Panel Short Circuit Current (Isc)", Iscpanel],
-            [""]
-        ]);
-
-        // BOM
-        const sparq = bom.filter(r => !r.sku.startsWith("65020") && r.sku !== "SOLAR-PANEL");
-        const third = bom.filter(r => r.sku.startsWith("65020") || r.sku === "SOLAR-PANEL");
-        const bomHeader = ws.addRow(["", "Bill of Materials", "", ""]);
-        bomHeader.font = headerFont;
-        bomHeader.eachCell({ includeEmpty: true }, (cell, colNumber) => {
-            if (colNumber >= 2 && colNumber <= 4) {
-                cell.border = { bottom: thinBorder };
-            }
-        });
-
-        // sparq products
-        const spHdr = ws.addRow(["", "SPARQ Products"]);
-        spHdr.font = headerFont;
-        ws.addRow(["", "Part ID", "Item", "Qty"]).font = headerFont;
-        sparq.forEach(r => { ws.addRow(["", r.sku, nameMap[r.sku] ?? r.label, r.qty]) });
-
-        // third party products
-        ws.addRow([]);
-        const thHdr = ws.addRow(["", "Third-Party Products"]);
-        thHdr.font = headerFont;
-        ws.addRow(["", "Part ID", "Item", "Qty"]).font = headerFont;
-        third.forEach(r => { ws.addRow(["", r.sku, nameMap[r.sku] ?? r.label, r.qty]) });
-
-        // Formatting
-        ws.eachRow(row => {
-            row.eachCell(cell => {
-                cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFFFFFFF" } };
+        if (!showBom || !allFilled) return;
+        setDownloading(true);
+        try {
+            const res = await fetch("/api/bom-export", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    projectName: form.projectName,
+                    region: form.region,
+                    projectType: form.projectType,
+                    gridType: form.gridType,
+                    Pgrid,
+                    Vgrid,
+                    Ppv,
+                    Ppanel,
+                    Vpanel,
+                    Iscpanel,
+                }),
             });
-        });
-        ws.columns.forEach((col, idx) => {
-            if (idx === 0) {
-                col.width = 2;
-            } else {
-                let max = 10;
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                (col as any).eachCell({ includeEmpty: true }, (cell: any) => {
-                    const txt = (cell.value ?? "").toString();
-                    max = Math.max(max, txt.length);
-                });
-                col.width = max + 2;
+
+            if (!res.ok) {
+                let message = "Download failed";
+                try {
+                    const err = (await res.json()) as { error?: string };
+                    if (err.error) message = err.error;
+                } catch {
+                    /* ignore */
+                }
+                console.error(message);
+                alert(message);
+                return;
             }
-        });
 
-        // Write & download
-        const buf = await wb.xlsx.writeBuffer();
-        const blob = new Blob([buf], { type: "application/octet-stream" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        const fileName = `sparq_system_summary_${Date.now()}.xlsx`;
-        a.download = fileName;
-        a.click();
-        URL.revokeObjectURL(url);
+            const blob = await res.blob();
+            const disposition = res.headers.get("Content-Disposition") || "";
+            const match = /filename="([^"]+)"/.exec(disposition);
+            const fileName = match?.[1] || `sparq_system_summary_${Date.now()}.xlsx`;
 
-        void trackEvent("file_download", {
-            file_name: fileName,
-            file_extension: "xlsx",
-            link_url: "/resources/calculator",
-            link_text: "BoM Calculator export",
-        });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = fileName;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            void trackEvent("file_download", {
+                file_name: fileName,
+                file_extension: "xlsx",
+                link_url: "/resources/calculator",
+                link_text: "BoM Calculator export",
+            });
+        } catch (err) {
+            console.error("bom-export request failed:", err);
+            alert("Network error while generating the spreadsheet. Please try again.");
+        } finally {
+            setDownloading(false);
+        }
     }
 
     return (
@@ -468,9 +395,13 @@ export default function BoMCalc() {
             {hasAnyInput && (
 
                 <div className="flex justify-center space-x-4 pt-6 pb-12">
-                    <button type="button" onClick={handleDownload}
-                        className="rounded-xl bg-gradient-to-r from-brand-maroon to-brand-darkmaroon px-8 py-4 text-sm text-white font-semibold hover:shadow-lg transition-all duration-300 cursor-pointer">
-                        Download Summary
+                    <button
+                        type="button"
+                        onClick={handleDownload}
+                        disabled={downloading || !showBom}
+                        className="rounded-xl bg-gradient-to-r from-brand-maroon to-brand-darkmaroon px-8 py-4 text-sm text-white font-semibold hover:shadow-lg transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        {downloading ? "Generating…" : "Download Summary"}
                     </button>
                     <Link href="/contact"
                         className="rounded-xl border-2 border-brand-maroon dark:border-brand-yellow px-8 py-4 text-sm text-brand-maroon dark:text-brand-yellow font-semibold hover:bg-brand-maroon dark:hover:bg-brand-yellow hover:text-white dark:hover:text-gray-900 transition-all duration-300">
