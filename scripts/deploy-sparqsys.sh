@@ -118,8 +118,18 @@ for i in $(seq 1 "$HEALTH_RETRIES"); do
     ok=1
     break
   fi
+  # Connection refused / empty code often means the unit crashed after "active"
+  if [[ "$i" -eq 5 || "$i" -eq 15 ]]; then
+    log "still waiting (attempt ${i}/${HEALTH_RETRIES}, last curl code='${code:-none}'); unit status:"
+    sc status "$UNIT" --no-pager -l 2>/dev/null | tail -n 30 || true
+  fi
   sleep "$HEALTH_SLEEP_SEC"
 done
-[[ "$ok" -eq 1 ]] || die "health check failed for ${HEALTH_URL}"
+if [[ "$ok" -ne 1 ]]; then
+  log "health check failed — recent unit logs:"
+  sc status "$UNIT" --no-pager -l 2>/dev/null | tail -n 40 || true
+  journalctl -u "$UNIT" -n 80 --no-pager 2>/dev/null || true
+  die "health check failed for ${HEALTH_URL} (nothing listening or non-2xx/3xx). Check LOG_DIR in .env.local and journalctl -u ${UNIT}"
+fi
 
 log "deploy complete: $(git rev-parse --short HEAD)"

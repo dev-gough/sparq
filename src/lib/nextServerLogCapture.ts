@@ -214,10 +214,15 @@ export function installNextServerLogCapture(): void {
     return origStderr(chunk, encoding, cb)
   }) as typeof process.stderr.write
 
-  writeNextLogLine(
-    'stdout',
-    `[nextServerLogCapture] capturing Next.js server logs → ${getNextLogFilePath()}`
-  )
+  try {
+    const pathHint = getNextLogFilePath()
+    writeNextLogLine(
+      'stdout',
+      `[nextServerLogCapture] capturing Next.js server logs → ${pathHint}`
+    )
+  } catch (err) {
+    console.error('[nextServerLogCapture] boot log line failed', err)
+  }
 }
 
 export function getNextServerLogPath(): string {
