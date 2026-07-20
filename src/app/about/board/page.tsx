@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
-import { useTrackEvent } from "@/hooks/useTrackEvent"
+import { useTrackEvent, trackSelectContent } from "@/hooks/useTrackEvent"
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 interface BoardMemberData {
@@ -107,11 +107,14 @@ function BoardMemberCard({ member, onClick }: BoardMemberCardProps) {
 
 export default function BoardPage() {
     const [selectedMember, setMember] = useState<BoardMemberData | null>(null)
-    const trackEvent = useTrackEvent()
+    useTrackEvent()
     const handleClick = (member: BoardMemberData) => {
         setMember(member)
-        trackEvent("popup_opened", {
-            "member_viewed": member.name
+        trackSelectContent({
+            content_type: 'bio_popup',
+            content_id: member.name.toLowerCase().replace(/\s+/g, '_'),
+            content_name: member.name,
+            item_list_name: 'board',
         })
     }
 

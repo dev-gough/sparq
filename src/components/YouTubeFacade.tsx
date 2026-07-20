@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { useTrackEvent } from '@/hooks/useTrackEvent'
+import { useTrackEvent, trackVideoStart } from '@/hooks/useTrackEvent'
 
 type YouTubeFacadeProps = {
   videoId: string
@@ -24,7 +24,7 @@ export default function YouTubeFacade({
   thumbnailQuality = 'maxresdefault',
 }: YouTubeFacadeProps) {
   const [active, setActive] = useState(false)
-  const trackEvent = useTrackEvent()
+  useTrackEvent()
 
   const thumb = `https://img.youtube.com/vi/${videoId}/${thumbnailQuality}.jpg`
 
@@ -46,7 +46,7 @@ export default function YouTubeFacade({
     <button
       type="button"
       onClick={() => {
-        trackEvent('youtube_video_clicked', { video_id: videoId })
+        trackVideoStart({ video_id: videoId, video_title: title })
         setActive(true)
       }}
       className={`group relative w-full aspect-video min-h-[240px] rounded-lg overflow-hidden text-left ${className}`}

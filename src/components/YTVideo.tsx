@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/card'
-import { useTrackEvent } from '@/hooks/useTrackEvent'
+import { useTrackEvent, trackVideoStart } from '@/hooks/useTrackEvent'
 
 interface YTProps {
   videoIds: string[]
@@ -19,7 +19,7 @@ interface VideoData {
 }
 
 export default function YTVideo({ videoIds, videoTitles, onVideoSelect, fullWidth = false }: YTProps) {
-  const trackEvent = useTrackEvent()
+  useTrackEvent()
   const [videosData, setVideosData] = useState<VideoData[]>([])
   const [playingVideo, setPlayingVideo] = useState<string | null>(null)
 
@@ -33,7 +33,8 @@ export default function YTVideo({ videoIds, videoTitles, onVideoSelect, fullWidt
   }, [videoIds, videoTitles])
 
   const handleVideoClick = (videoId: string) => {
-    trackEvent("youtube_video_clicked")
+    const title = videoTitles?.[videoId]
+    trackVideoStart({ video_id: videoId, video_title: title })
     if (fullWidth) {
       setPlayingVideo(videoId)
     } else {

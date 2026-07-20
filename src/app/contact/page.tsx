@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Phone, Mail, MapPin, Network } from 'lucide-react'
-import { useTrackEvent } from '@/hooks/useTrackEvent'
+import { useTrackEvent, trackContactClick } from '@/hooks/useTrackEvent'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
 
 
@@ -18,13 +18,14 @@ interface ContactSectionProps {
 
 function ContactSection({ title, companyName, address, phone, email, website }: ContactSectionProps) {
 
-	const trackEvent = useTrackEvent()
+	useTrackEvent()
 
 	const handleClick = (type: string, detail: string) => {
-		trackEvent("contact_clicked", {
-			"contact_type": type,
-			"detail": detail
-		})
+		const linkUrl =
+			type === 'phone' ? `tel:${detail}` :
+			type === 'email' ? `mailto:${detail}` :
+			detail
+		trackContactClick({ method: type, link_url: linkUrl })
 	}
 
 	return (

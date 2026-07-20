@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, type ReactNode } from 'react'
-import { useTrackEvent } from '@/hooks/useTrackEvent'
+import { useTrackEvent, trackSelectContent } from '@/hooks/useTrackEvent'
 import { ChevronDown } from 'lucide-react'
 
 type LegalAccordionProps = {
@@ -22,12 +22,17 @@ export default function LegalAccordion({
   defaultOpen = false,
 }: LegalAccordionProps) {
   const [open, setOpen] = useState(defaultOpen)
-  const trackEvent = useTrackEvent()
+  useTrackEvent()
 
   const handleOpen = () => {
     setOpen((prev) => {
       if (!prev) {
-        trackEvent('dropdown_opened', { dropdown: trackId })
+        trackSelectContent({
+          content_type: 'accordion',
+          content_id: trackId,
+          content_name: title,
+          item_list_name: 'legal',
+        })
       }
       return !prev
     })

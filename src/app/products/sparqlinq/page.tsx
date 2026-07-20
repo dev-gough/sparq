@@ -4,7 +4,7 @@ import Image from "next/image"
 import { ListEntry } from "@/components/ProductPage"
 import { useState } from 'react'
 import { Card, CardContent } from "@/components/ui/card"
-import { useTrackEvent } from "@/hooks/useTrackEvent"
+import { useTrackEvent, trackSelectContent } from "@/hooks/useTrackEvent"
 import YTVideo from "@/components/YTVideo"
 
 function image() {
@@ -117,14 +117,16 @@ export default function SparqLinqPage() {
 	const models = ["SL200-2001"]
 	const [selectedModel, setSelectedModel] = useState<string>(models[0])
 	const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
-	const trackEvent = useTrackEvent()
+	useTrackEvent()
 
 	const toggleExpanded = (i: number) => {
 		setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
 		if (!dropdownExpanded[i]) {
-			trackEvent("dropdown_opened", {
-				"parent": "sparqlinq",
-				"dropdown": accordionSections[i].title,
+			trackSelectContent({
+				content_type: 'accordion',
+				content_id: `sparqlinq_${accordionSections[i].title.toLowerCase().replace(/\s+/g, '_')}`,
+				content_name: accordionSections[i].title,
+				item_list_name: 'sparqlinq',
 			})
 		}
 	}

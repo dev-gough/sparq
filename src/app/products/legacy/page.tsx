@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState } from 'react'
 import { Card, CardContent } from "@/components/ui/card"
-import { useTrackEvent } from "@/hooks/useTrackEvent"
+import { useTrackEvent, trackSelectContent } from "@/hooks/useTrackEvent"
 
 function image() {
 	return (
@@ -82,14 +82,16 @@ const accordionSections: AccordionSection[] = [
 
 export default function LegacyProductPage() {
 	const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({ 0: true, 1: true })
-	const trackEvent = useTrackEvent()
+	useTrackEvent()
 
 	const toggleExpanded = (i: number) => {
 		setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
 		if (!dropdownExpanded[i]) {
-			trackEvent("dropdown_opened", {
-				"parent": "legacy",
-				"dropdown": accordionSections[i].title,
+			trackSelectContent({
+				content_type: 'accordion',
+				content_id: `legacy_${accordionSections[i].title.toLowerCase().replace(/\s+/g, '_')}`,
+				content_name: accordionSections[i].title,
+				item_list_name: 'legacy',
 			})
 		}
 	}

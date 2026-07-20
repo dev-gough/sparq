@@ -8,6 +8,7 @@ import AggregatedFAQ from '@/components/AggregatedFAQ'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
 import VideoPopup from '@/components/VideoPopup'
 import { educationalVideos, installerVideos, homeownerVideos, allVideos } from '@/data/videos'
+import { trackVideoStart } from '@/hooks/useTrackEvent'
 
 import homeownersData from '@/data/home_faq.json'
 import installersData from '@/data/installer_faq.json'
@@ -44,6 +45,14 @@ export default function LearningPage() {
 
   const handleShow = (id: number) => {
     setShowingID(id)
+    const video = allVideos.find((v) => v.id === id)
+    if (video) {
+      trackVideoStart({
+        video_id: video.url,
+        video_title: video.title,
+        video_provider: video.iFrame ? 'youtube' : 'self',
+      })
+    }
     // Next router — no window.*; preserves App Router navigation
     router.push(`${pathname}?video=${id}`, { scroll: false })
   }

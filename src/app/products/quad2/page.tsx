@@ -5,7 +5,7 @@ import { ListEntry } from "@/components/ProductPage"
 import Link from "next/link"
 import { useState } from 'react'
 import { Card, CardContent } from "@/components/ui/card"
-import { useTrackEvent } from "@/hooks/useTrackEvent"
+import { useTrackEvent, trackSelectContent } from "@/hooks/useTrackEvent"
 import YouTubeFacade from '@/components/YouTubeFacade'
 
 function expanded() {
@@ -83,15 +83,16 @@ interface AccordionSection {
 
 export default function Quad2Page() {
 	const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
-	const trackEvent = useTrackEvent()
+	useTrackEvent()
 
-		const toggleExpanded = (i: number) => {
+	const toggleExpanded = (i: number) => {
 		setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
-
-				if (!dropdownExpanded[i]) {
-			trackEvent("dropdown_opened", {
-				"parent": "quad2",
-				"dropdown": accordionSections[i].title,
+		if (!dropdownExpanded[i]) {
+			trackSelectContent({
+				content_type: 'accordion',
+				content_id: `quad2_${accordionSections[i].title.toLowerCase().replace(/\s+/g, '_')}`,
+				content_name: accordionSections[i].title,
+				item_list_name: 'quad2',
 			})
 		}
 	}

@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useState, useEffect, Suspense, useCallback } from 'react'
 import { useSearchParams, useRouter, usePathname } from "next/navigation"
 import { Card, CardContent } from '@/components/ui/card'
-import { useTrackEvent } from '@/hooks/useTrackEvent'
+import { useTrackEvent, trackSelectContent, trackVideoStart } from '@/hooks/useTrackEvent'
 import FAQs from './investor_faq.json'
 import SedarDocs from '@/data/sedar-documents.json'
 import VideoPopup from '@/components/VideoPopup'
@@ -85,7 +85,7 @@ const investorSections = [
 
 
 export default function InvestorsPage() {
-    const trackEvent = useTrackEvent()
+    useTrackEvent()
     const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({ 0: true })
     const [showingVideoID, setShowingVideoID] = useState<number | null>(null)
     const router = useRouter()
@@ -96,13 +96,24 @@ export default function InvestorsPage() {
     }, [])
 
     const handlePresentationClick = () => {
-        trackEvent("button_click", {
-            "btn_name": "investor_presentation"
+        trackSelectContent({
+            content_type: 'cta',
+            content_id: 'investor_presentation',
+            content_name: 'Investor Presentation',
+            item_list_name: 'investors',
         })
     }
 
     const handleVideoShow = (id: number) => {
         setShowingVideoID(id)
+        const video = allVideos.find((v) => v.id === id)
+        if (video) {
+            trackVideoStart({
+                video_id: video.url,
+                video_title: video.title,
+                video_provider: video.iFrame ? 'youtube' : 'self',
+            })
+        }
         // Next router — no window.*; preserves App Router navigation
         router.push(`${pathname}?video=${id}`, { scroll: false })
     }
@@ -115,9 +126,11 @@ export default function InvestorsPage() {
     const toggleExpanded = (i: number) => {
         setDropdownExpanded(prev => ({ ...prev, [i]: !prev[i] }))
         if (!dropdownExpanded[i]) {
-            trackEvent("dropdown_open", {
-                "parent": "investor_faq",
-                "dropdown": FAQ[i].questionBrand,
+            trackSelectContent({
+                content_type: 'accordion',
+                content_id: `investor_faq_${i}`,
+                content_name: FAQ[i].questionBrand,
+                item_list_name: 'investor_faq',
             })
         }
     }

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useTrackEvent } from '@/hooks/useTrackEvent'
+import { useTrackEvent, trackSelectContent } from '@/hooks/useTrackEvent'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
 import Reveal from '@/components/Reveal'
 
@@ -61,7 +61,6 @@ const unifiedQuadProduct: FeaturedProduct = {
 function FloatingProductHero({ product }: { product: FeaturedProduct }) {
   const [isHovered, setIsHovered] = useState(false)
   const [selectedVariant, setSelectedVariant] = useState(product.variants?.[0] || null)
-  const trackEvent = useTrackEvent()
 
   return (
     <div className="flex flex-col lg:flex-row items-center gap-16 mb-8 sm:mb-32">
@@ -100,9 +99,11 @@ function FloatingProductHero({ product }: { product: FeaturedProduct }) {
                     : 'bg-white dark:bg-gray-900/90 text-brand-darkmaroon dark:text-brand-yellow border-2 border-brand-maroon/20 dark:border-brand-yellow/30'
                 }`}
                 onClick={() => {
-                  trackEvent('product_variant_clicked', {
-                    variant: variant.id,
-                    product: product.id,
+                  trackSelectContent({
+                    content_type: 'product_variant',
+                    content_id: variant.id,
+                    content_name: variant.title,
+                    item_list_name: product.id,
                   })
                 }}
                 onMouseEnter={() => setSelectedVariant(variant)}
@@ -153,11 +154,15 @@ Explore {product.title}
 }
 
 export default function Home() {
-  const trackEvent = useTrackEvent()
+  // Prefetch gtag on home (also done by Analytics island)
+  useTrackEvent()
 
   const handleCtaClick = (action: string) => {
-    trackEvent('button_click', {
-      btn_name: `home_${action}`,
+    trackSelectContent({
+      content_type: 'cta',
+      content_id: `home_${action}`,
+      content_name: action,
+      item_list_name: 'home',
     })
   }
 

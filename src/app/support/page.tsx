@@ -4,6 +4,7 @@ import { useState, useMemo } from "react"
 import { Card, CardContent } from '@/components/ui/card'
 import SolarBackgroundElements from '@/components/SolarBackgroundElements'
 import Script from 'next/script'
+import { useTrackEvent, trackGenerateLead } from '@/hooks/useTrackEvent'
 
 // Extend Window interface for reCAPTCHA
 declare global {
@@ -24,6 +25,7 @@ type Category = keyof typeof CATEGORY_EMAIL_MAP
 
 
 export default function SupportTicketPage() {
+	useTrackEvent()
 	const [category, setCategory] = useState<"" | Category>("")
 	const [formData, setFormData] = useState({
 		userEmail: '',
@@ -99,6 +101,10 @@ export default function SupportTicketPage() {
 
 			if (response.ok) {
 				setSubmitStatus('success')
+				trackGenerateLead({
+					lead_source: 'support_form',
+					category: category || 'General Support',
+				})
 				// Reset form
 				setFormData({
 					userEmail: '',

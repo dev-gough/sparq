@@ -1,8 +1,8 @@
 'use client'
 
-import { useTrackEvent } from '@/hooks/useTrackEvent'
+import { useTrackEvent, trackSelectContent, trackViewItem } from '@/hooks/useTrackEvent'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 
 export type ListEntry = {
@@ -43,21 +43,35 @@ export default function ProductPage({
 }: ProductProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [allCardsExpanded, setAllCardsExpanded] = useState(false)
-  const trackEvent = useTrackEvent()
+  useTrackEvent()
+
+  useEffect(() => {
+    trackViewItem({
+      item_id: parent.toLowerCase(),
+      item_name: heading,
+      item_category: 'product',
+    })
+  }, [parent, heading])
 
   const handleClick = () => {
     setIsExpanded(!isExpanded)
     if (isExpanded) return
-    trackEvent('read_more', {
-      parent: parent.toLowerCase(),
+    trackSelectContent({
+      content_type: 'read_more',
+      content_id: parent.toLowerCase(),
+      content_name: heading,
+      item_list_name: 'product_page',
     })
   }
 
   const toggleAllCardsExpanded = () => {
     setAllCardsExpanded((prev) => !prev)
     if (!allCardsExpanded) {
-      trackEvent('feature_cards_expanded', {
-        parent: parent.toLowerCase(),
+      trackSelectContent({
+        content_type: 'feature_cards',
+        content_id: parent.toLowerCase(),
+        content_name: heading,
+        item_list_name: 'product_page',
       })
     }
   }

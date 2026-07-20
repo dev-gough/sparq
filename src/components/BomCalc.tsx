@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { calculate, type Row } from "@/lib/designMath";
+import { trackEvent } from "@/lib/analytics";
 
 type ProjectType = "Residential" | "Commercial" | "Industrial";
 type GridType = "On-grid" | "Off-grid" | "Water Pump";
@@ -254,9 +255,17 @@ export default function BoMCalc() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = `sparq_system_summary_${Date.now()}.xlsx`;
+        const fileName = `sparq_system_summary_${Date.now()}.xlsx`;
+        a.download = fileName;
         a.click();
         URL.revokeObjectURL(url);
+
+        void trackEvent("file_download", {
+            file_name: fileName,
+            file_extension: "xlsx",
+            link_url: "/resources/calculator",
+            link_text: "BoM Calculator export",
+        });
     }
 
     return (

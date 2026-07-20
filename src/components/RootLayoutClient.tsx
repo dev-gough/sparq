@@ -1,8 +1,10 @@
 'use client'
 
+import { Suspense } from 'react'
 import Header from '@/components/Header'
 import ForceScroll from '@/components/ForceScroll'
 import PageTransition from '@/components/PageTransition'
+import Analytics from '@/components/Analytics'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
 interface NavItem {
@@ -45,6 +47,10 @@ export default function RootLayoutClient({
             scroll mid-page. Manual restoration + top-on-pathname is intentional.
           */}
           <ForceScroll />
+          {/* useSearchParams requires Suspense; null fallback has no layout impact */}
+          <Suspense fallback={null}>
+            <Analytics />
+          </Suspense>
           <main id="main-content" className="flex-grow h-full" tabIndex={-1}>
             <PageTransition>{children}</PageTransition>
           </main>
