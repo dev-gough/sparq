@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server'
 import { promises as fs } from 'fs'
 import path from 'path'
 import { logAppEvent } from '@/lib/appLogger'
-import { isLogDirConfigured } from '@/lib/logDir'
+import { getLogDir, isLogDirConfigured } from '@/lib/logDir'
+import { decryptLogLine } from '@/lib/opsLogReader'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -17,8 +18,32 @@ interface HealthCheck {
   critical?: boolean
 }
 
+interface HealthMetric {
+  id: string
+  label: string
+  value: number | string
+  unit?: string
+  status?: HealthStatus
+  detail?: string
+}
+
+interface HealthEvent {
+  id: string
+  label: string
+  status: HealthStatus
+  startedAt?: string
+  finishedAt?: string
+  summary?: string
+}
+
+interface SedarDoc {
+  publishDate?: string
+  key?: boolean
+}
+
 const SERVICE_NAME = 'company-site'
 const CHECK_TIMEOUT_MS = 400
+const EMAIL_LOG_MAX_BYTES = 256 * 1024
 
 function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   return new Promise((resolve, reject) => {
@@ -36,30 +61,111 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   })
 }
 
-async function checkSedarDocuments(): Promise<HealthCheck> {
+async function loadSedar(): Promise<{
+  check: HealthCheck
+  count: number
+  keyCount: number
+  lastPublish?: string
+}> {
   const started = Date.now()
   const filePath = path.join(process.cwd(), 'src/data/sedar-documents.json')
   try {
     await withTimeout(fs.access(filePath), CHECK_TIMEOUT_MS)
     const raw = await withTimeout(fs.readFile(filePath, 'utf-8'), CHECK_TIMEOUT_MS)
-    const parsed = JSON.parse(raw) as { documents?: unknown[] }
-    const count = Array.isArray(parsed.documents) ? parsed.documents.length : 0
+    const parsed = JSON.parse(raw) as { documents?: SedarDoc[] }
+    const docs = Array.isArray(parsed.documents) ? parsed.documents : []
+    const count = docs.length
+    const keyCount = docs.filter((d) => d.key === true).length
+    let lastPublish: string | undefined
+    for (const doc of docs) {
+      if (typeof doc.publishDate !== 'string') continue
+      if (!lastPublish || doc.publishDate > lastPublish) lastPublish = doc.publishDate
+    }
     return {
-      name: 'sedar_documents',
-      status: count > 0 ? 'ok' : 'degraded',
-      latencyMs: Date.now() - started,
-      detail: count > 0 ? `${count} documents` : 'file present but empty',
-      // Investor reports still render with empty data; not a hard outage
-      critical: false,
+      check: {
+        name: 'sedar_documents',
+        status: count > 0 ? 'ok' : 'degraded',
+        latencyMs: Date.now() - started,
+        detail: count > 0 ? `${count} documents` : 'file present but empty',
+        critical: false,
+      },
+      count,
+      keyCount,
+      lastPublish,
     }
   } catch (err) {
     return {
-      name: 'sedar_documents',
-      status: 'degraded',
-      latencyMs: Date.now() - started,
-      detail: err instanceof Error ? err.message : 'unreadable',
-      critical: false,
+      check: {
+        name: 'sedar_documents',
+        status: 'degraded',
+        latencyMs: Date.now() - started,
+        detail: err instanceof Error ? err.message : 'unreadable',
+        critical: false,
+      },
+      count: 0,
+      keyCount: 0,
     }
+  }
+}
+
+function encryptionKey(): string | undefined {
+  const k = process.env.LOG_ENCRYPTION_KEY?.trim()
+  if (k && k.length === 64) return k
+  return undefined
+}
+
+async function scanTodayEmailLog(): Promise<{
+  sent: number
+  errors: number
+  blocked: number
+  lastSentAt?: string
+}> {
+  const date = new Date().toISOString().split('T')[0]
+  const filePath = path.join(getLogDir(), `send-email-${date}.log`)
+  try {
+    const stat = await fs.stat(filePath)
+    const start = Math.max(0, stat.size - EMAIL_LOG_MAX_BYTES)
+    const fh = await fs.open(filePath, 'r')
+    try {
+      const buf = Buffer.alloc(stat.size - start)
+      await fh.read(buf, 0, buf.length, start)
+      const raw = buf.toString('utf8')
+      const key = encryptionKey()
+      let sent = 0
+      let errors = 0
+      let blocked = 0
+      let lastSentAt: string | undefined
+      const lines = raw.split('\n')
+      if (start > 0 && lines.length > 0) lines.shift()
+      for (const line of lines) {
+        if (!line.trim()) continue
+        const plain = decryptLogLine(line, key)
+        let ctx = ''
+        let ts: string | undefined
+        try {
+          const obj = JSON.parse(plain) as { context?: string; timestamp?: string }
+          ctx = obj.context ?? ''
+          ts = typeof obj.timestamp === 'string' ? obj.timestamp : undefined
+        } catch {
+          ctx = plain
+        }
+        if (ctx.includes('EMAIL_SENT_SUCCESS')) {
+          sent += 1
+          if (ts) lastSentAt = ts
+        } else if (ctx.includes('EMAIL_SEND_ERROR')) {
+          errors += 1
+        } else if (ctx.includes('BLOCKED')) {
+          blocked += 1
+        }
+      }
+      return { sent, errors, blocked, lastSentAt }
+    } finally {
+      await fh.close()
+    }
+  } catch (err) {
+    const code = (err as NodeJS.ErrnoException).code
+    if (code === 'ENOENT') return { sent: 0, errors: 0, blocked: 0 }
+    return { sent: 0, errors: 0, blocked: 0 }
   }
 }
 
@@ -138,12 +244,88 @@ export async function GET(request: Request) {
     }
   }
 
+  const [sedar, email] = await Promise.all([loadSedar(), scanTodayEmailLog()])
+  const ses = checkSesConfig()
+  const logDir = checkLogDirConfig()
+
   const checks: HealthCheck[] = [
     { name: 'http', status: 'ok', latencyMs: 1, critical: true },
-    checkSesConfig(),
-    checkLogDirConfig(),
-    await checkSedarDocuments(),
+    ses,
+    logDir,
+    sedar.check,
   ]
+
+  const mem = process.memoryUsage()
+  const metrics: HealthMetric[] = [
+    {
+      id: 'sedar.document_count',
+      label: 'SEDAR filings',
+      value: sedar.count,
+      unit: 'count',
+    },
+    {
+      id: 'sedar.key_count',
+      label: 'Key filings',
+      value: sedar.keyCount,
+      unit: 'count',
+    },
+  ]
+  if (sedar.lastPublish) {
+    metrics.push({
+      id: 'sedar.last_publish',
+      label: 'Latest filing',
+      value: sedar.lastPublish,
+      unit: 'iso',
+      detail: sedar.lastPublish,
+    })
+  }
+  metrics.push(
+    {
+      id: 'email.sent_today',
+      label: 'Support email sent today',
+      value: email.sent,
+      unit: 'count',
+    },
+    {
+      id: 'email.errors_today',
+      label: 'SES errors today',
+      value: email.errors,
+      unit: 'count',
+      status: email.errors > 0 ? 'degraded' : 'ok',
+    },
+    {
+      id: 'email.blocked_today',
+      label: 'Form blocks today',
+      value: email.blocked,
+      unit: 'count',
+      detail: 'reCAPTCHA / origin',
+    },
+    {
+      id: 'process.rss_mb',
+      label: 'Process RSS',
+      value: Math.round(mem.rss / 1024 / 1024),
+      unit: 'count',
+      detail: 'MiB resident',
+    },
+    {
+      id: 'process.heap_mb',
+      label: 'Heap used',
+      value: Math.round(mem.heapUsed / 1024 / 1024),
+      unit: 'count',
+      detail: 'MiB',
+    }
+  )
+
+  const events: HealthEvent[] = []
+  if (email.lastSentAt) {
+    events.push({
+      id: 'email.last_sent',
+      label: 'Last support email',
+      status: 'ok',
+      finishedAt: email.lastSentAt,
+      summary: `${email.sent} sent today`,
+    })
+  }
 
   const status = rollupStatus(checks)
   const body = {
@@ -153,6 +335,8 @@ export async function GET(request: Request) {
     uptimeSec: Math.floor(process.uptime()),
     checkedAt: new Date().toISOString(),
     checks,
+    metrics,
+    events: events.length > 0 ? events : undefined,
     links: {
       dashboard: process.env.NEXT_PUBLIC_SITE_URL || undefined,
     },
