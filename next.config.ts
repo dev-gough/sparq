@@ -4,10 +4,6 @@ const nextConfig: NextConfig = {
   // Turbopack is the default bundler for `next dev` and `next build` in Next 16.
   // Optional FS cache speeds cold restarts in development.
   experimental: {
-    // Critical CSS / critters still ineffective for App Router streaming
-    cssChunking: 'strict',
-    // Soft route navigations via React <ViewTransition> + browser View Transitions API
-    viewTransition: true,
     turbopackFileSystemCacheForDev: true,
   },
   compiler: {

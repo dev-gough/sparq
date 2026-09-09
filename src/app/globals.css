@@ -220,7 +220,7 @@ html.dark {
 }
 
 /* -------------------------------------------------------------------------- */
-/* View Transitions — soft page navigations (experimental.viewTransition)    */
+/* View Transitions — soft page navigations via React's ViewTransition API  */
 /* Header pinned via view-transition-name: site-header (see Header.tsx).     */
 /* -------------------------------------------------------------------------- */
 

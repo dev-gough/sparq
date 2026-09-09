@@ -7,8 +7,7 @@ type PageTransitionProps = {
 }
 
 /**
- * Soft cross-fade for App Router navigations (Next experimental.viewTransition).
- * Uses React 19.2+ <ViewTransition> (Next App Router canary channel).
+ * Soft cross-fade for App Router navigations using React's <ViewTransition>.
  * Wraps page content only so header/footer stay anchored.
  * Unsupported browsers / reduced-motion: instant swap (see globals.css).
  */

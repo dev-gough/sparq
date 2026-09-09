@@ -119,7 +119,7 @@ async function listCandidateFiles(
   for (const d of dirs) {
     let entries: string[]
     try {
-      entries = await fs.readdir(d)
+      entries = await fs.readdir(/* turbopackIgnore: true */ d)
     } catch {
       continue
     }
