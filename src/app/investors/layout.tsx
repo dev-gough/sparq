@@ -9,6 +9,7 @@ const items = [
   },
   { label: 'Reports & Filings', href: '/investors/reports' },
   { label: 'Governance', href: '/investors/governance' },
+  { label: 'IR Contact', href: '/investors#contact' },
 ]
 
 /** Server layout — Subheader is a client island. */

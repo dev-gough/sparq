@@ -5,12 +5,12 @@ import Image from "next/image"
 import { useState, useEffect, Suspense, useCallback } from 'react'
 import { useSearchParams, useRouter, usePathname } from "next/navigation"
 import { Card, CardContent } from '@/components/ui/card'
-import { useTrackEvent, trackSelectContent, trackVideoStart } from '@/hooks/useTrackEvent'
+import { useTrackEvent, trackContactClick, trackSelectContent, trackVideoStart } from '@/hooks/useTrackEvent'
 import FAQs from './investor_faq.json'
 import SedarDocs from '@/data/sedar-documents.json'
 import VideoPopup from '@/components/VideoPopup'
 import { allVideos } from '@/data/videos'
-import { TrendingUp, Newspaper, Shield, ExternalLink, Play, FileText, Calendar } from 'lucide-react'
+import { TrendingUp, Newspaper, Shield, ExternalLink, Play, FileText, Calendar, Mail, Phone, ArrowRight } from 'lucide-react'
 import SolarBackgroundElements from "@/components/SolarBackgroundElements"
 
 /**
@@ -62,21 +62,27 @@ const keyNewsReleases = SedarDocs.documents
 const investorSections = [
     {
         title: "Stock Performance",
+        eyebrow: "Market Data",
         description: "View SPRQ quote and market data on the TSX Venture Exchange (external).",
+        action: "View stock data",
         href: "https://money.tmx.com/en/quote/SPRQ",
         icon: <TrendingUp className="w-6 h-6" />,
         gradient: "from-brand-maroon to-brand-logo"
     },
     {
         title: "Financial Reports",
+        eyebrow: "Financial Disclosure",
         description: "Access our latest SEDAR+ filings, financial statements, and regulatory documents.",
+        action: "Browse reports",
         href: "/investors/reports",
         icon: <Newspaper className="w-6 h-6" />,
         gradient: "from-brand-logo to-brand-yellow"
     },
     {
         title: "Governance",
+        eyebrow: "Corporate Oversight",
         description: "Corporate governance documents, policies, and committee charters.",
+        action: "Explore governance",
         href: "/investors/governance",
         icon: <Shield className="w-6 h-6" />,
         gradient: "from-brand-darkmaroon to-brand-maroon"
@@ -86,7 +92,7 @@ const investorSections = [
 
 export default function InvestorsPage() {
     useTrackEvent()
-    const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({ 0: true })
+    const [dropdownExpanded, setDropdownExpanded] = useState<Record<number, boolean>>({})
     const [showingVideoID, setShowingVideoID] = useState<number | null>(null)
     const router = useRouter()
     const pathname = usePathname()
@@ -102,6 +108,10 @@ export default function InvestorsPage() {
             content_name: 'Investor Presentation',
             item_list_name: 'investors',
         })
+    }
+
+    const handleInvestorContactClick = (method: 'phone' | 'email', linkUrl: string) => {
+        trackContactClick({ method, link_url: linkUrl })
     }
 
     const handleVideoShow = (id: number) => {
@@ -205,38 +215,132 @@ export default function InvestorsPage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
                         {investorSections.map((section) => (
-                            <div key={section.title}>
-                                <Link
-                                    href={section.href}
-                                    target={section.href.startsWith('http') ? '_blank' : undefined}
-                                    rel={section.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                                    aria-label={`Learn more about ${section.title}`}
-                                    className="block h-full rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-maroon"
-                                >
-                                    <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 py-0 h-full group cursor-pointer dark:bg-gray-800">
-                                        <CardContent className="p-6 text-center h-full flex flex-col">
-                                            <div className={`flex items-center justify-center w-16 h-16 bg-gradient-to-br ${section.gradient} rounded-full mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`} aria-hidden>
+                            <Link
+                                key={section.title}
+                                href={section.href}
+                                target={section.href.startsWith('http') ? '_blank' : undefined}
+                                rel={section.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                aria-label={`${section.action}: ${section.title}`}
+                                className="block h-full rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-maroon"
+                            >
+                                <Card className="overflow-hidden gap-0 border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 py-0 h-full group cursor-pointer bg-white dark:bg-gray-800 rounded-3xl ring-1 ring-brand-maroon/10 dark:ring-white/10">
+                                    <div className={`h-2 bg-gradient-to-r ${section.gradient}`} aria-hidden />
+                                    <CardContent className="p-7 h-full flex flex-col">
+                                        <div className="flex items-center gap-4 mb-6">
+                                            <div className={`flex items-center justify-center w-12 h-12 shrink-0 bg-gradient-to-br ${section.gradient} rounded-full shadow-md group-hover:scale-105 transition-transform duration-300`} aria-hidden>
                                                 <div className="text-white">
                                                     {section.icon}
                                                 </div>
                                             </div>
-                                            <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon transition-colors duration-300 mb-4">
-                                                {section.title}
-                                            </h3>
-                                            <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed flex-grow mb-6">
-                                                {section.description}
-                                            </p>
-                                            <div className="inline-flex items-center text-brand-maroon group-hover:text-brand-darkmaroon font-semibold transition-colors duration-200" aria-hidden>
-                                                <span>Learn more</span>
-                                                <span className="ml-2">→</span>
+                                            <div>
+                                                <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-logo dark:text-brand-yellow mb-1">
+                                                    {section.eyebrow}
+                                                </p>
+                                                <h3 className="text-xl font-bold text-brand-darkmaroon dark:text-brand-yellow group-hover:text-brand-maroon dark:group-hover:text-brand-logo transition-colors duration-300 leading-tight">
+                                                    {section.title}
+                                                </h3>
                                             </div>
-                                        </CardContent>
-                                    </Card>
-                                </Link>
-                            </div>
+                                        </div>
+                                        <p className="text-brand-graytext dark:text-dark-text-secondary leading-relaxed flex-grow">
+                                            {section.description}
+                                        </p>
+                                        <div className="mt-6 pt-5 border-t border-brand-maroon/10 dark:border-white/10 flex items-center justify-between text-brand-maroon dark:text-brand-logo font-semibold transition-colors duration-200" aria-hidden>
+                                            <span>{section.action}</span>
+                                            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-maroon/10 dark:bg-brand-yellow/10 group-hover:bg-brand-maroon group-hover:text-white dark:group-hover:bg-brand-yellow dark:group-hover:text-brand-darkmaroon transition-colors">
+                                                {section.href.startsWith('http') ? (
+                                                    <ExternalLink className="h-4 w-4" />
+                                                ) : (
+                                                    <ArrowRight className="h-4 w-4" />
+                                                )}
+                                            </span>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Link>
                         ))}
+                    </div>
+
+                    {/* Investor Relations Contact */}
+                    <div id="contact" className="max-w-5xl mx-auto mt-16 overflow-hidden rounded-3xl bg-white dark:bg-gray-800 shadow-xl ring-1 ring-brand-maroon/10 dark:ring-white/10 scroll-mt-[150px]">
+                        <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
+                            <div className="relative overflow-hidden bg-gradient-to-br from-brand-maroon to-brand-darkmaroon p-8 sm:p-10 lg:p-12 text-white">
+                                <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-brand-yellow/15" aria-hidden />
+                                <div className="absolute -bottom-20 -left-16 h-56 w-56 rounded-full bg-white/5" aria-hidden />
+                                <div className="relative">
+                                    <p className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-brand-yellow">
+                                        Investor Relations
+                                    </p>
+                                    <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-5">
+                                        Have a question for our IR team?
+                                    </h2>
+                                    <p className="text-lg leading-relaxed text-white/85">
+                                        Connect directly with our investor relations representative for information about Sparq Systems.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="p-8 sm:p-10 lg:p-12">
+                                <div className="flex items-center gap-4 mb-8">
+                                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-logo to-brand-yellow text-xl font-bold text-white shadow-md" aria-hidden>
+                                        SP
+                                    </div>
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-brand-darkmaroon dark:text-brand-yellow">
+                                            Sean Peasgood
+                                        </h3>
+                                        <p className="text-brand-graytext dark:text-dark-text-secondary">
+                                            Investor Relations · Sophic Capital
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-3">
+                                    <a
+                                        href="tel:+14167645765"
+                                        onClick={() => handleInvestorContactClick('phone', 'tel:+14167645765')}
+                                        className="group flex min-h-[56px] items-center gap-4 rounded-xl bg-slate-50 dark:bg-gray-900/70 px-4 py-3 text-brand-darkmaroon dark:text-dark-text-primary transition-colors hover:bg-brand-maroon/10 dark:hover:bg-brand-yellow/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-maroon"
+                                        aria-label="Call Sean Peasgood at 416-764-5765"
+                                    >
+                                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-maroon/10 text-brand-maroon dark:bg-brand-yellow/15 dark:text-brand-yellow group-hover:bg-brand-maroon group-hover:text-white dark:group-hover:bg-brand-yellow dark:group-hover:text-brand-darkmaroon transition-colors" aria-hidden>
+                                            <Phone className="h-5 w-5" />
+                                        </span>
+                                        <span>
+                                            <span className="block text-xs font-semibold uppercase tracking-wider text-brand-graytext dark:text-dark-text-muted">Phone</span>
+                                            <span className="font-semibold">416-764-5765</span>
+                                        </span>
+                                    </a>
+
+                                    <a
+                                        href="mailto:sean@sophiccapital.com"
+                                        onClick={() => handleInvestorContactClick('email', 'mailto:sean@sophiccapital.com')}
+                                        className="group flex min-h-[56px] items-center gap-4 rounded-xl bg-slate-50 dark:bg-gray-900/70 px-4 py-3 text-brand-darkmaroon dark:text-dark-text-primary transition-colors hover:bg-brand-maroon/10 dark:hover:bg-brand-yellow/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-maroon"
+                                        aria-label="Email Sean Peasgood at sean@sophiccapital.com"
+                                    >
+                                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-maroon/10 text-brand-maroon dark:bg-brand-yellow/15 dark:text-brand-yellow group-hover:bg-brand-maroon group-hover:text-white dark:group-hover:bg-brand-yellow dark:group-hover:text-brand-darkmaroon transition-colors" aria-hidden>
+                                            <Mail className="h-5 w-5" />
+                                        </span>
+                                        <span className="min-w-0">
+                                            <span className="block text-xs font-semibold uppercase tracking-wider text-brand-graytext dark:text-dark-text-muted">Email</span>
+                                            <span className="font-semibold break-all sm:break-normal">sean@sophiccapital.com</span>
+                                        </span>
+                                    </a>
+                                </div>
+
+                                <a
+                                    href="/investors_ppt.pdf"
+                                    onClick={handlePresentationClick}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-8 inline-flex min-h-[44px] items-center font-semibold text-brand-maroon dark:text-brand-logo transition-colors hover:text-brand-darkmaroon dark:hover:text-brand-yellow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-maroon"
+                                >
+                                    <FileText className="mr-2 h-5 w-5" aria-hidden />
+                                    View Investor Presentation
+                                    <ExternalLink className="ml-2 h-4 w-4" aria-hidden />
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -528,32 +632,6 @@ View All Reports & Filings
                                 </Card>
                             </div>
                         ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Call to Action */}
-            <section className="relative z-20 container mx-auto px-6 pb-20 sm:py-20">
-                <div className="text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-brand-darkmaroon dark:text-brand-yellow mb-6">
-                        Ready to Invest?
-                    </h2>
-                    <p className="text-lg text-brand-graytext dark:text-dark-text-secondary mb-12 max-w-2xl mx-auto">
-                        Connect with our investor relations team to learn more about investment opportunities with Sparq Systems.
-                    </p>
-                    <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-2xl mx-auto">
-                        <Link href="/contact" className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-maroon to-brand-darkmaroon text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer min-h-[44px] inline-flex items-center justify-center text-center">
-Contact Investor Relations
-</Link>
-                        <a
-                            href="/investors_ppt.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full sm:w-auto min-h-[44px] px-8 py-4 bg-gradient-to-r from-brand-yellow to-brand-logo text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer inline-flex items-center justify-center"
-                        >
-                            <FileText className="mr-2" aria-hidden />
-                            View Investor Presentation
-                        </a>
                     </div>
                 </div>
             </section>

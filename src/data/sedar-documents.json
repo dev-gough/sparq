@@ -1,6 +1,160 @@
 {
   "documents": [
     {
+      "id": "sedar-2026-q2-interim-financials",
+      "title": "Interim Financial Report",
+      "type": "quarterly-report",
+      "year": 2026,
+      "quarter": "Q2",
+      "publishDate": "2026-08-21",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=356936647e7c3ed39a3eea6f177f17b7bd054ec536b82929256ebd6b558c8cc7",
+      "description": "",
+      "key": false
+    },
+    {
+      "id": "sedar-2026-06-12-ir-consultant",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2026,
+      "publishDate": "2026-06-12",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=7a760ae194f836fc5c6d342a0c5175f5f4672064b6a7855a25d665426f898ecc",
+      "description": "SPARQ Announces Engagement of Investor Relations Consultant",
+      "key": false
+    },
+    {
+      "id": "sedar-2026-05-26-expanded-purchase-order",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2026,
+      "publishDate": "2026-05-26",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=8a1d82b86a832e01e98b092c8e2452ca6cbec2f522f7966eaf0c2df6ee74bd0f",
+      "description": "Sparq Receives Expanded Purchase Order for $32 Million of Microinverters",
+      "key": true
+    },
+    {
+      "id": "sedar-2026-q1-interim-financials",
+      "title": "Interim Financial Report",
+      "type": "quarterly-report",
+      "year": 2026,
+      "quarter": "Q1",
+      "publishDate": "2026-05-26",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=8405968985f974cb9db108a86084b43bebb53caaf5a2d1ae628eecd9d45114c5",
+      "description": "",
+      "key": false
+    },
+    {
+      "id": "sedar-2025-audited-annual-financials",
+      "title": "Audited Annual Financial Statements",
+      "type": "annual-report",
+      "year": 2025,
+      "publishDate": "2026-04-29",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=c0ca317f67ce0f7d0aea3c1a95bf2b388f48cacbd9e0aacbfa3e839d0bc7c0e7",
+      "description": "",
+      "key": false
+    },
+    {
+      "id": "sedar-2026-03-11-purchase-order",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2026,
+      "publishDate": "2026-03-11",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=657f2e962ab1414fd1199ad8961a4f1a32b2ceca3433816426fe147b535b6d6f",
+      "description": "Sparq Receives Purchase Order For 60 MW of Microinverters",
+      "key": false
+    },
+    {
+      "id": "sedar-2026-02-02-communications-consultant",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2026,
+      "publishDate": "2026-02-02",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=6db0b5fd1d1c99c5bd536ddbf57c8a838496a38b89afd00a040e7356ae86d4f5",
+      "description": "Sparq Announces Engagement of Corporate Communications Consultant",
+      "key": false
+    },
+    {
+      "id": "irmasUqneoqmnax9amf8",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2026,
+      "publishDate": "2026-01-05",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=5f662972290be79ea2308869bf54d26c65fa6558641a4d4492583cfba7aa1281",
+      "description": "Praveen Jain, CEO of Sparq Systems Inc., Awarded Order of Canada",
+      "key": true
+    },
+    {
+      "id": "aHRasjndKJNASO0910",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2025,
+      "publishDate": "2025-12-01",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=373ee6361a290c8d77b9c7f20782dcf4573ed3ade390e0f83feff2ae7a23d99b",
+      "description": "Majid Pahlevani, CTO of Sparq Systems Inc., Named an IEEE Fellow",
+      "key": false
+    },
+    {
+      "id": "aHdnqnu98n28h12unakjsand",
+      "title": "Interim Financial Report",
+      "type": "quarterly-report",
+      "year": 2025,
+      "quarter": "Q3",
+      "publishDate": "2025-11-27",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=964b42ac85e0ae73b615fbcfd06bdec58cb2081979f4a24bbabace6cf5bed779",
+      "description": "",
+      "key": false
+    },
+    {
+      "id": "aHR0cajjqoiams91023amsa",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2025,
+      "publishDate": "2025-11-10",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=ea95c9b8047d073bb8b67b336c3ae6e1b1933587a6f30d31caac00624869fe62",
+      "description": "Sparq Announces AI-Driven Grid Power Control Device",
+      "key": false
+    },
+    {
+      "id": "aHR0cajnqIH992jBAknksak",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2025,
+      "publishDate": "2025-11-06",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=a6c0bb96b45b01572e4c806f06250025e4dc7567d010afb317cea899ab678427",
+      "description": "Sparq Announces Entry into African Microinverter Market",
+      "key": false
+    },
+    {
+      "id": "aHR0cHM6Ly93d3cumkaquad",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2025,
+      "publishDate": "2025-10-24",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=8d87be5fdeeda3b45cfc9f0d1a6ed5a40f6e3fe1fed310aee9d346519152f35e",
+      "description": "Sparq Announces Termination of Investor Relations Agreement",
+      "key": false
+    },
+    {
+      "id": "aHR0cHM6Ly93d3cumksmdkds",
+      "title": "News Release",
+      "type": "press-release",
+      "year": 2025,
+      "publishDate": "2025-10-20",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=6ac63753cc64b9b6fefbff9c654d160afcf9bee5087125997f34916961e5c0c9",
+      "description": "Sparq Announces Development of Duo Microinverter",
+      "key": true
+    },
+    {
+      "id": "aHR0cHM6Ly93d3cumeaskdma",
+      "title": "Interim Financial Report",
+      "type": "quarterly-report",
+      "year": 2025,
+      "quarter": "Q2",
+      "publishDate": "2025-08-25",
+      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=bfa245653d7c5ea213e6447a6ef4df074aea34b67f2dd9889fbf1e0e8bf0d8cb",
+      "description": "",
+      "key": false
+    },
+    {
       "id": "aHR0cHM6Ly93d3cumeiv5vil",
       "title": "News Release",
       "type": "press-release",
@@ -121,7 +275,7 @@
       "publishDate": "2024-08-28",
       "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=b487d44983926c6107237696ec4d811290d60e8252017e469ff773ed7a0c21db",
       "description": "SPARQ Receives Purchase Order for Additional 20 MW Worth of Microinverters",
-      "key": true
+      "key": false
     },
     {
       "id": "aHR0cHM6Ly93d3cumeiwmnqb",
@@ -658,27 +812,6 @@
       "key": false
     },
     {
-      "id": "aHR0cHM6Ly93d3cumeaskdma",
-      "title": "Interim Financial Report",
-      "type": "quarterly-report",
-      "year": 2025,
-      "quarter": "Q2",
-      "publishDate": "2025-08-25",
-      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=bfa245653d7c5ea213e6447a6ef4df074aea34b67f2dd9889fbf1e0e8bf0d8cb",
-      "description": "",
-      "key": false
-    },
-    {
-      "id": "aHR0cHM6Ly93d3cumksmdkds",
-      "title": "News Release",
-      "type": "press-release",
-      "year": 2025,
-      "publishDate": "2025-10-20",
-      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=6ac63753cc64b9b6fefbff9c654d160afcf9bee5087125997f34916961e5c0c9",
-      "description": "Sparq Announces Development of Duo Microinverter",
-      "key": true
-    },
-    {
       "id": "aHR0cHM6Ly93d3cumeizappk",
       "title": "News Release",
       "type": "press-release",
@@ -687,67 +820,6 @@
       "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=16b16341c0740b8e07de1614dc6f3732016d58e6d790faa54dad5423efad217c",
       "description": "MJ Innovation Capital Corp. Completes Initial Public Offering",
       "key": false
-    },
-    {
-      "id": "aHR0cHM6Ly93d3cumkaquad",
-      "title": "News Release",
-      "type": "press-release",
-      "year": 2025,
-      "publishDate": "2025-10-24",
-      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=8d87be5fdeeda3b45cfc9f0d1a6ed5a40f6e3fe1fed310aee9d346519152f35e",
-      "description": "Sparq Announces Termination of Investor Relations Agreement",
-      "key": false
-    },
-    {
-      "id": "aHR0cajnqIH992jBAknksak",
-      "title": "News Release",
-      "type": "press-release",
-      "year": 2025,
-      "publishDate": "2025-11-06",
-      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=a6c0bb96b45b01572e4c806f06250025e4dc7567d010afb317cea899ab678427",
-      "description": "Sparq Announces Entry into African Microinverter Market",
-      "key": false
-    },
-    {
-      "id": "aHR0cajjqoiams91023amsa",
-      "title": "News Release",
-      "type": "press-release",
-      "year": 2025,
-      "publishDate": "2025-11-10",
-      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=ea95c9b8047d073bb8b67b336c3ae6e1b1933587a6f30d31caac00624869fe62",
-      "description": "Sparq Announces AI-Driven Grid Power Control Device",
-      "key": false
-    },
-    {
-      "id": "aHdnqnu98n28h12unakjsand",
-      "title": "Interim Financial Report",
-      "type": "quarterly-report",
-      "year": 2025,
-      "quarter": "Q3",
-      "publishDate": "2025-11-27",
-      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=964b42ac85e0ae73b615fbcfd06bdec58cb2081979f4a24bbabace6cf5bed779",
-      "description": "",
-      "key": false
-    },
-    {
-      "id": "aHRasjndKJNASO0910",
-      "title": "News Release",
-      "type": "press-release",
-      "year": 2025,
-      "publishDate": "2025-12-01",
-      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=373ee6361a290c8d77b9c7f20782dcf4573ed3ade390e0f83feff2ae7a23d99b",
-      "description": "Majid Pahlevani, CTO of Sparq Systems Inc., Named an IEEE Fellow",
-      "key": false
-    },
-    {
-      "id": "irmasUqneoqmnax9amf8",
-      "title": "News Release",
-      "type": "press-release",
-      "year": 2026,
-      "publishDate": "2026-01-05",
-      "url": "https://www.sedarplus.ca/csa-party/records/document.html?id=5f662972290be79ea2308869bf54d26c65fa6558641a4d4492583cfba7aa1281",
-      "description": "Praveen Jain, CEO of Sparq Systems Inc., Awarded Order of Canada",
-      "key": true
     }
   ]
 }
